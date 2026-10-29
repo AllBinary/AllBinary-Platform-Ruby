@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary.game</groupId>
+    <artifactId>GraphPRb</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>GraphPRb</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+        
+<!--        <module>../GeographicMapLibraryRbM</module>-->
+
+        <!--
+        ../../
+        -->
+
+<!--        <module>../../../../../../../work/j2me/media/graphics/geography/GeographicPathFinderJGraphTJavaLibraryRbM</module>
+        <module>../../../../../../../work/j2me/media/graphics/geography/GeographicPathFinderJGraphTJavaLibrary_1_4_2RbM</module>-->
+        
+        <module>../../PathFindingNodeCostJavaLibraryRbM</module>
+        
+<!--        <module>../../../../../../../work/j2me/media/graphics/geography/GeographicPathFinderHack1JavaLibraryRbM</module>
+        <module>../../../../../../../work/j2me/media/graphics/geography/GeographicPathFinderHack2JavaLibraryRbM</module>
+        <module>../../../../../../../work/j2me/media/graphics/geography/GeographicPathFinderHack3JavaLibraryRbM</module>-->
+        <module>../../GeographicPathFinderPriorityQueueJavaLibraryRbM</module>
+
+<!--        <module>../../GeographicPathFindingLibraryRbM</module>-->
+
+        <!--
+        ../../
+        -->
+
+        <module>../../PathFindingNodeCostPerformantJavaLibraryRbM</module><!--
+        <module>../../../../../../../work/j2me/media/graphics/geography/PathFindingNodeCostComplexJavaLibraryRbM</module>-->
+        
+<!--        <module>../../../../../../physics/FrictionJavaLibraryRbM</module>-->
+<!--    
+        <module>../StaticPathFindingRaceTrackJavaLibraryRbM</module>
+        <module>../DynamicPathFindingRaceTrackJavaLibraryRbM</module>
+-->
+
+<!--        <module>../RaceTrackGeographicMapLibraryRbM</module>-->
+        
+
+<!--        <module>../../../../../../../work/j2me/media/graphics/geography/map/DynamicPathFindingRaceTrackJavaLibrary_1_4_2RbM</module>-->
+        <!--
+        -->        
+        
+        <module>../BasicPlatformGeographicMapJavaLibraryRbM</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
+

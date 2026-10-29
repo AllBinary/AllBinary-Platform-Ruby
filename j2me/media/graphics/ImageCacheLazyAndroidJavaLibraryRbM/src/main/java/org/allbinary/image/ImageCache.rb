@@ -1,0 +1,127 @@
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# frozen_string_literal: false
+# package org.allbinary.image
+
+# require "java/io/InputStream"
+# require "javax/microedition/lcdui/Image"
+# require "javax/microedition/lcdui/NullImage"
+require "org/allbinary/image/ImageCacheBase"
+
+class ImageCache < ImageCacheBase
+    attr_accessor :logUtil, :commonStrings, :systemWrapper, :tsUtil
+
+    def initialize_fields
+        @logUtil = LogUtil.getInstance()
+        @commonStrings = CommonStrings.getInstance()
+        @systemWrapper = ABSystemWrapper.getInstance()
+        @tsUtil = TsUtil.getInstance()
+    end
+    
+
+    def initialize()
+        super()
+        initialize_fields
+    end
+    
+
+    # throws Exception
+    def get(caller, width, height)
+        foundIndex = self.getIndexWH(width, height)
+        image = self.getFromAvailable(foundIndex, width, height)
+        if image == NullImage::NULL_IMAGE
+            @volume += width * height
+            if @volume > 32000
+                @tsUtil.gc()
+                @volume = 0
+            end
+            image = self.createImage(caller, width, height)
+            if foundIndex == -1
+                foundIndex = @nextIndex
+                @widths[@nextIndex] = width
+                @heights[@nextIndex] = height
+                @nextIndex += 1
+            end
+            @listOfList[foundIndex].add(image)
+        end
+        return image
+    end
+    
+
+    # throws Exception
+    # Java overloaded method: Ruby keeps the last definition
+    def get(key)
+        resourceUtil = ResourceUtil.getInstance()
+        resourceId = resourceUtil.getResourceId(key)
+        image = self.getImage(resourceId)
+        if image == NullImage::NULL_IMAGE
+            inputStream = nil
+            begin
+                @logUtil.putF(Memory.getInfo(), self, @commonStrings.GET)
+                image = self.createImage(key, inputStream)
+            rescue StandardError => e
+                @logUtil.put("Exception: Trying Again After GC", self, @commonStrings.GET, e)
+                @logUtil.putF(StringMaker.new().append("InputStream: ").append(inputStream.to_s).to_s, self, @commonStrings.GET)
+                @tsUtil.gc()
+                @tsUtil.gc()
+                @logUtil.putF(Memory.getInfo(), self, @commonStrings.GET)
+                sleep((100) / 1000.0)
+                image = self.createImage(key, inputStream)
+            end
+            @hashtable.put(resourceId, image)
+        end
+        return image
+    end
+    
+
+    def getIndex(key)
+        gdResources = GDResources.getInstance()
+        resourceStringArray = gdResources.resourceStringArray
+        size = resourceStringArray.length
+        (0...size).each do |index|
+            if resourceStringArray[index] == key
+                return index
+            end
+        end
+        @logUtil.putF(StringMaker.new().append("unable to find key: ").append(StringUtil.getInstance().toString(key)).to_s, self, @commonStrings.RUN)
+        raise RuntimeError.new()
+    end
+    
+
+    # throws Exception
+    def createImage(key, inputStream)
+        return Image.createImageLater(key, -1, -1)
+    end
+    
+
+    def isLazy()
+        raise RuntimeError.new()
+    end
+end
+
+require "org/allbinary/TsUtil"
+require "org/allbinary/logic/communication/log/LogUtil"
+require "org/allbinary/string/CommonStrings"
+require "org/allbinary/logic/string/StringMaker"
+require "org/allbinary/data/resource/ResourceUtil"
+require "org/allbinary/game/gd/resource/GDResources"
+require "org/allbinary/logic/ABSystemWrapper"
+require "org/allbinary/logic/string/StringUtil"
+require "org/allbinary/system/Memory"
+require "java/lang/Thread"
+
+class ImageCache
+    NULL_IMAGE_CACHE = ImageCache.new()
+end
+

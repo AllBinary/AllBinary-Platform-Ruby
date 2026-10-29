@@ -1,0 +1,192 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>GameJ2MELibraryPOMRb</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>GameJ2MELibraryPOMRb</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <modules>
+
+        <!--
+        NoGyroSensorLibrary
+
+        -->
+        <module>../../android/AndroidUtilJavaLibraryRbM</module>
+
+        <module>../../../allbinary_src/security/SimpleCryptLibraryRbM</module>
+        <!--
+        <module>../../../../working_thirdparty/security/BouncyCastleDESJavaLibraryRbM</module>
+        <module>../../../../working_thirdparty/communication/XmlRpc/XmlRpcJavaLibraryRbM</module>
+        -->
+        <module>../../../allbinary_src/TokenizerJavaLibraryRbM</module>
+        <module>../../../allbinary_src/security/BasicSecurityJavaLibraryRbM</module>
+        <module>../../../replace_these_stub_projects/security/YourCryptFileJavaLibraryRbM</module>
+        <module>../../../replace_these_stub_projects/security/YourSecurityJavaLibraryRbM</module>
+        <module>../../../replace_these_stub_projects/communication/YourXmlRpcJavaLibraryRbM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEOnlyJavaLibraryRbM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MECompatibilityJavaLibraryRbM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEJsInteropCompatibilityJavaLibraryRbM</module>
+
+        <module>../../DebugJavaLibraryRbM</module>             
+        <module>../../ResourceLibraryRbM</module>
+        <module>../../ResourceJ2MEJavaLibraryRbM</module>
+        <module>../../AndroidResourceLibraryRbM</module>
+        <module>../../../allbinary_src/hardware/AndroidSystemJavaLibraryRbM</module>
+
+        <module>../../../game/behavior/ArtificialIntelligenceLibraryRbM</module>
+
+        <module>../../media/graphics/PlatformNullImageJavaLibraryRbM</module>
+        <module>../../media/graphics/ImageCacheBaseJ2MEJavaLibraryRbM</module>
+        <module>../../media/graphics/ImageCacheJ2MEJavaLibraryRbM</module>
+        <module>../../../graphics/opengl/OpenGLJ2MENoneJavaLibraryRbM</module>
+        <module>../../../graphics/opengl/OpenGLNoneJavaLibraryRbM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOtherJavaLibraryRbM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOther2JavaLibraryRbM</module>
+        <module>../../../graphics/opengl/OpenGLESBaseJ2MEJavaLibraryRbM</module>
+
+        <module>../../media/graphics/animation/AnimationLibraryRbM</module>
+        <module>../../media/graphics/animation/RotationAnimationJavaLibraryRbM</module>
+
+        <module>../../games/GameInputLibraryRbM</module>
+
+        <module>../../games/GameScoresBaseJavaLibraryRbM</module>
+        <module>../../games/GameScoresBaseJ2MELibraryRbM</module>
+
+        <module>../../statistics/ApplicationStatisticsHTMLLibraryRbM</module>
+        <!--
+        <module>../../games/GameConfigurationHTMLJavaLibraryRbM</module>
+        -->
+        <module>../../games/GameConfigurationJ2MEJavaLibraryRbM</module>   
+        <module>../../games/GameConfigurationJavaLibraryRbM</module>
+
+        <module>../../games/GameIntermissionLibraryRbM</module>
+
+        <module>../../GroupLibraryRbM</module>
+
+        <module>../../input/NoSensorJavaLibraryRbM</module>
+
+        <module>../../input/AllBinarySensorJavaLibraryRbM</module>
+
+        <module>../../input/platform/me/GameInputMEJavaLibraryRbM</module>
+        <module>../../input/platform/me/GameInputMEKeyOnlyJavaLibraryRbM</module>
+        <module>../../input/platform/me/GameInputMEMotionJavaLibraryRbM</module>
+        <module>../../input/platform/pc/GameInputPCBaseJavaLibraryRbM</module>
+        <module>../../input/platform/pc/GameInputPCJavaLibraryRbM</module>
+        <module>../../input/platform/pc/GameInputPCKeyOnlyJavaLibraryRbM</module>
+        <module>../../input/platform/pc/GameInputPCMotionJavaLibraryRbM</module>
+        <module>../../input/platform/pc/GameInputSwtJavaLibraryRbM</module>
+
+        <module>../../input/AllBinaryGyroSensorJavaLibraryRbM</module>
+        <module>../../input/MotionGestureJavaLibraryRbM</module>
+        
+        <module>../../input/MotionGestureBaseJavaLibraryRbM</module>
+
+        <module>../../games/GameInputPersistanceLibraryRbM</module>
+        <module>../../games/GameInputNoPersistanceLibraryRbM</module>
+        
+        <module>../../lib/VectorThreeDimensionalLibraryRbM</module>
+        <module>../../input/AllBinaryAccelerometerSensorJavaLibraryRbM</module>
+        <module>../../input/NoGyroSensorJavaLibraryRbM</module>
+        <module>../../input/JSEGyroSensorJavaLibraryRbM</module>
+        <!--
+        <module>../../input/android/</module>
+        <module>../../input/platform/android/GameInputAndroidBaseJavaLibraryRbM</module>
+        -->
+
+        <module>../../media/sound/BasicPlayerJavaLibraryRbM</module>
+        <module>../../media/sound/BasicPlayerMIDP2JavaLibraryRbM</module>
+        <module>../../media/sound/NoPlayerJavaLibraryRbM</module>
+        <module>../../media/sound/SoundJ2MELibraryRbM</module>
+
+        <module>../../media/motion/AllBinaryVibrationJavaLibraryRbM</module>
+        <module>../../media/motion/NoVibrateJavaLibraryRbM</module>
+        <module>../../media/motion/VibrateAndroidJavaLibraryRbM</module>
+
+        <module>../../media/graphics/NullCustomUIJavaLibraryRbM</module>
+        <module>../../media/graphics/NullCustomUIBaseJavaLibraryRbM</module>
+
+        <module>../../media/graphics/FormValidationJavaLibraryRbM</module>
+        
+        <module>../../media/graphics/FormJavaLibraryRbM</module>
+        <module>../../media/graphics/FormBaseJavaLibraryRbM</module>
+        <!--
+        <module>../../media/graphics/FormJMEJavaLibraryRbM</module>
+        -->
+        <module>../../../j2me/media/graphics/FormJMEJavaLibraryRbM</module>
+
+        <module>../../media/graphics/animation/AnimationResourceJavaLibraryRbM</module>
+        <module>../../media/graphics/animation/TransitionAnimationJavaLibraryRbM</module>
+        <module>../../media/graphics/animation/NoTransitionAnimationJavaLibraryRbM</module>
+        <!--
+        AndroidTransitionAnimationJavaLibraryM
+        -->
+        <module>../../media/graphics/animation/GameAnimationJavaLibraryRbM</module>
+        <module>../../games/GameResourceJavaLibraryRbM</module>
+        <module>../../games/GameSoundsJavaLibraryRbM</module>
+
+        <module>../../input/TouchInputLibraryP</module>
+
+        <module>../../media/MediaDataRbM</module>
+        <module>../../media/sound/NotDeviceSpecificNoMediaMIDP1LibraryRbM</module>
+
+        <module>../../../allbinary_src/content/ContentNoneJavaLibraryRbM</module>
+        <module>../../../allbinary_src/content/ContentAndroidJavaLibraryRbM</module>
+
+        <module>../../games/GameConfigurationFormJavaLibraryRbM</module>
+
+        <module>../../FullScreenNoneJavaLibraryRbM</module>
+        <!--
+        <module>../../FullScreenJavaLibraryRbM</module>
+        -->
+
+        <module>../../../physics/VelocityLibraryRbM</module>
+
+        <module>../../games/weapon/SoundsBasicWeaponsJavaLibraryRbM</module>
+
+        <module>../../lib/TrigJ2MELibraryRbM</module>
+
+        <module>../../media/graphics/geography/map/LayerPlacementLibraryRbM</module>
+        <module>../../media/graphics/layer/AllBinaryLayerJavaLibraryRbM</module>
+
+        <module>../../ScreenCaptureNoneJavaLibraryRbM</module>
+        
+        <module>../licensing/GameLicensingNullJavaLibraryRbM</module>
+        
+        <module>../../business/advertisement/AllBinaryAdvertisementClientJavaLibraryRbM</module>
+        <module>../../business/advertisement/AdvertisementClientNoneJavaLibraryRbM</module>
+
+        <module>../GameNotificationJavaLibraryRbM</module>
+
+        <module>../../../graphics/opengl/NoSWTJavaLibraryRbM</module>
+        <module>../../../graphics/opengl/SWTWithoutJOGLJavaLibraryRbM</module>
+        <module>../SWTJavaLibraryRbM</module>
+        <module>../GameJ2MELibraryRbM</module>
+        
+        <!--
+        <module>../GameJ2MEOptionalLibraryPORbM</module>
+        -->
+    
+    </modules>
+
+</project>
+

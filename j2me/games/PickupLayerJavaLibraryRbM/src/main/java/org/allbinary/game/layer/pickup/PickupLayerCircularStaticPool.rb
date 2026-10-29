@@ -1,0 +1,48 @@
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# frozen_string_literal: false
+# package org.allbinary.game.layer.pickup
+
+require "org/allbinary/layer/AllBinaryLayerCircularPool"
+
+class PickupLayerCircularStaticPool < AllBinaryLayerCircularPool
+    
+
+    def initialize()
+        super()
+    end
+    
+
+    def self.getInstance()
+        return PickupLayerCircularStaticPool::SINGLETON
+    end
+    
+
+    # throws Exception
+    def getInstanceXYZ(pickedUpLayerInterfaceFactoryInterface, x, y, z)
+        pickupLayer = self.getNextInstance()
+        pickupLayer.initXYZ(x, y, z)
+        pickupLayer.init(pickedUpLayerInterfaceFactoryInterface, pickedUpLayerInterfaceFactoryInterface.getAnimationInterface())
+        return pickupLayer
+    end
+end
+
+require "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
+require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+require "org/allbinary/game/layer/pickup/PickupLayer"
+
+class PickupLayerCircularStaticPool
+    SINGLETON = PickupLayerCircularStaticPool.new()
+end
+

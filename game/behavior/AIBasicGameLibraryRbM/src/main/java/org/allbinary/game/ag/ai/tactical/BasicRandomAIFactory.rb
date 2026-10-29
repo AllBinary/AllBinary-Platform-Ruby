@@ -1,0 +1,42 @@
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# frozen_string_literal: false
+# package org.allbinary.game.ag.ai.tactical
+
+require "org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface"
+
+class BasicRandomAIFactory
+    include ArtificialIntelligenceInterfaceFactoryInterface
+    
+
+    # throws Exception
+    def getInstance(hashtable, ownerLayerInterface, gameInput)
+        visitor = hashtable.get(BasicAI::AI_VISITOR)
+        if visitor == nil
+            raise StandardError.new("No Visitor Provided")
+        end
+        inputProbability = hashtable.get(InputProbability::INPUT_PROBABILITY)
+        return BasicRandomAI.new(ownerLayerInterface, gameInput, inputProbability, visitor)
+    end
+end
+
+require "org/allbinary/ai/ArtificialIntelligenceInterface"
+require "org/allbinary/game/ai/BasicAI"
+require "org/allbinary/game/ag/ai/InputProbability"
+require "org/allbinary/game/input/GameInput"
+require "org/allbinary/layer/AllBinaryLayer"
+require "org/allbinary/logic/util/visitor/Visitor"
+require "org/allbinary/util/ABHashtable"
+require "org/allbinary/game/ag/ai/tactical/BasicRandomAI"
+

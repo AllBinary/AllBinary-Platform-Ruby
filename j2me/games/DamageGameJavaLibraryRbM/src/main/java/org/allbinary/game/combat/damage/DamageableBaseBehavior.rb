@@ -1,0 +1,55 @@
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# frozen_string_literal: false
+# package org.allbinary.game.combat.damage
+
+require "org/allbinary/game/combat/damage/DamageableInterface"
+
+class DamageableBaseBehavior
+    include DamageableInterface
+    
+
+    def self.getInstance()
+        return DamageableBaseBehavior.instance
+    end
+    
+
+    def getName()
+        return self.class.name
+    end
+    
+
+    # throws Exception
+    def damage(damage, damageType)
+    end
+    
+
+    # throws Exception
+    def getDamage(damageType)
+        return 6000
+    end
+
+    def self.instance()
+        return defined?(@@instance) ? @@instance : nil
+    end
+
+    def self.instance=(value)
+        @@instance = value
+    end
+end
+
+class DamageableBaseBehavior
+    @@instance = DamageableBaseBehavior.new()
+end
+

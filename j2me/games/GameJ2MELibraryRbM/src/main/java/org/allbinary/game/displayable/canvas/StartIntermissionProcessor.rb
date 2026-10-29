@@ -1,0 +1,49 @@
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# frozen_string_literal: false
+# package org.allbinary.game.displayable.canvas
+
+require "org/allbinary/canvas/Processor"
+
+class StartIntermissionProcessor < Processor
+    attr_accessor :logUtil, :commonStrings, :gameCanvas, :WAIT
+
+    def initialize_fields
+        @logUtil = LogUtil.getInstance()
+        @commonStrings = CommonStrings.getInstance()
+        @gameCanvas = nil
+        @WAIT = 5000
+    end
+    
+
+    def initialize(gameCanvas)
+        super()
+        initialize_fields
+        @gameCanvas = gameCanvas
+    end
+    
+
+    # throws Exception
+    def process()
+        if @gameCanvas.getStartIntermissionInterface().getTimeDelayHelper().isElapsedTNT(@WAIT)
+            @logUtil.putF("Intermission End", self, @commonStrings.PROCESS)
+            @gameCanvas.getStartIntermissionInterface().setEnabled(false)
+        end
+    end
+end
+
+require "org/allbinary/logic/communication/log/LogUtil"
+require "org/allbinary/string/CommonStrings"
+require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+

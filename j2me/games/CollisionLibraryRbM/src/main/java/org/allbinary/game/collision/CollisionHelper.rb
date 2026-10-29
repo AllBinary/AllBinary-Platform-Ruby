@@ -1,0 +1,49 @@
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# frozen_string_literal: false
+# package org.allbinary.game.collision
+
+
+class CollisionHelper
+    attr_accessor :sourceLayerInterface
+
+    def initialize_fields
+        @sourceLayerInterface = nil
+    end
+    
+
+    def initialize(sourceLayerInterface)
+        initialize_fields
+        @sourceLayerInterface = sourceLayerInterface
+    end
+    
+
+    def isCollidable(layerInterface)
+        return true
+    end
+    
+
+    def getOwnerLayerInterface()
+        return @sourceLayerInterface
+    end
+    
+
+    def setOwnerLayerInterface(sourceLayerInterface)
+        @sourceLayerInterface = sourceLayerInterface
+    end
+end
+
+require "org/allbinary/game/layer/CollidableCompositeLayer"
+require "org/allbinary/layer/AllBinaryLayer"
+
