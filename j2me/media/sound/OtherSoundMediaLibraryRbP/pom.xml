@@ -41,7 +41,7 @@
         <module>../../sound/NotDeviceSpecificMIDP2JavaLibraryRbM</module>
 <!--        <module>../../sound/J2SEMediaMIDPMinimalJavaLibraryRbM</module>-->
 <!--        <module>../../sound/MediaMIDP2ForHTMLJavaLibraryRbM</module>-->
-        <module>../../sound/AndroidMediaMIDPLibraryRbM</module>
+        <!--<module>../../sound/AndroidMediaMIDPLibraryRbM</module>-->
         
         <module>../../../games/Resources/sounds/release/GameSoundsWavResourcesJavaLibraryRbM</module>
         <module>../../../games/Resources/sounds/release/GameSoundsOggResourcesJavaLibraryRbM</module>

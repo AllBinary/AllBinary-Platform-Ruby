@@ -33,14 +33,14 @@
         -->
         
         
-        <module>../AllBinaryGraphicsUserInterfaceJavaLibraryRbM</module>
+        <!--<module>../AllBinaryGraphicsUserInterfaceJavaLibraryRbM</module>-->
         
         <module>../../allbinary_src/logging/LogConfigTypeThickClientJavaLibraryRbM</module>
-        <module>../../allbinary_src/logging/GUILoggingRbM</module>
+        <!--<module>../../allbinary_src/logging/GUILoggingRbM</module>-->
                 
-        <module>../AllBinaryGraphicsJavaApplicationRbM</module>
+        <!--<module>../AllBinaryGraphicsJavaApplicationRbM</module>-->
         
-        <module>../ImageToolJavaApplicationRbM</module>
+        <!--<module>../ImageToolJavaApplicationRbM</module>-->
     </modules>
 
 </project>

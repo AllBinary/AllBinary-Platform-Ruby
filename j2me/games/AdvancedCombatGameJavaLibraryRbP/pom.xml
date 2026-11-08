@@ -53,7 +53,7 @@
         <!--
         <module>../../../graphics/opengl/OpenGLESJavaLibraryRbM</module>
         -->
-        <module>../../../graphics/opengl/OpenGLJOGLJavaLibraryRbM</module>
+        <!--<module>../../../graphics/opengl/OpenGLJOGLJavaLibraryRbM</module>-->
         <module>../../../graphics/opengl/OpenGLESBaseJavaLibraryRbM</module>
 
         <!-- Not used in Platform Libraries -->
