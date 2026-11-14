@@ -51,9 +51,9 @@ class TextItemNumberVisitor < Visitor
     end
 end
 
-require "org/allbinary/game/input/TextNotificationUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :TextNotificationUtil, "org/allbinary/game/input/TextNotificationUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

@@ -54,10 +54,10 @@ class StoreTagWorkFlowHelper < TagHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/workflow/StoreTagWorkFlowFactory"
-require "org/allbinary/logic/control/workflow/StoreWorkFlowInterface"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StoreTagWorkFlowFactory, "org/allbinary/logic/control/workflow/StoreTagWorkFlowFactory"
+autoload :StoreWorkFlowInterface, "org/allbinary/logic/control/workflow/StoreWorkFlowInterface"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
 

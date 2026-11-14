@@ -57,13 +57,13 @@ class RealTimeStoreFrontStatistics
     end
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/context/modules/storefront/statistics/advertisements/StoreFrontAdvertisementsStatistics"
-require "org/allbinary/business/context/modules/storefront/statistics/advertisements/StoreFrontAdvertisementsStatisticsInterface"
-require "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatistics"
-require "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatisticsInterface"
-require "org/allbinary/business/context/modules/storefront/statistics/orders/history/StoreFrontOrdersHistoryStatistics"
-require "org/allbinary/business/context/modules/storefront/statistics/orders/history/StoreFrontOrdersHistoryStatisticsInterface"
-require "org/allbinary/business/context/modules/storefront/statistics/users/StoreFrontUsersStatistics"
-require "org/allbinary/business/context/modules/storefront/statistics/users/StoreFrontUsersStatisticsInterface"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :StoreFrontAdvertisementsStatistics, "org/allbinary/business/context/modules/storefront/statistics/advertisements/StoreFrontAdvertisementsStatistics"
+autoload :StoreFrontAdvertisementsStatisticsInterface, "org/allbinary/business/context/modules/storefront/statistics/advertisements/StoreFrontAdvertisementsStatisticsInterface"
+autoload :StoreFrontInventoryStatistics, "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatistics"
+autoload :StoreFrontInventoryStatisticsInterface, "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatisticsInterface"
+autoload :StoreFrontOrdersHistoryStatistics, "org/allbinary/business/context/modules/storefront/statistics/orders/history/StoreFrontOrdersHistoryStatistics"
+autoload :StoreFrontOrdersHistoryStatisticsInterface, "org/allbinary/business/context/modules/storefront/statistics/orders/history/StoreFrontOrdersHistoryStatisticsInterface"
+autoload :StoreFrontUsersStatistics, "org/allbinary/business/context/modules/storefront/statistics/users/StoreFrontUsersStatistics"
+autoload :StoreFrontUsersStatisticsInterface, "org/allbinary/business/context/modules/storefront/statistics/users/StoreFrontUsersStatisticsInterface"
 

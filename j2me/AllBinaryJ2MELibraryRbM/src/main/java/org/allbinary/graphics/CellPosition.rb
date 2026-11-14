@@ -73,6 +73,6 @@ class CellPosition < V
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 

@@ -26,5 +26,5 @@ class ArtificialIntelligenceFactory
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligence"
+autoload :ArtificialIntelligence, "org/allbinary/ai/ArtificialIntelligence"
 

@@ -78,6 +78,6 @@ class Line
     end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
 

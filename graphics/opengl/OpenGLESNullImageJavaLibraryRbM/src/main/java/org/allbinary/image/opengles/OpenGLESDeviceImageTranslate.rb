@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.image.opengles
 
-# require "javax/microedition/khronos/opengles/GL10"
 require "org/allbinary/image/opengles/OpenGLESImageTranslate"
 
 class OpenGLESDeviceImageTranslate < OpenGLESImageTranslate
@@ -43,5 +42,6 @@ class OpenGLESDeviceImageTranslate < OpenGLESImageTranslate
     end
 end
 
-require "org/allbinary/image/opengles/OpenGLESImage"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :OpenGLESImage, "org/allbinary/image/opengles/OpenGLESImage"
 

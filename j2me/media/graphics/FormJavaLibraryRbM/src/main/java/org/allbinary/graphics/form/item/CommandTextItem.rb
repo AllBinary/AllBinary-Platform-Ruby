@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
-# require "javax/microedition/lcdui/Command"
 require "org/allbinary/graphics/form/item/ABTextItem"
 
 class CommandTextItem < ABTextItem
@@ -42,5 +41,6 @@ class CommandTextItem < ABTextItem
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

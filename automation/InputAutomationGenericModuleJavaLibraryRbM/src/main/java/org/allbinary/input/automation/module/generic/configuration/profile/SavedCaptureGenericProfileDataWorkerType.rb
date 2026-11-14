@@ -51,11 +51,33 @@ class SavedCaptureGenericProfileDataWorkerType < GenericProfileDataWorkerType
     def setLastFrame(lastFrame)
         @lastFrame = lastFrame
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SAVED_CAPTURE, SavedCaptureGenericProfileDataWorkerType.new("Saved " + InputImageType::CAPTURE.getName(), "c:\\share\\captures\\2\\", 100))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "SavedCaptureGenericProfileDataWorkerType"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SAVED_CAPTURE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/input/media/image/InputImageType"
+autoload :InputImageType, "org/allbinary/input/media/image/InputImageType"
 
-class SavedCaptureGenericProfileDataWorkerType
-    SAVED_CAPTURE = SavedCaptureGenericProfileDataWorkerType.new("Saved " + InputImageType::CAPTURE.getName(), "c:\\share\\captures\\2\\", 100)
+begin
+    SavedCaptureGenericProfileDataWorkerType.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -63,7 +63,7 @@ class TrackingEvent < AllBinaryEventObject
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/game/tracking/TrackingEventHandler"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler"
 

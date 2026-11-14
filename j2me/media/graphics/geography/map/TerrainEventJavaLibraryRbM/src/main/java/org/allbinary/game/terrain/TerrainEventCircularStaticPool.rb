@@ -48,20 +48,44 @@ class TerrainEventCircularStaticPool
     end
 
     def self.instance()
+        TerrainEventCircularStaticPool.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TerrainEventCircularStaticPool.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TerrainEventCircularStaticPool.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TerrainEventCircularStaticPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventCircularPool"
-require "org/allbinary/game/terrain/BasicTerrainInfo"
-require "org/allbinary/game/terrain/TerrainEvent"
-require "org/allbinary/game/terrain/TerrainEventFactory"
+autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool"
+autoload :BasicTerrainInfo, "org/allbinary/game/terrain/BasicTerrainInfo"
+autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent"
+autoload :TerrainEventFactory, "org/allbinary/game/terrain/TerrainEventFactory"
 
-class TerrainEventCircularStaticPool
-    @@instance = TerrainEventCircularStaticPool.new()
+begin
+    TerrainEventCircularStaticPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

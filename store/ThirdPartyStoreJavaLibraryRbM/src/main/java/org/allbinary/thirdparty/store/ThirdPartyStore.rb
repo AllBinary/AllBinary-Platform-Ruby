@@ -49,5 +49,5 @@ class ThirdPartyStore
     end
 end
 
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
 

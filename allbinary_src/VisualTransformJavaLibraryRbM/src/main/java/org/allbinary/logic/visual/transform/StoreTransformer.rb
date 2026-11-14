@@ -26,8 +26,8 @@ class StoreTransformer < BasicTransformer
     end
 end
 
-require "org/allbinary/data/tree/dom/BasicUriResolver"
-require "org/allbinary/data/tree/dom/StoreUriResolver"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver"
+autoload :StoreUriResolver, "org/allbinary/data/tree/dom/StoreUriResolver"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

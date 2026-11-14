@@ -49,22 +49,46 @@ class ValidatorBase
     end
 
     def self.instance()
+        ValidatorBase.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ValidatorBase.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ValidatorBase.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ValidatorBase"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/util/ABHashtable"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class ValidatorBase
-    @@instance = ValidatorBase.new()
+begin
+    ValidatorBase.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

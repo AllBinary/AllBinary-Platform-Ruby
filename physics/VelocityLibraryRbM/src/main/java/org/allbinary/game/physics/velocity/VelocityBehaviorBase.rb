@@ -30,5 +30,5 @@ class VelocityBehaviorBase
     end
 end
 
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
 

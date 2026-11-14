@@ -125,10 +125,10 @@ class StoreFrontsTag < TableTag
     end
 end
 
-require "admin/taghelpers/StoreFrontsHelperFactory"
-require "admin/taghelpers/StoreFrontsRequestHelperFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :StoreFrontsHelperFactory, "admin/taghelpers/StoreFrontsHelperFactory"
+autoload :StoreFrontsRequestHelperFactory, "admin/taghelpers/StoreFrontsRequestHelperFactory"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

@@ -36,13 +36,35 @@ class PickupLayerCircularStaticPool < AllBinaryLayerCircularPool
         pickupLayer.init(pickedUpLayerInterfaceFactoryInterface, pickedUpLayerInterfaceFactoryInterface.getAnimationInterface())
         return pickupLayer
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, PickupLayerCircularStaticPool.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PickupLayerCircularStaticPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-require "org/allbinary/game/layer/pickup/PickupLayer"
+autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :PickupLayer, "org/allbinary/game/layer/pickup/PickupLayer"
 
-class PickupLayerCircularStaticPool
-    SINGLETON = PickupLayerCircularStaticPool.new()
+begin
+    PickupLayerCircularStaticPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

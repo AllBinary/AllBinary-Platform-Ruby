@@ -20,13 +20,35 @@ class ColorLevel
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:COLOR_MASK, 0x00FFFFFF)
+        const_set(:MIN, 0x44)
+        const_set(:AVG, 0x77)
+        const_set(:LIGHT, 0xAA)
+        const_set(:HIGH, 0xEE)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ColorLevel"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:COLOR_MASK, :MIN, :AVG, :LIGHT, :HIGH].include?(name)
+        end
+        super
+    end
 end
 
-class ColorLevel
-    COLOR_MASK = 0x00FFFFFF
-    MIN = 0x44
-    AVG = 0x77
-    LIGHT = 0xAA
-    HIGH = 0xEE
+begin
+    ColorLevel.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

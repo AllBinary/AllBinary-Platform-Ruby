@@ -20,6 +20,7 @@ module InitInterface
 
     # throws Exception
     def init()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

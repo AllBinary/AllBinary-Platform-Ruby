@@ -23,6 +23,6 @@ class ShakeAnimationListenerFactory
     end
 end
 
-require "org/allbinary/animation/transition/shake/NoShakeAnimationListener"
-require "org/allbinary/animation/transition/shake/ShakeAnimationListener"
+autoload :NoShakeAnimationListener, "org/allbinary/animation/transition/shake/NoShakeAnimationListener"
+autoload :ShakeAnimationListener, "org/allbinary/animation/transition/shake/ShakeAnimationListener"
 

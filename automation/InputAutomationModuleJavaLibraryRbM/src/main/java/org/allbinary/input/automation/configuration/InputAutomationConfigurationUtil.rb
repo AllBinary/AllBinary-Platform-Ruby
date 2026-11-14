@@ -30,7 +30,7 @@ class InputAutomationConfigurationUtil
     end
 end
 
-require "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
-require "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
-require "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
+autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
+autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
+autoload :InputAutomationConfigurationModuleChangeEvent, "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
 

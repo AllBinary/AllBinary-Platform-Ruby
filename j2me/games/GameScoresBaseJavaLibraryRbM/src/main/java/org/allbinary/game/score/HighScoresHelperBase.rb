@@ -70,10 +70,10 @@ class HighScoresHelperBase
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/score/HighScores"
-require "org/allbinary/game/score/LastFetchHighScoresFactory"
-require "org/allbinary/game/score/NullHighScoresSingletonFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
+autoload :LastFetchHighScoresFactory, "org/allbinary/game/score/LastFetchHighScoresFactory"
+autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
 

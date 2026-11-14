@@ -80,5 +80,5 @@ module OrderItemInterface
     end
 end
 
-require "org/allbinary/business/user/address/StreetAddress"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
 

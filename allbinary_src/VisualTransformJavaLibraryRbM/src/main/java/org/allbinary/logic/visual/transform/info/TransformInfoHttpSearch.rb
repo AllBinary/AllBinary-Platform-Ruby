@@ -60,11 +60,11 @@ class TransformInfoHttpSearch < TransformInfoHttp
     end
 end
 
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/control/search/SearchRequest"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

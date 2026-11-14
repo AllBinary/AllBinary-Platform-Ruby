@@ -81,25 +81,49 @@ class TransformsGeneratorUtil
     end
 
     def self.instance()
+        TransformsGeneratorUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformsGeneratorUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformsGeneratorUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformsGeneratorUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoDomNode"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
-require "org/allbinary/logic/visual/transform/generator/TransformGeneratorUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoDomNode, "org/allbinary/logic/visual/transform/info/TransformInfoDomNode"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoObjectConfigInterface, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
+autoload :TransformGeneratorUtil, "org/allbinary/logic/visual/transform/generator/TransformGeneratorUtil"
 
-class TransformsGeneratorUtil
-    @@instance = TransformsGeneratorUtil.new()
+begin
+    TransformsGeneratorUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

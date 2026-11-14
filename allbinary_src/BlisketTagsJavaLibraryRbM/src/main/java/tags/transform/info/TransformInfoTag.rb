@@ -145,11 +145,11 @@ class TransformInfoTag < ModifyTag
     end
 end
 
-require "admin/taghelpers/TagHelperFactoryInterface"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/OutputTypeData"
-require "org/allbinary/logic/visual/transform/info/TransformInfoData"
-require "taghelpers/transform/info/TransformInfoRequestHelperFactory"
+autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :OutputTypeData, "org/allbinary/logic/io/OutputTypeData"
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
+autoload :TransformInfoRequestHelperFactory, "taghelpers/transform/info/TransformInfoRequestHelperFactory"
 

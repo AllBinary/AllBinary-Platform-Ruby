@@ -92,24 +92,46 @@ class ProfileActionScriptItem < DefaultMutableTreeNode
     def setJPopupMenu(jPopupMenu)
         @jPopupMenu = jPopupMenu
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:EDIT, "Edit")
+        const_set(:DELETE, "Delete")
+        const_set(:NEW_CONDITION, "New Condition")
+        const_set(:NEW_INPUT, "New Input")
+        const_set(:NEW_OUTPUT, "New Output")
+        const_set(:NEW_COLOR_AT, "Color At")
+        const_set(:NEW_TIME_INTERVAL, "Time Interval")
+        const_set(:NEW_ALWAYS, "Always On/Off")
+        const_set(:NEW_KEY_INPUT, "Key")
+        const_set(:NEW_MOUSE_INPUT, "Mouse")
+        const_set(:NEW_JOYSTICK_INPUT, "Joystick")
+        const_set(:NEW_IMAGE_OUTPUT, "Image")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ProfileActionScriptItem"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:EDIT, :DELETE, :NEW_CONDITION, :NEW_INPUT, :NEW_OUTPUT, :NEW_COLOR_AT, :NEW_TIME_INTERVAL, :NEW_ALWAYS, :NEW_KEY_INPUT, :NEW_MOUSE_INPUT, :NEW_JOYSTICK_INPUT, :NEW_IMAGE_OUTPUT].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Node"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Node, "org/w3c/dom/Node"
 
-class ProfileActionScriptItem
-    EDIT = "Edit"
-    DELETE = "Delete"
-    NEW_CONDITION = "New Condition"
-    NEW_INPUT = "New Input"
-    NEW_OUTPUT = "New Output"
-    NEW_COLOR_AT = "Color At"
-    NEW_TIME_INTERVAL = "Time Interval"
-    NEW_ALWAYS = "Always On/Off"
-    NEW_KEY_INPUT = "Key"
-    NEW_MOUSE_INPUT = "Mouse"
-    NEW_JOYSTICK_INPUT = "Joystick"
-    NEW_IMAGE_OUTPUT = "Image"
+begin
+    ProfileActionScriptItem.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -19,26 +19,30 @@ module HighScoresInterface
     
 
     def getList()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addHighScore(newHighScore)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getTotal()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def isBestScore(newHighScore)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/score/HighScore"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :HighScore, "org/allbinary/game/score/HighScore"
 

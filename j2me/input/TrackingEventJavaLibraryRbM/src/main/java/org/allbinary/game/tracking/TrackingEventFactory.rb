@@ -29,7 +29,7 @@ class TrackingEventFactory
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/game/tracking/TrackingEvent"
-require "org/allbinary/game/tracking/TrackingEventHandler"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent"
+autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler"
 

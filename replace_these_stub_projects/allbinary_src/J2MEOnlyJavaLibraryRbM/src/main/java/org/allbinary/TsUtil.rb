@@ -15,12 +15,6 @@
 # package org.allbinary
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/Displayable"
-# require "javax/microedition/lcdui/Form"
-# require "javax/microedition/rms/InvalidRecordIDException"
-# require "javax/microedition/rms/RecordStore"
-# require "javax/microedition/rms/RecordStoreException"
-# require "javax/microedition/rms/RecordStoreNotOpenException"
 
 #J2ME
 class TsUtil
@@ -103,19 +97,49 @@ class TsUtil
     end
 
     def self.instance()
+        TsUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TsUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TsUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TsUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :Form, "javax/microedition/lcdui/Form"
+autoload :InvalidRecordIDException, "javax/microedition/rms/InvalidRecordIDException"
+autoload :RecordStore, "javax/microedition/rms/RecordStore"
+autoload :RecordStoreException, "javax/microedition/rms/RecordStoreException"
+autoload :RecordStoreNotOpenException, "javax/microedition/rms/RecordStoreNotOpenException"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
 require "java/lang/InterruptedException"
 require "java/lang/System"
 
-class TsUtil
-    @@instance = TsUtil.new()
+begin
+    TsUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

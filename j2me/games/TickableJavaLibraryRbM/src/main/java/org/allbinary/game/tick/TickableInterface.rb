@@ -22,9 +22,10 @@ module TickableInterface
 
     # throws Exception
     def processTick(allBinaryLayerManager)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

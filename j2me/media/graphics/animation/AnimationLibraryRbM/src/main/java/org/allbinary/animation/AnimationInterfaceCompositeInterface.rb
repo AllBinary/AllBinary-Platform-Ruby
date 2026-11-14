@@ -19,9 +19,10 @@ module AnimationInterfaceCompositeInterface
     
 
     def getAnimationInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/animation/Animation"
+autoload :Animation, "org/allbinary/animation/Animation"
 

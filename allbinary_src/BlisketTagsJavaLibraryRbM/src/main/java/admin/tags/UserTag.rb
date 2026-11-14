@@ -60,8 +60,8 @@ class UserTag < TableTag
     end
 end
 
-require "admin/taghelpers/UserHelperFactory"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/user/role/UserRoleData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :UserHelperFactory, "admin/taghelpers/UserHelperFactory"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
 

@@ -37,8 +37,8 @@ class PaymentFactory
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/user/commerce/money/payment/Payment"
-require "org/allbinary/business/user/commerce/money/payment/PaymentInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Payment, "org/allbinary/business/user/commerce/money/payment/Payment"
+autoload :PaymentInterface, "org/allbinary/business/user/commerce/money/payment/PaymentInterface"
 

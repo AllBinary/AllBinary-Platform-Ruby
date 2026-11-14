@@ -30,9 +30,15 @@ class GameAdState < GameAdStateBase
     # throws Exception
     def onVirtualKeyboardEvent(virtualKeyboardEvent)
     end
+    
+
+    def onEvent(eventObject)
+        super(eventObject)
+    end
 end
 
-require "org/allbinary/business/advertisement/AdConfiguration"
-require "org/allbinary/input/event/VirtualKeyboardEvent"
-require "org/allbinary/input/event/VirtualKeyboardEventHandler"
+autoload :AdConfiguration, "org/allbinary/business/advertisement/AdConfiguration"
+autoload :VirtualKeyboardEvent, "org/allbinary/input/event/VirtualKeyboardEvent"
+autoload :VirtualKeyboardEventHandler, "org/allbinary/input/event/VirtualKeyboardEventHandler"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
 

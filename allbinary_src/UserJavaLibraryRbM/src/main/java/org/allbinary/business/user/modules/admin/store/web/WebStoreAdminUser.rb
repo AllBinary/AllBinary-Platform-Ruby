@@ -47,6 +47,6 @@ class WebStoreAdminUser < User
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :WeblisketSessionInterface, "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
 

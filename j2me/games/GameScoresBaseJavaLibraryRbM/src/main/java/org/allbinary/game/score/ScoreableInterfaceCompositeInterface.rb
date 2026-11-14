@@ -19,9 +19,10 @@ module ScoreableInterfaceCompositeInterface
     
 
     def getScoreableInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/score/Scoreable"
+autoload :Scoreable, "org/allbinary/game/score/Scoreable"
 

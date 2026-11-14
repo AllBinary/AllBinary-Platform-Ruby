@@ -145,11 +145,11 @@ class BasicWeblisketSession
     end
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/user/UserData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/business/user/role/BasicUserRole"
-require "org/allbinary/business/user/role/BasicUserRoleData"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSessionData"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :UserData, "org/allbinary/business/user/UserData"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
+autoload :BasicUserRoleData, "org/allbinary/business/user/role/BasicUserRoleData"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :WeblisketSessionData, "org/allbinary/logic/communication/http/request/session/WeblisketSessionData"
 

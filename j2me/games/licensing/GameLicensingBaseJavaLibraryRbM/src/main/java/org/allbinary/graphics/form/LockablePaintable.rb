@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/form/ItemPaintable"
 
 class LockablePaintable < ItemPaintable
@@ -50,8 +49,9 @@ class LockablePaintable < ItemPaintable
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/logic/system/security/licensing/LockedResources"
-require "org/allbinary/logic/system/security/licensing/LockedUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :LockedResources, "org/allbinary/logic/system/security/licensing/LockedResources"
+autoload :LockedUtil, "org/allbinary/logic/system/security/licensing/LockedUtil"
 

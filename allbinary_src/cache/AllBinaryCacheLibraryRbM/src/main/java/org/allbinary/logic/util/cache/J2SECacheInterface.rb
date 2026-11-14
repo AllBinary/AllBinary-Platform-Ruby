@@ -22,6 +22,7 @@ module J2SECacheInterface
     
 
     def keySet()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

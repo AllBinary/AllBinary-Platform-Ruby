@@ -54,8 +54,8 @@ class ValidationView < BillingAddressesView
     end
 end
 
-require "org/allbinary/data/tables/user/address/billing/BillingAddressesEntity"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BillingAddressesEntity, "org/allbinary/data/tables/user/address/billing/BillingAddressesEntity"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

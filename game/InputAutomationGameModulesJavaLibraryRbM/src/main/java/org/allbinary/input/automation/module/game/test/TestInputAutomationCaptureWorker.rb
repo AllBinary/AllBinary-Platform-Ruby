@@ -79,16 +79,16 @@ class TestInputAutomationCaptureWorker < AbstractInputAutomationWorker
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/input/automation/module/InputAutomationActionInterface"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileAction"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActions"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/script/GenericProfileActionScript"
-require "org/allbinary/input/media/image/capture/CapturedBufferedImagesCacheSingleton"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/cache/J2SECacheInterface"
-require "org/allbinary/media/image/comparison/ImageComparatorConstraintsInterface"
-require "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :InputAutomationActionInterface, "org/allbinary/input/automation/module/InputAutomationActionInterface"
+autoload :GenericProfileAction, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileAction"
+autoload :GenericProfileActions, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActions"
+autoload :GenericProfileActionScript, "org/allbinary/input/automation/module/generic/configuration/profile/actions/script/GenericProfileActionScript"
+autoload :CapturedBufferedImagesCacheSingleton, "org/allbinary/input/media/image/capture/CapturedBufferedImagesCacheSingleton"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :J2SECacheInterface, "org/allbinary/logic/util/cache/J2SECacheInterface"
+autoload :ImageComparatorConstraintsInterface, "org/allbinary/media/image/comparison/ImageComparatorConstraintsInterface"
+autoload :MotionRectangleConstraintsInterface, "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface"
 

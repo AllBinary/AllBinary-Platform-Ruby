@@ -48,7 +48,7 @@ module UserConfigurationInterface
     end
 end
 
-require "org/allbinary/business/time/created/TimeCreated"
-require "org/allbinary/business/time/modified/TimeLastModified"
-require "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfigurationInterface"
+autoload :TimeCreated, "org/allbinary/business/time/created/TimeCreated"
+autoload :TimeLastModified, "org/allbinary/business/time/modified/TimeLastModified"
+autoload :UserEmailConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfigurationInterface"
 

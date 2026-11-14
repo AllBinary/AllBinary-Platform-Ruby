@@ -40,8 +40,8 @@ class OptimizedTickableLayerProcessor < LayerProcessor
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/game/tick/OptimizedTickableLayerManager"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :OptimizedTickableLayerManager, "org/allbinary/game/tick/OptimizedTickableLayerManager"
 

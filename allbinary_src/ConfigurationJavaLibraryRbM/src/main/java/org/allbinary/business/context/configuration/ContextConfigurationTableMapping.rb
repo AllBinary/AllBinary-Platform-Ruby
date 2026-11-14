@@ -50,10 +50,10 @@ class ContextConfigurationTableMapping
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/business/context/configuration/ContextConfigurationData"
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ContextConfigurationData, "org/allbinary/business/context/configuration/ContextConfigurationData"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
 

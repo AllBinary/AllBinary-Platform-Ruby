@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/image/BaseImageAnimationFactory"
 
 class TopToBottomImageAnimationFactory < BaseImageAnimationFactory
@@ -32,7 +31,8 @@ class TopToBottomImageAnimationFactory < BaseImageAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/image/TopToBottomImageAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :TopToBottomImageAnimation, "org/allbinary/animation/image/TopToBottomImageAnimation"
 

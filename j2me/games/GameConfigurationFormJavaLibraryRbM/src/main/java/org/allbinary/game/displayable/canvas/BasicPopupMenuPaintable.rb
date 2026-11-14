@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/Paintable"
 
@@ -106,28 +104,52 @@ class BasicPopupMenuPaintable < Paintable
         @drawStringUtil.paintVerticle(graphics, @label, x + @BORDER, y + @offset, 0)
         graphics.drawRect(x, y, width, height)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "MENU")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicPopupMenuPaintable"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/AndroidUtil"
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/animation/vector/RectangleFilledAnimation"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/layer/SWTUtil"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/color/BasicColorSetUtil"
-require "org/allbinary/graphics/draw/DrawVerticalStringUtil"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
-require "org/allbinary/graphics/threed/SWTJOGLProcessor"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AndroidUtil, "org/allbinary/AndroidUtil"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :RectangleFilledAnimation, "org/allbinary/animation/vector/RectangleFilledAnimation"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :SWTUtil, "org/allbinary/game/layer/SWTUtil"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
+autoload :DrawVerticalStringUtil, "org/allbinary/graphics/draw/DrawVerticalStringUtil"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
+autoload :SWTJOGLProcessor, "org/allbinary/graphics/threed/SWTJOGLProcessor"
 
-class BasicPopupMenuPaintable
-    NAME = "MENU"
+begin
+    BasicPopupMenuPaintable.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

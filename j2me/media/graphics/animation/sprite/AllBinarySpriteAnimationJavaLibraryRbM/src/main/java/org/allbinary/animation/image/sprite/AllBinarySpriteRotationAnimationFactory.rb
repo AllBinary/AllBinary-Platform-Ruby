@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image.sprite
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/game/Sprite"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
 require "org/allbinary/animation/image/BaseImageAnimationFactory"
 
@@ -109,11 +107,13 @@ class AllBinarySpriteRotationAnimationFactory < BaseImageAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/animation/image/sprite/AllBinaryAdjustedSpriteRotationAnimation"
-require "org/allbinary/animation/image/sprite/AllBinarySpriteRotationAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :AnimationFactorySpriteScaleUtil, "org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :AllBinaryAdjustedSpriteRotationAnimation, "org/allbinary/animation/image/sprite/AllBinaryAdjustedSpriteRotationAnimation"
+autoload :AllBinarySpriteRotationAnimation, "org/allbinary/animation/image/sprite/AllBinarySpriteRotationAnimation"
 

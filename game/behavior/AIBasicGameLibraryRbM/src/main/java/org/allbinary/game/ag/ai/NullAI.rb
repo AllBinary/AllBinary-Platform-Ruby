@@ -29,5 +29,5 @@ class NullAI < ArtificialIntelligence
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

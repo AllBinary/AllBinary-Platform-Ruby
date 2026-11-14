@@ -163,14 +163,36 @@ class InputRobot
 
     def off()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "Java Robot")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputRobot"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/input/automation/PointHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
+autoload :PointHelper, "org/allbinary/input/automation/PointHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class InputRobot
-    NAME = "Java Robot"
+begin
+    InputRobot.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

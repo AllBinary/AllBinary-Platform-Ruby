@@ -2,8 +2,6 @@
 # frozen_string_literal: false
 # package org.allbinary.configuration
 
-# require "java/io/InputStream"
-# require "java/io/OutputStream"
 
 class ApplicationConfiguration
     attr_accessor :logUtil, :fullscreen, :showTitleBar, :progressBarView, :FILE
@@ -168,31 +166,57 @@ class ApplicationConfiguration
     alias_method :to_s, :toString
 
     def self.instance()
+        ApplicationConfiguration.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ApplicationConfiguration.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ApplicationConfiguration"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/io/Closeable"
-require "org/allbinary/game/configuration/feature/Feature"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/MainFeatureFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/AbDataInputStream"
-require "org/allbinary/logic/io/AbDataOutputStream"
-require "org/allbinary/logic/io/FileStreamFactory"
-require "org/allbinary/logic/io/NullCloseable"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/io/file/FileFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :Closeable, "java/io/Closeable"
+autoload :InputStream, "java/io/InputStream"
+autoload :OutputStream, "java/io/OutputStream"
+autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbDataInputStream, "org/allbinary/logic/io/AbDataInputStream"
+autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream"
+autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory"
+autoload :NullCloseable, "org/allbinary/logic/io/NullCloseable"
+autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
+autoload :FileFactory, "org/allbinary/logic/io/file/FileFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class ApplicationConfiguration
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    ApplicationConfiguration.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

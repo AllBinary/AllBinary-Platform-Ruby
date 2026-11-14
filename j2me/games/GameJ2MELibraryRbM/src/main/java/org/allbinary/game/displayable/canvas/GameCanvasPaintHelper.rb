@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/ProcessPaintable"
 
 class GameCanvasPaintHelper < ProcessPaintable
@@ -41,5 +40,6 @@ class GameCanvasPaintHelper < ProcessPaintable
     end
 end
 
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

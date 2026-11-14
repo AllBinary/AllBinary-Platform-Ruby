@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
 
@@ -102,16 +100,18 @@ class StartIntermissionPaintable < InitUpdatePaintable
     end
 end
 
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/color/BasicColorSetUtil"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/font/FontDebugFactory"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :FontDebugFactory, "org/allbinary/graphics/font/FontDebugFactory"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

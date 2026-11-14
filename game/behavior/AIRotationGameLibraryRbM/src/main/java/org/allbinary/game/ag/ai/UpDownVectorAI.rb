@@ -54,10 +54,10 @@ class UpDownVectorAI < BasicAI
     end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-require "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/math/BasicDecimal"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
 

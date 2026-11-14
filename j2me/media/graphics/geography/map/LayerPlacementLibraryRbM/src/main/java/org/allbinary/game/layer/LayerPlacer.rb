@@ -89,16 +89,16 @@ class LayerPlacer
     end
 end
 
-require "java/util/Enumeration"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/LayerInterfaceFactory"
-require "org/allbinary/layer/LayerInterfaceVisitor"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/EnumerationUtil"
-require "org/allbinary/game/layer/LayerPlacementInterface"
-require "org/allbinary/game/layer/LayerPlacementType"
-require "org/allbinary/game/layer/LayerPlacementTypeFactory"
+autoload :Enumeration, "java/util/Enumeration"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LayerInterfaceFactory, "org/allbinary/layer/LayerInterfaceFactory"
+autoload :LayerInterfaceVisitor, "org/allbinary/layer/LayerInterfaceVisitor"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil"
+autoload :LayerPlacementInterface, "org/allbinary/game/layer/LayerPlacementInterface"
+autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType"
+autoload :LayerPlacementTypeFactory, "org/allbinary/game/layer/LayerPlacementTypeFactory"
 

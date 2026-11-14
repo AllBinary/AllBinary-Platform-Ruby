@@ -45,7 +45,7 @@ class BasicProfileActionScriptOutput < BasicProfileActionScriptProcessor
     end
 end
 
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/GenericProfileActionScriptOutputData"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :GenericProfileActionScriptOutputData, "org/allbinary/input/automation/module/actions/script/condition/processors/output/GenericProfileActionScriptOutputData"
 

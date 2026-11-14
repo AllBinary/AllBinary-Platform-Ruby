@@ -107,14 +107,14 @@ class InputAutomationModuleConfigurations
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/input/automation/module/InputAutomationModuleData"
-require "org/allbinary/input/automation/module/NewInputAutomationModulesData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :InputAutomationModuleData, "org/allbinary/input/automation/module/InputAutomationModuleData"
+autoload :NewInputAutomationModulesData, "org/allbinary/input/automation/module/NewInputAutomationModulesData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
 

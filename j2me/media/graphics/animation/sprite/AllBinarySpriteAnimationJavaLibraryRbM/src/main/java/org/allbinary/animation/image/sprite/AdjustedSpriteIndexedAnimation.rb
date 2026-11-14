@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image.sprite
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/game/Sprite"
 require "org/allbinary/animation/image/sprite/SpriteIndexedAnimation"
 
 class AdjustedSpriteIndexedAnimation < SpriteIndexedAnimation
@@ -39,13 +36,13 @@ class AdjustedSpriteIndexedAnimation < SpriteIndexedAnimation
     def paintFrame(graphics, frame, x, y)
         self.setFrame(frame)
         @sprite.setPosition(x + @dx, y + @dy)
-        self.class.superclass.instance_method(:paint).bind(self).call(graphics)
+        AdjustedSpriteIndexedAnimation.superclass.instance_method(:paint).bind(self).call(graphics)
     end
     
 
     def paintXY(g, x, y)
         @sprite.setPosition(x + @dx, y + @dy)
-        self.class.superclass.instance_method(:paint).bind(self).call(g)
+        AdjustedSpriteIndexedAnimation.superclass.instance_method(:paint).bind(self).call(g)
     end
     
 
@@ -55,7 +52,10 @@ class AdjustedSpriteIndexedAnimation < SpriteIndexedAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
 

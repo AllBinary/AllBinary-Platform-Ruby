@@ -43,6 +43,6 @@ class FileWrapperUtil
     end
 end
 
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/io/file/AbFile"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
 

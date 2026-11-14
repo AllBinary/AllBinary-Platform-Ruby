@@ -21,7 +21,7 @@ class HealLayerCircularStaticPool < AllBinaryLayerCircularPool
 
     def initialize(allbinaryLayerFactoryInterface, total)
         super()
-        self.class.superclass.instance_method(:initAllBinaryLayerCircularPool).bind(self).call(allbinaryLayerFactoryInterface, total)
+        HealLayerCircularStaticPool.superclass.instance_method(:initAllBinaryLayerCircularPool).bind(self).call(allbinaryLayerFactoryInterface, total)
     end
     
 
@@ -34,9 +34,9 @@ class HealLayerCircularStaticPool < AllBinaryLayerCircularPool
     end
 end
 
-require "org/allbinary/game/health/HealthInterface"
-require "org/allbinary/game/health/HealthInterfaceCompositeInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerFactoryInterface"
-require "org/allbinary/game/ag/layer/pickup/health/HealLayer"
+autoload :HealthInterface, "org/allbinary/game/health/HealthInterface"
+autoload :HealthInterfaceCompositeInterface, "org/allbinary/game/health/HealthInterfaceCompositeInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerFactoryInterface, "org/allbinary/layer/AllBinaryLayerFactoryInterface"
+autoload :HealLayer, "org/allbinary/game/ag/layer/pickup/health/HealLayer"
 

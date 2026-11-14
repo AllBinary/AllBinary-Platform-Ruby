@@ -22,9 +22,10 @@ module TrackingEventListenerInterface
 
     # throws Exception
     def onMovement(trackingEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/tracking/TrackingEvent"
+autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent"
 

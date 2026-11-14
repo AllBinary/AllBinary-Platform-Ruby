@@ -19,25 +19,29 @@ module SoundsFactoryInterface
     
 
     def init()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getSoundInterfaceArray()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setInitialized(initialized)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isInitialized()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/media/audio/Sound"
+autoload :Sound, "org/allbinary/media/audio/Sound"
 

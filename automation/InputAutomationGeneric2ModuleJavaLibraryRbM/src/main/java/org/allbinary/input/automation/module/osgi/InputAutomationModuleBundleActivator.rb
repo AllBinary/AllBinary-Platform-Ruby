@@ -129,15 +129,15 @@ class InputAutomationModuleBundleActivator
     end
 end
 
-require "org/osgi/framework/BundleContext"
-require "org/osgi/framework/ServiceFactory"
-require "org/osgi/framework/ServiceReference"
-require "bundle/input/automation/module/InputAutomationModuleServiceInterface"
-require "bundle/input/automation/module/configuration/InputAutomationConfigurationModuleChangeListener"
-require "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
-require "org/allbinary/input/automation/configuration/InputAutomationConfigurationUtil"
-require "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/osgi/OSGIActivatorUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :ServiceFactory, "org/osgi/framework/ServiceFactory"
+autoload :ServiceReference, "org/osgi/framework/ServiceReference"
+autoload :InputAutomationModuleServiceInterface, "bundle/input/automation/module/InputAutomationModuleServiceInterface"
+autoload :InputAutomationConfigurationModuleChangeListener, "bundle/input/automation/module/configuration/InputAutomationConfigurationModuleChangeListener"
+autoload :InputAutomationConfigurationModuleChangeEvent, "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
+autoload :InputAutomationConfigurationUtil, "org/allbinary/input/automation/configuration/InputAutomationConfigurationUtil"
+autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :OSGIActivatorUtil, "org/allbinary/osgi/OSGIActivatorUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

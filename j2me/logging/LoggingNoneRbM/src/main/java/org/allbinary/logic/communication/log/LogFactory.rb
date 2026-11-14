@@ -34,13 +34,35 @@ class LogFactory
     def self.getInstanceF(specialMessage, anyType, functionName)
         return LogFactory::LOG
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:LOG, Log.new(StringUtil.getInstance().EMPTY_STRING, NullUtil.getInstance().NULL_OBJECT, StringUtil.getInstance().EMPTY_STRING, NullUtil.getInstance().NULL_OBJECT))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LogFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:LOG].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/communication/log/Log"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Log, "org/allbinary/logic/communication/log/Log"
 
-class LogFactory
-    LOG = Log.new(StringUtil.getInstance().EMPTY_STRING, NullUtil.getInstance().NULL_OBJECT, StringUtil.getInstance().EMPTY_STRING, NullUtil.getInstance().NULL_OBJECT)
+begin
+    LogFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

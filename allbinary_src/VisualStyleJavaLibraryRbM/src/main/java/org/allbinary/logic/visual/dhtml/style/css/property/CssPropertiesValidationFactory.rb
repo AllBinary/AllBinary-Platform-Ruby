@@ -43,13 +43,13 @@ class CssPropertiesValidationFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/control/validate/ValidationInterface"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/logic/visual/dhtml/style/css/property/CssPropertyData"
-require "org/allbinary/logic/visual/dhtml/style/css/property/CssPropertyValidationFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :CssPropertyData, "org/allbinary/logic/visual/dhtml/style/css/property/CssPropertyData"
+autoload :CssPropertyValidationFactory, "org/allbinary/logic/visual/dhtml/style/css/property/CssPropertyValidationFactory"
 

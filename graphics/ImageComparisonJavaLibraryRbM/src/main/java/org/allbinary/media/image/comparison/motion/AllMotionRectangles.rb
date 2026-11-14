@@ -98,15 +98,37 @@ class AllMotionRectangles < MotionRectangles
         end
         return false
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "allMotionRectangles_")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllMotionRectangles"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/media/image/comparison/ImageComparisonResult"
-require "org/allbinary/media/image/comparison/pixel/PixelDelta"
-require "org/allbinary/media/image/comparison/motion/MotionRectangle"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
+autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta"
+autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle"
 
-class AllMotionRectangles
-    NAME = "allMotionRectangles_"
+begin
+    AllMotionRectangles.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

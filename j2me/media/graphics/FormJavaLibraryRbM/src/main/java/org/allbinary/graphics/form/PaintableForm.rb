@@ -18,7 +18,7 @@ class PaintableForm < ABCustomForm
 
     def self.getNullPaintableForm()
         if PaintableForm::NULL_PAINTABLE_FORM == NullUtil.getInstance().NULL_OBJECT
-            PaintableForm::NULL_PAINTABLE_FORM = PaintableForm.new(StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
+            (PaintableForm.send(:remove_const, :NULL_PAINTABLE_FORM) if PaintableForm.const_defined?(:NULL_PAINTABLE_FORM, false); PaintableForm.const_set(:NULL_PAINTABLE_FORM, PaintableForm.new(StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)))
         end
         return PaintableForm::NULL_PAINTABLE_FORM
     end
@@ -44,21 +44,43 @@ class PaintableForm < ABCustomForm
     def getWidth()
         return @rectangle.getWidth()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_PAINTABLE_FORM, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PaintableForm"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_PAINTABLE_FORM].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/graphics/form/FormType"
-require "org/allbinary/graphics/form/FormTypeFactory"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :FormType, "org/allbinary/graphics/form/FormType"
+autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory"
 
-class PaintableForm
-    NULL_PAINTABLE_FORM = NullUtil.getInstance().NULL_OBJECT
+begin
+    PaintableForm.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

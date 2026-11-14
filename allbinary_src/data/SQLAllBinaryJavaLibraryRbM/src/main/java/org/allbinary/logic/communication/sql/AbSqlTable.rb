@@ -83,6 +83,6 @@ class AbSqlTable < AbSqlBasic
     end
 end
 
-require "org/allbinary/business/init/db/DbConnectionInfo"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

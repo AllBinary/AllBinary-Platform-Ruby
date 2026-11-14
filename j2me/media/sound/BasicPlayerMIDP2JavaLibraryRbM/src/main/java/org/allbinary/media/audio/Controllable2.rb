@@ -19,6 +19,7 @@ module Controllable2
     
 
     def setVolume(leftVolume, rightVolume)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

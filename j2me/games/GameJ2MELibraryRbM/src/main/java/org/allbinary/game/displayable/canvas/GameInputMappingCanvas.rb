@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/input/mapping/InputMappingInterface"
 require "org/allbinary/game/displayable/canvas/GameCommandCanvas"
 
@@ -221,30 +218,55 @@ class GameInputMappingCanvas < GameCommandCanvas
         @paintable.paint(graphics)
         super(graphics)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "GameInputMappingCanvas")
+        begin
+            const_set(:DISPLAY, Command.new("Controls", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 2))
+            const_set(:DEFAULT, Command.new("Default", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 2))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameInputMappingCanvas"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME, :DISPLAY, :DEFAULT].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/GameKeyFactory"
-require "org/allbinary/game/input/Input"
-require "org/allbinary/game/input/InputFactory"
-require "org/allbinary/game/input/PlatformInputMappingFactory"
-require "org/allbinary/game/input/mapping/PersistentInputMapping"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/paint/ColorFillBasePaintable"
-require "org/allbinary/game/paint/ColorFillPaintableFactory"
-require "org/allbinary/game/paint/help/HelpPaintable"
-require "org/allbinary/game/paint/help/InputMappingHelpPaintable"
-require "org/allbinary/graphics/paint/ProcessPaintable"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/displayable/canvas/GameInputMappingInstructionsCanvas"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
+autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :ColorFillBasePaintable, "org/allbinary/game/paint/ColorFillBasePaintable"
+autoload :ColorFillPaintableFactory, "org/allbinary/game/paint/ColorFillPaintableFactory"
+autoload :HelpPaintable, "org/allbinary/game/paint/help/HelpPaintable"
+autoload :InputMappingHelpPaintable, "org/allbinary/game/paint/help/InputMappingHelpPaintable"
+autoload :ProcessPaintable, "org/allbinary/graphics/paint/ProcessPaintable"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :GameInputMappingInstructionsCanvas, "org/allbinary/game/displayable/canvas/GameInputMappingInstructionsCanvas"
 
-class GameInputMappingCanvas
-    NAME = "GameInputMappingCanvas"
-    DISPLAY = Command.new("Controls", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 2)
-    DEFAULT = Command.new("Default", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 2)
+begin
+    GameInputMappingCanvas.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

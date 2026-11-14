@@ -119,6 +119,6 @@ class BasicColor
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/graphics/color/BasicColorUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
 

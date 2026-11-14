@@ -19,26 +19,30 @@ module LayerPlacementInterface
     
 
     def getWidth()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getHeight()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLayerType()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getInstance()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/layer/LayerPlacementType"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType"
 

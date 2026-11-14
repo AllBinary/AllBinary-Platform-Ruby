@@ -42,7 +42,7 @@ class LogFactory
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/communication/log/Log"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Log, "org/allbinary/logic/communication/log/Log"
 

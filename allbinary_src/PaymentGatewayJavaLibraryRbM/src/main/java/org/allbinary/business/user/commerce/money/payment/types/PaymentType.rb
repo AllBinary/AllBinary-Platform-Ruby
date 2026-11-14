@@ -99,13 +99,13 @@ class PaymentType
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactoryInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceFactoryInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType"
-require "org/allbinary/business/user/commerce/money/payment/types/PaymentTypeUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :PaymentProcessorInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactoryInterface"
+autoload :PaymentTransactionInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceFactoryInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :BasicPaymentType, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType"
+autoload :PaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/PaymentTypeUtil"
 

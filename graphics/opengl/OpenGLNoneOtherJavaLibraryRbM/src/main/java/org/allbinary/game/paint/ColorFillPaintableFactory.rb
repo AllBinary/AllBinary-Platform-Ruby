@@ -34,22 +34,46 @@ class ColorFillPaintableFactory
     end
 
     def self.instance()
+        ColorFillPaintableFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ColorFillPaintableFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ColorFillPaintableFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ColorFillPaintableFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/system/os/GenericOperatingSystem"
-require "org/allbinary/logic/system/os/OperatingSystemFactory"
-require "org/allbinary/game/paint/ColorFillBasePaintable"
-require "org/allbinary/game/paint/ColorFillPaintable"
-require "org/allbinary/game/paint/OverScanColorFillPaintable"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
+autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
+autoload :ColorFillBasePaintable, "org/allbinary/game/paint/ColorFillBasePaintable"
+autoload :ColorFillPaintable, "org/allbinary/game/paint/ColorFillPaintable"
+autoload :OverScanColorFillPaintable, "org/allbinary/game/paint/OverScanColorFillPaintable"
 
-class ColorFillPaintableFactory
-    @@instance = ColorFillPaintableFactory.new()
+begin
+    ColorFillPaintableFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

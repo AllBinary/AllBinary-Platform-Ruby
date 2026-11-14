@@ -169,12 +169,12 @@ class BaseGameStatistics
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/math/PrimitiveLongSingleton"
-require "org/allbinary/logic/math/ScaleFactorFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
+autoload :PrimitiveLongSingleton, "org/allbinary/logic/math/PrimitiveLongSingleton"
+autoload :ScaleFactorFactory, "org/allbinary/logic/math/ScaleFactorFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
 

@@ -33,9 +33,9 @@ class SpecialDemoGameMidlet < DemoGameMidlet
     end
 end
 
-require "org/allbinary/logic/system/security/licensing/ClientInformationFactory"
-require "org/allbinary/logic/system/security/licensing/LicenseServerInitFileUtil"
-require "org/allbinary/game/midlet/LicenseCheckRunnableFactory"
-require "org/allbinary/game/midlet/LicenseLoadingType"
-require "org/allbinary/game/midlet/LicensedDemoSetupFactory"
+autoload :ClientInformationFactory, "org/allbinary/logic/system/security/licensing/ClientInformationFactory"
+autoload :LicenseServerInitFileUtil, "org/allbinary/logic/system/security/licensing/LicenseServerInitFileUtil"
+autoload :LicenseCheckRunnableFactory, "org/allbinary/game/midlet/LicenseCheckRunnableFactory"
+autoload :LicenseLoadingType, "org/allbinary/game/midlet/LicenseLoadingType"
+autoload :LicensedDemoSetupFactory, "org/allbinary/game/midlet/LicensedDemoSetupFactory"
 

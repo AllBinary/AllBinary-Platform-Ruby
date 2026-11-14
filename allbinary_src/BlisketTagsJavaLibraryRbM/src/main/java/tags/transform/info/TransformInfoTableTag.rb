@@ -25,5 +25,5 @@ class TransformInfoTableTag < TableTag
     end
 end
 
-require "taghelpers/transform/info/TransformInfoHelperFactory"
+autoload :TransformInfoHelperFactory, "taghelpers/transform/info/TransformInfoHelperFactory"
 

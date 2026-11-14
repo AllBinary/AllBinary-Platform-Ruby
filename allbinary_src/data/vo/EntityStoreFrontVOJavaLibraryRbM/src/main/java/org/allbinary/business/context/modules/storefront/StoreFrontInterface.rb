@@ -346,6 +346,6 @@ module StoreFrontInterface
     end
 end
 
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
-require "org/allbinary/util/BasicArrayList"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

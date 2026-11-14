@@ -54,10 +54,10 @@ class UserEmailEventConfigurationMapping
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationData"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :UserEmailEventConfigurationData, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationData"
+autoload :UserEmailEventConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationInterface"
 

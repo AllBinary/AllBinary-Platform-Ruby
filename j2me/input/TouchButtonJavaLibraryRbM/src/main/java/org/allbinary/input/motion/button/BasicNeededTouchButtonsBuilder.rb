@@ -53,15 +53,15 @@ class BasicNeededTouchButtonsBuilder < BaseTouchInput
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory"
-require "org/allbinary/input/motion/button/BasicTouchInputFactory"
-require "org/allbinary/input/motion/button/CommonButtons"
-require "org/allbinary/input/motion/button/TouchButton"
-require "org/allbinary/input/motion/button/TouchButtonLocationHelper"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+autoload :BasicTouchButtonCellPositionFactory, "org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory"
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
+autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons"
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton"
+autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper"
 

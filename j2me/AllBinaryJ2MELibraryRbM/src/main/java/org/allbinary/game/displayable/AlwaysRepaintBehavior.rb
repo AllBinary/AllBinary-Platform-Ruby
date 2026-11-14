@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/displayable/RepaintBehavior"
 
 class AlwaysRepaintBehavior < RepaintBehavior
@@ -41,21 +40,7 @@ class AlwaysRepaintBehavior < RepaintBehavior
         if features.isFeature(openGLFeatureFactory.OPENGL)
             DisplayInfoSingleton.getInstance().process()
         else
-            thread = JavaThread.new(Class.new(ARunnable.is_a?(Class) ? ARunnable : Object) do
-                include(ARunnable) unless ARunnable.is_a?(Class)
-                
-
-                def run()
-                    begin
-                        canvas.repaint()
-                        DisplayInfoSingleton.getInstance().process()
-                    rescue StandardError => e
-                        commonStrings = CommonStrings.getInstance()
-                        logUtil = LogUtil.getInstance()
-                        logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
-                    end
-                end
-            end.new(), @NAME)
+            thread = JavaThread.new(RepaintRunnable.new(canvas), @NAME)
             thread.start()
         end
     end
@@ -65,24 +50,49 @@ class AlwaysRepaintBehavior < RepaintBehavior
     end
 
     def self.instanceC()
+        AlwaysRepaintBehavior.java_static_fields unless @java_static_fields_started
         return defined?(@@instanceC) ? @@instanceC : nil
     end
 
     def self.instanceC=(value)
+        AlwaysRepaintBehavior.java_static_fields unless @java_static_fields_started
         @@instanceC = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instanceC = AlwaysRepaintBehavior.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AlwaysRepaintBehavior"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/thread/ARunnable"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/NullRunnable"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :NullRunnable, "org/allbinary/thread/NullRunnable"
+autoload :RepaintRunnable, "org/allbinary/game/displayable/RepaintRunnable"
 require "java/lang/Thread"
 
-class AlwaysRepaintBehavior
-    @@instanceC = AlwaysRepaintBehavior.new()
+begin
+    AlwaysRepaintBehavior.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

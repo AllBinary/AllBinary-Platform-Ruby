@@ -47,7 +47,7 @@ class NoShippingModule
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
-require "org/allbinary/business/user/commerce/money/Money"
-require "org/allbinary/string/CommonStrings"
+autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

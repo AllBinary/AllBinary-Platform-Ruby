@@ -83,15 +83,15 @@ class SaveMotionRectanglesResultsWorker
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/media/image/comparison/motion/MotionRectangles"
-require "org/allbinary/media/image/comparison/motion/MotionRectanglesImageInputOutput"
-require "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsEvent"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles"
+autoload :MotionRectanglesImageInputOutput, "org/allbinary/media/image/comparison/motion/MotionRectanglesImageInputOutput"
+autoload :MotionRectanglesResultsEvent, "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsEvent"
 

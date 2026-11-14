@@ -40,12 +40,34 @@ class NoPlayerGameInput < PlayerGameInput
         java_monitor.synchronize do
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, NoPlayerGameInput.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NoPlayerGameInput"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/util/BasicArrayListD"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 
-class NoPlayerGameInput
-    SINGLETON = NoPlayerGameInput.new()
+begin
+    NoPlayerGameInput.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

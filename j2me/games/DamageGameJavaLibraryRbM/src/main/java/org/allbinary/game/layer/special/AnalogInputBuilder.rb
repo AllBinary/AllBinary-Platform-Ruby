@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.special
 
-# require "javax/microedition/lcdui/Canvas"
 
 class AnalogInputBuilder
     
@@ -44,30 +43,55 @@ class AnalogInputBuilder
     end
 
     def self.instance()
+        AnalogInputBuilder.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AnalogInputBuilder.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AnalogInputBuilder.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AnalogInputBuilder"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/input/GameInputProcessor"
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-require "org/allbinary/game/layer/special/Special1GameInputProcessor"
-require "org/allbinary/game/layer/special/Special3GameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialAnalogDownGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialAnalogLeftGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialAnalogLeftTriggerGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialAnalogRightGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialAnalogRightTriggerGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialAnalogUpGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialDownGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialLeftGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialRightGameInputProcessor"
-require "org/allbinary/game/layer/special/SpecialUpGameInputProcessor"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInputProcessor, "org/allbinary/game/input/GameInputProcessor"
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+autoload :Special1GameInputProcessor, "org/allbinary/game/layer/special/Special1GameInputProcessor"
+autoload :Special3GameInputProcessor, "org/allbinary/game/layer/special/Special3GameInputProcessor"
+autoload :SpecialAnalogDownGameInputProcessor, "org/allbinary/game/layer/special/SpecialAnalogDownGameInputProcessor"
+autoload :SpecialAnalogLeftGameInputProcessor, "org/allbinary/game/layer/special/SpecialAnalogLeftGameInputProcessor"
+autoload :SpecialAnalogLeftTriggerGameInputProcessor, "org/allbinary/game/layer/special/SpecialAnalogLeftTriggerGameInputProcessor"
+autoload :SpecialAnalogRightGameInputProcessor, "org/allbinary/game/layer/special/SpecialAnalogRightGameInputProcessor"
+autoload :SpecialAnalogRightTriggerGameInputProcessor, "org/allbinary/game/layer/special/SpecialAnalogRightTriggerGameInputProcessor"
+autoload :SpecialAnalogUpGameInputProcessor, "org/allbinary/game/layer/special/SpecialAnalogUpGameInputProcessor"
+autoload :SpecialDownGameInputProcessor, "org/allbinary/game/layer/special/SpecialDownGameInputProcessor"
+autoload :SpecialLeftGameInputProcessor, "org/allbinary/game/layer/special/SpecialLeftGameInputProcessor"
+autoload :SpecialRightGameInputProcessor, "org/allbinary/game/layer/special/SpecialRightGameInputProcessor"
+autoload :SpecialUpGameInputProcessor, "org/allbinary/game/layer/special/SpecialUpGameInputProcessor"
 
-class AnalogInputBuilder
-    @@instance = AnalogInputBuilder.new()
+begin
+    AnalogInputBuilder.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

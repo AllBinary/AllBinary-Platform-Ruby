@@ -152,15 +152,15 @@ class AbSqlBasic
     end
 end
 
-require "org/allbinary/business/init/db/DatabaseConnectionInfoInterface"
-require "org/allbinary/business/init/db/DbConnectionInfo"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/connection/pool/SqlConnectionPool"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/sql/SqlStrings"
-require "org/allbinary/logic/communication/sql/SqlTypeStrings"
+autoload :DatabaseConnectionInfoInterface, "org/allbinary/business/init/db/DatabaseConnectionInfoInterface"
+autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SqlConnectionPool, "org/allbinary/logic/communication/sql/connection/pool/SqlConnectionPool"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :SqlStrings, "org/allbinary/logic/communication/sql/SqlStrings"
+autoload :SqlTypeStrings, "org/allbinary/logic/communication/sql/SqlTypeStrings"
 require "java/lang/Thread"
 

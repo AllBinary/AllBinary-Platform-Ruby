@@ -116,9 +116,9 @@ class AbDatabaseManagement < AbSqlBean
     end
 end
 
-require "org/allbinary/business/init/db/DatabaseConnectionInfoInterface"
-require "org/allbinary/business/init/db/DbConnectionInfo"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
+autoload :DatabaseConnectionInfoInterface, "org/allbinary/business/init/db/DatabaseConnectionInfoInterface"
+autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

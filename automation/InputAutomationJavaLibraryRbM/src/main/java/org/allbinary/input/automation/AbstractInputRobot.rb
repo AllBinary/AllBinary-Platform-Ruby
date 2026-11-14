@@ -69,6 +69,6 @@ class AbstractInputRobot
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/input/automation/PointHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PointHelper, "org/allbinary/input/automation/PointHelper"
 

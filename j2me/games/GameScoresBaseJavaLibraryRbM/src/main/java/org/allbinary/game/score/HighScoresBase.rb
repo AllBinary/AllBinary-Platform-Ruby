@@ -45,8 +45,8 @@ class HighScoresBase
     end
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/score/HighScoresHelperBaseInterface"
-require "org/allbinary/game/score/HighScoresResultsListener"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
+autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener"
 

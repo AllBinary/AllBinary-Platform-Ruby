@@ -52,19 +52,43 @@ class Feature
     end
 
     def self.hashtable()
+        Feature.java_static_fields unless @java_static_fields_started
         return defined?(@@hashtable) ? @@hashtable : nil
     end
 
     def self.hashtable=(value)
+        Feature.java_static_fields unless @java_static_fields_started
         @@hashtable = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@hashtable = StdUtil.getInstance().createHashtable()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Feature"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABHashtable"
+autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class Feature
-    @@hashtable = StdUtil.getInstance().createHashtable()
+begin
+    Feature.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

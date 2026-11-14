@@ -58,6 +58,6 @@ class MotionRectanglesResultsFrameCacheable
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/image/comparison/motion/MotionRectangles"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles"
 

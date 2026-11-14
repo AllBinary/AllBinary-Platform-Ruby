@@ -38,9 +38,9 @@ class ThemePropertiesView
     end
 end
 
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/visual/theme/ThemeData"
-require "org/allbinary/logic/visual/theme/ThemeInterface"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :ThemeData, "org/allbinary/logic/visual/theme/ThemeData"
+autoload :ThemeInterface, "org/allbinary/logic/visual/theme/ThemeInterface"
 

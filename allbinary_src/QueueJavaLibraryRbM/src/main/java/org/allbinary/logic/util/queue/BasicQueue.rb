@@ -54,6 +54,6 @@ class BasicQueue
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

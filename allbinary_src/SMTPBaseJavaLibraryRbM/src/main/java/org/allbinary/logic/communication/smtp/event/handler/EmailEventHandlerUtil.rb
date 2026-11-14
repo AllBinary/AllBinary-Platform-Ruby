@@ -66,30 +66,54 @@ class EmailEventHandlerUtil
     end
 
     def self.instance()
+        EmailEventHandlerUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        EmailEventHandlerUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = EmailEventHandlerUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "EmailEventHandlerUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/business/user/modules/configuration/UserConfigurationInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfigurationInterface"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfigurationInterface"
-require "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface"
-require "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
-require "org/allbinary/logic/communication/smtp/event/modules/log/LogUserEmailEventListenerModule"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :UserConfigurationInterface, "org/allbinary/business/user/modules/configuration/UserConfigurationInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :UserEmailConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfigurationInterface"
+autoload :UserEmailEventsConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfigurationInterface"
+autoload :UserEmailEventListenerInterface, "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface"
+autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
+autoload :LogUserEmailEventListenerModule, "org/allbinary/logic/communication/smtp/event/modules/log/LogUserEmailEventListenerModule"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :UserEmailEventHandler, "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler"
 
-class EmailEventHandlerUtil
-    @@instance = EmailEventHandlerUtil.new()
+begin
+    EmailEventHandlerUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

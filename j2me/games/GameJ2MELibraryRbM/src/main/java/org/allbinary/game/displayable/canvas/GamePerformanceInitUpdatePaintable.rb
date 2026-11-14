@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
 
@@ -73,9 +71,11 @@ class GamePerformanceInitUpdatePaintable < InitUpdatePaintable
     end
 end
 
-require "org/allbinary/canvas/GameStatisticsFactory"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GameStatisticsFactory, "org/allbinary/canvas/GameStatisticsFactory"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
 

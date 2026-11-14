@@ -100,13 +100,13 @@ class EditValidationUserView < UserView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/username/UserName"
-require "org/allbinary/data/tables/user/UserEntityFactory"
-require "org/allbinary/logic/communication/http/request/RequestParams"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserName, "org/allbinary/business/user/username/UserName"
+autoload :UserEntityFactory, "org/allbinary/data/tables/user/UserEntityFactory"
+autoload :RequestParams, "org/allbinary/logic/communication/http/request/RequestParams"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

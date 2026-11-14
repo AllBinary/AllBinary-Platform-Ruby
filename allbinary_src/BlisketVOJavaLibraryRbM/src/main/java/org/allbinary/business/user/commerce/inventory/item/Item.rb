@@ -146,13 +146,13 @@ class Item < BasicItem
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/user/address/ShippingAddressData"
-require "org/allbinary/business/user/address/StreetAddress"
-require "org/allbinary/business/user/address/StreetAddressData"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
-require "org/allbinary/business/user/commerce/money/MoneyException"
-require "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
-require "org/allbinary/logic/string/StringUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :ShippingAddressData, "org/allbinary/business/user/address/ShippingAddressData"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData"
+autoload :OrderHistoryData, "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
+autoload :MoneyException, "org/allbinary/business/user/commerce/money/MoneyException"
+autoload :ShippingMethodData, "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

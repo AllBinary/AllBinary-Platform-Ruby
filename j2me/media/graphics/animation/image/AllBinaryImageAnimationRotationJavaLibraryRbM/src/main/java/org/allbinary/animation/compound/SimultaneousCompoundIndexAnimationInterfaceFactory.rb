@@ -58,10 +58,10 @@ class SimultaneousCompoundIndexAnimationInterfaceFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/compound/SimultaneousCompoundIndexAnimation"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :SimultaneousCompoundIndexAnimation, "org/allbinary/animation/compound/SimultaneousCompoundIndexAnimation"
 

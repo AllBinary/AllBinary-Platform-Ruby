@@ -312,12 +312,12 @@ class TableTag < PropertiesTag
     end
 end
 
-require "admin/taghelpers/TagHelperFactoryInterface"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/SqlStrings"
-require "org/allbinary/logic/java/bool/BooleanUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SqlStrings, "org/allbinary/logic/communication/sql/SqlStrings"
+autoload :BooleanUtil, "org/allbinary/logic/java/bool/BooleanUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

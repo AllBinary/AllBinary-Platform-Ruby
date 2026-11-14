@@ -67,9 +67,9 @@ class TransformStoreDocument < TransformHttpRequestDocument
     end
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFrontViewFactory"
-require "org/allbinary/logic/communication/http/request/RequestParams"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/search/SearchRequest"
+autoload :StoreFrontViewFactory, "org/allbinary/business/context/modules/storefront/StoreFrontViewFactory"
+autoload :RequestParams, "org/allbinary/logic/communication/http/request/RequestParams"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
 

@@ -22,9 +22,10 @@ module GameNotificationListenerInterface
 
     # throws Exception
     def onGameNotificationEvent(gameNotificationEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/hud/event/GameNotificationEvent"
+autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
 

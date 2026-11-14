@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/image/BaseImageAnimationFactory"
 
 class LeftToRightImageAnimationFactory < BaseImageAnimationFactory
@@ -37,8 +36,9 @@ class LeftToRightImageAnimationFactory < BaseImageAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/image/AdjustedLeftToRightImageAnimation"
-require "org/allbinary/animation/image/LeftToRightImageAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :AdjustedLeftToRightImageAnimation, "org/allbinary/animation/image/AdjustedLeftToRightImageAnimation"
+autoload :LeftToRightImageAnimation, "org/allbinary/animation/image/LeftToRightImageAnimation"
 

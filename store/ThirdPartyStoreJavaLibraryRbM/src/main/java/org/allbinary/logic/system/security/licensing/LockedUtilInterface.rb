@@ -19,14 +19,16 @@ module LockedUtilInterface
     
 
     def isLocked()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isLockedFeature(lockableFeatrue)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/system/security/licensing/LockableFeature"
+autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature"
 

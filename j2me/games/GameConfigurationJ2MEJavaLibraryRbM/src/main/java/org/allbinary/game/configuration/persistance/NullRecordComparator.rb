@@ -14,7 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.persistance
 
-# require "javax/microedition/rms/RecordComparator"
+require "javax/microedition/rms/RecordComparator"
 
 class NullRecordComparator
     include RecordComparator
@@ -23,9 +23,31 @@ class NullRecordComparator
     def compare(rec1, rec2)
         return 0
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_RECORD_COMPARATOR, NullRecordComparator.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullRecordComparator"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_RECORD_COMPARATOR].include?(name)
+        end
+        super
+    end
 end
 
-class NullRecordComparator
-    NULL_RECORD_COMPARATOR = NullRecordComparator.new()
+begin
+    NullRecordComparator.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

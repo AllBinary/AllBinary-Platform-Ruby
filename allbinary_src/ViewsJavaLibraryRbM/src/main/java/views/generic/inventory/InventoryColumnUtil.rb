@@ -49,23 +49,47 @@ class InventoryColumnUtil
     end
 
     def self.instance()
+        InventoryColumnUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        InventoryColumnUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = InventoryColumnUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InventoryColumnUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :InventoryEntity, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
 
-class InventoryColumnUtil
-    @@instance = InventoryColumnUtil.new()
+begin
+    InventoryColumnUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -51,10 +51,10 @@ class UserEmailEventListenerModule
     end
 end
 
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/smtp/BasicEmail"
-require "org/allbinary/logic/communication/smtp/EmailInterface"
-require "org/allbinary/logic/communication/smtp/event/EmailEvent"
-require "org/allbinary/logic/communication/smtp/queue/EmailQueueFactory"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :BasicEmail, "org/allbinary/logic/communication/smtp/BasicEmail"
+autoload :EmailInterface, "org/allbinary/logic/communication/smtp/EmailInterface"
+autoload :EmailEvent, "org/allbinary/logic/communication/smtp/event/EmailEvent"
+autoload :EmailQueueFactory, "org/allbinary/logic/communication/smtp/queue/EmailQueueFactory"
 

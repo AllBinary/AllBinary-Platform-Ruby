@@ -70,11 +70,11 @@ class EditHeaderValidationView < TopBarView
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/template/customizer/hedges/heading/HeadingValidation"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "views/business/context/modules/storefront/customizer/CustomizerUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :HeadingValidation, "org/allbinary/logic/visual/transform/template/customizer/hedges/heading/HeadingValidation"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CustomizerUtil, "views/business/context/modules/storefront/customizer/CustomizerUtil"
 

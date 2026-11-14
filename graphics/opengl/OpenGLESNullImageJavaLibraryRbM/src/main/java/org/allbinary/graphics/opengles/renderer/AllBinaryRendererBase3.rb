@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.renderer
 
-# require "javax/microedition/khronos/opengles/GL10"
-# require "javax/microedition/lcdui/Image"
 
 class AllBinaryRendererBase3
     attr_accessor :list
@@ -45,7 +43,9 @@ class AllBinaryRendererBase3
     end
 end
 
-require "org/allbinary/image/opengles/OpenGLESImage"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :OpenGLESImage, "org/allbinary/image/opengles/OpenGLESImage"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

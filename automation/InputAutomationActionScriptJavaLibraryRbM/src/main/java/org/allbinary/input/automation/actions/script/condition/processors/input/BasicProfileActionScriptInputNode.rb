@@ -41,8 +41,8 @@ class BasicProfileActionScriptInputNode
     end
 end
 
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/GenericProfileActionScriptInputData"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :GenericProfileActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/GenericProfileActionScriptInputData"
 

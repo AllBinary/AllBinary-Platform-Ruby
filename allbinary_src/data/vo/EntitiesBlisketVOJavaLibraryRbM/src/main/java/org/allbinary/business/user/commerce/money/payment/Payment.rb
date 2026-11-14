@@ -341,13 +341,13 @@ class Payment
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/control/crypt/SuperCrypt"
-require "org/allbinary/logic/string/StringUtil"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/user/commerce/money/payment/PaymentData"
+autoload :HashMap, "java/util/HashMap"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :SuperCrypt, "org/allbinary/logic/control/crypt/SuperCrypt"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :PaymentData, "org/allbinary/business/user/commerce/money/payment/PaymentData"
 

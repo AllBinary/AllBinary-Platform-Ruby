@@ -19,9 +19,10 @@ module GameNotificationHudCompositeInterface
     
 
     def getGameNotificationHud()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/ag/layer/hud/basic/notification/GameNotificationHud"
+autoload :GameNotificationHud, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotificationHud"
 

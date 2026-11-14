@@ -40,10 +40,36 @@ class AllBinaryOrientationSensor < AllBinarySensor
     def getOrientation()
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_ALLBINARY_ORIENTATION_SENSOR, AllBinaryOrientationSensor.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryOrientationSensor"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_ALLBINARY_ORIENTATION_SENSOR].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/input/CompleteMotionGestureInputEventListenerInterface"
-require "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener"
-require "org/allbinary/logic/math/Orientation"
-require "org/allbinary/logic/math/PrimitiveFloatUtil"
+autoload :CompleteMotionGestureInputEventListenerInterface, "org/allbinary/game/input/CompleteMotionGestureInputEventListenerInterface"
+autoload :NoCompleteMotionGestureInputEventListener, "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener"
+autoload :Orientation, "org/allbinary/logic/math/Orientation"
+autoload :PrimitiveFloatUtil, "org/allbinary/logic/math/PrimitiveFloatUtil"
+
+begin
+    AllBinaryOrientationSensor.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
+end
 

@@ -46,5 +46,5 @@ class DemoGameMidletEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/game/midlet/DemoGameMidletState"
+autoload :DemoGameMidletState, "org/allbinary/game/midlet/DemoGameMidletState"
 

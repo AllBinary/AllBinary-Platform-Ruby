@@ -52,12 +52,12 @@ class AbeClientInformation < ClientInformation
     end
 end
 
-require "org/allbinary/business/init/LicenseInitInfo"
-require "org/allbinary/business/init/LicenseInitInfoUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/system/os/OperatingSystemFactory"
-require "org/allbinary/string/CommonStrings"
+autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo"
+autoload :LicenseInitInfoUtil, "org/allbinary/business/init/LicenseInitInfoUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

@@ -75,8 +75,8 @@ class AbEmail
     end
 end
 
-require "java/util/HashMap"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/communication/smtp/Email"
+autoload :HashMap, "java/util/HashMap"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :Email, "org/allbinary/logic/communication/smtp/Email"
 

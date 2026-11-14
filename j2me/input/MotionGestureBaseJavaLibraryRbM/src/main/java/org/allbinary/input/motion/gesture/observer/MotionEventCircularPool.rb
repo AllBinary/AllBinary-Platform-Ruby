@@ -44,10 +44,10 @@ class MotionEventCircularPool
     end
 end
 
-require "org/allbinary/game/input/InputFactory"
-require "org/allbinary/input/motion/gesture/MotionGestureInput"
-require "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-require "org/allbinary/logic/util/event/AllBinaryEventCircularPool"
-require "org/allbinary/input/motion/gesture/observer/MotionEventFactory"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool"
+autoload :MotionEventFactory, "org/allbinary/input/motion/gesture/observer/MotionEventFactory"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
 

@@ -19,21 +19,25 @@ module KeyInterface
     
 
     def keyPressed(keyCode)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def keyReleased(keyCode)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def keyPressedByDevice(keyCode, deviceId)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def keyReleasedByDevice(keyCode, deviceId)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

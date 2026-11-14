@@ -37,5 +37,5 @@ class NoGyroSensor < AllBinaryOrientationSensor
     end
 end
 
-require "org/allbinary/logic/math/Orientation"
+autoload :Orientation, "org/allbinary/logic/math/Orientation"
 

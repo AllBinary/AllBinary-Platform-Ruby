@@ -138,40 +138,63 @@ class PaymentTypeUtil
     end
 
     def self.instance()
+        PaymentTypeUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PaymentTypeUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PaymentTypeUtil.new()
+            static_init
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PaymentTypeUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewaysData"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/crypt/file/CryptFileReader"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/business/user/commerce/money/payment/types/PaymentType"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :PaymentGatewaysData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewaysData"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :TransformInfoObjectConfigData, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :PaymentType, "org/allbinary/business/user/commerce/money/payment/types/PaymentType"
 
-class PaymentTypeUtil
-    @@instance = PaymentTypeUtil.new()
+begin
+    PaymentTypeUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
-
-PaymentTypeUtil.static_init
 

@@ -35,6 +35,6 @@ class HtmlRadioInput < HtmlValueInput
     end
 end
 
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/visual/dhtml/html/input/HtmlInputData"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :HtmlInputData, "org/allbinary/logic/visual/dhtml/html/input/HtmlInputData"
 

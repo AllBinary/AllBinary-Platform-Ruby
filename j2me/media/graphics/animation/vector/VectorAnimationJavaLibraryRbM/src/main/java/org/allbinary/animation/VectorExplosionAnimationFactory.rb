@@ -54,11 +54,11 @@ class VectorExplosionAnimationFactory
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/VectorAnimationInterface"
-require "org/allbinary/animation/VectorExplosionGenerator"
-require "org/allbinary/animation/VectorRotationAnimation"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :VectorAnimationInterface, "org/allbinary/animation/VectorAnimationInterface"
+autoload :VectorExplosionGenerator, "org/allbinary/animation/VectorExplosionGenerator"
+autoload :VectorRotationAnimation, "org/allbinary/animation/VectorRotationAnimation"
 

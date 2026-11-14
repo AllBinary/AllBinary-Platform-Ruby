@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable
 
-# require "javax/microedition/lcdui/Displayable"
 
 class DisplayInfoSingleton
     attr_accessor :logUtil, :commonLabels, :commonSeps, :commonStrings, :ORIENTATION, :ADJUSTING_FOR_SCALING_IN_PORTRAIT, :ADJUSTING_FOR_SCALING_IN_LANDSCAPE, :last, :lastHalf, :full, :top, :left, :xOffset, :yOffset, :scaleLargestTo, :WIDTH, :HEIGHT, :CUSTOM_WIDTH, :CUSTOM_HEIGHT, :scalableListener, :displayRatio, :ratio, :SET_LAST_SIZE_METHOD_NAME, :FULL_WIDTH, :FULL_HEIGHT, :LAST_WIDTH, :LAST_HEIGHT, :PORTRAIT, :LANDSCAPE, :displayChangeEvent, :FIRE_METHOD_NAME, :REASON, :UPDATE_FROM_ORIENTATION_CHANGE, :list, :DISPLAY_INFO, :FULL, :LAST, :LAST_HALF
@@ -415,29 +414,52 @@ class DisplayInfoSingleton
     def getyOffset()
         return @yOffset
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, DisplayInfoSingleton.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DisplayInfoSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/AndroidUtil"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
-require "org/allbinary/graphics/displayable/event/DisplayChangeEventHandler"
-require "org/allbinary/graphics/displayable/event/LastDisplayChangeEventHandler"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/graphics/threed/SWTJOGLProcessor"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/os/GenericOperatingSystem"
-require "org/allbinary/logic/system/os/OperatingSystemFactory"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/graphics/displayable/BaseScalable"
-require "org/allbinary/graphics/displayable/ScalableListener"
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :AndroidUtil, "org/allbinary/AndroidUtil"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
+autoload :DisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/DisplayChangeEventHandler"
+autoload :LastDisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/LastDisplayChangeEventHandler"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :SWTJOGLProcessor, "org/allbinary/graphics/threed/SWTJOGLProcessor"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
+autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BaseScalable, "org/allbinary/graphics/displayable/BaseScalable"
+autoload :ScalableListener, "org/allbinary/graphics/displayable/ScalableListener"
 
-class DisplayInfoSingleton
-    SINGLETON = DisplayInfoSingleton.new()
+begin
+    DisplayInfoSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

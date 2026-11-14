@@ -57,11 +57,11 @@ class RotationAnimationFactory
     end
 end
 
-require "org/allbinary/game/configuration/GameConfigurationCentral"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/animation/NullRotationAnimation"
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :NullRotationAnimation, "org/allbinary/animation/NullRotationAnimation"
 

@@ -55,7 +55,7 @@ module PaymentEntityInterface
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/money/payment/PaymentInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :PaymentInterface, "org/allbinary/business/user/commerce/money/payment/PaymentInterface"
 

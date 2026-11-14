@@ -21,17 +21,20 @@ module RunnableInterface
     
 
     def isRunning()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setRunning(isRunning)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def setThread(thread)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

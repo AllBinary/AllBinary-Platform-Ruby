@@ -24,6 +24,6 @@ module TransformInfoObjectConfigGeneratorFactoryInterface
     end
 end
 
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGenerator"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoObjectConfigGenerator, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGenerator"
 

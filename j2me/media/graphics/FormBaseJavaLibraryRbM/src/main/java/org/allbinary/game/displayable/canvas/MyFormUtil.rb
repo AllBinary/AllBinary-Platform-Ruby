@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 
 class MyFormUtil
     attr_accessor :logUtil, :commonStrings, :popupMenuRectangle
@@ -57,26 +55,52 @@ class MyFormUtil
     end
 
     def self.instance()
+        MyFormUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        MyFormUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = MyFormUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MyFormUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/graphics/threed/SWTJOGLProcessor"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :SWTJOGLProcessor, "org/allbinary/graphics/threed/SWTJOGLProcessor"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class MyFormUtil
-    @@instance = MyFormUtil.new()
+begin
+    MyFormUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

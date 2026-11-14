@@ -15,7 +15,6 @@
 # package org.allbinary.image.opengles
 
 # require "java/io/IOException"
-# require "java/io/InputStream"
 
 class OpenGLImageUtilBase
     
@@ -43,6 +42,7 @@ class OpenGLImageUtilBase
     end
 end
 
-require "org/allbinary/graphics/OpenGLBitmap"
-require "org/allbinary/graphics/color/BasicColor"
+autoload :InputStream, "java/io/InputStream"
+autoload :OpenGLBitmap, "org/allbinary/graphics/OpenGLBitmap"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

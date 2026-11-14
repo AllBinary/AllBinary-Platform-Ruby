@@ -48,6 +48,6 @@ class ModifyTable
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "tags/TagStrings"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TagStrings, "tags/TagStrings"
 

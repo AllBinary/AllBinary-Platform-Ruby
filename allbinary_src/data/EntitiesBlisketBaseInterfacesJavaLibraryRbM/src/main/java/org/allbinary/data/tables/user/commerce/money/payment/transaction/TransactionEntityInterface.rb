@@ -30,5 +30,5 @@ module TransactionEntityInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
+autoload :PaymentTransactionInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
 

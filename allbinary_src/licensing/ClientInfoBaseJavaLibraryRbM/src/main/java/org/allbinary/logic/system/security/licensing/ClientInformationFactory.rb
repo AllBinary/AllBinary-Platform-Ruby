@@ -27,8 +27,8 @@ class ClientInformationFactory
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/system/security/licensing/ClientInformation"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ClientInformation, "org/allbinary/logic/system/security/licensing/ClientInformation"
 

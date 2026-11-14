@@ -46,10 +46,10 @@ class ContextConfigurationDomDocumentMapping
     end
 end
 
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
-require "org/allbinary/business/context/configuration/ContextConfigurationView"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :ContextConfigurationView, "org/allbinary/business/context/configuration/ContextConfigurationView"
 

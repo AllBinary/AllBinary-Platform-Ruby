@@ -48,19 +48,43 @@ class FormTypeFactory
     end
 
     def self.instance()
+        FormTypeFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        FormTypeFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = FormTypeFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FormTypeFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/graphics/form/FormType"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :FormType, "org/allbinary/graphics/form/FormType"
 
-class FormTypeFactory
-    @@instance = FormTypeFactory.new()
+begin
+    FormTypeFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

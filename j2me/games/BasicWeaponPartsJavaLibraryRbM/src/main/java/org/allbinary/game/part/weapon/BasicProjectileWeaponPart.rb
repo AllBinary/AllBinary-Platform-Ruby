@@ -43,13 +43,13 @@ class BasicProjectileWeaponPart < BasicWeaponPart
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/game/combat/weapon/WeaponProperties"
-require "org/allbinary/game/layer/weapon/WeaponLayer"
-require "org/allbinary/game/layer/weapon/WeaponLayerCircularPool"
-require "org/allbinary/game/score/NoScoreable"
-require "org/allbinary/game/score/ScoreableInterface"
-require "org/allbinary/graphics/RelativeRelationship"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
+autoload :WeaponLayer, "org/allbinary/game/layer/weapon/WeaponLayer"
+autoload :WeaponLayerCircularPool, "org/allbinary/game/layer/weapon/WeaponLayerCircularPool"
+autoload :NoScoreable, "org/allbinary/game/score/NoScoreable"
+autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
+autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

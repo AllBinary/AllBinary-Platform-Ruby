@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.scroller
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/BasicAI"
 
 class HorizontalScreenPatrolAI < BasicAI
@@ -44,7 +43,7 @@ class HorizontalScreenPatrolAI < BasicAI
 
     # throws Exception
     def processAI(allBinaryLayerManager)
-        self.class.superclass.instance_method(:processKeyAI).bind(self).call(@keyDirection)
+        HorizontalScreenPatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(@keyDirection)
         if @timeDelayHelper.isTimeTNT()
             layerInterface = self.getOwnerLayerInterface()
             currentOwnerLayerX = layerInterface.getXP()
@@ -56,7 +55,7 @@ class HorizontalScreenPatrolAI < BasicAI
                 @secondaryPlayerQueue.add(@sound)
             end
             if currentOwnerLayerX < @firingX && currentOwnerLayerX > -layerInterface.getWidth()
-                self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
+                HorizontalScreenPatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
                 gameLayerManager = allBinaryLayerManager
                 _FIRE = (gameLayerManager.getGameInfo().getCurrentLevel() + 12) >> 2
                 if _FIRE > @MAX_FIRE
@@ -74,22 +73,45 @@ class HorizontalScreenPatrolAI < BasicAI
 
     def nextDirection()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SOUND, SmallIntegerSingletonFactory.getInstance().getAt(433))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "HorizontalScreenPatrolAI"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SOUND].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/rand/MyRandomFactory"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/media/audio/PlayerQueue"
-require "org/allbinary/media/audio/SecondaryPlayerQueueFactory"
-require "org/allbinary/media/audio/Sound"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/ABHashtable"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :PlayerQueue, "org/allbinary/media/audio/PlayerQueue"
+autoload :SecondaryPlayerQueueFactory, "org/allbinary/media/audio/SecondaryPlayerQueueFactory"
+autoload :Sound, "org/allbinary/media/audio/Sound"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class HorizontalScreenPatrolAI
-    SOUND = SmallIntegerSingletonFactory.getInstance().getAt(433)
+begin
+    HorizontalScreenPatrolAI.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

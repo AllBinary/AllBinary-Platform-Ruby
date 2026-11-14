@@ -2,8 +2,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Font"
 require "org/allbinary/graphics/form/item/ABTextItem"
 
 class ABTextFieldItem < ABTextItem
@@ -56,7 +54,9 @@ class ABTextFieldItem < ABTextItem
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/util/visitor/Visitor"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
 

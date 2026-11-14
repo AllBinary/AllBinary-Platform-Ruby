@@ -21,14 +21,16 @@ module PickedUpLayerInterface
     
 
     def getPickedUpLayerInterfaceFactoryInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setPickedUp()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
 

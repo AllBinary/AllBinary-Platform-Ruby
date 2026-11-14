@@ -57,6 +57,6 @@ class ImageColorResults
     end
 end
 
-require "org/allbinary/media/image/analysis/ColorAverage"
-require "org/allbinary/media/image/analysis/ColorRange"
+autoload :ColorAverage, "org/allbinary/media/image/analysis/ColorAverage"
+autoload :ColorRange, "org/allbinary/media/image/analysis/ColorRange"
 

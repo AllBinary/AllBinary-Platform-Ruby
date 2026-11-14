@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface"
 
 class SpinnerAIFactory
@@ -27,9 +26,10 @@ class SpinnerAIFactory
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/ag/ai/SpinnerAI"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :SpinnerAI, "org/allbinary/game/ag/ai/SpinnerAI"
 

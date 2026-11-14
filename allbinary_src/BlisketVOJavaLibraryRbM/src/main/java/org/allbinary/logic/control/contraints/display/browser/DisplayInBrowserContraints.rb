@@ -73,5 +73,5 @@ class DisplayInBrowserContraints
     end
 end
 
-require "org/w3c/dom/Node"
+autoload :Node, "org/w3c/dom/Node"
 

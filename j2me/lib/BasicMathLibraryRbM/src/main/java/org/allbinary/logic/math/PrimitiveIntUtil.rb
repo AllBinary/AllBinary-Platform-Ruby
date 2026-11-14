@@ -32,5 +32,5 @@ class PrimitiveIntUtil
     end
 end
 
-require "org/allbinary/logic/NullUtil"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
 

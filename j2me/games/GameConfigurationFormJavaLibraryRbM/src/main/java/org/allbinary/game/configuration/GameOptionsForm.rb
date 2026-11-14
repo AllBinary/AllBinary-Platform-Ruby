@@ -14,11 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
-# require "javax/microedition/lcdui/Choice"
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Item"
-# require "javax/microedition/lcdui/TextField"
 require "org/allbinary/graphics/displayable/screen/CommandForm"
 
 class GameOptionsForm < CommandForm
@@ -45,7 +40,7 @@ class GameOptionsForm < CommandForm
 
     # throws Exception
     def closeClientInformation(abeClientInformation)
-        self.class.superclass.instance_method(:close).bind(self).call()
+        GameOptionsForm.superclass.instance_method(:close).bind(self).call()
         self.save(abeClientInformation)
     end
     
@@ -124,7 +119,7 @@ class GameOptionsForm < CommandForm
         GameConfigurationUtil.getInstance().updateCompetitionValue()
         hashtable = StdUtil.getInstance().createHashtable()
         _SCALE = GameConfigurationCentral.getInstance().SCALE
-        hashtable.put(_SCALE.getName(), _SCALE.getValue().to_s)
+        hashtable.put(_SCALE.getName(), (_SCALE.getValue().to_i).to_s)
         keyValuePersistance = GameConfigurationPersistanceSingleton.getInstance()
         keyValuePersistance.clear()
         keyValuePersistance.loadAll(abeClientInformation)
@@ -139,28 +134,33 @@ class GameOptionsForm < CommandForm
     end
 end
 
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
-require "org/allbinary/game/configuration/feature/GameFeatureFormUtil"
-require "org/allbinary/game/configuration/feature/GameFeatureItemCommandListener"
-require "org/allbinary/game/configuration/feature/GameFeatureItemStateListener"
-require "org/allbinary/game/configuration/feature/SensorFeatureFactory"
-require "org/allbinary/game/configuration/persistance/GameConfigurationPersistanceSingleton"
-require "org/allbinary/game/configuration/persistance/KeyValuePersistance"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/displayable/command/MyCommandsFactory"
-require "org/allbinary/input/gyro/OrientationData"
-require "org/allbinary/logic/MEUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/HashtableUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/configuration/GameConfiguration"
-require "org/allbinary/game/configuration/GameConfigurationCentral"
-require "org/allbinary/game/configuration/GameConfigurationGauge"
-require "org/allbinary/game/configuration/GameConfigurationSingleton"
-require "org/allbinary/game/configuration/GameConfigurationTextInput"
-require "org/allbinary/game/configuration/GameConfigurationUtil"
+autoload :Choice, "javax/microedition/lcdui/Choice"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Item, "javax/microedition/lcdui/Item"
+autoload :TextField, "javax/microedition/lcdui/TextField"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :GameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
+autoload :GameFeatureFormUtil, "org/allbinary/game/configuration/feature/GameFeatureFormUtil"
+autoload :GameFeatureItemCommandListener, "org/allbinary/game/configuration/feature/GameFeatureItemCommandListener"
+autoload :GameFeatureItemStateListener, "org/allbinary/game/configuration/feature/GameFeatureItemStateListener"
+autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory"
+autoload :GameConfigurationPersistanceSingleton, "org/allbinary/game/configuration/persistance/GameConfigurationPersistanceSingleton"
+autoload :KeyValuePersistance, "org/allbinary/game/configuration/persistance/KeyValuePersistance"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory"
+autoload :OrientationData, "org/allbinary/input/gyro/OrientationData"
+autoload :MEUtil, "org/allbinary/logic/MEUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :GameConfigurationGauge, "org/allbinary/game/configuration/GameConfigurationGauge"
+autoload :GameConfigurationSingleton, "org/allbinary/game/configuration/GameConfigurationSingleton"
+autoload :GameConfigurationTextInput, "org/allbinary/game/configuration/GameConfigurationTextInput"
+autoload :GameConfigurationUtil, "org/allbinary/game/configuration/GameConfigurationUtil"
 

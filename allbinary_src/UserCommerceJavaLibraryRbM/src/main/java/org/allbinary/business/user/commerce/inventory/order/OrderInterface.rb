@@ -108,5 +108,5 @@ module OrderInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/basket/BasketInterface"
+autoload :BasketInterface, "org/allbinary/business/user/commerce/inventory/basket/BasketInterface"
 

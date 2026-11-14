@@ -37,6 +37,6 @@ class PointsLayerFactory
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/ag/layer/pickup/points/PointsLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :PointsLayer, "org/allbinary/game/ag/layer/pickup/points/PointsLayer"
 

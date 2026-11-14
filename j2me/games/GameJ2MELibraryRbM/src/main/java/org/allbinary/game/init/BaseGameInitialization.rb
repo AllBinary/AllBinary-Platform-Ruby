@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.init
 
-# require "javax/microedition/lcdui/CommandListener"
 require "org/allbinary/game/init/GameInitializationInterface"
 
 class BaseGameInitialization
@@ -147,27 +146,50 @@ class BaseGameInitialization
     def isInitialized()
         return @initialized
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_BASE_GAME_INITIALIZATION, BaseGameInitialization.new(Array.new(0, nil), 0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BaseGameInitialization"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_BASE_GAME_INITIALIZATION].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/game/configuration/GameConfigurationCentral"
-require "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
-require "org/allbinary/game/configuration/feature/InputFeatureFactory"
-require "org/allbinary/game/configuration/feature/MainFeatureFactory"
-require "org/allbinary/game/input/PlatformInputMappingFactory"
-require "org/allbinary/game/input/event/GameKeyEventFactory"
-require "org/allbinary/game/resource/FeaturedResourceRelativeRelationshipFactory"
-require "org/allbinary/game/resource/ResourceInitialization"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/image/GameFeatureImageCacheFactory"
-require "org/allbinary/input/motion/CompleteMotionGestureInputToGameMotionGestureInput"
-require "org/allbinary/input/motion/button/BasicTouchInputFactory"
-require "org/allbinary/input/motion/button/CancelTouchButtonInputFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
+autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory"
+autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
+autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
+autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
+autoload :FeaturedResourceRelativeRelationshipFactory, "org/allbinary/game/resource/FeaturedResourceRelativeRelationshipFactory"
+autoload :ResourceInitialization, "org/allbinary/game/resource/ResourceInitialization"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :GameFeatureImageCacheFactory, "org/allbinary/image/GameFeatureImageCacheFactory"
+autoload :CompleteMotionGestureInputToGameMotionGestureInput, "org/allbinary/input/motion/CompleteMotionGestureInputToGameMotionGestureInput"
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
+autoload :CancelTouchButtonInputFactory, "org/allbinary/input/motion/button/CancelTouchButtonInputFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
 
-class BaseGameInitialization
-    NULL_BASE_GAME_INITIALIZATION = BaseGameInitialization.new(Array.new(0, nil), 0)
+begin
+    BaseGameInitialization.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

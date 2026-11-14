@@ -37,5 +37,5 @@ class NoImageComparatorConstraints < ImageComparatorConstraints
     end
 end
 
-require "org/allbinary/graphics/GPoint"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
 

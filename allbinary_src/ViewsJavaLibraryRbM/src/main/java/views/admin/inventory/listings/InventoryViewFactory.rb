@@ -37,10 +37,10 @@ class InventoryViewFactory
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/search/SearchRequest"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/string/CommonStrings"
-require "views/generic/inventory/InventorySearch"
-require "views/admin/inventory/listings/InventoryViewSearchInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :InventorySearch, "views/generic/inventory/InventorySearch"
+autoload :InventoryViewSearchInterface, "views/admin/inventory/listings/InventoryViewSearchInterface"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.midlet
 
-# require "javax/microedition/midlet/MIDlet"
 
 class MidletExitProcessorFactory
     
@@ -33,20 +32,45 @@ class MidletExitProcessorFactory
     end
 
     def self.instance()
+        MidletExitProcessorFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        MidletExitProcessorFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = MidletExitProcessorFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MidletExitProcessorFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/AppletUtil"
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/midlet/MidletExitProcessor"
+autoload :MIDlet, "javax/microedition/midlet/MIDlet"
+autoload :AppletUtil, "org/allbinary/AppletUtil"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :MidletExitProcessor, "org/allbinary/midlet/MidletExitProcessor"
 
-class MidletExitProcessorFactory
-    @@instance = MidletExitProcessorFactory.new()
+begin
+    MidletExitProcessorFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

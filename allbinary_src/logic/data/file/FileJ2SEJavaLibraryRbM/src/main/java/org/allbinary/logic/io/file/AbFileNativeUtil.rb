@@ -24,5 +24,5 @@ class AbFileNativeUtil
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
 

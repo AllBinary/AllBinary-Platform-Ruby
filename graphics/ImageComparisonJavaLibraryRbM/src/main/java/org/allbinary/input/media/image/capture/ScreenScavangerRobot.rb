@@ -48,9 +48,9 @@ class ScreenScavangerRobot
     end
 end
 
-require "org/allbinary/input/automation/robot/InputRobotFactory"
-require "org/allbinary/input/automation/robot/InputRobotInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
+autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 

@@ -47,5 +47,5 @@ class PlayerType
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

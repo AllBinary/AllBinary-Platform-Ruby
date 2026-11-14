@@ -29,18 +29,42 @@ class GyroSensorFactory
     end
 
     def self.allBinaryGyroSensor()
+        GyroSensorFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@allBinaryGyroSensor) ? @@allBinaryGyroSensor : nil
     end
 
     def self.allBinaryGyroSensor=(value)
+        GyroSensorFactory.java_static_fields unless @java_static_fields_started
         @@allBinaryGyroSensor = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@allBinaryGyroSensor = AllBinaryOrientationSensor::NULL_ALLBINARY_ORIENTATION_SENSOR
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GyroSensorFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/input/gyro/AllBinaryOrientationSensor"
-require "org/allbinary/input/gyro/NoGyroSensor"
+autoload :AllBinaryOrientationSensor, "org/allbinary/input/gyro/AllBinaryOrientationSensor"
+autoload :NoGyroSensor, "org/allbinary/input/gyro/NoGyroSensor"
 
-class GyroSensorFactory
-    @@allBinaryGyroSensor = AllBinaryOrientationSensor::NULL_ALLBINARY_ORIENTATION_SENSOR
+begin
+    GyroSensorFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

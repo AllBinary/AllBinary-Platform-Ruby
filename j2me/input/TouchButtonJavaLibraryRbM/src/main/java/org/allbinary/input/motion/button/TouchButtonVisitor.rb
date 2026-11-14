@@ -23,5 +23,5 @@ class TouchButtonVisitor
     end
 end
 
-require "org/allbinary/input/motion/button/TouchButtonInput"
+autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput"
 

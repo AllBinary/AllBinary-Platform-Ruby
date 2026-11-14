@@ -138,24 +138,46 @@ class GameInfo
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:LEVEL_NAME, "LEVEL")
+        begin
+            const_set(:NONE, GameInfo.new(GameTypeFactory.getInstance().NONE, GameMode::NONE, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, -1, -1))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NONE, :LEVEL_NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/GameInfoData"
-require "org/allbinary/game/GameMode"
-require "org/allbinary/game/GameType"
-require "org/allbinary/game/GameTypeFactory"
-require "org/allbinary/game/PlayerType"
-require "org/allbinary/game/PlayerTypesFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :GameInfoData, "org/allbinary/game/GameInfoData"
+autoload :GameMode, "org/allbinary/game/GameMode"
+autoload :GameType, "org/allbinary/game/GameType"
+autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory"
+autoload :PlayerType, "org/allbinary/game/PlayerType"
+autoload :PlayerTypesFactory, "org/allbinary/game/PlayerTypesFactory"
 
-class GameInfo
-    NONE = GameInfo.new(GameTypeFactory.getInstance().NONE, GameMode::NONE, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, -1, -1)
-    LEVEL_NAME = "LEVEL"
+begin
+    GameInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -36,9 +36,9 @@ class OpenGLOptions
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
 

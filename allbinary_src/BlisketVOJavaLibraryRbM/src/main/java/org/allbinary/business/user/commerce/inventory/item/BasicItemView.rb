@@ -78,15 +78,15 @@ class BasicItemView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
 

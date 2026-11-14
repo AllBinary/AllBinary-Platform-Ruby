@@ -134,19 +134,43 @@ class AdminRoleFactory
     end
 
     def self.instance()
+        AdminRoleFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AdminRoleFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AdminRoleFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AdminRoleFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/role/BasicUserRoleFactory"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory"
 
-class AdminRoleFactory
-    @@instance = AdminRoleFactory.new()
+begin
+    AdminRoleFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

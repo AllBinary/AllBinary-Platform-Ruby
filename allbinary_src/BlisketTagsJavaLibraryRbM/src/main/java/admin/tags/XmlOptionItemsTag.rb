@@ -26,6 +26,6 @@ class XmlOptionItemsTag < TableTag
     end
 end
 
-require "admin/taghelpers/XmlOptionItemsHelperFactory"
-require "admin/taghelpers/XmlOptionItemsRequestHelperFactory"
+autoload :XmlOptionItemsHelperFactory, "admin/taghelpers/XmlOptionItemsHelperFactory"
+autoload :XmlOptionItemsRequestHelperFactory, "admin/taghelpers/XmlOptionItemsRequestHelperFactory"
 

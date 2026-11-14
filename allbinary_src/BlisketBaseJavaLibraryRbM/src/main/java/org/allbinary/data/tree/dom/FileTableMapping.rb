@@ -70,12 +70,12 @@ class FileTableMapping
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/FileData"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/io/path/PathUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :FileData, "org/allbinary/logic/io/file/FileData"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil"
 

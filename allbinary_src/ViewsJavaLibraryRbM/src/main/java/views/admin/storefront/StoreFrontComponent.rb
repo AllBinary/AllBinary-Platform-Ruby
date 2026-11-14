@@ -49,8 +49,8 @@ class StoreFrontComponent < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFront"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

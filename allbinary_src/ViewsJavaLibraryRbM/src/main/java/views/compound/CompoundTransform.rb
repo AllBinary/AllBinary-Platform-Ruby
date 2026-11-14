@@ -40,11 +40,11 @@ class CompoundTransform < AbTransformer
     end
 end
 
-require "org/allbinary/data/tree/dom/BasicUriResolver"
-require "org/allbinary/data/tree/dom/StoreUriResolver"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "views/compound/objectConfig/CompoundContextTransformInfoObjectConfig"
+autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver"
+autoload :StoreUriResolver, "org/allbinary/data/tree/dom/StoreUriResolver"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CompoundContextTransformInfoObjectConfig, "views/compound/objectConfig/CompoundContextTransformInfoObjectConfig"
 

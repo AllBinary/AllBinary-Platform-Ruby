@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
-# require "javax/microedition/lcdui/Image"
 
 class AnimationFactoryImageScaleUtil
     attr_accessor :imageScaleUtil
@@ -70,24 +69,49 @@ class AnimationFactoryImageScaleUtil
     end
 
     def self.instance()
+        AnimationFactoryImageScaleUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AnimationFactoryImageScaleUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AnimationFactoryImageScaleUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AnimationFactoryImageScaleUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/animation/image/AnimationFactoryInitializationVisitor"
-require "org/allbinary/animation/image/BaseImageAnimationFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/media/image/ImageJ2MEScaleUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :AnimationFactoryInitializationVisitor, "org/allbinary/animation/image/AnimationFactoryInitializationVisitor"
+autoload :BaseImageAnimationFactory, "org/allbinary/animation/image/BaseImageAnimationFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :ImageJ2MEScaleUtil, "org/allbinary/media/image/ImageJ2MEScaleUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class AnimationFactoryImageScaleUtil
-    @@instance = AnimationFactoryImageScaleUtil.new()
+begin
+    AnimationFactoryImageScaleUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

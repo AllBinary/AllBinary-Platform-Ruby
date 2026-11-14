@@ -40,8 +40,8 @@ class TickableLayerProcessor < LayerProcessor
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/game/tick/TickableInterface"
-require "org/allbinary/game/tick/TickableLayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :TickableInterface, "org/allbinary/game/tick/TickableInterface"
+autoload :TickableLayerManager, "org/allbinary/game/tick/TickableLayerManager"
 

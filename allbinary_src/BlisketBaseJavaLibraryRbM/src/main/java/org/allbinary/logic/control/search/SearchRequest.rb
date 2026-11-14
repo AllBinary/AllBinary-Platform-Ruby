@@ -96,11 +96,11 @@ class SearchRequest < AbContext
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/control/search/SearchData"
-require "org/allbinary/logic/control/search/SearchParams"
+autoload :HashMap, "java/util/HashMap"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :SearchData, "org/allbinary/logic/control/search/SearchData"
+autoload :SearchParams, "org/allbinary/logic/control/search/SearchParams"
 

@@ -91,6 +91,6 @@ class IndexedBasicArrayListCache < BaseBasicArrayListCache
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
 

@@ -59,24 +59,48 @@ class InputImageType
     end
 
     def self.hashMap()
+        InputImageType.java_static_fields unless @java_static_fields_started
         return defined?(@@hashMap) ? @@hashMap : nil
     end
 
     def self.hashMap=(value)
+        InputImageType.java_static_fields unless @java_static_fields_started
         @@hashMap = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@hashMap = StdUtil.getInstance().createHashMap()
+            const_set(:TYPE_VECTOR, BasicArrayListD.new())
+            const_set(:CAPTURE, InputImageType.new("Capture", 0))
+            const_set(:COMPARISON, InputImageType.new("Comparison", 1))
+            const_set(:MOTION, InputImageType.new("Motion", 2))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputImageType"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:TYPE_VECTOR, :CAPTURE, :COMPARISON, :MOTION].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
 
-class InputImageType
-    @@hashMap = StdUtil.getInstance().createHashMap()
-    TYPE_VECTOR = BasicArrayListD.new()
-    CAPTURE = InputImageType.new("Capture", 0)
-    COMPARISON = InputImageType.new("Comparison", 1)
-    MOTION = InputImageType.new("Motion", 2)
+begin
+    InputImageType.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

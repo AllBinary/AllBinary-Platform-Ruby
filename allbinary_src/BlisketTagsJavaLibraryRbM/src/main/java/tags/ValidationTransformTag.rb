@@ -145,9 +145,9 @@ class ValidationTransformTag < TransformTag
     end
 end
 
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "taghelpers/ValidatedViewHelperFactory"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :ValidatedViewHelperFactory, "taghelpers/ValidatedViewHelperFactory"
 

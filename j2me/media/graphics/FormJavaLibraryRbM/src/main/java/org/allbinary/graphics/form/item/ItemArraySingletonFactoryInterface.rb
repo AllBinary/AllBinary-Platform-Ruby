@@ -20,9 +20,10 @@ module ItemArraySingletonFactoryInterface
 
     # throws Exception
     def getItems()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
 

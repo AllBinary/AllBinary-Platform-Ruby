@@ -15,7 +15,7 @@
 # package org.allbinary.logic.io
 
 # require "java/io/FileNotFoundException"
-# require "java/io/FileOutputStream"
+require "java/io/FileOutputStream"
 
 class AbFileOutputStream < FileOutputStream
     
@@ -49,6 +49,6 @@ class AbFileOutputStream < FileOutputStream
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/AbFileNativeUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil"
 

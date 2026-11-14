@@ -68,6 +68,6 @@ class ImageComparisonResultFrameCacheable
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/image/comparison/ImageComparisonResult"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
 

@@ -83,15 +83,15 @@ class NewPasswordEmail
     end
 end
 
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
-require "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler"
-require "org/allbinary/logic/communication/smtp/event/handler/factory/AdminUserEmailEventHandlerSingletons"
-require "org/allbinary/logic/communication/smtp/event/handler/factory/UserEmailEventHandlerSingletons"
-require "org/allbinary/logic/communication/smtp/info/AdminEmailInfo"
-require "org/allbinary/logic/communication/smtp/info/BasicEmailInfo"
-require "org/allbinary/logic/communication/smtp/info/EmailInfo"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/string/CommonStrings"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
+autoload :UserEmailEventHandler, "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler"
+autoload :AdminUserEmailEventHandlerSingletons, "org/allbinary/logic/communication/smtp/event/handler/factory/AdminUserEmailEventHandlerSingletons"
+autoload :UserEmailEventHandlerSingletons, "org/allbinary/logic/communication/smtp/event/handler/factory/UserEmailEventHandlerSingletons"
+autoload :AdminEmailInfo, "org/allbinary/logic/communication/smtp/info/AdminEmailInfo"
+autoload :BasicEmailInfo, "org/allbinary/logic/communication/smtp/info/BasicEmailInfo"
+autoload :EmailInfo, "org/allbinary/logic/communication/smtp/info/EmailInfo"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

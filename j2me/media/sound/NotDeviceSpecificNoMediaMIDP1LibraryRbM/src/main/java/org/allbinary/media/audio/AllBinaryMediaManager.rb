@@ -15,8 +15,6 @@
 # package org.allbinary.media.audio
 
 require "java/lang/Object"
-# require "java/io/InputStream"
-# require "javax/microedition/media/Player"
 
 #NotDeviceSpecificNoMediaMIDP1Library
 class AllBinaryMediaManager
@@ -88,18 +86,42 @@ class AllBinaryMediaManager
     def self.getSupportedProtocols(content_type)
         return StringUtil.getInstance().getArrayInstance()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:THIS, "AllBinaryMediaManagerNoMediaMIDP1")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryMediaManager"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:THIS].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/audio/NoPlayer"
-require "org/allbinary/media/audio/Sounds"
-require "org/allbinary/media/audio/SoundsFactoryInterface"
+autoload :InputStream, "java/io/InputStream"
+autoload :Player, "javax/microedition/media/Player"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :NoPlayer, "org/allbinary/media/audio/NoPlayer"
+autoload :Sounds, "org/allbinary/media/audio/Sounds"
+autoload :SoundsFactoryInterface, "org/allbinary/media/audio/SoundsFactoryInterface"
 
-class AllBinaryMediaManager
-    THIS = "AllBinaryMediaManagerNoMediaMIDP1"
+begin
+    AllBinaryMediaManager.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

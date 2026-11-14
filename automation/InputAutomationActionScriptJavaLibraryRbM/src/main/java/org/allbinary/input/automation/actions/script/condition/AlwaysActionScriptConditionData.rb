@@ -20,10 +20,32 @@ class AlwaysActionScriptConditionData
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "ALWAYS_ACTION_CONDITION_NAME")
+        const_set(:IS_ON, "ALWAYS_ACTION_CONDITION_IS_ON")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AlwaysActionScriptConditionData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME, :IS_ON].include?(name)
+        end
+        super
+    end
 end
 
-class AlwaysActionScriptConditionData
-    NAME = "ALWAYS_ACTION_CONDITION_NAME"
-    IS_ON = "ALWAYS_ACTION_CONDITION_IS_ON"
+begin
+    AlwaysActionScriptConditionData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

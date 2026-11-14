@@ -99,9 +99,9 @@ class WorkFlowHelper < BasicTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/data/tables/workflow/WorkFlowEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :WorkFlowEntityFactory, "org/allbinary/data/tables/workflow/WorkFlowEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
 

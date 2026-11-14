@@ -23,7 +23,7 @@ class LicenseCheckRunnableFactory
     end
 end
 
-require "org/allbinary/thread/ABRunnable"
-require "org/allbinary/thread/NullABRunnable"
-require "org/allbinary/game/midlet/SpecialDemoGameMidlet"
+autoload :ABRunnable, "org/allbinary/thread/ABRunnable"
+autoload :NullABRunnable, "org/allbinary/thread/NullABRunnable"
+autoload :SpecialDemoGameMidlet, "org/allbinary/game/midlet/SpecialDemoGameMidlet"
 

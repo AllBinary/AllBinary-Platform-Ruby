@@ -20,10 +20,11 @@ module GameAdStateFactoryInterface
 
     # throws Exception
     def getInstanceForApp(softwareInformation)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/system/SoftwareInformation"
-require "org/allbinary/business/advertisement/GameAdStateBase"
+autoload :SoftwareInformation, "org/allbinary/logic/system/SoftwareInformation"
+autoload :GameAdStateBase, "org/allbinary/business/advertisement/GameAdStateBase"
 

@@ -71,33 +71,57 @@ class CompleteMotionGestureInputToGameMotionGestureInput
     end
 
     def self.instance()
+        CompleteMotionGestureInputToGameMotionGestureInput.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        CompleteMotionGestureInputToGameMotionGestureInput.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = CompleteMotionGestureInputToGameMotionGestureInput.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CompleteMotionGestureInputToGameMotionGestureInput"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-require "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
-require "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory"
-require "org/allbinary/input/motion/touch/action/DiagonalDownLeftTouchInputToGameKeyEventAction"
-require "org/allbinary/input/motion/touch/action/DiagonalDownRightTouchInputToGameKeyEventAction"
-require "org/allbinary/input/motion/touch/action/DiagonalUpLeftTouchInputToGameKeyEventAction"
-require "org/allbinary/input/motion/touch/action/DiagonalUpRightTouchInputToGameKeyEventAction"
-require "org/allbinary/input/motion/touch/action/DownTouchInputToGameKeyEventAction"
-require "org/allbinary/input/motion/touch/action/LeftTouchInputToGameKeyEventAction"
-require "org/allbinary/input/motion/touch/action/ReleaseTouchInputToGameKeyEventAction"
-require "org/allbinary/input/motion/touch/action/RightTouchInputToGameKeyEventAction"
-require "org/allbinary/input/motion/touch/action/UpTouchInputToGameKeyEventAction"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
+autoload :MotionGestureConfigurationFactory, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory"
+autoload :DiagonalDownLeftTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/DiagonalDownLeftTouchInputToGameKeyEventAction"
+autoload :DiagonalDownRightTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/DiagonalDownRightTouchInputToGameKeyEventAction"
+autoload :DiagonalUpLeftTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/DiagonalUpLeftTouchInputToGameKeyEventAction"
+autoload :DiagonalUpRightTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/DiagonalUpRightTouchInputToGameKeyEventAction"
+autoload :DownTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/DownTouchInputToGameKeyEventAction"
+autoload :LeftTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/LeftTouchInputToGameKeyEventAction"
+autoload :ReleaseTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/ReleaseTouchInputToGameKeyEventAction"
+autoload :RightTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/RightTouchInputToGameKeyEventAction"
+autoload :UpTouchInputToGameKeyEventAction, "org/allbinary/input/motion/touch/action/UpTouchInputToGameKeyEventAction"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 
-class CompleteMotionGestureInputToGameMotionGestureInput
-    @@instance = CompleteMotionGestureInputToGameMotionGestureInput.new()
+begin
+    CompleteMotionGestureInputToGameMotionGestureInput.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

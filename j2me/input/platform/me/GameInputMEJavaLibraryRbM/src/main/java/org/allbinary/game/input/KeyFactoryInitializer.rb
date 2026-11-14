@@ -34,5 +34,5 @@ class KeyFactoryInitializer < Init
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

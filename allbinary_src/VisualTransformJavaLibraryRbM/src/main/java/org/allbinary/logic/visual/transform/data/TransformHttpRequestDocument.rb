@@ -107,35 +107,61 @@ class TransformHttpRequestDocument
     end
 
     def self.language()
+        TransformHttpRequestDocument.java_static_fields unless @java_static_fields_started
         return defined?(@@language) ? @@language : nil
     end
 
     def self.language=(value)
+        TransformHttpRequestDocument.java_static_fields unless @java_static_fields_started
         @@language = value
     end
 
     def self.local()
+        TransformHttpRequestDocument.java_static_fields unless @java_static_fields_started
         return defined?(@@local) ? @@local : nil
     end
 
     def self.local=(value)
+        TransformHttpRequestDocument.java_static_fields unless @java_static_fields_started
         @@local = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@language = "en"
+        @@local = "US"
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformHttpRequestDocument"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/communication/http/AcceptableResponseGenerator"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/search/SearchRequest"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :AcceptableResponseGenerator, "org/allbinary/logic/communication/http/AcceptableResponseGenerator"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 
-class TransformHttpRequestDocument
-    @@language = "en"
-    @@local = "US"
+begin
+    TransformHttpRequestDocument.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

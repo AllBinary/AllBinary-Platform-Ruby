@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/IndexedAnimation"
 
 class ImageAnimation < IndexedAnimation
@@ -93,8 +91,10 @@ class ImageAnimation < IndexedAnimation
     end
 end
 
-require "org/allbinary/DisposalUtil"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :DisposalUtil, "org/allbinary/DisposalUtil"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
 

@@ -19,14 +19,16 @@ module BasicCompositeEventHandlerInterface
     
 
     def getEventHandler()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setEventHandler(basicEventHandlerInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/util/event/handler/BasicEventHandlerInterface"
+autoload :BasicEventHandlerInterface, "org/allbinary/logic/util/event/handler/BasicEventHandlerInterface"
 

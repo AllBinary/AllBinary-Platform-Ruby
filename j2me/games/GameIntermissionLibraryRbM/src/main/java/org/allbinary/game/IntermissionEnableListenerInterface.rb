@@ -19,6 +19,7 @@ module IntermissionEnableListenerInterface
     
 
     def notifyIntermission(enable)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

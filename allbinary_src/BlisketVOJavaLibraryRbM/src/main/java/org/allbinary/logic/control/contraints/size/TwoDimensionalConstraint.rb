@@ -51,6 +51,6 @@ class TwoDimensionalConstraint
     end
 end
 
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/control/contraints/size/SizeConstraintInterface"
+autoload :Node, "org/w3c/dom/Node"
+autoload :SizeConstraintInterface, "org/allbinary/logic/control/contraints/size/SizeConstraintInterface"
 

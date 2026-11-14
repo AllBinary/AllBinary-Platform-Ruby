@@ -46,8 +46,8 @@ class LastKeyAIVisitor < Visitor
     end
 end
 
-require "org/allbinary/game/ai/BasicAI"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/string/CommonStrings"
+autoload :BasicAI, "org/allbinary/game/ai/BasicAI"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

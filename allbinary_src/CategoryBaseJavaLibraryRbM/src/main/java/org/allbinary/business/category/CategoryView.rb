@@ -64,15 +64,15 @@ class CategoryView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/category/properties/CategoryPropertiesInterface"
-require "org/allbinary/business/category/properties/CategoryPropertiesView"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/anyType/InterfaceUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/CategoryData"
-require "org/allbinary/business/category/CategoryInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+autoload :CategoryPropertiesView, "org/allbinary/business/category/properties/CategoryPropertiesView"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :InterfaceUtil, "org/allbinary/logic/java/anyType/InterfaceUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
 

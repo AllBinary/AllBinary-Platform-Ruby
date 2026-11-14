@@ -35,5 +35,5 @@ module TransactionResultEntityInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/TransactionResultInterface"
+autoload :TransactionResultInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/TransactionResultInterface"
 

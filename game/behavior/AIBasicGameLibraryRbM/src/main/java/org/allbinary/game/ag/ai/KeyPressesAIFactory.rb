@@ -31,11 +31,11 @@ class KeyPressesAIFactory
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/configuration/feature/InputFeatureFactory"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/ag/ai/KeyPressesAI"
-require "org/allbinary/game/ag/ai/MultiKeyPressesAI"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :KeyPressesAI, "org/allbinary/game/ag/ai/KeyPressesAI"
+autoload :MultiKeyPressesAI, "org/allbinary/game/ag/ai/MultiKeyPressesAI"
 

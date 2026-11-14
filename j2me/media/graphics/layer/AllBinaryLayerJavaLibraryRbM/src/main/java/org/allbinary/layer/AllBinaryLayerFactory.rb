@@ -36,8 +36,8 @@ class AllBinaryLayerFactory
     end
 end
 
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/view/ViewPosition"
-require "org/allbinary/layer/AllBinaryLayer"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
 

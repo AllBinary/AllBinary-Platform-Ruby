@@ -15,7 +15,6 @@
 # package org.allbinary.graphics.opengles
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/Displayable"
 
 class CurrentDisplayableFactory
     attr_accessor :commonStrings, :canvasStrings, :stringUtil, :SET_DISPLAYABLE, :SET_RUNNABLE, :CLEAR_RUNNABLE, :SET_USED_RUNNABLE, :RUNNABLE, :RUNNABLE_WAS_ALREADY_IN_USE, :DEFAULT_CHILD_NAME_LIST, :displayable, :openGlReadydisplayable, :runnable, :usedRunnable
@@ -137,39 +136,64 @@ class CurrentDisplayableFactory
     end
 
     def self.instance()
+        CurrentDisplayableFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        CurrentDisplayableFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = CurrentDisplayableFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CurrentDisplayableFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-require "org/allbinary/game/displayable/canvas/DemoCanvas"
-require "org/allbinary/game/displayable/canvas/GameInputMappingCanvas"
-require "org/allbinary/game/displayable/canvas/GameInputMappingInstructionsCanvas"
-require "org/allbinary/game/displayable/canvas/GameRunnable"
-require "org/allbinary/game/displayable/canvas/NullDisplayable"
-require "org/allbinary/game/displayable/canvas/NullWaitGameRunnable"
-require "org/allbinary/game/layer/SWTUtil"
-require "org/allbinary/game/score/displayable/HighScoresCanvas"
-require "org/allbinary/graphics/GraphicsStrings"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/NullRunnable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :DemoCanvas, "org/allbinary/game/displayable/canvas/DemoCanvas"
+autoload :GameInputMappingCanvas, "org/allbinary/game/displayable/canvas/GameInputMappingCanvas"
+autoload :GameInputMappingInstructionsCanvas, "org/allbinary/game/displayable/canvas/GameInputMappingInstructionsCanvas"
+autoload :GameRunnable, "org/allbinary/game/displayable/canvas/GameRunnable"
+autoload :NullDisplayable, "org/allbinary/game/displayable/canvas/NullDisplayable"
+autoload :NullWaitGameRunnable, "org/allbinary/game/displayable/canvas/NullWaitGameRunnable"
+autoload :SWTUtil, "org/allbinary/game/layer/SWTUtil"
+autoload :HighScoresCanvas, "org/allbinary/game/score/displayable/HighScoresCanvas"
+autoload :GraphicsStrings, "org/allbinary/graphics/GraphicsStrings"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :NullRunnable, "org/allbinary/thread/NullRunnable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
 
-class CurrentDisplayableFactory
-    @@instance = CurrentDisplayableFactory.new()
+begin
+    CurrentDisplayableFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

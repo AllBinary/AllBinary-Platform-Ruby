@@ -39,8 +39,8 @@ class InitGameProcessor < Processor
     end
 end
 
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

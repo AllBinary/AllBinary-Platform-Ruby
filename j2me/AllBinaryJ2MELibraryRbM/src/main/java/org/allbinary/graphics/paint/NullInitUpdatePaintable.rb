@@ -27,9 +27,31 @@ class NullInitUpdatePaintable < InitUpdatePaintable
     def self.getInstance()
         return NullInitUpdatePaintable::SINGLETON
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, NullInitUpdatePaintable.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullInitUpdatePaintable"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-class NullInitUpdatePaintable
-    SINGLETON = NullInitUpdatePaintable.new()
+begin
+    NullInitUpdatePaintable.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -127,17 +127,39 @@ class GameConfiguration
     def isModifiable()
         return @modifiable
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:MIN_VALUE, (-2147483648))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameConfiguration"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:MIN_VALUE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/configuration/event/GameFeatureEvent"
-require "org/allbinary/game/configuration/event/GameFeatureEventHandler"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/game/configuration/GameConfigurationSingleton"
+autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent"
+autoload :GameFeatureEventHandler, "org/allbinary/game/configuration/event/GameFeatureEventHandler"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :GameConfigurationSingleton, "org/allbinary/game/configuration/GameConfigurationSingleton"
 
-class GameConfiguration
-    MIN_VALUE = (-2147483648)
+begin
+    GameConfiguration.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

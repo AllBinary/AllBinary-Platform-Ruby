@@ -96,16 +96,16 @@ class OrderHistoryView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/inventory/order/OrderData"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntity"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/globals/GLOBALS2"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :OrderData, "org/allbinary/business/user/commerce/inventory/order/OrderData"
+autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+autoload :OrderHistoryData, "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
+autoload :OrderHistoryEntity, "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntity"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

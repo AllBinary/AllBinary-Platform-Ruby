@@ -19,11 +19,13 @@ module GroupInterface
     
 
     def getGroupName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getGroupId()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

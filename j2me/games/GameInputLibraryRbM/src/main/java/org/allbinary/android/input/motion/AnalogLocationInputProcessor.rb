@@ -22,6 +22,6 @@ class AnalogLocationInputProcessor
     end
 end
 
-require "org/allbinary/game/input/analog/AnalogLocationInput"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

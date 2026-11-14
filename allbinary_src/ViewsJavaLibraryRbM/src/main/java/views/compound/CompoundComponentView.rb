@@ -45,8 +45,8 @@ class CompoundComponentView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "views/compound/CompoundTransform"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CompoundTransform, "views/compound/CompoundTransform"
 

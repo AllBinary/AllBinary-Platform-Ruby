@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/canvas/Processor"
 require "org/allbinary/game/ag/layer/hud/basic/notification/GameNotificationHud"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
@@ -201,24 +199,26 @@ class PlayerGameNotificationHud < GameNotificationHud
 
     def paint(graphics)
         @myFontProcessor.process(graphics)
-        self.class.superclass.instance_method(:paintString).bind(self).call(graphics, @string)
+        PlayerGameNotificationHud.superclass.instance_method(:paintString).bind(self).call(graphics, @string)
     end
 end
 
-require "org/allbinary/business/advertisement/GameAdStateFactory"
-require "org/allbinary/game/GameAdState"
-require "org/allbinary/game/ag/layer/hud/basic/notification/GameNotification"
-require "org/allbinary/game/layer/hud/event/GameNotificationEventHandler"
-require "org/allbinary/graphics/CustomGPoint"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/CircularIndexUtil"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory"
+autoload :GameAdState, "org/allbinary/game/GameAdState"
+autoload :GameNotification, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotification"
+autoload :GameNotificationEventHandler, "org/allbinary/game/layer/hud/event/GameNotificationEventHandler"
+autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
 

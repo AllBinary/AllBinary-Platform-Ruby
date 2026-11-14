@@ -32,20 +32,44 @@ class BlisketServletUtil
     end
 
     def self.instance()
+        BlisketServletUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        BlisketServletUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = BlisketServletUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BlisketServletUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/globals/AppUrlGlobals"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/system/loader/WebappClassLoaderInfo"
+autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :WebappClassLoaderInfo, "org/allbinary/logic/system/loader/WebappClassLoaderInfo"
 
-class BlisketServletUtil
-    @@instance = BlisketServletUtil.new()
+begin
+    BlisketServletUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -19,26 +19,31 @@ module DebugInterface
     
 
     def start()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def stop()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getStartTime()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMaxTime()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isRunning()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

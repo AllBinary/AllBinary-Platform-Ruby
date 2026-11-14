@@ -41,10 +41,10 @@ class MouseInputAutomationProcessor
     end
 end
 
-require "org/allbinary/input/automation/robot/InputRobotInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputInterface"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :MouseActionScriptInputInterface, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputInterface"
 require "java/lang/Thread"
 

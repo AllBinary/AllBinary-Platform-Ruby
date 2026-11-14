@@ -73,26 +73,50 @@ class AbFileUploadFactory
     end
 
     def self.instance()
+        AbFileUploadFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AbFileUploadFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AbFileUploadFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AbFileUploadFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/ArrayList"
-require "org/allbinary/logic/communication/http/AbFileItemFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/apache/commons/fileupload/FileItemIterator"
-require "org/apache/commons/fileupload/FileItemStream"
-require "org/apache/commons/fileupload/FileItemUtil"
-require "org/allbinary/logic/communication/http/file/upload/AbFileItem"
-require "org/allbinary/logic/communication/http/file/upload/AbFileUpload"
-require "org/allbinary/logic/communication/http/file/upload/HttpFileUploadUtil"
+autoload :ArrayList, "java/util/ArrayList"
+autoload :AbFileItemFactory, "org/allbinary/logic/communication/http/AbFileItemFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :FileItemIterator, "org/apache/commons/fileupload/FileItemIterator"
+autoload :FileItemStream, "org/apache/commons/fileupload/FileItemStream"
+autoload :FileItemUtil, "org/apache/commons/fileupload/FileItemUtil"
+autoload :AbFileItem, "org/allbinary/logic/communication/http/file/upload/AbFileItem"
+autoload :AbFileUpload, "org/allbinary/logic/communication/http/file/upload/AbFileUpload"
+autoload :HttpFileUploadUtil, "org/allbinary/logic/communication/http/file/upload/HttpFileUploadUtil"
 
-class AbFileUploadFactory
-    @@instance = AbFileUploadFactory.new()
+begin
+    AbFileUploadFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

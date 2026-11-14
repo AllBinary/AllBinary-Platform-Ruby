@@ -45,6 +45,6 @@ class DestroyableSimpleBehavior < DestroyableBaseBehavior
     end
 end
 
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :DestroyedLayerProcessor, "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
 

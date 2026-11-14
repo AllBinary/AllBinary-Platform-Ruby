@@ -27,5 +27,5 @@ class TransformInfoFactory
     end
 end
 
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

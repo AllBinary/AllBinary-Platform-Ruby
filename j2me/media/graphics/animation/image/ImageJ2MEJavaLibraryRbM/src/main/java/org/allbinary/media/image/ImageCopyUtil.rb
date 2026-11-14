@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
 
 class ImageCopyUtil
     attr_accessor :logUtil, :commonStrings, :imageCreationUtil, :anchor, :gameFeatureFactory, :features, :NO_COPY
@@ -92,22 +90,48 @@ class ImageCopyUtil
     end
 
     def self.instance()
+        ImageCopyUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageCopyUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageCopyUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageCopyUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureFactory"
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/image/ImageCreationUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ImageCreationUtil, "org/allbinary/media/image/ImageCreationUtil"
 
-class ImageCopyUtil
-    @@instance = ImageCopyUtil.new()
+begin
+    ImageCopyUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

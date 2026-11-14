@@ -40,6 +40,6 @@ class ColorChangeEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
 

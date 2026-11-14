@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/logic/util/visitor/Visitor"
 
 class ThrustAIVisitor < Visitor
@@ -44,8 +43,9 @@ class ThrustAIVisitor < Visitor
     end
 end
 
-require "org/allbinary/game/ai/BasicAI"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/string/CommonStrings"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :BasicAI, "org/allbinary/game/ai/BasicAI"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

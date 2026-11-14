@@ -19,9 +19,10 @@ module HighScoresResultsListener
     
 
     def setHighScoresArray(highScoresArrayP)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/score/HighScores"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
 

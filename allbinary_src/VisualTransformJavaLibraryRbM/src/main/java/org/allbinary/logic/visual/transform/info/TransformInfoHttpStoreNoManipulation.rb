@@ -38,6 +38,6 @@ class TransformInfoHttpStoreNoManipulation < TransformInfoHttpStore
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigNoManipulationFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :TransformInfoObjectConfigNoManipulationFactory, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigNoManipulationFactory"
 

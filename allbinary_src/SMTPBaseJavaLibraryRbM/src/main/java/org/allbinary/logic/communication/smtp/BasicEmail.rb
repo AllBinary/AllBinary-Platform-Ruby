@@ -72,11 +72,11 @@ class BasicEmail
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/smtp/info/BasicEmailInfo"
-require "org/allbinary/logic/communication/smtp/info/EmailInfo"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/communication/smtp/AbEmail"
-require "org/allbinary/logic/communication/smtp/Email"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicEmailInfo, "org/allbinary/logic/communication/smtp/info/BasicEmailInfo"
+autoload :EmailInfo, "org/allbinary/logic/communication/smtp/info/EmailInfo"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :AbEmail, "org/allbinary/logic/communication/smtp/AbEmail"
+autoload :Email, "org/allbinary/logic/communication/smtp/Email"
 

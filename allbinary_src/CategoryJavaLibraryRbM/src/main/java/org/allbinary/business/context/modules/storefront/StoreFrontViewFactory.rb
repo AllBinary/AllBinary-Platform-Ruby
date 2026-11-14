@@ -43,10 +43,10 @@ class StoreFrontViewFactory
     end
 end
 
-require "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntity"
-require "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntityFactory"
-require "org/allbinary/data/tree/dom/DomNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/context/modules/storefront/StoreFrontView"
+autoload :StoreFrontsEntity, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntity"
+autoload :StoreFrontsEntityFactory, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntityFactory"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :StoreFrontView, "org/allbinary/business/context/modules/storefront/StoreFrontView"
 

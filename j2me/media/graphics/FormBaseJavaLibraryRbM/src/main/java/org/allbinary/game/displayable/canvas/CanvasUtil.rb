@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Canvas"
 
 class CanvasUtil
     
@@ -40,5 +39,6 @@ class CanvasUtil
     end
 end
 
-require "org/allbinary/string/CommonPhoneStrings"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
 

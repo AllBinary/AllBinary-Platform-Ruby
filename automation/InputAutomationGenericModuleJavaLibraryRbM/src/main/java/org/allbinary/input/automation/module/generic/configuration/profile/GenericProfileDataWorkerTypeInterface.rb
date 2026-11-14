@@ -40,6 +40,6 @@ module GenericProfileDataWorkerTypeInterface
     end
 end
 
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

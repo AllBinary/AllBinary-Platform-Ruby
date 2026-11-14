@@ -28,5 +28,5 @@ class FileEmailQueue
     end
 end
 
-require "org/allbinary/data/tree/dom/document/DomDocumentQueueInterface"
+autoload :DomDocumentQueueInterface, "org/allbinary/data/tree/dom/document/DomDocumentQueueInterface"
 

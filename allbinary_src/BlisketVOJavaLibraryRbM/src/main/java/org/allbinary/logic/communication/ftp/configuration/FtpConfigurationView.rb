@@ -72,14 +72,14 @@ class FtpConfigurationView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/logic/communication/ftp/configuration/FtpConfiguration"
-require "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationData"
-require "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationInterface"
-require "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationMapping"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :FtpConfiguration, "org/allbinary/logic/communication/ftp/configuration/FtpConfiguration"
+autoload :FtpConfigurationData, "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationData"
+autoload :FtpConfigurationInterface, "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationInterface"
+autoload :FtpConfigurationMapping, "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationMapping"
 

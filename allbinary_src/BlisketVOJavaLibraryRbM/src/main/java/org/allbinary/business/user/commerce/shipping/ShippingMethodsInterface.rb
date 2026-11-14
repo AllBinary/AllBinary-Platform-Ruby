@@ -35,7 +35,7 @@ module ShippingMethodsInterface
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ShippingInterface, "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
 

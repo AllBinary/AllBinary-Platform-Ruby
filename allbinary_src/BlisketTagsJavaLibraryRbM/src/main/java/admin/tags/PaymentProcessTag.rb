@@ -74,8 +74,8 @@ class PaymentProcessTag < StoreValidationTransformTag
     end
 end
 
-require "admin/taghelpers/PaymentProcessHelperFactory"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :PaymentProcessHelperFactory, "admin/taghelpers/PaymentProcessHelperFactory"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

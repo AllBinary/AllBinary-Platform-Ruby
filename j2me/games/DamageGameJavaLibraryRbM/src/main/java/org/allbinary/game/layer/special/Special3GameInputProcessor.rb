@@ -30,7 +30,7 @@ class Special3GameInputProcessor < SpecialGameInputProcessor
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
 

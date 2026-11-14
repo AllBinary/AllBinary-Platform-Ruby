@@ -14,8 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
-# require "java/io/DataOutputStream"
-# require "java/io/OutputStream"
+require "java/io/DataOutputStream"
 
 class AbDataOutputStream < DataOutputStream
     
@@ -24,4 +23,6 @@ class AbDataOutputStream < DataOutputStream
         super(out)
     end
 end
+
+autoload :OutputStream, "java/io/OutputStream"
 

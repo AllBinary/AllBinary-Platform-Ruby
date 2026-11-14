@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.health
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/Paintable"
 require "org/allbinary/game/health/HealthListenerInterface"
 
@@ -55,8 +54,9 @@ class HealthBar < Paintable
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/health/Health"
-require "org/allbinary/game/health/HealthBarAnimation"
-require "org/allbinary/game/health/HealthInterface"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :Health, "org/allbinary/game/health/Health"
+autoload :HealthBarAnimation, "org/allbinary/game/health/HealthBarAnimation"
+autoload :HealthInterface, "org/allbinary/game/health/HealthInterface"
 

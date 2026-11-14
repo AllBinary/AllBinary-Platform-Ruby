@@ -65,26 +65,50 @@ class GameInitializationUtil
     end
 
     def self.instance()
+        GameInitializationUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GameInitializationUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GameInitializationUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameInitializationUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
-require "org/allbinary/game/configuration/event/GameInitializedEvent"
-require "org/allbinary/game/configuration/event/GameInitializedEventHandler"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/MainFeatureFactory"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/game/init/BasicBuildGameInitializerFactory"
-require "org/allbinary/game/init/GameInitializationInterface"
+autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
+autoload :GameInitializedEvent, "org/allbinary/game/configuration/event/GameInitializedEvent"
+autoload :GameInitializedEventHandler, "org/allbinary/game/configuration/event/GameInitializedEventHandler"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :BasicBuildGameInitializerFactory, "org/allbinary/game/init/BasicBuildGameInitializerFactory"
+autoload :GameInitializationInterface, "org/allbinary/game/init/GameInitializationInterface"
 
-class GameInitializationUtil
-    @@instance = GameInitializationUtil.new()
+begin
+    GameInitializationUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

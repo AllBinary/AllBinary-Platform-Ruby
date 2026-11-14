@@ -67,8 +67,8 @@ class PaymentGatewayPrimaryKey
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFront"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGateway"
+autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :PaymentGateway, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGateway"
 

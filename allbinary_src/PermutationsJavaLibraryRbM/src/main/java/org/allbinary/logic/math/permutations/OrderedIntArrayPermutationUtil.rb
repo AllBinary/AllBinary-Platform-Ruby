@@ -94,24 +94,49 @@ class OrderedIntArrayPermutationUtil
         permutationVisitor = IntPermutationVisitor.new(data)
         _ORIGINAL_DATA_LABEL = "Original Data: "
         print(_ORIGINAL_DATA_LABEL)
-        permutationVisitor.print(data)
+        permutationVisitor.print(data, StringMaker.new())
         OrderedIntArrayPermutationUtil.getInstance().generate(data, permutationVisitor)
     end
 
     def self.instance()
+        OrderedIntArrayPermutationUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OrderedIntArrayPermutationUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = OrderedIntArrayPermutationUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OrderedIntArrayPermutationUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/util/visitor/Visitor"
-require "org/allbinary/logic/math/permutations/IntPermutationVisitor"
+autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :IntPermutationVisitor, "org/allbinary/logic/math/permutations/IntPermutationVisitor"
 require "java/lang/System"
 
-class OrderedIntArrayPermutationUtil
-    @@instance = OrderedIntArrayPermutationUtil.new()
+begin
+    OrderedIntArrayPermutationUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

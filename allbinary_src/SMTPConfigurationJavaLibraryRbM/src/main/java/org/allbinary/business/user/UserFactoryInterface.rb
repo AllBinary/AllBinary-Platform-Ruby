@@ -26,6 +26,6 @@ module UserFactoryInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/UserInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
 

@@ -51,8 +51,8 @@ class BaseAnimationInterfaceFactoryInterfaceComposite
     end
 end
 
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
-require "org/allbinary/animation/NullAnimationFactory"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :BasicAnimationInterfaceFactoryInterface, "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
 

@@ -56,10 +56,10 @@ class TransformInfoHttpComposite
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

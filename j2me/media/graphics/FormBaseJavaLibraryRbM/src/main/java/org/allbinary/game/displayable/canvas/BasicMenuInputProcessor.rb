@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/NullCanvas"
 require "org/allbinary/game/input/PlayerGameInput"
 require "org/allbinary/input/motion/gesture/observer/BaseMotionGestureEventListener"
 
@@ -61,8 +59,10 @@ class BasicMenuInputProcessor < PlayerGameInput
     end
 end
 
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

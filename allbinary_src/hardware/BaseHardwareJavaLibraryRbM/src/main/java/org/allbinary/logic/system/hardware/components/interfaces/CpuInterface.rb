@@ -19,46 +19,55 @@ module CpuInterface
     
 
     def getProcessor()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getVendorId()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getCpuFamily()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getModel()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getModelName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getStepping()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getCpuSpeed()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getCacheSize()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def compareTo(cpuInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

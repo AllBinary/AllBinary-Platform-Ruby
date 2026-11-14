@@ -146,8 +146,8 @@ module TransformInfoInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
-require "org/w3c/dom/Document"
+autoload :HashMap, "java/util/HashMap"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :TransformInfoObjectConfigInterface, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
+autoload :Document, "org/w3c/dom/Document"
 

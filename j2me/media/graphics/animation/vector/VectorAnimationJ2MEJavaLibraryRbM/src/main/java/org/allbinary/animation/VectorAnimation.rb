@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/NullImage"
 require "org/allbinary/animation/IndexedAnimation"
 require "org/allbinary/animation/VectorAnimationInterface"
 
@@ -177,11 +175,18 @@ class VectorAnimation < IndexedAnimation
         @currentPoints = currentPoints
         @circularIndexUtil = CircularIndexUtil.createInstance(currentPoints.length)
     end
+    
+
+    def getBasicColorP()
+        return super()
+    end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/animation/AnimationBehavior"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

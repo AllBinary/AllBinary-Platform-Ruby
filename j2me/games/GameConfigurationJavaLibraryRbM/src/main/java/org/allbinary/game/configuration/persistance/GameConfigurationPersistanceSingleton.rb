@@ -27,11 +27,33 @@ class GameConfigurationPersistanceSingleton < KeyValuePersistance
     def initialize()
         super(GamePersistanceStrings.getInstance().SAVED_GAME_CONFIGURATION_RECORD_ID)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:GAME_PERSISTANCE, GameConfigurationPersistanceSingleton.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameConfigurationPersistanceSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:GAME_PERSISTANCE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
+autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
 
-class GameConfigurationPersistanceSingleton
-    GAME_PERSISTANCE = GameConfigurationPersistanceSingleton.new()
+begin
+    GameConfigurationPersistanceSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

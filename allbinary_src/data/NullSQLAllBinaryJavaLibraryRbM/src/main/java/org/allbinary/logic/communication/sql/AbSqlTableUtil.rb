@@ -57,23 +57,47 @@ class AbSqlTableUtil
     end
 
     def self.instance()
+        AbSqlTableUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AbSqlTableUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AbSqlTableUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AbSqlTableUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/sql/AbSqlTable"
-require "org/allbinary/logic/communication/sql/SqlStrings"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AbSqlTable, "org/allbinary/logic/communication/sql/AbSqlTable"
+autoload :SqlStrings, "org/allbinary/logic/communication/sql/SqlStrings"
 
-class AbSqlTableUtil
-    @@instance = AbSqlTableUtil.new()
+begin
+    AbSqlTableUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -54,10 +54,10 @@ class OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer < LayerProcess
     end
 end
 
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/layer/LayerManager"
-require "org/allbinary/game/collision/CollidableBaseBehavior"
-require "org/allbinary/game/collision/OptimizedAllBinaryCollisionLayerManager"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :LayerManager, "org/allbinary/layer/LayerManager"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :OptimizedAllBinaryCollisionLayerManager, "org/allbinary/game/collision/OptimizedAllBinaryCollisionLayerManager"
 

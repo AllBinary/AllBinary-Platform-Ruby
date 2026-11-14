@@ -24,7 +24,7 @@ module RemoteHighScoresProcessorInterface
     end
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/game/score/remote/RemoteHighScores"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :RemoteHighScores, "org/allbinary/game/score/remote/RemoteHighScores"
 

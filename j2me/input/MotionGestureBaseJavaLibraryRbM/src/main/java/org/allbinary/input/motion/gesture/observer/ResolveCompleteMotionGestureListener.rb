@@ -49,13 +49,13 @@ class ResolveCompleteMotionGestureListener
     end
 end
 
-require "org/allbinary/game/input/CompleteMotionGestureInputEventHandler"
-require "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
-require "org/allbinary/game/input/motion/action/GameKeyFromMotionGestureEventListener"
-require "org/allbinary/input/motion/gesture/MotionGestureToMotionGestureActionAssociation"
-require "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
-require "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
+autoload :CompleteMotionGestureInputEventHandler, "org/allbinary/game/input/CompleteMotionGestureInputEventHandler"
+autoload :GameKeyCompleteMotionGestureInputEvent, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
+autoload :GameKeyFromMotionGestureEventListener, "org/allbinary/game/input/motion/action/GameKeyFromMotionGestureEventListener"
+autoload :MotionGestureToMotionGestureActionAssociation, "org/allbinary/input/motion/gesture/MotionGestureToMotionGestureActionAssociation"
+autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
+autoload :MotionGestureConfigurationFactory, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

@@ -24,6 +24,6 @@ class GameEventHandlerUtil
     end
 end
 
-require "org/allbinary/game/input/event/DownGameKeyEventHandler"
-require "org/allbinary/game/input/event/UpGameKeyEventHandler"
+autoload :DownGameKeyEventHandler, "org/allbinary/game/input/event/DownGameKeyEventHandler"
+autoload :UpGameKeyEventHandler, "org/allbinary/game/input/event/UpGameKeyEventHandler"
 

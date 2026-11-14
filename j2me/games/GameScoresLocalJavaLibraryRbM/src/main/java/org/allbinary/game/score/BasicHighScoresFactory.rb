@@ -54,14 +54,14 @@ class BasicHighScoresFactory < HighScoresBase
     end
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/SoftwareInformation"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/game/score/HighScores"
-require "org/allbinary/game/score/HighScoresHelper2"
-require "org/allbinary/game/score/HighScoresHelperBaseInterface"
-require "org/allbinary/game/score/HighScoresResultsListener"
-require "org/allbinary/game/score/RecordStoreHighScores"
-require "org/allbinary/game/score/ScoreComparator"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SoftwareInformation, "org/allbinary/logic/system/SoftwareInformation"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
+autoload :HighScoresHelper2, "org/allbinary/game/score/HighScoresHelper2"
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
+autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener"
+autoload :RecordStoreHighScores, "org/allbinary/game/score/RecordStoreHighScores"
+autoload :ScoreComparator, "org/allbinary/game/score/ScoreComparator"
 

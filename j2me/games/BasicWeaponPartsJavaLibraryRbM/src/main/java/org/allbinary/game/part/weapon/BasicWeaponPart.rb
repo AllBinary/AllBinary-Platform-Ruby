@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.part.weapon
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/part/PartInterface"
 require "org/allbinary/game/part/weapon/SalvoInterface"
 
@@ -104,20 +103,43 @@ class BasicWeaponPart
     def setWeaponProperties(weaponProperties)
         @weaponProperties = weaponProperties
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_BASIC_WEAPON_PART, BasicWeaponPart.createBasicWeaponPart(NullAnimationFactory.getFactoryInstance().getInstance(0)))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicWeaponPart"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_BASIC_WEAPON_PART].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/game/combat/weapon/WeaponProperties"
-require "org/allbinary/game/score/NoScoreable"
-require "org/allbinary/game/score/ScoreableInterface"
-require "org/allbinary/graphics/RelativeRelationship"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/view/ViewPositionBase"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
+autoload :NoScoreable, "org/allbinary/game/score/NoScoreable"
+autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
+autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 
-class BasicWeaponPart
-    NULL_BASIC_WEAPON_PART = BasicWeaponPart.createBasicWeaponPart(NullAnimationFactory.getFactoryInstance().getInstance(0))
+begin
+    BasicWeaponPart.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

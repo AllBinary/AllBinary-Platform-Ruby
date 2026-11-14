@@ -19,14 +19,16 @@ module GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory
     
 
     def getInstance(level)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def size()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/LayerPlacementInterfaceBasicArrayListFactoryInterface"
+autoload :LayerPlacementInterfaceBasicArrayListFactoryInterface, "org/allbinary/game/layer/LayerPlacementInterfaceBasicArrayListFactoryInterface"
 

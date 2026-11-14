@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.platform.graphics
 
-# require "javax/microedition/lcdui/Image"
 
 class PlatformBitmapBaseFactory
     
@@ -22,11 +21,34 @@ class PlatformBitmapBaseFactory
     def createBitmap(image)
         return PlatformBitmapBase::NULL_PLATFORM_BITMAP_BASE
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_PLATFORM_BITMAP_BASE_FACTORY, PlatformBitmapBaseFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PlatformBitmapBaseFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_PLATFORM_BITMAP_BASE_FACTORY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/platform/graphics/PlatformBitmapBase"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :PlatformBitmapBase, "org/allbinary/platform/graphics/PlatformBitmapBase"
 
-class PlatformBitmapBaseFactory
-    NULL_PLATFORM_BITMAP_BASE_FACTORY = PlatformBitmapBaseFactory.new()
+begin
+    PlatformBitmapBaseFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

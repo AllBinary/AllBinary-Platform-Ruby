@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
-# require "javax/microedition/lcdui/Choice"
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
 require "org/allbinary/graphics/displayable/screen/CommandForm"
 
 class InGameOptionsForm < CommandForm
@@ -38,17 +35,42 @@ class InGameOptionsForm < CommandForm
         self.addCommand(InGameOptionsForm::DEFAULT)
         self.setCommandListener(cmdListener)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:DISPLAY, Command.new("Options In Game", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1))
+            const_set(:SAVE, Command.new("Save", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1))
+            const_set(:DEFAULT, Command.new("Default", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InGameOptionsForm"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DISPLAY, :SAVE, :DEFAULT].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/configuration/feature/GameFeatureFormUtil"
-require "org/allbinary/game/configuration/feature/InGameFeatureChoiceGroups"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/string/StringUtil"
+autoload :Choice, "javax/microedition/lcdui/Choice"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :GameFeatureFormUtil, "org/allbinary/game/configuration/feature/GameFeatureFormUtil"
+autoload :InGameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/InGameFeatureChoiceGroups"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class InGameOptionsForm
-    DISPLAY = Command.new("Options In Game", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1)
-    SAVE = Command.new("Save", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1)
-    DEFAULT = Command.new("Default", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1)
+begin
+    InGameOptionsForm.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

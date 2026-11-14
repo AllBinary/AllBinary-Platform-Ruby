@@ -20,9 +20,10 @@ module BasicLayerProcessorInterface
 
     # throws Exception
     def process(allBinaryLayerManager)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

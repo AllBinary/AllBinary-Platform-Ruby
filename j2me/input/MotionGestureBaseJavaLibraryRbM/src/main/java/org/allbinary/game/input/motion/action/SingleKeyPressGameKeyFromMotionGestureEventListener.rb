@@ -46,13 +46,13 @@ class SingleKeyPressGameKeyFromMotionGestureEventListener < CompleteMotionGestur
     end
 end
 
-require "org/allbinary/game/input/CompleteMotionGestureInputEvent"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/input/event/PressGameKeyEventHandler"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
+autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :PressGameKeyEventHandler, "org/allbinary/game/input/event/PressGameKeyEventHandler"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :GameKeyCompleteMotionGestureInputEvent, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
 

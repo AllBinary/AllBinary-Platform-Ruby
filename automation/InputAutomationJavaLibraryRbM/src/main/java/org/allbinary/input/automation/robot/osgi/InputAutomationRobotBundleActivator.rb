@@ -129,15 +129,15 @@ class InputAutomationRobotBundleActivator
     end
 end
 
-require "org/osgi/framework/BundleContext"
-require "org/osgi/framework/ServiceFactory"
-require "org/osgi/framework/ServiceReference"
-require "bundle/input/automation/robot/InputAutomationRobotChangeListener"
-require "bundle/input/automation/robot/InputAutomationRobotServiceInterface"
-require "org/allbinary/input/automation/robot/InputRobotInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/osgi/OSGIActivatorUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
-require "org/allbinary/input/automation/robot/osgi/InputAutomationRobotUtil"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :ServiceFactory, "org/osgi/framework/ServiceFactory"
+autoload :ServiceReference, "org/osgi/framework/ServiceReference"
+autoload :InputAutomationRobotChangeListener, "bundle/input/automation/robot/InputAutomationRobotChangeListener"
+autoload :InputAutomationRobotServiceInterface, "bundle/input/automation/robot/InputAutomationRobotServiceInterface"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :OSGIActivatorUtil, "org/allbinary/osgi/OSGIActivatorUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
+autoload :InputAutomationRobotUtil, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotUtil"
 

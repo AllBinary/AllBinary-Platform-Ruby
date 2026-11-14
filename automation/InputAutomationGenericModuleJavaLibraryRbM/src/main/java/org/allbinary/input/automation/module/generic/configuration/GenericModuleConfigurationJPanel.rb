@@ -398,14 +398,14 @@ class GenericModuleConfigurationJPanel < JPanel
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerType"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfiles"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActions"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionsJPanel"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :GenericProfile, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
+autoload :GenericProfileDataWorkerType, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerType"
+autoload :GenericProfiles, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfiles"
+autoload :GenericProfileActions, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActions"
+autoload :GenericProfileActionsJPanel, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionsJPanel"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

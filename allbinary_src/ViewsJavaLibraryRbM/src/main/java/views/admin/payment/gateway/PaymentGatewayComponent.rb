@@ -55,11 +55,11 @@ class PaymentGatewayComponent < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/modules/gateway/PaymentGatewayDomNodeFactoryInterface"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
-require "org/allbinary/data/tree/dom/DomNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+autoload :PaymentGatewayDomNodeFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/modules/gateway/PaymentGatewayDomNodeFactoryInterface"
+autoload :BasicPaymentType, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType"
+autoload :BasicPaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

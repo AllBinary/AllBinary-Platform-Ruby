@@ -77,37 +77,63 @@ class InputAutomationBundleActivator
     end
 
     def self.moduleManagementThread()
+        InputAutomationBundleActivator.java_static_fields unless @java_static_fields_started
         return defined?(@@moduleManagementThread) ? @@moduleManagementThread : nil
     end
 
     def self.moduleManagementThread=(value)
+        InputAutomationBundleActivator.java_static_fields unless @java_static_fields_started
         @@moduleManagementThread = value
     end
 
     def self.bundleContext()
+        InputAutomationBundleActivator.java_static_fields unless @java_static_fields_started
         return defined?(@@bundleContext) ? @@bundleContext : nil
     end
 
     def self.bundleContext=(value)
+        InputAutomationBundleActivator.java_static_fields unless @java_static_fields_started
         @@bundleContext = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@moduleManagementThread = nil
+            @@bundleContext = nil
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputAutomationBundleActivator"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/osgi/framework/BundleContext"
-require "bundle/input/automation/module/configuration/InputAutomationConfigurationModuleChangeListener"
-require "bundle/input/automation/robot/InputAutomationRobotChangeListener"
-require "org/allbinary/input/automation/InputAutomationJFrame"
-require "org/allbinary/input/automation/module/osgi/InputAutomationModuleServiceConsumer"
-require "org/allbinary/input/automation/module/osgi/InputAutomationNewBundleRunnable"
-require "org/allbinary/input/automation/osgi/InputAutomationServiceFactory"
-require "org/allbinary/input/automation/robot/osgi/InputAutomationRobotServiceConsumer"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/osgi/OSGIActivatorUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :InputAutomationConfigurationModuleChangeListener, "bundle/input/automation/module/configuration/InputAutomationConfigurationModuleChangeListener"
+autoload :InputAutomationRobotChangeListener, "bundle/input/automation/robot/InputAutomationRobotChangeListener"
+autoload :InputAutomationJFrame, "org/allbinary/input/automation/InputAutomationJFrame"
+autoload :InputAutomationModuleServiceConsumer, "org/allbinary/input/automation/module/osgi/InputAutomationModuleServiceConsumer"
+autoload :InputAutomationNewBundleRunnable, "org/allbinary/input/automation/module/osgi/InputAutomationNewBundleRunnable"
+autoload :InputAutomationServiceFactory, "org/allbinary/input/automation/osgi/InputAutomationServiceFactory"
+autoload :InputAutomationRobotServiceConsumer, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotServiceConsumer"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :OSGIActivatorUtil, "org/allbinary/osgi/OSGIActivatorUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 require "java/lang/Thread"
 
-class InputAutomationBundleActivator
-    @@moduleManagementThread = nil
-    @@bundleContext = nil
+begin
+    InputAutomationBundleActivator.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
-# require "javax/microedition/lcdui/Canvas"
 
 class GameKeyFactory
     attr_accessor :NONE, :UP, :DOWN, :LEFT, :RIGHT, :KEY_POUND, :KEY_STAR, :KEY_NUM0, :KEY_NUM1, :KEY_NUM2, :KEY_NUM3, :KEY_NUM4, :KEY_NUM5, :KEY_NUM6, :KEY_NUM7, :KEY_NUM8, :KEY_NUM9, :GAME_A, :GAME_B, :GAME_C, :GAME_D, :FIRE, :LEVEL_DOWN, :LEVEL_UP
@@ -59,20 +58,45 @@ class GameKeyFactory
     end
 
     def self.instance()
+        GameKeyFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GameKeyFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameKeyFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/InputFactory"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
 
-class GameKeyFactory
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    GameKeyFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

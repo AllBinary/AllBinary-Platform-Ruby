@@ -61,7 +61,7 @@ class AffiliateUser < User
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/advertisement/affiliate/sales/AffiliateSales"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :AffiliateSales, "org/allbinary/business/advertisement/affiliate/sales/AffiliateSales"
+autoload :WeblisketSessionInterface, "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
 

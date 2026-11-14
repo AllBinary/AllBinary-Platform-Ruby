@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
-# require "javax/microedition/lcdui/TextField"
 
 class GameConfigurationTextInput
     attr_accessor :label, :text
@@ -65,21 +64,46 @@ class GameConfigurationTextInput
     end
 
     def self.hashtable()
+        GameConfigurationTextInput.java_static_fields unless @java_static_fields_started
         return defined?(@@hashtable) ? @@hashtable : nil
     end
 
     def self.hashtable=(value)
+        GameConfigurationTextInput.java_static_fields unless @java_static_fields_started
         @@hashtable = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@hashtable = StdUtil.getInstance().createHashtable()
+            const_set(:SIMULATOR_IP, GameConfigurationTextInput.new("IP: ", "192.168.1.3"))
+            const_set(:SIMULATOR_PORT, GameConfigurationTextInput.new("Port: ", "8010"))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameConfigurationTextInput"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SIMULATOR_IP, :SIMULATOR_PORT].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/ABHashtable"
+autoload :TextField, "javax/microedition/lcdui/TextField"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class GameConfigurationTextInput
-    @@hashtable = StdUtil.getInstance().createHashtable()
-    SIMULATOR_IP = GameConfigurationTextInput.new("IP: ", "192.168.1.3")
-    SIMULATOR_PORT = GameConfigurationTextInput.new("Port: ", "8010")
+begin
+    GameConfigurationTextInput.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

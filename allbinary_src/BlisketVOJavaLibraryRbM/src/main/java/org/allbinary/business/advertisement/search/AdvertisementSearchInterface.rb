@@ -83,9 +83,9 @@ module AdvertisementSearchInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/advertisement/search/category/AdvertisementCategoryInterface"
-require "org/allbinary/business/advertisement/search/website/AdvertisementWebsiteInterface"
-require "org/allbinary/logic/control/contraints/price/PriceConstraintInterface"
-require "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :AdvertisementCategoryInterface, "org/allbinary/business/advertisement/search/category/AdvertisementCategoryInterface"
+autoload :AdvertisementWebsiteInterface, "org/allbinary/business/advertisement/search/website/AdvertisementWebsiteInterface"
+autoload :PriceConstraintInterface, "org/allbinary/logic/control/contraints/price/PriceConstraintInterface"
+autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
 

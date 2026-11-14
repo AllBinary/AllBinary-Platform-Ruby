@@ -2,7 +2,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
-# require "javax/microedition/khronos/opengles/GL10"
 require "org/allbinary/graphics/opengles/OpenGLProcessor"
 
 class ShaderOpenGLProcessor < OpenGLProcessor
@@ -32,4 +31,6 @@ class ShaderOpenGLProcessor < OpenGLProcessor
     def process3(gl)
     end
 end
+
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
 

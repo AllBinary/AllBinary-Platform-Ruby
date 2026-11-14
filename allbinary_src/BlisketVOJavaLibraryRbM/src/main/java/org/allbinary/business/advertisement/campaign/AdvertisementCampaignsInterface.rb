@@ -38,5 +38,5 @@ module AdvertisementCampaignsInterface
     end
 end
 
-require "org/allbinary/business/advertisement/AdvertisementInterface"
+autoload :AdvertisementInterface, "org/allbinary/business/advertisement/AdvertisementInterface"
 

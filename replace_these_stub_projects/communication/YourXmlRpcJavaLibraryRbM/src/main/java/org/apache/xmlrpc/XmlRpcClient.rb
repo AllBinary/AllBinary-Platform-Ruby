@@ -38,15 +38,14 @@ class XmlRpcClient
     
 
     # throws XmlRpcException, IOException
-    # Java overloaded method: Ruby keeps the last definition
-    def execute(method, params, cryptInterface)
+    def executeWithCrypt(method, params, cryptInterface)
         return NullUtil.getInstance().NULL_OBJECT
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/init/crypt/jcehelper/CryptInterface"
-require "org/allbinary/logic/NullUtil"
-require "org/apache/xmlrpc/XmlRpcException"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :CryptInterface, "org/allbinary/init/crypt/jcehelper/CryptInterface"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :XmlRpcException, "org/apache/xmlrpc/XmlRpcException"
 

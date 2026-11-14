@@ -80,16 +80,38 @@ class PaymentGatewayPageData
         stringBuffer.append(PaymentGatewayPageData::EXTENSION)
         @FINISH = stringBuffer.to_s
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:EXTENSION, ".jsp")
+        const_set(:FORWARDMAKEPAYMENT, "MakePayment.jsp")
+        begin
+            const_set(:NAME, StringUtil.getInstance().EMPTY_STRING)
+            const_set(:PAYMENTOPTIONS, "PaymentOptions" + (PaymentGatewayPageData::EXTENSION).to_s)
+            const_set(:STARTCHECKOUT, "StartCheckout" + (PaymentGatewayPageData::EXTENSION).to_s)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PaymentGatewayPageData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:EXTENSION, :NAME, :FORWARDMAKEPAYMENT, :PAYMENTOPTIONS, :STARTCHECKOUT].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class PaymentGatewayPageData
-    EXTENSION = ".jsp"
-    NAME = StringUtil.getInstance().EMPTY_STRING
-    FORWARDMAKEPAYMENT = "MakePayment.jsp"
-    PAYMENTOPTIONS = "PaymentOptions" + (PaymentGatewayPageData::EXTENSION).to_s
-    STARTCHECKOUT = "StartCheckout" + (PaymentGatewayPageData::EXTENSION).to_s
+begin
+    PaymentGatewayPageData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

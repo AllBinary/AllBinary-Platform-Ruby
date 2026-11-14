@@ -19,6 +19,7 @@ module StateControlledInterface
     
 
     def setState(state)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

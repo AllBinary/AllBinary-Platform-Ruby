@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.pickup.life
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/ag/life/LifeVisitorInterface"
 require "org/allbinary/layer/AllBinaryLayer"
 
@@ -36,9 +35,10 @@ class LifeLayer < AllBinaryLayer
     end
 end
 
-require "org/allbinary/game/ag/life/Life"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/view/ViewPosition"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Life, "org/allbinary/game/ag/life/Life"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
 

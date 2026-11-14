@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image.sprite
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/game/Sprite"
-# require "javax/microedition/media/Player"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
 class ImageCaptionIndexedAnimationFactory
@@ -79,16 +76,19 @@ class ImageCaptionIndexedAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/animation/caption/CaptionIndexedAnimation"
-require "org/allbinary/animation/image/ImageAnimation"
-require "org/allbinary/graphics/color/BasicColorUtil"
-require "org/allbinary/image/AnimationFactoryImageScaleUtil"
-require "org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/media/audio/Sound"
-require "org/allbinary/animation/image/sprite/SpriteIndexedAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
+autoload :Player, "javax/microedition/media/Player"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :CaptionIndexedAnimation, "org/allbinary/animation/caption/CaptionIndexedAnimation"
+autoload :ImageAnimation, "org/allbinary/animation/image/ImageAnimation"
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
+autoload :AnimationFactoryImageScaleUtil, "org/allbinary/image/AnimationFactoryImageScaleUtil"
+autoload :AnimationFactorySpriteScaleUtil, "org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :Sound, "org/allbinary/media/audio/Sound"
+autoload :SpriteIndexedAnimation, "org/allbinary/animation/image/sprite/SpriteIndexedAnimation"
 

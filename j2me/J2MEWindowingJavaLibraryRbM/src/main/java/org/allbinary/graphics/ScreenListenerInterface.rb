@@ -19,11 +19,13 @@ module ScreenListenerInterface
     
 
     def onFullScreen(isFullScreen)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onFullScreenDisplay()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

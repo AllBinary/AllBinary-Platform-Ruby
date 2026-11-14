@@ -19,6 +19,7 @@ module GameKeyEventSourceInterface
     
 
     def getSourceId()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

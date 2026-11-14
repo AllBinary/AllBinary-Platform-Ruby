@@ -2,12 +2,12 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles
 
-# require "javax/microedition/khronos/opengles/GL10"
 
 class OpenGLProcessor
-    attr_accessor :commonStrings
+    attr_accessor :logUtil, :commonStrings
 
     def initialize_fields
+        @logUtil = LogUtil.getInstance()
         @commonStrings = CommonStrings.getInstance()
     end
 
@@ -20,5 +20,7 @@ class OpenGLProcessor
     end
 end
 
-require "org/allbinary/string/CommonStrings"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

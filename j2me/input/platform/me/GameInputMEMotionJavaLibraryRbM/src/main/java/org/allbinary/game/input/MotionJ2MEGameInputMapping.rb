@@ -24,6 +24,6 @@ class MotionJ2MEGameInputMapping < J2MEGameInputMapping
     end
 end
 
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-require "org/allbinary/game/input/MotionJ2MEDefaultGameInputMapping"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :MotionJ2MEDefaultGameInputMapping, "org/allbinary/game/input/MotionJ2MEDefaultGameInputMapping"
 

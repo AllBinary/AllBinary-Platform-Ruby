@@ -49,9 +49,9 @@ class DownloadItemsTag < TableTag
     end
 end
 
-require "admin/taghelpers/DownloadItemsHelperFactory"
-require "admin/taghelpers/DownloadItemsRequestHelperFactory"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "admin/tags/AbTagData"
-require "admin/tags/ParentInventoryTagHelper"
+autoload :DownloadItemsHelperFactory, "admin/taghelpers/DownloadItemsHelperFactory"
+autoload :DownloadItemsRequestHelperFactory, "admin/taghelpers/DownloadItemsRequestHelperFactory"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :AbTagData, "admin/tags/AbTagData"
+autoload :ParentInventoryTagHelper, "admin/tags/ParentInventoryTagHelper"
 

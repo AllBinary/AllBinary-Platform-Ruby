@@ -77,16 +77,38 @@ class ConstrainedMotionRectangles < MotionRectangles
     def setMotionRectangleConstraintsInterface(motionRectangleConstraintsInterface)
         @motionRectangleConstraintsInterface = motionRectangleConstraintsInterface
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "constrainedMotionRectangles_")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ConstrainedMotionRectangles"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/image/comparison/motion/MotionRectangle"
-require "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle"
+autoload :MotionRectangleConstraintsInterface, "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface"
 
-class ConstrainedMotionRectangles
-    NAME = "constrainedMotionRectangles_"
+begin
+    ConstrainedMotionRectangles.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

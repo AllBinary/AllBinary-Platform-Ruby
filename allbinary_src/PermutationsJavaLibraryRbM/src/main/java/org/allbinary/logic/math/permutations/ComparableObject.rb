@@ -29,5 +29,5 @@ class ComparableObject
     end
 end
 
-require "org/allbinary/TsUtil"
+autoload :TsUtil, "org/allbinary/TsUtil"
 

@@ -190,14 +190,14 @@ class PaymentGatewayHelper < BasicTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterfaceFactory"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
-require "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntityFactory"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/AbSqlTableUtil"
-require "org/allbinary/logic/string/StringMaker"
+autoload :HashMap, "java/util/HashMap"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+autoload :PaymentGatewayInterfaceFactory, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterfaceFactory"
+autoload :BasicPaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
+autoload :PaymentGatewayEntityFactory, "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntityFactory"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

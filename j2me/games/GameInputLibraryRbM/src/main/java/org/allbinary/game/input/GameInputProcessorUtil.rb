@@ -30,6 +30,6 @@ class GameInputProcessorUtil
     end
 end
 
-require "org/allbinary/game/input/GameInputProcessor"
-require "org/allbinary/game/input/InputFactory"
+autoload :GameInputProcessor, "org/allbinary/game/input/GameInputProcessor"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
 

@@ -19,76 +19,90 @@ module AbeClientInformationInterface
     
 
     def init()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getOperatingSystemInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getSpecialName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getVersion()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLicenseId()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLicenseServers()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLicenseServer(index)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getNumberOfLicenseServers()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toHashtable()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isSameId(alicenseId)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isLargerOrDifferentServerList(vector)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isHardSale()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toShortString()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/system/os/GenericOperatingSystem"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

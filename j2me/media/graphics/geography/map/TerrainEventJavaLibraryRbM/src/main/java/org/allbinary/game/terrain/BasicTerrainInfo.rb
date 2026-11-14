@@ -37,12 +37,34 @@ class BasicTerrainInfo
     def setAngle(angle)
         @angle = angle
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_BASIC_TERRAIN_INFO, BasicTerrainInfo.new(AngleFactory.getInstance().NOT_ANGLE))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicTerrainInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_BASIC_TERRAIN_INFO].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/math/Angle"
-require "org/allbinary/math/AngleFactory"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
 
-class BasicTerrainInfo
-    NULL_BASIC_TERRAIN_INFO = BasicTerrainInfo.new(AngleFactory.getInstance().NOT_ANGLE)
+begin
+    BasicTerrainInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

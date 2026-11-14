@@ -54,15 +54,15 @@ class ItemView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/address/StreetAddressData"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/string/StringUtil"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemView"
-require "org/allbinary/business/user/commerce/inventory/item/ItemData"
-require "org/allbinary/business/user/commerce/inventory/item/OrderItemInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :BasicItemView, "org/allbinary/business/user/commerce/inventory/item/BasicItemView"
+autoload :ItemData, "org/allbinary/business/user/commerce/inventory/item/ItemData"
+autoload :OrderItemInterface, "org/allbinary/business/user/commerce/inventory/item/OrderItemInterface"
 

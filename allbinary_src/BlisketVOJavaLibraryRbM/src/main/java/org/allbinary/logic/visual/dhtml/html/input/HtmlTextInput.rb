@@ -26,5 +26,5 @@ class HtmlTextInput < HtmlLengthInput
     end
 end
 
-require "org/allbinary/logic/visual/dhtml/html/input/HtmlInputData"
+autoload :HtmlInputData, "org/allbinary/logic/visual/dhtml/html/input/HtmlInputData"
 

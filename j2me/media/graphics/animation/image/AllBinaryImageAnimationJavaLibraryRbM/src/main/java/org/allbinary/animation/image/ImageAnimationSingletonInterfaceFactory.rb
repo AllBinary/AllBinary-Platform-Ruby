@@ -24,8 +24,8 @@ class ImageAnimationSingletonInterfaceFactory < SingletonAnimationInterfaceFacto
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/image/AnimationFrameToImageUtil"
-require "org/allbinary/animation/image/ImageAnimation"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :AnimationFrameToImageUtil, "org/allbinary/image/AnimationFrameToImageUtil"
+autoload :ImageAnimation, "org/allbinary/animation/image/ImageAnimation"
 

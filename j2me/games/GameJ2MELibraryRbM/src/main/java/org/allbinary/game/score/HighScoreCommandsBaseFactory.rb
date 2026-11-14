@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
-# require "javax/microedition/lcdui/Command"
 
 class HighScoreCommandsBaseFactory
     attr_accessor :logUtil, :HIGH_SCORE_COMMANDS
@@ -52,6 +51,7 @@ class HighScoreCommandsBaseFactory
     end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

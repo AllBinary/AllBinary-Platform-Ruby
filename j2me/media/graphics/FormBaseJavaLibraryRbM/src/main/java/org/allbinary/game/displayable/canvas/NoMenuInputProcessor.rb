@@ -15,7 +15,6 @@
 # package org.allbinary.game.displayable.canvas
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/NullCanvas"
 require "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor"
 
 class NoMenuInputProcessor < BasicMenuInputProcessor
@@ -45,13 +44,36 @@ class NoMenuInputProcessor < BasicMenuInputProcessor
 
     def onMotionGestureEvent(motionGestureEvent)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, NoMenuInputProcessor.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NoMenuInputProcessor"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
-require "org/allbinary/util/BasicArrayListUtil"
+autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
 
-class NoMenuInputProcessor
-    SINGLETON = NoMenuInputProcessor.new()
+begin
+    NoMenuInputProcessor.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

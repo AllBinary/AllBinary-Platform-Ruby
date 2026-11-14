@@ -81,26 +81,50 @@ class ScreenCaptureImagesWorker < BasicEventHandler
     end
 
     def self.index()
+        ScreenCaptureImagesWorker.java_static_fields unless @java_static_fields_started
         return defined?(@@index) ? @@index : nil
     end
 
     def self.index=(value)
+        ScreenCaptureImagesWorker.java_static_fields unless @java_static_fields_started
         @@index = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@index = nil
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ScreenCaptureImagesWorker"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/image/cache/BufferedImageFrameCacheable"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/input/media/image/capture/CapturedBufferedImagesCacheSingleton"
-require "org/allbinary/input/media/image/capture/CapturedImageWorkerResultsEvent"
-require "org/allbinary/input/media/image/capture/ProcessingFrameIndexFactory"
-require "org/allbinary/input/media/image/capture/ScreenScavangerRobot"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :BufferedImageFrameCacheable, "org/allbinary/media/image/cache/BufferedImageFrameCacheable"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :CapturedBufferedImagesCacheSingleton, "org/allbinary/input/media/image/capture/CapturedBufferedImagesCacheSingleton"
+autoload :CapturedImageWorkerResultsEvent, "org/allbinary/input/media/image/capture/CapturedImageWorkerResultsEvent"
+autoload :ProcessingFrameIndexFactory, "org/allbinary/input/media/image/capture/ProcessingFrameIndexFactory"
+autoload :ScreenScavangerRobot, "org/allbinary/input/media/image/capture/ScreenScavangerRobot"
 require "java/lang/Thread"
 
-class ScreenCaptureImagesWorker
-    @@index = nil
+begin
+    ScreenCaptureImagesWorker.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

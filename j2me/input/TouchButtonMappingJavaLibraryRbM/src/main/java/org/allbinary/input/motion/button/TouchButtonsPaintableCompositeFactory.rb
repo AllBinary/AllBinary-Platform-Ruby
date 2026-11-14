@@ -23,8 +23,8 @@ class TouchButtonsPaintableCompositeFactory
     end
 end
 
-require "org/allbinary/game/input/mapping/InputMappingInterface"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/paint/ProcessPaintable"
-require "org/allbinary/input/motion/button/TouchButtonsPaintableComposite"
+autoload :InputMappingInterface, "org/allbinary/game/input/mapping/InputMappingInterface"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :ProcessPaintable, "org/allbinary/graphics/paint/ProcessPaintable"
+autoload :TouchButtonsPaintableComposite, "org/allbinary/input/motion/button/TouchButtonsPaintableComposite"
 

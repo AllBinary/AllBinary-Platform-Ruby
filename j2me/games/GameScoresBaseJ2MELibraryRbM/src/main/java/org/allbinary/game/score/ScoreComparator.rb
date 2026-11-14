@@ -14,11 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
-# require "java/io/ByteArrayInputStream"
-# require "java/io/DataInputStream"
 # require "java/io/EOFException"
 # require "java/io/IOException"
-# require "javax/microedition/rms/RecordComparator"
+require "javax/microedition/rms/RecordComparator"
 
 class ScoreComparator
     include RecordComparator
@@ -93,6 +91,8 @@ class ScoreComparator
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
+autoload :DataInputStream, "java/io/DataInputStream"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

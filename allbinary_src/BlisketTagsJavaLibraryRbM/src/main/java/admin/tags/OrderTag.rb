@@ -111,12 +111,12 @@ class OrderTag < CustomTagSupport
     end
 end
 
-require "java/util/HashMap"
-require "admin/taghelpers/OrderHelperFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :HashMap, "java/util/HashMap"
+autoload :OrderHelperFactory, "admin/taghelpers/OrderHelperFactory"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

@@ -141,6 +141,6 @@ module WeblisketSessionInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
-require "org/allbinary/business/user/role/UserRole"
+autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
+autoload :UserRole, "org/allbinary/business/user/role/UserRole"
 

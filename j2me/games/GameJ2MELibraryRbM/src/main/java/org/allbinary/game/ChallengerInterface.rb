@@ -11,6 +11,7 @@ module ChallengerInterface
     
 
     def setWinner(isWinner)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

@@ -36,8 +36,8 @@ class UrlGlobalsViewFactory
     end
 end
 
-require "org/allbinary/data/tree/dom/DomNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/globals/UrlGlobalsView"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :UrlGlobalsView, "org/allbinary/globals/UrlGlobalsView"
 

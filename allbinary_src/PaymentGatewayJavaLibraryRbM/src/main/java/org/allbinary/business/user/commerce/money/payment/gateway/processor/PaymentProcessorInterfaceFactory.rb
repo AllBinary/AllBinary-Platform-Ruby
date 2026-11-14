@@ -58,26 +58,50 @@ class PaymentProcessorInterfaceFactory
     end
 
     def self.instance()
+        PaymentProcessorInterfaceFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PaymentProcessorInterfaceFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PaymentProcessorInterfaceFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PaymentProcessorInterfaceFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceRequestFactory"
-require "org/allbinary/business/user/commerce/money/payment/types/PaymentType"
-require "org/allbinary/business/user/commerce/money/payment/types/PaymentTypeUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactoryInterface"
+autoload :PaymentTransactionInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
+autoload :PaymentTransactionInterfaceRequestFactory, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceRequestFactory"
+autoload :PaymentType, "org/allbinary/business/user/commerce/money/payment/types/PaymentType"
+autoload :PaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/PaymentTypeUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :PaymentProcessorInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterface"
+autoload :PaymentProcessorInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactoryInterface"
 
-class PaymentProcessorInterfaceFactory
-    @@instance = PaymentProcessorInterfaceFactory.new()
+begin
+    PaymentProcessorInterfaceFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

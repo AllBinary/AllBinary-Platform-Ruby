@@ -23,19 +23,22 @@ module RotationAnimationInterface
     
 
     def getAngleInfoP()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def nextRotation()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def previousRotation()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/math/AngleInfo"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
 

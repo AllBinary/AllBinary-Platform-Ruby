@@ -20,13 +20,35 @@ class ImageOutputData
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SAVE_PATH, StringMaker.new().append(System.getProperty("user.dir")).appendchar(FilePathData.getInstance().SEPARATORCHAR).append("saves").appendchar(FilePathData.getInstance().SEPARATORCHAR).to_s)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageOutputData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SAVE_PATH].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/io/file/FilePathData"
-require "org/allbinary/logic/string/StringMaker"
+autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 require "java/lang/System"
 
-class ImageOutputData
-    SAVE_PATH = StringMaker.new().append(System.getProperty("user.dir")).appendchar(FilePathData.getInstance().SEPARATORCHAR).append("saves").appendchar(FilePathData.getInstance().SEPARATORCHAR).to_s
+begin
+    ImageOutputData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

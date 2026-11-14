@@ -25,5 +25,5 @@ module OSGIServiceVisitorInterface
     end
 end
 
-require "org/allbinary/osgi/OSGIServiceInterface"
+autoload :OSGIServiceInterface, "org/allbinary/osgi/OSGIServiceInterface"
 

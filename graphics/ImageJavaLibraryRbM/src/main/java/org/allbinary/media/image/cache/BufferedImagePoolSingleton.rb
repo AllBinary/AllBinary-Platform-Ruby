@@ -42,25 +42,48 @@ class BufferedImagePoolSingleton
     end
 
     def self.poolInterface()
+        BufferedImagePoolSingleton.java_static_fields unless @java_static_fields_started
         return defined?(@@poolInterface) ? @@poolInterface : nil
     end
 
     def self.poolInterface=(value)
+        BufferedImagePoolSingleton.java_static_fields unless @java_static_fields_started
         @@poolInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@poolInterface = nil
+        begin
+            static_init
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BufferedImagePoolSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/cache/CachePolicyFactory"
-require "org/allbinary/logic/util/cache/PoolInterface"
-require "org/allbinary/logic/util/cache/PoolInterfaceFactory"
-require "org/allbinary/logic/util/cache/PoolTypeFactory"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/image/cache/BufferedImageCacheableFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory"
+autoload :PoolInterface, "org/allbinary/logic/util/cache/PoolInterface"
+autoload :PoolInterfaceFactory, "org/allbinary/logic/util/cache/PoolInterfaceFactory"
+autoload :PoolTypeFactory, "org/allbinary/logic/util/cache/PoolTypeFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BufferedImageCacheableFactory, "org/allbinary/media/image/cache/BufferedImageCacheableFactory"
 
-class BufferedImagePoolSingleton
-    @@poolInterface = nil
+begin
+    BufferedImagePoolSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
-
-BufferedImagePoolSingleton.static_init
 

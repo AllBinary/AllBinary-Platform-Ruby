@@ -61,7 +61,7 @@ class SubscriberUser < User
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/subscription/Subscription"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :Subscription, "org/allbinary/business/user/subscription/Subscription"
+autoload :WeblisketSessionInterface, "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
 

@@ -7,6 +7,7 @@ module Annotation
     
 
     def annotationType()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

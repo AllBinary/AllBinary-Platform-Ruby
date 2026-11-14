@@ -29,5 +29,5 @@ class BoundsChangeEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/graphics/Rectangle"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
 

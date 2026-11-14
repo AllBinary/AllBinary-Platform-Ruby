@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/input/InputProcessor"
 
 class GameCanvasInputProcessor < InputProcessor
@@ -82,18 +81,19 @@ class GameCanvasInputProcessor < InputProcessor
     end
 end
 
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/GameKeyEventSourceInterface"
-require "org/allbinary/game/input/GameKeyFactory"
-require "org/allbinary/game/input/PlatformInputMappingFactory"
-require "org/allbinary/game/input/event/DownGameKeyEventHandler"
-require "org/allbinary/game/input/event/DownKeyEventHandler"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/input/event/GameKeyEventFactory"
-require "org/allbinary/game/input/event/UpGameKeyEventHandler"
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :GameKeyEventSourceInterface, "org/allbinary/game/input/GameKeyEventSourceInterface"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
+autoload :DownGameKeyEventHandler, "org/allbinary/game/input/event/DownGameKeyEventHandler"
+autoload :DownKeyEventHandler, "org/allbinary/game/input/event/DownKeyEventHandler"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
+autoload :UpGameKeyEventHandler, "org/allbinary/game/input/event/UpGameKeyEventHandler"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

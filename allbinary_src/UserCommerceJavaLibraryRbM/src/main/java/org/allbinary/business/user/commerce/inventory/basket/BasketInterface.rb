@@ -65,7 +65,7 @@ module BasketInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/money/Money"
-require "org/allbinary/business/user/commerce/money/MoneyException"
+autoload :HashMap, "java/util/HashMap"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+autoload :MoneyException, "org/allbinary/business/user/commerce/money/MoneyException"
 

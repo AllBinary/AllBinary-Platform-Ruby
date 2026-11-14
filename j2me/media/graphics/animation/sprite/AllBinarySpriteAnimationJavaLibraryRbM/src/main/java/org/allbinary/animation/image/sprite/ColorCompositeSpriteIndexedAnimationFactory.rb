@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image.sprite
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/game/Sprite"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
 require "org/allbinary/animation/image/BaseImageAnimationFactory"
 
@@ -49,10 +47,12 @@ class ColorCompositeSpriteIndexedAnimationFactory < BaseImageAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/animation/image/sprite/SpriteIndexedAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :AnimationFactorySpriteScaleUtil, "org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :SpriteIndexedAnimation, "org/allbinary/animation/image/sprite/SpriteIndexedAnimation"
 

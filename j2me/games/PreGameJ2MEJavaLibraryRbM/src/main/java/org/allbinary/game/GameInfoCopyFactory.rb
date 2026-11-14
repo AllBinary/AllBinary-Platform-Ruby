@@ -28,5 +28,5 @@ class GameInfoCopyFactory
     end
 end
 
-require "org/allbinary/game/GameInfo"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
 

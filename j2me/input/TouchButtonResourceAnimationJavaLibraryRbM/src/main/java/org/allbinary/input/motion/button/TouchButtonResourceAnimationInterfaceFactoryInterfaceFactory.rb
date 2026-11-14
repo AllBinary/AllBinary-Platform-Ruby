@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/resource/BaseResourceAnimationInterfaceFactoryInterfaceFactory"
 
 class TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory < BaseResourceAnimationInterfaceFactoryInterfaceFactory
@@ -111,7 +110,7 @@ class TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory < BaseResourc
         else
             self.add(touchButtonStartResource.HINT, nullAnimationFactory)
         end
-        self.class.superclass.instance_method(:init).bind(self).call(level)
+        TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.superclass.instance_method(:init).bind(self).call(level)
     end
     
 
@@ -134,28 +133,29 @@ class TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory < BaseResourc
     end
 end
 
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/animation/image/sprite/OneRowSpriteIndexedAnimationFactory"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/image/ImageCache"
-require "org/allbinary/image/ImageCacheFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/os/OperatingSystemFactory"
-require "org/allbinary/media/image/ImageCompleteUtil"
-require "org/allbinary/input/motion/button/TouchButtonBlankResource"
-require "org/allbinary/input/motion/button/TouchButtonDownResource"
-require "org/allbinary/input/motion/button/TouchButtonGenericActionResource"
-require "org/allbinary/input/motion/button/TouchButtonResource"
-require "org/allbinary/input/motion/button/TouchButtonStartResource"
-require "org/allbinary/input/motion/button/TouchButtonStrafeLeftResource"
-require "org/allbinary/input/motion/button/TouchButtonStrafeRightResource"
-require "org/allbinary/input/motion/button/TouchButtonTurnLeftResource"
-require "org/allbinary/input/motion/button/TouchButtonTurnRightResource"
-require "org/allbinary/input/motion/button/TouchButtonUpResource"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :OneRowSpriteIndexedAnimationFactory, "org/allbinary/animation/image/sprite/OneRowSpriteIndexedAnimationFactory"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :ImageCache, "org/allbinary/image/ImageCache"
+autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
+autoload :ImageCompleteUtil, "org/allbinary/media/image/ImageCompleteUtil"
+autoload :TouchButtonBlankResource, "org/allbinary/input/motion/button/TouchButtonBlankResource"
+autoload :TouchButtonDownResource, "org/allbinary/input/motion/button/TouchButtonDownResource"
+autoload :TouchButtonGenericActionResource, "org/allbinary/input/motion/button/TouchButtonGenericActionResource"
+autoload :TouchButtonResource, "org/allbinary/input/motion/button/TouchButtonResource"
+autoload :TouchButtonStartResource, "org/allbinary/input/motion/button/TouchButtonStartResource"
+autoload :TouchButtonStrafeLeftResource, "org/allbinary/input/motion/button/TouchButtonStrafeLeftResource"
+autoload :TouchButtonStrafeRightResource, "org/allbinary/input/motion/button/TouchButtonStrafeRightResource"
+autoload :TouchButtonTurnLeftResource, "org/allbinary/input/motion/button/TouchButtonTurnLeftResource"
+autoload :TouchButtonTurnRightResource, "org/allbinary/input/motion/button/TouchButtonTurnRightResource"
+autoload :TouchButtonUpResource, "org/allbinary/input/motion/button/TouchButtonUpResource"
 

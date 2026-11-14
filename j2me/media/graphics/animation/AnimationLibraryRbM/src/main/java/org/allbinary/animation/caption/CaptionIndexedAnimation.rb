@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.caption
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/media/Player"
 require "org/allbinary/animation/IndexedAnimation"
 
 class CaptionIndexedAnimation < IndexedAnimation
@@ -114,11 +112,13 @@ class CaptionIndexedAnimation < IndexedAnimation
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/animation/AnimationEventHandler"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Player, "javax/microedition/media/Player"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :AnimationEventHandler, "org/allbinary/animation/AnimationEventHandler"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
 

@@ -101,13 +101,13 @@ class AbeHttpRequestInfo
     alias_method :to_s, :toString
 end
 
-require "java/util/Enumeration"
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/logic/communication/http/request/AbeHttpRequestInfoData"
+autoload :Enumeration, "java/util/Enumeration"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :AbeHttpRequestInfoData, "org/allbinary/logic/communication/http/request/AbeHttpRequestInfoData"
 

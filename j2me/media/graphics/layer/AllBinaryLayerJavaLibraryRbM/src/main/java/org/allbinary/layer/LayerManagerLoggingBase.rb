@@ -39,6 +39,6 @@ class LayerManagerLoggingBase
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/LayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LayerManager, "org/allbinary/layer/LayerManager"
 

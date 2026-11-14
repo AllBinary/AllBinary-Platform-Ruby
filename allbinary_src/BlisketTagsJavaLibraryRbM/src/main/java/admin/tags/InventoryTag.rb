@@ -61,10 +61,10 @@ class InventoryTag < TableTag
     end
 end
 
-require "admin/taghelpers/InventoryHelperFactory"
-require "admin/taghelpers/InventoryRequestHelperFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "admin/tags/AbTagData"
-require "admin/tags/ParentInventoryTagHelper"
+autoload :InventoryHelperFactory, "admin/taghelpers/InventoryHelperFactory"
+autoload :InventoryRequestHelperFactory, "admin/taghelpers/InventoryRequestHelperFactory"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :AbTagData, "admin/tags/AbTagData"
+autoload :ParentInventoryTagHelper, "admin/tags/ParentInventoryTagHelper"
 

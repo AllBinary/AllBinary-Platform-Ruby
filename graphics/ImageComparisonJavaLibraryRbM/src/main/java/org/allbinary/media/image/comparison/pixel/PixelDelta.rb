@@ -72,9 +72,9 @@ class PixelDelta
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/image/comparison/color/ColorDelta"
-require "org/allbinary/string/CommonSeps"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :ColorDelta, "org/allbinary/media/image/comparison/color/ColorDelta"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 

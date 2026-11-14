@@ -21,9 +21,10 @@ module BoundsChangeEventListener
     
 
     def onBoundsChangeEvent(boundsChangeEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/bounds/event/BoundsChangeEvent"
+autoload :BoundsChangeEvent, "org/allbinary/bounds/event/BoundsChangeEvent"
 

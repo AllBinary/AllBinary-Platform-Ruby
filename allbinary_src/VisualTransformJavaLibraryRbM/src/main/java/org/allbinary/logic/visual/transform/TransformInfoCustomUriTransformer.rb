@@ -27,10 +27,10 @@ class TransformInfoCustomUriTransformer < BasicTransformer
     end
 end
 
-require "org/allbinary/data/tree/dom/BasicUriResolver"
-require "org/allbinary/data/tree/dom/CustomUriResolver"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigAndManipulatorFactory"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
+autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver"
+autoload :CustomUriResolver, "org/allbinary/data/tree/dom/CustomUriResolver"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoObjectConfigAndManipulatorFactory, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigAndManipulatorFactory"
+autoload :TransformInfoObjectConfigInterface, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
 

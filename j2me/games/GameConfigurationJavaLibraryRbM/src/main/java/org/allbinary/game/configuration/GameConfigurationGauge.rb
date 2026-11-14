@@ -14,7 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
-# require "javax/microedition/lcdui/Gauge"
+require "javax/microedition/lcdui/Gauge"
 
 class GameConfigurationGauge < Gauge
     
@@ -24,5 +24,5 @@ class GameConfigurationGauge < Gauge
     end
 end
 
-require "org/allbinary/game/configuration/GameConfiguration"
+autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
 

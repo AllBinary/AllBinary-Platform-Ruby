@@ -34,10 +34,10 @@ module UserEmailEventsConfigurationInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface"
-require "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :UserEmailEventListenerInterface, "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface"
+autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :UserEmailEventConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationInterface"
 

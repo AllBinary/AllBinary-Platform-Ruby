@@ -23,6 +23,6 @@ class TouchButtonsPaintableFactory
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/paint/Paintable"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
 

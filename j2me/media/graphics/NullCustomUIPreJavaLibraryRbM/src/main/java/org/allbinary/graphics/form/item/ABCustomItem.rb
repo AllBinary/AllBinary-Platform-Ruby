@@ -2,15 +2,13 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Screen"
 
 class ABCustomItem
     
 
     def self.getNullInstance()
         if ABCustomItem::NULL_CUSTOM_ITEM == NullUtil.getInstance().NULL_OBJECT
-            ABCustomItem::NULL_CUSTOM_ITEM = ABCustomItem.new(StringUtil.getInstance().EMPTY_STRING, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
+            (ABCustomItem.send(:remove_const, :NULL_CUSTOM_ITEM) if ABCustomItem.const_defined?(:NULL_CUSTOM_ITEM, false); ABCustomItem.const_set(:NULL_CUSTOM_ITEM, ABCustomItem.new(StringUtil.getInstance().EMPTY_STRING, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)))
         end
         return ABCustomItem::NULL_CUSTOM_ITEM
     end
@@ -76,14 +74,38 @@ class ABCustomItem
 
     def preMeasurement(graphics)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_CUSTOM_ITEM, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ABCustomItem"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_CUSTOM_ITEM].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Screen, "javax/microedition/lcdui/Screen"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class ABCustomItem
-    NULL_CUSTOM_ITEM = NullUtil.getInstance().NULL_OBJECT
+begin
+    ABCustomItem.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

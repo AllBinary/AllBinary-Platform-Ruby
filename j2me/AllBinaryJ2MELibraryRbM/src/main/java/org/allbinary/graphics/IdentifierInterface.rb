@@ -19,6 +19,7 @@ module IdentifierInterface
     
 
     def getId()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

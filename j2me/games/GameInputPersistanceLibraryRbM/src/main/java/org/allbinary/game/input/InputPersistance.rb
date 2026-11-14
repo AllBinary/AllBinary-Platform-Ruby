@@ -14,12 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
-# require "java/io/ByteArrayInputStream"
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/DataInputStream"
-# require "java/io/DataOutputStream"
-# require "javax/microedition/rms/RecordEnumeration"
-# require "javax/microedition/rms/RecordStore"
 require "org/allbinary/game/configuration/persistance/BasicPersitance"
 
 #GameInputPersistanceLibrary
@@ -155,21 +149,27 @@ class InputPersistance < BasicPersitance
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/game/configuration/persistance/NullRecordComparator"
-require "org/allbinary/game/configuration/persistance/NullRecordFilter"
-require "org/allbinary/game/configuration/persistance/NullRecordStore"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/HashtableUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/input/GameKeyMappingFactory"
-require "org/allbinary/game/input/Input"
-require "org/allbinary/game/input/InputFactory"
+autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
+autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+autoload :DataInputStream, "java/io/DataInputStream"
+autoload :DataOutputStream, "java/io/DataOutputStream"
+autoload :RecordEnumeration, "javax/microedition/rms/RecordEnumeration"
+autoload :RecordStore, "javax/microedition/rms/RecordStore"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :NullRecordComparator, "org/allbinary/game/configuration/persistance/NullRecordComparator"
+autoload :NullRecordFilter, "org/allbinary/game/configuration/persistance/NullRecordFilter"
+autoload :NullRecordStore, "org/allbinary/game/configuration/persistance/NullRecordStore"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :GameKeyMappingFactory, "org/allbinary/game/input/GameKeyMappingFactory"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
 

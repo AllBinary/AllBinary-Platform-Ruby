@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.score
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/ag/layer/hud/basic/NumberStringHud"
 
 class ScoreHudWidget < NumberStringHud
@@ -40,6 +38,8 @@ class ScoreHudWidget < NumberStringHud
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
 

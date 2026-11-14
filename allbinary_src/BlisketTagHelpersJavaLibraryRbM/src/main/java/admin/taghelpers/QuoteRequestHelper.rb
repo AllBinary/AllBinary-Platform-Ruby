@@ -96,14 +96,14 @@ class QuoteRequestHelper < ModifyTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/quoterequest/QuoteRequest"
-require "org/allbinary/data/tables/user/quoterequest/QuoteRequestEntityFactory"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :QuoteRequest, "org/allbinary/business/user/quoterequest/QuoteRequest"
+autoload :QuoteRequestEntityFactory, "org/allbinary/data/tables/user/quoterequest/QuoteRequestEntityFactory"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

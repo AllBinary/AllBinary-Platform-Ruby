@@ -54,12 +54,12 @@ class StoreFrontHelper < TagHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/context/modules/storefront/StoreFront"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/regex/replace/Replace"
-require "org/allbinary/string/CommonSeps"
+autoload :HashMap, "java/util/HashMap"
+autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 

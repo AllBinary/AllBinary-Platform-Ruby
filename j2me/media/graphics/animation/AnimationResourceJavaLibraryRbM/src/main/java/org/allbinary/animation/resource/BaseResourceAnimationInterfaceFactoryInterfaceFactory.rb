@@ -95,7 +95,13 @@ class BaseResourceAnimationInterfaceFactoryInterfaceFactory
 
     # throws Exception
     def getRectangleArrayOfArrays(resource)
-        return @rectangleArrayOfArraysHashtable.get(resource)
+        valueCanBeNull = @rectangleArrayOfArraysHashtable.get(resource)
+        if valueCanBeNull != nil
+            rectangleArrayOfArrays = valueCanBeNull
+            return rectangleArrayOfArrays
+        else
+            return RectangleFactory::ARRAY_OF_ARRAYS
+        end
     end
     
 
@@ -151,15 +157,15 @@ class BaseResourceAnimationInterfaceFactoryInterfaceFactory
     end
 end
 
-require "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/image/ImageCache"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
+autoload :BasicAnimationInterfaceFactoryInterface, "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :ImageCache, "org/allbinary/image/ImageCache"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 

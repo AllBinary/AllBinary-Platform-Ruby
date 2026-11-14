@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.data.resource
 
-# require "java/io/InputStream"
 
 #J2SE - J2ME
 class ResourceUtil
@@ -85,31 +84,58 @@ class ResourceUtil
     end
 
     def self.classLoader()
+        ResourceUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@classLoader) ? @@classLoader : nil
     end
 
     def self.classLoader=(value)
+        ResourceUtil.java_static_fields unless @java_static_fields_started
         @@classLoader = value
     end
 
     def self.instance()
+        ResourceUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ResourceUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@classLoader = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ResourceUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ResourceUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
+autoload :InputStream, "java/io/InputStream"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 require "java/lang/Thread"
 
-class ResourceUtil
-    @@classLoader = NullUtil.getInstance().NULL_OBJECT
-    @@instance = ResourceUtil.new()
+begin
+    ResourceUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

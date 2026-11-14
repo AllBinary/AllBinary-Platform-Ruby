@@ -52,11 +52,11 @@ class NewValidationView < DownloadableInventoryItemView
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/item/BasicItem"
-require "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
-require "org/allbinary/business/user/commerce/inventory/item/download/DownloadableItem"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasicItem, "org/allbinary/business/user/commerce/inventory/item/BasicItem"
+autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
+autoload :DownloadableItem, "org/allbinary/business/user/commerce/inventory/item/download/DownloadableItem"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

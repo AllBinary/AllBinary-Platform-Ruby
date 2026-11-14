@@ -69,16 +69,38 @@ class AngleInfo
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:ANGLE, "Angle: ")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AngleInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:ANGLE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/math/AngleIncrementInfo"
-require "org/allbinary/math/AngleIncrementInfoFactory"
-require "org/allbinary/math/FrameUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :AngleIncrementInfo, "org/allbinary/math/AngleIncrementInfo"
+autoload :AngleIncrementInfoFactory, "org/allbinary/math/AngleIncrementInfoFactory"
+autoload :FrameUtil, "org/allbinary/math/FrameUtil"
 
-class AngleInfo
-    ANGLE = "Angle: "
+begin
+    AngleInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

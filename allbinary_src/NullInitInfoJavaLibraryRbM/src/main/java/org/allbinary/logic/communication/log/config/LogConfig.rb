@@ -116,12 +116,12 @@ class LogConfig
     end
 end
 
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/logic/java/bool/BooleanUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/communication/log/config/LogConfigData"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :BooleanUtil, "org/allbinary/logic/java/bool/BooleanUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :Node, "org/w3c/dom/Node"
+autoload :LogConfigData, "org/allbinary/logic/communication/log/config/LogConfigData"
 

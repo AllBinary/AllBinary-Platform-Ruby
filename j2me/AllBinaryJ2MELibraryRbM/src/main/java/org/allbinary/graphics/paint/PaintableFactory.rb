@@ -23,6 +23,6 @@ class PaintableFactory
     end
 end
 
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/graphics/paint/Paintable"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
 

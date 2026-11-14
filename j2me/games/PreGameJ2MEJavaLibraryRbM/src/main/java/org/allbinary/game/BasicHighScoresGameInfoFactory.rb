@@ -31,14 +31,36 @@ class BasicHighScoresGameInfoFactory
     def self.getInstance()
         return BasicHighScoresGameInfoFactory::SINGLETON
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, BasicHighScoresGameInfoFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicHighScoresGameInfoFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/GameMode"
-require "org/allbinary/game/GameTypeFactory"
-require "org/allbinary/game/PlayerTypesFactory"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :GameMode, "org/allbinary/game/GameMode"
+autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory"
+autoload :PlayerTypesFactory, "org/allbinary/game/PlayerTypesFactory"
 
-class BasicHighScoresGameInfoFactory
-    SINGLETON = BasicHighScoresGameInfoFactory.new()
+begin
+    BasicHighScoresGameInfoFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -58,14 +58,36 @@ class RelativeRelationship
     def setTypesAllowedList(typesAllowedList)
         @typesAllowedList = typesAllowedList
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_RELATIVE_RELATIONSHIP, RelativeRelationship.new(PointFactory.getInstance().ZERO_ZERO, BasicArrayListUtil.getInstance().getImmutableInstance()))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RelativeRelationship"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_RELATIVE_RELATIONSHIP].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
 
-class RelativeRelationship
-    NULL_RELATIVE_RELATIONSHIP = RelativeRelationship.new(PointFactory.getInstance().ZERO_ZERO, BasicArrayListUtil.getInstance().getImmutableInstance())
+begin
+    RelativeRelationship.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

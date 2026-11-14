@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/LocationPaintable"
 
 class StringLocationPaintable < LocationPaintable
@@ -36,4 +35,6 @@ class StringLocationPaintable < LocationPaintable
         graphics.drawString(@value, x, y, 0)
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

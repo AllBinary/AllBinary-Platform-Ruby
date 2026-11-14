@@ -131,14 +131,14 @@ class RootCategoryPropertiesAbstract
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/category/CategoryData"
-require "org/allbinary/business/category/hierarchy/CategoryHierarchyInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
+autoload :CategoryHierarchyInterface, "org/allbinary/business/category/hierarchy/CategoryHierarchyInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

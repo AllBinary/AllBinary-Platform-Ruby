@@ -45,10 +45,10 @@ class PreviewGeneratorStoreFrontContextView < GeneratorStoreFrontContextView
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoData"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfosData"
-require "org/allbinary/string/CommonSeps"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfosData, "org/allbinary/logic/visual/transform/info/TransformInfosData"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 

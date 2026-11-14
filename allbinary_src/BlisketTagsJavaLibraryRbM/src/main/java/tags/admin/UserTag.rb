@@ -80,7 +80,7 @@ class UserTag < StoreValidationTransformTag
     end
 end
 
-require "org/allbinary/business/user/role/UserRoleData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/sql/SqlStrings"
+autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :SqlStrings, "org/allbinary/logic/communication/sql/SqlStrings"
 

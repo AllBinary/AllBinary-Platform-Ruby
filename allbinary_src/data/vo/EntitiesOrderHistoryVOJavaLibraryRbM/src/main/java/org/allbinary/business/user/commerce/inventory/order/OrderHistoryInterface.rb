@@ -153,7 +153,7 @@ module OrderHistoryInterface
     end
 end
 
-require "org/allbinary/business/user/address/StreetAddress"
-require "org/allbinary/business/user/commerce/money/Money"
-require "org/allbinary/business/user/commerce/money/payment/Payment"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+autoload :Payment, "org/allbinary/business/user/commerce/money/payment/Payment"
 

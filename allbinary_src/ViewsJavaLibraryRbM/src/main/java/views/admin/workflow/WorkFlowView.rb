@@ -64,9 +64,9 @@ class WorkFlowView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/workflow/WorkFlowInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

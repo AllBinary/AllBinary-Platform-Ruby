@@ -37,7 +37,7 @@ class AdminUserFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/business/user/modules/admin/AdminUser"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :AdminUser, "org/allbinary/business/user/modules/admin/AdminUser"
 

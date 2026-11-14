@@ -60,15 +60,15 @@ class NumberOnOwnGroupSequenceAIFactory
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/ag/ai/NumberInSameGroupSequence"
-require "org/allbinary/game/ag/ai/NumberOnOwnGroupSequenceAI"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :NumberInSameGroupSequence, "org/allbinary/game/ag/ai/NumberInSameGroupSequence"
+autoload :NumberOnOwnGroupSequenceAI, "org/allbinary/game/ag/ai/NumberOnOwnGroupSequenceAI"
 

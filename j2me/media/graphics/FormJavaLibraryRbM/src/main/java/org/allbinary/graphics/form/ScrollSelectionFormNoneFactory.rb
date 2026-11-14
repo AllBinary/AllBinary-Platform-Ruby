@@ -23,5 +23,5 @@ class ScrollSelectionFormNoneFactory
     end
 end
 
-require "org/allbinary/graphics/form/ScrollSelectionForm"
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
 

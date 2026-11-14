@@ -23,18 +23,42 @@ class ScreenCaptureFactory
     end
 
     def self.instance()
+        ScreenCaptureFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ScreenCaptureFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ScreenCaptureNoneFactory.getInstance()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ScreenCaptureFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/ScreenCapture"
-require "org/allbinary/graphics/ScreenCaptureNoneFactory"
+autoload :ScreenCapture, "org/allbinary/graphics/ScreenCapture"
+autoload :ScreenCaptureNoneFactory, "org/allbinary/graphics/ScreenCaptureNoneFactory"
 
-class ScreenCaptureFactory
-    @@instance = ScreenCaptureNoneFactory.getInstance()
+begin
+    ScreenCaptureFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

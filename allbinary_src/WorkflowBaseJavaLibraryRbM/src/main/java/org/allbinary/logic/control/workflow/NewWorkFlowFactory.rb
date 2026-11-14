@@ -90,26 +90,50 @@ class NewWorkFlowFactory
     end
 
     def self.instance()
+        NewWorkFlowFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        NewWorkFlowFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NewWorkFlowFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NewWorkFlowFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/DynamicObjectData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/loader/AbeFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/control/workflow/WorkFlowInterface"
-require "org/allbinary/logic/control/workflow/WorkFlowWrapper"
+autoload :HashMap, "java/util/HashMap"
+autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AbeFactory, "org/allbinary/logic/system/loader/AbeFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface"
+autoload :WorkFlowWrapper, "org/allbinary/logic/control/workflow/WorkFlowWrapper"
 
-class NewWorkFlowFactory
-    @@instance = NewWorkFlowFactory.new()
+begin
+    NewWorkFlowFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

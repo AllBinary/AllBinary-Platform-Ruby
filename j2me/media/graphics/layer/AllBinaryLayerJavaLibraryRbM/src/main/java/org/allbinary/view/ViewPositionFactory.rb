@@ -25,6 +25,6 @@ class ViewPositionFactory
     end
 end
 
-require "org/allbinary/view/ViewPosition"
-require "org/allbinary/view/ViewPositionBase"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 

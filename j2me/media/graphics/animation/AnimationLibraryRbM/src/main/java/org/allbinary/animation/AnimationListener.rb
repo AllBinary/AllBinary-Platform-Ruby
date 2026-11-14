@@ -21,6 +21,7 @@ module AnimationListener
     
 
     def onEnd()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

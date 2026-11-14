@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.pickup.points
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/layer/AllBinaryLayer"
 
 class PointsLayer < AllBinaryLayer
@@ -41,9 +40,10 @@ class PointsLayer < AllBinaryLayer
     end
 end
 
-require "org/allbinary/game/score/ScoreableInterface"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/view/ViewPosition"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
 

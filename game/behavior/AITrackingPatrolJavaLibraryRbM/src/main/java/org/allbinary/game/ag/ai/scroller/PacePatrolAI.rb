@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.scroller
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/tracking/TrackingEventListenerInterface"
 require "org/allbinary/game/ag/ai/scroller/BasePatrolAI"
 
@@ -44,22 +43,22 @@ class PacePatrolAI < BasePatrolAI
         directionFactory = DirectionFactory.getInstance()
         if direction == directionFactory.LEFT
             if @lastKeyDirection != @keyDirection || !@isFollowLimitedByTerrain
-                self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::LEFT)
+                PacePatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::LEFT)
             end
             @keyDirection = Canvas::LEFT
             @lastKeyDirection = @keyDirection
             @xTotalDistance = 0
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
+            PacePatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
         elsif direction == directionFactory.RIGHT
             if @lastKeyDirection != @keyDirection || !@isFollowLimitedByTerrain
-                self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::RIGHT)
+                PacePatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::RIGHT)
             end
             @keyDirection = Canvas::RIGHT
             @lastKeyDirection = @keyDirection
             @xTotalDistance = 0
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
+            PacePatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
         else
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(@keyDirection)
+            PacePatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(@keyDirection)
         end
     end
     
@@ -121,19 +120,20 @@ class PacePatrolAI < BasePatrolAI
     end
 end
 
-require "org/allbinary/direction/Direction"
-require "org/allbinary/direction/DirectionCompositeInterface"
-require "org/allbinary/direction/DirectionFactory"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/tracking/TrackingEvent"
-require "org/allbinary/game/tracking/TrackingEventHandler"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/layer/LayerInterface"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Direction, "org/allbinary/direction/Direction"
+autoload :DirectionCompositeInterface, "org/allbinary/direction/DirectionCompositeInterface"
+autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent"
+autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :LayerInterface, "org/allbinary/layer/LayerInterface"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

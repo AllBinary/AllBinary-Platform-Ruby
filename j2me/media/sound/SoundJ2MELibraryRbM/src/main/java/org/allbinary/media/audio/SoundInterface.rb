@@ -14,24 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
-# require "javax/microedition/media/Player"
 
 module SoundInterface
     
 
     def getResource()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getPlayerP()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def init()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :Player, "javax/microedition/media/Player"
 

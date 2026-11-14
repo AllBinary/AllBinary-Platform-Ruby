@@ -126,10 +126,10 @@ class BasicGraphicsPipeline
     end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/math/Angle"
-require "org/allbinary/math/NoDecimalTrigTable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :NoDecimalTrigTable, "org/allbinary/math/NoDecimalTrigTable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

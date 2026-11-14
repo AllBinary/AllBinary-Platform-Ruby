@@ -26,5 +26,5 @@ class LogTag < TableTag
     end
 end
 
-require "admin/taghelpers/LogHelperFactory"
+autoload :LogHelperFactory, "admin/taghelpers/LogHelperFactory"
 

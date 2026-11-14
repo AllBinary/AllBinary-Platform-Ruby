@@ -22,15 +22,39 @@ class MineVectorData
     end
 
     def self.points()
+        MineVectorData.java_static_fields unless @java_static_fields_started
         return defined?(@@points) ? @@points : nil
     end
 
     def self.points=(value)
+        MineVectorData.java_static_fields unless @java_static_fields_started
         @@points = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@points = [[[10, 5], [2, 6], [1000, 1000], [2, 2], [10, 9], [1000, 1000], [10, 2], [2, 9], [1000, 1000], [2, 5], [10, 6], [1000, 1000], [7, 9], [5, 2], [1000, 1000], [7, 2], [5, 9], [1000, 1000]]]
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MineVectorData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class MineVectorData
-    @@points = [[[10, 5], [2, 6], [1000, 1000], [2, 2], [10, 9], [1000, 1000], [10, 2], [2, 9], [1000, 1000], [2, 5], [10, 6], [1000, 1000], [7, 9], [5, 2], [1000, 1000], [7, 2], [5, 9], [1000, 1000]]]
+begin
+    MineVectorData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

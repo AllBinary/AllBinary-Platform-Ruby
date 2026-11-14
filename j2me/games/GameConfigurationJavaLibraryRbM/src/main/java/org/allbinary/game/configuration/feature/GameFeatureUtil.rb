@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.feature
 
-# require "javax/microedition/lcdui/ChoiceGroup"
 
 class GameFeatureUtil
     attr_accessor :logUtil, :tsUtil, :enumerationUtil, :ON_GAME_FEATURE_CHANGE, :GAME_FEATURE_CHANGED
@@ -175,28 +174,53 @@ class GameFeatureUtil
     end
 
     def self.instance()
+        GameFeatureUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GameFeatureUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GameFeatureUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameFeatureUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/Enumeration"
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/EnumerationUtil"
-require "org/allbinary/util/HashtableUtil"
-require "org/allbinary/game/configuration/feature/Feature"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
+autoload :Enumeration, "java/util/Enumeration"
+autoload :ChoiceGroup, "javax/microedition/lcdui/ChoiceGroup"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil"
+autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
+autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
 
-class GameFeatureUtil
-    @@instance = GameFeatureUtil.new()
+begin
+    GameFeatureUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

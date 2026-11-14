@@ -89,14 +89,14 @@ class StoreFrontUsersStatistics
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/business/user/role/UserRole"
-require "org/allbinary/data/tables/user/UserEntityFactory"
-require "org/allbinary/data/tables/user/UserEntityInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/business/context/modules/storefront/statistics/users/StoreFrontUsersStatisticsData"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :UserRole, "org/allbinary/business/user/role/UserRole"
+autoload :UserEntityFactory, "org/allbinary/data/tables/user/UserEntityFactory"
+autoload :UserEntityInterface, "org/allbinary/data/tables/user/UserEntityInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StoreFrontUsersStatisticsData, "org/allbinary/business/context/modules/storefront/statistics/users/StoreFrontUsersStatisticsData"
 

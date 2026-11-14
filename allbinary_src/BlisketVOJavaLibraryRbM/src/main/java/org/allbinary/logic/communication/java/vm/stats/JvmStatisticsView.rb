@@ -34,9 +34,9 @@ class JvmStatisticsView < JvmStatisticsMapping
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/communication/java/vm/stats/JvmStatisticsData"
+autoload :HashMap, "java/util/HashMap"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :JvmStatisticsData, "org/allbinary/logic/communication/java/vm/stats/JvmStatisticsData"
 

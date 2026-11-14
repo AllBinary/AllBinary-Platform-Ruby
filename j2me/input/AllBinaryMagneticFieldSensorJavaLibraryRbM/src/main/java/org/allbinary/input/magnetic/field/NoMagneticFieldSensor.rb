@@ -31,5 +31,5 @@ class NoMagneticFieldSensor < AllBinaryMagneticFieldSensor
     end
 end
 
-require "org/allbinary/logic/math/Orientation"
+autoload :Orientation, "org/allbinary/logic/math/Orientation"
 

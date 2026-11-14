@@ -19,21 +19,24 @@ module MovementInterface
     
 
     def init(speedBasicDecimal, angle, otherAngle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def process(layer)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def stop()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/logic/math/BasicDecimal"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
 

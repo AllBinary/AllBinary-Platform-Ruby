@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
 class ImageArrayAnimationFactory
@@ -52,11 +51,12 @@ class ImageArrayAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/image/AdjustedImageArrayAnimation"
-require "org/allbinary/animation/image/ImageArrayAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :AdjustedImageArrayAnimation, "org/allbinary/animation/image/AdjustedImageArrayAnimation"
+autoload :ImageArrayAnimation, "org/allbinary/animation/image/ImageArrayAnimation"
 

@@ -54,10 +54,10 @@ class InputAutomationRobotOSGIServiceVisitor
     end
 end
 
-require "bundle/input/automation/robot/InputAutomationRobotServiceInterface"
-require "org/allbinary/input/automation/robot/InputRobotFactory"
-require "org/allbinary/input/automation/robot/InputRobotInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/osgi/OSGIServiceInterface"
-require "org/allbinary/string/CommonStrings"
+autoload :InputAutomationRobotServiceInterface, "bundle/input/automation/robot/InputAutomationRobotServiceInterface"
+autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :OSGIServiceInterface, "org/allbinary/osgi/OSGIServiceInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

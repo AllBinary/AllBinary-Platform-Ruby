@@ -27,7 +27,7 @@ class CollidableWeaponBehavior < CollidableDestroyableDamageableBehavior
 
     def self.getNullInstance()
         if CollidableWeaponBehavior::NULL_COLLIDABLE_WEAPON_BEHAVIOR == NullUtil.getInstance().NULL_OBJECT
-            CollidableWeaponBehavior::NULL_COLLIDABLE_WEAPON_BEHAVIOR = CollidableWeaponBehavior.new(false)
+            (CollidableWeaponBehavior.send(:remove_const, :NULL_COLLIDABLE_WEAPON_BEHAVIOR) if CollidableWeaponBehavior.const_defined?(:NULL_COLLIDABLE_WEAPON_BEHAVIOR, false); CollidableWeaponBehavior.const_set(:NULL_COLLIDABLE_WEAPON_BEHAVIOR, CollidableWeaponBehavior.new(false)))
         end
         return CollidableWeaponBehavior::NULL_COLLIDABLE_WEAPON_BEHAVIOR
     end
@@ -100,19 +100,41 @@ class CollidableWeaponBehavior < CollidableDestroyableDamageableBehavior
     def setCollided(collided)
         @collided = collided
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_COLLIDABLE_WEAPON_BEHAVIOR, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CollidableWeaponBehavior"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_COLLIDABLE_WEAPON_BEHAVIOR].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/collision/CollidableHelperFactory"
-require "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-require "org/allbinary/game/collision/CollisionHelper"
-require "org/allbinary/game/collision/CollisionType"
-require "org/allbinary/game/collision/CollisionTypeFactory"
-require "org/allbinary/game/combat/damage/DamageableInterface"
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/NullUtil"
+autoload :CollidableHelperFactory, "org/allbinary/game/collision/CollidableHelperFactory"
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
+autoload :CollisionHelper, "org/allbinary/game/collision/CollisionHelper"
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
+autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
+autoload :DamageableInterface, "org/allbinary/game/combat/damage/DamageableInterface"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
 
-class CollidableWeaponBehavior
-    NULL_COLLIDABLE_WEAPON_BEHAVIOR = NullUtil.getInstance().NULL_OBJECT
+begin
+    CollidableWeaponBehavior.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

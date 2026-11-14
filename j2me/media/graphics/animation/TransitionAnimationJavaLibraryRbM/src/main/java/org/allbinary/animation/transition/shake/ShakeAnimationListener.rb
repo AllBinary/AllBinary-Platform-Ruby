@@ -39,5 +39,5 @@ class ShakeAnimationListener
     end
 end
 
-require "org/allbinary/animation/transition/shake/ShakeEvent"
+autoload :ShakeEvent, "org/allbinary/animation/transition/shake/ShakeEvent"
 

@@ -14,10 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score.displayable
 
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/TextField"
 require "org/allbinary/graphics/form/item/CustomTextBox"
 
 class HighScoreTextBox < CustomTextBox
@@ -39,11 +35,7 @@ class HighScoreTextBox < CustomTextBox
         operatingSystemInterface = OperatingSystemFactory.getInstance().getOperatingSystemInstance()
         if operatingSystemInterface.isOverScan()
             username = InApplicationPurchaseFactory.getInstance().getUserName()
-            if username != nil
-                self.getTextFieldItem().setString(username)
-            else
-                self.getTextFieldItem().setString("NoGamerInfo")
-            end
+            self.getTextFieldItem().setString(username)
         end
     end
     
@@ -104,20 +96,24 @@ class HighScoreTextBox < CustomTextBox
     end
 end
 
-require "org/allbinary/PostGameCommandFactory"
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/score/HighScore"
-require "org/allbinary/game/score/HighScoresHelperBaseInterface"
-require "org/allbinary/game/score/HighScoresFactoryInterface"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/graphics/paint/Paintable"
-require "org/allbinary/graphics/paint/SimpleTextPaintable"
-require "org/allbinary/input/event/VirtualKeyboardEventHandler"
-require "org/allbinary/logic/system/os/GenericOperatingSystem"
-require "org/allbinary/logic/system/os/OperatingSystemFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/InApplicationPurchaseFactory"
-require "org/allbinary/game/score/displayable/HighScoreUtil"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :TextField, "javax/microedition/lcdui/TextField"
+autoload :PostGameCommandFactory, "org/allbinary/PostGameCommandFactory"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :HighScore, "org/allbinary/game/score/HighScore"
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
+autoload :HighScoresFactoryInterface, "org/allbinary/game/score/HighScoresFactoryInterface"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+autoload :SimpleTextPaintable, "org/allbinary/graphics/paint/SimpleTextPaintable"
+autoload :VirtualKeyboardEventHandler, "org/allbinary/input/event/VirtualKeyboardEventHandler"
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
+autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :InApplicationPurchaseFactory, "org/allbinary/logic/system/security/licensing/InApplicationPurchaseFactory"
+autoload :HighScoreUtil, "org/allbinary/game/score/displayable/HighScoreUtil"
 

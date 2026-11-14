@@ -27,17 +27,41 @@ class MotionGestureConfigurationFactory
     end
 
     def self.config()
+        MotionGestureConfigurationFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@config) ? @@config : nil
     end
 
     def self.config=(value)
+        MotionGestureConfigurationFactory.java_static_fields unless @java_static_fields_started
         @@config = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@config = MotionGestureConfiguration.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MotionGestureConfigurationFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
+autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
 
-class MotionGestureConfigurationFactory
-    @@config = MotionGestureConfiguration.new()
+begin
+    MotionGestureConfigurationFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

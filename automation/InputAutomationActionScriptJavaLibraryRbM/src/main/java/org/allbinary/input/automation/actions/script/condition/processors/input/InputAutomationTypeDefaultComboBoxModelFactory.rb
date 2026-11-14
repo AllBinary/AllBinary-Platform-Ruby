@@ -37,5 +37,5 @@ class InputAutomationTypeDefaultComboBoxModelFactory
     end
 end
 
-require "org/allbinary/input/automation/robot/InputRobotFactory"
+autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
 

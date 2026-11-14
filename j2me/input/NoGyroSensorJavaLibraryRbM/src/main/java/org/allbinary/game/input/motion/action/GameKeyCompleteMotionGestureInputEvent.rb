@@ -62,8 +62,8 @@ class GameKeyCompleteMotionGestureInputEvent < CompleteMotionGestureInputEvent
     end
 end
 
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-require "org/allbinary/input/motion/gesture/MotionGestureInput"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
 

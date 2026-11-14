@@ -31,13 +31,13 @@ class SimpleWeaponLayer < WeaponLayer
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/animation/NullIndexedAnimationFactory"
-require "org/allbinary/game/combat/damage/ExplosionResources"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/physics/movement/Movement"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/game/layer/weapon/CollidableWeaponBehavior"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :NullIndexedAnimationFactory, "org/allbinary/animation/NullIndexedAnimationFactory"
+autoload :ExplosionResources, "org/allbinary/game/combat/damage/ExplosionResources"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :Movement, "org/allbinary/physics/movement/Movement"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :CollidableWeaponBehavior, "org/allbinary/game/layer/weapon/CollidableWeaponBehavior"
 

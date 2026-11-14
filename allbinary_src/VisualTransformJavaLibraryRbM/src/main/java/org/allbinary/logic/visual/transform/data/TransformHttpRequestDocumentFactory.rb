@@ -29,7 +29,7 @@ class TransformHttpRequestDocumentFactory
     end
 end
 
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
-require "org/allbinary/logic/visual/transform/data/TransformHttpRequestDocument"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+autoload :TransformHttpRequestDocument, "org/allbinary/logic/visual/transform/data/TransformHttpRequestDocument"
 

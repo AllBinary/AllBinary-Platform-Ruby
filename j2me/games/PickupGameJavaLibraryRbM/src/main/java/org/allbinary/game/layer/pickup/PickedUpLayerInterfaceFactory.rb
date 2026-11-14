@@ -50,8 +50,8 @@ class PickedUpLayerInterfaceFactory < PickedUpLayerInterfaceFactoryBase
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/layer/pickup/IconLayer"
-require "org/allbinary/game/layer/pickup/PickedUpLayerType"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :IconLayer, "org/allbinary/game/layer/pickup/IconLayer"
+autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType"
 

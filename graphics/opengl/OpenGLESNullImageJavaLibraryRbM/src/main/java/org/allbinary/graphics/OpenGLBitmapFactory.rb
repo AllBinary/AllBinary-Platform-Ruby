@@ -3,8 +3,6 @@
 # package org.allbinary.graphics
 
 # require "java/io/IOException"
-# require "java/io/InputStream"
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/platform/graphics/PlatformBitmapBaseFactory"
 
 class OpenGLBitmapFactory < PlatformBitmapBaseFactory
@@ -55,19 +53,45 @@ class OpenGLBitmapFactory < PlatformBitmapBaseFactory
     end
 
     def self.instance()
+        OpenGLBitmapFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OpenGLBitmapFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = OpenGLBitmapFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OpenGLBitmapFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/platform/graphics/PlatformBitmapBase"
-require "org/allbinary/graphics/OpenGLBitmap"
+autoload :InputStream, "java/io/InputStream"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :PlatformBitmapBase, "org/allbinary/platform/graphics/PlatformBitmapBase"
+autoload :OpenGLBitmap, "org/allbinary/graphics/OpenGLBitmap"
 
-class OpenGLBitmapFactory
-    @@instance = OpenGLBitmapFactory.new()
+begin
+    OpenGLBitmapFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -26,6 +26,6 @@ class BasicArrayListCacheableInterfaceFactory
     end
 end
 
-require "org/allbinary/logic/util/cache/BasicArrayListCacheable"
-require "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :BasicArrayListCacheable, "org/allbinary/logic/util/cache/BasicArrayListCacheable"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
 

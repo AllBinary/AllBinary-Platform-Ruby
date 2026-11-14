@@ -128,23 +128,45 @@ class StoreFrontsHelper < BasicTable
             return error
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:CLASS, "class")
+        const_set(:TEXT, "text")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StoreFrontsHelper"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:CLASS, :TEXT].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/AbSqlTableUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/visual/dhtml/html/select/HtmlSelect"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/string/CommonSeps"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :StoreFrontsEntityFactory, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :HtmlSelect, "org/allbinary/logic/visual/dhtml/html/select/HtmlSelect"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 
-class StoreFrontsHelper
-    CLASS = "class"
-    TEXT = "text"
+begin
+    StoreFrontsHelper.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

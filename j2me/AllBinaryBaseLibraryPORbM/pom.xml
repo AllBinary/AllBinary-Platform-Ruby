@@ -66,7 +66,7 @@
         <module>../lib/BasicMathLibraryRbM</module>
         
         <module>../../allbinary_src/ThreadLibraryRbM</module>
-        <module>../../allbinary_src/ThreadHTMLLibraryRbM</module>
+        <!--<module>../../allbinary_src/ThreadHTMLLibraryRbM</module>-->
         <module>../../replace_these_stub_projects/allbinary_src/NoneOnlyJavaLibraryRbM</module>
         <module>../../allbinary_src/ThreadJ2MELibraryRbM</module>
         <module>../time/TimeJavaLibraryRbM</module>

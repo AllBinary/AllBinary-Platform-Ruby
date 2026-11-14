@@ -55,12 +55,12 @@ class NewUserFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/modules/User"
-require "org/allbinary/business/user/role/UserRoleData"
-require "org/allbinary/logic/communication/http/request/RequestParams"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/business/user/CreateUserFactory"
-require "org/allbinary/business/user/UserInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :User, "org/allbinary/business/user/modules/User"
+autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData"
+autoload :RequestParams, "org/allbinary/logic/communication/http/request/RequestParams"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CreateUserFactory, "org/allbinary/business/user/CreateUserFactory"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
 

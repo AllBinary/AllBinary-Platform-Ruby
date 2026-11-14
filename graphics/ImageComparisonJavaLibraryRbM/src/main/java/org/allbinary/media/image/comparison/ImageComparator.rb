@@ -82,13 +82,13 @@ class ImageComparator
     end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/color/ColorCacheFactory"
-require "org/allbinary/graphics/color/ColorCacheable"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/util/cache/AutomaticCacheInterface"
-require "org/allbinary/media/image/comparison/pixel/PixelDeltaFactory"
-require "org/allbinary/media/image/comparison/ImageComparatorConstraintsInterface"
-require "org/allbinary/media/image/comparison/ImageComparisonResult"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :ColorCacheFactory, "org/allbinary/graphics/color/ColorCacheFactory"
+autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+autoload :PixelDeltaFactory, "org/allbinary/media/image/comparison/pixel/PixelDeltaFactory"
+autoload :ImageComparatorConstraintsInterface, "org/allbinary/media/image/comparison/ImageComparatorConstraintsInterface"
+autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
 

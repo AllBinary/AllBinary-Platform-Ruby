@@ -81,16 +81,16 @@ class BaseChangedGameFeatureListener
     end
 end
 
-require "org/allbinary/game/configuration/feature/Feature"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureUtil"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/configuration/event/GameFeatureEvent"
+autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureUtil, "org/allbinary/game/configuration/feature/GameFeatureUtil"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent"
 

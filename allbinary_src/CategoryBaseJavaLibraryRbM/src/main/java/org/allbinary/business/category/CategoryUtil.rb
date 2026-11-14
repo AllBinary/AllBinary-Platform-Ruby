@@ -48,14 +48,14 @@ class CategoryUtil
     end
 end
 
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringUtil"
-require "org/apache/commons/lang3/StringUtils"
-require "org/w3c/dom/Attr"
-require "org/w3c/dom/NamedNodeMap"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/CategoryData"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringUtils, "org/apache/commons/lang3/StringUtils"
+autoload :Attr, "org/w3c/dom/Attr"
+autoload :NamedNodeMap, "org/w3c/dom/NamedNodeMap"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
 

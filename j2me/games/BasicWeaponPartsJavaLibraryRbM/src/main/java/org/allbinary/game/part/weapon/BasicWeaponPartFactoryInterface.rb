@@ -20,9 +20,10 @@ module BasicWeaponPartFactoryInterface
 
     # throws Exception
     def getInstance()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/part/weapon/BasicWeaponPart"
+autoload :BasicWeaponPart, "org/allbinary/game/part/weapon/BasicWeaponPart"
 

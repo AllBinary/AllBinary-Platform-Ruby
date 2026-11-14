@@ -47,14 +47,36 @@ class DesktopBundle
     def start()
         @bundle.start()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:DESKTOP_SYMBOLIC_NAME, "org.knopflerfish.bundle.desktop")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DesktopBundle"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DESKTOP_SYMBOLIC_NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/osgi/framework/Bundle"
-require "org/osgi/framework/BundleContext"
-require "bundle/input/automation/InputAutomationBundleActivator"
-require "org/allbinary/gui/dialog/BasicTextJDialog"
+autoload :Bundle, "org/osgi/framework/Bundle"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :InputAutomationBundleActivator, "bundle/input/automation/InputAutomationBundleActivator"
+autoload :BasicTextJDialog, "org/allbinary/gui/dialog/BasicTextJDialog"
 
-class DesktopBundle
-    DESKTOP_SYMBOLIC_NAME = "org.knopflerfish.bundle.desktop"
+begin
+    DesktopBundle.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

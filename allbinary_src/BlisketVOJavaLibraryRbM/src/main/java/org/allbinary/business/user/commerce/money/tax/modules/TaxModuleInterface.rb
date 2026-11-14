@@ -30,6 +30,6 @@ module TaxModuleInterface
     end
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/address/StreetAddress"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
 

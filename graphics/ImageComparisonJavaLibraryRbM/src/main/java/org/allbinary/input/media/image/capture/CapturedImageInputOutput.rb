@@ -54,15 +54,15 @@ class CapturedImageInputOutput
     end
 end
 
-require "org/allbinary/input/automation/ImageOutputData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/number/LongUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/util/cache/AutomaticCacheInterface"
-require "org/allbinary/logic/visual/media/MediaDataFactory"
-require "org/allbinary/media/image/ImagePersistanceUtil"
-require "org/allbinary/media/image/ImageUtil"
-require "org/allbinary/media/image/cache/BufferedImageFrameCacheable"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/media/image/capture/CapturedBufferedImagesCacheSingleton"
+autoload :ImageOutputData, "org/allbinary/input/automation/ImageOutputData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LongUtil, "org/allbinary/logic/java/number/LongUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+autoload :MediaDataFactory, "org/allbinary/logic/visual/media/MediaDataFactory"
+autoload :ImagePersistanceUtil, "org/allbinary/media/image/ImagePersistanceUtil"
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
+autoload :BufferedImageFrameCacheable, "org/allbinary/media/image/cache/BufferedImageFrameCacheable"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :CapturedBufferedImagesCacheSingleton, "org/allbinary/input/media/image/capture/CapturedBufferedImagesCacheSingleton"
 

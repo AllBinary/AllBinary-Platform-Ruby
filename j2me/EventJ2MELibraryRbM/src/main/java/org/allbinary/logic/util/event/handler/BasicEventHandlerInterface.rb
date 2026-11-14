@@ -21,32 +21,37 @@ module BasicEventHandlerInterface
     
 
     def addListenerInterface(eventListenerInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addListeners(basicArrayList)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def fireEvent(eventObject)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def removeAllListeners()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def removeListener(eventListenerInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/util/BasicArrayList"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

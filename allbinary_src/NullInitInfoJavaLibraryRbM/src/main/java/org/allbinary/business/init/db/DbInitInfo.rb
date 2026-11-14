@@ -53,5 +53,5 @@ class DbInitInfo < DbConnectionInfo
     end
 end
 
-require "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
 

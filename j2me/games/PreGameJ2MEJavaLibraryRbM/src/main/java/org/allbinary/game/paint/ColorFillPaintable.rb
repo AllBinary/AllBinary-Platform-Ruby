@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/paint/ColorFillBasePaintable"
 
 class ColorFillPaintable < ColorFillBasePaintable
@@ -37,6 +36,7 @@ class ColorFillPaintable < ColorFillBasePaintable
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
 

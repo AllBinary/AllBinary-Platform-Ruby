@@ -36,10 +36,10 @@ class TransformInfoEntityFactory
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoFactoryInterface"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigAndManipulatorFactoryBase"
-require "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorFactoryInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tables/transform/info/TransformInfoEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoFactoryInterface, "org/allbinary/logic/visual/transform/info/TransformInfoFactoryInterface"
+autoload :TransformInfoObjectConfigAndManipulatorFactoryBase, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigAndManipulatorFactoryBase"
+autoload :TransformInfoObjectConfigGeneratorFactoryInterface, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorFactoryInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TransformInfoEntity, "org/allbinary/data/tables/transform/info/TransformInfoEntity"
 

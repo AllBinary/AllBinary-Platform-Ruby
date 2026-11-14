@@ -52,10 +52,10 @@ class GameCanvasRunnable < GameRunnable
     end
 end
 
-require "org/allbinary/graphics/displayable/GameTickDisplayInfoSingleton"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :GameTickDisplayInfoSingleton, "org/allbinary/graphics/displayable/GameTickDisplayInfoSingleton"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

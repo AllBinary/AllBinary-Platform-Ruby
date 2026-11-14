@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.init.crypt.jcehelper
 
-# require "java/io/ByteArrayInputStream"
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/InputStream"
 
 class BasicCryptUtil
     attr_accessor :logUtil, :tsUtil, :XML_START
@@ -58,19 +55,46 @@ class BasicCryptUtil
     end
 
     def self.instance()
+        BasicCryptUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        BasicCryptUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = BasicCryptUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicCryptUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/init/crypt/jcehelper/CryptInterface"
+autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
+autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+autoload :InputStream, "java/io/InputStream"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CryptInterface, "org/allbinary/init/crypt/jcehelper/CryptInterface"
 
-class BasicCryptUtil
-    @@instance = BasicCryptUtil.new()
+begin
+    BasicCryptUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

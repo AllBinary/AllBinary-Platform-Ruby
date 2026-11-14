@@ -15,12 +15,6 @@
 # package org.allbinary.game.displayable.canvas
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/ChoiceGroup"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Item"
-# require "javax/microedition/lcdui/NullCommandListener"
 require "org/allbinary/canvas/RunnableCanvas"
 require "org/allbinary/game/IntermissionCompositeInterface"
 require "org/allbinary/game/IntermissionEnableListenerInterface"
@@ -42,6 +36,39 @@ class AllBinaryGameCanvas < RunnableCanvas
     include DisplayChangeEventListener
     include UpdateMyFontInterface
     attr_accessor :basicColorFactory, :basicSetColorUtil, :touchFeatureFactory, :openGLFeatureFactory, :touchButtonFactory, :gameAdStateFactory, :gameStrings, :gameInputStrings, :gameStateFactory, :gameTickTimeDelayHelper, :gameTickDisplayInfoSingleton, :gameRunnable, :gamePauseRunnable, :formUtil, :myFormUtil, :updateMyFontProcessor, :myFontProcessor, :gameSpecificPaintable, :sensorGameUpdateProcessor, :endGameInfo, :startIntermissionInterface, :endLevelIntermissionInterface, :gameLayerManager, :gameState, :gameOver, :initialized, :gameStateTimeHelper, :highScoresHelper, :highScoreSubmitted, :realHighScoresPaintable, :highScoresPaintable, :localPlayerGameInputList, :isCheating, :hashtable, :isSingleKeyRepeatableProcessing, :gameInitializationInterfaceFactoryInterface, :touchButtonsPaintable, :touchPaintable, :cheatProcessor, :gameInputProcessor, :endGameProcessor, :realEndGameProcessor, :startIntermissionProcessor, :realStartIntermissionProcessor, :endGamePaintable, :endGameStatePaintable, :nonBotPaintable, :intermissionPaintable, :startIntermissionPaintable, :mainStateProcessor, :processGameProcessor, :highScoresFactoryInterface, :startLevel, :mainMenuInputProcessor, :popupMenuInputProcessor, :menuInputProcessor, :menuForm, :formPaintable, :openMenuPaintable, :menuPaintable, :currentTouchInputFactory, :colorFillPaintable, :baseGameStatistics, :primaryPlayerQueue, :secondaryPlayerQueue, :BUILD_GAME, :gameTypeFactory, :screenCapture, :basicMotionGesturesHandler, :gameKeyEventHandler, :gameBehavior, :menuBehavior, :progressPaintable, :fontHeightP, :gameCanvasStartListener, :rawGameInputProcessor, :rawInputProcessor, :inputProcessor, :YIELD_SLEEP
+    class SaveHighScoreRunnable
+        include Runnable
+        attr_accessor :progressCanvas, :isLast, :textBox
+
+        def initialize_fields
+            @progressCanvas = ProgressCanvasFactory.getInstance()
+            @isLast = nil
+            @textBox = nil
+        end
+        
+
+        def initialize(isLast, textBox)
+            initialize_fields
+            @isLast = isLast
+            @textBox = textBox
+        end
+        
+
+        def run()
+            logUtil = LogUtil.getInstance()
+            begin
+                if @isLast
+                    @textBox.submit()
+                else
+                    @textBox.saveHighScore()
+                end
+            rescue StandardError => e
+                commonStrings = CommonStrings.getInstance()
+                logUtil.put(commonStrings.EXCEPTION, self, "run", e)
+                @progressCanvas.end_()
+            end
+        end
+    end
 
     def initialize_fields
         @basicColorFactory = BasicColorFactory.getInstance()
@@ -174,7 +201,7 @@ class AllBinaryGameCanvas < RunnableCanvas
 
     def setCurrentThread()
         if J2MEUtil.isHTML()
-            self.class.superclass.instance_method(:setCurrentThreadFake).bind(self).call()
+            AllBinaryGameCanvas.superclass.instance_method(:setCurrentThreadFake).bind(self).call()
         else
             super()
         end
@@ -983,7 +1010,7 @@ class AllBinaryGameCanvas < RunnableCanvas
 
     # throws Exception
     def processGame()
-        self.class.superclass.instance_method(:process).bind(self).call()
+        AllBinaryGameCanvas.superclass.instance_method(:process).bind(self).call()
         if AllBinaryMediaManager.update()
             if !@primaryPlayerQueue.process()
                 @secondaryPlayerQueue.process()
@@ -1147,35 +1174,7 @@ class AllBinaryGameCanvas < RunnableCanvas
             self.getCustomCommandListener().commandAction(GameCommandsFactory.getInstance().SET_MENU_DISPLAYABLE, textBox)
         end
         if autoSubmit
-            class SaveHighScoreRunnable
-                include Runnable
-                attr_accessor :progressCanvas
-
-                def initialize_fields
-                    @progressCanvas = ProgressCanvasFactory.getInstance()
-                end
-
-                def initialize
-                    initialize_fields
-                end
-                
-
-                def run()
-                    logUtil = LogUtil.getInstance()
-                    begin
-                        if @isLast
-                            @textBox.submit()
-                        else
-                            @textBox.saveHighScore()
-                        end
-                    rescue StandardError => e
-                        commonStrings = CommonStrings.getInstance()
-                        logUtil.put(commonStrings.EXCEPTION, self, "run", e)
-                        @progressCanvas.end_()
-                    end
-                end
-            end
-            SecondaryThreadPool.getInstance().runTask(SaveHighScoreRunnable.new())
+            SecondaryThreadPool.getInstance().runTask(SaveHighScoreRunnable.new(isLast, textBox))
         end
     end
     
@@ -1484,162 +1483,202 @@ class AllBinaryGameCanvas < RunnableCanvas
     def getType()
         return AllBinaryGameCanvas::TYPE
     end
+    
+
+    def getTitle()
+        return super()
+    end
+    
+
+    def isPaused()
+        return super()
+    end
 
     def self.id()
+        AllBinaryGameCanvas.java_static_fields unless @java_static_fields_started
         return defined?(@@id) ? @@id : nil
     end
 
     def self.id=(value)
+        AllBinaryGameCanvas.java_static_fields unless @java_static_fields_started
         @@id = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@id = 0
+        const_set(:TYPE, 2)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryGameCanvas"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:TYPE].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/AndroidUtil"
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/business/advertisement/GameAdStateFactory"
-require "org/allbinary/canvas/BaseGameStatistics"
-require "org/allbinary/canvas/GameStatisticsFactory"
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/debug/DebugFactory"
-require "org/allbinary/debug/NoDebug"
-require "org/allbinary/game/GameAdState"
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/GameStrings"
-require "org/allbinary/game/GameTypeFactory"
-require "org/allbinary/game/Intermission"
-require "org/allbinary/game/IntermissionInterface"
-require "org/allbinary/game/PlayerTypesFactory"
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/configuration/InGameFeatures"
-require "org/allbinary/game/configuration/InGameOptionsForm"
-require "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
-require "org/allbinary/game/configuration/event/GameInitializedEvent"
-require "org/allbinary/game/configuration/event/GameInitializedEventHandler"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureFactory"
-require "org/allbinary/game/configuration/feature/GameFeatureUtil"
-require "org/allbinary/game/configuration/feature/InputFeatureFactory"
-require "org/allbinary/game/configuration/feature/MainFeatureFactory"
-require "org/allbinary/game/configuration/feature/SensorFeatureFactory"
-require "org/allbinary/game/configuration/feature/TouchFeatureFactory"
-require "org/allbinary/game/displayable/GameLevelDisplayChangeEventListenersFactory"
-require "org/allbinary/game/init/BasicBuildGameInitializerFactory"
-require "org/allbinary/game/init/GameInitializationUtil"
-require "org/allbinary/game/input/GameInputStrings"
-require "org/allbinary/game/input/InputProcessor"
-require "org/allbinary/game/input/NoPlayerGameInput"
-require "org/allbinary/game/input/PlayerGameInput"
-require "org/allbinary/game/input/event/GameKeyEventHandler"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/layer/SWTUtil"
-require "org/allbinary/game/paint/ColorFillBasePaintable"
-require "org/allbinary/game/paint/ColorFillPaintableFactory"
-require "org/allbinary/game/resource/ResourceLoadingLevel"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-require "org/allbinary/game/score/HighScore"
-require "org/allbinary/game/score/HighScoresHelperBaseInterface"
-require "org/allbinary/game/score/HighScoresFactoryInterface"
-require "org/allbinary/game/score/HighScoresPaintable"
-require "org/allbinary/game/score/NullHighScoresSingletonFactory"
-require "org/allbinary/game/score/displayable/HighScoreTextBox"
-require "org/allbinary/game/state/GameState"
-require "org/allbinary/game/state/GameStateFactory"
-require "org/allbinary/graphics/GraphicsStrings"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/ScreenCapture"
-require "org/allbinary/graphics/ScreenCaptureFactory"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/color/BasicColorSetUtil"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/displayable/GameTickDisplayInfoSingleton"
-require "org/allbinary/graphics/displayable/command/MyCommandsFactory"
-require "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
-require "org/allbinary/graphics/displayable/event/DisplayChangeEventHandler"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/graphics/form/CommandCurrentSelectionFormFactory"
-require "org/allbinary/graphics/form/FormPaintable"
-require "org/allbinary/graphics/form/FormType"
-require "org/allbinary/graphics/form/FormTypeFactory"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
-require "org/allbinary/graphics/form/ScrollSelectionFormNoneFactory"
-require "org/allbinary/graphics/form/item/CommandTextItemArrayFactory"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/graphics/opengles/CurrentDisplayableFactory"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
-require "org/allbinary/graphics/opengles/OpenGLThreadUtil"
-require "org/allbinary/graphics/paint/InitUpdatePaintable"
-require "org/allbinary/graphics/paint/NullInitUpdatePaintable"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/graphics/paint/Paintable"
-require "org/allbinary/graphics/paint/PaintableInterface"
-require "org/allbinary/image/opengles/OpenGLImageSpecificFactory"
-require "org/allbinary/input/gyro/SensorGameUpdateProcessor"
-require "org/allbinary/input/gyro/SingleSensorGameUpdateProcessor"
-require "org/allbinary/input/motion/button/BaseTouchInput"
-require "org/allbinary/input/motion/button/NoButtonsTouchInputFactory"
-require "org/allbinary/input/motion/button/TouchButtonFactory"
-require "org/allbinary/input/motion/button/TouchButtonsPaintableFactory"
-require "org/allbinary/input/motion/button/TouchScreenFactory"
-require "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler"
-require "org/allbinary/logic/ABSystemWrapper"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/os/OperatingSystemFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/media/audio/AllBinaryMediaManager"
-require "org/allbinary/media/audio/PlayerQueue"
-require "org/allbinary/media/audio/PrimaryPlayerQueueFactory"
-require "org/allbinary/media/audio/SecondaryPlayerQueueFactory"
-require "org/allbinary/media/audio/SelectSound"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/SecondaryThreadPool"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/game/displayable/canvas/BaseGameBehavior"
-require "org/allbinary/game/displayable/canvas/BaseMenuBehavior"
-require "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor"
-require "org/allbinary/game/displayable/canvas/BasicPopupMenuPaintable"
-require "org/allbinary/game/displayable/canvas/CheatGameInputProcessor"
-require "org/allbinary/game/displayable/canvas/DemoGameBehavior"
-require "org/allbinary/game/displayable/canvas/DemoPaintableInterface"
-require "org/allbinary/game/displayable/canvas/EndGameInfo"
-require "org/allbinary/game/displayable/canvas/EndGamePaintable"
-require "org/allbinary/game/displayable/canvas/EndGameProcessor"
-require "org/allbinary/game/displayable/canvas/FormInputProcessor"
-require "org/allbinary/game/displayable/canvas/FormUtil"
-require "org/allbinary/game/displayable/canvas/GameCanvasInputProcessor"
-require "org/allbinary/game/displayable/canvas/GameCanvasPauseRunnable"
-require "org/allbinary/game/displayable/canvas/GameCanvasRunnable"
-require "org/allbinary/game/displayable/canvas/GameLimitedCommandTextItemArrayFactory"
-require "org/allbinary/game/displayable/canvas/GameProcessor"
-require "org/allbinary/game/displayable/canvas/InGameMenuBehavior"
-require "org/allbinary/game/displayable/canvas/MyFormUtil"
-require "org/allbinary/game/displayable/canvas/NoMenuInputProcessor"
-require "org/allbinary/game/displayable/canvas/NullDemoPaintable"
-require "org/allbinary/game/displayable/canvas/NullWaitGameRunnable"
-require "org/allbinary/game/displayable/canvas/PopupCommandFormInputProcessor"
-require "org/allbinary/game/displayable/canvas/PopupMenuInputProcessor"
-require "org/allbinary/game/displayable/canvas/StartIntermissionProcessor"
+autoload :ChoiceGroup, "javax/microedition/lcdui/ChoiceGroup"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Item, "javax/microedition/lcdui/Item"
+autoload :NullCommandListener, "javax/microedition/lcdui/NullCommandListener"
+autoload :AndroidUtil, "org/allbinary/AndroidUtil"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory"
+autoload :BaseGameStatistics, "org/allbinary/canvas/BaseGameStatistics"
+autoload :GameStatisticsFactory, "org/allbinary/canvas/GameStatisticsFactory"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :DebugFactory, "org/allbinary/debug/DebugFactory"
+autoload :NoDebug, "org/allbinary/debug/NoDebug"
+autoload :GameAdState, "org/allbinary/game/GameAdState"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :GameStrings, "org/allbinary/game/GameStrings"
+autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory"
+autoload :Intermission, "org/allbinary/game/Intermission"
+autoload :IntermissionInterface, "org/allbinary/game/IntermissionInterface"
+autoload :PlayerTypesFactory, "org/allbinary/game/PlayerTypesFactory"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :InGameFeatures, "org/allbinary/game/configuration/InGameFeatures"
+autoload :InGameOptionsForm, "org/allbinary/game/configuration/InGameOptionsForm"
+autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
+autoload :GameInitializedEvent, "org/allbinary/game/configuration/event/GameInitializedEvent"
+autoload :GameInitializedEventHandler, "org/allbinary/game/configuration/event/GameInitializedEventHandler"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
+autoload :GameFeatureUtil, "org/allbinary/game/configuration/feature/GameFeatureUtil"
+autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory"
+autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
+autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory"
+autoload :TouchFeatureFactory, "org/allbinary/game/configuration/feature/TouchFeatureFactory"
+autoload :GameLevelDisplayChangeEventListenersFactory, "org/allbinary/game/displayable/GameLevelDisplayChangeEventListenersFactory"
+autoload :BasicBuildGameInitializerFactory, "org/allbinary/game/init/BasicBuildGameInitializerFactory"
+autoload :GameInitializationUtil, "org/allbinary/game/init/GameInitializationUtil"
+autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings"
+autoload :InputProcessor, "org/allbinary/game/input/InputProcessor"
+autoload :NoPlayerGameInput, "org/allbinary/game/input/NoPlayerGameInput"
+autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput"
+autoload :GameKeyEventHandler, "org/allbinary/game/input/event/GameKeyEventHandler"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :SWTUtil, "org/allbinary/game/layer/SWTUtil"
+autoload :ColorFillBasePaintable, "org/allbinary/game/paint/ColorFillBasePaintable"
+autoload :ColorFillPaintableFactory, "org/allbinary/game/paint/ColorFillPaintableFactory"
+autoload :ResourceLoadingLevel, "org/allbinary/game/resource/ResourceLoadingLevel"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :HighScore, "org/allbinary/game/score/HighScore"
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
+autoload :HighScoresFactoryInterface, "org/allbinary/game/score/HighScoresFactoryInterface"
+autoload :HighScoresPaintable, "org/allbinary/game/score/HighScoresPaintable"
+autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
+autoload :HighScoreTextBox, "org/allbinary/game/score/displayable/HighScoreTextBox"
+autoload :GameState, "org/allbinary/game/state/GameState"
+autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory"
+autoload :GraphicsStrings, "org/allbinary/graphics/GraphicsStrings"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :ScreenCapture, "org/allbinary/graphics/ScreenCapture"
+autoload :ScreenCaptureFactory, "org/allbinary/graphics/ScreenCaptureFactory"
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :GameTickDisplayInfoSingleton, "org/allbinary/graphics/displayable/GameTickDisplayInfoSingleton"
+autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory"
+autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
+autoload :DisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/DisplayChangeEventHandler"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :CommandCurrentSelectionFormFactory, "org/allbinary/graphics/form/CommandCurrentSelectionFormFactory"
+autoload :FormPaintable, "org/allbinary/graphics/form/FormPaintable"
+autoload :FormType, "org/allbinary/graphics/form/FormType"
+autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory"
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
+autoload :ScrollSelectionFormNoneFactory, "org/allbinary/graphics/form/ScrollSelectionFormNoneFactory"
+autoload :CommandTextItemArrayFactory, "org/allbinary/graphics/form/item/CommandTextItemArrayFactory"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :CurrentDisplayableFactory, "org/allbinary/graphics/opengles/CurrentDisplayableFactory"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
+autoload :OpenGLThreadUtil, "org/allbinary/graphics/opengles/OpenGLThreadUtil"
+autoload :InitUpdatePaintable, "org/allbinary/graphics/paint/InitUpdatePaintable"
+autoload :NullInitUpdatePaintable, "org/allbinary/graphics/paint/NullInitUpdatePaintable"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
+autoload :OpenGLImageSpecificFactory, "org/allbinary/image/opengles/OpenGLImageSpecificFactory"
+autoload :SensorGameUpdateProcessor, "org/allbinary/input/gyro/SensorGameUpdateProcessor"
+autoload :SingleSensorGameUpdateProcessor, "org/allbinary/input/gyro/SingleSensorGameUpdateProcessor"
+autoload :BaseTouchInput, "org/allbinary/input/motion/button/BaseTouchInput"
+autoload :NoButtonsTouchInputFactory, "org/allbinary/input/motion/button/NoButtonsTouchInputFactory"
+autoload :TouchButtonFactory, "org/allbinary/input/motion/button/TouchButtonFactory"
+autoload :TouchButtonsPaintableFactory, "org/allbinary/input/motion/button/TouchButtonsPaintableFactory"
+autoload :TouchScreenFactory, "org/allbinary/input/motion/button/TouchScreenFactory"
+autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler"
+autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :AllBinaryMediaManager, "org/allbinary/media/audio/AllBinaryMediaManager"
+autoload :PlayerQueue, "org/allbinary/media/audio/PlayerQueue"
+autoload :PrimaryPlayerQueueFactory, "org/allbinary/media/audio/PrimaryPlayerQueueFactory"
+autoload :SecondaryPlayerQueueFactory, "org/allbinary/media/audio/SecondaryPlayerQueueFactory"
+autoload :SelectSound, "org/allbinary/media/audio/SelectSound"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :SecondaryThreadPool, "org/allbinary/thread/SecondaryThreadPool"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+autoload :BaseGameBehavior, "org/allbinary/game/displayable/canvas/BaseGameBehavior"
+autoload :BaseMenuBehavior, "org/allbinary/game/displayable/canvas/BaseMenuBehavior"
+autoload :BasicMenuInputProcessor, "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor"
+autoload :BasicPopupMenuPaintable, "org/allbinary/game/displayable/canvas/BasicPopupMenuPaintable"
+autoload :CheatGameInputProcessor, "org/allbinary/game/displayable/canvas/CheatGameInputProcessor"
+autoload :DemoGameBehavior, "org/allbinary/game/displayable/canvas/DemoGameBehavior"
+autoload :DemoPaintableInterface, "org/allbinary/game/displayable/canvas/DemoPaintableInterface"
+autoload :EndGameInfo, "org/allbinary/game/displayable/canvas/EndGameInfo"
+autoload :EndGamePaintable, "org/allbinary/game/displayable/canvas/EndGamePaintable"
+autoload :EndGameProcessor, "org/allbinary/game/displayable/canvas/EndGameProcessor"
+autoload :FormInputProcessor, "org/allbinary/game/displayable/canvas/FormInputProcessor"
+autoload :FormUtil, "org/allbinary/game/displayable/canvas/FormUtil"
+autoload :GameCanvasInputProcessor, "org/allbinary/game/displayable/canvas/GameCanvasInputProcessor"
+autoload :GameCanvasPauseRunnable, "org/allbinary/game/displayable/canvas/GameCanvasPauseRunnable"
+autoload :GameCanvasRunnable, "org/allbinary/game/displayable/canvas/GameCanvasRunnable"
+autoload :GameLimitedCommandTextItemArrayFactory, "org/allbinary/game/displayable/canvas/GameLimitedCommandTextItemArrayFactory"
+autoload :GameProcessor, "org/allbinary/game/displayable/canvas/GameProcessor"
+autoload :InGameMenuBehavior, "org/allbinary/game/displayable/canvas/InGameMenuBehavior"
+autoload :MyFormUtil, "org/allbinary/game/displayable/canvas/MyFormUtil"
+autoload :NoMenuInputProcessor, "org/allbinary/game/displayable/canvas/NoMenuInputProcessor"
+autoload :NullDemoPaintable, "org/allbinary/game/displayable/canvas/NullDemoPaintable"
+autoload :NullWaitGameRunnable, "org/allbinary/game/displayable/canvas/NullWaitGameRunnable"
+autoload :PopupCommandFormInputProcessor, "org/allbinary/game/displayable/canvas/PopupCommandFormInputProcessor"
+autoload :PopupMenuInputProcessor, "org/allbinary/game/displayable/canvas/PopupMenuInputProcessor"
+autoload :StartIntermissionProcessor, "org/allbinary/game/displayable/canvas/StartIntermissionProcessor"
 require "java/lang/Thread"
 
-class AllBinaryGameCanvas
-    @@id = 0
-    TYPE = 2
+begin
+    AllBinaryGameCanvas.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -54,12 +54,12 @@ class ProgressMidlet < AllBinaryMidlet
     end
 end
 
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ClientInformationFactory"
-require "org/allbinary/thread/PrimaryThreadPool"
-require "org/allbinary/thread/ThreadPool"
-require "org/allbinary/midlet/ExitRunnable"
-require "org/allbinary/midlet/MidletExitProcessorFactory"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ClientInformationFactory, "org/allbinary/logic/system/security/licensing/ClientInformationFactory"
+autoload :PrimaryThreadPool, "org/allbinary/thread/PrimaryThreadPool"
+autoload :ThreadPool, "org/allbinary/thread/ThreadPool"
+autoload :ExitRunnable, "org/allbinary/midlet/ExitRunnable"
+autoload :MidletExitProcessorFactory, "org/allbinary/midlet/MidletExitProcessorFactory"
 require "java/lang/Runnable"
 

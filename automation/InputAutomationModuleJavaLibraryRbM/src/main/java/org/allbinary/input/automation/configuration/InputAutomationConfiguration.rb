@@ -72,19 +72,41 @@ class InputAutomationConfiguration
         marshaller.marshal(self, document)
         DomDocumentFileHelper.save(FileWrapperUtil.wrapFile(file), document)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:FILENAME, "InputAutomationConfig.xml")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputAutomationConfiguration"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:FILENAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/data/tree/dom/document/DomDocumentFileHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/FileUtil"
-require "org/allbinary/logic/io/file/FileWrapperUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringUtil"
-require "org/w3c/dom/Document"
+autoload :DomDocumentFileHelper, "org/allbinary/data/tree/dom/document/DomDocumentFileHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :FileUtil, "org/allbinary/logic/io/file/FileUtil"
+autoload :FileWrapperUtil, "org/allbinary/logic/io/file/FileWrapperUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Document, "org/w3c/dom/Document"
 
-class InputAutomationConfiguration
-    FILENAME = "InputAutomationConfig.xml"
+begin
+    InputAutomationConfiguration.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

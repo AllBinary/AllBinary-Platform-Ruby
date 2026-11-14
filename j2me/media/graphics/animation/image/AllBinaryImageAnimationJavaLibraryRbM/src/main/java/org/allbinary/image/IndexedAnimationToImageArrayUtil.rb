@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
-# require "javax/microedition/lcdui/Image"
 
 class IndexedAnimationToImageArrayUtil
     
@@ -31,6 +30,7 @@ class IndexedAnimationToImageArrayUtil
     end
 end
 
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/image/AnimationFrameToImageUtil"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :AnimationFrameToImageUtil, "org/allbinary/image/AnimationFrameToImageUtil"
 

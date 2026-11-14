@@ -88,13 +88,13 @@ class DirectionalAnalogLocationInputProcessor < AnalogLocationInputProcessor
     end
 end
 
-require "org/allbinary/game/input/GameInputProcessor"
-require "org/allbinary/game/input/GameKeyFactory"
-require "org/allbinary/game/input/analog/AnalogLocationInput"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/input/event/GameKeyEventFactory"
-require "org/allbinary/graphics/CustomGPoint"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :GameInputProcessor, "org/allbinary/game/input/GameInputProcessor"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
+autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

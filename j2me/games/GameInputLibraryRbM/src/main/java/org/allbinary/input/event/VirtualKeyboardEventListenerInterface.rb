@@ -22,9 +22,10 @@ module VirtualKeyboardEventListenerInterface
 
     # throws Exception
     def onVirtualKeyboardEvent(virtualKeyboardEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/input/event/VirtualKeyboardEvent"
+autoload :VirtualKeyboardEvent, "org/allbinary/input/event/VirtualKeyboardEvent"
 

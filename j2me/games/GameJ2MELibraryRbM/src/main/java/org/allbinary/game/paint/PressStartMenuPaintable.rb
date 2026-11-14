@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/Paintable"
 
@@ -84,12 +82,14 @@ class PressStartMenuPaintable < Paintable
     end
 end
 
-require "org/allbinary/AppletUtil"
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/input/motion/button/TouchScreenFactory"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/time/TimeDelayHelper"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AppletUtil, "org/allbinary/AppletUtil"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :TouchScreenFactory, "org/allbinary/input/motion/button/TouchScreenFactory"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
 

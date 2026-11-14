@@ -22,6 +22,7 @@ module UpKeyEventListenerInterface
 
     # throws Exception
     def onUpKeyEvent(keyAsInteger)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

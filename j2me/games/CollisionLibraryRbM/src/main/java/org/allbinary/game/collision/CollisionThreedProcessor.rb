@@ -16,5 +16,5 @@ class CollisionThreedProcessor < CollisionProcessor
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
 

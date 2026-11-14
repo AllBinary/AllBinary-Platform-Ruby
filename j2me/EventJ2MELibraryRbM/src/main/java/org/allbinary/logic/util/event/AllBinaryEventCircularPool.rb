@@ -35,6 +35,6 @@ class AllBinaryEventCircularPool < BaseCircularPool
     end
 end
 
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObjectFactoryInterface"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :AllBinaryEventObjectFactoryInterface, "org/allbinary/logic/util/event/AllBinaryEventObjectFactoryInterface"
 

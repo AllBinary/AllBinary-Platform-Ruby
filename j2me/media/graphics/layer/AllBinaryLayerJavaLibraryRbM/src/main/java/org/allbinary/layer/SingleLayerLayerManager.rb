@@ -24,5 +24,5 @@ class SingleLayerLayerManager < LayerManager
     end
 end
 
-require "org/allbinary/layer/LayerManagerNoDebug"
+autoload :LayerManagerNoDebug, "org/allbinary/layer/LayerManagerNoDebug"
 

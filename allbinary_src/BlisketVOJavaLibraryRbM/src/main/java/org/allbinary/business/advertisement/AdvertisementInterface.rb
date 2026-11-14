@@ -133,9 +133,9 @@ module AdvertisementInterface
     end
 end
 
-require "org/allbinary/business/advertisement/image/AdvertisementImageInterface"
-require "org/allbinary/business/advertisement/product/AdvertisementProductInterface"
-require "org/allbinary/business/advertisement/thumbnail/AdvertisementThumbnailInterface"
-require "org/allbinary/business/user/commerce/money/Money"
-require "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface"
+autoload :AdvertisementImageInterface, "org/allbinary/business/advertisement/image/AdvertisementImageInterface"
+autoload :AdvertisementProductInterface, "org/allbinary/business/advertisement/product/AdvertisementProductInterface"
+autoload :AdvertisementThumbnailInterface, "org/allbinary/business/advertisement/thumbnail/AdvertisementThumbnailInterface"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+autoload :DisplayInBrowserContraintsInterface, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface"
 

@@ -61,13 +61,13 @@ class StupidTimer
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/util/visitor/Visitor"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/ThreadObjectUtil"
-require "org/allbinary/time/TimeDelayHelper"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ThreadObjectUtil, "org/allbinary/thread/ThreadObjectUtil"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
 

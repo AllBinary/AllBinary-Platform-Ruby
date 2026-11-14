@@ -51,20 +51,44 @@ class ValidationOnlyTempUtil
     end
 
     def self.instance()
+        ValidationOnlyTempUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ValidationOnlyTempUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ValidationOnlyTempUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ValidationOnlyTempUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/validate/ValidationComponentInterface"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ValidationComponentInterface, "org/allbinary/logic/control/validate/ValidationComponentInterface"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class ValidationOnlyTempUtil
-    @@instance = ValidationOnlyTempUtil.new()
+begin
+    ValidationOnlyTempUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

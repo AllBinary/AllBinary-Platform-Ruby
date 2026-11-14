@@ -52,10 +52,10 @@ module InventoryEntityInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
-require "org/allbinary/business/user/commerce/money/MoneyException"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
+autoload :MoneyException, "org/allbinary/business/user/commerce/money/MoneyException"
 

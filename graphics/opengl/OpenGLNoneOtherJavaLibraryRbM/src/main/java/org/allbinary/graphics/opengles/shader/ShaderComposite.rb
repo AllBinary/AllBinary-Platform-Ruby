@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
-# require "javax/microedition/khronos/opengles/GL10"
 
 class ShaderComposite
     attr_accessor :disableProgramShaderOpenGLProcessor, :requiresOpenGLVersion, :shaderArray, :shaderInitializer, :compositeShaderUpdater, :modelViewProjection, :colorOpenGLProcessor, :vertexOpenGLProcessor, :useProgramShaderOpenGLProcessor, :shaderMatrixOpenGLProcessor, :colorEnableVertexAttribArrayOpenGLProcessor, :normalEnableVertexAttribArrayOpenGLProcessor, :vertexEnableVertexAttribArrayOpenGLProcessor, :textureEnableVertexAttribArrayOpenGLProcessor, :colorDisableVertexAttribArrayOpenGLProcessor, :normalDisableVertexAttribArrayOpenGLProcessor, :vertexDisableVertexAttribArrayOpenGLProcessor, :textureDisableVertexAttribArrayOpenGLProcessor, :uniformLightPositionOpenGLProcessor, :uniformLightColorOpenGLProcessor, :uniformCameraPositionOpenGLProcessor, :uniformTextureUnitOpenGLProcessor, :programHandle
@@ -64,13 +63,14 @@ class ShaderComposite
     end
 end
 
-require "org/allbinary/graphics/opengles/NullOpenGLProcessorFactory"
-require "org/allbinary/graphics/opengles/OpenGLProcessor"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/graphics/opengles/shader/CompositeShaderUpdater"
-require "org/allbinary/graphics/opengles/shader/ModelViewProjection"
-require "org/allbinary/graphics/opengles/shader/NullOpenGLTextureProcessor"
-require "org/allbinary/graphics/opengles/shader/OpenGLObject3dProcessor"
-require "org/allbinary/graphics/opengles/shader/Shader"
-require "org/allbinary/graphics/opengles/shader/ShaderInitializer"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :NullOpenGLProcessorFactory, "org/allbinary/graphics/opengles/NullOpenGLProcessorFactory"
+autoload :OpenGLProcessor, "org/allbinary/graphics/opengles/OpenGLProcessor"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CompositeShaderUpdater, "org/allbinary/graphics/opengles/shader/CompositeShaderUpdater"
+autoload :ModelViewProjection, "org/allbinary/graphics/opengles/shader/ModelViewProjection"
+autoload :NullOpenGLTextureProcessor, "org/allbinary/graphics/opengles/shader/NullOpenGLTextureProcessor"
+autoload :OpenGLObject3dProcessor, "org/allbinary/graphics/opengles/shader/OpenGLObject3dProcessor"
+autoload :Shader, "org/allbinary/graphics/opengles/shader/Shader"
+autoload :ShaderInitializer, "org/allbinary/graphics/opengles/shader/ShaderInitializer"
 

@@ -61,22 +61,46 @@ class GameNotificationEventHandler < BasicEventHandler
     end
 
     def self.instance()
+        GameNotificationEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GameNotificationEventHandler.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GameNotificationEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameNotificationEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/logic/util/event/NullEventListener"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/layer/hud/event/GameNotificationEvent"
-require "org/allbinary/game/layer/hud/event/GameNotificationListenerInterface"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :NullEventListener, "org/allbinary/logic/util/event/NullEventListener"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
+autoload :GameNotificationListenerInterface, "org/allbinary/game/layer/hud/event/GameNotificationListenerInterface"
 
-class GameNotificationEventHandler
-    @@instance = GameNotificationEventHandler.new()
+begin
+    GameNotificationEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

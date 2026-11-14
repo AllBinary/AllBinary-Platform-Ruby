@@ -144,12 +144,12 @@ class GenericProfileActionJPanel < JPanel
     end
 end
 
-require "org/allbinary/input/automation/actions/script/JTreeInterfaceFactory"
-require "org/allbinary/input/automation/actions/script/condition/AlwaysActionScriptCondition"
-require "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptCondition"
-require "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
-require "org/allbinary/input/automation/actions/script/condition/TimeIntervalActionScriptCondition"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/script/GenericProfileActionScriptJPanel"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileAction"
+autoload :JTreeInterfaceFactory, "org/allbinary/input/automation/actions/script/JTreeInterfaceFactory"
+autoload :AlwaysActionScriptCondition, "org/allbinary/input/automation/actions/script/condition/AlwaysActionScriptCondition"
+autoload :ColorAtActionScriptCondition, "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptCondition"
+autoload :ProfileActionScriptConditionInterface, "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
+autoload :TimeIntervalActionScriptCondition, "org/allbinary/input/automation/actions/script/condition/TimeIntervalActionScriptCondition"
+autoload :GenericProfileActionScriptJPanel, "org/allbinary/input/automation/module/generic/configuration/profile/actions/script/GenericProfileActionScriptJPanel"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :GenericProfileAction, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileAction"
 

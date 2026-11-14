@@ -29,5 +29,5 @@ class TagHelper
     end
 end
 
-require "org/allbinary/string/CommonStrings"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

@@ -52,10 +52,10 @@ class InputAutomationModuleServiceFactory
     end
 end
 
-require "org/osgi/framework/Bundle"
-require "org/osgi/framework/ServiceRegistration"
-require "bundle/input/automation/module/InputAutomationModuleService"
-require "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :Bundle, "org/osgi/framework/Bundle"
+autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration"
+autoload :InputAutomationModuleService, "bundle/input/automation/module/InputAutomationModuleService"
+autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

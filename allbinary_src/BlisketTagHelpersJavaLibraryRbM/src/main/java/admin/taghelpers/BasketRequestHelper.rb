@@ -118,15 +118,15 @@ class BasketRequestHelper < TagHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/context/modules/storefront/StoreFront"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/inventory/basket/BasketData"
-require "org/allbinary/business/user/commerce/inventory/basket/BasketInterface"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :BasketData, "org/allbinary/business/user/commerce/inventory/basket/BasketData"
+autoload :BasketInterface, "org/allbinary/business/user/commerce/inventory/basket/BasketInterface"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :InventoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

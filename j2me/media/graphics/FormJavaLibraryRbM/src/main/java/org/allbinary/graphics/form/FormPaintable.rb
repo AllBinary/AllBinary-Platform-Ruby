@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/Paintable"
 
 class FormPaintable < Paintable
@@ -42,5 +41,6 @@ class FormPaintable < Paintable
     end
 end
 
-require "org/allbinary/graphics/form/PaintableForm"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :PaintableForm, "org/allbinary/graphics/form/PaintableForm"
 

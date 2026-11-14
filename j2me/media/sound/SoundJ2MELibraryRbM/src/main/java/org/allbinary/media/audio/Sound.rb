@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
-# require "javax/microedition/media/Player"
 require "org/allbinary/media/audio/SoundInterface"
 require "java/lang/Runnable"
 
@@ -70,7 +69,8 @@ class Sound
     end
 end
 
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/audio/NoPlayer"
+autoload :Player, "javax/microedition/media/Player"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :NoPlayer, "org/allbinary/media/audio/NoPlayer"
 

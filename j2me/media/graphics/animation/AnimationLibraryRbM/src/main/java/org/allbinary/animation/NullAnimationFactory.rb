@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
 
@@ -58,13 +57,36 @@ class NullAnimationFactory
 
     def setInitialScale(scaleProperties)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_NOT_FOR_USE_ANIMATION_FACTORY, NullAnimationFactory.new())
+            const_set(:NULL_ANIMATION_FACTORY, NullAnimationFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullAnimationFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_NOT_FOR_USE_ANIMATION_FACTORY, :NULL_ANIMATION_FACTORY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/Animation"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :Animation, "org/allbinary/animation/Animation"
 
-class NullAnimationFactory
-    NULL_NOT_FOR_USE_ANIMATION_FACTORY = NullAnimationFactory.new()
-    NULL_ANIMATION_FACTORY = NullAnimationFactory.new()
+begin
+    NullAnimationFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -34,9 +34,9 @@ class ProfileActionScriptOutputFactory
     end
 end
 
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/w3c/dom/Node"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutput"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputData"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ProfileActionScriptOutputInterface"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :Node, "org/w3c/dom/Node"
+autoload :ImageActionScriptOutput, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutput"
+autoload :ImageActionScriptOutputData, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputData"
+autoload :ProfileActionScriptOutputInterface, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ProfileActionScriptOutputInterface"
 

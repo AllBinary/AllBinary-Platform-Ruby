@@ -22,6 +22,7 @@ module DestroyableInterface
 
     # throws Exception
     def isDestroyed()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

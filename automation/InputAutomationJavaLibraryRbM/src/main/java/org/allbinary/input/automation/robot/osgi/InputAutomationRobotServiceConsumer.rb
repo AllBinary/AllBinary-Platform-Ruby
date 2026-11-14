@@ -24,7 +24,7 @@ class InputAutomationRobotServiceConsumer < InputAutomationServiceConsumer
     end
 end
 
-require "org/osgi/framework/BundleContext"
-require "bundle/input/automation/robot/InputAutomationRobotServiceInterface"
-require "org/allbinary/input/automation/robot/osgi/InputAutomationRobotOSGIServiceVisitor"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :InputAutomationRobotServiceInterface, "bundle/input/automation/robot/InputAutomationRobotServiceInterface"
+autoload :InputAutomationRobotOSGIServiceVisitor, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotOSGIServiceVisitor"
 

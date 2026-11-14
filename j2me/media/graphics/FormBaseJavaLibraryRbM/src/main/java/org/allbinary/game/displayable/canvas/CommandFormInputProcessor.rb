@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Command"
 require "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor"
 
 #In general allow scrolling of the menu and selection the center item
@@ -160,25 +158,27 @@ class CommandFormInputProcessor < BasicMenuInputProcessor
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/InputFeatureFactory"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/input/event/GameKeyEventFactory"
-require "org/allbinary/game/layer/SWTUtil"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/graphics/form/CommandCurrentSelectionForm"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/input/motion/gesture/MotionGestureInput"
-require "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/audio/PrimaryPlayerQueueFactory"
-require "org/allbinary/media/audio/SelectSound"
-require "org/allbinary/thread/PrimaryThreadPool"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/displayable/canvas/CommandRunnable"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
+autoload :SWTUtil, "org/allbinary/game/layer/SWTUtil"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :CommandCurrentSelectionForm, "org/allbinary/graphics/form/CommandCurrentSelectionForm"
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :PrimaryPlayerQueueFactory, "org/allbinary/media/audio/PrimaryPlayerQueueFactory"
+autoload :SelectSound, "org/allbinary/media/audio/SelectSound"
+autoload :PrimaryThreadPool, "org/allbinary/thread/PrimaryThreadPool"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :CommandRunnable, "org/allbinary/game/displayable/canvas/CommandRunnable"
 

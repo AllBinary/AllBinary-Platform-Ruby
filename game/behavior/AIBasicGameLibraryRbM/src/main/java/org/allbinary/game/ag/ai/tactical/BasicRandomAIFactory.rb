@@ -31,12 +31,12 @@ class BasicRandomAIFactory
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/ai/BasicAI"
-require "org/allbinary/game/ag/ai/InputProbability"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/util/visitor/Visitor"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/ag/ai/tactical/BasicRandomAI"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :BasicAI, "org/allbinary/game/ai/BasicAI"
+autoload :InputProbability, "org/allbinary/game/ag/ai/InputProbability"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicRandomAI, "org/allbinary/game/ag/ai/tactical/BasicRandomAI"
 

@@ -25,5 +25,5 @@ class CollidableBaseBehaviorFactory
     end
 end
 
-require "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
 

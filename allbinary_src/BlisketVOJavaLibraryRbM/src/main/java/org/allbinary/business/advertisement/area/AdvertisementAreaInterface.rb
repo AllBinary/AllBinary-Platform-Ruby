@@ -68,5 +68,5 @@ module AdvertisementAreaInterface
     end
 end
 
-require "org/allbinary/business/advertisement/area/AdvertisementAreaConstraintsInterface"
+autoload :AdvertisementAreaConstraintsInterface, "org/allbinary/business/advertisement/area/AdvertisementAreaConstraintsInterface"
 

@@ -92,9 +92,9 @@ class PrimitiveLongUtil
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/math/MathUtil"
-require "org/allbinary/logic/math/PrimitiveLongSingleton"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
+autoload :PrimitiveLongSingleton, "org/allbinary/logic/math/PrimitiveLongSingleton"
 

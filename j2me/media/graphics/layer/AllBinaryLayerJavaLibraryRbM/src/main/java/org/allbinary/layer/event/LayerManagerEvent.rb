@@ -54,7 +54,7 @@ class LayerManagerEvent < AllBinaryEventObject
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/LayerManager"
-require "org/allbinary/logic/string/StringMaker"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LayerManager, "org/allbinary/layer/LayerManager"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

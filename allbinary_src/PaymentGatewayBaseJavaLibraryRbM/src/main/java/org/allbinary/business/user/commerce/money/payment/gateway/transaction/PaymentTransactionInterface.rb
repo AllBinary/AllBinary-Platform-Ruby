@@ -27,5 +27,5 @@ module PaymentTransactionInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
 

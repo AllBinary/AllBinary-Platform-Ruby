@@ -53,7 +53,7 @@ class PaymentTag < StoreValidationTransformTag
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/PaymentData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :PaymentData, "org/allbinary/business/user/commerce/money/payment/PaymentData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

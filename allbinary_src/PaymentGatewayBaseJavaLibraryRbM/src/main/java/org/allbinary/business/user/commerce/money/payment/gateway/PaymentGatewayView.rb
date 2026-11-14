@@ -64,14 +64,14 @@ class PaymentGatewayView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayMapping"
+autoload :HashMap, "java/util/HashMap"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+autoload :PaymentGatewayMapping, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayMapping"
 

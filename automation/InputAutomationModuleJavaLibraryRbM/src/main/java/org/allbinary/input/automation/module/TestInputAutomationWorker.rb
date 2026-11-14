@@ -42,10 +42,10 @@ class TestInputAutomationWorker
     end
 end
 
-require "org/allbinary/input/media/image/capture/ScreenCaptureImagesWorker"
-require "org/allbinary/media/image/comparison/ImageComparisonWorker"
-require "org/allbinary/media/image/comparison/SaveImageComparisonWorker"
-require "org/allbinary/media/image/comparison/motion/MotionRectanglesWorker"
-require "org/allbinary/media/image/comparison/motion/SaveMotionRectanglesResultsWorker"
-require "org/allbinary/media/image/comparison/motion/TestInputForMotionRectanglesResultsWorker"
+autoload :ScreenCaptureImagesWorker, "org/allbinary/input/media/image/capture/ScreenCaptureImagesWorker"
+autoload :ImageComparisonWorker, "org/allbinary/media/image/comparison/ImageComparisonWorker"
+autoload :SaveImageComparisonWorker, "org/allbinary/media/image/comparison/SaveImageComparisonWorker"
+autoload :MotionRectanglesWorker, "org/allbinary/media/image/comparison/motion/MotionRectanglesWorker"
+autoload :SaveMotionRectanglesResultsWorker, "org/allbinary/media/image/comparison/motion/SaveMotionRectanglesResultsWorker"
+autoload :TestInputForMotionRectanglesResultsWorker, "org/allbinary/media/image/comparison/motion/TestInputForMotionRectanglesResultsWorker"
 

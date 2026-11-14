@@ -36,9 +36,9 @@ class ItemFactoryUnused
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/money/MoneyException"
-require "org/allbinary/data/tables/TableMappingInterface"
-require "org/allbinary/logic/communication/http/request/RequestParams"
-require "org/allbinary/business/user/commerce/inventory/item/Item"
+autoload :HashMap, "java/util/HashMap"
+autoload :MoneyException, "org/allbinary/business/user/commerce/money/MoneyException"
+autoload :TableMappingInterface, "org/allbinary/data/tables/TableMappingInterface"
+autoload :RequestParams, "org/allbinary/logic/communication/http/request/RequestParams"
+autoload :Item, "org/allbinary/business/user/commerce/inventory/item/Item"
 

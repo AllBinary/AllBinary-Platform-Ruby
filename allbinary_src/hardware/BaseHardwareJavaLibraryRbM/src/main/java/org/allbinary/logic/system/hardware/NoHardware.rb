@@ -46,20 +46,44 @@ class NoHardware
     end
 
     def self.instance()
+        NoHardware.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        NoHardware.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NoHardware.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NoHardware"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
-require "org/allbinary/logic/system/hardware/components/interfaces/NoHardwareComponent"
-require "org/allbinary/util/ABHashtable"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :HardwareComponentInterface, "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
+autoload :NoHardwareComponent, "org/allbinary/logic/system/hardware/components/interfaces/NoHardwareComponent"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class NoHardware
-    @@instance = NoHardware.new()
+begin
+    NoHardware.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

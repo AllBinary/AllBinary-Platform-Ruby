@@ -173,14 +173,37 @@ class PCKeyFactory
         end
         return false
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, PCKeyFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PCKeyFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/math/PositionStrings"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/game/input/PCGameKey"
+autoload :PositionStrings, "org/allbinary/math/PositionStrings"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :PCGameKey, "org/allbinary/game/input/PCGameKey"
 
-class PCKeyFactory
-    SINGLETON = PCKeyFactory.new()
+begin
+    PCKeyFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

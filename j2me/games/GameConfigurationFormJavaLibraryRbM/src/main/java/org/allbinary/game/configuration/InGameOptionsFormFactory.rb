@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
-# require "javax/microedition/lcdui/CommandListener"
 
 class InGameOptionsFormFactory
     attr_accessor :logUtil, :SINGLETON
@@ -55,23 +54,48 @@ class InGameOptionsFormFactory
     end
 
     def self.instance()
+        InGameOptionsFormFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        InGameOptionsFormFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InGameOptionsFormFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/displayable/screen/CommandForm"
-require "org/allbinary/init/Init"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/configuration/InGameOptionsForm"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :CommandForm, "org/allbinary/graphics/displayable/screen/CommandForm"
+autoload :Init, "org/allbinary/init/Init"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :InGameOptionsForm, "org/allbinary/game/configuration/InGameOptionsForm"
 
-class InGameOptionsFormFactory
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    InGameOptionsFormFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -78,11 +78,11 @@ class MiniBasketView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/basket/BasketData"
-require "org/allbinary/business/user/commerce/inventory/basket/BasketInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/search/SearchData"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasketData, "org/allbinary/business/user/commerce/inventory/basket/BasketData"
+autoload :BasketInterface, "org/allbinary/business/user/commerce/inventory/basket/BasketInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SearchData, "org/allbinary/logic/control/search/SearchData"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

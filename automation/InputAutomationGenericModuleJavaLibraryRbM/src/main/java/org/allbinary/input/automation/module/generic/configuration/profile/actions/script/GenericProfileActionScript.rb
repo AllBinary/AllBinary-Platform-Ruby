@@ -106,24 +106,46 @@ class GenericProfileActionScript < DefaultMutableTreeNode
         end
         return node
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "Root")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GenericProfileActionScript"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionFactory"
-require "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionData"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionJPanel"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :ProfileActionScriptConditionFactory, "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionFactory"
+autoload :ProfileActionScriptConditionInterface, "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
+autoload :GenericProfileActionData, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionData"
+autoload :GenericProfileActionJPanel, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionJPanel"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
 
-class GenericProfileActionScript
-    NAME = "Root"
+begin
+    GenericProfileActionScript.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

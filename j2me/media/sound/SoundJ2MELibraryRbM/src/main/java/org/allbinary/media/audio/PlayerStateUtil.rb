@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
-# require "javax/microedition/media/Player"
 
 class PlayerStateUtil
     attr_accessor :commonStrings, :UNREALIZED, :REALIZED, :PREFETCHED, :STARTED, :CLOSED
@@ -54,17 +53,42 @@ class PlayerStateUtil
     end
 
     def self.instance()
+        PlayerStateUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PlayerStateUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PlayerStateUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PlayerStateUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/string/CommonStrings"
+autoload :Player, "javax/microedition/media/Player"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class PlayerStateUtil
-    @@instance = PlayerStateUtil.new()
+begin
+    PlayerStateUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

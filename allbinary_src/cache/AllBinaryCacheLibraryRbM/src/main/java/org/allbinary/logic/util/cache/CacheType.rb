@@ -52,5 +52,5 @@ class CacheType
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringMaker"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

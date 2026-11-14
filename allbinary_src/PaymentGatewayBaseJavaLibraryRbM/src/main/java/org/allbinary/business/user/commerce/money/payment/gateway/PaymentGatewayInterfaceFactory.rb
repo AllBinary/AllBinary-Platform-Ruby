@@ -78,13 +78,13 @@ class PaymentGatewayInterfaceFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/request/RequestParams"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicPaymentType, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType"
+autoload :BasicPaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :RequestParams, "org/allbinary/logic/communication/http/request/RequestParams"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
 

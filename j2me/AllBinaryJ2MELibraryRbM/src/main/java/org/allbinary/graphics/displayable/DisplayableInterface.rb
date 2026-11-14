@@ -14,34 +14,40 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
 
 module DisplayableInterface
     
 
     def addCommand(cmd)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getHeight()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getWidth()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def removeCommand(cmd)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setCommandListener(l)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
 

@@ -76,14 +76,14 @@ class InputAutomationModuleFactoryFactory
     end
 end
 
-require "java/util/HashMap"
-require "java/util/Iterator"
-require "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
-require "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfigurations"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/help/JavaHelpSetNotifier"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/module/DefaultListModelHelper"
-require "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :Iterator, "java/util/Iterator"
+autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
+autoload :InputAutomationModuleConfigurations, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfigurations"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :JavaHelpSetNotifier, "org/allbinary/logic/java/help/JavaHelpSetNotifier"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :DefaultListModelHelper, "org/allbinary/input/automation/module/DefaultListModelHelper"
+autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
 

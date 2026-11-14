@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/BasicAI"
 
 class SpinnerAI < BasicAI
@@ -36,16 +35,17 @@ class SpinnerAI < BasicAI
     # throws Exception
     def processAI(allBinaryLayerManager)
         if @isEven
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(@direction[0])
+            SpinnerAI.superclass.instance_method(:processKeyAI).bind(self).call(@direction[0])
             @isEven = false
         else
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
+            SpinnerAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
             @isEven = true
         end
     end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

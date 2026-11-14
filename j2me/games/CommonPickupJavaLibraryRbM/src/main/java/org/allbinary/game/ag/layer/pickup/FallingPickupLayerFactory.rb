@@ -26,7 +26,7 @@ class FallingPickupLayerFactory
     end
 end
 
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/ag/layer/pickup/FallingPickupLayer"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :FallingPickupLayer, "org/allbinary/game/ag/layer/pickup/FallingPickupLayer"
 

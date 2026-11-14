@@ -30,5 +30,5 @@ class NoCacheableFactory
     end
 end
 
-require "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
 

@@ -19,6 +19,7 @@ module LongArrayIdentifierInterface
     
 
     def getLongArrayIdentifier()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

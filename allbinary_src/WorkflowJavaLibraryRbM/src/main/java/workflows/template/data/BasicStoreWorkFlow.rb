@@ -33,6 +33,6 @@ class BasicStoreWorkFlow < BasicWorkFlow
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :HashMap, "java/util/HashMap"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
 

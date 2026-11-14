@@ -26,5 +26,5 @@ class InitTag < TableTag
     end
 end
 
-require "admin/taghelpers/InitHelperFactory"
+autoload :InitHelperFactory, "admin/taghelpers/InitHelperFactory"
 

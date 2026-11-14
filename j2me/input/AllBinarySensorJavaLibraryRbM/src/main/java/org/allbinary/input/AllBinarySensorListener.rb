@@ -19,6 +19,7 @@ module AllBinarySensorListener
     
 
     def onSensorChange()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.role
 
-require "java/lang/Object"
 require "java/io/Serializable"
 
 class BasicUserRole
@@ -49,7 +48,7 @@ class BasicUserRole
         @displayValue = aDisplayValue
         @sessionTimeout = aSessionTimeout
         @sessionInactivityTimeout = aSessionInactivityTimeout
-        BasicUserRole.roleVector.add(self)
+        BasicUserRoles.getInstance().roleVector.add(self)
     end
     
 
@@ -86,42 +85,7 @@ class BasicUserRole
         return self.getRole()
     end
     alias_method :to_s, :toString
-    
-
-    # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.getRole(role)
-        java_monitor.synchronize do
-        roleVector = BasicUserRole.getAll()
-        size = roleVector.size()
-        (0...size).each do |index|
-            userRole = roleVector.get(index)
-            if (role <=> userRole.to_s) == 0
-                return userRole
-            end
-        end
-        raise StandardError.new("Unable to get role - Unknown Role")
-        end
-    end
-    
-
-    def self.getAll()
-        return BasicUserRole.roleVector
-    end
-
-    def self.roleVector()
-        return defined?(@@roleVector) ? @@roleVector : nil
-    end
-
-    def self.roleVector=(value)
-        @@roleVector = value
-    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-
-class BasicUserRole
-    @@roleVector = BasicArrayListD.new()
-end
+autoload :BasicUserRoles, "org/allbinary/business/user/role/BasicUserRoles"
 

@@ -69,9 +69,9 @@ class BasicCrypt
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/java/byteutil/ByteUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :ByteUtil, "org/allbinary/logic/java/byteutil/ByteUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

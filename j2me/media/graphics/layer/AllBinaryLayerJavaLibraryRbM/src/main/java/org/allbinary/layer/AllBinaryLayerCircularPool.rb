@@ -34,7 +34,6 @@ class AllBinaryLayerCircularPool < BaseCircularPool
     end
 end
 
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerFactoryInterface"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :AllBinaryLayerFactoryInterface, "org/allbinary/layer/AllBinaryLayerFactoryInterface"
 

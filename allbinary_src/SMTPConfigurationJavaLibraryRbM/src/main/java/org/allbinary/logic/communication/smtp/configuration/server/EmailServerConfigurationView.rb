@@ -62,14 +62,14 @@ class EmailServerConfigurationView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfiguration"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationData"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationMapping"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :EmailServerConfiguration, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfiguration"
+autoload :EmailServerConfigurationData, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationData"
+autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
+autoload :EmailServerConfigurationMapping, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationMapping"
 

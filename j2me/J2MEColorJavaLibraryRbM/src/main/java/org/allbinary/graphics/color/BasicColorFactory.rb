@@ -84,19 +84,43 @@ class BasicColorFactory
     end
 
     def self.instance()
+        BasicColorFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        BasicColorFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = BasicColorFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicColorFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
 
-class BasicColorFactory
-    @@instance = BasicColorFactory.new()
+begin
+    BasicColorFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

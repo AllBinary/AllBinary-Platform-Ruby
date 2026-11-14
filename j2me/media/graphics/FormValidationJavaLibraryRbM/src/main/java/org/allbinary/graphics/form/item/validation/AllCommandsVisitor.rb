@@ -29,5 +29,5 @@ class AllCommandsVisitor < Visitor
     end
 end
 
-require "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
 

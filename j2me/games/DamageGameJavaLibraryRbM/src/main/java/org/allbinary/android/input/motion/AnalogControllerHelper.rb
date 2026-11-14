@@ -70,7 +70,7 @@ class AnalogControllerHelper
     end
 end
 
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/android/input/motion/AnalogControllerConfigurationFactory"
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :AnalogControllerConfigurationFactory, "org/allbinary/android/input/motion/AnalogControllerConfigurationFactory"
 

@@ -88,13 +88,13 @@ class PlayerGameInput < GameInput
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/input/GameInputStrings"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings"
 

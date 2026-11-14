@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/collision/CollidableInterface"
 
 class CollidableBaseBehavior
@@ -85,14 +84,15 @@ class CollidableBaseBehavior
     end
 end
 
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-require "org/allbinary/game/collision/CollisionType"
-require "org/allbinary/game/collision/CollisionTypeFactory"
-require "org/allbinary/game/collision/LayerCollisionUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
+autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
+autoload :LayerCollisionUtil, "org/allbinary/game/collision/LayerCollisionUtil"
 

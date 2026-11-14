@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.tactical
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/BasicAI"
 
 class LurchAI < BasicAI
@@ -57,9 +56,9 @@ class LurchAI < BasicAI
         end
         ownerLayerInterface.setPosition(x, ownerLayerInterface.getYP(), ownerLayerInterface.getZP())
         if @currentRelativeAngle == 0
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM0)
+            LurchAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM0)
         elsif @currentRelativeAngle == 180
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_POUND)
+            LurchAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_POUND)
         end
     end
     
@@ -92,8 +91,9 @@ class LurchAI < BasicAI
     end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

@@ -19,11 +19,13 @@ module CryptInterface
     
 
     def encrypt(array)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def decrypt(array)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

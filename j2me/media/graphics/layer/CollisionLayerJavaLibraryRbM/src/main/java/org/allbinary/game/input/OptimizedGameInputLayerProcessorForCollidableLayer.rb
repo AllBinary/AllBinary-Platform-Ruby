@@ -40,8 +40,8 @@ class OptimizedGameInputLayerProcessorForCollidableLayer < LayerProcessor
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/game/input/OptimizedGameInputLayerManager"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :OptimizedGameInputLayerManager, "org/allbinary/game/input/OptimizedGameInputLayerManager"
 

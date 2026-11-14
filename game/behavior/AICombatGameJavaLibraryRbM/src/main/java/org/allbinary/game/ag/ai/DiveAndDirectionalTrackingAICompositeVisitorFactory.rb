@@ -23,6 +23,6 @@ class DiveAndDirectionalTrackingAICompositeVisitorFactory
     end
 end
 
-require "org/allbinary/logic/util/visitor/Visitor"
-require "org/allbinary/game/ag/ai/DiveAndDirectionalTrackingAI"
+autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
+autoload :DiveAndDirectionalTrackingAI, "org/allbinary/game/ag/ai/DiveAndDirectionalTrackingAI"
 

@@ -97,16 +97,38 @@ class TouchScreenFactory
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, TouchScreenFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TouchScreenFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/motion/button/TouchScreenType"
-require "org/allbinary/input/motion/button/TouchScreenTypesFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TouchScreenType, "org/allbinary/input/motion/button/TouchScreenType"
+autoload :TouchScreenTypesFactory, "org/allbinary/input/motion/button/TouchScreenTypesFactory"
 
-class TouchScreenFactory
-    SINGLETON = TouchScreenFactory.new()
+begin
+    TouchScreenFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -28,9 +28,9 @@ class DomNodeListHelper
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
 

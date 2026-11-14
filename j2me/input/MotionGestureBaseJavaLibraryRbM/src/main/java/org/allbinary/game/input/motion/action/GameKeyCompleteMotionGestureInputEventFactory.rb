@@ -45,16 +45,38 @@ class GameKeyCompleteMotionGestureInputEventFactory
             gameKeyCompleteMotionGestureInputEvent.update()
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, GameKeyCompleteMotionGestureInputEventFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameKeyCompleteMotionGestureInputEventFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :GameKeyCompleteMotionGestureInputEvent, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
 
-class GameKeyCompleteMotionGestureInputEventFactory
-    SINGLETON = GameKeyCompleteMotionGestureInputEventFactory.new()
+begin
+    GameKeyCompleteMotionGestureInputEventFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

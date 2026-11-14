@@ -99,14 +99,14 @@ class StoreFrontOrdersHistoryStatistics
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistoryInterface"
-require "org/allbinary/business/user/commerce/money/Money"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityFactory"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/business/context/modules/storefront/statistics/orders/history/StoreFrontOrdersHistoryStatisticsData"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :OrderHistoryInterface, "org/allbinary/business/user/commerce/inventory/order/OrderHistoryInterface"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+autoload :OrderHistoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityFactory"
+autoload :OrderHistoryEntityInterface, "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StoreFrontOrdersHistoryStatisticsData, "org/allbinary/business/context/modules/storefront/statistics/orders/history/StoreFrontOrdersHistoryStatisticsData"
 

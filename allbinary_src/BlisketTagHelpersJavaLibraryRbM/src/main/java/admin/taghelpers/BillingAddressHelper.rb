@@ -214,16 +214,16 @@ class BillingAddressHelper < Table
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/business/user/UserData"
-require "org/allbinary/business/user/address/StreetAddress"
-require "org/allbinary/data/tables/user/address/billing/BillingAddressesEntity"
-require "org/allbinary/data/tables/user/address/billing/BillingAddressesEntityFactory"
-require "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntityFactory"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSessionData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/AbSqlTableUtil"
-require "org/allbinary/logic/string/StringUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :UserData, "org/allbinary/business/user/UserData"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+autoload :BillingAddressesEntity, "org/allbinary/data/tables/user/address/billing/BillingAddressesEntity"
+autoload :BillingAddressesEntityFactory, "org/allbinary/data/tables/user/address/billing/BillingAddressesEntityFactory"
+autoload :ShippingAddressesEntityFactory, "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntityFactory"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :WeblisketSessionData, "org/allbinary/logic/communication/http/request/session/WeblisketSessionData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

@@ -93,15 +93,15 @@ class ImageTypes
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/input/media/image/InputImageType"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputData"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :InputImageType, "org/allbinary/input/media/image/InputImageType"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :ImageActionScriptOutputData, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputData"
 

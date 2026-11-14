@@ -63,7 +63,7 @@ class HighScoresHelper2 < HighScoresHelperBase
     end
 end
 
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/game/score/HighScores"
-require "org/allbinary/game/score/NullHighScoresSingletonFactory"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
+autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
 

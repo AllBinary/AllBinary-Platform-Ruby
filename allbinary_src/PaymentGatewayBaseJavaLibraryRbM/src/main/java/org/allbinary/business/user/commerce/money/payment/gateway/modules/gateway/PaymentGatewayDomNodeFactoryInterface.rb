@@ -23,6 +23,6 @@ module PaymentGatewayDomNodeFactoryInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
-require "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
 

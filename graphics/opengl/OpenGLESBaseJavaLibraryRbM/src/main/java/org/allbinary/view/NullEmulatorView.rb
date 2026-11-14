@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.view
 
-# require "javax/microedition/lcdui/Displayable"
-# require "javax/microedition/midlet/MIDlet"
 require "org/allbinary/view/EmulatorViewInterface"
 
 class NullEmulatorView
@@ -32,9 +30,34 @@ class NullEmulatorView
 
     def onSetDisplayable(displayable)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_EMULATOR_VIEW, NullEmulatorView.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullEmulatorView"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_EMULATOR_VIEW].include?(name)
+        end
+        super
+    end
 end
 
-class NullEmulatorView
-    NULL_EMULATOR_VIEW = NullEmulatorView.new()
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :MIDlet, "javax/microedition/midlet/MIDlet"
+
+begin
+    NullEmulatorView.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

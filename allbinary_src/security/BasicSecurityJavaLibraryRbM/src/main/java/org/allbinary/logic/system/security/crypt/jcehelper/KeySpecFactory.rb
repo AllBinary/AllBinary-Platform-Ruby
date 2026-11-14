@@ -57,19 +57,43 @@ class KeySpecFactory
     end
 
     def self.instance()
+        KeySpecFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        KeySpecFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = KeySpecFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "KeySpecFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class KeySpecFactory
-    @@instance = KeySpecFactory.new()
+begin
+    KeySpecFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

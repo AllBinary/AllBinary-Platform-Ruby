@@ -27,9 +27,9 @@ class CollidableHelperFactory
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/collision/CollisionHelper"
-require "org/allbinary/game/collision/SourceCollisionHelper"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :CollisionHelper, "org/allbinary/game/collision/CollisionHelper"
+autoload :SourceCollisionHelper, "org/allbinary/game/collision/SourceCollisionHelper"
 

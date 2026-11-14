@@ -20,15 +20,17 @@ module RectangleResourceFactoryInterface
 
     # throws Exception
     def getRectangle(resource)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getRectangleArrayOfArrays(resource)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/Rectangle"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
 

@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.emulator.device
 
-# require "javax/microedition/khronos/opengles/GL10"
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/emulator/device/TrueTypeFontUtilBase"
 
 class TrueTypeFontUtil < TrueTypeFontUtilBase
@@ -66,18 +64,44 @@ class TrueTypeFontUtil < TrueTypeFontUtilBase
     end
 
     def self.instance()
+        TrueTypeFontUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TrueTypeFontUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TrueTypeFontUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TrueTypeFontUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/image/opengles/OpenGLESImage"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :OpenGLESImage, "org/allbinary/image/opengles/OpenGLESImage"
 
-class TrueTypeFontUtil
-    @@instance = TrueTypeFontUtil.new()
+begin
+    TrueTypeFontUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

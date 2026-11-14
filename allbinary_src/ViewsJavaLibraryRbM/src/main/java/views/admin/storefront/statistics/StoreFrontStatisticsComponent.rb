@@ -53,11 +53,11 @@ class StoreFrontStatisticsComponent < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/context/modules/storefront/statistics/RealTimeStoreFrontStatistics"
-require "org/allbinary/business/context/modules/storefront/statistics/RealTimeStoreFrontStatisticsView"
-require "org/allbinary/data/tree/dom/DomNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :RealTimeStoreFrontStatistics, "org/allbinary/business/context/modules/storefront/statistics/RealTimeStoreFrontStatistics"
+autoload :RealTimeStoreFrontStatisticsView, "org/allbinary/business/context/modules/storefront/statistics/RealTimeStoreFrontStatisticsView"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

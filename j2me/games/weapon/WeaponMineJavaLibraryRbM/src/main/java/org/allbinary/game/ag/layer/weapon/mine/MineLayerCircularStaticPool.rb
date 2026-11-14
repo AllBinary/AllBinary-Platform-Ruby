@@ -28,14 +28,36 @@ class MineLayerCircularStaticPool
     def self.getInstance()
         return MineLayerCircularStaticPool::WEAPON_LAYER_CIRCULAR_STATIC_POOL
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:WEAPON_LAYER_CIRCULAR_STATIC_POOL, WeaponLayerCircularPool.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MineLayerCircularStaticPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:WEAPON_LAYER_CIRCULAR_STATIC_POOL].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/layer/weapon/WeaponLayerCircularPool"
-require "org/allbinary/view/ViewPositionFactoryInterface"
-require "org/allbinary/game/ag/layer/weapon/mine/MineCountedPickedUpLayerInterfaceFactory"
-require "org/allbinary/game/ag/layer/weapon/mine/MineLayerFactory"
+autoload :WeaponLayerCircularPool, "org/allbinary/game/layer/weapon/WeaponLayerCircularPool"
+autoload :ViewPositionFactoryInterface, "org/allbinary/view/ViewPositionFactoryInterface"
+autoload :MineCountedPickedUpLayerInterfaceFactory, "org/allbinary/game/ag/layer/weapon/mine/MineCountedPickedUpLayerInterfaceFactory"
+autoload :MineLayerFactory, "org/allbinary/game/ag/layer/weapon/mine/MineLayerFactory"
 
-class MineLayerCircularStaticPool
-    WEAPON_LAYER_CIRCULAR_STATIC_POOL = WeaponLayerCircularPool.new()
+begin
+    MineLayerCircularStaticPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

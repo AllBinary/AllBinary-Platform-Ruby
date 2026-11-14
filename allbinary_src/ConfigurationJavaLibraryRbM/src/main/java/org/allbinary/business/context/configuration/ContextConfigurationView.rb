@@ -62,14 +62,14 @@ class ContextConfigurationView
     end
 end
 
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationData"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationView"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/business/context/configuration/ContextConfiguration"
-require "org/allbinary/business/context/configuration/ContextConfigurationData"
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :EmailServerConfigurationData, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationData"
+autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
+autoload :EmailServerConfigurationView, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationView"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :ContextConfiguration, "org/allbinary/business/context/configuration/ContextConfiguration"
+autoload :ContextConfigurationData, "org/allbinary/business/context/configuration/ContextConfigurationData"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
 

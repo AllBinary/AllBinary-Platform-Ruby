@@ -24,5 +24,5 @@ module Bundle
     end
 end
 
-require "org/osgi/framework/BundleException"
+autoload :BundleException, "org/osgi/framework/BundleException"
 

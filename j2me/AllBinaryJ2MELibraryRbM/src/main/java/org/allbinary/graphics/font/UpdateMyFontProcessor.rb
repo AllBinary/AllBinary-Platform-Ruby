@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.font
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/MyFontProcessor"
 
 class UpdateMyFontProcessor < MyFontProcessor
@@ -37,5 +36,6 @@ class UpdateMyFontProcessor < MyFontProcessor
     end
 end
 
-require "org/allbinary/graphics/font/UpdateMyFontInterface"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :UpdateMyFontInterface, "org/allbinary/graphics/font/UpdateMyFontInterface"
 

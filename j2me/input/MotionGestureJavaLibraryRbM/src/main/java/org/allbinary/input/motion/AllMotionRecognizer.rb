@@ -110,30 +110,56 @@ class AllMotionRecognizer < MotionRecognizer
     end
 
     def self.index()
+        AllMotionRecognizer.java_static_fields unless @java_static_fields_started
         return defined?(@@index) ? @@index : nil
     end
 
     def self.index=(value)
+        AllMotionRecognizer.java_static_fields unless @java_static_fields_started
         @@index = value
     end
 
     def self.pointCircularPool()
+        AllMotionRecognizer.java_static_fields unless @java_static_fields_started
         return defined?(@@pointCircularPool) ? @@pointCircularPool : nil
     end
 
     def self.pointCircularPool=(value)
+        AllMotionRecognizer.java_static_fields unless @java_static_fields_started
         @@pointCircularPool = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@index = 0
+        begin
+            @@pointCircularPool = GPointCircularPool.new(40)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllMotionRecognizer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/CustomGPoint"
-require "org/allbinary/graphics/GPointCircularPool"
-require "org/allbinary/input/motion/button/TouchButtonRecognizer"
-require "org/allbinary/input/motion/gesture/MotionGestureRecognizer"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
+autoload :GPointCircularPool, "org/allbinary/graphics/GPointCircularPool"
+autoload :TouchButtonRecognizer, "org/allbinary/input/motion/button/TouchButtonRecognizer"
+autoload :MotionGestureRecognizer, "org/allbinary/input/motion/gesture/MotionGestureRecognizer"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 
-class AllMotionRecognizer
-    @@index = 0
-    @@pointCircularPool = GPointCircularPool.new(40)
+begin
+    AllMotionRecognizer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

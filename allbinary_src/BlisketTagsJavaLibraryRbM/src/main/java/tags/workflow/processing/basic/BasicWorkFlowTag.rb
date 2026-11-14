@@ -50,7 +50,7 @@ class BasicWorkFlowTag < StoreWorkFlowTag
     end
 end
 
-require "org/allbinary/business/DynamicObjectData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

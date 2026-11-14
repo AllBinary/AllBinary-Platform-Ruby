@@ -21,19 +21,22 @@ module DemoGameMidletEventListener
     
 
     def onDemoStart()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onGameStart()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDemoGameMidletEvent(demoGameMidletEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/midlet/DemoGameMidletEvent"
+autoload :DemoGameMidletEvent, "org/allbinary/game/midlet/DemoGameMidletEvent"
 

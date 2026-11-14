@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.draw
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 
 class KeyValueDrawCharArray
@@ -58,7 +57,8 @@ class KeyValueDrawCharArray
     end
 end
 
-require "org/allbinary/logic/java/character/CharArrayFactory"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :CharArrayFactory, "org/allbinary/logic/java/character/CharArrayFactory"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
 

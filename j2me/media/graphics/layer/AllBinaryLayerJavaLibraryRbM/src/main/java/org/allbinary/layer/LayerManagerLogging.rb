@@ -105,32 +105,58 @@ class LayerManagerLogging < LayerManagerLoggingBase
     end
 
     def self.instance()
+        LayerManagerLogging.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LayerManagerLogging.java_static_fields unless @java_static_fields_started
         @@instance = value
     end
 
     def self.removeFailed()
+        LayerManagerLogging.java_static_fields unless @java_static_fields_started
         return defined?(@@removeFailed) ? @@removeFailed : nil
     end
 
     def self.removeFailed=(value)
+        LayerManagerLogging.java_static_fields unless @java_static_fields_started
         @@removeFailed = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@removeFailed = false
+        begin
+            @@instance = LayerManagerLogging.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LayerManagerLogging"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/LayerManager"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LayerManager, "org/allbinary/layer/LayerManager"
 
-class LayerManagerLogging
-    @@instance = LayerManagerLogging.new()
-    @@removeFailed = false
+begin
+    LayerManagerLogging.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

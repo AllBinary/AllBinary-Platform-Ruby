@@ -60,6 +60,6 @@ class UserRole
     end
 end
 
-require "org/allbinary/business/user/UserFactoryInterface"
-require "org/allbinary/business/user/role/BasicUserRole"
+autoload :UserFactoryInterface, "org/allbinary/business/user/UserFactoryInterface"
+autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
 

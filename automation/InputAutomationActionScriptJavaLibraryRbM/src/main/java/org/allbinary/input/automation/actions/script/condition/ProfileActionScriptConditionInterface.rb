@@ -40,5 +40,5 @@ module ProfileActionScriptConditionInterface
     end
 end
 
-require "org/allbinary/input/automation/actions/script/condition/processors/ProfileActionScriptProcessorInterface"
+autoload :ProfileActionScriptProcessorInterface, "org/allbinary/input/automation/actions/script/condition/processors/ProfileActionScriptProcessorInterface"
 

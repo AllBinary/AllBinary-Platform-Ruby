@@ -41,7 +41,7 @@ class SingleSensorGameUpdateProcessor < SensorGameUpdateProcessor
     end
 end
 
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/input/gyro/AccelerometerSensorUpdateProcessor"
-require "org/allbinary/input/gyro/GyroSensorUpdateProcessor"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :AccelerometerSensorUpdateProcessor, "org/allbinary/input/gyro/AccelerometerSensorUpdateProcessor"
+autoload :GyroSensorUpdateProcessor, "org/allbinary/input/gyro/GyroSensorUpdateProcessor"
 

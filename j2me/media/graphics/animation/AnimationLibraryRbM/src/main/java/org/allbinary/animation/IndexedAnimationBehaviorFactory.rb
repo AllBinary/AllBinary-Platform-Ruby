@@ -38,6 +38,6 @@ class IndexedAnimationBehaviorFactory < AnimationBehaviorFactory
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/animation/IndexedAnimationBehavior"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :IndexedAnimationBehavior, "org/allbinary/animation/IndexedAnimationBehavior"
 

@@ -125,15 +125,15 @@ class QuoteRequestEntity < AbSqlBean
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/init/db/UserDbInitInfo"
-require "org/allbinary/business/quoterequest/QuoteRequestData"
-require "org/allbinary/business/user/UserData"
-require "org/allbinary/business/user/quoterequest/QuoteRequest"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :UserDbInitInfo, "org/allbinary/business/init/db/UserDbInitInfo"
+autoload :QuoteRequestData, "org/allbinary/business/quoterequest/QuoteRequestData"
+autoload :UserData, "org/allbinary/business/user/UserData"
+autoload :QuoteRequest, "org/allbinary/business/user/quoterequest/QuoteRequest"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

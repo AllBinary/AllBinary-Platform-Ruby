@@ -22,15 +22,17 @@ module LayerManagerEventListenerInterface
 
     # throws Exception
     def onCreateLayerManagerEvent(layerManagerEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def onDeleteLayerManagerEvent(layerManagerEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/layer/event/LayerManagerEvent"
+autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent"
 

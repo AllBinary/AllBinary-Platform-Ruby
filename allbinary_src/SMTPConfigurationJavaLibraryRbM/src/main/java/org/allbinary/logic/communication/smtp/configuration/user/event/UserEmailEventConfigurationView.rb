@@ -69,15 +69,15 @@ class UserEmailEventConfigurationView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/StdUtil"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfiguration"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationData"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationInterface"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationMapping"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :UserEmailEventConfiguration, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfiguration"
+autoload :UserEmailEventConfigurationData, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationData"
+autoload :UserEmailEventConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationInterface"
+autoload :UserEmailEventConfigurationMapping, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationMapping"
 

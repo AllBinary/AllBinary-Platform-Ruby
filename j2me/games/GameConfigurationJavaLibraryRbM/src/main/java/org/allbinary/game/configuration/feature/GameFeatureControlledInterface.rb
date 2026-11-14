@@ -20,16 +20,19 @@ module GameFeatureControlledInterface
 
     # throws Exception
     def init(level)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isFeature()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isLoadingLevel(level)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

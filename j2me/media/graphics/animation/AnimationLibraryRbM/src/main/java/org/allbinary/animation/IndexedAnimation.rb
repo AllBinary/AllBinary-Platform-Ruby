@@ -105,8 +105,8 @@ class IndexedAnimation < Animation
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/animation/AnimationBehavior"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

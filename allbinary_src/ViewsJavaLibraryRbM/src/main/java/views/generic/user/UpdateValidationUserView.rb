@@ -93,12 +93,12 @@ class UpdateValidationUserView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/business/user/NewUserFactory"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/data/tables/user/UserEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :NewUserFactory, "org/allbinary/business/user/NewUserFactory"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :UserEntityFactory, "org/allbinary/data/tables/user/UserEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

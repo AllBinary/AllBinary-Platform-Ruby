@@ -49,10 +49,10 @@ class TransformInfoObjectConfigAndManipulatorFactoryBase
     end
 end
 
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :TransformInfoObjectConfigInterface, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
 

@@ -54,10 +54,10 @@ class PaymentProcessorComponent < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactory"
-require "org/allbinary/data/tree/dom/DomNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :PaymentProcessorInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterface"
+autoload :PaymentProcessorInterfaceFactory, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactory"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

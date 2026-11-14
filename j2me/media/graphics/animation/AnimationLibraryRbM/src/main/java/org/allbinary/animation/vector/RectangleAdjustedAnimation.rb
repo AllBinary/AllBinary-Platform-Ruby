@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.vector
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/Animation"
 require "org/allbinary/graphics/color/ColorCompositeInterface"
 
@@ -69,7 +68,18 @@ class RectangleAdjustedAnimation < Animation
     def setOffsetY(offsetY)
         @offsetY = offsetY
     end
+    
+
+    def getBasicColorP()
+        return super()
+    end
+    
+
+    def setBasicColorP(basicColor)
+        super(basicColor)
+    end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

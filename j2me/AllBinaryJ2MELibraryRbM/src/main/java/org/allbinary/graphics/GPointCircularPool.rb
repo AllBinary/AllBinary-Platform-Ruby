@@ -29,6 +29,6 @@ class GPointCircularPool < BaseCircularPool
     end
 end
 
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/graphics/CustomGPoint"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
 

@@ -14,8 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.feature
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Graphics"
+require "javax/microedition/lcdui/Canvas"
 
 class GameFeatureCanvas < Canvas
     
@@ -28,4 +27,6 @@ class GameFeatureCanvas < Canvas
     def paint(graphics)
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

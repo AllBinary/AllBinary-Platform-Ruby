@@ -21,9 +21,10 @@ module CompleteMotionGestureInputEventListenerInterface
     
 
     def onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/input/CompleteMotionGestureInputEvent"
+autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
 

@@ -55,10 +55,10 @@ class EndGameProcessor < Processor
     end
 end
 
-require "org/allbinary/game/score/HighScores"
-require "org/allbinary/game/score/HighScoresHelperBase"
-require "org/allbinary/game/score/NullHighScoresSingletonFactory"
-require "org/allbinary/game/state/GameStateFactory"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
+autoload :HighScoresHelperBase, "org/allbinary/game/score/HighScoresHelperBase"
+autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
+autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

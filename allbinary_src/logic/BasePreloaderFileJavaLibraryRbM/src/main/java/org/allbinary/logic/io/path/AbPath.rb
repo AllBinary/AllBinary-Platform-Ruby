@@ -151,18 +151,40 @@ class AbPath
     def setPath(path)
         @path = path
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NETWORK_SEP, ":/")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AbPath"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NETWORK_SEP].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/io/file/FilePathData"
-require "org/allbinary/logic/io/file/FilePathUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/io/path/PathUtil"
+autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
+autoload :FilePathUtil, "org/allbinary/logic/io/file/FilePathUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil"
 
-class AbPath
-    NETWORK_SEP = ":/"
+begin
+    AbPath.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

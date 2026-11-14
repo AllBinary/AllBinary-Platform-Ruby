@@ -27,12 +27,34 @@ class NullInputMappingEventListener
 
     def onEvent(eventObject)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_INPUT_MAPPING_EVENT_LISTENER, NullInputMappingEventListener.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullInputMappingEventListener"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_INPUT_MAPPING_EVENT_LISTENER].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/game/input/mapping/event/InputMappingEvent"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
 
-class NullInputMappingEventListener
-    NULL_INPUT_MAPPING_EVENT_LISTENER = NullInputMappingEventListener.new()
+begin
+    NullInputMappingEventListener.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

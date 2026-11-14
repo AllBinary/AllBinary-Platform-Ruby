@@ -91,10 +91,10 @@ class ImmediateCommandFormInputProcessor < CommandFormInputProcessor
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/displayable/canvas/GameCommandCanvas"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :GameCommandCanvas, "org/allbinary/game/displayable/canvas/GameCommandCanvas"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.vector
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/Animation"
 require "org/allbinary/graphics/color/ColorCompositeInterface"
 require "org/allbinary/layer/PositionInterface"
@@ -69,8 +68,19 @@ class LineAnimation < Animation
 
     def nextFrame()
     end
+    
+
+    def getBasicColorP()
+        return super()
+    end
+    
+
+    def setBasicColorP(basicColor)
+        super(basicColor)
+    end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/NullUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
 

@@ -41,8 +41,8 @@ class LineAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/vector/LineAnimation"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :LineAnimation, "org/allbinary/animation/vector/LineAnimation"
 

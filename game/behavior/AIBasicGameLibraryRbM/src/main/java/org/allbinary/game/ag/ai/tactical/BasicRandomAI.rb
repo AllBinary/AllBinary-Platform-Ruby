@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.tactical
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/BasicAI"
 
 class BasicRandomAI < BasicAI
@@ -67,11 +66,12 @@ class BasicRandomAI < BasicAI
     end
 end
 
-require "org/allbinary/game/ag/ai/InputProbability"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/rand/MyRandomFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/util/visitor/Visitor"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :InputProbability, "org/allbinary/game/ag/ai/InputProbability"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
 

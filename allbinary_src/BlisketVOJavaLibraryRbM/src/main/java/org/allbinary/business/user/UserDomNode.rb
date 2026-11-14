@@ -54,12 +54,12 @@ class UserDomNode
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/data/tables/TableMappingInterface"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/string/StringUtil"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/user/UserData"
+autoload :HashMap, "java/util/HashMap"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :TableMappingInterface, "org/allbinary/data/tables/TableMappingInterface"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :UserData, "org/allbinary/business/user/UserData"
 

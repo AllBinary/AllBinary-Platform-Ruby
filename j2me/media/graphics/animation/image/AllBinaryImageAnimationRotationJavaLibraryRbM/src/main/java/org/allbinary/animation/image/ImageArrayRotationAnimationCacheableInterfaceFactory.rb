@@ -26,7 +26,7 @@ class ImageArrayRotationAnimationCacheableInterfaceFactory
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/logic/util/cache/CacheableInterface"
-require "org/allbinary/animation/image/ImageArrayRotationAnimationCacheable"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :ImageArrayRotationAnimationCacheable, "org/allbinary/animation/image/ImageArrayRotationAnimationCacheable"
 

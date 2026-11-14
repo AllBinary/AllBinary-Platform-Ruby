@@ -21,24 +21,28 @@ module CompoundAnimationInterface
     
 
     def nextAnimation()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def previousAnimation()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setAnimation(index)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getCurrentAnimation()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/animation/IndexedAnimation"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
 

@@ -103,11 +103,11 @@ class MultipartRequestParams < RequestParams
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/file/upload/AbFileUploadFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/apache/commons/fileupload/FileItem"
-require "org/apache/commons/fileupload/FileUploadBase/InvalidContentTypeException"
+autoload :HashMap, "java/util/HashMap"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbFileUploadFactory, "org/allbinary/logic/communication/http/file/upload/AbFileUploadFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :FileItem, "org/apache/commons/fileupload/FileItem"
+autoload :InvalidContentTypeException, "org/apache/commons/fileupload/FileUploadBase/InvalidContentTypeException"
 

@@ -23,7 +23,7 @@ module RemoteHighScoresSubmissionProcessorInterface
     end
 end
 
-require "org/allbinary/game/score/HighScore"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/game/score/remote/RemoteHighScores"
+autoload :HighScore, "org/allbinary/game/score/HighScore"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :RemoteHighScores, "org/allbinary/game/score/remote/RemoteHighScores"
 

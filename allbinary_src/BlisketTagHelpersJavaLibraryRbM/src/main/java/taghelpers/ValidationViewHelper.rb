@@ -89,8 +89,8 @@ class ValidationViewHelper < ViewHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

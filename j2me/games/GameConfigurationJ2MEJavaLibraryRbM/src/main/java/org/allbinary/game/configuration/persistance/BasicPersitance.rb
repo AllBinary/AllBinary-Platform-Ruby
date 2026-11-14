@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.persistance
 
-# require "javax/microedition/rms/RecordStore"
 
 class BasicPersitance
     attr_accessor :logUtil, :commonStrings, :persistanceStrings, :platformRecordIdUtil, :recordId, :valueList, :idList
@@ -92,14 +91,15 @@ class BasicPersitance
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/persistance/PlatformRecordIdUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/configuration/persistance/NullRecordStore"
-require "org/allbinary/game/configuration/persistance/PersistanceStrings"
+autoload :RecordStore, "javax/microedition/rms/RecordStore"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :PlatformRecordIdUtil, "org/allbinary/persistance/PlatformRecordIdUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :NullRecordStore, "org/allbinary/game/configuration/persistance/NullRecordStore"
+autoload :PersistanceStrings, "org/allbinary/game/configuration/persistance/PersistanceStrings"
 

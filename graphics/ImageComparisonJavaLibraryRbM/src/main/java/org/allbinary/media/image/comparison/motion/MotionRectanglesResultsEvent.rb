@@ -48,5 +48,5 @@ class MotionRectanglesResultsEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/media/image/comparison/motion/MotionRectangles"
+autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles"
 

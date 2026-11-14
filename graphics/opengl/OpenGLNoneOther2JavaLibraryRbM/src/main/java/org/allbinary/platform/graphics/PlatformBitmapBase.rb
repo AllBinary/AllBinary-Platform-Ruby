@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.platform.graphics
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
 
 class PlatformBitmapBase
     attr_accessor :alpha, :basicColor
@@ -43,12 +41,36 @@ class PlatformBitmapBase
     def getImage()
         return NullImage::NULL_IMAGE
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_PLATFORM_BITMAP_BASE, PlatformBitmapBase.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PlatformBitmapBase"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_PLATFORM_BITMAP_BASE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
 
-class PlatformBitmapBase
-    NULL_PLATFORM_BITMAP_BASE = PlatformBitmapBase.new()
+begin
+    PlatformBitmapBase.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
 #TWB - Adjustments should be done in the resource creation and not at the animation level
@@ -63,13 +62,14 @@ class PooledImageArrayRotationAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/game/configuration/GameConfigurationCentral"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/media/image/ImageToRotationImageArrayUtil"
-require "org/allbinary/animation/image/AdjustedImageArrayRotationAnimation"
-require "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :ImageToRotationImageArrayUtil, "org/allbinary/media/image/ImageToRotationImageArrayUtil"
+autoload :AdjustedImageArrayRotationAnimation, "org/allbinary/animation/image/AdjustedImageArrayRotationAnimation"
+autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
 

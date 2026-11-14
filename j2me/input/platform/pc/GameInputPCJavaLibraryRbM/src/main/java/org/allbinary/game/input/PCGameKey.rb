@@ -14,6 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "org/allbinary/game/input/Input"
 
 class PCGameKey < Input
     
@@ -43,5 +44,6 @@ class PCGameKey < Input
     end
 end
 
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
 

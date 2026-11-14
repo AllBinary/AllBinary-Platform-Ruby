@@ -43,11 +43,11 @@ class CollidableCharacterBehavior < CollidableDestroyableDamageableBehavior
     end
 end
 
-require "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-require "org/allbinary/game/collision/CollisionType"
-require "org/allbinary/game/collision/CollisionTypeFactory"
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
+autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
 

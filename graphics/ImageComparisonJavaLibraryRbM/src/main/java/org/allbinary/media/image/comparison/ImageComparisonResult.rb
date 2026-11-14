@@ -125,12 +125,12 @@ class ImageComparisonResult
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/image/ImageUtil"
-require "org/allbinary/media/image/comparison/pixel/PixelDelta"
-require "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
+autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

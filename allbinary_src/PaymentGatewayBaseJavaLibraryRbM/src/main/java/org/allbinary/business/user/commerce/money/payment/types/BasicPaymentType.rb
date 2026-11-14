@@ -115,15 +115,15 @@ class BasicPaymentType
     alias_method :to_s, :toString
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterfaceFactoryInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/modules/gateway/PaymentGatewayDomNodeFactoryInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/regex/replace/Replace"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :PaymentGatewayInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterfaceFactoryInterface"
+autoload :PaymentGatewayDomNodeFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/modules/gateway/PaymentGatewayDomNodeFactoryInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :BasicPaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
 

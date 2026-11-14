@@ -56,7 +56,7 @@ class TerrainEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/game/terrain/BasicTerrainInfo"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :BasicTerrainInfo, "org/allbinary/game/terrain/BasicTerrainInfo"
 

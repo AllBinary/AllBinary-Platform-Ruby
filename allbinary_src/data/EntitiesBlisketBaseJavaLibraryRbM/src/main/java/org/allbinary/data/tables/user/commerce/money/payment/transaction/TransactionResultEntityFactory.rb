@@ -46,19 +46,43 @@ class TransactionResultEntityFactory
     end
 
     def self.instance()
+        TransactionResultEntityFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransactionResultEntityFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransactionResultEntityFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransactionResultEntityFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tables/user/commerce/money/payment/transaction/TransactionResultEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TransactionResultEntity, "org/allbinary/data/tables/user/commerce/money/payment/transaction/TransactionResultEntity"
 
-class TransactionResultEntityFactory
-    @@instance = TransactionResultEntityFactory.new()
+begin
+    TransactionResultEntityFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -24,7 +24,7 @@ module PaymentProcessorInterfaceFactoryInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterface"
+autoload :PaymentTransactionInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :PaymentProcessorInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterface"
 

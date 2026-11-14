@@ -76,23 +76,45 @@ class ComparisonImageInputOutput
         imagePersistanceUtil.saveWithImageIO(filePath1, bufferedImageArray[0])
         imagePersistanceUtil.saveWithImageIO(filePath2, bufferedImageArray[1])
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:ROOT_NAME, "_Changed_")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ComparisonImageInputOutput"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:ROOT_NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/input/automation/ImageOutputData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/number/LongUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/util/cache/AutomaticCacheInterface"
-require "org/allbinary/logic/visual/media/MediaDataFactory"
-require "org/allbinary/media/image/ImagePersistanceUtil"
-require "org/allbinary/media/image/cache/BufferedImageCacheable"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/image/comparison/ChangedPixelsUtil"
-require "org/allbinary/media/image/comparison/ImageComparisonResult"
-require "org/allbinary/media/image/comparison/ImageComparisonResultCacheSingleton"
-require "org/allbinary/media/image/comparison/ImageComparisonResultFrameCacheable"
+autoload :ImageOutputData, "org/allbinary/input/automation/ImageOutputData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LongUtil, "org/allbinary/logic/java/number/LongUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+autoload :MediaDataFactory, "org/allbinary/logic/visual/media/MediaDataFactory"
+autoload :ImagePersistanceUtil, "org/allbinary/media/image/ImagePersistanceUtil"
+autoload :BufferedImageCacheable, "org/allbinary/media/image/cache/BufferedImageCacheable"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ChangedPixelsUtil, "org/allbinary/media/image/comparison/ChangedPixelsUtil"
+autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
+autoload :ImageComparisonResultCacheSingleton, "org/allbinary/media/image/comparison/ImageComparisonResultCacheSingleton"
+autoload :ImageComparisonResultFrameCacheable, "org/allbinary/media/image/comparison/ImageComparisonResultFrameCacheable"
 
-class ComparisonImageInputOutput
-    ROOT_NAME = "_Changed_"
+begin
+    ComparisonImageInputOutput.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

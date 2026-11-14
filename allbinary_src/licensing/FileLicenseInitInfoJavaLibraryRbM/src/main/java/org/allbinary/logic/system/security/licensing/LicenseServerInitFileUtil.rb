@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.security.licensing
 
-# require "java/io/InputStream"
-# require "java/io/OutputStream"
 
 class LicenseServerInitFileUtil
     attr_accessor :logUtil, :commonStrings, :NULL_OUTPUT_STREAM
@@ -75,13 +73,15 @@ class LicenseServerInitFileUtil
     end
 end
 
-require "org/allbinary/business/init/LicenseInitInfoUtil"
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/FileStreamFactory"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/io/file/FileFactory"
-require "org/allbinary/logic/io/file/SimpleFileUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :InputStream, "java/io/InputStream"
+autoload :OutputStream, "java/io/OutputStream"
+autoload :LicenseInitInfoUtil, "org/allbinary/business/init/LicenseInitInfoUtil"
+autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory"
+autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
+autoload :FileFactory, "org/allbinary/logic/io/file/FileFactory"
+autoload :SimpleFileUtil, "org/allbinary/logic/io/file/SimpleFileUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

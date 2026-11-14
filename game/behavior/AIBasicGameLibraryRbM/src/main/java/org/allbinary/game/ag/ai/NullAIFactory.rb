@@ -29,15 +29,37 @@ class NullAIFactory
     def self.getInstance()
         return NullAIFactory::NULL_AI
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_AI, NullAI.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullAIFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_AI].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/ag/ai/NullAI"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :NullAI, "org/allbinary/game/ag/ai/NullAI"
 
-class NullAIFactory
-    NULL_AI = NullAI.new()
+begin
+    NullAIFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

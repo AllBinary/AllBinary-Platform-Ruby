@@ -37,19 +37,43 @@ class TransformInfoHttpStoreFactory
     end
 
     def self.instance()
+        TransformInfoHttpStoreFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformInfoHttpStoreFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformInfoHttpStoreFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformInfoHttpStoreFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpStore"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :TransformInfoHttpStore, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStore"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 
-class TransformInfoHttpStoreFactory
-    @@instance = TransformInfoHttpStoreFactory.new()
+begin
+    TransformInfoHttpStoreFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

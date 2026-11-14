@@ -46,12 +46,12 @@ class FullTouchButton < TouchButton
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/graphics/CellPosition"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/input/motion/button/TouchButtonInput"
-require "org/allbinary/input/motion/button/TouchButtonResource"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :CellPosition, "org/allbinary/graphics/CellPosition"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput"
+autoload :TouchButtonResource, "org/allbinary/input/motion/button/TouchButtonResource"
 

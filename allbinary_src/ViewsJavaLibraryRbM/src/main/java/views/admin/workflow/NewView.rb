@@ -71,14 +71,14 @@ class NewView < WorkFlowView
     end
 end
 
-require "org/allbinary/business/DynamicObjectData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/workflow/NewWorkFlowFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :NewWorkFlowFactory, "org/allbinary/logic/control/workflow/NewWorkFlowFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

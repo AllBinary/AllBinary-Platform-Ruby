@@ -81,9 +81,9 @@ class StoreWorkFlowTag < HelperTag
     end
 end
 
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/logic/visual/transform/info/TransformInfoData"
-require "taghelpers/StoreTagWorkFlowHelperFactory"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
+autoload :StoreTagWorkFlowHelperFactory, "taghelpers/StoreTagWorkFlowHelperFactory"
 

@@ -25,5 +25,5 @@ module ImageComparisonResultsListener
     end
 end
 
-require "org/allbinary/media/image/comparison/ImageComparisonResultsEvent"
+autoload :ImageComparisonResultsEvent, "org/allbinary/media/image/comparison/ImageComparisonResultsEvent"
 

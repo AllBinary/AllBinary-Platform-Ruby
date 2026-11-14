@@ -19,14 +19,16 @@ module LayerPlacementInterfaceBasicArrayListFactoryInterface
     
 
     def getInstance()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getOnDemandResources()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

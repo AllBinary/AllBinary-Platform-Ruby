@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/color/ColorChangeListener"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/Paintable"
@@ -107,16 +105,18 @@ class HighScoresPaintable < Paintable
     end
 end
 
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/color/ColorChangeEvent"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/score/HighScore"
-require "org/allbinary/game/score/HighScores"
-require "org/allbinary/game/score/NullHighScoresSingletonFactory"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :ColorChangeEvent, "org/allbinary/graphics/color/ColorChangeEvent"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :HighScore, "org/allbinary/game/score/HighScore"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
+autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
 

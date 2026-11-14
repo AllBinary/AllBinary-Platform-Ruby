@@ -62,9 +62,9 @@ class UserEmailConfiguration
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfiguration"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfigurationInterface"
-require "org/allbinary/string/CommonStrings"
+autoload :HashMap, "java/util/HashMap"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :UserEmailEventsConfiguration, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfiguration"
+autoload :UserEmailEventsConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfigurationInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

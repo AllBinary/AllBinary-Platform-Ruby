@@ -47,9 +47,9 @@ module WorkFlowEntityInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/control/workflow/WorkFlowInterface"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/input/PlayerGameInputCompositeInterface"
 require "org/allbinary/game/layer/AllBinaryGameLayer"
 
@@ -54,12 +53,13 @@ class PlayerGameInputGameLayer < AllBinaryGameLayer
     end
 end
 
-require "org/allbinary/game/input/PlayerGameInput"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/view/StaticViewPosition"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StaticViewPosition, "org/allbinary/view/StaticViewPosition"
 

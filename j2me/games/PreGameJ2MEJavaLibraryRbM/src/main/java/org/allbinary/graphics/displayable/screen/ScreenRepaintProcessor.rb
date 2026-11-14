@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.screen
 
-# require "javax/microedition/lcdui/Displayable"
 require "org/allbinary/canvas/Processor"
 
 class ScreenRepaintProcessor < Processor
@@ -38,5 +37,6 @@ class ScreenRepaintProcessor < Processor
     end
 end
 
-require "org/allbinary/graphics/displayable/screen/ScreenRepaintUtil"
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :ScreenRepaintUtil, "org/allbinary/graphics/displayable/screen/ScreenRepaintUtil"
 

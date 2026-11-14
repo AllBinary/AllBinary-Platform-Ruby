@@ -22,9 +22,10 @@ module DisplayChangeEventListener
 
     # throws Exception
     def onDisplayChangeEvent(displayChangeEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
+autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.special
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/special/SpecialAnimation"
 
 class TitleAnimation < SpecialAnimation
@@ -151,12 +150,13 @@ class TitleAnimation < SpecialAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/animation/IndexedAnimationBehavior"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/logic/ABSystemWrapper"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :IndexedAnimationBehavior, "org/allbinary/animation/IndexedAnimationBehavior"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
 

@@ -21,16 +21,19 @@ module PriorityRunnable
     
 
     def getPriority()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isDone()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def reset()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

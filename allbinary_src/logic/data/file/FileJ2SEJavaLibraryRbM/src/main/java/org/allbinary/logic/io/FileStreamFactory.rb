@@ -20,7 +20,7 @@ class FileStreamFactory
 
     def self.getInstance()
         if FileStreamFactory::SINGLETON == NullUtil.getInstance().NULL_OBJECT
-            FileStreamFactory::SINGLETON = FileStreamFactory.new()
+            (FileStreamFactory.send(:remove_const, :SINGLETON) if FileStreamFactory.const_defined?(:SINGLETON, false); FileStreamFactory.const_set(:SINGLETON, FileStreamFactory.new()))
         end
         return FileStreamFactory::SINGLETON
     end
@@ -34,7 +34,7 @@ class FileStreamFactory
     def getFileInputStreamInstance(path, fileName)
         _FILEABPATH = AbPath.new(path, fileName)
         file = AbFile.createAbFileFromAbPath(_FILEABPATH)
-        return AbFileInputStream.new(file)
+        return AbFileInputStream.createFromAbFile(file)
     end
     
 
@@ -56,15 +56,37 @@ class FileStreamFactory
         file = AbFile.createAbFileFromAbPath(_FILEABPATH)
         file.delete()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FileStreamFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/AbFileInputStream"
-require "org/allbinary/logic/io/AbFileOutputStream"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream"
+autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream"
 
-class FileStreamFactory
-    SINGLETON = NullUtil.getInstance().NULL_OBJECT
+begin
+    FileStreamFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

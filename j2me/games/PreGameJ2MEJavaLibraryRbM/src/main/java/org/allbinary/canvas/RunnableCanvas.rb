@@ -15,7 +15,6 @@
 # package org.allbinary.canvas
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/CommandListener"
 require "org/allbinary/graphics/displayable/MyCanvas"
 require "org/allbinary/thread/RunnableInterface"
 
@@ -239,20 +238,21 @@ class RunnableCanvas < MyCanvas
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/game/displayable/canvas/NullWaitGameRunnable"
-require "org/allbinary/logic/ABSystemWrapper"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/NullThread"
-require "org/allbinary/thread/ThreadObjectUtil"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/canvas/RunnableCanvasRefreshHelper"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :NullWaitGameRunnable, "org/allbinary/game/displayable/canvas/NullWaitGameRunnable"
+autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :NullThread, "org/allbinary/thread/NullThread"
+autoload :ThreadObjectUtil, "org/allbinary/thread/ThreadObjectUtil"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :RunnableCanvasRefreshHelper, "org/allbinary/canvas/RunnableCanvasRefreshHelper"
 require "java/lang/Thread"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
-# require "javax/microedition/lcdui/Graphics"
 
 class ItemPaintable
     
@@ -22,4 +21,6 @@ class ItemPaintable
     def paint(graphics, currentIndex, x, y)
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

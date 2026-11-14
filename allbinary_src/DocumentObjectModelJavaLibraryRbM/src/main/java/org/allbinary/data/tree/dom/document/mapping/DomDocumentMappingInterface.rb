@@ -24,5 +24,5 @@ module DomDocumentMappingInterface
     end
 end
 
-require "org/w3c/dom/Document"
+autoload :Document, "org/w3c/dom/Document"
 

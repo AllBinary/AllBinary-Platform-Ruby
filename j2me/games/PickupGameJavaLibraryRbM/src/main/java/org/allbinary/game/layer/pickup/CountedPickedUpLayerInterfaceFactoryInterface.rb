@@ -23,11 +23,13 @@ module CountedPickedUpLayerInterfaceFactoryInterface
     
 
     def getId()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getTotal()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

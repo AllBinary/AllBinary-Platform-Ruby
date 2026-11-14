@@ -41,8 +41,8 @@ class OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer < LayerPro
     end
 end
 
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/ai/OptimizedArtificialIntelligenceLayerManager"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :OptimizedArtificialIntelligenceLayerManager, "org/allbinary/ai/OptimizedArtificialIntelligenceLayerManager"
 

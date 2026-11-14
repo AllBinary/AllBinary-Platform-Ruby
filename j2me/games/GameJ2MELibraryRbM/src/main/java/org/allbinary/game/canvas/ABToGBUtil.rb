@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.canvas
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/NullCanvas"
 
 class ABToGBUtil
     attr_accessor :abCanvas, :allBinaryGameLayerManager
@@ -35,17 +33,43 @@ class ABToGBUtil
     end
 
     def self.instance()
+        ABToGBUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ABToGBUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ABToGBUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ABToGBUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
 
-class ABToGBUtil
-    @@instance = ABToGBUtil.new()
+begin
+    ABToGBUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

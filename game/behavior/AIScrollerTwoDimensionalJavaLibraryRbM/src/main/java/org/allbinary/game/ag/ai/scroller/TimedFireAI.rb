@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.scroller
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/BasicAI"
 
 class TimedFireAI < BasicAI
@@ -37,21 +36,44 @@ class TimedFireAI < BasicAI
     def processAI(allBinaryLayerManager)
         timeFiredInterface = self.getOwnerLayerInterface()
         if @maxFireDelayTimeHelper.isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) && timeFiredInterface.getLastFireTime() + @maxFireDelayTimeHelper.delay < @maxFireDelayTimeHelper.getStartTime()
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
+            TimedFireAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
             @maxFireDelayTimeHelper.delay = @delay
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:TIME, SmallIntegerSingletonFactory.getInstance().getAt(1))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TimedFireAI"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:TIME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/game/ag/ai/scroller/TimeFiredInterface"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :TimeFiredInterface, "org/allbinary/game/ag/ai/scroller/TimeFiredInterface"
 
-class TimedFireAI
-    TIME = SmallIntegerSingletonFactory.getInstance().getAt(1)
+begin
+    TimedFireAI.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -27,11 +27,11 @@ class TerrainPatrolAIFactory
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/ag/ai/scroller/BasePatrolAI"
-require "org/allbinary/game/ag/ai/scroller/TerrainPatrolAI"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasePatrolAI, "org/allbinary/game/ag/ai/scroller/BasePatrolAI"
+autoload :TerrainPatrolAI, "org/allbinary/game/ag/ai/scroller/TerrainPatrolAI"
 

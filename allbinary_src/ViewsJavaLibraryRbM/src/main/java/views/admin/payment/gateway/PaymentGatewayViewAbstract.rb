@@ -49,7 +49,7 @@ class PaymentGatewayViewAbstract < TransformInfoHttpComposite
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayPrimaryKey"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :PaymentGatewayPrimaryKey, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayPrimaryKey"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

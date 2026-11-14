@@ -48,18 +48,40 @@ class GameNotification
     def getSize()
         return @stringList.size()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_GAME_NOTIFICATION_EVENT, GameNotificationEvent.new(NullUtil.getInstance().NULL_OBJECT, StringUtil.getInstance().EMPTY_STRING, 0, BasicColorFactory.getInstance().RED, BooleanFactory.getInstance().FALSE))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameNotification"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_GAME_NOTIFICATION_EVENT].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/layer/hud/event/GameNotificationEvent"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 
-class GameNotification
-    NULL_GAME_NOTIFICATION_EVENT = GameNotificationEvent.new(NullUtil.getInstance().NULL_OBJECT, StringUtil.getInstance().EMPTY_STRING, 0, BasicColorFactory.getInstance().RED, BooleanFactory.getInstance().FALSE)
+begin
+    GameNotification.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

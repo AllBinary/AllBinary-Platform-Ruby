@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/SingletonAnimationInterfaceFactory"
 
 class ImageArraySingletonAnimationInterfaceFactory < SingletonAnimationInterfaceFactory
@@ -25,9 +24,10 @@ class ImageArraySingletonAnimationInterfaceFactory < SingletonAnimationInterface
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/image/IndexedAnimationToImageArrayUtil"
-require "org/allbinary/animation/image/ImageArrayAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :IndexedAnimationToImageArrayUtil, "org/allbinary/image/IndexedAnimationToImageArrayUtil"
+autoload :ImageArrayAnimation, "org/allbinary/animation/image/ImageArrayAnimation"
 

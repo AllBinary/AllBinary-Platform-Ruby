@@ -27,11 +27,8 @@ class BufferedIOUtil
         line = StringUtil.getInstance().EMPTY_STRING
         tmpOut = BufferedWriter.new(FileWriter.new(AbFileNativeUtil.get(backupFileBak)))
         tmpIn = BufferedReader.new(FileReader.new(AbFileNativeUtil.get(backupFile)))
-        while true
+        while tmpIn.ready()
             line = tmpIn.readLine()
-            if line == nil
-                break
-            end
             tmpOut.write(line, 0, line.length)
             tmpOut.newLine()
         end
@@ -39,7 +36,7 @@ class BufferedIOUtil
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/AbFileNativeUtil"
-require "org/allbinary/logic/string/StringUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

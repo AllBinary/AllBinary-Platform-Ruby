@@ -50,6 +50,9 @@ class J2MEGameInputMapping < PersistentInputMapping
     end
 end
 
-require "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :J2MEKeyFactory, "org/allbinary/game/input/J2MEKeyFactory"
 

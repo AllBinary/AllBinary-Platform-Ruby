@@ -44,13 +44,35 @@ class GameSkillType
         return @SPELL_GAME_SKILL_TYPE + self.getName()
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:MANA, GameSkillType.new("Mana"))
+            const_set(:REPLENISH, GameSkillType.new("Replenish"))
+            const_set(:TIMED, GameSkillType.new("Timed"))
+            const_set(:ATTACK, GameSkillType.new("Attack"))
+            const_set(:TRANSPORT, GameSkillType.new("Transport"))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameSkillType"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:MANA, :REPLENISH, :TIMED, :ATTACK, :TRANSPORT].include?(name)
+        end
+        super
+    end
 end
 
-class GameSkillType
-    MANA = GameSkillType.new("Mana")
-    REPLENISH = GameSkillType.new("Replenish")
-    TIMED = GameSkillType.new("Timed")
-    ATTACK = GameSkillType.new("Attack")
-    TRANSPORT = GameSkillType.new("Transport")
+begin
+    GameSkillType.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

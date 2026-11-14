@@ -41,25 +41,48 @@ class ColorCacheFactory
     end
 
     def self.cacheInterface()
+        ColorCacheFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@cacheInterface) ? @@cacheInterface : nil
     end
 
     def self.cacheInterface=(value)
+        ColorCacheFactory.java_static_fields unless @java_static_fields_started
         @@cacheInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@cacheInterface = nil
+        begin
+            static_init
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ColorCacheFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/cache/AutomaticCacheInterface"
-require "org/allbinary/logic/util/cache/AutomaticCacheInterfaceFactory"
-require "org/allbinary/logic/util/cache/CachePolicyFactory"
-require "org/allbinary/logic/util/cache/CacheTypeFactory"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/graphics/color/ColorCacheableFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+autoload :AutomaticCacheInterfaceFactory, "org/allbinary/logic/util/cache/AutomaticCacheInterfaceFactory"
+autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory"
+autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ColorCacheableFactory, "org/allbinary/graphics/color/ColorCacheableFactory"
 
-class ColorCacheFactory
-    @@cacheInterface = nil
+begin
+    ColorCacheFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
-
-ColorCacheFactory.static_init
 

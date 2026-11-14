@@ -25,10 +25,10 @@ class DamageWeaponLayer < WeaponLayer
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/physics/movement/Movement"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/game/layer/weapon/CollidableDamageWeaponBehavior"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :Movement, "org/allbinary/physics/movement/Movement"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :CollidableDamageWeaponBehavior, "org/allbinary/game/layer/weapon/CollidableDamageWeaponBehavior"
 

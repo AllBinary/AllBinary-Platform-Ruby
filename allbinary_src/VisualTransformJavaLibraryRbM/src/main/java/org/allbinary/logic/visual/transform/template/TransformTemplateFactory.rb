@@ -51,24 +51,48 @@ class TransformTemplateFactory
     end
 
     def self.instance()
+        TransformTemplateFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformTemplateFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformTemplateFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformTemplateFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tables/transform/info/TransformInfoEntity"
-require "org/allbinary/data/tables/transform/info/TransformInfoEntityBuilder"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoObjectFactory"
-require "org/allbinary/logic/visual/transform/template/TransformTemplateInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :TransformInfoEntity, "org/allbinary/data/tables/transform/info/TransformInfoEntity"
+autoload :TransformInfoEntityBuilder, "org/allbinary/data/tables/transform/info/TransformInfoEntityBuilder"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoObjectFactory, "org/allbinary/logic/visual/transform/info/TransformInfoObjectFactory"
+autoload :TransformTemplateInterface, "org/allbinary/logic/visual/transform/template/TransformTemplateInterface"
 
-class TransformTemplateFactory
-    @@instance = TransformTemplateFactory.new()
+begin
+    TransformTemplateFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

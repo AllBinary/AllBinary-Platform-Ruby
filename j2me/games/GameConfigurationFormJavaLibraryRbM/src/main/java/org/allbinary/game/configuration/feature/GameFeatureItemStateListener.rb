@@ -14,9 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.feature
 
-# require "javax/microedition/lcdui/ChoiceGroup"
-# require "javax/microedition/lcdui/Item"
-# require "javax/microedition/lcdui/ItemStateListener"
+require "javax/microedition/lcdui/ItemStateListener"
 
 class GameFeatureItemStateListener
     include ItemStateListener
@@ -71,28 +69,54 @@ class GameFeatureItemStateListener
     end
 
     def self.toggleList()
+        GameFeatureItemStateListener.java_static_fields unless @java_static_fields_started
         return defined?(@@toggleList) ? @@toggleList : nil
     end
 
     def self.toggleList=(value)
+        GameFeatureItemStateListener.java_static_fields unless @java_static_fields_started
         @@toggleList = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@toggleList = BasicArrayListD.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameFeatureItemStateListener"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/GameConfigurationGauge"
-require "org/allbinary/game/configuration/GameConfigurationUtil"
-require "org/allbinary/game/configuration/GameOptionsForm"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/configuration/feature/GameFeature"
-require "org/allbinary/game/configuration/feature/GameFeatureFactory"
-require "org/allbinary/game/configuration/feature/GameFeatureUtil"
+autoload :ChoiceGroup, "javax/microedition/lcdui/ChoiceGroup"
+autoload :Item, "javax/microedition/lcdui/Item"
+autoload :GameConfigurationGauge, "org/allbinary/game/configuration/GameConfigurationGauge"
+autoload :GameConfigurationUtil, "org/allbinary/game/configuration/GameConfigurationUtil"
+autoload :GameOptionsForm, "org/allbinary/game/configuration/GameOptionsForm"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :GameFeature, "org/allbinary/game/configuration/feature/GameFeature"
+autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
+autoload :GameFeatureUtil, "org/allbinary/game/configuration/feature/GameFeatureUtil"
 
-class GameFeatureItemStateListener
-    @@toggleList = BasicArrayListD.new()
+begin
+    GameFeatureItemStateListener.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

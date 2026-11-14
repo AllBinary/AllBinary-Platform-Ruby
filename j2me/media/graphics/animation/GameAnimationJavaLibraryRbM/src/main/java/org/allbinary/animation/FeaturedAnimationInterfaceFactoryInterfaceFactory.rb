@@ -125,24 +125,46 @@ class FeaturedAnimationInterfaceFactoryInterfaceFactory < FeaturedResourceFactor
             raise StandardError.new(stringBuffer.append("No feature resource type available for Resource: ").append(resource).append(" Resource Factories Available: ").append(result).to_s)
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:INSTANCE, FeaturedAnimationInterfaceFactoryInterfaceFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FeaturedAnimationInterfaceFactoryInterfaceFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:INSTANCE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/animation/resource/FeatureResourceAnimationInterfaceFactoryInterface"
-require "org/allbinary/game/configuration/GameConfigurationCentral"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
-require "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
+autoload :FeatureResourceAnimationInterfaceFactoryInterface, "org/allbinary/animation/resource/FeatureResourceAnimationInterfaceFactoryInterface"
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :AnimationInterfaceFactoryInterface, "org/allbinary/animation/AnimationInterfaceFactoryInterface"
+autoload :BasicAnimationInterfaceFactoryInterface, "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :ProceduralAnimationInterfaceFactoryInterface, "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
 
-class FeaturedAnimationInterfaceFactoryInterfaceFactory
-    INSTANCE = FeaturedAnimationInterfaceFactoryInterfaceFactory.new()
+begin
+    FeaturedAnimationInterfaceFactoryInterfaceFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

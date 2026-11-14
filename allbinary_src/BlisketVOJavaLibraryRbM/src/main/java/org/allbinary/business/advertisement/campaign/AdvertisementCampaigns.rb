@@ -56,9 +56,9 @@ class AdvertisementCampaigns
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/advertisement/AdvertisementInterface"
-require "org/allbinary/business/advertisement/AdvertisementsInterface"
-require "org/allbinary/business/advertisement/search/AdvertisementSearchInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :AdvertisementInterface, "org/allbinary/business/advertisement/AdvertisementInterface"
+autoload :AdvertisementsInterface, "org/allbinary/business/advertisement/AdvertisementsInterface"
+autoload :AdvertisementSearchInterface, "org/allbinary/business/advertisement/search/AdvertisementSearchInterface"
 

@@ -21,12 +21,14 @@ module MenuListener
     
 
     def open()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def close()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

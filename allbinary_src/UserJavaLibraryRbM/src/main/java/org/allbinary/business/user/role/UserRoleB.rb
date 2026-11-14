@@ -51,23 +51,47 @@ class UserRoleB < UserRole
     end
 
     def self.roleVector()
+        UserRoleB.java_static_fields unless @java_static_fields_started
         return defined?(@@roleVector) ? @@roleVector : nil
     end
 
     def self.roleVector=(value)
+        UserRoleB.java_static_fields unless @java_static_fields_started
         @@roleVector = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@roleVector = BasicArrayListD.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UserRoleB"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/UserFactoryInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/business/user/role/BasicUserRole"
-require "org/allbinary/business/user/role/UserRoleFactory"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :UserFactoryInterface, "org/allbinary/business/user/UserFactoryInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
+autoload :UserRoleFactory, "org/allbinary/business/user/role/UserRoleFactory"
 
-class UserRoleB
-    @@roleVector = BasicArrayListD.new()
+begin
+    UserRoleB.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -73,27 +73,53 @@ class DownGameKeyEventHandler < DownGameKeyEventHandlerBase
     end
 
     def self.instance()
+        DownGameKeyEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        DownGameKeyEventHandler.java_static_fields unless @java_static_fields_started
         @@instance = value
     end
 
     def self.instanceArray()
+        DownGameKeyEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instanceArray) ? @@instanceArray : nil
     end
 
     def self.instanceArray=(value)
+        DownGameKeyEventHandler.java_static_fields unless @java_static_fields_started
         @@instanceArray = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = DownGameKeyEventHandler.new()
+            @@instanceArray = [DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new()]
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DownGameKeyEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/input/LocalPlayerInputIdFactory"
-require "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :LocalPlayerInputIdFactory, "org/allbinary/game/input/LocalPlayerInputIdFactory"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
 
-class DownGameKeyEventHandler
-    @@instance = DownGameKeyEventHandler.new()
-    @@instanceArray = [DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new(), DownGameKeyEventHandlerBase.new()]
+begin
+    DownGameKeyEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

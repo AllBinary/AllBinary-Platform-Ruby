@@ -37,18 +37,42 @@ class LogConfigTypeFactory
     end
 
     def self.instance()
+        LogConfigTypeFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LogConfigTypeFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = LogConfigTypeFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LogConfigTypeFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/config/type/LogConfigType"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
+autoload :LogConfigType, "org/allbinary/logic/communication/log/config/type/LogConfigType"
+autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
 
-class LogConfigTypeFactory
-    @@instance = LogConfigTypeFactory.new()
+begin
+    LogConfigTypeFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

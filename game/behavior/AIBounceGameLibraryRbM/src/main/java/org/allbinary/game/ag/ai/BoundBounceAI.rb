@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/ai/BasicAI"
 
 class BoundBounceAI < BasicAI
@@ -47,10 +46,11 @@ class BoundBounceAI < BasicAI
     end
 end
 
-require "org/allbinary/bounds/BoundsVisitorInterface"
-require "org/allbinary/bounds/LayerBounds"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BoundsVisitorInterface, "org/allbinary/bounds/BoundsVisitorInterface"
+autoload :LayerBounds, "org/allbinary/bounds/LayerBounds"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

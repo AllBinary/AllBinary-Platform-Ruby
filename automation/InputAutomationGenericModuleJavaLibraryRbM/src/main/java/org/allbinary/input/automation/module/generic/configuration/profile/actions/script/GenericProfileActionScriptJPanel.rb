@@ -114,8 +114,8 @@ class GenericProfileActionScriptJPanel < JPanel
     end
 end
 
-require "org/allbinary/input/automation/actions/script/condition/CustomTreeNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/script/GenericProfileActionScript"
+autoload :CustomTreeNodeInterface, "org/allbinary/input/automation/actions/script/condition/CustomTreeNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :GenericProfileActionScript, "org/allbinary/input/automation/module/generic/configuration/profile/actions/script/GenericProfileActionScript"
 

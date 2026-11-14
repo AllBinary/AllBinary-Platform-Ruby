@@ -90,12 +90,12 @@ class PaymentTag < TableTag
     end
 end
 
-require "java/util/HashMap"
-require "admin/taghelpers/PaymentHelperFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/user/commerce/money/payment/PaymentData"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :HashMap, "java/util/HashMap"
+autoload :PaymentHelperFactory, "admin/taghelpers/PaymentHelperFactory"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :PaymentData, "org/allbinary/business/user/commerce/money/payment/PaymentData"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

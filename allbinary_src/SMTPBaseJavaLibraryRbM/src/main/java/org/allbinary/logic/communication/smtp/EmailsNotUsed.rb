@@ -62,14 +62,14 @@ class EmailsNotUsed
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/data/tree/dom/BasicErrorNodeUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/communication/smtp/Email"
-require "org/allbinary/logic/communication/smtp/EmailData"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicErrorNodeUtil, "org/allbinary/data/tree/dom/BasicErrorNodeUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :Email, "org/allbinary/logic/communication/smtp/Email"
+autoload :EmailData, "org/allbinary/logic/communication/smtp/EmailData"
 

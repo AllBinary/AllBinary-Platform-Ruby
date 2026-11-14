@@ -37,6 +37,6 @@ class NoGyroSensor < AllBinaryOrientationSensor
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/Orientation"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :Orientation, "org/allbinary/logic/math/Orientation"
 

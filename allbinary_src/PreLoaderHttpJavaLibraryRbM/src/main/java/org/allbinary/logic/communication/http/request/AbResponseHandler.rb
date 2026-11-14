@@ -119,8 +119,8 @@ class AbResponseHandler
     end
 end
 
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
+autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
 

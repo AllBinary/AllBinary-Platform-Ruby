@@ -47,8 +47,8 @@ class NewValidationView < BillingAddressView
     end
 end
 
-require "org/allbinary/business/user/address/StreetAddress"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

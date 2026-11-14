@@ -61,11 +61,11 @@ class KeyboardInputAutomationProcessor
     end
 end
 
-require "org/allbinary/input/automation/robot/InputRobotInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputInterface"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :KeyboardActionScriptInputInterface, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputInterface"
 require "java/lang/Thread"
 

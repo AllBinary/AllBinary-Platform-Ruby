@@ -14,6 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+# require "jsinterop/annotations/JsType"
 require "org/allbinary/util/BasicArrayListS"
 
 class ImmutableBasicArrayList < BasicArrayListS
@@ -48,5 +49,5 @@ class ImmutableBasicArrayList < BasicArrayListS
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
 

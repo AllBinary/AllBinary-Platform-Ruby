@@ -26,6 +26,6 @@ class LifeLayerFactory
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/ag/layer/pickup/life/LifeLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LifeLayer, "org/allbinary/game/ag/layer/pickup/life/LifeLayer"
 

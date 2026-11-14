@@ -19,55 +19,65 @@ module OperatingSystemInterface
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getVersion()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getArch()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getCharacterSet()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isOverScan()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getOverScanXPercent()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getOverScanYPercent()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isScalable()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isAutoHide()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toString()
+        return super if defined?(super)
         raise NotImplementedError
     end
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/java/character/CharacterSet"
+autoload :CharacterSet, "org/allbinary/logic/java/character/CharacterSet"
 

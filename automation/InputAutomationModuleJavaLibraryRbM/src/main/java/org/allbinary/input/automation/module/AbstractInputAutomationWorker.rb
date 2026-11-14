@@ -163,13 +163,13 @@ class AbstractInputAutomationWorker
     end
 end
 
-require "org/allbinary/input/media/image/capture/CaptureWorkerInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/image/comparison/ImageComparisonWorker"
-require "org/allbinary/media/image/comparison/motion/MotionRectanglesWorker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/input/automation/module/InputAutomationActionInterface"
+autoload :CaptureWorkerInterface, "org/allbinary/input/media/image/capture/CaptureWorkerInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ImageComparisonWorker, "org/allbinary/media/image/comparison/ImageComparisonWorker"
+autoload :MotionRectanglesWorker, "org/allbinary/media/image/comparison/motion/MotionRectanglesWorker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :InputAutomationActionInterface, "org/allbinary/input/automation/module/InputAutomationActionInterface"
 require "java/lang/Thread"
 

@@ -131,13 +131,13 @@ class CategoryAbstractFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/category/properties/CategoryPropertiesFactory"
-require "org/allbinary/business/category/properties/CategoryPropertiesFactoryInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/Category"
-require "org/allbinary/business/category/CategoryInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :CategoryPropertiesFactory, "org/allbinary/business/category/properties/CategoryPropertiesFactory"
+autoload :CategoryPropertiesFactoryInterface, "org/allbinary/business/category/properties/CategoryPropertiesFactoryInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Node, "org/w3c/dom/Node"
+autoload :Category, "org/allbinary/business/category/Category"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
 

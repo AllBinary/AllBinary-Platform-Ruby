@@ -41,8 +41,8 @@ class ArtificialIntelligenceLayerProcessor < LayerProcessor
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/ai/ArtificialIntelligenceCompositeInterface"
-require "org/allbinary/ai/ArtificialIntelligenceLayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :ArtificialIntelligenceCompositeInterface, "org/allbinary/ai/ArtificialIntelligenceCompositeInterface"
+autoload :ArtificialIntelligenceLayerManager, "org/allbinary/ai/ArtificialIntelligenceLayerManager"
 

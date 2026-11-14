@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/InputStream"
-# require "java/io/OutputStream"
 
 class StreamUtil
     attr_accessor :logUtil
@@ -79,19 +76,46 @@ class StreamUtil
     end
 
     def self.instance()
+        StreamUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        StreamUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = StreamUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StreamUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/io/Closeable"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+autoload :Closeable, "java/io/Closeable"
+autoload :InputStream, "java/io/InputStream"
+autoload :OutputStream, "java/io/OutputStream"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class StreamUtil
-    @@instance = StreamUtil.new()
+begin
+    StreamUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

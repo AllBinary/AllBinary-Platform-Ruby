@@ -46,6 +46,6 @@ class UpsShippingModule
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
-require "org/allbinary/business/user/commerce/money/Money"
+autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
 

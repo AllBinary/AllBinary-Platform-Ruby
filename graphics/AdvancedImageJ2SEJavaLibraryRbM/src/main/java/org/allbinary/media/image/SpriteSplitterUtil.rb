@@ -134,26 +134,50 @@ class SpriteSplitterUtil
     end
 
     def self.instance()
+        SpriteSplitterUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        SpriteSplitterUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = SpriteSplitterUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "SpriteSplitterUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/image/ImageProcessedVisitor"
-require "org/allbinary/media/image/ImageProcessorInput"
-require "org/allbinary/media/image/ImageUnifierCell"
-require "org/allbinary/media/image/ImageUnifierProperties"
-require "org/allbinary/media/image/ImageUnifierUtil"
-require "org/allbinary/media/image/ImageUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ImageProcessedVisitor, "org/allbinary/media/image/ImageProcessedVisitor"
+autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput"
+autoload :ImageUnifierCell, "org/allbinary/media/image/ImageUnifierCell"
+autoload :ImageUnifierProperties, "org/allbinary/media/image/ImageUnifierProperties"
+autoload :ImageUnifierUtil, "org/allbinary/media/image/ImageUnifierUtil"
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
 
-class SpriteSplitterUtil
-    @@instance = SpriteSplitterUtil.new()
+begin
+    SpriteSplitterUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

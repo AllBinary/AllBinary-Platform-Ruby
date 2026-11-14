@@ -131,25 +131,49 @@ class VectorExplosionGenerator
     end
 
     def self.instance()
+        VectorExplosionGenerator.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        VectorExplosionGenerator.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = VectorExplosionGenerator.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "VectorExplosionGenerator"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/pipeline/RandomRotationFactory"
-require "org/allbinary/graphics/pipeline/RandomTranslation"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListS"
-require "org/allbinary/animation/VectorAnimationUtil"
-require "org/allbinary/animation/VectorExplosionType"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :RandomRotationFactory, "org/allbinary/graphics/pipeline/RandomRotationFactory"
+autoload :RandomTranslation, "org/allbinary/graphics/pipeline/RandomTranslation"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS"
+autoload :VectorAnimationUtil, "org/allbinary/animation/VectorAnimationUtil"
+autoload :VectorExplosionType, "org/allbinary/animation/VectorExplosionType"
 
-class VectorExplosionGenerator
-    @@instance = VectorExplosionGenerator.new()
+begin
+    VectorExplosionGenerator.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

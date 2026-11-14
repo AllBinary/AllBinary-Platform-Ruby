@@ -353,15 +353,15 @@ class KeyboardActionScriptInputJPanel < JPanel
     end
 end
 
-require "org/allbinary/input/KeySingletonFactory"
-require "org/allbinary/input/automation/robot/InputRobot"
-require "org/allbinary/input/automation/robot/InputRobotFactory"
-require "org/allbinary/input/automation/robot/TempInputRobotNames"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyCharDefaultComboBoxModelFactory"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyNameDefaultComboBoxModelFactory"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputInterface"
+autoload :KeySingletonFactory, "org/allbinary/input/KeySingletonFactory"
+autoload :InputRobot, "org/allbinary/input/automation/robot/InputRobot"
+autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
+autoload :TempInputRobotNames, "org/allbinary/input/automation/robot/TempInputRobotNames"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :KeyCharDefaultComboBoxModelFactory, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyCharDefaultComboBoxModelFactory"
+autoload :KeyNameDefaultComboBoxModelFactory, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyNameDefaultComboBoxModelFactory"
+autoload :KeyboardActionScriptInputInterface, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputInterface"
 

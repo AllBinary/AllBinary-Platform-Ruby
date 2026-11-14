@@ -94,10 +94,10 @@ class TransformTag < TransformInfoTag
     end
 end
 
-require "admin/taghelpers/TagHelperFactoryInterface"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "taghelpers/ViewHelperFactory"
+autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :ViewHelperFactory, "taghelpers/ViewHelperFactory"
 

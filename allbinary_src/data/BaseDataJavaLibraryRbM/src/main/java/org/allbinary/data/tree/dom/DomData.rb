@@ -20,13 +20,35 @@ class DomData
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:ID, "id")
+        const_set(:CHILD, "child")
+        const_set(:NAME, "name")
+        const_set(:VALUE, "value")
+        const_set(:INDEX, "index")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DomData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:ID, :CHILD, :NAME, :VALUE, :INDEX].include?(name)
+        end
+        super
+    end
 end
 
-class DomData
-    ID = "id"
-    CHILD = "child"
-    NAME = "name"
-    VALUE = "value"
-    INDEX = "index"
+begin
+    DomData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

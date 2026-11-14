@@ -11,6 +11,6 @@ class OpenGLESGraphicsFactory
     end
 end
 
-require "org/allbinary/device/OpenGLESGraphics"
-require "org/allbinary/device/OpenGLESNullGraphicsFactory"
+autoload :OpenGLESGraphics, "org/allbinary/device/OpenGLESGraphics"
+autoload :OpenGLESNullGraphicsFactory, "org/allbinary/device/OpenGLESNullGraphicsFactory"
 

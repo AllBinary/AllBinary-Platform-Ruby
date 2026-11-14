@@ -24,6 +24,6 @@ class IconLayerFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/game/layer/pickup/IconLayer"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :IconLayer, "org/allbinary/game/layer/pickup/IconLayer"
 

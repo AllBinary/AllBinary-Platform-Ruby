@@ -46,19 +46,43 @@ class StoreFrontsEntityFactory
     end
 
     def self.instance()
+        StoreFrontsEntityFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        StoreFrontsEntityFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = StoreFrontsEntityFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StoreFrontsEntityFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :StoreFrontsEntity, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntity"
 
-class StoreFrontsEntityFactory
-    @@instance = StoreFrontsEntityFactory.new()
+begin
+    StoreFrontsEntityFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

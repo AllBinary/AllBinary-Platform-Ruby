@@ -87,11 +87,11 @@ class MultiKeyPressesAI < KeyPressesAI
     end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/ABHashtable"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 

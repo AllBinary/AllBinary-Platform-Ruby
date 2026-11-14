@@ -19,14 +19,16 @@ module PickupCompositeInterface
     
 
     def getPickupBehavior()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setPickupBehavior(pickupBehavior)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/pickup/PickupBehavior"
+autoload :PickupBehavior, "org/allbinary/game/layer/pickup/PickupBehavior"
 

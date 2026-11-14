@@ -34,7 +34,7 @@
     
     <modules>
 
-        <module>../BlisketJavaLibraryP</module>
+        <module>../BlisketJavaLibraryRbP</module>
 
         <!--
         <module>../logging/LogConfigTypeFreeblisketJavaLibraryRbM</module>

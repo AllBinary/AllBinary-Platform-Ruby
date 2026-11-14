@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.command
 
-# require "javax/microedition/lcdui/Command"
 
 module MyCommandInterface
     
 
     def addCommand(command)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def removeAllCommands()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :Command, "javax/microedition/lcdui/Command"
 

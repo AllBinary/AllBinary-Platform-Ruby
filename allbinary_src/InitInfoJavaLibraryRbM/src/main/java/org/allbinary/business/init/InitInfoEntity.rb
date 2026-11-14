@@ -135,15 +135,15 @@ class InitInfoEntity < InitSql
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/init/db/UserDbInitInfo"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/business/init/InitInfo"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :UserDbInitInfo, "org/allbinary/business/init/db/UserDbInitInfo"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
+autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :InitInfo, "org/allbinary/business/init/InitInfo"
 

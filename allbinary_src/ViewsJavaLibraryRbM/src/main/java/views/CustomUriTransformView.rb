@@ -96,15 +96,15 @@ class CustomUriTransformView
     end
 end
 
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
-require "org/allbinary/logic/visual/transform/TransformInfoCustomUriTransformer"
-require "org/allbinary/logic/visual/transform/data/TransformDocumentFactory"
-require "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :TransformInfoCustomUriTransformer, "org/allbinary/logic/visual/transform/TransformInfoCustomUriTransformer"
+autoload :TransformDocumentFactory, "org/allbinary/logic/visual/transform/data/TransformDocumentFactory"
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

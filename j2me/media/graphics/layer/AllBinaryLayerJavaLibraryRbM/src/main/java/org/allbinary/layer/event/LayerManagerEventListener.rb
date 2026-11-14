@@ -34,6 +34,6 @@ class LayerManagerEventListener
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/layer/event/LayerManagerEvent"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent"
 

@@ -85,10 +85,10 @@ class OrderItemsRequestHelper < TagHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/inventory/order/OrderData"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
-require "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderItemsEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :OrderData, "org/allbinary/business/user/commerce/inventory/order/OrderData"
+autoload :OrderHistoryData, "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
+autoload :ShippingMethodData, "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
+autoload :OrderItemsEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/order/OrderItemsEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

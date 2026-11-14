@@ -43,6 +43,6 @@ class CollidableNeverCollideBehavior < CollidableBaseBehavior
     end
 end
 
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
 

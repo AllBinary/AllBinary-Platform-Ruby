@@ -30,6 +30,6 @@ class BasicArrayListS < BasicArrayList
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringMaker"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

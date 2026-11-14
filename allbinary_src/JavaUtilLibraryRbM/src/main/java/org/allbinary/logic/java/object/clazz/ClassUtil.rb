@@ -63,8 +63,8 @@ class ClassUtil
     end
 end
 
-require "org/allbinary/logic/java/anyType/ConstructorUtil"
-require "org/allbinary/logic/java/anyType/InterfaceUtil"
-require "org/allbinary/logic/java/anyType/MethodUtil"
-require "org/allbinary/logic/string/StringMaker"
+autoload :ConstructorUtil, "org/allbinary/logic/java/anyType/ConstructorUtil"
+autoload :InterfaceUtil, "org/allbinary/logic/java/anyType/InterfaceUtil"
+autoload :MethodUtil, "org/allbinary/logic/java/anyType/MethodUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

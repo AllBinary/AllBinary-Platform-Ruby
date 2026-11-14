@@ -119,16 +119,16 @@ class CssStyleValidation < Validation
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/validate/ValidationInterface"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/dhtml/style/StyleData"
-require "org/allbinary/logic/visual/dhtml/style/StylesData"
-require "org/allbinary/logic/visual/dhtml/style/StylesValidationFactory"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StyleData, "org/allbinary/logic/visual/dhtml/style/StyleData"
+autoload :StylesData, "org/allbinary/logic/visual/dhtml/style/StylesData"
+autoload :StylesValidationFactory, "org/allbinary/logic/visual/dhtml/style/StylesValidationFactory"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

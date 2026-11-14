@@ -50,6 +50,8 @@ class PCGameInputMapping < PersistentInputMapping
     end
 end
 
-require "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :PCKeyFactory, "org/allbinary/game/input/PCKeyFactory"
 

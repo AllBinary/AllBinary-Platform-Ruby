@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.level
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/graphics/hud/BasicHud"
 require "org/allbinary/graphics/paint/PaintableInterface"
 
@@ -98,7 +96,7 @@ class LevelHudWidget < BasicHud
     
 
     def paint(graphics)
-        self.class.superclass.instance_method(:paintDX).bind(self).call(graphics, @levelString, 0, @levelString.length, @levelNumberCharArray, 0, @levelNumberTotalDigits, @offset)
+        LevelHudWidget.superclass.instance_method(:paintDX).bind(self).call(graphics, @levelString, 0, @levelString.length, @levelNumberCharArray, 0, @levelNumberTotalDigits, @offset)
     end
     
 
@@ -106,7 +104,9 @@ class LevelHudWidget < BasicHud
     end
 end
 
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/math/PrimitiveLongUtil"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :PrimitiveLongUtil, "org/allbinary/logic/math/PrimitiveLongUtil"
 

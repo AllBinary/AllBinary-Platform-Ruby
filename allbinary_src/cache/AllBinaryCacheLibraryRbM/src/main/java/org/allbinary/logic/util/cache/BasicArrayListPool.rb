@@ -64,8 +64,8 @@ class BasicArrayListPool < AbstractArrayListPool
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/util/cache/BasicArrayListCacheable"
-require "org/allbinary/logic/util/cache/CacheableInterface"
-require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListCacheable, "org/allbinary/logic/util/cache/BasicArrayListCacheable"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
 

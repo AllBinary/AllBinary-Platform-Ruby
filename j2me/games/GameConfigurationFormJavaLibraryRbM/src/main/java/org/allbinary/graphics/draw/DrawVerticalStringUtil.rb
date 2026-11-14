@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.draw
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 
 class DrawVerticalStringUtil
     attr_accessor :EMPTY_STRING, :anchor, :charHeight, :offsetY, :offsetXArray
@@ -121,24 +119,50 @@ class DrawVerticalStringUtil
     end
 
     def self.instance()
+        DrawVerticalStringUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        DrawVerticalStringUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = DrawVerticalStringUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DrawVerticalStringUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/AndroidUtil"
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AndroidUtil, "org/allbinary/AndroidUtil"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class DrawVerticalStringUtil
-    @@instance = DrawVerticalStringUtil.new()
+begin
+    DrawVerticalStringUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

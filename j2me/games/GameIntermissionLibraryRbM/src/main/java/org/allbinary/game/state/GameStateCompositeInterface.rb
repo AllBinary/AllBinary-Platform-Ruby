@@ -20,14 +20,16 @@ module GameStateCompositeInterface
 
     # throws Exception
     def setGameState(gameState)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getGameState()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/state/GameState"
+autoload :GameState, "org/allbinary/game/state/GameState"
 

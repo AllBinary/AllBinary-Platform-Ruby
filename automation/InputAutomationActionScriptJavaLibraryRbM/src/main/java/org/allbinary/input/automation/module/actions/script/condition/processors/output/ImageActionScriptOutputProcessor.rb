@@ -44,13 +44,13 @@ class ImageActionScriptOutputProcessor
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/input/media/image/InputImageIOInterfaceFactory"
-require "org/allbinary/input/media/image/InputImageType"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/image/io/ImageIOInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputInterface"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageTypes"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :InputImageIOInterfaceFactory, "org/allbinary/input/media/image/InputImageIOInterfaceFactory"
+autoload :InputImageType, "org/allbinary/input/media/image/InputImageType"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ImageIOInterface, "org/allbinary/media/image/io/ImageIOInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ImageActionScriptOutputInterface, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputInterface"
+autoload :ImageTypes, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageTypes"
 

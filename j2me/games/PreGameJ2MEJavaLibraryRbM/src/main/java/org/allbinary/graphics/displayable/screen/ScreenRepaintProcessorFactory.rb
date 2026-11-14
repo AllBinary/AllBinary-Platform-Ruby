@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.screen
 
-# require "javax/microedition/lcdui/Displayable"
 
 class ScreenRepaintProcessorFactory
     
@@ -37,19 +36,44 @@ class ScreenRepaintProcessorFactory
     end
 
     def self.instance()
+        ScreenRepaintProcessorFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ScreenRepaintProcessorFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ScreenRepaintProcessorFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ScreenRepaintProcessorFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/graphics/displayable/screen/ScreenRepaintProcessor"
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :ScreenRepaintProcessor, "org/allbinary/graphics/displayable/screen/ScreenRepaintProcessor"
 
-class ScreenRepaintProcessorFactory
-    @@instance = ScreenRepaintProcessorFactory.new()
+begin
+    ScreenRepaintProcessorFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.caption
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/Animation"
 
 class CaptionAnimation < Animation
@@ -58,4 +57,6 @@ class CaptionAnimation < Animation
         @overlayAnimationInterface.paintThreedXYZ(graphics, x + @captionDx + @dx, y + @captionDy + @dy, z)
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

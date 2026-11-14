@@ -46,12 +46,12 @@ class SelectNewView < PaymentGatewayViewAbstract
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
-require "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntityFactory"
-require "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntityInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "views/admin/payment/gateways/PaymentGatewaysView"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicPaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
+autoload :PaymentGatewayEntityFactory, "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntityFactory"
+autoload :PaymentGatewayEntityInterface, "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntityInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :PaymentGatewaysView, "views/admin/payment/gateways/PaymentGatewaysView"
 

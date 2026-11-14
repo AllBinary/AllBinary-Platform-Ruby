@@ -36,9 +36,9 @@ class ProductListingFactory
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/search/SearchRequest"
-require "org/allbinary/string/CommonStrings"
-require "views/admin/inventory/listings/ProductListing"
-require "views/admin/inventory/listings/ProductListingInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ProductListing, "views/admin/inventory/listings/ProductListing"
+autoload :ProductListingInterface, "views/admin/inventory/listings/ProductListingInterface"
 

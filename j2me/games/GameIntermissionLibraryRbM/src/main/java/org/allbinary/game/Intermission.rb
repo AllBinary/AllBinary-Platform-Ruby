@@ -56,7 +56,7 @@ class Intermission
     end
 end
 
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/game/IntermissionEnableListenerInterface"
-require "org/allbinary/game/NullIntermissionEnableListener"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :IntermissionEnableListenerInterface, "org/allbinary/game/IntermissionEnableListenerInterface"
+autoload :NullIntermissionEnableListener, "org/allbinary/game/NullIntermissionEnableListener"
 

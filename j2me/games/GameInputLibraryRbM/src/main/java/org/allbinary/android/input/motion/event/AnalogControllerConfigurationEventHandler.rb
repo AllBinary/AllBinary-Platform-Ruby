@@ -76,23 +76,47 @@ class AnalogControllerConfigurationEventHandler < BasicEventHandler
     end
 
     def self.instance()
+        AnalogControllerConfigurationEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AnalogControllerConfigurationEventHandler.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AnalogControllerConfigurationEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AnalogControllerConfigurationEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent"
-require "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEventListenerInterface"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :AnalogControllerConfigurationEvent, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent"
+autoload :AnalogControllerConfigurationEventListenerInterface, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEventListenerInterface"
 
-class AnalogControllerConfigurationEventHandler
-    @@instance = AnalogControllerConfigurationEventHandler.new()
+begin
+    AnalogControllerConfigurationEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

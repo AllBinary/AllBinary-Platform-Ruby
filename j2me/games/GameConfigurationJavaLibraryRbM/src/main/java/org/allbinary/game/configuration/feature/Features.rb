@@ -28,7 +28,7 @@ class Features
 
     def self.getInstance()
         if Features::SINGLETON == NullUtil.getInstance().NULL_OBJECT
-            Features::SINGLETON = Features.new()
+            (Features.send(:remove_const, :SINGLETON) if Features.const_defined?(:SINGLETON, false); Features.const_set(:SINGLETON, Features.new()))
         end
         return Features::SINGLETON
     end
@@ -128,28 +128,50 @@ class Features
             self.add(gameFeature)
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Features"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/configuration/event/GameFeatureEvent"
-require "org/allbinary/game/configuration/event/GameFeatureEventHandler"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/os/GenericOperatingSystem"
-require "org/allbinary/logic/system/os/OperatingSystemFactory"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/configuration/feature/Feature"
-require "org/allbinary/game/configuration/feature/GameFeatureFactory"
-require "org/allbinary/game/configuration/feature/InputFeatureFactory"
-require "org/allbinary/game/configuration/feature/MainFeatureFactory"
-require "org/allbinary/game/configuration/feature/SensorFeatureFactory"
-require "org/allbinary/game/configuration/feature/TouchFeatureFactory"
+autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent"
+autoload :GameFeatureEventHandler, "org/allbinary/game/configuration/event/GameFeatureEventHandler"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
+autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
+autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
+autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory"
+autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
+autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory"
+autoload :TouchFeatureFactory, "org/allbinary/game/configuration/feature/TouchFeatureFactory"
 
-class Features
-    SINGLETON = NullUtil.getInstance().NULL_OBJECT
+begin
+    Features.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

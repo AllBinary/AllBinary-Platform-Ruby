@@ -59,6 +59,6 @@ class AdConfiguration
     end
 end
 
-require "org/allbinary/direction/Direction"
-require "org/allbinary/game/state/GameState"
+autoload :Direction, "org/allbinary/direction/Direction"
+autoload :GameState, "org/allbinary/game/state/GameState"
 

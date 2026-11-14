@@ -22,9 +22,10 @@ module DownGameKeyEventListenerInterface
 
     # throws Exception
     def onDownGameKeyEvent(gameKeyEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
 

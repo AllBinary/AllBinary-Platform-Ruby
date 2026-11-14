@@ -39,6 +39,6 @@ class BasicArrayListResetablePool < AbstractArrayListPool
     end
 end
 
-require "org/allbinary/logic/util/cache/CacheableInterface"
-require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
 

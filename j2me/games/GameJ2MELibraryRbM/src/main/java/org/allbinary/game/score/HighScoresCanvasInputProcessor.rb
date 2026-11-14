@@ -15,7 +15,6 @@
 # package org.allbinary.game.score
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/input/PlayerGameInput"
 
 class HighScoresCanvasInputProcessor < PlayerGameInput
@@ -74,8 +73,9 @@ class HighScoresCanvasInputProcessor < PlayerGameInput
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/score/displayable/HighScoresCanvas"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :HighScoresCanvas, "org/allbinary/game/score/displayable/HighScoresCanvas"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

@@ -28,6 +28,6 @@ module MagicCharacterGameObjectInterface
     end
 end
 
-require "org/allbinary/input/automation/module/game/HitPointGameObjectInterface"
-require "org/allbinary/input/automation/module/game/MagicGameObjectInterface"
+autoload :HitPointGameObjectInterface, "org/allbinary/input/automation/module/game/HitPointGameObjectInterface"
+autoload :MagicGameObjectInterface, "org/allbinary/input/automation/module/game/MagicGameObjectInterface"
 

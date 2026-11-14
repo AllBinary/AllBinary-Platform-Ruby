@@ -37,6 +37,6 @@ class TopULayerBounds < LayerBounds
     end
 end
 
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/bounds/BoundsVisitorInterface"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :BoundsVisitorInterface, "org/allbinary/bounds/BoundsVisitorInterface"
 

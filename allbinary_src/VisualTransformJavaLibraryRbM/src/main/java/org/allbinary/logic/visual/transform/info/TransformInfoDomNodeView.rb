@@ -67,10 +67,10 @@ class TransformInfoDomNodeView < TransformInfoDomNode
     end
 end
 
-require "org/w3c/dom/Attr"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/NamedNodeMap"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/visual/transform/info/TransformInfoData"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Attr, "org/w3c/dom/Attr"
+autoload :Document, "org/w3c/dom/Document"
+autoload :NamedNodeMap, "org/w3c/dom/NamedNodeMap"
+autoload :Node, "org/w3c/dom/Node"
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

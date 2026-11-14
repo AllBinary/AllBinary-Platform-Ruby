@@ -75,9 +75,9 @@ class BasicTextEmailTag < CustomTagSupport
     end
 end
 
-require "java/util/HashMap"
-require "admin/taghelpers/BasicTextEmailHelperFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicTextEmailHelperFactory, "admin/taghelpers/BasicTextEmailHelperFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

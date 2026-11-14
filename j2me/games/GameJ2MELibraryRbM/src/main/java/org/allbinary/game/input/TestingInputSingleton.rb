@@ -15,8 +15,6 @@
 # package org.allbinary.game.input
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/layer/AllBinaryGameLayer"
 require "org/allbinary/game/input/GameInputInterface"
 
@@ -141,28 +139,54 @@ class TestingInputSingleton < AllBinaryGameLayer
     end
 
     def self.instance()
+        TestingInputSingleton.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TestingInputSingleton.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TestingInputSingleton.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TestingInputSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/graphics/paint/PaintableInterface"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/view/ViewPosition"
-require "org/allbinary/game/input/GameInputProcessor"
-require "org/allbinary/game/input/GameInputProcessorUtil"
-require "org/allbinary/game/input/InputFactory"
-require "org/allbinary/game/input/TestInputInterface"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
+autoload :GameInputProcessor, "org/allbinary/game/input/GameInputProcessor"
+autoload :GameInputProcessorUtil, "org/allbinary/game/input/GameInputProcessorUtil"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+autoload :TestInputInterface, "org/allbinary/game/input/TestInputInterface"
 
-class TestingInputSingleton
-    @@instance = TestingInputSingleton.new()
+begin
+    TestingInputSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

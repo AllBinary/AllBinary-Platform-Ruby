@@ -2,6 +2,7 @@
 # frozen_string_literal: false
 # package javax.microedition.lcdui
 
+require "javax/microedition/lcdui/Canvas"
 
 class NullCanvas < Canvas
     
@@ -95,11 +96,36 @@ class NullCanvas < Canvas
 
     def pointerReleased(x, y)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_CANVAS, NullCanvas.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullCanvas"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_CANVAS].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/Stack"
+autoload :Stack, "java/util/Stack"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 
-class NullCanvas
-    NULL_CANVAS = NullCanvas.new()
+begin
+    NullCanvas.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

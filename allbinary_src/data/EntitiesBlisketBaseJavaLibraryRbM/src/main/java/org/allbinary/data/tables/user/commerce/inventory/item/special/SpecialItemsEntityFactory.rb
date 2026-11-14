@@ -46,19 +46,43 @@ class SpecialItemsEntityFactory
     end
 
     def self.instance()
+        SpecialItemsEntityFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        SpecialItemsEntityFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = SpecialItemsEntityFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "SpecialItemsEntityFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tables/user/commerce/inventory/item/special/SpecialItemsEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :SpecialItemsEntity, "org/allbinary/data/tables/user/commerce/inventory/item/special/SpecialItemsEntity"
 
-class SpecialItemsEntityFactory
-    @@instance = SpecialItemsEntityFactory.new()
+begin
+    SpecialItemsEntityFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

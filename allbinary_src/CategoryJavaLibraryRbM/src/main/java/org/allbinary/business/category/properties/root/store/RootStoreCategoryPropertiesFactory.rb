@@ -72,12 +72,12 @@ class RootStoreCategoryPropertiesFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/category/properties/CategoryPropertiesInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/properties/root/store/RootStoreCategoryProperties"
+autoload :HashMap, "java/util/HashMap"
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Node, "org/w3c/dom/Node"
+autoload :RootStoreCategoryProperties, "org/allbinary/business/category/properties/root/store/RootStoreCategoryProperties"
 

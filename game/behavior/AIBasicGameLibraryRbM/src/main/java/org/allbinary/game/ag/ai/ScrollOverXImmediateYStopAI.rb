@@ -49,8 +49,8 @@ class ScrollOverXImmediateYStopAI < BasicAI
     end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

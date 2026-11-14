@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/image/opengles/OpenGLSurfaceChangedInterface"
 require "org/allbinary/animation/AnimationInterface"
 
@@ -130,7 +128,9 @@ class Animation
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/color/BasicColorSetUtil"
+autoload :GL, "javax/microedition/khronos/opengles/GL"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
 

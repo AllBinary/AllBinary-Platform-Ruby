@@ -15,10 +15,8 @@
 # package org.allbinary.media.audio
 
 require "java/lang/Object"
-# require "javax/microedition/media/Control"
-# require "javax/microedition/media/Controllable"
-# require "javax/microedition/media/Player"
-# require "javax/microedition/media/PlayerListener"
+require "javax/microedition/media/Controllable"
+require "javax/microedition/media/Player"
 
 #BasicPlayer
 class PlayerComposite
@@ -158,10 +156,12 @@ class PlayerComposite
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/media/audio/Controllable2"
+autoload :Control, "javax/microedition/media/Control"
+autoload :PlayerListener, "javax/microedition/media/PlayerListener"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :Controllable2, "org/allbinary/media/audio/Controllable2"
 

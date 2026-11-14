@@ -22,76 +22,88 @@ module SpecialGameInputInterface
 
     # throws Exception
     def up()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def down()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def right()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def left()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def strafeLeft()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def strafeRight()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def fire(layerManager, gameKeyEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def special1(layerManager, gameKeyEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def special2(layerManager, gameKeyEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def special3(layerManager, gameKeyEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def special4(layerManager, gameKeyEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def special5(layerManager, gameKeyEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

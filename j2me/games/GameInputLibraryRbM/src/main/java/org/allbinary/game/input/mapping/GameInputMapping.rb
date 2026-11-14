@@ -51,6 +51,6 @@ class GameInputMapping
     end
 end
 
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/logic/string/StringUtil"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.scroller
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ag/ai/scroller/BasePatrolAI"
 
 class RandomPatrolAI < BasePatrolAI
@@ -39,10 +38,10 @@ class RandomPatrolAI < BasePatrolAI
 
     # throws Exception
     def processAI(allBinaryLayerManager)
-        self.class.superclass.instance_method(:update).bind(self).call()
-        self.class.superclass.instance_method(:processKeyAI).bind(self).call(@keyDirection)
+        RandomPatrolAI.superclass.instance_method(:update).bind(self).call()
+        RandomPatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(@keyDirection)
         if @changedDirection
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
+            RandomPatrolAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
             self.updateRandomDistance()
             @changedDirection = false
         end
@@ -55,9 +54,10 @@ class RandomPatrolAI < BasePatrolAI
     end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/rand/MyRandomFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/util/ABHashtable"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 

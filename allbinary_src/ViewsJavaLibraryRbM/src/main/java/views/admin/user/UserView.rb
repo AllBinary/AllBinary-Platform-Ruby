@@ -50,9 +50,9 @@ class UserView < HttpContextView
     end
 end
 
-require "org/allbinary/business/user/UserDomNode"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/data/tree/dom/DomNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :UserDomNode, "org/allbinary/business/user/UserDomNode"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

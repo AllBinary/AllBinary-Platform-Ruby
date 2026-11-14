@@ -44,18 +44,42 @@ class URLGLOBALS
     end
 
     def self.urlGlobalsInterface()
+        URLGLOBALS.java_static_fields unless @java_static_fields_started
         return defined?(@@urlGlobalsInterface) ? @@urlGlobalsInterface : nil
     end
 
     def self.urlGlobalsInterface=(value)
+        URLGLOBALS.java_static_fields unless @java_static_fields_started
         @@urlGlobalsInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@urlGlobalsInterface = AppUrlGlobals::NULL_APP_URL_GLOBALS
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "URLGLOBALS"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/globals/AppUrlGlobals"
-require "org/allbinary/globals/UrlGlobalsInterface"
+autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals"
+autoload :UrlGlobalsInterface, "org/allbinary/globals/UrlGlobalsInterface"
 
-class URLGLOBALS
-    @@urlGlobalsInterface = AppUrlGlobals::NULL_APP_URL_GLOBALS
+begin
+    URLGLOBALS.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

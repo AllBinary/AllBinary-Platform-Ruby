@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.caption
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/Animation"
 
 class CaptionAnimationHelperBase < Animation
@@ -35,11 +34,34 @@ class CaptionAnimationHelperBase < Animation
 
     def paintXY(graphics, x, y)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:INSTANCE, CaptionAnimationHelperBase.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CaptionAnimationHelperBase"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:INSTANCE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 
-class CaptionAnimationHelperBase
-    INSTANCE = CaptionAnimationHelperBase.new()
+begin
+    CaptionAnimationHelperBase.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

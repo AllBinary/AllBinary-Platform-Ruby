@@ -30,7 +30,7 @@ class Shader
     end
 end
 
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
 

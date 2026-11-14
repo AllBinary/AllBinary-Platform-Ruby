@@ -177,31 +177,53 @@ class UpdateFileValidationView < InventoryItemView
             end
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:UPDATEPRODUCT, CommonStrings.getInstance().UPDATE)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UpdateFileValidationView"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:UPDATEPRODUCT].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemValidation"
-require "org/allbinary/business/user/commerce/money/MoneyException"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
-require "org/allbinary/globals/GLOBALS2"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/http/file/upload/HttpFileUploadUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/FileData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/apache/commons/fileupload/FileItem"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :BasicItemValidation, "org/allbinary/business/user/commerce/inventory/item/BasicItemValidation"
+autoload :MoneyException, "org/allbinary/business/user/commerce/money/MoneyException"
+autoload :InventoryEntity, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
+autoload :InventoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
+autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :HttpFileUploadUtil, "org/allbinary/logic/communication/http/file/upload/HttpFileUploadUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :FileData, "org/allbinary/logic/io/file/FileData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :FileItem, "org/apache/commons/fileupload/FileItem"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 
-class UpdateFileValidationView
-    UPDATEPRODUCT = CommonStrings.getInstance().UPDATE
+begin
+    UpdateFileValidationView.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

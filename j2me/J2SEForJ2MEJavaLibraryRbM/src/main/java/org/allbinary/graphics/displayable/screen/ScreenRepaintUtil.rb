@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.screen
 
-# require "javax/microedition/lcdui/Displayable"
 
 class ScreenRepaintUtil
     
@@ -22,4 +21,6 @@ class ScreenRepaintUtil
     def self.repaint(displayable)
     end
 end
+
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
 

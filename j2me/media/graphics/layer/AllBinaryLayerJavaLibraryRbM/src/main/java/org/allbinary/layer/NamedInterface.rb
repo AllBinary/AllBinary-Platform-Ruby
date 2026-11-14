@@ -19,6 +19,7 @@ module NamedInterface
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

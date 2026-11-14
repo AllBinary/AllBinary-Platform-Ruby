@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/Paintable"
 
 class TouchButtonsMappingPaintable < Paintable
@@ -73,13 +72,14 @@ class TouchButtonsMappingPaintable < Paintable
     end
 end
 
-require "org/allbinary/graphics/CellPositionFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/motion/button/BasicTouchInputFactory"
-require "org/allbinary/input/motion/button/CommonButtons"
-require "org/allbinary/input/motion/button/TouchButton"
-require "org/allbinary/input/motion/button/TouchButtonBlankResource"
-require "org/allbinary/input/motion/button/TouchButtonLocationHelper"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :CellPositionFactory, "org/allbinary/graphics/CellPositionFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
+autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons"
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton"
+autoload :TouchButtonBlankResource, "org/allbinary/input/motion/button/TouchButtonBlankResource"
+autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper"
 

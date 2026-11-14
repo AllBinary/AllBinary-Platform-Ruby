@@ -50,13 +50,13 @@ class StatesView
     end
 end
 
-require "org/allbinary/business/user/address/StreetAddressData"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/LineReader"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LineReader, "org/allbinary/logic/io/LineReader"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

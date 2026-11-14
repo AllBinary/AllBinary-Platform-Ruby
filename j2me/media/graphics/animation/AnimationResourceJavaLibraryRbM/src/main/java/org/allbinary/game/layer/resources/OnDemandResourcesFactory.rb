@@ -28,5 +28,5 @@ class OnDemandResourcesFactory
     end
 end
 
-require "org/allbinary/game/layer/resources/OnDemandResources"
+autoload :OnDemandResources, "org/allbinary/game/layer/resources/OnDemandResources"
 

@@ -82,13 +82,13 @@ class RootContextView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/visual/transform/TransformFactory"
-require "org/allbinary/logic/visual/transform/TransformInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfo"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "views/business/context/modules/storefront/customizer/template/objectConfig/NoTemplateTransformInfoObjectConfig"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :TransformFactory, "org/allbinary/logic/visual/transform/TransformFactory"
+autoload :TransformInterface, "org/allbinary/logic/visual/transform/TransformInterface"
+autoload :TransformInfo, "org/allbinary/logic/visual/transform/info/TransformInfo"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :NoTemplateTransformInfoObjectConfig, "views/business/context/modules/storefront/customizer/template/objectConfig/NoTemplateTransformInfoObjectConfig"
 

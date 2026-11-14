@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/IndexedAnimation"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 
@@ -80,7 +78,7 @@ class TextAnimation < IndexedAnimation
 
     def setText(text)
         list = BasicArrayListD.new()
-        if text != nil && text.length > 0
+        if text.length > 0
             index = 0
             startIndex = 0
             endIndex = 0
@@ -122,14 +120,16 @@ class TextAnimation < IndexedAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/graphics/threed/SWTJOGLProcessor"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/animation/text/TextChangeListener"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :SWTJOGLProcessor, "org/allbinary/graphics/threed/SWTJOGLProcessor"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :TextChangeListener, "org/allbinary/animation/text/TextChangeListener"
 

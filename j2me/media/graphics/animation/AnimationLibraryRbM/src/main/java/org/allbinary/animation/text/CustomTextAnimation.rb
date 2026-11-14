@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/text/TextAnimation"
 require "org/allbinary/animation/text/TextInterface"
 
@@ -45,7 +43,7 @@ class CustomTextAnimation < TextAnimation
         @myFontProcessor.process(graphics)
         existingFont = graphics.getFont()
         @fontDebugFactory.setFont(@font, graphics)
-        self.class.superclass.instance_method(:paintXYNoUpdate).bind(self).call(graphics, x, y)
+        CustomTextAnimation.superclass.instance_method(:paintXYNoUpdate).bind(self).call(graphics, x, y)
         @fontDebugFactory.setFont(existingFont, graphics)
     end
     
@@ -56,6 +54,11 @@ class CustomTextAnimation < TextAnimation
         end
         @hasChanged = true
         @font = Font.getFont(Font::FACE_SYSTEM, Font::STYLE_PLAIN, (((@fontSize).to_f * scaleX)).to_i)
+    end
+    
+
+    def setTextWithOnMeasure(text, textChangeListener)
+        super(text, textChangeListener)
     end
     
 
@@ -87,7 +90,10 @@ class CustomTextAnimation < TextAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/graphics/font/FontDebugFactory"
-require "org/allbinary/logic/string/StringUtil"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :FontDebugFactory, "org/allbinary/graphics/font/FontDebugFactory"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :TextChangeListener, "org/allbinary/animation/text/TextChangeListener"
 

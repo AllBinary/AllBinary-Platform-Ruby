@@ -33,26 +33,49 @@ class KeyValueFactory
     
 
     def get(key)
-        value = @MAP.get(key)
-        if value == nil
+        if !@MAP.containsKey(key)
             return key
         end
-        return value
+        return @MAP.get(key)
     end
 
     def self.instance()
+        KeyValueFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        KeyValueFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = KeyValueFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "KeyValueFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABHashtable"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class KeyValueFactory
-    @@instance = KeyValueFactory.new()
+begin
+    KeyValueFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

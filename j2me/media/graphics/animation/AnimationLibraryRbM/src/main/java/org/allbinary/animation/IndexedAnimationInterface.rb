@@ -21,16 +21,19 @@ module IndexedAnimationInterface
     
 
     def reset()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setFrame(index)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getFrame()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

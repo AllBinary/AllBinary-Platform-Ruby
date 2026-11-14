@@ -85,14 +85,14 @@ class DeleteFileValidationView < InventoryItemView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
-require "org/allbinary/logic/communication/http/request/RequestParams"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :InventoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
+autoload :RequestParams, "org/allbinary/logic/communication/http/request/RequestParams"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

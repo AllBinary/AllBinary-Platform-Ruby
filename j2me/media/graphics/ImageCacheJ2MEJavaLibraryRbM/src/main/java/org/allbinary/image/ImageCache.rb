@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
-# require "java/io/InputStream"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
 require "org/allbinary/image/ImageCacheBase"
 
 class ImageCache < ImageCacheBase
@@ -124,20 +121,45 @@ class ImageCache < ImageCacheBase
     def isLazy()
         return false
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_IMAGE_CACHE, ImageCache.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageCache"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_IMAGE_CACHE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/TsUtil"
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/game/gd/resource/GDResources"
-require "org/allbinary/logic/ABSystemWrapper"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/system/Memory"
+autoload :InputStream, "java/io/InputStream"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil"
+autoload :GDResources, "org/allbinary/game/gd/resource/GDResources"
+autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Memory, "org/allbinary/system/Memory"
 require "java/lang/Thread"
 
-class ImageCache
-    NULL_IMAGE_CACHE = ImageCache.new()
+begin
+    ImageCache.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

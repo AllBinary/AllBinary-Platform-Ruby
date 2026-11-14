@@ -86,14 +86,14 @@ class DirectoryDataModel
     end
 end
 
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/visual/transform/data/TransformDocumentFactory"
-require "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/util/BasicArrayList"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/data/tree/dom/FileDomDataModel"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :Directory, "org/allbinary/logic/io/file/directory/Directory"
+autoload :TransformDocumentFactory, "org/allbinary/logic/visual/transform/data/TransformDocumentFactory"
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :FileDomDataModel, "org/allbinary/data/tree/dom/FileDomDataModel"
 

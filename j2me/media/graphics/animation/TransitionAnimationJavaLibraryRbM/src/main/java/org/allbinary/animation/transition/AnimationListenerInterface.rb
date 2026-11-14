@@ -19,16 +19,19 @@ module AnimationListenerInterface
     
 
     def onPlatformAnimationStart()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onPlatformAnimationEnd()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onPlatformAnimationRepeat()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

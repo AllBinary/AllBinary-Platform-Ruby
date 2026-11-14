@@ -19,66 +19,78 @@ module BasicVelocityInterface
     
 
     def getVelocityXBasicDecimalP()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getVelocityYBasicDecimalP()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def zero()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal, direction, otherDirection)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal, direction, otherDirection)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setVelocityWithDirection(magnitude, direction, otherDirection)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addVelocityWithDirection(magnitude, direction, otherDirection)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setVelocityWithBigDecimal(magnitudeBasicDecimal, angle, otherAngle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addVelocityWithBigDecimal(magnitudeBasicDecimal, angle, otherAngle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setVelocity(magnitude, angle, otherAngle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addVelocity(magnitude, angle, otherAngle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addVelocityi(magnitude, angle, otherAngle)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/direction/Direction"
-require "org/allbinary/logic/math/BasicDecimal"
-require "org/allbinary/math/Angle"
+autoload :Direction, "org/allbinary/direction/Direction"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+autoload :Angle, "org/allbinary/math/Angle"
 

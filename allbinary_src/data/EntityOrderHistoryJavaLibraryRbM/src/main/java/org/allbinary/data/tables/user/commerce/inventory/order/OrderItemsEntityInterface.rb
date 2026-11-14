@@ -46,8 +46,8 @@ module OrderItemsEntityInterface
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/inventory/basket/BasketReview"
-require "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasketReview, "org/allbinary/business/user/commerce/inventory/basket/BasketReview"
+autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
 

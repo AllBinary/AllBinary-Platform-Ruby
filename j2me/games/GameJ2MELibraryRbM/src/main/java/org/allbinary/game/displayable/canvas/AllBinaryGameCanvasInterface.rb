@@ -21,9 +21,10 @@ module AllBinaryGameCanvasInterface
     
 
     def getLayerManager()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
 

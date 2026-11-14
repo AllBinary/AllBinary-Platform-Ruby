@@ -25,6 +25,6 @@ module TransformInfoFactoryInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

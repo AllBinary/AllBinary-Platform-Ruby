@@ -23,5 +23,5 @@ module RequestMapInterface
     end
 end
 
-require "java/util/HashMap"
+autoload :HashMap, "java/util/HashMap"
 

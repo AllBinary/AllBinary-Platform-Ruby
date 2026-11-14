@@ -38,10 +38,10 @@ class CreateUserFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/role/UserRole"
-require "org/allbinary/business/user/role/UserRoleB"
-require "org/allbinary/business/user/role/UserRoleData"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/business/user/UserInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserRole, "org/allbinary/business/user/role/UserRole"
+autoload :UserRoleB, "org/allbinary/business/user/role/UserRoleB"
+autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
 

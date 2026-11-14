@@ -52,10 +52,10 @@ class VectorRotationAnimation < VectorBaseRotationAnimation
     end
 end
 
-require "org/allbinary/direction/Direction"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/math/Angle"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/animation/AnimationBehavior"
+autoload :Direction, "org/allbinary/direction/Direction"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

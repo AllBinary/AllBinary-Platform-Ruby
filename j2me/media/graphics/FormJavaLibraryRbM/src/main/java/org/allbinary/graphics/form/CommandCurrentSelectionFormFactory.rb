@@ -30,13 +30,13 @@ class CommandCurrentSelectionFormFactory
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/TouchFeatureFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/graphics/form/CommandCurrentSelectionForm"
-require "org/allbinary/graphics/form/FormType"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
-require "org/allbinary/graphics/form/ScrollSelectionFormNoneFactory"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :TouchFeatureFactory, "org/allbinary/game/configuration/feature/TouchFeatureFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :CommandCurrentSelectionForm, "org/allbinary/graphics/form/CommandCurrentSelectionForm"
+autoload :FormType, "org/allbinary/graphics/form/FormType"
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
+autoload :ScrollSelectionFormNoneFactory, "org/allbinary/graphics/form/ScrollSelectionFormNoneFactory"
 

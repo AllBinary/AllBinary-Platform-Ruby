@@ -14,10 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.data.resource
 
-# require "java/io/ByteArrayInputStream"
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/FileInputStream"
-# require "java/io/InputStream"
 
 #J2SE - PC
 class ResourceUtil
@@ -79,20 +75,48 @@ class ResourceUtil
     end
 
     def self.instance()
+        ResourceUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ResourceUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ResourceUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ResourceUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
+autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
+autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+autoload :FileInputStream, "java/io/FileInputStream"
+autoload :InputStream, "java/io/InputStream"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class ResourceUtil
-    @@instance = ResourceUtil.new()
+begin
+    ResourceUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -65,9 +65,9 @@ class JvmStatisticsMapping < JvmStatistics
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/java/vm/stats/JvmStatisticsData"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :JvmStatisticsData, "org/allbinary/logic/communication/java/vm/stats/JvmStatisticsData"
 

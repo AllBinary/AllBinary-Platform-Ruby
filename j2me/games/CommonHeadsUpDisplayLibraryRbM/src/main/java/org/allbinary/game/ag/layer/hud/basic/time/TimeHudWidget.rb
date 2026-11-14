@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.time
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/graphics/hud/BasicHud"
 
 class TimeHudWidget < BasicHud
@@ -72,12 +70,14 @@ class TimeHudWidget < BasicHud
     
 
     def paint(graphics)
-        self.class.superclass.instance_method(:paintDX).bind(self).call(graphics, @TIME_CHAR_ARRAY, 0, @TIME_CHAR_ARRAY.length, @string, 0, @totalDigits, @offset)
+        TimeHudWidget.superclass.instance_method(:paintDX).bind(self).call(graphics, @TIME_CHAR_ARRAY, 0, @TIME_CHAR_ARRAY.length, @string, 0, @totalDigits, @offset)
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/logic/math/PrimitiveLongSingleton"
-require "org/allbinary/game/ag/layer/hud/basic/time/Timer"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :PrimitiveLongSingleton, "org/allbinary/logic/math/PrimitiveLongSingleton"
+autoload :HudTimer, "org/allbinary/game/ag/layer/hud/basic/time/HudTimer"
 

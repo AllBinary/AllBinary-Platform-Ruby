@@ -52,11 +52,11 @@ class InputAutomationModuleOSGIServiceVisitor
     end
 end
 
-require "bundle/input/automation/module/InputAutomationModuleService"
-require "org/allbinary/input/automation/InputAutomationJFrame"
-require "org/allbinary/input/automation/configuration/InputAutomationConfigurationUtil"
-require "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/osgi/OSGIServiceInterface"
-require "org/allbinary/string/CommonStrings"
+autoload :InputAutomationModuleService, "bundle/input/automation/module/InputAutomationModuleService"
+autoload :InputAutomationJFrame, "org/allbinary/input/automation/InputAutomationJFrame"
+autoload :InputAutomationConfigurationUtil, "org/allbinary/input/automation/configuration/InputAutomationConfigurationUtil"
+autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :OSGIServiceInterface, "org/allbinary/osgi/OSGIServiceInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

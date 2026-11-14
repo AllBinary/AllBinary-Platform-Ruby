@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/Paintable"
 
 class TouchButtonsPaintable < Paintable
@@ -53,9 +52,10 @@ class TouchButtonsPaintable < Paintable
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorSetUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/input/motion/button/TouchButton"
-require "org/allbinary/input/motion/button/TouchButtonFactory"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton"
+autoload :TouchButtonFactory, "org/allbinary/input/motion/button/TouchButtonFactory"
 

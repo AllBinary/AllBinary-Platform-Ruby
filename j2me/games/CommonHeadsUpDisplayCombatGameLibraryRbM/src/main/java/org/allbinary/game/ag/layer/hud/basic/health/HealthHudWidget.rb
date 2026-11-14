@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.health
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/graphics/hud/BasicHud"
 require "org/allbinary/game/health/HealthListenerInterface"
 require "org/allbinary/graphics/paint/PaintableInterface"
@@ -98,11 +97,12 @@ class HealthHudWidget < BasicHud
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/game/health/Health"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/NoTimeDelayHelper"
-require "org/allbinary/time/TimeDelayHelper"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :Health, "org/allbinary/game/health/Health"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :NoTimeDelayHelper, "org/allbinary/time/NoTimeDelayHelper"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
-# require "javax/microedition/lcdui/Canvas"
 
 class BasicProbabilityAIDataFactory
     
@@ -49,8 +48,9 @@ class BasicProbabilityAIDataFactory
     end
 end
 
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/time/NoTimeDelayHelper"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/ag/ai/InputProbability"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :NoTimeDelayHelper, "org/allbinary/time/NoTimeDelayHelper"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :InputProbability, "org/allbinary/game/ag/ai/InputProbability"
 

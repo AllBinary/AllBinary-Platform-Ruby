@@ -78,26 +78,50 @@ class CheatGameInputProcessor < PlayerGameInput
     end
 
     def self.inputProcessor()
+        CheatGameInputProcessor.java_static_fields unless @java_static_fields_started
         return defined?(@@inputProcessor) ? @@inputProcessor : nil
     end
 
     def self.inputProcessor=(value)
+        CheatGameInputProcessor.java_static_fields unless @java_static_fields_started
         @@inputProcessor = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@inputProcessor = SpecialGameInputFactory::NO_SPECIAL_GAME_INPUT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CheatGameInputProcessor"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/input/GameKeyFactory"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/input/event/GameKeyEventUtil"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/layer/special/SpecialGameInputFactory"
-require "org/allbinary/game/layer/special/SpecialGameInputInterface"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEventUtil, "org/allbinary/game/input/event/GameKeyEventUtil"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :SpecialGameInputFactory, "org/allbinary/game/layer/special/SpecialGameInputFactory"
+autoload :SpecialGameInputInterface, "org/allbinary/game/layer/special/SpecialGameInputInterface"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 
-class CheatGameInputProcessor
-    @@inputProcessor = SpecialGameInputFactory::NO_SPECIAL_GAME_INPUT
+begin
+    CheatGameInputProcessor.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

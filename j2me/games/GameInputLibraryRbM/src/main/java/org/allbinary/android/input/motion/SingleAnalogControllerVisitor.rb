@@ -37,8 +37,8 @@ class SingleAnalogControllerVisitor < AnalogControllerVisitor
     end
 end
 
-require "org/allbinary/game/input/analog/AnalogLocationInput"
-require "org/allbinary/game/input/analog/AnalogLocationInputFactory"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/android/input/motion/AnalogLocationInputProcessor"
+autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput"
+autoload :AnalogLocationInputFactory, "org/allbinary/game/input/analog/AnalogLocationInputFactory"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AnalogLocationInputProcessor, "org/allbinary/android/input/motion/AnalogLocationInputProcessor"
 

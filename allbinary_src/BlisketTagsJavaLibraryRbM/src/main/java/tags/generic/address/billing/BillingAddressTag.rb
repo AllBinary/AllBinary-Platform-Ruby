@@ -66,7 +66,7 @@ class BillingAddressTag < StoreValidationTransformTag
     end
 end
 
-require "org/allbinary/business/user/address/BillingAddressData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :BillingAddressData, "org/allbinary/business/user/address/BillingAddressData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

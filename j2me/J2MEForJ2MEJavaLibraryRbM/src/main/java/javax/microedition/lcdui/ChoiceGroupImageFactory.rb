@@ -16,17 +16,18 @@
 
 
 class ChoiceGroupImageFactory
-    attr_accessor :multiOff, :multiOn, :radioOff, :radioOn, :imgMultiOffO, :imgMultiOnO, :imgRadioOffO, :imgRadioOnO, :imgMultiOff, :imgMultiOn, :imgRadioOff, :imgRadioOn, :imageArray
+    attr_accessor :multiOff, :multiOn, :radioOff, :radioOn, :midpUtil, :imgMultiOffO, :imgMultiOnO, :imgRadioOffO, :imgRadioOnO, :imgMultiOff, :imgMultiOn, :imgRadioOff, :imgRadioOn, :imageArray
 
     def initialize_fields
         @multiOff = [(((-119).to_i + 128) % 256 - 128), 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 10, 0, 0, 0, 11, 2, 3, 0, 0, 0, 59, 0, (((-12).to_i + 128) % 256 - 128), (((-117).to_i + 128) % 256 - 128), 0, 0, 0, 6, 80, 76, 84, 69, (((-1).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-57).to_i + 128) % 256 - 128), 75, (((-33).to_i + 128) % 256 - 128), (((-8).to_i + 128) % 256 - 128), 0, 0, 0, 30, 73, 68, 65, 84, 120, (((-38).to_i + 128) % 256 - 128), 99, 96, 96, 96, 96, 12, 101, (((-8).to_i + 128) % 256 - 128), (((-51).to_i + 128) % 256 - 128), (((-32).to_i + 128) % 256 - 128), (((-64).to_i + 128) % 256 - 128), 32, (((-64).to_i + 128) % 256 - 128), (((-60).to_i + 128) % 256 - 128), (((-64).to_i + 128) % 256 - 128), (((-64).to_i + 128) % 256 - 128), (((-128).to_i + 128) % 256 - 128), 11, 51, (((-122).to_i + 128) % 256 - 128), 50, (((-4).to_i + 128) % 256 - 128), 6, 0, 63, 116, 3, 1, 53, (((-108).to_i + 128) % 256 - 128), 39, (((-26).to_i + 128) % 256 - 128), 0, 0, 0, 0, 73, 69, 78, 68, (((-82).to_i + 128) % 256 - 128), 66, 96, (((-126).to_i + 128) % 256 - 128)]
         @multiOn = [(((-119).to_i + 128) % 256 - 128), 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 10, 0, 0, 0, 11, 2, 3, 0, 0, 0, 59, 0, (((-12).to_i + 128) % 256 - 128), (((-117).to_i + 128) % 256 - 128), 0, 0, 0, 12, 80, 76, 84, 69, (((-1).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), 106, 106, 106, 2, 2, 2, 106, (((-103).to_i + 128) % 256 - 128), 14, (((-47).to_i + 128) % 256 - 128), 0, 0, 0, 53, 73, 68, 65, 84, 120, (((-38).to_i + 128) % 256 - 128), 99, 96, 96, 124, (((-64).to_i + 128) % 256 - 128), (((-16).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-77).to_i + 128) % 256 - 128), 3, (((-45).to_i + 128) % 256 - 128), 65, (((-111).to_i + 128) % 256 - 128), 15, 76, 12, 108, 12, 76, 12, (((-4).to_i + 128) % 256 - 128), 12, 76, 12, 18, 12, 76, (((-68).to_i + 128) % 256 - 128), 127, 24, (((-104).to_i + 128) % 256 - 128), 126, 45, 96, 96, (((-7).to_i + 128) % 256 - 128), (((-11).to_i + 128) % 256 - 128), (((-109).to_i + 128) % 256 - 128), (((-127).to_i + 128) % 256 - 128), (((-23).to_i + 128) % 256 - 128), (((-65).to_i + 128) % 256 - 128), 3, 3, (((-29).to_i + 128) % 256 - 128), 127, (((-122).to_i + 128) % 256 - 128), (((-113).to_i + 128) % 256 - 128), 0, 5, 37, 12, (((-34).to_i + 128) % 256 - 128), 1, (((-99).to_i + 128) % 256 - 128), (((-83).to_i + 128) % 256 - 128), 100, 0, 0, 0, 0, 73, 69, 78, 68, (((-82).to_i + 128) % 256 - 128), 66, 96, (((-126).to_i + 128) % 256 - 128)]
         @radioOff = [(((-119).to_i + 128) % 256 - 128), 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 11, 0, 0, 0, 11, 2, 3, 0, 0, 0, (((-44).to_i + 128) % 256 - 128), (((-62).to_i + 128) % 256 - 128), (((-97).to_i + 128) % 256 - 128), (((-75).to_i + 128) % 256 - 128), 0, 0, 0, 9, 80, 76, 84, 69, (((-1).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), 106, 106, 106, (((-44).to_i + 128) % 256 - 128), 13, (((-1).to_i + 128) % 256 - 128), (((-24).to_i + 128) % 256 - 128), 0, 0, 0, 42, 73, 68, 65, 84, 120, (((-38).to_i + 128) % 256 - 128), 99, 96, 90, (((-59).to_i + 128) % 256 - 128), (((-64).to_i + 128) % 256 - 128), 32, (((-63).to_i + 128) % 256 - 128), 48, (((-127).to_i + 128) % 256 - 128), 65, (((-127).to_i + 128) % 256 - 128), 65, (((-127).to_i + 128) % 256 - 128), 41, (((-127).to_i + 128) % 256 - 128), (((-31).to_i + 128) % 256 - 128), 5, 19, 3, 3, 3, 50, 102, 80, 96, 80, 96, (((-6).to_i + 128) % 256 - 128), (((-63).to_i + 128) % 256 - 128), 80, (((-64).to_i + 128) % 256 - 128), (((-64).to_i + 128) % 256 - 128), (((-76).to_i + 128) % 256 - 128), (((-118).to_i + 128) % 256 - 128), 1, 0, 113, 24, 5, 61, 73, (((-68).to_i + 128) % 256 - 128), (((-100).to_i + 128) % 256 - 128), 98, 0, 0, 0, 0, 73, 69, 78, 68, (((-82).to_i + 128) % 256 - 128), 66, 96, (((-126).to_i + 128) % 256 - 128)]
         @radioOn = [(((-119).to_i + 128) % 256 - 128), 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 11, 0, 0, 0, 11, 2, 3, 0, 0, 0, (((-44).to_i + 128) % 256 - 128), (((-62).to_i + 128) % 256 - 128), (((-97).to_i + 128) % 256 - 128), (((-75).to_i + 128) % 256 - 128), 0, 0, 0, 12, 80, 76, 84, 69, (((-1).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-1).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), (((-69).to_i + 128) % 256 - 128), 106, 106, 106, 2, 2, 2, 106, (((-103).to_i + 128) % 256 - 128), 14, (((-47).to_i + 128) % 256 - 128), 0, 0, 0, 50, 73, 68, 65, 84, 120, (((-38).to_i + 128) % 256 - 128), 5, (((-63).to_i + 128) % 256 - 128), 65, 13, 0, 32, 12, 4, (((-63).to_i + 128) % 256 - 128), (((-19).to_i + 128) % 256 - 128), (((-11).to_i + 128) % 256 - 128), (((-117).to_i + 128) % 256 - 128), 1, 18, 68, (((-100).to_i + 128) % 256 - 128), 10, 52, 19, 94, 72, 64, 17, 101, (((-122).to_i + 128) % 256 - 128), 44, (((-44).to_i + 128) % 256 - 128), (((-29).to_i + 128) % 256 - 128), 98, (((-52).to_i + 128) % 256 - 128), 89, 77, (((-102).to_i + 128) % 256 - 128), 40, 2, 85, (((-95).to_i + 128) % 256 - 128), (((-73).to_i + 128) % 256 - 128), (((-63).to_i + 128) % 256 - 128), (((-104).to_i + 128) % 256 - 128), (((-63).to_i + 128) % 256 - 128), 37, (((-117).to_i + 128) % 256 - 128), 15, (((-40).to_i + 128) % 256 - 128), 119, 10, 41, 78, 26, (((-79).to_i + 128) % 256 - 128), 59, 0, 0, 0, 0, 73, 69, 78, 68, (((-82).to_i + 128) % 256 - 128), 66, 96, (((-126).to_i + 128) % 256 - 128)]
-        @imgMultiOffO = Image.createImage(@multiOff, 0, @multiOff.length)
-        @imgMultiOnO = Image.createImage(@multiOn, 0, @multiOn.length)
-        @imgRadioOffO = Image.createImage(@radioOff, 0, @radioOff.length)
-        @imgRadioOnO = Image.createImage(@radioOn, 0, @radioOn.length)
+        @midpUtil = MIDPUtil.getInstance()
+        @imgMultiOffO = @midpUtil.createImageFromByteArray(@multiOff, 0, @multiOff.length)
+        @imgMultiOnO = @midpUtil.createImageFromByteArray(@multiOn, 0, @multiOn.length)
+        @imgRadioOffO = @midpUtil.createImageFromByteArray(@radioOff, 0, @radioOff.length)
+        @imgRadioOnO = @midpUtil.createImageFromByteArray(@radioOn, 0, @radioOn.length)
         @imgMultiOff = @imgMultiOffO
         @imgMultiOn = @imgMultiOnO
         @imgRadioOff = @imgRadioOffO
@@ -61,15 +62,42 @@ class ChoiceGroupImageFactory
     end
 
     def self.instance()
+        ChoiceGroupImageFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ChoiceGroupImageFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ChoiceGroupImageFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ChoiceGroupImageFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class ChoiceGroupImageFactory
-    @@instance = ChoiceGroupImageFactory.new()
+autoload :MIDPUtil, "org/allbinary/MIDPUtil"
+autoload :Image, "javax/microedition/lcdui/Image"
+
+begin
+    ChoiceGroupImageFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

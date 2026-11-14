@@ -40,7 +40,7 @@ class BaseTouchInput
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
 

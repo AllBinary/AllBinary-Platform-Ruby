@@ -43,6 +43,6 @@ class GameRunnable
     end
 end
 
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
 require "java/lang/Thread"
 

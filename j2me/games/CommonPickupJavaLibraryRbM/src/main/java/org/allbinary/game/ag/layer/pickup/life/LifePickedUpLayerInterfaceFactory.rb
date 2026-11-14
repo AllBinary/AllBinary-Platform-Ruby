@@ -54,25 +54,49 @@ class LifePickedUpLayerInterfaceFactory < PickedUpLayerInterfaceFactory
     end
 
     def self.pickedUpLayerInterfaceFactoryInterface()
+        LifePickedUpLayerInterfaceFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@pickedUpLayerInterfaceFactoryInterface) ? @@pickedUpLayerInterfaceFactoryInterface : nil
     end
 
     def self.pickedUpLayerInterfaceFactoryInterface=(value)
+        LifePickedUpLayerInterfaceFactory.java_static_fields unless @java_static_fields_started
         @@pickedUpLayerInterfaceFactoryInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory::NULL_COUNTED_PICKUP_LAYER_FACTORY
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LifePickedUpLayerInterfaceFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
-require "org/allbinary/game/layer/pickup/IconLayerFactory"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-require "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/ag/layer/pickup/life/LifeLayerCircularStaticPool"
-require "org/allbinary/game/ag/layer/pickup/life/LifeLayerFactory"
-require "org/allbinary/game/ag/layer/pickup/life/LifeResources"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :CountedPickedUpLayerInterfaceFactory, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
+autoload :IconLayerFactory, "org/allbinary/game/layer/pickup/IconLayerFactory"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :PickedUpLayerTypeFactory, "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LifeLayerCircularStaticPool, "org/allbinary/game/ag/layer/pickup/life/LifeLayerCircularStaticPool"
+autoload :LifeLayerFactory, "org/allbinary/game/ag/layer/pickup/life/LifeLayerFactory"
+autoload :LifeResources, "org/allbinary/game/ag/layer/pickup/life/LifeResources"
 
-class LifePickedUpLayerInterfaceFactory
-    @@pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory::NULL_COUNTED_PICKUP_LAYER_FACTORY
+begin
+    LifePickedUpLayerInterfaceFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

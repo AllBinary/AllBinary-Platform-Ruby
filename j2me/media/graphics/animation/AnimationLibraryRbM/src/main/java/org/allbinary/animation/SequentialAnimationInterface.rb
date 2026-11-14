@@ -23,11 +23,13 @@ module SequentialAnimationInterface
     
 
     def getSize()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def previousFrame()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

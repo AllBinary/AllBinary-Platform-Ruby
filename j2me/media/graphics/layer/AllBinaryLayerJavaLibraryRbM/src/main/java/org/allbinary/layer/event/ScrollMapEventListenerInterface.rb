@@ -22,9 +22,10 @@ module ScrollMapEventListenerInterface
 
     # throws Exception
     def onMoveEvent(layerManagerEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/layer/event/ScrollMapEvent"
+autoload :ScrollMapEvent, "org/allbinary/layer/event/ScrollMapEvent"
 

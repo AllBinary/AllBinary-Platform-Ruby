@@ -27,12 +27,12 @@ class ABHashtable < Hashtable
     
 
     def constructor1(initialCapacity)
-        method(:initialize).super_method.call(initialCapacity)
+        ABHashtable.superclass.instance_method(:initialize).bind(self).call(initialCapacity)
     end
     
 
     def constructor0()
-        method(:initialize).super_method.call()
+        ABHashtable.superclass.instance_method(:initialize).bind(self).call()
     end
 end
 

@@ -24,6 +24,6 @@ class MotionLaptopGameInputMapping < PCGameInputMapping
     end
 end
 
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-require "org/allbinary/game/input/MotionLaptopDefaultGameInputMapping"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :MotionLaptopDefaultGameInputMapping, "org/allbinary/game/input/MotionLaptopDefaultGameInputMapping"
 

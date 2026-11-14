@@ -36,6 +36,6 @@ class FontFamilyView < CssPropertyView
     end
 end
 
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/visual/dhtml/style/css/property/font/FontFamilyData"
+autoload :Node, "org/w3c/dom/Node"
+autoload :FontFamilyData, "org/allbinary/logic/visual/dhtml/style/css/property/font/FontFamilyData"
 

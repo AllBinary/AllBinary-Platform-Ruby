@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/game/Sprite"
 require "org/allbinary/animation/image/ImageSegmentAnimation"
 
 class TopToBottomImageAnimation < ImageSegmentAnimation
@@ -40,7 +37,7 @@ class TopToBottomImageAnimation < ImageSegmentAnimation
 
     def nextFrame()
         if self.getSequence()[0] == -1
-            self.class.superclass.instance_method(:previousFrame).bind(self).call()
+            TopToBottomImageAnimation.superclass.instance_method(:previousFrame).bind(self).call()
         else
             super()
         end
@@ -50,7 +47,7 @@ class TopToBottomImageAnimation < ImageSegmentAnimation
 
     def previousFrame()
         if self.getSequence()[0] == -1
-            self.class.superclass.instance_method(:nextFrame).bind(self).call()
+            TopToBottomImageAnimation.superclass.instance_method(:nextFrame).bind(self).call()
         else
             super()
         end
@@ -74,6 +71,9 @@ class TopToBottomImageAnimation < ImageSegmentAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/graphics/Anchor"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
 

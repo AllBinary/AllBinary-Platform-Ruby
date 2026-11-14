@@ -44,7 +44,7 @@ class AutoSearchValidationInventoryView < InventorySearch
     end
 end
 
-require "org/allbinary/logic/control/search/SearchRequest"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

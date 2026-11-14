@@ -33,11 +33,33 @@ class MultiplayerBehavior
     def getApproximateElapsed()
         return 0
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_MULTIPLAYER_BEHAVIOR, MultiplayerBehavior.new(StringUtil.getInstance().EMPTY_STRING))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MultiplayerBehavior"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_MULTIPLAYER_BEHAVIOR].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class MultiplayerBehavior
-    NULL_MULTIPLAYER_BEHAVIOR = MultiplayerBehavior.new(StringUtil.getInstance().EMPTY_STRING)
+begin
+    MultiplayerBehavior.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

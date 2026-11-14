@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/BasicAI"
 require "org/allbinary/game/combat/destroy/event/DestroyedEventListenerInterface"
 require "org/allbinary/game/tracking/TrackingEventListenerInterface"
@@ -90,7 +89,9 @@ class DiveAndDirectionalTrackingAI < BasicAI
         @lastTrackingLayerInterface = lastTrackingEvent.getLayerInterface()
         layerInterface = @lastTrackingLayerInterface
         ownerLayerInterface = self.getOwnerLayerInterface()
-        if layerInterface.getGroupInterface() == ownerLayerInterface.getGroupInterface()
+        groupArray = layerInterface.getGroupInterface()
+        ownerGroupArray = ownerLayerInterface.getGroupInterface()
+        if groupArray == ownerGroupArray
             return
         end
         x = @lastTrackingLayerInterface.getXP()
@@ -204,7 +205,7 @@ class DiveAndDirectionalTrackingAI < BasicAI
 
     # throws Exception
     def attack()
-        self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
+        DiveAndDirectionalTrackingAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM1)
     end
     
 
@@ -270,7 +271,7 @@ class DiveAndDirectionalTrackingAI < BasicAI
         @lastDirection = lastDirection
         value = self.getLastDirection().getValue()
         if value < 4
-            self.class.superclass.instance_method(:setLastKey).bind(self).call(@directionToKeyMap[value])
+            DiveAndDirectionalTrackingAI.superclass.instance_method(:setLastKey).bind(self).call(@directionToKeyMap[value])
         end
     end
     
@@ -304,30 +305,32 @@ class DiveAndDirectionalTrackingAI < BasicAI
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/direction/Direction"
-require "org/allbinary/direction/DirectionFactory"
-require "org/allbinary/direction/DirectionalCompositeInterface"
-require "org/allbinary/direction/DirectionalInterface"
-require "org/allbinary/game/combat/destroy/event/DestroyedEvent"
-require "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-require "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
-require "org/allbinary/game/tracking/TrackingEvent"
-require "org/allbinary/game/tracking/TrackingEventHandler"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/math/MathUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/logic/util/visitor/Visitor"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :Direction, "org/allbinary/direction/Direction"
+autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory"
+autoload :DirectionalCompositeInterface, "org/allbinary/direction/DirectionalCompositeInterface"
+autoload :DirectionalInterface, "org/allbinary/direction/DirectionalInterface"
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
+autoload :DestroyedEventHandler, "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
+autoload :Group, "org/allbinary/game/identification/Group"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
+autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent"
+autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

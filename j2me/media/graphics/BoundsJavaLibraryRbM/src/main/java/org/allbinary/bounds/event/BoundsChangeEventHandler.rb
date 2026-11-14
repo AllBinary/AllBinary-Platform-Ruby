@@ -34,14 +34,36 @@ class BoundsChangeEventHandler < BasicEventHandler
         boundsChangeEventListener = eventListenerInterface
         boundsChangeEventListener.onBoundsChangeEvent(eventObject)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, BoundsChangeEventHandler.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BoundsChangeEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/bounds/event/BoundsChangeEvent"
-require "org/allbinary/bounds/event/BoundsChangeEventListener"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :BoundsChangeEvent, "org/allbinary/bounds/event/BoundsChangeEvent"
+autoload :BoundsChangeEventListener, "org/allbinary/bounds/event/BoundsChangeEventListener"
 
-class BoundsChangeEventHandler
-    SINGLETON = BoundsChangeEventHandler.new()
+begin
+    BoundsChangeEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

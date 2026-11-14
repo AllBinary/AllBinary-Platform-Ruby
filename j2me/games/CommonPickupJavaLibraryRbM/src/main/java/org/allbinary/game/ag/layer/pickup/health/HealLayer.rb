@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.pickup.health
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/health/HealthVisitorInterface"
 require "org/allbinary/layer/AllBinaryLayer"
 
@@ -40,9 +39,10 @@ class HealLayer < AllBinaryLayer
     end
 end
 
-require "org/allbinary/game/health/HealthInterface"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/view/ViewPosition"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :HealthInterface, "org/allbinary/game/health/HealthInterface"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
 

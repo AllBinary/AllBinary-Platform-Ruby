@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.vector
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/vector/CircleAnimation"
 
 class AdjustedCircleAnimation < CircleAnimation
@@ -70,6 +69,7 @@ class AdjustedCircleAnimation < CircleAnimation
     end
 end
 
-require "org/allbinary/AndroidUtil"
-require "org/allbinary/graphics/color/BasicColor"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AndroidUtil, "org/allbinary/AndroidUtil"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

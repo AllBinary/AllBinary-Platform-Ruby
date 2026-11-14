@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/image/ImageAnimation"
 
 class ImageSegmentAnimation < ImageAnimation
@@ -122,6 +120,8 @@ class ImageSegmentAnimation < ImageAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/util/CircularIndexUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
 

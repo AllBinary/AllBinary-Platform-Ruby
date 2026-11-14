@@ -36,5 +36,5 @@ class RunnableCanvasRefreshHelper < Processor
     end
 end
 
-require "org/allbinary/graphics/displayable/MyCanvas"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
 

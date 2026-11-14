@@ -41,7 +41,7 @@ class GameConfigurationCentral
 
     def self.getInstance()
         if GameConfigurationCentral::SINGLETON == NullUtil.getInstance().NULL_OBJECT
-            GameConfigurationCentral::SINGLETON = GameConfigurationCentral.new()
+            (GameConfigurationCentral.send(:remove_const, :SINGLETON) if GameConfigurationCentral.const_defined?(:SINGLETON, false); GameConfigurationCentral.const_set(:SINGLETON, GameConfigurationCentral.new()))
         end
         return GameConfigurationCentral::SINGLETON
     end
@@ -158,22 +158,44 @@ class GameConfigurationCentral
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameConfigurationCentral"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/configuration/persistance/GameConfigurationPersistanceSingleton"
-require "org/allbinary/game/configuration/persistance/KeyValuePersistance"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/configuration/GameConfiguration"
+autoload :GameConfigurationPersistanceSingleton, "org/allbinary/game/configuration/persistance/GameConfigurationPersistanceSingleton"
+autoload :KeyValuePersistance, "org/allbinary/game/configuration/persistance/KeyValuePersistance"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
 
-class GameConfigurationCentral
-    SINGLETON = NullUtil.getInstance().NULL_OBJECT
+begin
+    GameConfigurationCentral.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

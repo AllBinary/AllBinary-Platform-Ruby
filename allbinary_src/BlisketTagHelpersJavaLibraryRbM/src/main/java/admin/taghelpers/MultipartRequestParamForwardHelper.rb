@@ -92,16 +92,16 @@ class MultipartRequestParamForwardHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/globals/GLOBALS2"
-require "org/allbinary/logic/communication/http/request/RequestMapInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "tags/HelperTag"
-require "admin/taghelpers/InventoryItemViewParentTagHelper"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2"
+autoload :RequestMapInterface, "org/allbinary/logic/communication/http/request/RequestMapInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :HelperTag, "tags/HelperTag"
+autoload :InventoryItemViewParentTagHelper, "admin/taghelpers/InventoryItemViewParentTagHelper"
 

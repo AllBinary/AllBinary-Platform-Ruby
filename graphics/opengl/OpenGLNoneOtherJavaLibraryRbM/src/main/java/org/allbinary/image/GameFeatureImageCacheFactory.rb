@@ -33,6 +33,6 @@ class GameFeatureImageCacheFactory
     end
 end
 
-require "org/allbinary/image/ImageCache"
-require "org/allbinary/image/ImageCacheFactory"
+autoload :ImageCache, "org/allbinary/image/ImageCache"
+autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory"
 

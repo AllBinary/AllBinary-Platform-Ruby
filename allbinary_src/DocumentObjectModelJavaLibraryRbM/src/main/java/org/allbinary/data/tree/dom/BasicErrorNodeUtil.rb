@@ -34,8 +34,8 @@ class BasicErrorNodeUtil
     end
 end
 
-require "org/allbinary/business/error/ErrorData"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :ErrorData, "org/allbinary/business/error/ErrorData"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
 

@@ -28,5 +28,5 @@ module TimeIntervalActionScriptConditionInterface
     end
 end
 
-require "org/allbinary/time/TimeDelayHelper"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
 

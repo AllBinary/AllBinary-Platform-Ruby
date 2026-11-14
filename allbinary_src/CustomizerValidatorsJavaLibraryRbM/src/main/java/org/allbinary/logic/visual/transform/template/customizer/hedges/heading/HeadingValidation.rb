@@ -148,16 +148,16 @@ class HeadingValidation < Validation
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/transform/template/customizer/widgets/logo/LogoData"
-require "org/allbinary/logic/visual/transform/template/customizer/widgets/logo/LogoValidation"
-require "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleData"
-require "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleValidation"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/logic/visual/transform/template/customizer/hedges/heading/HeadingData"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :LogoData, "org/allbinary/logic/visual/transform/template/customizer/widgets/logo/LogoData"
+autoload :LogoValidation, "org/allbinary/logic/visual/transform/template/customizer/widgets/logo/LogoValidation"
+autoload :TitleData, "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleData"
+autoload :TitleValidation, "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleValidation"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :HeadingData, "org/allbinary/logic/visual/transform/template/customizer/hedges/heading/HeadingData"
 

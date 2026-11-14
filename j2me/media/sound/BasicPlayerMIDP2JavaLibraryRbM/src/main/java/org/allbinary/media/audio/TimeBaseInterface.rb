@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
-# require "javax/microedition/media/MediaException"
-# require "javax/microedition/media/TimeBase"
 
 module TimeBaseInterface
     
 
     def getTimeBase()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws MediaException
     def setTimeBase(timeBase)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :MediaException, "javax/microedition/media/MediaException"
+autoload :TimeBase, "javax/microedition/media/TimeBase"
 

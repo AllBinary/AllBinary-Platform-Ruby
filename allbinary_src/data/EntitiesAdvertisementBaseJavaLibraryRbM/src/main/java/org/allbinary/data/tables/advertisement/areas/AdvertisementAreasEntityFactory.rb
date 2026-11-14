@@ -34,14 +34,36 @@ class AdvertisementAreasEntityFactory
             return nil
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:CLASSNAME, "org.allbinary.data.tables.AdvertisementEntity")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AdvertisementAreasEntityFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:CLASSNAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tables/advertisement/areas/AdvertisementAreasEntity"
-require "org/allbinary/data/tables/advertisement/areas/AdvertisementAreasEntityInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AdvertisementAreasEntity, "org/allbinary/data/tables/advertisement/areas/AdvertisementAreasEntity"
+autoload :AdvertisementAreasEntityInterface, "org/allbinary/data/tables/advertisement/areas/AdvertisementAreasEntityInterface"
 
-class AdvertisementAreasEntityFactory
-    CLASSNAME = "org.allbinary.data.tables.AdvertisementEntity"
+begin
+    AdvertisementAreasEntityFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

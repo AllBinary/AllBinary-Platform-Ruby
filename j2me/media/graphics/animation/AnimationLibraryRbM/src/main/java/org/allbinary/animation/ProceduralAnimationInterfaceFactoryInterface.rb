@@ -22,9 +22,10 @@ module ProceduralAnimationInterfaceFactoryInterface
 
     # throws Exception
     def getInstanceAnimation(animationInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/animation/Animation"
+autoload :Animation, "org/allbinary/animation/Animation"
 

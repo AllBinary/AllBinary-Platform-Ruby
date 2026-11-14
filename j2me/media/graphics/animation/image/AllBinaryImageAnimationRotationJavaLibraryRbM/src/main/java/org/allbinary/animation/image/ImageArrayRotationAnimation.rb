@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/image/ImageArrayBaseRotationAnimation"
 
 class ImageArrayRotationAnimation < ImageArrayBaseRotationAnimation
@@ -55,7 +54,8 @@ class ImageArrayRotationAnimation < ImageArrayBaseRotationAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
 

@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint.help
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/paint/help/HelpPaintable"
 
 class InputMappingHelpPaintable < HelpPaintable
@@ -28,7 +26,7 @@ class InputMappingHelpPaintable < HelpPaintable
             @keymappingBeginWidthArray = NullUtil.getInstance().NULL_INT_ARRAY
             @actionStringDeltaXArray = NullUtil.getInstance().NULL_INT_ARRAY
             @inputDeltaXArray = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
-            @sepArray = Array.new(0) { Array.new(0, nil) }
+            @sepArray = StringUtil.getInstance().ONE_EMPTY_STRING_ARRAY_OF_ARRAYS
             @sepWidthArray = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
             @charHeight = 0
         end
@@ -48,7 +46,7 @@ class InputMappingHelpPaintable < HelpPaintable
         @EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
         @gameInputMappingArray = nil
         @keyMappingArray = Array.new(0, nil)
-        @actionBasicColor = Array.new(0, nil)
+        @actionBasicColor = BasicColorUtil.getInstance().ZERO_ARRAY
         @inputBasicColorArray = Array.new(0) { Array.new(0, nil) }
         @selectedBasicColor = nil
         @updateMyFontProperties = UpdateMyFontProperties.new()
@@ -164,7 +162,7 @@ class InputMappingHelpPaintable < HelpPaintable
         @keyMappingArray = keyMappingArray
         @actionBasicColor = actionBasicColor
         @inputBasicColorArray = inputBasicColorArray
-        self.class.superclass.instance_method(:setInputInfoP).bind(self).call(keyInfo)
+        InputMappingHelpPaintable.superclass.instance_method(:setInputInfoP).bind(self).call(keyInfo)
         @myFontProcessor = @updateMyFontProcessor
     end
     
@@ -229,28 +227,53 @@ class InputMappingHelpPaintable < HelpPaintable
             end
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:AND, " and ")
+        const_set(:SEP, ", ")
+        const_set(:MORE_THAN_TWO_IN_LIST_AND, ", and ")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputMappingHelpPaintable"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:AND, :SEP, :MORE_THAN_TWO_IN_LIST_AND].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/GameKeyFactory"
-require "org/allbinary/game/input/Input"
-require "org/allbinary/game/input/PlatformInputMappingFactory"
-require "org/allbinary/game/input/mapping/GameInputMapping"
-require "org/allbinary/game/input/mapping/PersistentInputMapping"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
+autoload :GameInputMapping, "org/allbinary/game/input/mapping/GameInputMapping"
+autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 
-class InputMappingHelpPaintable
-    AND = " and "
-    SEP = ", "
-    MORE_THAN_TWO_IN_LIST_AND = ", and "
+begin
+    InputMappingHelpPaintable.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

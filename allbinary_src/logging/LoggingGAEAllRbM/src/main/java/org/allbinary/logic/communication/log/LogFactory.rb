@@ -28,6 +28,6 @@ class LogFactory
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/Log"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :Log, "org/allbinary/logic/communication/log/Log"
 

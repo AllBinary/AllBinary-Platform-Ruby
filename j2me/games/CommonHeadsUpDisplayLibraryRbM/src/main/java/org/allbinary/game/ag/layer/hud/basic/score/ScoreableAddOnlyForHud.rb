@@ -47,5 +47,5 @@ class ScoreableAddOnlyForHud < Scoreable
     end
 end
 
-require "org/allbinary/game/ag/layer/hud/basic/score/ScoreHudWidget"
+autoload :ScoreHudWidget, "org/allbinary/game/ag/layer/hud/basic/score/ScoreHudWidget"
 

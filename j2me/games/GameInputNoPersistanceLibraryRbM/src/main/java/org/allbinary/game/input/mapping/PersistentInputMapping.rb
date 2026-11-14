@@ -148,33 +148,57 @@ class PersistentInputMapping
     end
 
     def self.instance()
+        PersistentInputMapping.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PersistentInputMapping.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PersistentInputMapping"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/Enumeration"
-require "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
-require "org/allbinary/game/input/Input"
-require "org/allbinary/game/input/InputPersistance"
-require "org/allbinary/game/input/mapping/event/InputMappingEvent"
-require "org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface"
-require "org/allbinary/game/input/mapping/event/NullInputMappingEventListener"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/EnumerationUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :Enumeration, "java/util/Enumeration"
+autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :InputPersistance, "org/allbinary/game/input/InputPersistance"
+autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
+autoload :InputMappingEventListenerInterface, "org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface"
+autoload :NullInputMappingEventListener, "org/allbinary/game/input/mapping/event/NullInputMappingEventListener"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
 
-class PersistentInputMapping
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    PersistentInputMapping.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

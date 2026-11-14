@@ -21,14 +21,16 @@ module RotationAnimationInterfaceCompositeInterface
     
 
     def getRotationAnimationInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setFrame(index)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/animation/RotationAnimation"
+autoload :RotationAnimation, "org/allbinary/animation/RotationAnimation"
 

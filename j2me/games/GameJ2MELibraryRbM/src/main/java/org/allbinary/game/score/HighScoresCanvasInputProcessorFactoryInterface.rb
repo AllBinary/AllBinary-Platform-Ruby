@@ -19,10 +19,11 @@ module HighScoresCanvasInputProcessorFactoryInterface
     
 
     def getInstance(highScoresCanvas)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/score/displayable/HighScoresCanvas"
-require "org/allbinary/game/score/HighScoresCanvasInputProcessor"
+autoload :HighScoresCanvas, "org/allbinary/game/score/displayable/HighScoresCanvas"
+autoload :HighScoresCanvasInputProcessor, "org/allbinary/game/score/HighScoresCanvasInputProcessor"
 

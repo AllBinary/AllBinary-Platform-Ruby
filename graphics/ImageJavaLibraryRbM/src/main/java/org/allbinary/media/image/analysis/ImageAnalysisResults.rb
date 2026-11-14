@@ -62,6 +62,6 @@ class ImageAnalysisResults
     end
 end
 
-require "org/allbinary/media/image/analysis/ImageColorRangeResults"
-require "org/allbinary/media/image/analysis/ImageColorResults"
+autoload :ImageColorRangeResults, "org/allbinary/media/image/analysis/ImageColorRangeResults"
+autoload :ImageColorResults, "org/allbinary/media/image/analysis/ImageColorResults"
 

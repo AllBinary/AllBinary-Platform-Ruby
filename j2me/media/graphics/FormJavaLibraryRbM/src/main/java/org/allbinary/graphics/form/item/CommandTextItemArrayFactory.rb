@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/ImageItem"
 
 class CommandTextItemArrayFactory
     attr_accessor :list, :visitorInterface
@@ -63,14 +61,16 @@ class CommandTextItemArrayFactory
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/form/ScreenInfo"
-require "org/allbinary/logic/VectorUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/util/visitor/Visitor"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/graphics/form/item/CommandTextItem"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :ImageItem, "javax/microedition/lcdui/ImageItem"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :ScreenInfo, "org/allbinary/graphics/form/ScreenInfo"
+autoload :VectorUtil, "org/allbinary/logic/VectorUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :CommandTextItem, "org/allbinary/graphics/form/item/CommandTextItem"
 

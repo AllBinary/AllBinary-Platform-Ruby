@@ -55,11 +55,11 @@ class VectorRotationAnimationInterfaceFactory
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/VectorRotationAnimation"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :VectorRotationAnimation, "org/allbinary/animation/VectorRotationAnimation"
 

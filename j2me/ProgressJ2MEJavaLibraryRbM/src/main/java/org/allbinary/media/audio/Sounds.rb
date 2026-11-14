@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
-# require "javax/microedition/media/Player"
 
 class Sounds
     attr_accessor :logUtil, :commonStrings, :soundStrings, :soundsFactoryInterface
@@ -100,14 +99,15 @@ class Sounds
     end
 end
 
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/audio/Sound"
-require "org/allbinary/media/audio/SoundStrings"
-require "org/allbinary/media/audio/SoundsFactoryInterface"
+autoload :Player, "javax/microedition/media/Player"
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Sound, "org/allbinary/media/audio/Sound"
+autoload :SoundStrings, "org/allbinary/media/audio/SoundStrings"
+autoload :SoundsFactoryInterface, "org/allbinary/media/audio/SoundsFactoryInterface"
 

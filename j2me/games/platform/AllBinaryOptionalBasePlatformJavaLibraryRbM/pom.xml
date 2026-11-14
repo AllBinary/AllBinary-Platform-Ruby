@@ -1,0 +1,323 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>AllBinaryOptionalBasePlatformJavaLibraryRb</artifactId>
+    <packaging>jar</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+    <name>AllBinaryOptionalBasePlatformJavaLibraryRb</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+
+
+    <dependencies>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>LoggingJ2MEAllRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>        
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2MEForJ2MEJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>J2SEForJ2MEJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FullScreenNoneJavaLibraryRb</artifactId>
+            <!-- 
+            <artifactId>FullScreenJavaLibraryRb</artifactId>
+            <artifactId>FullScreenNoneJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NotDeviceSpecificNoMediaMIDP1LibraryRb</artifactId>
+            <!--
+            <artifactId>NotDeviceSpecificNoMediaMIDP1LibraryRb</artifactId>
+            <artifactId>J2SEMediaMIDPMinimalJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NoGameLicensingJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>NoGameLicensingJavaLibraryRb</artifactId>
+            <artifactId>LicensedGameDemoJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NoSensorJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>JSEGyroSensorJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+   
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NoGyroSensorJavaLibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NoVibrateJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>AllBinaryVibrationJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>TouchButtonJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>MotionGestureJavaLibraryRb</artifactId>
+            <artifactId>NoTouchButtonJavaLibraryRb</artifactId>
+            <artifactId>TouchButtonJavaLibraryRb</artifactId>
+
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameLicensingOnlyDemoJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>GameLicensingInAppPurchaseJavaLibraryRb</artifactId>
+            <artifactId>GameLicensingOnlyNormalJavaLibraryRb</artifactId>
+            <artifactId>GameLicensingOnlyDemoJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AdvertisementClientNoneJavaLibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>TouchScreenJ2MENoneJavaLibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>TouchJ2MENoneJavaLibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameScoresBaseJ2MELibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>DebugJavaLibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>NullCustomUIJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>MicroEmulatorCustomUIJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ThreadJ2MELibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.media.image</groupId>
+            <artifactId>ImageJ2MEJavaLibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameLicensingBaseJavaLibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ProgressJ2MEJavaLibraryRb</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.animation.transition</groupId>
+            <artifactId>NoTransitionAnimationJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>TransitionAnimationJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameInputMEJavaLibraryRb</artifactId>
+            <!--
+            <artifactId>GameInputPCMotionJavaLibraryRb</artifactId>
+            <artifactId>GameInputPCKeyOnlyJavaLibraryRb</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midp-for-polyglotRb</artifactId>
+            <version>2.0.4</version>
+            <optional>true</optional>
+        </dependency>
+        <!--
+        Public microemu
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midp-for-polyglotRb</artifactId>
+            <version>2.0.4</version>
+            <optional>true</optional>
+        </dependency>
+        Custom microemu
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midp-for-polyglotRb</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-jsr-135-for-polyglotRb</artifactId>
+            <version>2.0.4</version>
+            <optional>true</optional>
+        </dependency>
+        <!--
+        Public microemu
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-jsr-135-for-polyglotRb</artifactId>
+            <version>2.0.4</version>
+            <optional>true</optional>
+        </dependency>
+        Custom microemu
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-jsr-135-for-polyglotRb</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+        -->
+
+    </dependencies>
+
+    <build>
+        
+        <plugins>
+
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

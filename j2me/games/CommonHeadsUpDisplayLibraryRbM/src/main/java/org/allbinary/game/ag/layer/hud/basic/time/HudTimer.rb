@@ -15,7 +15,7 @@
 # package org.allbinary.game.ag.layer.hud.basic.time
 
 
-class Timer
+class HudTimer
     attr_accessor :startTime, :hundredthTime, :maxTime, :modifier, :hundrethsString, :totalDigits, :primitiveLongUtil, :MAX, :gameTickTimeDelayHelper
 
     def initialize_fields
@@ -87,8 +87,8 @@ class Timer
     end
 end
 
-require "org/allbinary/logic/math/PrimitiveLongSingleton"
-require "org/allbinary/logic/math/PrimitiveLongUtil"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :PrimitiveLongSingleton, "org/allbinary/logic/math/PrimitiveLongSingleton"
+autoload :PrimitiveLongUtil, "org/allbinary/logic/math/PrimitiveLongUtil"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
 

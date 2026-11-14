@@ -49,35 +49,59 @@ class UserRoleFactory
     end
 
     def self.instance()
+        UserRoleFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        UserRoleFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = UserRoleFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UserRoleFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/business/user/modules/UserFactory"
-require "org/allbinary/business/user/modules/admin/AdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/StoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/customer/CustomerStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/order/OrderStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/order/adjust/AdjustOrderStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/order/review/ReviewOrderStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/order/ship/ShipOrderStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/payment/PaymentStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/product/ProductStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/web/WebStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/web/view/editor/ViewEditorWebStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/web/wizard/WizardWebStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/admin/store/web/workflow/editor/WorkflowEditorWebStoreAdminUserFactory"
-require "org/allbinary/business/user/modules/customer/subscriber/SubscriberUserFactory"
-require "org/allbinary/business/user/modules/customer/wholesale/WholesaleUserFactory"
-require "org/allbinary/business/user/role/BasicUserRoleFactory"
-require "org/allbinary/business/user/role/UserRole"
-require "org/allbinary/business/user/role/UserRoleB"
+autoload :UserFactory, "org/allbinary/business/user/modules/UserFactory"
+autoload :AdminUserFactory, "org/allbinary/business/user/modules/admin/AdminUserFactory"
+autoload :StoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/StoreAdminUserFactory"
+autoload :CustomerStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/customer/CustomerStoreAdminUserFactory"
+autoload :OrderStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/order/OrderStoreAdminUserFactory"
+autoload :AdjustOrderStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/order/adjust/AdjustOrderStoreAdminUserFactory"
+autoload :ReviewOrderStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/order/review/ReviewOrderStoreAdminUserFactory"
+autoload :ShipOrderStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/order/ship/ShipOrderStoreAdminUserFactory"
+autoload :PaymentStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/payment/PaymentStoreAdminUserFactory"
+autoload :ProductStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/product/ProductStoreAdminUserFactory"
+autoload :WebStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/web/WebStoreAdminUserFactory"
+autoload :ViewEditorWebStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/web/view/editor/ViewEditorWebStoreAdminUserFactory"
+autoload :WizardWebStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/web/wizard/WizardWebStoreAdminUserFactory"
+autoload :WorkflowEditorWebStoreAdminUserFactory, "org/allbinary/business/user/modules/admin/store/web/workflow/editor/WorkflowEditorWebStoreAdminUserFactory"
+autoload :SubscriberUserFactory, "org/allbinary/business/user/modules/customer/subscriber/SubscriberUserFactory"
+autoload :WholesaleUserFactory, "org/allbinary/business/user/modules/customer/wholesale/WholesaleUserFactory"
+autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory"
+autoload :UserRole, "org/allbinary/business/user/role/UserRole"
+autoload :UserRoleB, "org/allbinary/business/user/role/UserRoleB"
 
-class UserRoleFactory
-    @@instance = UserRoleFactory.new()
+begin
+    UserRoleFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

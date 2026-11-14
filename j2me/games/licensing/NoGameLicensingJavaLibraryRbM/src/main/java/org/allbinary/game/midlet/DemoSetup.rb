@@ -22,5 +22,5 @@ class DemoSetup
     end
 end
 
-require "org/allbinary/game/midlet/GameMidlet"
+autoload :GameMidlet, "org/allbinary/game/midlet/GameMidlet"
 

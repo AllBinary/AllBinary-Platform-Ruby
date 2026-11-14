@@ -19,9 +19,10 @@ module AccelerateableInterface
     
 
     def accelerate(accelerate)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/math/BasicDecimal"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
 

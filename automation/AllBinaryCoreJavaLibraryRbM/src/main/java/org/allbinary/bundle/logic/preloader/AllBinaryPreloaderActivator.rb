@@ -67,25 +67,49 @@ class AllBinaryPreloaderActivator
     end
 
     def self.context()
+        AllBinaryPreloaderActivator.java_static_fields unless @java_static_fields_started
         return defined?(@@context) ? @@context : nil
     end
 
     def self.context=(value)
+        AllBinaryPreloaderActivator.java_static_fields unless @java_static_fields_started
         @@context = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:CRYPT_REGISTRY_NAME, "bundle.abcs.logic.system.loader.CryptService")
+        begin
+            @@context = nil
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryPreloaderActivator"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:CRYPT_REGISTRY_NAME].include?(name)
+        end
+        super
     end
 end
 
-require "org/osgi/framework/BundleContext"
-require "org/osgi/framework/ServiceReference"
-require "org/osgi/framework/ServiceRegistration"
-require "org/allbinary/bundle/logic/system/loader/CryptServiceFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :ServiceReference, "org/osgi/framework/ServiceReference"
+autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration"
+autoload :CryptServiceFactory, "org/allbinary/bundle/logic/system/loader/CryptServiceFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class AllBinaryPreloaderActivator
-    @@context = nil
-    CRYPT_REGISTRY_NAME = "bundle.abcs.logic.system.loader.CryptService"
+begin
+    AllBinaryPreloaderActivator.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

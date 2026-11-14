@@ -14,12 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
-# require "javax/microedition/lcdui/Choice"
-# require "javax/microedition/lcdui/ChoiceGroup"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Item"
-# require "javax/microedition/lcdui/NullImage"
-# require "javax/microedition/lcdui/StringItem"
 require "org/allbinary/graphics/displayable/screen/CommandForm"
 
 class LoadGameForm < CommandForm
@@ -109,11 +103,17 @@ class LoadGameForm < CommandForm
     end
 end
 
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/configuration/persistance/GamePersistanceSingleton"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/MEUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
+autoload :Choice, "javax/microedition/lcdui/Choice"
+autoload :ChoiceGroup, "javax/microedition/lcdui/ChoiceGroup"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Item, "javax/microedition/lcdui/Item"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :StringItem, "javax/microedition/lcdui/StringItem"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :GamePersistanceSingleton, "org/allbinary/game/configuration/persistance/GamePersistanceSingleton"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :MEUtil, "org/allbinary/logic/MEUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

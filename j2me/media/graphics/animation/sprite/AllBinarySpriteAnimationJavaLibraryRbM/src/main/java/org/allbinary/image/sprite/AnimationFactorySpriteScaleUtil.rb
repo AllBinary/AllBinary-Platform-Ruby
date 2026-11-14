@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.image.sprite
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/game/Sprite"
 
 class AnimationFactorySpriteScaleUtil
     attr_accessor :imageCache, :imageScaleUtil, :openGLUtil, :j2seMath, :openGLESImageExclusionUtil
@@ -77,27 +75,53 @@ class AnimationFactorySpriteScaleUtil
     end
 
     def self.instance()
+        AnimationFactorySpriteScaleUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AnimationFactorySpriteScaleUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AnimationFactorySpriteScaleUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AnimationFactorySpriteScaleUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/SpriteFactory"
-require "org/allbinary/graphics/opengles/OpenGLUtil"
-require "org/allbinary/image/ImageCache"
-require "org/allbinary/image/ImageCacheFactory"
-require "org/allbinary/image/opengles/OpenGLESImageExclusionUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/J2SEMath"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/image/ImageScaleUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
+autoload :SpriteFactory, "org/allbinary/game/layer/SpriteFactory"
+autoload :OpenGLUtil, "org/allbinary/graphics/opengles/OpenGLUtil"
+autoload :ImageCache, "org/allbinary/image/ImageCache"
+autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory"
+autoload :OpenGLESImageExclusionUtil, "org/allbinary/image/opengles/OpenGLESImageExclusionUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :J2SEMath, "org/allbinary/logic/math/J2SEMath"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :ImageScaleUtil, "org/allbinary/media/image/ImageScaleUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class AnimationFactorySpriteScaleUtil
-    @@instance = AnimationFactorySpriteScaleUtil.new()
+begin
+    AnimationFactorySpriteScaleUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

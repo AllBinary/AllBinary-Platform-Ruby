@@ -39,5 +39,5 @@ class InputAutomationConfigurationModuleChangeEvent
     end
 end
 
-require "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
+autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
 

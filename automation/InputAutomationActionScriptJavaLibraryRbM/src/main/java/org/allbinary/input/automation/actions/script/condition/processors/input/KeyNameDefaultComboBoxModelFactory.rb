@@ -35,5 +35,5 @@ class KeyNameDefaultComboBoxModelFactory
     end
 end
 
-require "org/allbinary/input/KeySingletonFactory"
+autoload :KeySingletonFactory, "org/allbinary/input/KeySingletonFactory"
 

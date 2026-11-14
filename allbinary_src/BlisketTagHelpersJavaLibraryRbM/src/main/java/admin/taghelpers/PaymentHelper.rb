@@ -186,14 +186,14 @@ class PaymentHelper < Table
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/business/user/commerce/money/payment/PaymentFactory"
-require "org/allbinary/business/user/commerce/money/payment/PaymentInterface"
-require "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntity"
-require "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntityFactory"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/AbSqlTableUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :HashMap, "java/util/HashMap"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :PaymentFactory, "org/allbinary/business/user/commerce/money/payment/PaymentFactory"
+autoload :PaymentInterface, "org/allbinary/business/user/commerce/money/payment/PaymentInterface"
+autoload :PaymentEntity, "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntity"
+autoload :PaymentEntityFactory, "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntityFactory"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

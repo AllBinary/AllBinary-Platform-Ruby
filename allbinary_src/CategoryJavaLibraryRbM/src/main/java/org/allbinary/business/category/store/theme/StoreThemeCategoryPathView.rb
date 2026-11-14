@@ -41,10 +41,10 @@ class StoreThemeCategoryPathView < CategoryView
     end
 end
 
-require "org/allbinary/logic/visual/theme/ThemeInterface"
-require "org/allbinary/logic/visual/theme/ThemePropertiesView"
-require "org/allbinary/logic/visual/theme/ThemeValidation"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface"
+autoload :ThemeInterface, "org/allbinary/logic/visual/theme/ThemeInterface"
+autoload :ThemePropertiesView, "org/allbinary/logic/visual/theme/ThemePropertiesView"
+autoload :ThemeValidation, "org/allbinary/logic/visual/theme/ThemeValidation"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :StoreThemeCategoryInterface, "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface"
 

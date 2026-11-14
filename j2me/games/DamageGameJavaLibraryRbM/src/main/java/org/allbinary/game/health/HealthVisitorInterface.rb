@@ -19,9 +19,10 @@ module HealthVisitorInterface
     
 
     def visit(healthInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/health/HealthInterface"
+autoload :HealthInterface, "org/allbinary/game/health/HealthInterface"
 

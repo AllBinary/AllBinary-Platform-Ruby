@@ -25,5 +25,5 @@ module MotionRectanglesResultsListener
     end
 end
 
-require "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsEvent"
+autoload :MotionRectanglesResultsEvent, "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsEvent"
 

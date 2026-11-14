@@ -59,7 +59,7 @@ class MotionRectangles
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/media/image/comparison/ImageComparisonResult"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
 

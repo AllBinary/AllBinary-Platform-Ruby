@@ -114,7 +114,7 @@ class InitHelper < BasicTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/init/InitInfoEntity"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :InitInfoEntity, "org/allbinary/business/init/InitInfoEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

@@ -57,7 +57,7 @@ class EndGameInfo
     end
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/logic/string/StringUtil"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

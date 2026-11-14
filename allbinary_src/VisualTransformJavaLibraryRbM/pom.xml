@@ -300,6 +300,7 @@
                                 <argument>G:/mnt/bc/mydev/workingruby/replace_these_stub_projects/allbinary_src/J2MEJsInteropCompatibilityJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/LogNoPlatformJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/lib/BaseMathLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/working_thirdpartyruby/embedded/j2me/microemulator/2_0_4/microemu-midpRb/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/animation/image/ImageJ2SEJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/IdGeneratorUsingFilesJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/FileInitInfoJavaLibraryRbM/src/main/java</argument>
@@ -320,16 +321,11 @@
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/DebugJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/PCResourceLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/logging/LoggingJ2MEExceptionRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/FormJMEJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/J2MEWindowingJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/OpenGLESJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/OpenGLNoneOtherJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/games/GameConfigurationJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/statistics/ApplicationStatisticsJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workruby/j2me/android/AndroidToNullLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/AndroidResourceLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/working_thirdpartyruby/embedded/j2me/microemulator/2_0_4/microemu-cldcRb/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/OpenGLNoneJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/OpenGLNoneOtherJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/ImageCacheJ2MEJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/working_thirdpartyruby/embedded/j2me/microemulator/2_0_4/microemu-javase-swingRb/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/logic/data/file/FileAdvancedJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/data/vo/EntitiesBlisketVOJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/data/vo/EntityPaymentGatewayVOJavaLibraryRbM/src/main/java</argument>
@@ -341,6 +337,9 @@
                                 <argument>G:/mnt/bc/mydev/workingruby/replace_these_stub_projects/allbinary_src/NoneOnlyJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/lib/BasicMathLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/J2MEForJ2MEJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/statistics/ApplicationStatisticsJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/games/GameConfigurationJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/input/platform/me/TouchJ2MENoneJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/NullJ2MELibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/sound/SoundJ2MELibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/lib/TrigBaseLibraryRbM/src/main/java</argument>
@@ -349,6 +348,29 @@
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/geography/map/GraphBaseJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/NullCustomUIPreJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/games/ScreenCaptureJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/GameResourceNoneJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/ImageCacheBaseJ2MEJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/working_thirdpartyruby/embedded/j2me/microemulator/2_0_4/microemu-javaseRb/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/working_thirdpartyruby/embedded/j2me/microemulator/2_0_4/microemu-injectedRb/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/data/vo/EntityStoreFrontVOJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/BlisketPreVOJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/data/vo/EntitiesOrderHistoryVOJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/VisualTransformBaseJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/games/GameConfigurationJ2MEJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/sound/NoPlayerJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/sound/BasicPlayerJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/working_thirdpartyruby/embedded/j2me/microemulator/2_0_4/microemu-extensions/microemu-jsr-135Rb/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/cache/BaseCacheJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/working_thirdpartyruby/embedded/j2me/microemulator/allbinary_custom_android_version/microemulator/microemu-midpRb/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/ConfigurationJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/working_thirdpartyruby/embedded/j2me/microemulator/allbinary_custom_android_version/microemulator/microemu-cldcRb/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/FormJMEJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/J2MEWindowingJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/OpenGLESJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workruby/j2me/android/AndroidToNullLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/AndroidResourceLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/SMTPConfigurationJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/AllBinary-Platform-Integrationruby/embedded/j2me/microemulator/3.0.0/microemulator/microemu-javase/microemu-javase-nullRb/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/FormBaseJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/games/GameInputLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/games/GameSoundsJavaLibraryRbM/src/main/java</argument>
@@ -357,23 +379,17 @@
                                 <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/Min3dForNullJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/OpenGLESFileConfigurationJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/AllBinary-Platform-Integrationruby/embedded/j2me/microemulator/custom/MicroEmulatorCustomJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/games/GameConfigurationJ2MEJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/android/VirtualKeyboardJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/hardware/AndroidSystemJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/GameResourceNoneJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/ImageCacheBaseJ2MEJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/data/vo/EntityStoreFrontVOJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/BlisketPreVOJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/data/vo/EntitiesOrderHistoryVOJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/VisualTransformBaseJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/sound/NoPlayerJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/sound/BasicPlayerJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/cache/BaseCacheJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/UserCommerceJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/AllBinary-Platform-Integrationruby/embedded/j2me/microemulator/3.0.0/microemulator/microemu-cldcRb/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/NullCustomUIJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/games/GameInputPersistanceLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/NoSWTJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/FormValidationJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/input/AllBinarySensorJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/input/platform/pc/GameInputPCMotionJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/input/platform/pc/GameInputPCJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/FormJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/layer/AllBinaryLayerJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/GroupLibraryRbM/src/main/java</argument>
@@ -382,9 +398,19 @@
                                 <argument>G:/mnt/bc/mydev/workingruby/graphics/opengl/OpenGLJ2MENoneJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/animation/image/ImageJ2MEJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/AllBinary-Platform-Integrationruby/graphics/opengl/min3d/Min3dBaseJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/ConfigurationJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/SMTPConfigurationJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/UserCommerceJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/AllBinary-Platform-Integrationruby/embedded/j2me/microemulator/3.0.0/microemulator/microemu-midpRb/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/input/TouchButtonJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/input/TouchButtonBaseJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/input/MotionGestureBaseJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/input/platform/pc/GameInputPCBaseJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/input/TouchScreenJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/animation/GameAnimationJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/animation/AnimationLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/animation/RotationAnimationJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/animation/AnimationResourceJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/lib/TrigJ2MELibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/media/graphics/geography/map/LayerPlacementLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/lib/VectorThreeDimensionalLibraryRbM/src/main/java</argument>
                                 <argument>${ruby.dependency.directory}</argument>
                                 <argument>${ruby.runtime.directory}</argument>
                             </arguments>

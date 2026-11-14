@@ -103,9 +103,9 @@ class PermissionItemsHelper < BasicTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/data/tables/user/commerce/inventory/item/permissions/PermissionItemsEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :PermissionItemsEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/permissions/PermissionItemsEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
 

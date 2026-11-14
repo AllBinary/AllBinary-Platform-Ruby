@@ -14,7 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.device
 
-# require "javax/microedition/khronos/opengles/GL10"
+require "javax/microedition/khronos/opengles/GL10"
 # require "java/nio/Buffer"
 # require "java/nio/FloatBuffer"
 # require "java/nio/IntBuffer"
@@ -501,11 +501,33 @@ class NullGL10
     def glPolygonMode(i, i1)
         return
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_GL10, NullGL10.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullGL10"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_GL10].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class NullGL10
-    NULL_GL10 = NullGL10.new()
+begin
+    NullGL10.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -184,25 +184,47 @@ class ThreadPool
     def createName()
         return StringMaker.new().append(@poolName).append(ThreadPool::ROOT_NAME).appendint(((@threadID += 1) - 1)).to_s
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:ROOT_NAME, "-PooledThread-")
+        begin
+            const_set(:NORMAL_PRIORITY, JavaThread::NORM_PRIORITY)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ThreadPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:ROOT_NAME, :NORMAL_PRIORITY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/thread/NullRunnable"
-require "org/allbinary/thread/PooledThread"
-require "org/allbinary/thread/PriorityRunnable"
-require "org/allbinary/thread/ThreadObjectUtil"
-require "org/allbinary/thread/ThreadPoolStrings"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+autoload :NullRunnable, "org/allbinary/thread/NullRunnable"
+autoload :PooledThread, "org/allbinary/thread/PooledThread"
+autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable"
+autoload :ThreadObjectUtil, "org/allbinary/thread/ThreadObjectUtil"
+autoload :ThreadPoolStrings, "org/allbinary/thread/ThreadPoolStrings"
 require "java/lang/Runnable"
 require "java/lang/Thread"
 require "java/lang/InterruptedException"
 
-class ThreadPool
-    ROOT_NAME = "-PooledThread-"
-    NORMAL_PRIORITY = JavaThread::NORM_PRIORITY
+begin
+    ThreadPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

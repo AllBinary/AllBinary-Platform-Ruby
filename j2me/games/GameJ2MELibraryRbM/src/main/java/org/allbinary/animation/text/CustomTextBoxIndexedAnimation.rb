@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/IndexedAnimation"
 require "org/allbinary/game/input/event/RawKeyEventListener"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
@@ -96,11 +94,18 @@ class CustomTextBoxIndexedAnimation < IndexedAnimation
 
     def paintThreedXYZ(graphics, x, y, z)
     end
+    
+
+    def getWidth()
+        return super()
+    end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/form/item/CustomTextBox"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/animation/text/TextChangeListener"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :CustomTextBox, "org/allbinary/graphics/form/item/CustomTextBox"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :TextChangeListener, "org/allbinary/animation/text/TextChangeListener"
 

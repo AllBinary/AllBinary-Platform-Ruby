@@ -51,8 +51,8 @@ module CategoryFactoryInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/CategoryInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
 

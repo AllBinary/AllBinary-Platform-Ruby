@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
-# require "java/io/InputStream"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
 
 class ImageCacheBase
     attr_accessor :logUtil, :imageFactory, :hashtable, :SIZE, :widths, :heights, :listOfList, :availableListOfList, :volume, :nextIndex
@@ -147,13 +144,16 @@ class ImageCacheBase
     end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/image/ImageFactory"
+autoload :InputStream, "java/io/InputStream"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ImageFactory, "org/allbinary/image/ImageFactory"
 

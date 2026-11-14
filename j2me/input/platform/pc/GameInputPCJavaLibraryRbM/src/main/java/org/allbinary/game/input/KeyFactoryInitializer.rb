@@ -35,6 +35,6 @@ class KeyFactoryInitializer < Init
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.midlet
 
-# require "javax/microedition/midlet/MIDlet"
 
 class MidletFactoryInterface
     
@@ -24,5 +23,6 @@ class MidletFactoryInterface
     end
 end
 
-require "org/allbinary/midlet/AllBinaryMidlet"
+autoload :MIDlet, "javax/microedition/midlet/MIDlet"
+autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet"
 

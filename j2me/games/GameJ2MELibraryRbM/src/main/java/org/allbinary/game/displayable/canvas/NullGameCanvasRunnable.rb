@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Item"
 require "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface"
 
 class NullGameCanvasRunnable
@@ -139,16 +136,41 @@ class NullGameCanvasRunnable
 
     def run()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_GAME_CANVAS_RUNNABLE, NullGameCanvasRunnable.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullGameCanvasRunnable"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_GAME_CANVAS_RUNNABLE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/state/GameState"
-require "org/allbinary/game/state/GameStateFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/ABHashtable"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Item, "javax/microedition/lcdui/Item"
+autoload :GameState, "org/allbinary/game/state/GameState"
+autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 require "java/lang/Thread"
 
-class NullGameCanvasRunnable
-    NULL_GAME_CANVAS_RUNNABLE = NullGameCanvasRunnable.new()
+begin
+    NullGameCanvasRunnable.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

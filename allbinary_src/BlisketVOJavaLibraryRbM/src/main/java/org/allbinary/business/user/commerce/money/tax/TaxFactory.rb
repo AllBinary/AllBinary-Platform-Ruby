@@ -75,38 +75,62 @@ class TaxFactory
     end
 
     def self.instance()
+        TaxFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TaxFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TaxFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TaxFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/business/DynamicObjectData"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/money/tax/components/TaxData"
-require "org/allbinary/business/user/commerce/money/tax/modules/SimpleStateTaxModule"
-require "org/allbinary/business/user/commerce/money/tax/modules/TaxModuleInterface"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/crypt/file/CryptFileReader"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/loader/AbeFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
+autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :TaxData, "org/allbinary/business/user/commerce/money/tax/components/TaxData"
+autoload :SimpleStateTaxModule, "org/allbinary/business/user/commerce/money/tax/modules/SimpleStateTaxModule"
+autoload :TaxModuleInterface, "org/allbinary/business/user/commerce/money/tax/modules/TaxModuleInterface"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeFactory, "org/allbinary/logic/system/loader/AbeFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoObjectConfigData, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
 
-class TaxFactory
-    @@instance = TaxFactory.new()
+begin
+    TaxFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

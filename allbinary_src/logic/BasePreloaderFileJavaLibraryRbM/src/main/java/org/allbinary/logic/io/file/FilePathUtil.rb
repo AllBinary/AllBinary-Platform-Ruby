@@ -35,7 +35,7 @@ class FilePathUtil
     end
 end
 
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/io/file/FilePathData"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
 

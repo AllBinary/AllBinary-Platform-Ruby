@@ -46,8 +46,8 @@ class LogTableEntity < AbSqlBean
     end
 end
 
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/init/db/LogDbInitInfo"
-require "org/allbinary/logic/communication/http/request/AbeHttpRequestInfoData"
-require "org/allbinary/logic/string/StringMaker"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :LogDbInitInfo, "org/allbinary/business/init/db/LogDbInitInfo"
+autoload :AbeHttpRequestInfoData, "org/allbinary/logic/communication/http/request/AbeHttpRequestInfoData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

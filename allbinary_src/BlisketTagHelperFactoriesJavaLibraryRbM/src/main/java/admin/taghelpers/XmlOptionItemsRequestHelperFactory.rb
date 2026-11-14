@@ -44,8 +44,8 @@ class XmlOptionItemsRequestHelperFactory < TagHelperFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "admin/taghelpers/XmlOptionItemsRequestHelper"
+autoload :HashMap, "java/util/HashMap"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :XmlOptionItemsRequestHelper, "admin/taghelpers/XmlOptionItemsRequestHelper"
 

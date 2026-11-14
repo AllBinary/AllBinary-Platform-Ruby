@@ -14,10 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.screen
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Form"
-# require "javax/microedition/lcdui/NullCommandListener"
+require "javax/microedition/lcdui/Form"
 require "org/allbinary/game/displayable/canvas/MenuListener"
 require "org/allbinary/graphics/displayable/command/MyCommandInterface"
 
@@ -36,7 +33,7 @@ class CommandForm < Form
 
     def self.getNullCommandForm()
         if CommandForm::NULL_COMMAND_FORM == NullUtil.getInstance().NULL_OBJECT
-            CommandForm::NULL_COMMAND_FORM = CommandForm.new(NullCommandListener::NULL_COMMAND_LISTENER, StringUtil.getInstance().EMPTY_STRING, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
+            (CommandForm.send(:remove_const, :NULL_COMMAND_FORM) if CommandForm.const_defined?(:NULL_COMMAND_FORM, false); CommandForm.const_set(:NULL_COMMAND_FORM, CommandForm.new(NullCommandListener::NULL_COMMAND_LISTENER, StringUtil.getInstance().EMPTY_STRING, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)))
         end
         return CommandForm::NULL_COMMAND_FORM
     end
@@ -89,23 +86,48 @@ class CommandForm < Form
     def removeAllCommands()
         size = @commandStack.size()
         (0...size).each do |index|
-            self.class.superclass.instance_method(:removeCommand).bind(self).call(@commandStack.pop())
+            CommandForm.superclass.instance_method(:removeCommand).bind(self).call(@commandStack.pop())
         end
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_COMMAND_FORM, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CommandForm"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_COMMAND_FORM].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABStack"
-require "org/allbinary/graphics/displayable/screen/ScreenRepaintProcessorFactory"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :NullCommandListener, "javax/microedition/lcdui/NullCommandListener"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABStack, "org/allbinary/util/ABStack"
+autoload :ScreenRepaintProcessorFactory, "org/allbinary/graphics/displayable/screen/ScreenRepaintProcessorFactory"
 
-class CommandForm
-    NULL_COMMAND_FORM = NullUtil.getInstance().NULL_OBJECT
+begin
+    CommandForm.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

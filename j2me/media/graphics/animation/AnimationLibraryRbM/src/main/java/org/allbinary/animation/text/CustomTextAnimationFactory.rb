@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
-# require "javax/microedition/lcdui/Font"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
 class CustomTextAnimationFactory
@@ -80,12 +79,13 @@ class CustomTextAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/text/AdjustCustomTextAnimation"
-require "org/allbinary/animation/text/CustomTextAnimation"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :AdjustCustomTextAnimation, "org/allbinary/animation/text/AdjustCustomTextAnimation"
+autoload :CustomTextAnimation, "org/allbinary/animation/text/CustomTextAnimation"
 

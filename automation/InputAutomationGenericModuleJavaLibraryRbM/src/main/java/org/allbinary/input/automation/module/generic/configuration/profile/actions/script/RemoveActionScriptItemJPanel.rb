@@ -62,8 +62,8 @@ class RemoveActionScriptItemJPanel < Panel
     end
 end
 
-require "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileAction"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionJPanel"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :ProfileActionScriptConditionInterface, "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
+autoload :GenericProfileAction, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileAction"
+autoload :GenericProfileActionJPanel, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionJPanel"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

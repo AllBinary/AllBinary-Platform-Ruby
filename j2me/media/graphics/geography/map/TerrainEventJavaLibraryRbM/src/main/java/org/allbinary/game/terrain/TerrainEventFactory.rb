@@ -29,7 +29,7 @@ class TerrainEventFactory
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/game/terrain/TerrainEvent"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent"
 

@@ -19,11 +19,13 @@ module SequenceInterface
     
 
     def setSequence(sequence)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getSequence()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

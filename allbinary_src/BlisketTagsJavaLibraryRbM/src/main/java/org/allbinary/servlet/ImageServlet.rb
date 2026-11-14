@@ -78,11 +78,11 @@ class ImageServlet < HttpServlet
     end
 end
 
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/CloudStreamUtil"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/servlet/BlisketServletUtil"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CloudStreamUtil, "org/allbinary/logic/io/CloudStreamUtil"
+autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BlisketServletUtil, "org/allbinary/servlet/BlisketServletUtil"
 

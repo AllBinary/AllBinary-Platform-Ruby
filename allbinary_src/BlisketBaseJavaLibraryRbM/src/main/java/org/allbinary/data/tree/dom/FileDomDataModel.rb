@@ -39,11 +39,11 @@ class FileDomDataModel
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tables/TableMappingInterface"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/data/tree/dom/FileTableMapping"
-require "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :HashMap, "java/util/HashMap"
+autoload :TableMappingInterface, "org/allbinary/data/tables/TableMappingInterface"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :FileTableMapping, "org/allbinary/data/tree/dom/FileTableMapping"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
 

@@ -25,7 +25,7 @@ class DestroyedLayerProcessor < BasicLayerProcessor
     
 
     def self.init()
-        DestroyedLayerProcessor::DESTROYED_LAYER_PROCESSOR = DestroyedLayerProcessor.new()
+        (DestroyedLayerProcessor.send(:remove_const, :DESTROYED_LAYER_PROCESSOR) if DestroyedLayerProcessor.const_defined?(:DESTROYED_LAYER_PROCESSOR, false); DestroyedLayerProcessor.const_set(:DESTROYED_LAYER_PROCESSOR, DestroyedLayerProcessor.new()))
     end
     
 
@@ -55,19 +55,41 @@ class DestroyedLayerProcessor < BasicLayerProcessor
         end
         list.clear()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:DESTROYED_LAYER_PROCESSOR, BasicLayerProcessor::NULL_LAYER_PROCESSOR)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DestroyedLayerProcessor"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DESTROYED_LAYER_PROCESSOR].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/combat/destroy/event/DestroyEventCircularStaticPool"
-require "org/allbinary/game/combat/destroy/event/DestroyedEvent"
-require "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
+autoload :DestroyEventCircularStaticPool, "org/allbinary/game/combat/destroy/event/DestroyEventCircularStaticPool"
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
+autoload :DestroyedEventHandler, "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 
-class DestroyedLayerProcessor
-    DESTROYED_LAYER_PROCESSOR = BasicLayerProcessor::NULL_LAYER_PROCESSOR
+begin
+    DestroyedLayerProcessor.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

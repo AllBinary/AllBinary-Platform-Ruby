@@ -49,6 +49,6 @@ class SingletonAnimationInterfaceFactory
     end
 end
 
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/Animation"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :Animation, "org/allbinary/animation/Animation"
 

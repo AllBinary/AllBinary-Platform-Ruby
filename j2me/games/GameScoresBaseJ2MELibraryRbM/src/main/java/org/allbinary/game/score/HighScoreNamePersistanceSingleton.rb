@@ -14,13 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
-# require "java/io/ByteArrayInputStream"
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/DataInputStream"
-# require "java/io/DataOutputStream"
-# require "javax/microedition/rms/RecordEnumeration"
-# require "javax/microedition/rms/RecordStore"
-# require "javax/microedition/rms/RecordStoreException"
 
 class HighScoreNamePersistanceSingleton
     attr_accessor :logUtil, :tsUtil, :commonStrings, :platformRecordIdUtil, :RECORD_ID, :name, :nameBasicArrayList
@@ -153,26 +146,55 @@ class HighScoreNamePersistanceSingleton
             end
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, HighScoreNamePersistanceSingleton.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "HighScoreNamePersistanceSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/configuration/persistance/NullRecordComparator"
-require "org/allbinary/game/configuration/persistance/NullRecordFilter"
-require "org/allbinary/game/configuration/persistance/NullRecordStore"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/java/exception/ExceptionUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/persistance/PlatformRecordIdUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
+autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+autoload :DataInputStream, "java/io/DataInputStream"
+autoload :DataOutputStream, "java/io/DataOutputStream"
+autoload :RecordEnumeration, "javax/microedition/rms/RecordEnumeration"
+autoload :RecordStore, "javax/microedition/rms/RecordStore"
+autoload :RecordStoreException, "javax/microedition/rms/RecordStoreException"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :NullRecordComparator, "org/allbinary/game/configuration/persistance/NullRecordComparator"
+autoload :NullRecordFilter, "org/allbinary/game/configuration/persistance/NullRecordFilter"
+autoload :NullRecordStore, "org/allbinary/game/configuration/persistance/NullRecordStore"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :ExceptionUtil, "org/allbinary/logic/java/exception/ExceptionUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :PlatformRecordIdUtil, "org/allbinary/persistance/PlatformRecordIdUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 
-class HighScoreNamePersistanceSingleton
-    SINGLETON = HighScoreNamePersistanceSingleton.new()
+begin
+    HighScoreNamePersistanceSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

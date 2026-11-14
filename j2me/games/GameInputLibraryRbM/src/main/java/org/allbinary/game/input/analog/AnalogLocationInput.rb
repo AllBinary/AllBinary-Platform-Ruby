@@ -60,11 +60,33 @@ class AnalogLocationInput
     def setLeftTrigger(leftTrigger)
         @leftTrigger = leftTrigger
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_ANALOG_LOCATION_INPUT, AnalogLocationInput.new(-1))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AnalogLocationInput"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_ANALOG_LOCATION_INPUT].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/CustomGPoint"
+autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
 
-class AnalogLocationInput
-    NULL_ANALOG_LOCATION_INPUT = AnalogLocationInput.new(-1)
+begin
+    AnalogLocationInput.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

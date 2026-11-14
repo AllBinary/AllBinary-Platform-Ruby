@@ -93,10 +93,10 @@ class OrderItemsTag < TableTag
     end
 end
 
-require "admin/taghelpers/OrderItemsHelperFactory"
-require "admin/taghelpers/OrderItemsRequestHelperFactory"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :OrderItemsHelperFactory, "admin/taghelpers/OrderItemsHelperFactory"
+autoload :OrderItemsRequestHelperFactory, "admin/taghelpers/OrderItemsRequestHelperFactory"
+autoload :OrderHistoryData, "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

@@ -45,9 +45,9 @@ class NumberOnOwnGroupSequenceAI < SequenceAI
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/layer/identification/GroupLayerManagerListener"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :GroupLayerManagerListener, "org/allbinary/game/layer/identification/GroupLayerManagerListener"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

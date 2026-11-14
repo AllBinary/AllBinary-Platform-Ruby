@@ -89,6 +89,6 @@ class FtpConfiguration
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationData"
+autoload :HashMap, "java/util/HashMap"
+autoload :FtpConfigurationData, "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationData"
 

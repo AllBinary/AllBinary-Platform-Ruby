@@ -43,14 +43,36 @@ class PrimaryThreadPool < ThreadPool
     def completedTask(task)
         @logUtil.putF(StringMaker.new().append(@threadPoolStrings.COMPLETE_TASK).append(StringUtil.getInstance().toString(task)).to_s, self, @commonStrings.RUN)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:THREAD_POOL, ThreadPool.new("Primary", 1, ThreadPool::NORMAL_PRIORITY))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PrimaryThreadPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:THREAD_POOL].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 require "java/lang/Runnable"
 require "java/lang/System"
 
-class PrimaryThreadPool
-    THREAD_POOL = ThreadPool.new("Primary", 1, ThreadPool::NORMAL_PRIORITY)
+begin
+    PrimaryThreadPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

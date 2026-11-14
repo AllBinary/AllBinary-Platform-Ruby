@@ -30,5 +30,5 @@ class ToDomHelper
     end
 end
 
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

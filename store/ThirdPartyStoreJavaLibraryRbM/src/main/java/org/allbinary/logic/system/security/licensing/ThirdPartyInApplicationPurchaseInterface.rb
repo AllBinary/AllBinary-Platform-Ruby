@@ -19,64 +19,76 @@ module ThirdPartyInApplicationPurchaseInterface
     
 
     def isPurchased(lockableFeature)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onCreate(anyType, stateObject)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDestroy()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onStart()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onActivityResult(requestCode, resultCode, dataObject)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onSaveInstanceState(anyType)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onStop()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def requestPurchase(lockableFeature)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def requestReceipts()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def add(lockableFeature)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getUserName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isEnabled()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/system/security/licensing/LockableFeature"
+autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature"
 

@@ -19,25 +19,29 @@ module IntermissionInterface
     
 
     def getTimeDelayHelper()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isEnabled()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setEnabled(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setListener(enableListener)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/game/IntermissionEnableListenerInterface"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :IntermissionEnableListenerInterface, "org/allbinary/game/IntermissionEnableListenerInterface"
 

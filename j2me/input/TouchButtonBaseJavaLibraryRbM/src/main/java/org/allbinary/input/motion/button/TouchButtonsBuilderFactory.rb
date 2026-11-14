@@ -21,12 +21,34 @@ class TouchButtonsBuilderFactory
     def getInstance()
         return NoButtonsTouchInputFactory.getInstance()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NO_TOUCH_BUTTON_BUILDER_FACTORY, TouchButtonsBuilderFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TouchButtonsBuilderFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NO_TOUCH_BUTTON_BUILDER_FACTORY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/input/motion/button/BaseTouchInput"
-require "org/allbinary/input/motion/button/NoButtonsTouchInputFactory"
+autoload :BaseTouchInput, "org/allbinary/input/motion/button/BaseTouchInput"
+autoload :NoButtonsTouchInputFactory, "org/allbinary/input/motion/button/NoButtonsTouchInputFactory"
 
-class TouchButtonsBuilderFactory
-    NO_TOUCH_BUTTON_BUILDER_FACTORY = TouchButtonsBuilderFactory.new()
+begin
+    TouchButtonsBuilderFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -49,7 +49,7 @@ class BasicInputMappingHelpPaintable < HelpPaintable
             stringMaker.delete(0, stringMaker.length())
             keyInfo[index] = stringMaker.append(gameInputMapping.getName()).append(_EQUAL).append(self.get(list)).to_s
         end
-        self.class.superclass.instance_method(:setInputInfoP).bind(self).call(keyInfo)
+        BasicInputMappingHelpPaintable.superclass.instance_method(:setInputInfoP).bind(self).call(keyInfo)
     end
     
 
@@ -79,15 +79,15 @@ class BasicInputMappingHelpPaintable < HelpPaintable
     end
 end
 
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/GameKeyFactory"
-require "org/allbinary/game/input/Input"
-require "org/allbinary/game/input/PlatformInputMappingFactory"
-require "org/allbinary/game/input/mapping/GameInputMapping"
-require "org/allbinary/game/input/mapping/PersistentInputMapping"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/util/BasicArrayList"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
+autoload :GameInputMapping, "org/allbinary/game/input/mapping/GameInputMapping"
+autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

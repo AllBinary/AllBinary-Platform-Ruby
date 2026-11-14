@@ -21,6 +21,7 @@ module AllBinaryObjectFactoryInterface
     
 
     def getInstance()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

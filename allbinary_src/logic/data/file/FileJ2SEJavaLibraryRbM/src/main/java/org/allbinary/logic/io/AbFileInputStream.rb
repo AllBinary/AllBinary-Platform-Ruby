@@ -15,35 +15,29 @@
 # package org.allbinary.logic.io
 
 # require "java/io/File"
-# require "java/io/FileInputStream"
+require "java/io/FileInputStream"
 # require "java/io/FileNotFoundException"
 
 class AbFileInputStream < FileInputStream
+    
 
-    def initialize(*args)
-        case args.length
-        when 1 then constructor1(*args)
-        when 1 then constructor1(*args)
-        when 1 then constructor1(*args)
-        end
+    def initialize(name)
+        super(name)
     end
     
 
-    def constructor1(name)
-        method(:initialize).super_method.call(name)
+    # throws FileNotFoundException
+    def self.createFromAbFile(file)
+        return AbFileInputStream.new(AbFileNativeUtil.get(file).getPath())
     end
     
 
-    def constructor1(file)
-        method(:initialize).super_method.call(AbFileNativeUtil.get(file))
-    end
-    
-
-    def constructor1(file)
-        method(:initialize).super_method.call(file)
+    # throws FileNotFoundException
+    def self.createFromFile(file)
+        return AbFileInputStream.new(file.getPath())
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/AbFileNativeUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil"
 

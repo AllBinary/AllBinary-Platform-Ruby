@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
-# require "javax/microedition/lcdui/Canvas"
 
 class InputProcessor
     attr_accessor :gameInputStrings
@@ -36,5 +35,6 @@ class InputProcessor
     end
 end
 
-require "org/allbinary/game/input/GameInputStrings"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings"
 

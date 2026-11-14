@@ -112,11 +112,11 @@ class CategoryTag < TableTag
     end
 end
 
-require "admin/taghelpers/CategoryHelperFactory"
-require "admin/taghelpers/CategoryRequestHelperFactory"
-require "org/allbinary/business/category/CategoryData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/logic/visual/transform/info/TransformInfoData"
+autoload :CategoryHelperFactory, "admin/taghelpers/CategoryHelperFactory"
+autoload :CategoryRequestHelperFactory, "admin/taghelpers/CategoryRequestHelperFactory"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/image/BaseImageAnimationFactory"
 
 class ImageRotationAnimationFactory < BaseImageAnimationFactory
@@ -50,12 +49,13 @@ class ImageRotationAnimationFactory < BaseImageAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/game/configuration/GameConfigurationCentral"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/animation/image/AdjustedImageBaseRotationAnimation"
-require "org/allbinary/animation/image/ImageBaseRotationAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :AdjustedImageBaseRotationAnimation, "org/allbinary/animation/image/AdjustedImageBaseRotationAnimation"
+autoload :ImageBaseRotationAnimation, "org/allbinary/animation/image/ImageBaseRotationAnimation"
 

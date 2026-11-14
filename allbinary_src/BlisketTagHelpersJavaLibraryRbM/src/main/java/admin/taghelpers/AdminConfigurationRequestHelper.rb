@@ -94,8 +94,8 @@ class AdminConfigurationRequestHelper < ModifyTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/modules/admin/configuration/AdminConfiguration"
-require "org/allbinary/business/user/modules/admin/configuration/AdminConfigurationInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :AdminConfiguration, "org/allbinary/business/user/modules/admin/configuration/AdminConfiguration"
+autoload :AdminConfigurationInterface, "org/allbinary/business/user/modules/admin/configuration/AdminConfigurationInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

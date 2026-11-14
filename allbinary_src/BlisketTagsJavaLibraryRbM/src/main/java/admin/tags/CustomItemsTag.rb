@@ -26,6 +26,6 @@ class CustomItemsTag < TableTag
     end
 end
 
-require "admin/taghelpers/CustomItemsHelperFactory"
-require "admin/taghelpers/CustomItemsRequestHelperFactory"
+autoload :CustomItemsHelperFactory, "admin/taghelpers/CustomItemsHelperFactory"
+autoload :CustomItemsRequestHelperFactory, "admin/taghelpers/CustomItemsRequestHelperFactory"
 

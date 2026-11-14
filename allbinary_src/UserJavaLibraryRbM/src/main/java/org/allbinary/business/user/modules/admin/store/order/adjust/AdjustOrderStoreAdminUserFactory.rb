@@ -37,7 +37,7 @@ class AdjustOrderStoreAdminUserFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/business/user/modules/admin/store/order/adjust/AdjustOrderStoreAdminUser"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :AdjustOrderStoreAdminUser, "org/allbinary/business/user/modules/admin/store/order/adjust/AdjustOrderStoreAdminUser"
 

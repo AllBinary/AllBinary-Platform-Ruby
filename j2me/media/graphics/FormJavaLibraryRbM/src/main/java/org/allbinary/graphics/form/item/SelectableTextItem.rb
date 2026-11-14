@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/form/item/ABTextItem"
 
 class SelectableTextItem < ABTextItem
@@ -40,6 +39,7 @@ class SelectableTextItem < ABTextItem
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/form/item/ABStringComponent"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :ABStringComponent, "org/allbinary/graphics/form/item/ABStringComponent"
 

@@ -25,9 +25,10 @@ module FeatureResourceAnimationInterfaceFactoryInterface
     
 
     def getHashtable()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/util/ABHashtable"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 

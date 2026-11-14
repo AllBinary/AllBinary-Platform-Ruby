@@ -37,5 +37,5 @@ class EndLevelIntermissionProcessor < Processor
     end
 end
 
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

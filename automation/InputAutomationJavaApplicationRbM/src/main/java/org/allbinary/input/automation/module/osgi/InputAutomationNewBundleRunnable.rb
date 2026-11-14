@@ -196,30 +196,52 @@ class InputAutomationNewBundleRunnable
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.RUN, e)
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:FILE, "file:")
+        const_set(:JAR_DIR_PROP, "org.knopflerfish.gosg.jars")
+        const_set(:INPUT_AUTMATION_MODULE_BUNDLE_JAR_PATH, "ia/auto")
+        const_set(:MODULES_START_LEVEL, 8)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputAutomationNewBundleRunnable"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:FILE, :JAR_DIR_PROP, :INPUT_AUTMATION_MODULE_BUNDLE_JAR_PATH, :MODULES_START_LEVEL].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/osgi/framework/Bundle"
-require "org/osgi/framework/BundleContext"
-require "org/osgi/framework/Constants"
-require "bundle/input/automation/InputAutomationBundleActivator"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/FileWrapperUtil"
-require "org/allbinary/logic/io/file/directory/SubDirectory"
-require "org/allbinary/logic/io/file/filter/BasicFileFilterUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :HashMap, "java/util/HashMap"
+autoload :Bundle, "org/osgi/framework/Bundle"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :Constants, "org/osgi/framework/Constants"
+autoload :InputAutomationBundleActivator, "bundle/input/automation/InputAutomationBundleActivator"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :FileWrapperUtil, "org/allbinary/logic/io/file/FileWrapperUtil"
+autoload :SubDirectory, "org/allbinary/logic/io/file/directory/SubDirectory"
+autoload :BasicFileFilterUtil, "org/allbinary/logic/io/file/filter/BasicFileFilterUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 require "java/lang/Thread"
 require "java/lang/System"
 
-class InputAutomationNewBundleRunnable
-    FILE = "file:"
-    JAR_DIR_PROP = "org.knopflerfish.gosg.jars"
-    INPUT_AUTMATION_MODULE_BUNDLE_JAR_PATH = "ia/auto"
-    MODULES_START_LEVEL = 8
+begin
+    InputAutomationNewBundleRunnable.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -19,9 +19,10 @@ module MovementCompositeInterface
     
 
     def getMovement()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/physics/movement/Movement"
+autoload :Movement, "org/allbinary/physics/movement/Movement"
 

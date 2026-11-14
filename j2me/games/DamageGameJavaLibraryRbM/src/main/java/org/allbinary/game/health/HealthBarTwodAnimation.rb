@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.health
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/health/HealthBarAnimation"
 
 class HealthBarTwodAnimation < HealthBarAnimation
@@ -32,5 +31,6 @@ class HealthBarTwodAnimation < HealthBarAnimation
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
 

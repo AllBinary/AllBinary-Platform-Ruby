@@ -38,7 +38,7 @@ class BaseBasicArrayListCache
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

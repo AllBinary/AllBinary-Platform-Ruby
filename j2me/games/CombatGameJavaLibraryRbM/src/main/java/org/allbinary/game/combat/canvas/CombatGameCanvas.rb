@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.canvas
 
-# require "javax/microedition/lcdui/CommandListener"
 require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 
 class CombatGameCanvas < AllBinaryGameCanvas
@@ -84,29 +83,54 @@ class CombatGameCanvas < AllBinaryGameCanvas
     end
 
     def self.basicLayerProcessor()
+        CombatGameCanvas.java_static_fields unless @java_static_fields_started
         return defined?(@@basicLayerProcessor) ? @@basicLayerProcessor : nil
     end
 
     def self.basicLayerProcessor=(value)
+        CombatGameCanvas.java_static_fields unless @java_static_fields_started
         @@basicLayerProcessor = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@basicLayerProcessor = Array.new(0, nil)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CombatGameCanvas"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
-require "org/allbinary/game/combat/destroy/event/DestroyEventCircularStaticPool"
-require "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureFactory"
-require "org/allbinary/game/init/BasicBuildGameInitializerFactory"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/layer/drop/DropLayerProcessor"
-require "org/allbinary/game/layer/identification/GroupLayerManagerListener"
-require "org/allbinary/game/score/HighScoresFactoryInterface"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/layer/BasicLayerProcessor"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :DestroyedLayerProcessor, "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
+autoload :DestroyEventCircularStaticPool, "org/allbinary/game/combat/destroy/event/DestroyEventCircularStaticPool"
+autoload :DestroyedEventHandler, "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
+autoload :BasicBuildGameInitializerFactory, "org/allbinary/game/init/BasicBuildGameInitializerFactory"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :DropLayerProcessor, "org/allbinary/game/layer/drop/DropLayerProcessor"
+autoload :GroupLayerManagerListener, "org/allbinary/game/layer/identification/GroupLayerManagerListener"
+autoload :HighScoresFactoryInterface, "org/allbinary/game/score/HighScoresFactoryInterface"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :BasicLayerProcessor, "org/allbinary/layer/BasicLayerProcessor"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
 
-class CombatGameCanvas
-    @@basicLayerProcessor = Array.new(0, nil)
+begin
+    CombatGameCanvas.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

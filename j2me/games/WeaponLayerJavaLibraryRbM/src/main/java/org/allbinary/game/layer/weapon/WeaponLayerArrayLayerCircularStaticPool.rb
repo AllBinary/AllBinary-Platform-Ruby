@@ -14,15 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.weapon
 
-require "java/lang/Object"
 
 class WeaponLayerArrayLayerCircularStaticPool
-    attr_accessor :MAX, :circularIndexUtil, :ALL_WEAPONLAYER_ARRAY
+    attr_accessor :MAX, :circularIndexUtil, :WEAPONLAYER_ARRAY, :TWO_WEAPONLAYER_ARRAY, :THREE_WEAPONLAYER_ARRAY
 
     def initialize_fields
         @MAX = 5
         @circularIndexUtil = CircularIndexUtil.createInstance(@MAX)
-        @ALL_WEAPONLAYER_ARRAY = Array.new(4, nil)
+        @WEAPONLAYER_ARRAY = nil
+        @TWO_WEAPONLAYER_ARRAY = nil
+        @THREE_WEAPONLAYER_ARRAY = nil
     end
 
     def initialize
@@ -44,34 +45,68 @@ class WeaponLayerArrayLayerCircularStaticPool
             _TWO_WEAPONLAYER_ARRAY[index] = Array.new(2, nil)
             _THREE_WEAPONLAYER_ARRAY[index] = Array.new(3, nil)
         end
-        @ALL_WEAPONLAYER_ARRAY[1] = _WEAPONLAYER_ARRAY
-        @ALL_WEAPONLAYER_ARRAY[2] = _TWO_WEAPONLAYER_ARRAY
-        @ALL_WEAPONLAYER_ARRAY[3] = _THREE_WEAPONLAYER_ARRAY
+        @WEAPONLAYER_ARRAY = _WEAPONLAYER_ARRAY
+        @TWO_WEAPONLAYER_ARRAY = _TWO_WEAPONLAYER_ARRAY
+        @THREE_WEAPONLAYER_ARRAY = _THREE_WEAPONLAYER_ARRAY
+    end
+    
+
+    def getWeaponLayerArrays(size)
+        if size == 1
+            return @WEAPONLAYER_ARRAY
+        elsif size == 2
+            return @TWO_WEAPONLAYER_ARRAY
+        elsif size == 3
+            return @THREE_WEAPONLAYER_ARRAY
+        end
+        raise RuntimeError.new()
     end
     
 
     # throws Exception
     def getInstanceArray(size)
-        java_monitor.synchronize do
-        weaponLayerArray = @ALL_WEAPONLAYER_ARRAY[size][@circularIndexUtil.getIndex()]
+        weaponLayerArray = self.getWeaponLayerArrays(size)[@circularIndexUtil.getIndex()]
         @circularIndexUtil.next_()
         return weaponLayerArray
-        end
     end
 
     def self.instance()
+        WeaponLayerArrayLayerCircularStaticPool.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        WeaponLayerArrayLayerCircularStaticPool.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = WeaponLayerArrayLayerCircularStaticPool.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "WeaponLayerArrayLayerCircularStaticPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/game/layer/weapon/WeaponLayer"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :WeaponLayer, "org/allbinary/game/layer/weapon/WeaponLayer"
 
-class WeaponLayerArrayLayerCircularStaticPool
-    @@instance = WeaponLayerArrayLayerCircularStaticPool.new()
+begin
+    WeaponLayerArrayLayerCircularStaticPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

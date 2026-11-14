@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/Paintable"
 
 class MainGameDemoStatePaintable < Paintable
@@ -49,4 +48,6 @@ class MainGameDemoStatePaintable < Paintable
         return @menuPaintableInterface
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

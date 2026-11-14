@@ -65,12 +65,12 @@ class PooledThread < JavaThread
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/ThreadObjectUtil"
-require "org/allbinary/thread/ThreadPool"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ThreadObjectUtil, "org/allbinary/thread/ThreadObjectUtil"
+autoload :ThreadPool, "org/allbinary/thread/ThreadPool"
 require "java/lang/Runnable"
 require "java/lang/InterruptedException"
 

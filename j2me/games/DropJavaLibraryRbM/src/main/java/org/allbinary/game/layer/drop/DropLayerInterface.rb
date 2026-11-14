@@ -22,9 +22,10 @@ module DropLayerInterface
 
     # throws Exception
     def getDroppedLayer()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
+autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
 

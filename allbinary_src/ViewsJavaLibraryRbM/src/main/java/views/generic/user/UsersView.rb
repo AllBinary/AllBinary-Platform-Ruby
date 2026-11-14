@@ -75,13 +75,13 @@ class UsersView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/UserDomNode"
-require "org/allbinary/business/user/UsersData"
-require "org/allbinary/business/user/modules/User"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :UserDomNode, "org/allbinary/business/user/UserDomNode"
+autoload :UsersData, "org/allbinary/business/user/UsersData"
+autoload :User, "org/allbinary/business/user/modules/User"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

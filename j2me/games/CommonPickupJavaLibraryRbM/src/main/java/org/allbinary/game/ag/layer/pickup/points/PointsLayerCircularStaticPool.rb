@@ -21,7 +21,7 @@ class PointsLayerCircularStaticPool < AllBinaryLayerCircularPool
 
     def initialize(allbinaryLayerFactoryInterface, total)
         super()
-        self.class.superclass.instance_method(:initAllBinaryLayerCircularPool).bind(self).call(allbinaryLayerFactoryInterface, total)
+        PointsLayerCircularStaticPool.superclass.instance_method(:initAllBinaryLayerCircularPool).bind(self).call(allbinaryLayerFactoryInterface, total)
     end
     
 
@@ -33,8 +33,8 @@ class PointsLayerCircularStaticPool < AllBinaryLayerCircularPool
     end
 end
 
-require "org/allbinary/game/score/ScoreableInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerFactoryInterface"
-require "org/allbinary/game/ag/layer/pickup/points/PointsLayer"
+autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerFactoryInterface, "org/allbinary/layer/AllBinaryLayerFactoryInterface"
+autoload :PointsLayer, "org/allbinary/game/ag/layer/pickup/points/PointsLayer"
 

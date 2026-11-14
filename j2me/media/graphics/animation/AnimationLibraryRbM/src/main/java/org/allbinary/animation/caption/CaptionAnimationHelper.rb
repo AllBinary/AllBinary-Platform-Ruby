@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.caption
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/caption/CaptionAnimationHelperBase"
 
 class CaptionAnimationHelper < CaptionAnimationHelperBase
@@ -64,13 +63,14 @@ class CaptionAnimationHelper < CaptionAnimationHelperBase
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/animation/text/TextAnimation"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/animation/caption/CaptionAnimation"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :TextAnimation, "org/allbinary/animation/text/TextAnimation"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :CaptionAnimation, "org/allbinary/animation/caption/CaptionAnimation"
 

@@ -53,5 +53,5 @@ class BasicLayerPlacement
     end
 end
 
-require "org/allbinary/game/layer/LayerPlacementType"
+autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType"
 

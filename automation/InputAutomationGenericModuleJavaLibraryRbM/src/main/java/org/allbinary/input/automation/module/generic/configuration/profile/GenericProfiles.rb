@@ -140,26 +140,48 @@ class GenericProfiles
         documentString = XmlDocumentHelper.toString(self.toXmlDoc())
         idOutData.writeBytes(documentString)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:DEFAULT_PROFILES_PATH, "./modules/configs/profiles/")
+        begin
+            const_set(:DEFAULT_PROFILE_ACTIONS_PATH, (GenericProfiles::DEFAULT_PROFILES_PATH).to_s + "actions/")
+            const_set(:DEFAULT_FILE, (GenericProfiles::DEFAULT_PROFILES_PATH).to_s + "profiles.xml")
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GenericProfiles"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DEFAULT_PROFILES_PATH, :DEFAULT_PROFILE_ACTIONS_PATH, :DEFAULT_FILE].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/input/automation/module/DefaultListModelHelper"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionData"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileData"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfilesData"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :DefaultListModelHelper, "org/allbinary/input/automation/module/DefaultListModelHelper"
+autoload :GenericProfileActionData, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionData"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :GenericProfile, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
+autoload :GenericProfileData, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileData"
+autoload :GenericProfilesData, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfilesData"
 
-class GenericProfiles
-    DEFAULT_PROFILES_PATH = "./modules/configs/profiles/"
-    DEFAULT_PROFILE_ACTIONS_PATH = (GenericProfiles::DEFAULT_PROFILES_PATH).to_s + "actions/"
-    DEFAULT_FILE = (GenericProfiles::DEFAULT_PROFILES_PATH).to_s + "profiles.xml"
+begin
+    GenericProfiles.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

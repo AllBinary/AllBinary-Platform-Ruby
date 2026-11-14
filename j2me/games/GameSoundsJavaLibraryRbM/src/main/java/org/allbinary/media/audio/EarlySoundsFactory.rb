@@ -34,19 +34,43 @@ class EarlySoundsFactory < BaseSoundsFactory
     end
 
     def self.instance()
+        EarlySoundsFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        EarlySoundsFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = EarlySoundsFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "EarlySoundsFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/media/audio/ErrorSound"
-require "org/allbinary/media/audio/SelectSound"
-require "org/allbinary/media/audio/Sound"
+autoload :ErrorSound, "org/allbinary/media/audio/ErrorSound"
+autoload :SelectSound, "org/allbinary/media/audio/SelectSound"
+autoload :Sound, "org/allbinary/media/audio/Sound"
 
-class EarlySoundsFactory
-    @@instance = EarlySoundsFactory.new()
+begin
+    EarlySoundsFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

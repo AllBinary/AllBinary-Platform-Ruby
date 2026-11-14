@@ -53,5 +53,5 @@ class AdvertisementProduct
     end
 end
 
-require "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
+autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
 

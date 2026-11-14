@@ -126,7 +126,7 @@ class AlwaysActionScriptConditionJPanel < JPanel
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/actions/script/condition/AlwaysActionScriptConditionInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AlwaysActionScriptConditionInterface, "org/allbinary/input/automation/actions/script/condition/AlwaysActionScriptConditionInterface"
 

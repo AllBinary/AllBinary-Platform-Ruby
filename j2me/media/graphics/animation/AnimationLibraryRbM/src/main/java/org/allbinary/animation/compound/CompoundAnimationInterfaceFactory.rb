@@ -67,9 +67,9 @@ class CompoundAnimationInterfaceFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/media/ScaleProperties"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
 

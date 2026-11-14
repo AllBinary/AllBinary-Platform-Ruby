@@ -17,9 +17,31 @@
 require "org/allbinary/animation/transition/shake/ShakeAnimationListener"
 
 class NoShakeAnimationListener < ShakeAnimationListener
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NO_SHAKE_ANIMATION_LISTENER, NoShakeAnimationListener.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NoShakeAnimationListener"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NO_SHAKE_ANIMATION_LISTENER].include?(name)
+        end
+        super
+    end
 end
 
-class NoShakeAnimationListener
-    NO_SHAKE_ANIMATION_LISTENER = NoShakeAnimationListener.new()
+begin
+    NoShakeAnimationListener.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

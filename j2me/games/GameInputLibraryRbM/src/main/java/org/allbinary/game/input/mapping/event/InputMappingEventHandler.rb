@@ -36,20 +36,44 @@ class InputMappingEventHandler < BasicEventHandler
     end
 
     def self.gameKeyEventHandler()
+        InputMappingEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@gameKeyEventHandler) ? @@gameKeyEventHandler : nil
     end
 
     def self.gameKeyEventHandler=(value)
+        InputMappingEventHandler.java_static_fields unless @java_static_fields_started
         @@gameKeyEventHandler = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@gameKeyEventHandler = InputMappingEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputMappingEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/game/input/mapping/event/InputMappingEvent"
-require "org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
+autoload :InputMappingEventListenerInterface, "org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface"
 
-class InputMappingEventHandler
-    @@gameKeyEventHandler = InputMappingEventHandler.new()
+begin
+    InputMappingEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

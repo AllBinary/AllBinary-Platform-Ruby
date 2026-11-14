@@ -61,29 +61,53 @@ class GenericProfileDataWorkerType
     end
 
     def self.hashMap()
+        GenericProfileDataWorkerType.java_static_fields unless @java_static_fields_started
         return defined?(@@hashMap) ? @@hashMap : nil
     end
 
     def self.hashMap=(value)
+        GenericProfileDataWorkerType.java_static_fields unless @java_static_fields_started
         @@hashMap = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@hashMap = StdUtil.getInstance().createHashMap()
+            const_set(:SAVED_CAPTURE, SavedCaptureGenericProfileDataWorkerType::SAVED_CAPTURE)
+            const_set(:SCREEN_CAPTURE, GenericProfileDataWorkerType.new("Screen " + InputImageType::CAPTURE.getName()))
+            const_set(:COMPARISON, GenericProfileDataWorkerType.new(InputImageType::COMPARISON.getName()))
+            const_set(:MOTION, GenericProfileDataWorkerType.new(InputImageType::MOTION.getName()))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GenericProfileDataWorkerType"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SAVED_CAPTURE, :SCREEN_CAPTURE, :COMPARISON, :MOTION].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/input/media/image/InputImageType"
-require "org/allbinary/logic/StdUtil"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerData"
-require "org/allbinary/input/automation/module/generic/configuration/profile/SavedCaptureGenericProfileDataWorkerType"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :InputImageType, "org/allbinary/input/media/image/InputImageType"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :GenericProfileDataWorkerData, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerData"
+autoload :SavedCaptureGenericProfileDataWorkerType, "org/allbinary/input/automation/module/generic/configuration/profile/SavedCaptureGenericProfileDataWorkerType"
 
-class GenericProfileDataWorkerType
-    @@hashMap = StdUtil.getInstance().createHashMap()
-    SAVED_CAPTURE = SavedCaptureGenericProfileDataWorkerType::SAVED_CAPTURE
-    SCREEN_CAPTURE = GenericProfileDataWorkerType.new("Screen " + InputImageType::CAPTURE.getName())
-    COMPARISON = GenericProfileDataWorkerType.new(InputImageType::COMPARISON.getName())
-    MOTION = GenericProfileDataWorkerType.new(InputImageType::MOTION.getName())
+begin
+    GenericProfileDataWorkerType.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

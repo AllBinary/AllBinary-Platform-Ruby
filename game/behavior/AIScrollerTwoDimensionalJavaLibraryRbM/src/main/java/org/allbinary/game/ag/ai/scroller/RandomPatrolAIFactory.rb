@@ -26,9 +26,9 @@ class RandomPatrolAIFactory
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/ag/ai/scroller/RandomPatrolAI"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :RandomPatrolAI, "org/allbinary/game/ag/ai/scroller/RandomPatrolAI"
 

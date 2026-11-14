@@ -19,10 +19,11 @@ module VectorAnimationFactoryInterface
     
 
     def getInstance(points, basicColor)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/animation/VectorAnimation"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :VectorAnimation, "org/allbinary/animation/VectorAnimation"
 

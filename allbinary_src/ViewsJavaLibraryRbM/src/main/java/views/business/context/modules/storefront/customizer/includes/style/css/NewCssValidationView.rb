@@ -84,12 +84,12 @@ class NewCssValidationView < CssCustomizerView
     end
 end
 
-require "org/allbinary/data/tree/dom/DomNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/template/customizer/includes/style/css/GenericCssStyleValidation"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "views/business/context/modules/storefront/customizer/CustomizerUtil"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :GenericCssStyleValidation, "org/allbinary/logic/visual/transform/template/customizer/includes/style/css/GenericCssStyleValidation"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CustomizerUtil, "views/business/context/modules/storefront/customizer/CustomizerUtil"
 

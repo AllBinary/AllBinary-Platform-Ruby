@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
-# require "javax/microedition/lcdui/Command"
 require "org/allbinary/logic/util/visitor/Visitor"
 
 class LimitCommandsVisitor < Visitor
@@ -44,8 +43,9 @@ class LimitCommandsVisitor < Visitor
     end
 end
 
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/form/ScreenInfo"
-require "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :ScreenInfo, "org/allbinary/graphics/form/ScreenInfo"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
 

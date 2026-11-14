@@ -191,48 +191,72 @@ class InventorySearchUtil
     end
 
     def self.instance()
+        InventorySearchUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        InventorySearchUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = InventorySearchUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InventorySearchUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/inventory/InventoryData"
-require "org/allbinary/business/user/commerce/inventory/basket/BasketData"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemView"
-require "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/search/SearchData"
-require "org/allbinary/logic/control/search/SearchParams"
-require "org/allbinary/logic/control/search/SearchRequest"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/string/regex/replace/Replace"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/StoreTransformer"
-require "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
-require "org/allbinary/logic/visual/transform/data/TransformStoreDocumentFactory"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpSearch"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "views/generic/inventory/InventoryColumnUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :InventoryData, "org/allbinary/business/user/commerce/inventory/InventoryData"
+autoload :BasketData, "org/allbinary/business/user/commerce/inventory/basket/BasketData"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :BasicItemView, "org/allbinary/business/user/commerce/inventory/item/BasicItemView"
+autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
+autoload :InventoryEntity, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
+autoload :InventoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SearchData, "org/allbinary/logic/control/search/SearchData"
+autoload :SearchParams, "org/allbinary/logic/control/search/SearchParams"
+autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :StoreTransformer, "org/allbinary/logic/visual/transform/StoreTransformer"
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+autoload :TransformStoreDocumentFactory, "org/allbinary/logic/visual/transform/data/TransformStoreDocumentFactory"
+autoload :TransformInfoHttpSearch, "org/allbinary/logic/visual/transform/info/TransformInfoHttpSearch"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :InventoryColumnUtil, "views/generic/inventory/InventoryColumnUtil"
 
-class InventorySearchUtil
-    @@instance = InventorySearchUtil.new()
+begin
+    InventorySearchUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

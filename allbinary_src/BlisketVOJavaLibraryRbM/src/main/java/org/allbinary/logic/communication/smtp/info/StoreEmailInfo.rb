@@ -45,9 +45,9 @@ class StoreEmailInfo < BasicEmailInfo
     end
 end
 
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
-require "org/allbinary/string/CommonStrings"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

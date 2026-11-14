@@ -55,5 +55,5 @@ class NumberInSameGroupSequence
     end
 end
 
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
 

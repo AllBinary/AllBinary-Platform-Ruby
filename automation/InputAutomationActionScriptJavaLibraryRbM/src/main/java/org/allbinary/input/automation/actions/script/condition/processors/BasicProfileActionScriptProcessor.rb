@@ -58,9 +58,9 @@ class BasicProfileActionScriptProcessor < ProfileActionScriptItem
     end
 end
 
-require "org/allbinary/input/automation/actions/script/JTreeInterfaceFactory"
-require "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/input/automation/actions/script/condition/processors/GenericProfileActionScriptProcessorData"
+autoload :JTreeInterfaceFactory, "org/allbinary/input/automation/actions/script/JTreeInterfaceFactory"
+autoload :ProfileActionScriptConditionInterface, "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :GenericProfileActionScriptProcessorData, "org/allbinary/input/automation/actions/script/condition/processors/GenericProfileActionScriptProcessorData"
 

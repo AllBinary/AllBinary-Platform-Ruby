@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
-# require "javax/microedition/media/Control"
 require "org/allbinary/media/audio/BasicPlayer"
 
 class NoPlayer < BasicPlayer
@@ -42,12 +41,35 @@ class NoPlayer < BasicPlayer
     def getControls()
         return Array.new(0, nil)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NO_PLAYER, NoPlayer.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NoPlayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NO_PLAYER].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/media/audio/NullControl"
+autoload :Control, "javax/microedition/media/Control"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :NullControl, "org/allbinary/media/audio/NullControl"
 
-class NoPlayer
-    NO_PLAYER = NoPlayer.new()
+begin
+    NoPlayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

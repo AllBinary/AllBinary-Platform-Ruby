@@ -26,6 +26,6 @@ class AdminConfigurationTag < TableTag
     end
 end
 
-require "admin/taghelpers/AdminConfigurationHelperFactory"
-require "admin/taghelpers/AdminConfigurationRequestHelperFactory"
+autoload :AdminConfigurationHelperFactory, "admin/taghelpers/AdminConfigurationHelperFactory"
+autoload :AdminConfigurationRequestHelperFactory, "admin/taghelpers/AdminConfigurationRequestHelperFactory"
 

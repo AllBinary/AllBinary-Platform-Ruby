@@ -161,30 +161,52 @@ class ColorAtActionScriptCondition < BasicProfileActionScriptCondition
     def setColorRangeInterface(colorRangeInterface)
         @colorRangeInterface = colorRangeInterface
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "If Color At")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ColorAtActionScriptCondition"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/graphics/color/ColorCacheFactory"
-require "org/allbinary/graphics/color/ColorCacheable"
-require "org/allbinary/input/media/image/capture/CapturedBufferedImagesCacheSingleton"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/util/cache/AutomaticCacheInterface"
-require "org/allbinary/media/image/analysis/ColorRange"
-require "org/allbinary/media/image/analysis/ColorRangeInterface"
-require "org/allbinary/media/image/cache/BufferedImageFrameCacheable"
-require "org/allbinary/string/CommonSeps"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptConditionData"
-require "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptConditionJPanel"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :ColorCacheFactory, "org/allbinary/graphics/color/ColorCacheFactory"
+autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable"
+autoload :CapturedBufferedImagesCacheSingleton, "org/allbinary/input/media/image/capture/CapturedBufferedImagesCacheSingleton"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+autoload :ColorRange, "org/allbinary/media/image/analysis/ColorRange"
+autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface"
+autoload :BufferedImageFrameCacheable, "org/allbinary/media/image/cache/BufferedImageFrameCacheable"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :ColorAtActionScriptConditionData, "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptConditionData"
+autoload :ColorAtActionScriptConditionJPanel, "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptConditionJPanel"
 
-class ColorAtActionScriptCondition
-    NAME = "If Color At"
+begin
+    ColorAtActionScriptCondition.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

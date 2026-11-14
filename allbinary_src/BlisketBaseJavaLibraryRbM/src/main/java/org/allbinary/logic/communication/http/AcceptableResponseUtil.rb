@@ -53,23 +53,46 @@ class AcceptableResponseUtil
     end
 
     def self.instance()
+        AcceptableResponseUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AcceptableResponseUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AcceptableResponseUtil.new()
+            static_init
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AcceptableResponseUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/AcceptableResponseFactory"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AcceptableResponseFactory, "org/allbinary/logic/communication/http/AcceptableResponseFactory"
 
-class AcceptableResponseUtil
-    @@instance = AcceptableResponseUtil.new()
+begin
+    AcceptableResponseUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
-
-AcceptableResponseUtil.static_init
 

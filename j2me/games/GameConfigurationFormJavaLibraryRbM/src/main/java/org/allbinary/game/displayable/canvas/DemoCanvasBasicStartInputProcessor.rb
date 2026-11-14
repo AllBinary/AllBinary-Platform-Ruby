@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/NullCanvas"
 require "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor"
 
 class DemoCanvasBasicStartInputProcessor < BasicMenuInputProcessor
@@ -39,11 +38,12 @@ class DemoCanvasBasicStartInputProcessor < BasicMenuInputProcessor
     end
 end
 
-require "org/allbinary/canvas/RunnableCanvas"
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/input/GameInputStrings"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
+autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
+autoload :RunnableCanvas, "org/allbinary/canvas/RunnableCanvas"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

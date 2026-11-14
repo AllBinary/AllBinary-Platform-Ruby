@@ -74,14 +74,14 @@ class XmlRpcRemoteHighScoresClient < XmlRpcAbeClient
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/init/crypt/jcehelper/CryptInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/exception/ExceptionUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/util/ABHashtable"
-require "org/apache/xmlrpc/XmlRpcClient"
-require "org/apache/xmlrpc/XmlRpcException"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :CryptInterface, "org/allbinary/init/crypt/jcehelper/CryptInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ExceptionUtil, "org/allbinary/logic/java/exception/ExceptionUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :XmlRpcClient, "org/apache/xmlrpc/XmlRpcClient"
+autoload :XmlRpcException, "org/apache/xmlrpc/XmlRpcException"
 

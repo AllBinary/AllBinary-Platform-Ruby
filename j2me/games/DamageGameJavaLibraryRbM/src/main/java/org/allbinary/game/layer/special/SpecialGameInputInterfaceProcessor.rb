@@ -31,5 +31,5 @@ class SpecialGameInputInterfaceProcessor < GameInputProcessor
     end
 end
 
-require "org/allbinary/game/layer/special/SpecialGameInputInterface"
+autoload :SpecialGameInputInterface, "org/allbinary/game/layer/special/SpecialGameInputInterface"
 

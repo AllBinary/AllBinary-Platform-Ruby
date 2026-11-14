@@ -26,6 +26,6 @@ class PermissionItemsTag < TableTag
     end
 end
 
-require "admin/taghelpers/PermissionItemsHelperFactory"
-require "admin/taghelpers/PermissionItemsRequestHelperFactory"
+autoload :PermissionItemsHelperFactory, "admin/taghelpers/PermissionItemsHelperFactory"
+autoload :PermissionItemsRequestHelperFactory, "admin/taghelpers/PermissionItemsRequestHelperFactory"
 

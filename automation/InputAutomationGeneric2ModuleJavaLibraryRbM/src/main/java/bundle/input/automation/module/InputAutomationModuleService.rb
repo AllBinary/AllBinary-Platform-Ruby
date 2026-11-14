@@ -41,5 +41,5 @@ class InputAutomationModuleService
     end
 end
 
-require "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
+autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
 

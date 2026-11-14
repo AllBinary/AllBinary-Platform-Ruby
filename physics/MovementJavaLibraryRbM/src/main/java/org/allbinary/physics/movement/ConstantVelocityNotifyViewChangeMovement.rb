@@ -67,10 +67,10 @@ class ConstantVelocityNotifyViewChangeMovement < Movement
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/math/BasicDecimal"
-require "org/allbinary/logic/math/vector/AxisMathVectorUtil"
-require "org/allbinary/math/AngleFactory"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+autoload :AxisMathVectorUtil, "org/allbinary/logic/math/vector/AxisMathVectorUtil"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
 

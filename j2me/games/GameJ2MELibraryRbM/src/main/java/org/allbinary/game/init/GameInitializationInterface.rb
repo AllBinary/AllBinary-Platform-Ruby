@@ -14,16 +14,17 @@
 # frozen_string_literal: false
 # package org.allbinary.game.init
 
-# require "javax/microedition/lcdui/CommandListener"
 
 module GameInitializationInterface
     
 
     # throws Exception
     def init(abeClientInformation, commandListener, level)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
 

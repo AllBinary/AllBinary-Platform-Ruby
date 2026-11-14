@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.pickup
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/multiplayer/layer/MultiPlayerGameLayer"
 require "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
 require "org/allbinary/game/layer/pickup/PickupableInterface"
@@ -109,15 +107,17 @@ class PickupLayer < MultiPlayerGameLayer
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/game/collision/CollidableAlwaysPickupNeverCollideBehaviorFactory"
-require "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
-require "org/allbinary/game/identification/BasicGroupFactory"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/image/opengles/OpenGLSurfaceChangedInterface"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :GL, "javax/microedition/khronos/opengles/GL"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :CollidableAlwaysPickupNeverCollideBehaviorFactory, "org/allbinary/game/collision/CollidableAlwaysPickupNeverCollideBehaviorFactory"
+autoload :DestroyedLayerProcessor, "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
+autoload :BasicGroupFactory, "org/allbinary/game/identification/BasicGroupFactory"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :OpenGLSurfaceChangedInterface, "org/allbinary/image/opengles/OpenGLSurfaceChangedInterface"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :CountedPickedUpLayerInterfaceFactory, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
 

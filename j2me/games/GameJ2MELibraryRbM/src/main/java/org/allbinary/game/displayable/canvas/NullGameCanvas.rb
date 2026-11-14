@@ -15,9 +15,6 @@
 # package org.allbinary.game.displayable.canvas
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/NullCommandListener"
 require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 
 class NullGameCanvas < AllBinaryGameCanvas
@@ -58,7 +55,7 @@ class NullGameCanvas < AllBinaryGameCanvas
     def initialize(gameLayerManager)
         super(NullCommandListener::NULL_COMMAND_LISTENER, gameLayerManager, NoHighScoresFactory.getInstance(), BasicBuildGameInitializerFactory::NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY, false)
         initialize_fields
-        self.class.superclass.instance_method(:setWait).bind(self).call(1200)
+        NullGameCanvas.superclass.instance_method(:setWait).bind(self).call(1200)
     end
     
 
@@ -125,24 +122,51 @@ class NullGameCanvas < AllBinaryGameCanvas
     end
 
     def self.instance()
+        NullGameCanvas.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        NullGameCanvas.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NO_GAME, "No Background Game")
+        const_set(:TYPE, 1)
+        begin
+            @@instance = NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullGameCanvas"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NO_GAME, :TYPE].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/init/BasicBuildGameInitializerFactory"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/score/NoHighScoresFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :NullCommandListener, "javax/microedition/lcdui/NullCommandListener"
+autoload :BasicBuildGameInitializerFactory, "org/allbinary/game/init/BasicBuildGameInitializerFactory"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :NoHighScoresFactory, "org/allbinary/game/score/NoHighScoresFactory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class NullGameCanvas
-    @@instance = NullUtil.getInstance().NULL_OBJECT
-    NO_GAME = "No Background Game"
-    TYPE = 1
+begin
+    NullGameCanvas.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

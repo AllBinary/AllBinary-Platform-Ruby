@@ -925,45 +925,67 @@ class StoreFront
     def setContextConfigurationInterface(contextConfigurationInterface)
         @contextConfigurationInterface = contextConfigurationInterface
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:RESOURCES, " Resources" + (AbPathData.getInstance().SEPARATOR).to_s)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StoreFront"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:RESOURCES].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/Calendar"
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/configuration/ContextConfiguration"
-require "org/allbinary/business/context/configuration/ContextConfigurationDomDocumentMapping"
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
-require "org/allbinary/business/context/configuration/ContextConfigurationInterfaceFactory"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/user/UserData"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/request/RequestParams"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/FileUtil"
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/io/path/AbPathUtil"
-require "org/allbinary/logic/string/SpecialCharacterUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/string/regex/replace/Replace"
-require "org/allbinary/logic/string/tokens/Tokenizer"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/apache/commons/lang3/StringEscapeUtils"
-require "org/w3c/dom/Document"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :Calendar, "java/util/Calendar"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ContextConfiguration, "org/allbinary/business/context/configuration/ContextConfiguration"
+autoload :ContextConfigurationDomDocumentMapping, "org/allbinary/business/context/configuration/ContextConfigurationDomDocumentMapping"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :ContextConfigurationInterfaceFactory, "org/allbinary/business/context/configuration/ContextConfigurationInterfaceFactory"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :UserData, "org/allbinary/business/user/UserData"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :RequestParams, "org/allbinary/logic/communication/http/request/RequestParams"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :FileUtil, "org/allbinary/logic/io/file/FileUtil"
+autoload :Directory, "org/allbinary/logic/io/file/directory/Directory"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :AbPathUtil, "org/allbinary/logic/io/path/AbPathUtil"
+autoload :SpecialCharacterUtil, "org/allbinary/logic/string/SpecialCharacterUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
+autoload :Tokenizer, "org/allbinary/logic/string/tokens/Tokenizer"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StringEscapeUtils, "org/apache/commons/lang3/StringEscapeUtils"
+autoload :Document, "org/w3c/dom/Document"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
 
-class StoreFront
-    RESOURCES = " Resources" + (AbPathData.getInstance().SEPARATOR).to_s
+begin
+    StoreFront.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

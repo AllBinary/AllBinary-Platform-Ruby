@@ -55,13 +55,13 @@ class GameScrollMenuPaintable < BasicGameDemoPaintable
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/ColorChangeEventHandler"
-require "org/allbinary/graphics/form/FormPaintable"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
-require "org/allbinary/graphics/form/item/ABStringComponent"
-require "org/allbinary/graphics/form/item/ABTextItem"
-require "org/allbinary/graphics/paint/Paintable"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/game/paint/MainGameDemoStatePaintable"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :ColorChangeEventHandler, "org/allbinary/graphics/color/ColorChangeEventHandler"
+autoload :FormPaintable, "org/allbinary/graphics/form/FormPaintable"
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
+autoload :ABStringComponent, "org/allbinary/graphics/form/item/ABStringComponent"
+autoload :ABTextItem, "org/allbinary/graphics/form/item/ABTextItem"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :MainGameDemoStatePaintable, "org/allbinary/game/paint/MainGameDemoStatePaintable"
 

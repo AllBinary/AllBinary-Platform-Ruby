@@ -58,10 +58,10 @@ class FtpConfigurationMapping
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationData"
-require "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :FtpConfigurationData, "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationData"
+autoload :FtpConfigurationInterface, "org/allbinary/logic/communication/ftp/configuration/FtpConfigurationInterface"
 

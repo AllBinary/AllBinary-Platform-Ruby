@@ -57,7 +57,7 @@ class BaseCircularPool
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/logic/util/cache/AllBinaryObjectFactoryInterface"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :AllBinaryObjectFactoryInterface, "org/allbinary/logic/util/cache/AllBinaryObjectFactoryInterface"
 

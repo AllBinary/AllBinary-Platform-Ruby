@@ -211,25 +211,47 @@ class Email
     def toXmlDoc()
         raise StandardError.new(CommonStrings.getInstance().NOT_IMPLEMENTED)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:DEBUG, "mail.debug")
+        const_set(:SMTP_HOST, "mail.smtp.host")
+        const_set(:SMTP_PORT, "mail.smtp.port")
+        const_set(:SMTP_USER, "mail.smtp.user")
+        const_set(:SMTP_RETURN_ADDRESS, "mail.from")
+        const_set(:SMTP_LOCAL_HOST, "mail.smtp.localhost")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Email"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DEBUG, :SMTP_HOST, :SMTP_PORT, :SMTP_USER, :SMTP_RETURN_ADDRESS, :SMTP_LOCAL_HOST].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/communication/smtp/EmailData"
+autoload :HashMap, "java/util/HashMap"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :EmailData, "org/allbinary/logic/communication/smtp/EmailData"
 
-class Email
-    DEBUG = "mail.debug"
-    SMTP_HOST = "mail.smtp.host"
-    SMTP_PORT = "mail.smtp.port"
-    SMTP_USER = "mail.smtp.user"
-    SMTP_RETURN_ADDRESS = "mail.from"
-    SMTP_LOCAL_HOST = "mail.smtp.localhost"
+begin
+    Email.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -30,7 +30,7 @@ class SpecialLeftGameInputInterfaceProcessor < SpecialGameInputInterfaceProcesso
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/game/layer/special/SpecialGameInputInterface"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :SpecialGameInputInterface, "org/allbinary/game/layer/special/SpecialGameInputInterface"
 

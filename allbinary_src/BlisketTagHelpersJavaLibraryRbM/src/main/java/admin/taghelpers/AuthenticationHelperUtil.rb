@@ -57,28 +57,52 @@ class AuthenticationHelperUtil
     end
 
     def self.instance()
+        AuthenticationHelperUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AuthenticationHelperUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AuthenticationHelperUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AuthenticationHelperUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/role/BasicUserRole"
-require "org/allbinary/business/user/role/UserRole"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/http/file/upload/HttpFilePermissions"
-require "org/allbinary/logic/communication/http/request/HttpRequestUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonLabels"
-require "admin/taghelpers/AuthenticationHelper"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
+autoload :UserRole, "org/allbinary/business/user/role/UserRole"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :HttpFilePermissions, "org/allbinary/logic/communication/http/file/upload/HttpFilePermissions"
+autoload :HttpRequestUtil, "org/allbinary/logic/communication/http/request/HttpRequestUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :AuthenticationHelper, "admin/taghelpers/AuthenticationHelper"
 
-class AuthenticationHelperUtil
-    @@instance = AuthenticationHelperUtil.new()
+begin
+    AuthenticationHelperUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -22,9 +22,10 @@ module TerrainEventListenerInterface
 
     # throws Exception
     def onTerrainEvent(trackingEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/terrain/TerrainEvent"
+autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent"
 

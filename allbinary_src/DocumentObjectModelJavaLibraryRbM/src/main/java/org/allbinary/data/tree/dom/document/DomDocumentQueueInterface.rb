@@ -30,5 +30,5 @@ module DomDocumentQueueInterface
     end
 end
 
-require "org/allbinary/data/tree/dom/document/mapping/DomDocumentMappingInterface"
+autoload :DomDocumentMappingInterface, "org/allbinary/data/tree/dom/document/mapping/DomDocumentMappingInterface"
 

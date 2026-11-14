@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/displayable/canvas/GameCommandCanvas"
 require "org/allbinary/game/input/event/RawKeyEventListener"
 
@@ -108,14 +105,17 @@ class CustomTextBox < GameCommandCanvas
     end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/game/input/Input"
-require "org/allbinary/game/input/InputFactory"
-require "org/allbinary/game/input/PlatformKeyFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/form/item/validation/TextItemVisitor"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/graphics/form/item/ABTextFieldItem"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+autoload :PlatformKeyFactory, "org/allbinary/game/input/PlatformKeyFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :TextItemVisitor, "org/allbinary/graphics/form/item/validation/TextItemVisitor"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :ABTextFieldItem, "org/allbinary/graphics/form/item/ABTextFieldItem"
 

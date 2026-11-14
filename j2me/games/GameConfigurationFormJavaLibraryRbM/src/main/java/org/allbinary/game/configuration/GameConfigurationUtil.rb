@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
-# require "javax/microedition/lcdui/Item"
 
 class GameConfigurationUtil
     attr_accessor :logUtil, :commonStrings, :GAUGE_UPDATE, :FROM, :TO, :COMPETITION_VALUE
@@ -125,25 +124,50 @@ class GameConfigurationUtil
     end
 
     def self.instance()
+        GameConfigurationUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GameConfigurationUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GameConfigurationUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameConfigurationUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/configuration/GameConfiguration"
-require "org/allbinary/game/configuration/GameConfigurationCentral"
-require "org/allbinary/game/configuration/GameConfigurationGauge"
-require "org/allbinary/game/configuration/GameConfigurationSingleton"
-require "org/allbinary/game/configuration/GameOptionsForm"
+autoload :Item, "javax/microedition/lcdui/Item"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :GameConfigurationGauge, "org/allbinary/game/configuration/GameConfigurationGauge"
+autoload :GameConfigurationSingleton, "org/allbinary/game/configuration/GameConfigurationSingleton"
+autoload :GameOptionsForm, "org/allbinary/game/configuration/GameOptionsForm"
 
-class GameConfigurationUtil
-    @@instance = GameConfigurationUtil.new()
+begin
+    GameConfigurationUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

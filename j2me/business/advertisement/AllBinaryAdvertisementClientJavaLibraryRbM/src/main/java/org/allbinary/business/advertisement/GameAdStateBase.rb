@@ -129,11 +129,11 @@ class GameAdStateBase
     end
 end
 
-require "org/allbinary/game/GameType"
-require "org/allbinary/game/state/GameState"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/business/advertisement/AdConfiguration"
-require "org/allbinary/business/advertisement/Advertisements"
+autoload :GameType, "org/allbinary/game/GameType"
+autoload :GameState, "org/allbinary/game/state/GameState"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :AdConfiguration, "org/allbinary/business/advertisement/AdConfiguration"
+autoload :Advertisements, "org/allbinary/business/advertisement/Advertisements"
 

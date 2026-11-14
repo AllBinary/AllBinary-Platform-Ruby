@@ -42,10 +42,10 @@ class CollidableInterfaceLayerProcessor < LayerProcessor
     end
 end
 
-require "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/game/collision/layer/AllBinaryCollisionManager"
-require "org/allbinary/game/collision/layer/CollidableInterfaceLayerManager"
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AllBinaryCollisionManager, "org/allbinary/game/collision/layer/AllBinaryCollisionManager"
+autoload :CollidableInterfaceLayerManager, "org/allbinary/game/collision/layer/CollidableInterfaceLayerManager"
 

@@ -19,36 +19,43 @@ module LifeInterface
     
 
     def get()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def set(lives)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def reset()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def add(lives)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def deaths(lives)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMaxlives()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isAlive()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

@@ -24,5 +24,5 @@ class PasswordValidator < TextFieldItemValidator
     end
 end
 
-require "org/allbinary/graphics/form/item/ABTextFieldItem"
+autoload :ABTextFieldItem, "org/allbinary/graphics/form/item/ABTextFieldItem"
 

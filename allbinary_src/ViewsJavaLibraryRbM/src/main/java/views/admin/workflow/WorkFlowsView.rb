@@ -70,14 +70,14 @@ class WorkFlowsView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/data/tables/workflow/WorkFlowEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/workflow/WorkFlowData"
-require "org/allbinary/logic/control/workflow/WorkFlowInterface"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :WorkFlowEntityFactory, "org/allbinary/data/tables/workflow/WorkFlowEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :WorkFlowData, "org/allbinary/logic/control/workflow/WorkFlowData"
+autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

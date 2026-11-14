@@ -149,14 +149,14 @@ class BasicVelocityProperties
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/direction/Direction"
-require "org/allbinary/direction/DirectionUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/BasicDecimal"
-require "org/allbinary/logic/math/vector/AxisMathVectorUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/math/Angle"
-require "org/allbinary/math/PositionStrings"
-require "org/allbinary/string/CommonSeps"
+autoload :Direction, "org/allbinary/direction/Direction"
+autoload :DirectionUtil, "org/allbinary/direction/DirectionUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+autoload :AxisMathVectorUtil, "org/allbinary/logic/math/vector/AxisMathVectorUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :PositionStrings, "org/allbinary/math/PositionStrings"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 

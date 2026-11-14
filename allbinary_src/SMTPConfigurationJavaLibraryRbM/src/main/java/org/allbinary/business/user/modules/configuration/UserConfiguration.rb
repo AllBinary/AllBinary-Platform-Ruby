@@ -80,10 +80,10 @@ class UserConfiguration
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/time/created/TimeCreated"
-require "org/allbinary/business/time/modified/TimeLastModified"
-require "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfiguration"
-require "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfigurationInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :TimeCreated, "org/allbinary/business/time/created/TimeCreated"
+autoload :TimeLastModified, "org/allbinary/business/time/modified/TimeLastModified"
+autoload :UserEmailConfiguration, "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfiguration"
+autoload :UserEmailConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfigurationInterface"
 

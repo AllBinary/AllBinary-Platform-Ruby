@@ -83,10 +83,10 @@ class QuoteRequestTag < TableTag
     end
 end
 
-require "admin/taghelpers/QuoteHelperFactory"
-require "admin/taghelpers/QuoteRequestHelperFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :QuoteHelperFactory, "admin/taghelpers/QuoteHelperFactory"
+autoload :QuoteRequestHelperFactory, "admin/taghelpers/QuoteRequestHelperFactory"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

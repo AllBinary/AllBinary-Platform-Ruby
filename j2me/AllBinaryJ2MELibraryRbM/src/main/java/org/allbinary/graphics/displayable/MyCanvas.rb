@@ -15,11 +15,7 @@
 # package org.allbinary.graphics.displayable
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/NullCommandListener"
+require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/graphics/displayable/command/MyCommandInterface"
 require "org/allbinary/graphics/displayable/DisplayableInterface"
 
@@ -51,6 +47,16 @@ class MyCanvas < Canvas
         @name = name
         @childNameList = childNameList
         @commandStack = StdUtil.getInstance().createStack()
+    end
+    
+
+    def getWidth()
+        return super()
+    end
+    
+
+    def getHeight()
+        return super()
     end
     
 
@@ -99,7 +105,7 @@ class MyCanvas < Canvas
         java_monitor.synchronize do
         size = @commandStack.size()
         (0...size).each do |index|
-            self.class.superclass.instance_method(:removeCommand).bind(self).call(@commandStack.pop())
+            MyCanvas.superclass.instance_method(:removeCommand).bind(self).call(@commandStack.pop())
         end
         end
     end
@@ -208,15 +214,19 @@ class MyCanvas < Canvas
     end
 end
 
-require "org/allbinary/graphics/displayable/command/MyCommandsFactory"
-require "org/allbinary/input/TouchJ2ME"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/media/audio/Sound"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABStack"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :NullCommandListener, "javax/microedition/lcdui/NullCommandListener"
+autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory"
+autoload :TouchJ2ME, "org/allbinary/input/TouchJ2ME"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Sound, "org/allbinary/media/audio/Sound"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABStack, "org/allbinary/util/ABStack"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
 

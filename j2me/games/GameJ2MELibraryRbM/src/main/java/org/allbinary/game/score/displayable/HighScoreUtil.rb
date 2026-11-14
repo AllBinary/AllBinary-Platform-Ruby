@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score.displayable
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
 require "org/allbinary/game/score/HighScoresResultsListener"
 
 class HighScoreUtil
@@ -83,22 +81,46 @@ class HighScoreUtil
         commandListener = myCanvas.getCustomCommandListener()
         commandListener.commandAction(HighScoreUtil::SUBMIT_TEXTBOX_COMMAND, myCanvas)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SUBMIT_TEXTBOX_COMMAND, Command.new("Submit", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "HighScoreUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SUBMIT_TEXTBOX_COMMAND].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/score/HighScore"
-require "org/allbinary/game/score/HighScoreNamePersistanceSingleton"
-require "org/allbinary/game/score/HighScores"
-require "org/allbinary/game/score/HighScoresFactoryInterface"
-require "org/allbinary/game/score/HighScoresHelperBaseInterface"
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/string/CommonStrings"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :HighScore, "org/allbinary/game/score/HighScore"
+autoload :HighScoreNamePersistanceSingleton, "org/allbinary/game/score/HighScoreNamePersistanceSingleton"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
+autoload :HighScoresFactoryInterface, "org/allbinary/game/score/HighScoresFactoryInterface"
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class HighScoreUtil
-    SUBMIT_TEXTBOX_COMMAND = Command.new("Submit", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1)
+begin
+    HighScoreUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

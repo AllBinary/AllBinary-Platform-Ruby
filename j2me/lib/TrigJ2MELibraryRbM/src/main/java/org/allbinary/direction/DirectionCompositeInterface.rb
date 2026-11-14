@@ -19,9 +19,10 @@ module DirectionCompositeInterface
     
 
     def getDirection()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/direction/Direction"
+autoload :Direction, "org/allbinary/direction/Direction"
 

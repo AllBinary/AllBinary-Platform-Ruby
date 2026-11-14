@@ -83,24 +83,48 @@ class DestroyedEventHandler < BasicEventHandler
     end
 
     def self.instance()
+        DestroyedEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        DestroyedEventHandler.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = DestroyedEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DestroyedEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/combat/destroy/event/DestroyedEvent"
-require "org/allbinary/game/combat/destroy/event/DestroyedEventListenerInterface"
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
+autoload :DestroyedEventListenerInterface, "org/allbinary/game/combat/destroy/event/DestroyedEventListenerInterface"
 
-class DestroyedEventHandler
-    @@instance = DestroyedEventHandler.new()
+begin
+    DestroyedEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

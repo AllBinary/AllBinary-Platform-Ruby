@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/DataOutputStream"
 
 class HighScore
     attr_accessor :id, :name, :gameInfo, :score, :scoreString
@@ -86,7 +84,9 @@ class HighScore
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
+autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+autoload :DataOutputStream, "java/io/DataOutputStream"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 

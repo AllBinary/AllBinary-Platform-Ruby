@@ -95,16 +95,16 @@ class OrderHistoryRequestHelper < TagHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/inventory/order/OrderData"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
-require "org/allbinary/business/user/commerce/inventory/order/status/OrderStatusEmail"
-require "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityFactory"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderItemsEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
-require "org/allbinary/string/CommonPhoneStrings"
+autoload :HashMap, "java/util/HashMap"
+autoload :OrderData, "org/allbinary/business/user/commerce/inventory/order/OrderData"
+autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+autoload :OrderHistoryData, "org/allbinary/business/user/commerce/inventory/order/OrderHistoryData"
+autoload :OrderStatusEmail, "org/allbinary/business/user/commerce/inventory/order/status/OrderStatusEmail"
+autoload :ShippingMethodData, "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
+autoload :OrderHistoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityFactory"
+autoload :OrderItemsEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/order/OrderItemsEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
 

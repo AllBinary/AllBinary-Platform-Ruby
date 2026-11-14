@@ -39,10 +39,10 @@ class StoreFrontInventoryStatisticsView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatisticsData"
-require "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatisticsInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :StoreFrontInventoryStatisticsData, "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatisticsData"
+autoload :StoreFrontInventoryStatisticsInterface, "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatisticsInterface"
 

@@ -29,7 +29,7 @@ class BufferedImageCacheableFactory
     end
 end
 
-require "org/allbinary/logic/util/cache/CacheableInterface"
-require "org/allbinary/media/image/cache/BufferedImageCacheable"
-require "org/allbinary/media/image/cache/BufferedImageInfo"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :BufferedImageCacheable, "org/allbinary/media/image/cache/BufferedImageCacheable"
+autoload :BufferedImageInfo, "org/allbinary/media/image/cache/BufferedImageInfo"
 

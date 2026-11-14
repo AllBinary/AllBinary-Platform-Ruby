@@ -32,15 +32,39 @@ class AnimationEventHandler < BasicEventHandler
     end
 
     def self.eventHandler()
+        AnimationEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@eventHandler) ? @@eventHandler : nil
     end
 
     def self.eventHandler=(value)
+        AnimationEventHandler.java_static_fields unless @java_static_fields_started
         @@eventHandler = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@eventHandler = AnimationEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AnimationEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class AnimationEventHandler
-    @@eventHandler = AnimationEventHandler.new()
+begin
+    AnimationEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

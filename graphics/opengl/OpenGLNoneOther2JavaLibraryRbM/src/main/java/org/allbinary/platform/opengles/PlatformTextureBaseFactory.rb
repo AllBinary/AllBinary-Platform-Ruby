@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.platform.opengles
 
-# require "javax/microedition/khronos/opengles/GL10"
-# require "javax/microedition/lcdui/Image"
 
 class PlatformTextureBaseFactory
     attr_accessor :commonStrings
@@ -31,11 +29,35 @@ class PlatformTextureBaseFactory
 
     def load(gl, target, level, image, border, flip)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_PLATFORM_TEXTURE_BASE_FACTORY, PlatformTextureBaseFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PlatformTextureBaseFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_PLATFORM_TEXTURE_BASE_FACTORY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/string/CommonStrings"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class PlatformTextureBaseFactory
-    NULL_PLATFORM_TEXTURE_BASE_FACTORY = PlatformTextureBaseFactory.new()
+begin
+    PlatformTextureBaseFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -95,9 +95,9 @@ class BasicTouchButtonCellPositionFactory
     end
 end
 
-require "org/allbinary/graphics/CellPosition"
-require "org/allbinary/graphics/CellPositionFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/motion/button/TouchButtonLocationHelper"
+autoload :CellPosition, "org/allbinary/graphics/CellPosition"
+autoload :CellPositionFactory, "org/allbinary/graphics/CellPositionFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper"
 

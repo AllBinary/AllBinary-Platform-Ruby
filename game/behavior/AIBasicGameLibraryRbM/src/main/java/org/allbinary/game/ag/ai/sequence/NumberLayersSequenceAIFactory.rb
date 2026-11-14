@@ -23,8 +23,8 @@ class NumberLayersSequenceAIFactory
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/ag/ai/sequence/NumberLayersSequenceAI"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :NumberLayersSequenceAI, "org/allbinary/game/ag/ai/sequence/NumberLayersSequenceAI"
 

@@ -59,6 +59,6 @@ class BufferedImageCacheable
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/image/cache/BufferedImageInfo"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :BufferedImageInfo, "org/allbinary/media/image/cache/BufferedImageInfo"
 

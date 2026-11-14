@@ -37,8 +37,8 @@ class ImageArrayRotationAnimationCacheable < AdjustedImageArrayRotationAnimation
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
 

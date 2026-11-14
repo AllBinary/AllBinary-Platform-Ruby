@@ -26,5 +26,5 @@ module UserEmailEventListenerInterface
     end
 end
 
-require "org/allbinary/logic/communication/smtp/event/EmailEvent"
+autoload :EmailEvent, "org/allbinary/logic/communication/smtp/event/EmailEvent"
 

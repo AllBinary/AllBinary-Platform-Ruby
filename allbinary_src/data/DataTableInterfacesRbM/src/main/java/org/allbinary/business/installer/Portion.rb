@@ -41,5 +41,5 @@ class Portion
     end
 end
 
-require "java/util/HashMap"
+autoload :HashMap, "java/util/HashMap"
 

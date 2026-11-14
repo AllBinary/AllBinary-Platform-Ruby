@@ -146,9 +146,9 @@ class Money
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonPhoneStrings"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
 

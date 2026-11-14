@@ -36,9 +36,9 @@ class InputImageIOInterfaceFactory
     end
 end
 
-require "org/allbinary/input/media/image/capture/CapturedImageInputOutput"
-require "org/allbinary/media/image/comparison/ComparisonImageInputOutput"
-require "org/allbinary/media/image/comparison/motion/MotionRectanglesImageInputOutput"
-require "org/allbinary/media/image/io/ImageIOInterface"
-require "org/allbinary/input/media/image/InputImageType"
+autoload :CapturedImageInputOutput, "org/allbinary/input/media/image/capture/CapturedImageInputOutput"
+autoload :ComparisonImageInputOutput, "org/allbinary/media/image/comparison/ComparisonImageInputOutput"
+autoload :MotionRectanglesImageInputOutput, "org/allbinary/media/image/comparison/motion/MotionRectanglesImageInputOutput"
+autoload :ImageIOInterface, "org/allbinary/media/image/io/ImageIOInterface"
+autoload :InputImageType, "org/allbinary/input/media/image/InputImageType"
 

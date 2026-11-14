@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.life
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/health/HealthListenerInterface"
 require "org/allbinary/graphics/paint/Paintable"
 
@@ -63,10 +62,11 @@ class HealthIncludingLifeBar < Paintable
     end
 end
 
-require "org/allbinary/game/health/Health"
-require "org/allbinary/game/health/HealthBarAnimation"
-require "org/allbinary/game/health/HealthBarTwodAnimation"
-require "org/allbinary/game/health/HealthInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/ag/life/Life"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Health, "org/allbinary/game/health/Health"
+autoload :HealthBarAnimation, "org/allbinary/game/health/HealthBarAnimation"
+autoload :HealthBarTwodAnimation, "org/allbinary/game/health/HealthBarTwodAnimation"
+autoload :HealthInterface, "org/allbinary/game/health/HealthInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :Life, "org/allbinary/game/ag/life/Life"
 

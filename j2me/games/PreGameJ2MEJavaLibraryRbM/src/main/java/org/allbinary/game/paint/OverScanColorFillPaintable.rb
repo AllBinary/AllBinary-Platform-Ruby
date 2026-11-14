@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/paint/ColorFillPaintable"
 
 class OverScanColorFillPaintable < ColorFillPaintable
@@ -31,5 +30,6 @@ class OverScanColorFillPaintable < ColorFillPaintable
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

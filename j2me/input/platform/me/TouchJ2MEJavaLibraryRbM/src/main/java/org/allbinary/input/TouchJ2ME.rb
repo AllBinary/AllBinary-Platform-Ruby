@@ -63,10 +63,10 @@ class TouchJ2ME
     end
 end
 
-require "org/allbinary/input/motion/AllMotionRecognizer"
-require "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler"
-require "org/allbinary/input/motion/gesture/observer/GameMotionGestureListener"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureReceiveInterfaceFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :AllMotionRecognizer, "org/allbinary/input/motion/AllMotionRecognizer"
+autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler"
+autoload :GameMotionGestureListener, "org/allbinary/input/motion/gesture/observer/GameMotionGestureListener"
+autoload :MotionGestureReceiveInterfaceFactory, "org/allbinary/input/motion/gesture/observer/MotionGestureReceiveInterfaceFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

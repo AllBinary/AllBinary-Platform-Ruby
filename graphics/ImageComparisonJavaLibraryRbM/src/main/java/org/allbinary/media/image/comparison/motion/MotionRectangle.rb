@@ -61,7 +61,7 @@ class MotionRectangle
     end
 end
 
-require "java/util/Vector"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :Vector, "java/util/Vector"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

@@ -32,5 +32,5 @@ class InputAutomationGenericModuleBundleActivator < InputAutomationModuleBundleA
     end
 end
 
-require "org/allbinary/input/automation/module/generic/InputAutomationGenericModuleServiceFactory"
+autoload :InputAutomationGenericModuleServiceFactory, "org/allbinary/input/automation/module/generic/InputAutomationGenericModuleServiceFactory"
 

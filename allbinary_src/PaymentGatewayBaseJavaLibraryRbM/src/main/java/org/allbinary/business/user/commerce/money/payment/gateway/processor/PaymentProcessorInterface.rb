@@ -26,5 +26,5 @@ module PaymentProcessorInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/PaymentException"
+autoload :PaymentException, "org/allbinary/business/user/commerce/money/payment/PaymentException"
 

@@ -82,27 +82,51 @@ class MediaUtil
     end
 
     def self.instance()
+        MediaUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        MediaUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = MediaUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MediaUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/image/ImageUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/logic/visual/media/ImageIOUtil"
-require "org/allbinary/logic/visual/media/MediaData"
+autoload :HashMap, "java/util/HashMap"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
+autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :ImageIOUtil, "org/allbinary/logic/visual/media/ImageIOUtil"
+autoload :MediaData, "org/allbinary/logic/visual/media/MediaData"
 
-class MediaUtil
-    @@instance = MediaUtil.new()
+begin
+    MediaUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -65,6 +65,6 @@ class HighScoresHelper < HighScoresHelperBase
     end
 end
 
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/game/score/HighScores"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
 

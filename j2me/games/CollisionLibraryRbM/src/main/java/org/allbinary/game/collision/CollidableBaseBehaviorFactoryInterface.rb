@@ -19,9 +19,10 @@ module CollidableBaseBehaviorFactoryInterface
     
 
     def createBehavior()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
 

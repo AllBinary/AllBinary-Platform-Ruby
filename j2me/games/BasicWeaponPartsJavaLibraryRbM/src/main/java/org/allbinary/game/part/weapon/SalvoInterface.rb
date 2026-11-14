@@ -20,17 +20,19 @@ module SalvoInterface
 
     # throws Exception
     def process(allbinaryLayerManager, angle, otherAngle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def processScore(allbinaryLayerManager, angle, otherAngle, weaponProperties, scoreableInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/combat/weapon/WeaponProperties"
-require "org/allbinary/game/score/ScoreableInterface"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
+autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

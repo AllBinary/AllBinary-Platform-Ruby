@@ -54,14 +54,14 @@ class CreateGameRunnable
     end
 end
 
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/graphics/displayable/command/MyCommandsFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/midlet/DemoGameMidlet"
-require "org/allbinary/game/midlet/DemoGameMidletEvent"
-require "org/allbinary/game/midlet/DemoGameMidletEventHandler"
-require "org/allbinary/game/midlet/DemoGameMidletStateFactory"
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :DemoGameMidlet, "org/allbinary/game/midlet/DemoGameMidlet"
+autoload :DemoGameMidletEvent, "org/allbinary/game/midlet/DemoGameMidletEvent"
+autoload :DemoGameMidletEventHandler, "org/allbinary/game/midlet/DemoGameMidletEventHandler"
+autoload :DemoGameMidletStateFactory, "org/allbinary/game/midlet/DemoGameMidletStateFactory"
 

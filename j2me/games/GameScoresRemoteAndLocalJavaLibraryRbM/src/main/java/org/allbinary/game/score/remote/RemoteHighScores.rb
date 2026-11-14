@@ -114,33 +114,57 @@ class RemoteHighScores < HighScores
     end
 
     def self.hashTable()
+        RemoteHighScores.java_static_fields unless @java_static_fields_started
         return defined?(@@hashTable) ? @@hashTable : nil
     end
 
     def self.hashTable=(value)
+        RemoteHighScores.java_static_fields unless @java_static_fields_started
         @@hashTable = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@hashTable = StdUtil.getInstance().createHashtable()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RemoteHighScores"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/Enumeration"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/score/HighScore"
-require "org/allbinary/game/score/RemoteErrorHighScoresSingletonFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/SoftwareInformation"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/EnumerationUtil"
-require "org/allbinary/game/score/remote/RemoteHighScoresData"
-require "org/allbinary/game/score/remote/RemoteHighScoresProcessorFactory"
-require "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessorFactory"
+autoload :Enumeration, "java/util/Enumeration"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :HighScore, "org/allbinary/game/score/HighScore"
+autoload :RemoteErrorHighScoresSingletonFactory, "org/allbinary/game/score/RemoteErrorHighScoresSingletonFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :SoftwareInformation, "org/allbinary/logic/system/SoftwareInformation"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil"
+autoload :RemoteHighScoresData, "org/allbinary/game/score/remote/RemoteHighScoresData"
+autoload :RemoteHighScoresProcessorFactory, "org/allbinary/game/score/remote/RemoteHighScoresProcessorFactory"
+autoload :RemoteHighScoresSubmissionProcessorFactory, "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessorFactory"
 
-class RemoteHighScores
-    @@hashTable = StdUtil.getInstance().createHashtable()
+begin
+    RemoteHighScores.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

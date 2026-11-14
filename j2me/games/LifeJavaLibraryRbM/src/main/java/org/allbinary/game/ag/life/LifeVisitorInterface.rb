@@ -19,9 +19,10 @@ module LifeVisitorInterface
     
 
     def visit(lifeInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/ag/life/Life"
+autoload :Life, "org/allbinary/game/ag/life/Life"
 

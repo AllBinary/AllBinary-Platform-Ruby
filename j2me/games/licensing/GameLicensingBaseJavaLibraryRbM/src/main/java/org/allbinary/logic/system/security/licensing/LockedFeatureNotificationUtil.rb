@@ -47,25 +47,49 @@ class LockedFeatureNotificationUtil
     end
 
     def self.instance()
+        LockedFeatureNotificationUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LockedFeatureNotificationUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = LockedFeatureNotificationUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LockedFeatureNotificationUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/hud/event/GameNotificationEvent"
-require "org/allbinary/game/layer/hud/event/GameNotificationEventHandler"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/media/audio/ErrorSound"
-require "org/allbinary/media/audio/PrimaryPlayerQueueFactory"
-require "org/allbinary/logic/system/security/licensing/LicenseStrings"
+autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
+autoload :GameNotificationEventHandler, "org/allbinary/game/layer/hud/event/GameNotificationEventHandler"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :ErrorSound, "org/allbinary/media/audio/ErrorSound"
+autoload :PrimaryPlayerQueueFactory, "org/allbinary/media/audio/PrimaryPlayerQueueFactory"
+autoload :LicenseStrings, "org/allbinary/logic/system/security/licensing/LicenseStrings"
 
-class LockedFeatureNotificationUtil
-    @@instance = LockedFeatureNotificationUtil.new()
+begin
+    LockedFeatureNotificationUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

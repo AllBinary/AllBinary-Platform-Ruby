@@ -21,19 +21,22 @@ module HighScoresHelperBaseInterface
     
 
     def setSelectedHighScores(selectedHighScores)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getHighScoresArray()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getSelectedHighScores()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/score/HighScores"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
 

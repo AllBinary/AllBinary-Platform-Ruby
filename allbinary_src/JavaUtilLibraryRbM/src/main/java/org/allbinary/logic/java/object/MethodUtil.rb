@@ -41,6 +41,6 @@ class MethodUtil
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/java/anyType/ParamsUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :ParamsUtil, "org/allbinary/logic/java/anyType/ParamsUtil"
 

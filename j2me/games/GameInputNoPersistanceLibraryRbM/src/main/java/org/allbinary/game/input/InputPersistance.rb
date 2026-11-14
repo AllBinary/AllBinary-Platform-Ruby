@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
-# require "javax/microedition/rms/RecordEnumeration"
-# require "javax/microedition/rms/RecordStore"
 require "org/allbinary/game/configuration/persistance/BasicPersitance"
 
 #GameInputNoPersistanceLibrary
@@ -73,16 +71,18 @@ class InputPersistance < BasicPersitance
     end
 end
 
-require "org/allbinary/game/configuration/persistance/NullRecordComparator"
-require "org/allbinary/game/configuration/persistance/NullRecordFilter"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/HashtableUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/input/Input"
+autoload :RecordEnumeration, "javax/microedition/rms/RecordEnumeration"
+autoload :RecordStore, "javax/microedition/rms/RecordStore"
+autoload :NullRecordComparator, "org/allbinary/game/configuration/persistance/NullRecordComparator"
+autoload :NullRecordFilter, "org/allbinary/game/configuration/persistance/NullRecordFilter"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :Input, "org/allbinary/game/input/Input"
 

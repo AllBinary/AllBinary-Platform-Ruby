@@ -15,15 +15,8 @@
 # package org.allbinary.game.score
 
 require "java/lang/Object"
-# require "java/io/ByteArrayInputStream"
-# require "java/io/DataInputStream"
 # require "java/io/EOFException"
 # require "java/io/IOException"
-# require "javax/microedition/rms/RecordComparator"
-# require "javax/microedition/rms/RecordEnumeration"
-# require "javax/microedition/rms/RecordStore"
-# require "javax/microedition/rms/RecordStoreException"
-# require "javax/microedition/rms/RecordStoreNotFoundException"
 require "org/allbinary/game/score/HighScores"
 
 class RecordStoreHighScores < HighScores
@@ -258,34 +251,65 @@ class RecordStoreHighScores < HighScores
     alias_method :to_s, :toString
 
     def self.hashTable()
+        RecordStoreHighScores.java_static_fields unless @java_static_fields_started
         return defined?(@@hashTable) ? @@hashTable : nil
     end
 
     def self.hashTable=(value)
+        RecordStoreHighScores.java_static_fields unless @java_static_fields_started
         @@hashTable = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@hashTable = StdUtil.getInstance().createHashtable()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RecordStoreHighScores"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/configuration/persistance/NullRecordComparator"
-require "org/allbinary/game/configuration/persistance/NullRecordFilter"
-require "org/allbinary/game/configuration/persistance/NullRecordStore"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/persistance/PlatformRecordIdUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/score/HighScore"
-require "org/allbinary/game/score/ScoreComparator"
+autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
+autoload :DataInputStream, "java/io/DataInputStream"
+autoload :RecordComparator, "javax/microedition/rms/RecordComparator"
+autoload :RecordEnumeration, "javax/microedition/rms/RecordEnumeration"
+autoload :RecordStore, "javax/microedition/rms/RecordStore"
+autoload :RecordStoreException, "javax/microedition/rms/RecordStoreException"
+autoload :RecordStoreNotFoundException, "javax/microedition/rms/RecordStoreNotFoundException"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :NullRecordComparator, "org/allbinary/game/configuration/persistance/NullRecordComparator"
+autoload :NullRecordFilter, "org/allbinary/game/configuration/persistance/NullRecordFilter"
+autoload :NullRecordStore, "org/allbinary/game/configuration/persistance/NullRecordStore"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :PlatformRecordIdUtil, "org/allbinary/persistance/PlatformRecordIdUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :HighScore, "org/allbinary/game/score/HighScore"
+autoload :ScoreComparator, "org/allbinary/game/score/ScoreComparator"
 
-class RecordStoreHighScores
-    @@hashTable = StdUtil.getInstance().createHashtable()
+begin
+    RecordStoreHighScores.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

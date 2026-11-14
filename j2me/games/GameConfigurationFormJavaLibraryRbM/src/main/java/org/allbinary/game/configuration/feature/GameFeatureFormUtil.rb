@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.feature
 
-# require "javax/microedition/lcdui/ChoiceGroup"
-# require "javax/microedition/lcdui/Item"
-# require "javax/microedition/lcdui/NullImage"
 
 class GameFeatureFormUtil
     attr_accessor :logUtil, :meUtil
@@ -87,29 +84,56 @@ class GameFeatureFormUtil
     end
 
     def self.instance()
+        GameFeatureFormUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GameFeatureFormUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GameFeatureFormUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameFeatureFormUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/GameConfigurationGauge"
-require "org/allbinary/game/configuration/GameConfigurationUtil"
-require "org/allbinary/graphics/displayable/screen/CommandForm"
-require "org/allbinary/logic/MEUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/HashtableUtil"
-require "org/allbinary/game/configuration/feature/Feature"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureUtil"
+autoload :ChoiceGroup, "javax/microedition/lcdui/ChoiceGroup"
+autoload :Item, "javax/microedition/lcdui/Item"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :GameConfigurationGauge, "org/allbinary/game/configuration/GameConfigurationGauge"
+autoload :GameConfigurationUtil, "org/allbinary/game/configuration/GameConfigurationUtil"
+autoload :CommandForm, "org/allbinary/graphics/displayable/screen/CommandForm"
+autoload :MEUtil, "org/allbinary/logic/MEUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
+autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureUtil, "org/allbinary/game/configuration/feature/GameFeatureUtil"
 
-class GameFeatureFormUtil
-    @@instance = GameFeatureFormUtil.new()
+begin
+    GameFeatureFormUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

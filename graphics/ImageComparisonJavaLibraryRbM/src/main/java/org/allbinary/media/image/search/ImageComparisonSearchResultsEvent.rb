@@ -41,5 +41,5 @@ class ImageComparisonSearchResultsEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/media/image/search/ImageComparisonSearch"
+autoload :ImageComparisonSearch, "org/allbinary/media/image/search/ImageComparisonSearch"
 

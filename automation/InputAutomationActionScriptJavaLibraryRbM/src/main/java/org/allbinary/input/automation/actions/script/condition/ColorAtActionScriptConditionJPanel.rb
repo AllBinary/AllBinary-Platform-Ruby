@@ -267,9 +267,9 @@ class ColorAtActionScriptConditionJPanel < JPanel
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/media/image/analysis/ColorRangeInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptConditionInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ColorAtActionScriptConditionInterface, "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptConditionInterface"
 

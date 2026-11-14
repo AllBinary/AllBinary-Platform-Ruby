@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.init
 
-# require "javax/microedition/lcdui/CommandListener"
 require "org/allbinary/game/init/BaseGameInitialization"
 
 class CommonGameInitialization < BaseGameInitialization
@@ -47,7 +46,7 @@ class CommonGameInitialization < BaseGameInitialization
             self.initGame()
             @resourceInitializationArray[@GAME_RESOURCES].init()
         end
-        self.class.superclass.instance_method(:resourceInitialization).bind(self).call(level)
+        CommonGameInitialization.superclass.instance_method(:resourceInitialization).bind(self).call(level)
     end
     
 
@@ -57,13 +56,14 @@ class CommonGameInitialization < BaseGameInitialization
     end
 end
 
-require "org/allbinary/game/resource/ResourceInitialization"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/string/CommonStrings"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :ResourceInitialization, "org/allbinary/game/resource/ResourceInitialization"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

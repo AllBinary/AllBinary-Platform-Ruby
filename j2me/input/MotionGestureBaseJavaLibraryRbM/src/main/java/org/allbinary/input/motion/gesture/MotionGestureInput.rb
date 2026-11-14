@@ -26,5 +26,5 @@ class MotionGestureInput < Input
     end
 end
 
-require "org/allbinary/game/input/InputFactory"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
 

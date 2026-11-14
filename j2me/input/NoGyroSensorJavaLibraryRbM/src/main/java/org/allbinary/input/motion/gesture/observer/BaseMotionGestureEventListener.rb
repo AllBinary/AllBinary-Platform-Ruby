@@ -21,14 +21,16 @@ module BaseMotionGestureEventListener
     
 
     def onMotionGestureEvent(motionGestureEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onScrolledMotionGestureEvent(motionGestureEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
 

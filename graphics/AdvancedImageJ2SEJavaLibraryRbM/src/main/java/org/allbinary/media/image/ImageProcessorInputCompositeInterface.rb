@@ -28,5 +28,5 @@ module ImageProcessorInputCompositeInterface
     end
 end
 
-require "org/allbinary/media/image/ImageProcessorInput"
+autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput"
 

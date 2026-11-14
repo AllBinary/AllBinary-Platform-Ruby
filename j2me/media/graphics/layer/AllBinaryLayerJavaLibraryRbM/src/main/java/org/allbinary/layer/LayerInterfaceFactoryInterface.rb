@@ -20,10 +20,11 @@ module LayerInterfaceFactoryInterface
 
     # throws Exception
     def getNextInstance(hashtable, x, y, z)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/layer/AllBinaryLayer"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
 

@@ -47,6 +47,6 @@ class GenericViewTag < TransformTag
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/InputOutputTypeData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :InputOutputTypeData, "org/allbinary/logic/io/InputOutputTypeData"
 

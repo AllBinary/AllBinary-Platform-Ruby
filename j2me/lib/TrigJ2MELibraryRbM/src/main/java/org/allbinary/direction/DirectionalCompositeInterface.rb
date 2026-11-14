@@ -19,9 +19,10 @@ module DirectionalCompositeInterface
     
 
     def getDirectionalInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/direction/DirectionalInterface"
+autoload :DirectionalInterface, "org/allbinary/direction/DirectionalInterface"
 

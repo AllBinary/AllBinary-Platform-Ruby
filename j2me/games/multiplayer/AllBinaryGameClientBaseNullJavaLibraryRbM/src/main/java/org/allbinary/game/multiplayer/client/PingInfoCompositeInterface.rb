@@ -19,6 +19,7 @@ module PingInfoCompositeInterface
     
 
     def setPingInfo(show)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

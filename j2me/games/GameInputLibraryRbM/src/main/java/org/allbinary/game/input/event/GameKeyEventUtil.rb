@@ -28,5 +28,5 @@ class GameKeyEventUtil
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
 

@@ -15,16 +15,19 @@ module AllBinaryMidletViewInterface
     
 
     def onResume()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onPause()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDestroy()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

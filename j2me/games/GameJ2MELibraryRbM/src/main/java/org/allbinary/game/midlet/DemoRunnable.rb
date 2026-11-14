@@ -51,14 +51,14 @@ class DemoRunnable
     end
 end
 
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/graphics/displayable/command/MyCommandsFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/midlet/DemoGameMidlet"
-require "org/allbinary/game/midlet/DemoGameMidletEvent"
-require "org/allbinary/game/midlet/DemoGameMidletEventHandler"
-require "org/allbinary/game/midlet/DemoGameMidletStateFactory"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :DemoGameMidlet, "org/allbinary/game/midlet/DemoGameMidlet"
+autoload :DemoGameMidletEvent, "org/allbinary/game/midlet/DemoGameMidletEvent"
+autoload :DemoGameMidletEventHandler, "org/allbinary/game/midlet/DemoGameMidletEventHandler"
+autoload :DemoGameMidletStateFactory, "org/allbinary/game/midlet/DemoGameMidletStateFactory"
 

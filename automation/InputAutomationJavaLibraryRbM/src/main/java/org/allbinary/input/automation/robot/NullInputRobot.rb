@@ -119,13 +119,35 @@ class NullInputRobot < AbstractInputRobot
 
     def waitForIdle()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:LIBRARY_NAME, "null")
+        const_set(:NAME, "NULL")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullInputRobot"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:LIBRARY_NAME, :NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/input/automation/PointFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :PointFactory, "org/allbinary/input/automation/PointFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 
-class NullInputRobot
-    LIBRARY_NAME = "null"
-    NAME = "NULL"
+begin
+    NullInputRobot.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

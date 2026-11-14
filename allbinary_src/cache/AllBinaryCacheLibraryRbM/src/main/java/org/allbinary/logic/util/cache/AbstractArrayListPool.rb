@@ -59,9 +59,9 @@ class AbstractArrayListPool
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/util/cache/CacheableInterface"
-require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
 

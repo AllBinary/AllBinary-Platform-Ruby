@@ -36,7 +36,7 @@ class OrderItemsEntityFactory
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderItemsEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :OrderItemsEntity, "org/allbinary/data/tables/user/commerce/inventory/order/OrderItemsEntity"
 

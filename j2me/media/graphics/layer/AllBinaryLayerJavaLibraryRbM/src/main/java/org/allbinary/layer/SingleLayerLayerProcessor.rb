@@ -31,8 +31,8 @@ class SingleLayerLayerProcessor < LayerProcessor
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/layer/LayerManager"
-require "org/allbinary/layer/SingleLayerLayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :LayerManager, "org/allbinary/layer/LayerManager"
+autoload :SingleLayerLayerManager, "org/allbinary/layer/SingleLayerLayerManager"
 

@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Font"
 require "org/allbinary/graphics/form/item/CustomTextBox"
 
 class CustomTextBox2 < CustomTextBox
@@ -27,5 +25,7 @@ class CustomTextBox2 < CustomTextBox
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

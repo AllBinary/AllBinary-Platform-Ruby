@@ -100,24 +100,48 @@ class GameSkill
     alias_method :to_s, :toString
 
     def self.hashMap()
+        GameSkill.java_static_fields unless @java_static_fields_started
         return defined?(@@hashMap) ? @@hashMap : nil
     end
 
     def self.hashMap=(value)
+        GameSkill.java_static_fields unless @java_static_fields_started
         @@hashMap = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@hashMap = StdUtil.getInstance().createHashMap()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameSkill"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/input/automation/module/game/skill/GameSkillPropertyInterface"
-require "org/allbinary/input/automation/module/game/skill/GameSkillType"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :GameSkillPropertyInterface, "org/allbinary/input/automation/module/game/skill/GameSkillPropertyInterface"
+autoload :GameSkillType, "org/allbinary/input/automation/module/game/skill/GameSkillType"
 
-class GameSkill
-    @@hashMap = StdUtil.getInstance().createHashMap()
+begin
+    GameSkill.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

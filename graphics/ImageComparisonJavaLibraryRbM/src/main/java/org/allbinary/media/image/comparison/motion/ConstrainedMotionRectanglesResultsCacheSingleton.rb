@@ -48,24 +48,47 @@ class ConstrainedMotionRectanglesResultsCacheSingleton
     end
 
     def self.cacheInterface()
+        ConstrainedMotionRectanglesResultsCacheSingleton.java_static_fields unless @java_static_fields_started
         return defined?(@@cacheInterface) ? @@cacheInterface : nil
     end
 
     def self.cacheInterface=(value)
+        ConstrainedMotionRectanglesResultsCacheSingleton.java_static_fields unless @java_static_fields_started
         @@cacheInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@cacheInterface = nil
+        begin
+            static_init
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ConstrainedMotionRectanglesResultsCacheSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/cache/CacheInterface"
-require "org/allbinary/logic/util/cache/CacheInterfaceFactory"
-require "org/allbinary/logic/util/cache/CachePolicyFactory"
-require "org/allbinary/logic/util/cache/CacheTypeFactory"
-require "org/allbinary/string/CommonStrings"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CacheInterface, "org/allbinary/logic/util/cache/CacheInterface"
+autoload :CacheInterfaceFactory, "org/allbinary/logic/util/cache/CacheInterfaceFactory"
+autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory"
+autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class ConstrainedMotionRectanglesResultsCacheSingleton
-    @@cacheInterface = nil
+begin
+    ConstrainedMotionRectanglesResultsCacheSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
-
-ConstrainedMotionRectanglesResultsCacheSingleton.static_init
 

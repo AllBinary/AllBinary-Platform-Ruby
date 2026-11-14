@@ -28,7 +28,7 @@ class CenterStaticViewPositionFactory
     end
 end
 
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/view/StaticViewPosition"
-require "org/allbinary/view/ViewPositionBase"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :StaticViewPosition, "org/allbinary/view/StaticViewPosition"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 

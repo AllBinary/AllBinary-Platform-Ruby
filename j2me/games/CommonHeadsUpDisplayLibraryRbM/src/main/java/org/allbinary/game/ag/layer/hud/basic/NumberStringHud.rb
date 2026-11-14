@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/graphics/hud/BasicHud"
 require "org/allbinary/graphics/paint/PaintableInterface"
 
@@ -83,7 +81,7 @@ class NumberStringHud < BasicHud
     
 
     def paint(graphics)
-        self.class.superclass.instance_method(:paintDX).bind(self).call(graphics, @PREPEND_STRING, 0, @PREPEND_STRING.length, @valueString, 0, @valueTotalDigits, @offset)
+        NumberStringHud.superclass.instance_method(:paintDX).bind(self).call(graphics, @PREPEND_STRING, 0, @PREPEND_STRING.length, @valueString, 0, @valueTotalDigits, @offset)
     end
     
 
@@ -103,9 +101,11 @@ class NumberStringHud < BasicHud
     end
 end
 
-require "org/allbinary/game/graphics/hud/BasicHudFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/logic/math/PrimitiveLongSingleton"
-require "org/allbinary/logic/math/PrimitiveLongUtil"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :PrimitiveLongSingleton, "org/allbinary/logic/math/PrimitiveLongSingleton"
+autoload :PrimitiveLongUtil, "org/allbinary/logic/math/PrimitiveLongUtil"
 

@@ -206,26 +206,50 @@ class InitInfo
     end
 
     def self.instance()
+        InitInfo.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        InitInfo.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = InitInfo.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InitInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/java/bool/BooleanUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/business/init/InitException"
-require "org/allbinary/business/init/InitInfoEntity"
+autoload :HashMap, "java/util/HashMap"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
+autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :BooleanUtil, "org/allbinary/logic/java/bool/BooleanUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :InitException, "org/allbinary/business/init/InitException"
+autoload :InitInfoEntity, "org/allbinary/business/init/InitInfoEntity"
 
-class InitInfo
-    @@instance = InitInfo.new()
+begin
+    InitInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

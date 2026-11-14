@@ -68,15 +68,15 @@ class UpdateTaxValidationView < ShippingAddressView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/address/ShippingAddressData"
-require "org/allbinary/business/user/address/StreetAddress"
-require "org/allbinary/business/user/commerce/money/tax/TaxFactory"
-require "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntity"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :ShippingAddressData, "org/allbinary/business/user/address/ShippingAddressData"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+autoload :TaxFactory, "org/allbinary/business/user/commerce/money/tax/TaxFactory"
+autoload :ShippingAddressesEntity, "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntity"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

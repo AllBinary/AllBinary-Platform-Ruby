@@ -2,14 +2,16 @@
 # frozen_string_literal: false
 # package org.allbinary.image.opengles
 
-# require "javax/microedition/khronos/opengles/GL"
 
 module OpenGLSurfaceChangedInterface
     
 
     # throws Exception
     def set(gl)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :GL, "javax/microedition/khronos/opengles/GL"
 

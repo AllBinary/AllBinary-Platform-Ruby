@@ -27,91 +27,109 @@ module LayerInterface
     
 
     def getHeight()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getWidth()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getHalfHeight()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getHalfWidth()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getXP()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getYP()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getZP()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getX2()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getY2()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getZ2()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isVisible()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def moveDXYZ(dx, dy, dz)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setVisible(visible)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def implmentsTickableInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def implmentsCollidableInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def implmentsGameInputInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def implmentsArtificialIntelligenceCompositeInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getType()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

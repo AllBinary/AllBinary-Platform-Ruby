@@ -14,9 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.feature
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/Item"
-# require "javax/microedition/lcdui/ItemCommandListener"
+require "javax/microedition/lcdui/ItemCommandListener"
 
 class GameFeatureItemCommandListener
     include ItemCommandListener
@@ -48,12 +46,14 @@ class GameFeatureItemCommandListener
     end
 end
 
-require "org/allbinary/game/configuration/GameConfigurationGauge"
-require "org/allbinary/game/configuration/GameConfigurationUtil"
-require "org/allbinary/game/configuration/GameOptionsForm"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/midlet/MidletStrings"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :Item, "javax/microedition/lcdui/Item"
+autoload :GameConfigurationGauge, "org/allbinary/game/configuration/GameConfigurationGauge"
+autoload :GameConfigurationUtil, "org/allbinary/game/configuration/GameConfigurationUtil"
+autoload :GameOptionsForm, "org/allbinary/game/configuration/GameOptionsForm"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :MidletStrings, "org/allbinary/midlet/MidletStrings"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

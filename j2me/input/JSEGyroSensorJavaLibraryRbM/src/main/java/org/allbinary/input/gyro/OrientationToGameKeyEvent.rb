@@ -54,9 +54,9 @@ class OrientationToGameKeyEvent
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/SensorFeatureFactory"
-require "org/allbinary/logic/math/Orientation"
-require "org/allbinary/input/gyro/AllBinaryOrientationSensor"
-require "org/allbinary/input/gyro/NoGyroSensor"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory"
+autoload :Orientation, "org/allbinary/logic/math/Orientation"
+autoload :AllBinaryOrientationSensor, "org/allbinary/input/gyro/AllBinaryOrientationSensor"
+autoload :NoGyroSensor, "org/allbinary/input/gyro/NoGyroSensor"
 

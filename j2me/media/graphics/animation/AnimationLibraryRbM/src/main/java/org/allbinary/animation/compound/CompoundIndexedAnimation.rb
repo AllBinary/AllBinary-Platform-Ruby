@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.compound
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/IndexedAnimation"
 require "org/allbinary/animation/compound/CompoundAnimationInterface"
 
@@ -131,8 +129,10 @@ class CompoundIndexedAnimation < IndexedAnimation
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/util/CircularIndexUtil"
+autoload :GL, "javax/microedition/khronos/opengles/GL"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
 

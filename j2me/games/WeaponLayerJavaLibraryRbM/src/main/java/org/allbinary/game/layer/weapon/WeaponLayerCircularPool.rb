@@ -26,15 +26,15 @@ class WeaponLayerCircularPool < AllBinaryLayerCircularPool
 
     # throws Exception
     def getInstanceWeaponLayer(sourceLayerInterface, x, y, z, angle, otherAngle, weaponProperties, scoreable)
-        weaponLayer = self.class.superclass.instance_method(:getNextInstance).bind(self).call()
+        weaponLayer = WeaponLayerCircularPool.superclass.instance_method(:getNextInstance).bind(self).call()
         weaponLayer.initXYZ(x, y, z)
         weaponLayer.init(sourceLayerInterface, angle, otherAngle, weaponProperties, scoreable)
         return weaponLayer
     end
 end
 
-require "org/allbinary/game/combat/weapon/WeaponProperties"
-require "org/allbinary/game/score/ScoreableInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/layer/weapon/WeaponLayer"
+autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
+autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :WeaponLayer, "org/allbinary/game/layer/weapon/WeaponLayer"
 

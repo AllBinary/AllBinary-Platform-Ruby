@@ -26,7 +26,7 @@ class TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory < Tou
 
     # throws Exception
     def init(level)
-        self.class.superclass.instance_method(:initImageCache).bind(self).call(OpenGLImageCacheFactory.getInstance(), level)
+        TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory.superclass.instance_method(:initImageCache).bind(self).call(OpenGLImageCacheFactory.getInstance(), level)
     end
     
 
@@ -39,7 +39,7 @@ class TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory < Tou
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/image/opengles/OpenGLImageCacheFactory"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :OpenGLImageCacheFactory, "org/allbinary/image/opengles/OpenGLImageCacheFactory"
 

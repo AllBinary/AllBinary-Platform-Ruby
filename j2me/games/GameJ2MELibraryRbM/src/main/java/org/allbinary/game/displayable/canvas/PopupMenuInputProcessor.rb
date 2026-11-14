@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor"
 
 class PopupMenuInputProcessor < BasicMenuInputProcessor
@@ -114,19 +113,20 @@ class PopupMenuInputProcessor < BasicMenuInputProcessor
     end
 end
 
-require "org/allbinary/game/input/GameInputStrings"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/input/motion/gesture/MotionGestureInput"
-require "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/math/RectangleCollisionUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :RectangleCollisionUtil, "org/allbinary/math/RectangleCollisionUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

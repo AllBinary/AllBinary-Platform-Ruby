@@ -98,6 +98,6 @@ class ServiceReferenceMap
     end
 end
 
-require "org/osgi/framework/ServiceReference"
-require "org/allbinary/logic/string/StringMaker"
+autoload :ServiceReference, "org/osgi/framework/ServiceReference"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

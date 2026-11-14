@@ -37,7 +37,7 @@ class WorkflowEditorWebStoreAdminUserFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/business/user/modules/admin/store/web/workflow/editor/WorkflowEditorWebStoreAdminUser"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :WorkflowEditorWebStoreAdminUser, "org/allbinary/business/user/modules/admin/store/web/workflow/editor/WorkflowEditorWebStoreAdminUser"
 

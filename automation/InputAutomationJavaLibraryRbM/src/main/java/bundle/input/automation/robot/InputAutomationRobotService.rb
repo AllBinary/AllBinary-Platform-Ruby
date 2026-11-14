@@ -41,5 +41,5 @@ class InputAutomationRobotService
     end
 end
 
-require "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
 

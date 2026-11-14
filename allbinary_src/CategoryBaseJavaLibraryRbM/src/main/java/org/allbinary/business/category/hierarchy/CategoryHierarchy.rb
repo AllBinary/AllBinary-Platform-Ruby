@@ -95,8 +95,8 @@ class CategoryHierarchy
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/category/CategoryData"
-require "org/allbinary/business/category/CategoryInterface"
-require "org/allbinary/logic/string/StringUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

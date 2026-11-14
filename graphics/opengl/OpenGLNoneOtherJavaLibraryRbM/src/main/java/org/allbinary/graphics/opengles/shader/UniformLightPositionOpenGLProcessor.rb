@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
-# require "javax/microedition/khronos/opengles/GL10"
 require "org/allbinary/graphics/opengles/shader/OpenGLObject3dProcessor"
 
 class UniformLightPositionOpenGLProcessor < OpenGLObject3dProcessor
@@ -29,5 +28,6 @@ class UniformLightPositionOpenGLProcessor < OpenGLObject3dProcessor
     end
 end
 
-require "org/allbinary/graphics/opengles/shader/ShaderComposite"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :ShaderComposite, "org/allbinary/graphics/opengles/shader/ShaderComposite"
 

@@ -38,13 +38,35 @@ class GraphicsAnalysisUtil
         end
         return 0.0
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:MAX, 122)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GraphicsAnalysisUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:MAX].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/color/ColorCacheFactory"
-require "org/allbinary/graphics/color/ColorCacheable"
-require "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+autoload :ColorCacheFactory, "org/allbinary/graphics/color/ColorCacheFactory"
+autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable"
+autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
 
-class GraphicsAnalysisUtil
-    MAX = 122
+begin
+    GraphicsAnalysisUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

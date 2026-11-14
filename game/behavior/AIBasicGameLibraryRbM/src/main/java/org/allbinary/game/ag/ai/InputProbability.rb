@@ -60,14 +60,36 @@ class InputProbability
         hashtable.put(InputProbability::INPUT_PROBABILITY, self)
         return hashtable
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:INPUT_PROBABILITY, SmallIntegerSingletonFactory.getInstance().getAt(0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputProbability"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:INPUT_PROBABILITY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/ABHashtable"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class InputProbability
-    INPUT_PROBABILITY = SmallIntegerSingletonFactory.getInstance().getAt(0)
+begin
+    InputProbability.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

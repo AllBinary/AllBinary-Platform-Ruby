@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
-# require "javax/microedition/lcdui/Graphics"
 
 class Layer
     attr_accessor :logUtil, :x, :y, :z, :width, :height, :visible
@@ -122,15 +121,38 @@ class Layer
 
     def toStringAppend(stringBuffer)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:ID, SmallIntegerSingletonFactory.getInstance().getAt(0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Layer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:ID].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class Layer
-    ID = SmallIntegerSingletonFactory.getInstance().getAt(0)
+begin
+    Layer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

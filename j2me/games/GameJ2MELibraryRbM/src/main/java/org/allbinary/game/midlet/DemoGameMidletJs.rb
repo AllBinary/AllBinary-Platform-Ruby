@@ -20,9 +20,10 @@ module DemoGameMidletJs
 
     # throws Exception
     def createDemoGameCanvasRunnableInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface"
+autoload :GameCanvasRunnableInterface, "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface"
 

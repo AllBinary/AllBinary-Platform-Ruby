@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/Paintable"
 
 class TouchButton < Paintable
@@ -115,17 +114,18 @@ class TouchButton < Paintable
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/graphics/CellPosition"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/motion/button/TouchButtonInput"
-require "org/allbinary/input/motion/button/TouchButtonResource"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :CellPosition, "org/allbinary/graphics/CellPosition"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput"
+autoload :TouchButtonResource, "org/allbinary/input/motion/button/TouchButtonResource"
 

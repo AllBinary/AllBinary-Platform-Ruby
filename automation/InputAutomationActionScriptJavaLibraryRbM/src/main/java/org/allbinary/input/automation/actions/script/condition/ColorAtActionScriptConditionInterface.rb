@@ -44,5 +44,5 @@ module ColorAtActionScriptConditionInterface
     end
 end
 
-require "org/allbinary/media/image/analysis/ColorRangeInterface"
+autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface"
 

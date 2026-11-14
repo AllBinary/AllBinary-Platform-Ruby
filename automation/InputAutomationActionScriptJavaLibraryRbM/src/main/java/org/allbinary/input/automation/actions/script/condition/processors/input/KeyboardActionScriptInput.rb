@@ -249,28 +249,50 @@ class KeyboardActionScriptInput < BasicProfileActionScriptInput
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "Keyboard")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "KeyboardActionScriptInput"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/input/KeySingletonFactory"
-require "org/allbinary/input/KeyUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputData"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputJPanel"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardInputAutomationProcessor"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :KeySingletonFactory, "org/allbinary/input/KeySingletonFactory"
+autoload :KeyUtil, "org/allbinary/input/KeyUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :KeyboardActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputData"
+autoload :KeyboardActionScriptInputJPanel, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputJPanel"
+autoload :KeyboardInputAutomationProcessor, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardInputAutomationProcessor"
 
-class KeyboardActionScriptInput
-    NAME = "Keyboard"
+begin
+    KeyboardActionScriptInput.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

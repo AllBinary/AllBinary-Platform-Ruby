@@ -64,5 +64,5 @@ class SecretComposite < BaseSecretComposite
     end
 end
 
-require "org/allbinary/logic/java/byteutil/ByteUtil"
+autoload :ByteUtil, "org/allbinary/logic/java/byteutil/ByteUtil"
 

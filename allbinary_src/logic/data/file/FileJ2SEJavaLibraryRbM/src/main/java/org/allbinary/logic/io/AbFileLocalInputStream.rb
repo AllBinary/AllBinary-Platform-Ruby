@@ -21,10 +21,10 @@ class AbFileLocalInputStream < AbFileInputStream
     
 
     def initialize(file)
-        super(AbFileNativeUtil.get(file))
+        super(AbFileNativeUtil.get(file).getPath())
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/AbFileNativeUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil"
 

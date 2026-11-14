@@ -24,7 +24,7 @@ class MiddleRelativeLayerRelationship < RelativeLayerRelationship
     end
 end
 
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/util/BasicArrayListUtil"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
 

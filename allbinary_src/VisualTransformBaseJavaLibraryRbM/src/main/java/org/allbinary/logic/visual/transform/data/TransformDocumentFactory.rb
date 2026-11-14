@@ -28,6 +28,6 @@ class TransformDocumentFactory
     end
 end
 
-require "org/allbinary/logic/visual/transform/data/TransformDocument"
-require "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+autoload :TransformDocument, "org/allbinary/logic/visual/transform/data/TransformDocument"
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
 

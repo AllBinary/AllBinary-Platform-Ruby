@@ -78,12 +78,12 @@ class AbCrypt
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/bouncycastle/jce/provider/BouncyCastleProvider"
-require "org/allbinary/logic/system/security/crypt/jcehelper/BaseSecretComposite"
-require "org/allbinary/logic/system/security/crypt/jcehelper/KeySpecFactory"
-require "org/allbinary/logic/system/security/crypt/jcehelper/SecretComposite"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BouncyCastleProvider, "org/bouncycastle/jce/provider/BouncyCastleProvider"
+autoload :BaseSecretComposite, "org/allbinary/logic/system/security/crypt/jcehelper/BaseSecretComposite"
+autoload :KeySpecFactory, "org/allbinary/logic/system/security/crypt/jcehelper/KeySpecFactory"
+autoload :SecretComposite, "org/allbinary/logic/system/security/crypt/jcehelper/SecretComposite"
 

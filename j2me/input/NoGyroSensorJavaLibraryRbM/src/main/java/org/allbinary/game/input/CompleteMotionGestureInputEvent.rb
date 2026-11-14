@@ -61,9 +61,9 @@ class CompleteMotionGestureInputEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/input/motion/gesture/MotionGestureInput"
-require "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

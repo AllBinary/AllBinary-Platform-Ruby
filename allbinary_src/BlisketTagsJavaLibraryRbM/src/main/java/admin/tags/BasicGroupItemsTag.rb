@@ -32,7 +32,7 @@ class BasicGroupItemsTag < TableTag
     end
 end
 
-require "java/util/HashMap"
-require "admin/taghelpers/BasicGroupItemsHelperFactory"
-require "admin/taghelpers/BasicGroupItemsRequestHelperFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicGroupItemsHelperFactory, "admin/taghelpers/BasicGroupItemsHelperFactory"
+autoload :BasicGroupItemsRequestHelperFactory, "admin/taghelpers/BasicGroupItemsRequestHelperFactory"
 

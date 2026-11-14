@@ -36,9 +36,9 @@ class CategoryLoaderFactory
     end
 end
 
-require "org/allbinary/business/category/CategoryFactoryInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tree/category/CategoryLoader"
-require "org/allbinary/data/tree/category/CategoryLoaderInterface"
+autoload :CategoryFactoryInterface, "org/allbinary/business/category/CategoryFactoryInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :CategoryLoader, "org/allbinary/data/tree/category/CategoryLoader"
+autoload :CategoryLoaderInterface, "org/allbinary/data/tree/category/CategoryLoaderInterface"
 

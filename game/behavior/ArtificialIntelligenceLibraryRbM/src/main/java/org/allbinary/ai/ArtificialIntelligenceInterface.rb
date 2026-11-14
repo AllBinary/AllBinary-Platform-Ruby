@@ -22,9 +22,10 @@ module ArtificialIntelligenceInterface
 
     # throws Exception
     def processAI(layerManager)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

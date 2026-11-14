@@ -112,12 +112,12 @@ class RotationAnimation < IndexedAnimation
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/direction/Direction"
-require "org/allbinary/direction/DirectionUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/math/Angle"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/math/FrameUtil"
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/animation/AnimationBehavior"
+autoload :Direction, "org/allbinary/direction/Direction"
+autoload :DirectionUtil, "org/allbinary/direction/DirectionUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :FrameUtil, "org/allbinary/math/FrameUtil"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

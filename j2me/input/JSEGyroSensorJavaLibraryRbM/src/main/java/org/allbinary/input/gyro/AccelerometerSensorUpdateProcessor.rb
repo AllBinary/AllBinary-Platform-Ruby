@@ -34,9 +34,9 @@ class AccelerometerSensorUpdateProcessor < Processor
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/SensorFeatureFactory"
-require "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener"
-require "org/allbinary/game/input/motion/action/SingleKeyPressGameKeyFromMotionGestureEventListener"
-require "org/allbinary/input/accelerometer/AccelerometerSensorFactory"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory"
+autoload :NoCompleteMotionGestureInputEventListener, "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener"
+autoload :SingleKeyPressGameKeyFromMotionGestureEventListener, "org/allbinary/game/input/motion/action/SingleKeyPressGameKeyFromMotionGestureEventListener"
+autoload :AccelerometerSensorFactory, "org/allbinary/input/accelerometer/AccelerometerSensorFactory"
 

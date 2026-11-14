@@ -179,32 +179,56 @@ class BlisketBackupFactory
     end
 
     def self.instance()
+        BlisketBackupFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        BlisketBackupFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = BlisketBackupFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BlisketBackupFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntity"
-require "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntityFactory"
-require "org/allbinary/globals/PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/io/file/zip/ZipFileUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :StoreFrontsEntity, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntity"
+autoload :StoreFrontsEntityFactory, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntityFactory"
+autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :Directory, "org/allbinary/logic/io/file/directory/Directory"
+autoload :ZipFileUtil, "org/allbinary/logic/io/file/zip/ZipFileUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 
-class BlisketBackupFactory
-    @@instance = BlisketBackupFactory.new()
+begin
+    BlisketBackupFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

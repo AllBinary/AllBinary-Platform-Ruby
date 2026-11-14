@@ -47,26 +47,50 @@ class ContextConfigurationInterfaceFactory
     end
 
     def self.instance()
+        ContextConfigurationInterfaceFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ContextConfigurationInterfaceFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ContextConfigurationInterfaceFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ContextConfigurationInterfaceFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/logic/control/crypt/file/CryptFileReader"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/context/configuration/ContextConfigurationData"
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
-require "org/allbinary/business/context/configuration/ContextConfigurationPathUtil"
-require "org/allbinary/business/context/configuration/ContextConfigurationView"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :ContextConfigurationData, "org/allbinary/business/context/configuration/ContextConfigurationData"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :ContextConfigurationPathUtil, "org/allbinary/business/context/configuration/ContextConfigurationPathUtil"
+autoload :ContextConfigurationView, "org/allbinary/business/context/configuration/ContextConfigurationView"
 
-class ContextConfigurationInterfaceFactory
-    @@instance = ContextConfigurationInterfaceFactory.new()
+begin
+    ContextConfigurationInterfaceFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

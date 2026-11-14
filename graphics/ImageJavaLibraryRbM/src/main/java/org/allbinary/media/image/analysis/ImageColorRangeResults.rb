@@ -76,6 +76,6 @@ class ImageColorRangeResults
     end
 end
 
-require "org/allbinary/media/image/analysis/ColorRange"
-require "org/allbinary/media/image/analysis/ColorRangeInterface"
+autoload :ColorRange, "org/allbinary/media/image/analysis/ColorRange"
+autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface"
 

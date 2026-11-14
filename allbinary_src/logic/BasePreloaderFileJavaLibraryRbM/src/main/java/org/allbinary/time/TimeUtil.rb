@@ -32,8 +32,7 @@ class TimeUtil
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def setCalendar(calendar, yearString, monthString, dayString, hourString, minuteString, secondString)
+    def setCalendarWithTime(calendar, yearString, monthString, dayString, hourString, minuteString, secondString)
         year = yearString.to_i
         month = monthString.to_i
         day = dayString.to_i
@@ -63,26 +62,52 @@ class TimeUtil
     end
 
     def self.instance()
+        TimeUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TimeUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
     end
 
     def self.calendar()
+        TimeUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@calendar) ? @@calendar : nil
     end
 
     def self.calendar=(value)
+        TimeUtil.java_static_fields unless @java_static_fields_started
         @@calendar = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TimeUtil.new()
+            @@calendar = Calendar.getInstance()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TimeUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/Calendar"
+autoload :Calendar, "java/util/Calendar"
 
-class TimeUtil
-    @@instance = TimeUtil.new()
-    @@calendar = Calendar.getInstance()
+begin
+    TimeUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -84,19 +84,41 @@ class MotionGestureEvent < AllBinaryEventObject
     def getId()
         return @id
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:PREVIOUS, " Previous: ")
+        const_set(:HASHCODE, " hashcode: ")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MotionGestureEvent"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:PREVIOUS, :HASHCODE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/input/motion/gesture/MotionGestureInput"
-require "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonLabels"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
 
-class MotionGestureEvent
-    PREVIOUS = " Previous: "
-    HASHCODE = " hashcode: "
+begin
+    MotionGestureEvent.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -19,14 +19,16 @@ module IntermissionCompositeInterface
     
 
     def getStartIntermissionInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getEndLevelIntermissionInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/IntermissionInterface"
+autoload :IntermissionInterface, "org/allbinary/game/IntermissionInterface"
 

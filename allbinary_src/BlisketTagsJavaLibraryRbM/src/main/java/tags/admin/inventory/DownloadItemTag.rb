@@ -62,6 +62,6 @@ class DownloadItemTag < StoreValidationTransformTag
     end
 end
 
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

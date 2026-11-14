@@ -36,8 +36,8 @@ class TransformStoreDocumentFactory
     end
 end
 
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/control/search/SearchRequest"
-require "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
-require "org/allbinary/logic/visual/transform/data/TransformStoreDocument"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+autoload :TransformStoreDocument, "org/allbinary/logic/visual/transform/data/TransformStoreDocument"
 

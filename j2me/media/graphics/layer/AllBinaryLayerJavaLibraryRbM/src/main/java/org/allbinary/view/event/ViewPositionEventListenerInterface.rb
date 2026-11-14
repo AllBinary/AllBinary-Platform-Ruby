@@ -22,9 +22,10 @@ module ViewPositionEventListenerInterface
 
     # throws Exception
     def onChangeEvent(layerManagerEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/view/event/ViewPositionEvent"
+autoload :ViewPositionEvent, "org/allbinary/view/event/ViewPositionEvent"
 

@@ -71,19 +71,19 @@
         </dependency>
         
         <!-- Must be 12 or higher for onGenericMotionEvent -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.google.android</groupId>
             <artifactId>androidRb</artifactId>
             <version>4.0.1.2</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        <!--<dependency>
             <groupId>com.google.android</groupId>
             <artifactId>androidRb</artifactId>
             <version>4.0.1.2</version>
             <scope>provided</scope>
             <classifier>sources</classifier>
-        </dependency>
+        </dependency>-->
         
     </dependencies>
 

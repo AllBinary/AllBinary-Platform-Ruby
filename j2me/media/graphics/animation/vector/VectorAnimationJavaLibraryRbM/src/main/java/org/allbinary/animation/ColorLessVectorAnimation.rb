@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/VectorAnimation"
 
 class ColorLessVectorAnimation < VectorAnimation
@@ -30,6 +29,7 @@ class ColorLessVectorAnimation < VectorAnimation
     end
 end
 
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/animation/AnimationBehavior"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

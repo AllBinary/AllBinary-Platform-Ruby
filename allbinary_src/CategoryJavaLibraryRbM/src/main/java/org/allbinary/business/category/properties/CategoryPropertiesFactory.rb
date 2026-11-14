@@ -65,10 +65,10 @@ class CategoryPropertiesFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/properties/CategoryProperties"
-require "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CategoryProperties, "org/allbinary/business/category/properties/CategoryProperties"
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
 

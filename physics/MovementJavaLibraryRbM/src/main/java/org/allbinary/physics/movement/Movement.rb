@@ -37,6 +37,6 @@ class Movement
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/logic/math/BasicDecimal"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
 

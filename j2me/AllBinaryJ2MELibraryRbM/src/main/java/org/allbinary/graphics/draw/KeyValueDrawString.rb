@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.draw
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 
 class KeyValueDrawString
@@ -52,13 +51,12 @@ class KeyValueDrawString
     
 
     def update(value)
-        if value != nil
-            @value = value
-        end
+        @value = value
     end
 end
 
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/logic/string/StringUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

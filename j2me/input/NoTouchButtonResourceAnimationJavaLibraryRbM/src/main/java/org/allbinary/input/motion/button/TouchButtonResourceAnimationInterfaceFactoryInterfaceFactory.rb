@@ -40,7 +40,7 @@ class TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory < BaseResourc
         if self.isInitialized()
             return
         end
-        self.class.superclass.instance_method(:init).bind(self).call(level)
+        TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.superclass.instance_method(:init).bind(self).call(level)
     end
     
 
@@ -63,10 +63,10 @@ class TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory < BaseResourc
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/image/ImageCache"
-require "org/allbinary/image/ImageCacheFactory"
-require "org/allbinary/logic/StdUtil"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :ImageCache, "org/allbinary/image/ImageCache"
+autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
 

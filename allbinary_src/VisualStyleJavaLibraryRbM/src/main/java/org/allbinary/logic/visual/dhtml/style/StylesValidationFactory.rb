@@ -74,31 +74,55 @@ class StylesValidationFactory
     end
 
     def self.instance()
+        StylesValidationFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        StylesValidationFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = StylesValidationFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StylesValidationFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/communication/http/request/NameSpaceRequestParamData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/dhtml/style/css/CssElementData"
-require "org/allbinary/logic/visual/dhtml/style/css/CssElementsValidationFactory"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/logic/visual/dhtml/style/StyleData"
-require "org/allbinary/logic/visual/dhtml/style/StylesData"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :NameSpaceRequestParamData, "org/allbinary/logic/communication/http/request/NameSpaceRequestParamData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CssElementData, "org/allbinary/logic/visual/dhtml/style/css/CssElementData"
+autoload :CssElementsValidationFactory, "org/allbinary/logic/visual/dhtml/style/css/CssElementsValidationFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :StyleData, "org/allbinary/logic/visual/dhtml/style/StyleData"
+autoload :StylesData, "org/allbinary/logic/visual/dhtml/style/StylesData"
 
-class StylesValidationFactory
-    @@instance = StylesValidationFactory.new()
+begin
+    StylesValidationFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

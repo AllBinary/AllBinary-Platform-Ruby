@@ -58,15 +58,15 @@ class TerrainPatrolAI < PacePatrolAI
     end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/terrain/BasicTerrainInfo"
-require "org/allbinary/game/terrain/TerrainEvent"
-require "org/allbinary/game/terrain/TerrainEventCircularStaticPool"
-require "org/allbinary/game/terrain/TerrainEventHandler"
-require "org/allbinary/game/terrain/TerrainEventListener"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/math/Angle"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :BasicTerrainInfo, "org/allbinary/game/terrain/BasicTerrainInfo"
+autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent"
+autoload :TerrainEventCircularStaticPool, "org/allbinary/game/terrain/TerrainEventCircularStaticPool"
+autoload :TerrainEventHandler, "org/allbinary/game/terrain/TerrainEventHandler"
+autoload :TerrainEventListener, "org/allbinary/game/terrain/TerrainEventListener"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

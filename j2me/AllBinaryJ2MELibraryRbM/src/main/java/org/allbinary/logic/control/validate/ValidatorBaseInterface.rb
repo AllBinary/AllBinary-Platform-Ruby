@@ -19,25 +19,29 @@ module ValidatorBaseInterface
     
 
     def isValid()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def validationInfo()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toHashtable()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toList()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

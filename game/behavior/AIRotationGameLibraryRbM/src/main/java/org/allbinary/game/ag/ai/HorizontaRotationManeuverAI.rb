@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/ai/ArtificialIntelligenceTransitionInterface"
 require "org/allbinary/game/ai/BasicAI"
 
@@ -73,14 +72,14 @@ class HorizontaRotationManeuverAI < BasicAI
         end
         index = @circularIndexUtil.getIndex()
         if index % @currentSpeedDivisor == 0 && index % 2 == 0
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::UP)
+            HorizontaRotationManeuverAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::UP)
             @velocityInterface.limitMaxXYVelocity(@velocityInterface.getMaxForwardVelocity() / @currentSpeedDivisor)
         end
         @circularIndexUtil.next_()
         if frame == angleIncrementInfo.LEFT_FRAME.to_i
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM0)
+            HorizontaRotationManeuverAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM0)
         elsif frame == angleIncrementInfo.RIGHT_FRAME.to_i
-            self.class.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_POUND)
+            HorizontaRotationManeuverAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_POUND)
         end
     end
     
@@ -126,17 +125,18 @@ class HorizontaRotationManeuverAI < BasicAI
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligence"
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/animation/RotationAnimationInterface"
-require "org/allbinary/animation/RotationAnimationInterfaceCompositeInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-require "org/allbinary/game/physics/velocity/VelocityInterface"
-require "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/math/AngleIncrementInfo"
-require "org/allbinary/util/CircularIndexUtil"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :ArtificialIntelligence, "org/allbinary/ai/ArtificialIntelligence"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :RotationAnimationInterface, "org/allbinary/animation/RotationAnimationInterface"
+autoload :RotationAnimationInterfaceCompositeInterface, "org/allbinary/animation/RotationAnimationInterfaceCompositeInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :VelocityInterface, "org/allbinary/game/physics/velocity/VelocityInterface"
+autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AngleIncrementInfo, "org/allbinary/math/AngleIncrementInfo"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
 

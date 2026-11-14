@@ -32,17 +32,41 @@ class AbPathUtil
     end
 
     def self.instance()
+        AbPathUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AbPathUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AbPathUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AbPathUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/io/path/AbPath"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
 
-class AbPathUtil
-    @@instance = AbPathUtil.new()
+begin
+    AbPathUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

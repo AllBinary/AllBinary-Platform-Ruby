@@ -27,7 +27,7 @@ class FrictionProperties
     end
 end
 
-require "org/allbinary/game/physics/friction/FrictionData"
-require "org/allbinary/game/physics/velocity/DragVelocityBehavior"
-require "org/allbinary/game/physics/velocity/VelocityProperties"
+autoload :FrictionData, "org/allbinary/game/physics/friction/FrictionData"
+autoload :DragVelocityBehavior, "org/allbinary/game/physics/velocity/DragVelocityBehavior"
+autoload :VelocityProperties, "org/allbinary/game/physics/velocity/VelocityProperties"
 

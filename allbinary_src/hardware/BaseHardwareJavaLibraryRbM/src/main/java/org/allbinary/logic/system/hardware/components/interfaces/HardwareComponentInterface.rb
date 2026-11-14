@@ -19,11 +19,13 @@ module HardwareComponentInterface
     
 
     def compareTo(componentInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toString()
+        return super if defined?(super)
         raise NotImplementedError
     end
     alias_method :to_s, :toString

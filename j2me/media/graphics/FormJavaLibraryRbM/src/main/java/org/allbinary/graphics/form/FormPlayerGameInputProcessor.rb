@@ -16,7 +16,7 @@
 
 require "org/allbinary/canvas/Processor"
 
-class InputProcessor < Processor
+class FormPlayerGameInputProcessor < Processor
     attr_accessor :playerGameInputCompositeInterface
 
     def initialize_fields
@@ -37,5 +37,5 @@ class InputProcessor < Processor
     end
 end
 
-require "org/allbinary/game/input/PlayerGameInputCompositeInterface"
+autoload :PlayerGameInputCompositeInterface, "org/allbinary/game/input/PlayerGameInputCompositeInterface"
 

@@ -25,6 +25,6 @@ class HighScoresCanvasNoInputProcessorFactory
     end
 end
 
-require "org/allbinary/game/score/displayable/HighScoresCanvas"
-require "org/allbinary/game/score/HighScoresCanvasInputProcessor"
+autoload :HighScoresCanvas, "org/allbinary/game/score/displayable/HighScoresCanvas"
+autoload :HighScoresCanvasInputProcessor, "org/allbinary/game/score/HighScoresCanvasInputProcessor"
 

@@ -58,11 +58,11 @@ class TouchButtonInput < Input
     end
 end
 
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/InputFactory"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/input/event/GameKeyEventFactory"
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/Paintable"
 
 class PaintableComposite < Paintable
@@ -46,5 +45,6 @@ class PaintableComposite < Paintable
     end
 end
 
-require "org/allbinary/graphics/paint/PaintableInterface"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
 

@@ -30,15 +30,39 @@ class ProcessingFrameIndexFactory
     end
 
     def self.currentFrame()
+        ProcessingFrameIndexFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@currentFrame) ? @@currentFrame : nil
     end
 
     def self.currentFrame=(value)
+        ProcessingFrameIndexFactory.java_static_fields unless @java_static_fields_started
         @@currentFrame = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@currentFrame = 0
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ProcessingFrameIndexFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class ProcessingFrameIndexFactory
-    @@currentFrame = 0
+begin
+    ProcessingFrameIndexFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

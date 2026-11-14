@@ -96,13 +96,13 @@ class WorkFlowRequestHelper < ModifyTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tables/workflow/WorkFlowEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/workflow/NewWorkFlowFactory"
-require "org/allbinary/logic/control/workflow/WorkFlowData"
-require "org/allbinary/logic/control/workflow/WorkFlowInterface"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :WorkFlowEntityFactory, "org/allbinary/data/tables/workflow/WorkFlowEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :NewWorkFlowFactory, "org/allbinary/logic/control/workflow/NewWorkFlowFactory"
+autoload :WorkFlowData, "org/allbinary/logic/control/workflow/WorkFlowData"
+autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
 

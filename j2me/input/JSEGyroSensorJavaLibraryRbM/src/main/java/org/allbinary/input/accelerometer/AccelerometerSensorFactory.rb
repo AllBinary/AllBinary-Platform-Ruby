@@ -39,20 +39,44 @@ class AccelerometerSensorFactory
     end
 
     def self.allBinaryAccelerometerSensor()
+        AccelerometerSensorFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@allBinaryAccelerometerSensor) ? @@allBinaryAccelerometerSensor : nil
     end
 
     def self.allBinaryAccelerometerSensor=(value)
+        AccelerometerSensorFactory.java_static_fields unless @java_static_fields_started
         @@allBinaryAccelerometerSensor = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@allBinaryAccelerometerSensor = nil
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AccelerometerSensorFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/SensorFeatureFactory"
-require "org/allbinary/input/gyro/AllBinaryOrientationSensor"
-require "org/allbinary/input/accelerometer/NoAccelerometerSensor"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory"
+autoload :AllBinaryOrientationSensor, "org/allbinary/input/gyro/AllBinaryOrientationSensor"
+autoload :NoAccelerometerSensor, "org/allbinary/input/accelerometer/NoAccelerometerSensor"
 
-class AccelerometerSensorFactory
-    @@allBinaryAccelerometerSensor = nil
+begin
+    AccelerometerSensorFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -65,23 +65,44 @@ class LogConfigTypes
         end
         raise StandardError.new("No Such LogConfigType: " + name)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:JSP_ERROR_NO_FUNCTION, "in JSP Not In Function")
+        begin
+            const_set(:LOGGING, BasicArrayListD.new())
+            static_init
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LogConfigTypes"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:JSP_ERROR_NO_FUNCTION, :LOGGING].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/communication/log/config/LoggingInitInfo"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/communication/log/config/type/LogConfigType"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeData"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :LoggingInitInfo, "org/allbinary/logic/communication/log/config/LoggingInitInfo"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :Node, "org/w3c/dom/Node"
+autoload :LogConfigType, "org/allbinary/logic/communication/log/config/type/LogConfigType"
+autoload :LogConfigTypeData, "org/allbinary/logic/communication/log/config/type/LogConfigTypeData"
+autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
 
-class LogConfigTypes
-    JSP_ERROR_NO_FUNCTION = "in JSP Not In Function"
-    LOGGING = BasicArrayListD.new()
+begin
+    LogConfigTypes.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
-
-LogConfigTypes.static_init
 

@@ -301,26 +301,48 @@ class Category
             @logUtil.putF(stringBuffer.to_s, self, "log()")
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NOT_ROOT, "This is not the root so it has no file path.")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Category"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NOT_ROOT].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/category/hierarchy/CategoryHierarchy"
-require "org/allbinary/business/category/hierarchy/CategoryHierarchyInterface"
-require "org/allbinary/business/category/properties/CategoryPropertiesFactoryInterface"
-require "org/allbinary/business/category/properties/CategoryPropertiesInterface"
-require "org/allbinary/business/category/properties/root/RootCategoryPropertiesInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :CategoryHierarchy, "org/allbinary/business/category/hierarchy/CategoryHierarchy"
+autoload :CategoryHierarchyInterface, "org/allbinary/business/category/hierarchy/CategoryHierarchyInterface"
+autoload :CategoryPropertiesFactoryInterface, "org/allbinary/business/category/properties/CategoryPropertiesFactoryInterface"
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+autoload :RootCategoryPropertiesInterface, "org/allbinary/business/category/properties/root/RootCategoryPropertiesInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 
-class Category
-    NOT_ROOT = "This is not the root so it has no file path."
+begin
+    Category.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

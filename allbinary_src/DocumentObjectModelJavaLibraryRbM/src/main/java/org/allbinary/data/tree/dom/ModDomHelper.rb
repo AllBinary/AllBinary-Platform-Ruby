@@ -162,13 +162,13 @@ class ModDomHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/java/anyType/clazz/ClassUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/data/tree/dom/DomData"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ClassUtil, "org/allbinary/logic/java/anyType/clazz/ClassUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :DomData, "org/allbinary/data/tree/dom/DomData"
 

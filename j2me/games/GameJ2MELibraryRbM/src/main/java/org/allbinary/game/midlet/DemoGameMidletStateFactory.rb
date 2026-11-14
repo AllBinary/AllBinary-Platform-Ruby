@@ -34,11 +34,33 @@ class DemoGameMidletStateFactory
     def self.getInstance()
         return DemoGameMidletStateFactory::STATE
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:STATE, DemoGameMidletStateFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DemoGameMidletStateFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:STATE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/midlet/DemoGameMidletState"
+autoload :DemoGameMidletState, "org/allbinary/game/midlet/DemoGameMidletState"
 
-class DemoGameMidletStateFactory
-    STATE = DemoGameMidletStateFactory.new()
+begin
+    DemoGameMidletStateFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

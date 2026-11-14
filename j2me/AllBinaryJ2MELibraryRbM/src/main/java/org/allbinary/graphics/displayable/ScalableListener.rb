@@ -19,21 +19,25 @@ module ScalableListener
     
 
     def getRatio(ratio)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLeft(xOffset)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getTop(yOffset)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def scale(ratio)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

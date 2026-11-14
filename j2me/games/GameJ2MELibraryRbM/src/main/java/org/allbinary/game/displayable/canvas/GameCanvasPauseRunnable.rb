@@ -51,10 +51,10 @@ class GameCanvasPauseRunnable < GameRunnable
     end
 end
 
-require "org/allbinary/AndroidUtil"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :AndroidUtil, "org/allbinary/AndroidUtil"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 

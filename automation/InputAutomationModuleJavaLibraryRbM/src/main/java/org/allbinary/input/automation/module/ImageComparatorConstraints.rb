@@ -120,9 +120,9 @@ class ImageComparatorConstraints
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/collision/RectangleCollisionUtil"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :RectangleCollisionUtil, "org/allbinary/collision/RectangleCollisionUtil"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

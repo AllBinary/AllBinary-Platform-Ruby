@@ -96,28 +96,52 @@ class TransformInfoObjectConfigAndManipulatorFactory < TransformInfoObjectConfig
     end
 
     def self.instance()
+        TransformInfoObjectConfigAndManipulatorFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformInfoObjectConfigAndManipulatorFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformInfoObjectConfigAndManipulatorFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformInfoObjectConfigAndManipulatorFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/crypt/file/CryptFileReader"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/allbinary/logic/visual/transform/info/objectConfig/GenericStoreTransformInfoObjectConfig"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfig"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :GenericStoreTransformInfoObjectConfig, "org/allbinary/logic/visual/transform/info/objectConfig/GenericStoreTransformInfoObjectConfig"
+autoload :TransformInfoObjectConfig, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfig"
+autoload :TransformInfoObjectConfigData, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
+autoload :TransformInfoObjectConfigInterface, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigInterface"
 
-class TransformInfoObjectConfigAndManipulatorFactory
-    @@instance = TransformInfoObjectConfigAndManipulatorFactory.new()
+begin
+    TransformInfoObjectConfigAndManipulatorFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

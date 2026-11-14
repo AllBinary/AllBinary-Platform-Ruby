@@ -91,12 +91,12 @@ class AdvertisementArea
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/advertisement/campaign/AdvertisementCampaignData"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/w3c/dom/Document"
-require "org/allbinary/business/advertisement/area/AdvertisementAreaConstraints"
-require "org/allbinary/business/advertisement/area/AdvertisementAreaConstraintsInterface"
-require "org/allbinary/business/advertisement/area/AdvertisementAreaData"
+autoload :HashMap, "java/util/HashMap"
+autoload :AdvertisementCampaignData, "org/allbinary/business/advertisement/campaign/AdvertisementCampaignData"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :AdvertisementAreaConstraints, "org/allbinary/business/advertisement/area/AdvertisementAreaConstraints"
+autoload :AdvertisementAreaConstraintsInterface, "org/allbinary/business/advertisement/area/AdvertisementAreaConstraintsInterface"
+autoload :AdvertisementAreaData, "org/allbinary/business/advertisement/area/AdvertisementAreaData"
 

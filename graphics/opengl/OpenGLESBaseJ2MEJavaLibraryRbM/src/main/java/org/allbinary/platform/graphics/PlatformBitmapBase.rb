@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.platform.graphics
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
 
 class PlatformBitmapBase
     
@@ -24,4 +22,7 @@ class PlatformBitmapBase
         return NullImage::NULL_IMAGE
     end
 end
+
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
 

@@ -66,9 +66,9 @@ class GlobalsView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/template/customizer/includes/globals/GlobalsValidation"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :GlobalsValidation, "org/allbinary/logic/visual/transform/template/customizer/includes/globals/GlobalsValidation"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

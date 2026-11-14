@@ -76,6 +76,6 @@ class DomDocumentHelper
     end
 end
 
-require "org/w3c/dom/Document"
+autoload :Document, "org/w3c/dom/Document"
 require "java/lang/System"
 

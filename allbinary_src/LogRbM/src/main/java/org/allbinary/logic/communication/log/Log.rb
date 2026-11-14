@@ -67,6 +67,6 @@ class Log
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/LogFormatUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil"
 

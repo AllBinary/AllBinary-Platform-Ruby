@@ -104,15 +104,44 @@ class J2MEKeyFactory
     end
 
     def self.instance()
+        J2MEKeyFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        J2MEKeyFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = J2MEKeyFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "J2MEKeyFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class J2MEKeyFactory
-    @@instance = J2MEKeyFactory.new()
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+
+begin
+    J2MEKeyFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

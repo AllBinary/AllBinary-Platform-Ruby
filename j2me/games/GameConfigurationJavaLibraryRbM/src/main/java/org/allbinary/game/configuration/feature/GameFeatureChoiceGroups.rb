@@ -48,28 +48,54 @@ class GameFeatureChoiceGroups
     end
 
     def self.gameFeatureChoiceGroupsExclusive()
+        GameFeatureChoiceGroups.java_static_fields unless @java_static_fields_started
         return defined?(@@gameFeatureChoiceGroupsExclusive) ? @@gameFeatureChoiceGroupsExclusive : nil
     end
 
     def self.gameFeatureChoiceGroupsExclusive=(value)
+        GameFeatureChoiceGroups.java_static_fields unless @java_static_fields_started
         @@gameFeatureChoiceGroupsExclusive = value
     end
 
     def self.gameFeatureChoiceGroupsMultiple()
+        GameFeatureChoiceGroups.java_static_fields unless @java_static_fields_started
         return defined?(@@gameFeatureChoiceGroupsMultiple) ? @@gameFeatureChoiceGroupsMultiple : nil
     end
 
     def self.gameFeatureChoiceGroupsMultiple=(value)
+        GameFeatureChoiceGroups.java_static_fields unless @java_static_fields_started
         @@gameFeatureChoiceGroupsMultiple = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@gameFeatureChoiceGroupsExclusive = GameFeatureChoiceGroups.new()
+            @@gameFeatureChoiceGroupsMultiple = GameFeatureChoiceGroups.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameFeatureChoiceGroups"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 
-class GameFeatureChoiceGroups
-    @@gameFeatureChoiceGroupsExclusive = GameFeatureChoiceGroups.new()
-    @@gameFeatureChoiceGroupsMultiple = GameFeatureChoiceGroups.new()
+begin
+    GameFeatureChoiceGroups.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

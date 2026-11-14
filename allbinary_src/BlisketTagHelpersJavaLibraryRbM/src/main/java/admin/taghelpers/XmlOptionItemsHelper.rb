@@ -103,9 +103,9 @@ class XmlOptionItemsHelper < BasicTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/data/tables/user/commerce/inventory/item/options/XmlOptionItemsEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :XmlOptionItemsEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/options/XmlOptionItemsEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
 

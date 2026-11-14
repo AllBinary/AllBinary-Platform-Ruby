@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.scroller
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/BasicAI"
 
 class FlockingAI < BasicAI
@@ -82,14 +81,15 @@ class FlockingAI < BasicAI
     end
 end
 
-require "org/allbinary/game/identification/BasicGroupFactory"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/layer/identification/GroupLayerManagerListener"
-require "org/allbinary/game/layer/weapon/WeaponLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/math/MathUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/ag/ai/scroller/BasePatrolAI"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :BasicGroupFactory, "org/allbinary/game/identification/BasicGroupFactory"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :GroupLayerManagerListener, "org/allbinary/game/layer/identification/GroupLayerManagerListener"
+autoload :WeaponLayer, "org/allbinary/game/layer/weapon/WeaponLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasePatrolAI, "org/allbinary/game/ag/ai/scroller/BasePatrolAI"
 

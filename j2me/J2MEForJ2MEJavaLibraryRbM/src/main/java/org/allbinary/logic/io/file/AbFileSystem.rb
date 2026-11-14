@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io.file
 
-# require "java/io/InputStream"
 
 #J2MEForJ2ME
 class AbFileSystem
@@ -76,20 +75,45 @@ class AbFileSystem
     end
 
     def self.instance()
+        AbFileSystem.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AbFileSystem.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AbFileSystem.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AbFileSystem"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :InputStream, "java/io/InputStream"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class AbFileSystem
-    @@instance = AbFileSystem.new()
+begin
+    AbFileSystem.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/form/ItemIndexDx"
 require "org/allbinary/graphics/form/ItemIndexPaintable"
 require "org/allbinary/graphics/form/PaintableForm"
@@ -176,7 +174,7 @@ class ScrollSelectionForm < PaintableForm
 
     def self.getNullScrollSelectionForm()
         if ScrollSelectionForm::NULL_SCROLL_SELECTION_FORM == NullUtil.getInstance().NULL_OBJECT
-            ScrollSelectionForm::NULL_SCROLL_SELECTION_FORM = ScrollSelectionForm.createForm(StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), ItemPaintableFactory.getInstance(), 0, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
+            (ScrollSelectionForm.send(:remove_const, :NULL_SCROLL_SELECTION_FORM) if ScrollSelectionForm.const_defined?(:NULL_SCROLL_SELECTION_FORM, false); ScrollSelectionForm.const_set(:NULL_SCROLL_SELECTION_FORM, ScrollSelectionForm.createForm(StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), ItemPaintableFactory.getInstance(), 0, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)))
         end
         return ScrollSelectionForm::NULL_SCROLL_SELECTION_FORM
     end
@@ -184,7 +182,7 @@ class ScrollSelectionForm < PaintableForm
 
     def self.getNullScrollSelectionFormHorizontal()
         if ScrollSelectionForm::NULL_SCROLL_SELECTION_HORIZONTAL_FORM == NullUtil.getInstance().NULL_OBJECT
-            ScrollSelectionForm::NULL_SCROLL_SELECTION_HORIZONTAL_FORM = ScrollSelectionForm.createForm(StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), ItemPaintableFactory.getInstance(), 0, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
+            (ScrollSelectionForm.send(:remove_const, :NULL_SCROLL_SELECTION_HORIZONTAL_FORM) if ScrollSelectionForm.const_defined?(:NULL_SCROLL_SELECTION_HORIZONTAL_FORM, false); ScrollSelectionForm.const_set(:NULL_SCROLL_SELECTION_HORIZONTAL_FORM, ScrollSelectionForm.createForm(StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), ItemPaintableFactory.getInstance(), 0, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)))
         end
         return ScrollSelectionForm::NULL_SCROLL_SELECTION_HORIZONTAL_FORM
     end
@@ -428,31 +426,55 @@ class ScrollSelectionForm < PaintableForm
     def getButtonBasicColor()
         return @buttonBasicColor
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:INSIDE_FORM, " inside form")
+        const_set(:IS_IN_FORM, "isInForm")
+        const_set(:GET_SELECTED_INDEX, "getSelectedIndexForPoint")
+        begin
+            const_set(:NULL_SCROLL_SELECTION_FORM, NullUtil.getInstance().NULL_OBJECT)
+            const_set(:NULL_SCROLL_SELECTION_HORIZONTAL_FORM, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ScrollSelectionForm"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_SCROLL_SELECTION_FORM, :NULL_SCROLL_SELECTION_HORIZONTAL_FORM, :INSIDE_FORM, :IS_IN_FORM, :GET_SELECTED_INDEX].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/math/RectangleCollisionUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/graphics/form/FormType"
-require "org/allbinary/graphics/form/FormTypeFactory"
-require "org/allbinary/graphics/form/ItemPaintable"
-require "org/allbinary/graphics/form/ItemPaintableFactory"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :RectangleCollisionUtil, "org/allbinary/math/RectangleCollisionUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :FormType, "org/allbinary/graphics/form/FormType"
+autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory"
+autoload :ItemPaintable, "org/allbinary/graphics/form/ItemPaintable"
+autoload :ItemPaintableFactory, "org/allbinary/graphics/form/ItemPaintableFactory"
 
-class ScrollSelectionForm
-    NULL_SCROLL_SELECTION_FORM = NullUtil.getInstance().NULL_OBJECT
-    NULL_SCROLL_SELECTION_HORIZONTAL_FORM = NullUtil.getInstance().NULL_OBJECT
-    INSIDE_FORM = " inside form"
-    IS_IN_FORM = "isInForm"
-    GET_SELECTED_INDEX = "getSelectedIndexForPoint"
+begin
+    ScrollSelectionForm.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

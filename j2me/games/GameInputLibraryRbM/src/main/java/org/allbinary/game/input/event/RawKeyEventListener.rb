@@ -19,6 +19,7 @@ module RawKeyEventListener
     
 
     def onEventRaw(keyCode, deviceId, repeated)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

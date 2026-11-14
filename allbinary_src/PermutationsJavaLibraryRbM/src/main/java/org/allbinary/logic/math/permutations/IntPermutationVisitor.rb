@@ -45,8 +45,8 @@ class IntPermutationVisitor < Visitor
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 require "java/lang/System"
 

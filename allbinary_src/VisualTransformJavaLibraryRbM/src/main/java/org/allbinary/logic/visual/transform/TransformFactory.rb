@@ -117,29 +117,53 @@ class TransformFactory
     end
 
     def self.instance()
+        TransformFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tables/transform/info/TransformInfoEntity"
-require "org/allbinary/data/tables/transform/info/TransformInfoEntityBuilder"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoData"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpFactory"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoObjectFactory"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/visual/transform/TransformInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :TransformInfoEntity, "org/allbinary/data/tables/transform/info/TransformInfoEntity"
+autoload :TransformInfoEntityBuilder, "org/allbinary/data/tables/transform/info/TransformInfoEntityBuilder"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
+autoload :TransformInfoHttpFactory, "org/allbinary/logic/visual/transform/info/TransformInfoHttpFactory"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoObjectFactory, "org/allbinary/logic/visual/transform/info/TransformInfoObjectFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TransformInterface, "org/allbinary/logic/visual/transform/TransformInterface"
 
-class TransformFactory
-    @@instance = TransformFactory.new()
+begin
+    TransformFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

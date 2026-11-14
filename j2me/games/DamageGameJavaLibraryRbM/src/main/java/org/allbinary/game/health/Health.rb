@@ -125,18 +125,40 @@ class Health
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "Health Resource")
+        const_set(:HEALTH_LABEL, "Health: ")
+        const_set(:MAX_HEALTH_LABEL, " Max: ")
+        begin
+            const_set(:NULL_HEALTH, Health.new(0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Health"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_HEALTH, :NAME, :HEALTH_LABEL, :MAX_HEALTH_LABEL].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/game/health/HealthListenerInterface"
-require "org/allbinary/game/health/NullHealthListener"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :HealthListenerInterface, "org/allbinary/game/health/HealthListenerInterface"
+autoload :NullHealthListener, "org/allbinary/game/health/NullHealthListener"
 
-class Health
-    NULL_HEALTH = Health.new(0)
-    NAME = "Health Resource"
-    HEALTH_LABEL = "Health: "
-    MAX_HEALTH_LABEL = " Max: "
+begin
+    Health.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

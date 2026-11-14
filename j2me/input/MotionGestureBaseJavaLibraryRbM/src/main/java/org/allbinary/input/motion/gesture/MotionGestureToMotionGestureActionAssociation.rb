@@ -65,6 +65,6 @@ class MotionGestureToMotionGestureActionAssociation
     end
 end
 
-require "org/allbinary/game/input/CompleteMotionGestureInputEvent"
-require "org/allbinary/util/BasicArrayList"
+autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

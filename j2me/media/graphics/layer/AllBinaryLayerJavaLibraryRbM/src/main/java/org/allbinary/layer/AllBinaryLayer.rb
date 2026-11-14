@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/layer/Layer"
 require "org/allbinary/layer/LayerInterface"
 
@@ -35,11 +34,7 @@ class AllBinaryLayer < Layer
         super(rectangle.getWidth(), rectangle.getHeight())
         initialize_fields
         localName = nil
-        if name == nil
-            localName = self.class.name
-        else
-            localName = StringMaker.new().append(name).append(CommonSeps.getInstance().COLON).append((TsUtil.getInstance().hashCode(self)).to_s(16)).to_s
-        end
+        localName = StringMaker.new().append(name).append(CommonSeps.getInstance().COLON).append((TsUtil.getInstance().hashCode(self)).to_s(16)).to_s
         @name = localName
         point = rectangle.getPoint()
         self.setPosition(point.getX(), point.getY(), point.getZ())
@@ -47,6 +42,56 @@ class AllBinaryLayer < Layer
         self.setHalfHeight((self.getHeight() >> 1))
         @viewPosition = viewPosition
         @viewPosition.setAllbinaryLayer(self)
+    end
+    
+
+    def setPosition(x, y, z)
+        super(x, y, z)
+    end
+    
+
+    def moveDXYZ(dx, dy, dz)
+        super(dx, dy, dz)
+    end
+    
+
+    def getXP()
+        return super()
+    end
+    
+
+    def getYP()
+        return super()
+    end
+    
+
+    def getZP()
+        return super()
+    end
+    
+
+    def getWidth()
+        return super()
+    end
+    
+
+    def getHeight()
+        return super()
+    end
+    
+
+    def setVisible(visible)
+        super(visible)
+    end
+    
+
+    def isVisible()
+        return super()
+    end
+    
+
+    def paint(graphics)
+        super(graphics)
     end
     
 
@@ -164,19 +209,19 @@ class AllBinaryLayer < Layer
         stringBuffer.appendint(self.getType())
         stringBuffer.append(commonSeps.SPACE)
         stringBuffer.append(positionStrings.X_LABEL)
-        stringBuffer.appendint((self.getXP()).to_i)
+        stringBuffer.appendint(self.getXP())
         stringBuffer.append(commonSeps.SPACE)
         stringBuffer.append(positionStrings.Y_LABEL)
-        stringBuffer.appendint((self.getYP()).to_i)
+        stringBuffer.appendint(self.getYP())
         stringBuffer.append(commonSeps.SPACE)
         stringBuffer.append(positionStrings.Z_LABEL)
-        stringBuffer.appendint((self.getZP()).to_i)
+        stringBuffer.appendint(self.getZP())
         stringBuffer.append(commonSeps.SPACE)
         stringBuffer.append(commonLabels.WIDTH_LABEL)
-        stringBuffer.appendint((self.getWidth()).to_i)
+        stringBuffer.appendint(self.getWidth())
         stringBuffer.append(commonSeps.SPACE)
         stringBuffer.append(commonLabels.HEIGHT_LABEL)
-        stringBuffer.appendint((self.getHeight()).to_i)
+        stringBuffer.appendint(self.getHeight())
     end
     
 
@@ -186,25 +231,48 @@ class AllBinaryLayer < Layer
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:TYPE, "Type: ")
+        begin
+            const_set(:NULL_ALLBINARY_LAYER, AllBinaryLayer.new(StringUtil.getInstance().EMPTY_STRING, RectangleFactory::SINGLETON, ViewPositionBase::NULL_VIEW_POSITION))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryLayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_ALLBINARY_LAYER, :TYPE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/identification/BasicGroupFactory"
-require "org/allbinary/game/identification/Group"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/math/PositionStrings"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/view/event/ViewPositionEvent"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicGroupFactory, "org/allbinary/game/identification/BasicGroupFactory"
+autoload :Group, "org/allbinary/game/identification/Group"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :PositionStrings, "org/allbinary/math/PositionStrings"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :ViewPositionEvent, "org/allbinary/view/event/ViewPositionEvent"
 
-class AllBinaryLayer
-    NULL_ALLBINARY_LAYER = AllBinaryLayer.new(StringUtil.getInstance().EMPTY_STRING, RectangleFactory::SINGLETON, ViewPositionBase::NULL_VIEW_POSITION)
-    TYPE = "Type: "
+begin
+    AllBinaryLayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

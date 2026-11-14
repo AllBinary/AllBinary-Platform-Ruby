@@ -128,15 +128,15 @@ class TransformInfoDomNode
     end
 end
 
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/w3c/dom/Attr"
-require "org/w3c/dom/NamedNodeMap"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/logic/visual/transform/info/TransformInfo"
-require "org/allbinary/logic/visual/transform/info/TransformInfoData"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :Attr, "org/w3c/dom/Attr"
+autoload :NamedNodeMap, "org/w3c/dom/NamedNodeMap"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :TransformInfo, "org/allbinary/logic/visual/transform/info/TransformInfo"
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

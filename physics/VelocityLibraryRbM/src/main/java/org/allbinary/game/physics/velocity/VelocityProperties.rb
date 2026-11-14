@@ -164,9 +164,31 @@ class VelocityProperties < BasicVelocityProperties
         super(magnitude, angle, otherAngle)
         self.limitXYToForwardAndReverseMaxVelocity()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_VELOCITY_PROPERTIES, VelocityProperties.new(0, 0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "VelocityProperties"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_VELOCITY_PROPERTIES].include?(name)
+        end
+        super
+    end
 end
 
-class VelocityProperties
-    NULL_VELOCITY_PROPERTIES = VelocityProperties.new(0, 0)
+begin
+    VelocityProperties.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

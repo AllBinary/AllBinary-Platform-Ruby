@@ -37,7 +37,7 @@ class PaymentStoreAdminUserFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/business/user/modules/admin/store/payment/PaymentStoreAdminUser"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :PaymentStoreAdminUser, "org/allbinary/business/user/modules/admin/store/payment/PaymentStoreAdminUser"
 

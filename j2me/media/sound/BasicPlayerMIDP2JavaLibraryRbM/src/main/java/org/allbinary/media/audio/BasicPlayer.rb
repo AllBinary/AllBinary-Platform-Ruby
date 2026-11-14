@@ -15,11 +15,7 @@
 # package org.allbinary.media.audio
 
 require "java/lang/Object"
-# require "javax/microedition/media/Control"
-# require "javax/microedition/media/MediaException"
-# require "javax/microedition/media/Player"
-# require "javax/microedition/media/PlayerListener"
-# require "javax/microedition/media/TimeBase"
+require "javax/microedition/media/Player"
 require "org/allbinary/media/audio/Controllable2"
 require "org/allbinary/media/audio/TimeBaseInterface"
 
@@ -164,14 +160,40 @@ class BasicPlayer
 
     def setVolume(leftVolume, rightVolume)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:CONTROL_TYPE, "ToneControl")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicPlayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:CONTROL_TYPE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/media/audio/NullControl"
+autoload :Control, "javax/microedition/media/Control"
+autoload :MediaException, "javax/microedition/media/MediaException"
+autoload :PlayerListener, "javax/microedition/media/PlayerListener"
+autoload :TimeBase, "javax/microedition/media/TimeBase"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :NullControl, "org/allbinary/media/audio/NullControl"
 
-class BasicPlayer
-    CONTROL_TYPE = "ToneControl"
+begin
+    BasicPlayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

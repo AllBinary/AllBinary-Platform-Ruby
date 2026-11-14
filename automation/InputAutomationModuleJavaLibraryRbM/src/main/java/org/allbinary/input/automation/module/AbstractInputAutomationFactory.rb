@@ -70,5 +70,5 @@ class AbstractInputAutomationFactory < InputAutomationModuleFactoryInterface
     end
 end
 
-require "org/allbinary/logic/java/help/JavaHelpUtil"
+autoload :JavaHelpUtil, "org/allbinary/logic/java/help/JavaHelpUtil"
 

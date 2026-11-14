@@ -124,9 +124,9 @@ class AllBinaryLayerManager < LayerManager
     end
 end
 
-require "org/allbinary/layer/event/LayerManagerEvent"
-require "org/allbinary/layer/event/LayerManagerEventHandler"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/LayerManagerNoDebug"
-require "org/allbinary/layer/LayerProcessor"
+autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent"
+autoload :LayerManagerEventHandler, "org/allbinary/layer/event/LayerManagerEventHandler"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LayerManagerNoDebug, "org/allbinary/layer/LayerManagerNoDebug"
+autoload :LayerProcessor, "org/allbinary/layer/LayerProcessor"
 

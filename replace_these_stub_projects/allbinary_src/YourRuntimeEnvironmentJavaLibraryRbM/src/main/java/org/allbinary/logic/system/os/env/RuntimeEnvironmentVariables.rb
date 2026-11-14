@@ -175,10 +175,10 @@ class RuntimeEnvironmentVariables
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/os/GenericOperatingSystem"
-require "org/allbinary/logic/system/os/OperatingSystemFactory"
-require "org/allbinary/logic/system/os/OperatingSystems"
-require "org/allbinary/string/CommonStrings"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
+autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
+autoload :OperatingSystems, "org/allbinary/logic/system/os/OperatingSystems"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 require "java/lang/System"
 

@@ -51,11 +51,11 @@ class LayerBounds
     end
 end
 
-require "org/allbinary/bounds/event/BoundsChangeEvent"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/bounds/BoundsVisitorInterface"
+autoload :BoundsChangeEvent, "org/allbinary/bounds/event/BoundsChangeEvent"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :BoundsVisitorInterface, "org/allbinary/bounds/BoundsVisitorInterface"
 

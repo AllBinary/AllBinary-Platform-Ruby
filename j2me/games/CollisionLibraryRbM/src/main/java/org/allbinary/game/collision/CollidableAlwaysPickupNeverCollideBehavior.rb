@@ -29,7 +29,7 @@ class CollidableAlwaysPickupNeverCollideBehavior < CollidableNeverCollideBehavio
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/collision/CollisionType"
-require "org/allbinary/game/collision/CollisionTypeFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
+autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
 

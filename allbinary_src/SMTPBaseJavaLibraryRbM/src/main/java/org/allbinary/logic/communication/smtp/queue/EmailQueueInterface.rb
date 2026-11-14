@@ -30,5 +30,5 @@ module EmailQueueInterface
     end
 end
 
-require "org/allbinary/logic/communication/smtp/EmailInterface"
+autoload :EmailInterface, "org/allbinary/logic/communication/smtp/EmailInterface"
 

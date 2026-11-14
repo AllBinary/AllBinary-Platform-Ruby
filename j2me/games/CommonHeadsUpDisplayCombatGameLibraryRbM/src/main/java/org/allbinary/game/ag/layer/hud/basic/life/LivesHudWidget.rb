@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.life
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/graphics/hud/BasicHud"
 require "org/allbinary/graphics/paint/PaintableInterface"
 
@@ -80,8 +79,9 @@ class LivesHudWidget < BasicHud
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/game/ag/life/Life"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :Life, "org/allbinary/game/ag/life/Life"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
 

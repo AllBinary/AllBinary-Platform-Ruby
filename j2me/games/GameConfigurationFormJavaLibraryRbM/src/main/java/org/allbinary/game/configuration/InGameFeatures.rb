@@ -70,12 +70,12 @@ class InGameFeatures < Init
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
-require "org/allbinary/game/configuration/feature/InGameFeatureChoiceGroups"
-require "org/allbinary/game/configuration/feature/SensorFeatureFactory"
-require "org/allbinary/game/configuration/feature/TouchFeatureFactory"
-require "org/allbinary/input/gyro/OrientationData"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :GameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
+autoload :InGameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/InGameFeatureChoiceGroups"
+autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory"
+autoload :TouchFeatureFactory, "org/allbinary/game/configuration/feature/TouchFeatureFactory"
+autoload :OrientationData, "org/allbinary/input/gyro/OrientationData"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

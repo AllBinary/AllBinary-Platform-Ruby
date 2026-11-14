@@ -26,5 +26,5 @@ class WorkFlowTag < TableTag
     end
 end
 
-require "admin/taghelpers/WorkFlowHelperFactory"
+autoload :WorkFlowHelperFactory, "admin/taghelpers/WorkFlowHelperFactory"
 

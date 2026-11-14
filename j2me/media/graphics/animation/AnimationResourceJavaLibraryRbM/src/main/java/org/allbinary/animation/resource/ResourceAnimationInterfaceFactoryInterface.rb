@@ -20,9 +20,10 @@ module ResourceAnimationInterfaceFactoryInterface
 
     # throws Exception
     def getBasicAnimationInterfaceFactoryInstance(resource)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
+autoload :BasicAnimationInterfaceFactoryInterface, "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
 

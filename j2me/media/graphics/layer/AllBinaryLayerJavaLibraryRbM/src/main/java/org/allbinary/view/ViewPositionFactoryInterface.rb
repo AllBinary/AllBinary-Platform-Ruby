@@ -20,9 +20,10 @@ module ViewPositionFactoryInterface
 
     # throws Exception
     def getInstance()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/view/ViewPositionBase"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 

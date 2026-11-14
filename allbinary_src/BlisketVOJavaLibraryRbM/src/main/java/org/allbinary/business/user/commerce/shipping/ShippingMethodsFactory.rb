@@ -33,7 +33,7 @@ class ShippingMethodsFactory
         stringBuffer.append(sep)
         stringBuffer.append("shipping")
         stringBuffer.append(sep)
-        SHIPPINGMETHODSFILEPATHSTRING = stringBuffer.to_s
+        (ShippingMethodsFactory.send(:remove_const, :SHIPPINGMETHODSFILEPATHSTRING) if ShippingMethodsFactory.const_defined?(:SHIPPINGMETHODSFILEPATHSTRING, false); ShippingMethodsFactory.const_set(:SHIPPINGMETHODSFILEPATHSTRING, stringBuffer.to_s))
     end
     
 
@@ -82,38 +82,59 @@ class ShippingMethodsFactory
     def getDefaultInstance()
         return @defaultShippingMethodInterface
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:SHIPPINGMETHODSFILENAME, "shippingMethods.xml")
+        begin
+            const_set(:SHIPPINGMETHODSFILEPATHSTRING, nil)
+            static_init
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ShippingMethodsFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SHIPPINGMETHODSFILEPATHSTRING, :SHIPPINGMETHODSFILENAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/DynamicObjectData"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/shipping/modules/BasicWeightShippingModuleView"
-require "org/allbinary/business/user/commerce/shipping/modules/NoShippingModuleView"
-require "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/control/crypt/file/CryptFileReader"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/loader/AbeFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
-require "org/allbinary/business/user/commerce/shipping/ShippingMethodsData"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :BasicWeightShippingModuleView, "org/allbinary/business/user/commerce/shipping/modules/BasicWeightShippingModuleView"
+autoload :NoShippingModuleView, "org/allbinary/business/user/commerce/shipping/modules/NoShippingModuleView"
+autoload :ShippingInterface, "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeFactory, "org/allbinary/logic/system/loader/AbeFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoObjectConfigData, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :ShippingMethodData, "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
+autoload :ShippingMethodsData, "org/allbinary/business/user/commerce/shipping/ShippingMethodsData"
 
-class ShippingMethodsFactory
-    SHIPPINGMETHODSFILEPATHSTRING = nil
-    SHIPPINGMETHODSFILENAME = "shippingMethods.xml"
+begin
+    ShippingMethodsFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
-
-ShippingMethodsFactory.static_init
 

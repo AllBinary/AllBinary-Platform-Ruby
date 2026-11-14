@@ -124,11 +124,11 @@ class Basket
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
-require "org/allbinary/business/user/commerce/money/Money"
-require "org/allbinary/business/user/commerce/money/MoneyException"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
-require "org/allbinary/logic/StdUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+autoload :MoneyException, "org/allbinary/business/user/commerce/money/MoneyException"
+autoload :InventoryEntity, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
+autoload :InventoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
 

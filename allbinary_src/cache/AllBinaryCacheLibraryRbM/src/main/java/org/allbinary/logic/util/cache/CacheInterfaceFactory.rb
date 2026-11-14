@@ -28,7 +28,7 @@ class CacheInterfaceFactory
     end
 end
 
-require "org/allbinary/logic/util/cache/CacheInterface"
-require "org/allbinary/logic/util/cache/CachePolicy"
-require "org/allbinary/logic/util/cache/CacheType"
+autoload :CacheInterface, "org/allbinary/logic/util/cache/CacheInterface"
+autoload :CachePolicy, "org/allbinary/logic/util/cache/CachePolicy"
+autoload :CacheType, "org/allbinary/logic/util/cache/CacheType"
 

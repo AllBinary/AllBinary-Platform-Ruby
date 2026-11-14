@@ -15,9 +15,6 @@
 # package org.allbinary.game.score
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/game/score/HighScoresCanvasInputProcessor"
 
@@ -84,12 +81,15 @@ class HighScoresCanvasLevelChangeInputProcessor < HighScoresCanvasInputProcessor
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEventHandler"
-require "org/allbinary/game/input/event/GameKeyEventUtil"
-require "org/allbinary/game/score/displayable/HighScoresCanvas"
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/util/BasicArrayList"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GameKeyEventHandler, "org/allbinary/game/input/event/GameKeyEventHandler"
+autoload :GameKeyEventUtil, "org/allbinary/game/input/event/GameKeyEventUtil"
+autoload :HighScoresCanvas, "org/allbinary/game/score/displayable/HighScoresCanvas"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

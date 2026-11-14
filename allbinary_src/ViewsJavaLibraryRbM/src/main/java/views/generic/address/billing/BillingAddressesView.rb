@@ -80,15 +80,15 @@ class BillingAddressesView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/address/BillingAddressData"
-require "org/allbinary/business/user/address/StreetAddress"
-require "org/allbinary/business/user/address/StreetAddressData"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BillingAddressData, "org/allbinary/business/user/address/BillingAddressData"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

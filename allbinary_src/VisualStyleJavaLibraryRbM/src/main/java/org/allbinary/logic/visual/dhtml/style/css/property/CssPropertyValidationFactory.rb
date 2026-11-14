@@ -28,7 +28,7 @@ class CssPropertyValidationFactory
     end
 end
 
-require "org/allbinary/logic/control/validate/ValidationInterface"
-require "org/allbinary/logic/visual/dhtml/style/css/property/font/FontFamilyValidation"
-require "org/w3c/dom/Node"
+autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
+autoload :FontFamilyValidation, "org/allbinary/logic/visual/dhtml/style/css/property/font/FontFamilyValidation"
+autoload :Node, "org/w3c/dom/Node"
 

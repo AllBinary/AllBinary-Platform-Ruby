@@ -29,7 +29,7 @@ class PickupBehavior
 
     def self.getNullInstance()
         if PickupBehavior::NULL_PICKUP_BEHAVIOR == NullUtil.getInstance().NULL_OBJECT
-            PickupBehavior::NULL_PICKUP_BEHAVIOR = PickupBehavior.new(CollidableCompositeLayer.getNullInstance(), 0)
+            (PickupBehavior.send(:remove_const, :NULL_PICKUP_BEHAVIOR) if PickupBehavior.const_defined?(:NULL_PICKUP_BEHAVIOR, false); PickupBehavior.const_set(:NULL_PICKUP_BEHAVIOR, PickupBehavior.new(CollidableCompositeLayer.getNullInstance(), 0)))
         end
         return PickupBehavior::NULL_PICKUP_BEHAVIOR
     end
@@ -137,26 +137,48 @@ class PickupBehavior
     def getCountedIndex()
         return @countedIndex
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_PICKUP_BEHAVIOR, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PickupBehavior"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_PICKUP_BEHAVIOR].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/health/HealthInterfaceCompositeInterface"
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-require "org/allbinary/game/part/CountedLayerInterfaceFactoryPart"
-require "org/allbinary/game/part/PartInterface"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
-require "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactoryInterface"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-require "org/allbinary/game/layer/pickup/PickedUpLayerType"
-require "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
-require "org/allbinary/game/layer/pickup/PickupProcessorInterface"
+autoload :HealthInterfaceCompositeInterface, "org/allbinary/game/health/HealthInterfaceCompositeInterface"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+autoload :CountedLayerInterfaceFactoryPart, "org/allbinary/game/part/CountedLayerInterfaceFactoryPart"
+autoload :PartInterface, "org/allbinary/game/part/PartInterface"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :CountedPickedUpLayerInterfaceFactory, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
+autoload :CountedPickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactoryInterface"
+autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType"
+autoload :PickedUpLayerTypeFactory, "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
+autoload :PickupProcessorInterface, "org/allbinary/game/layer/pickup/PickupProcessorInterface"
 
-class PickupBehavior
-    NULL_PICKUP_BEHAVIOR = NullUtil.getInstance().NULL_OBJECT
+begin
+    PickupBehavior.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

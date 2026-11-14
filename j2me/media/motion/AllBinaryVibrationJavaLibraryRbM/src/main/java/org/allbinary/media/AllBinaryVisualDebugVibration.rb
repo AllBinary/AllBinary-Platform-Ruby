@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.media
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/media/AllBinaryVibrationME"
 
@@ -59,9 +57,11 @@ class AllBinaryVisualDebugVibration < AllBinaryVibrationME
     end
 end
 
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/time/TimeDelayHelper"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
 

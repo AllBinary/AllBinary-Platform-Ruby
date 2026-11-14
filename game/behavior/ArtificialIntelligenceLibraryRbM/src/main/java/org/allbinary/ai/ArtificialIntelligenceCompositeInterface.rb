@@ -20,9 +20,10 @@ module ArtificialIntelligenceCompositeInterface
 
     # throws Exception
     def getArtificialIntelligenceInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
 

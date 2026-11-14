@@ -181,20 +181,42 @@ class ThreadPool
 
     def completedTask(task)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NORMAL_PRIORITY, 5)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ThreadPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NORMAL_PRIORITY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/thread/NullRunnable"
-require "org/allbinary/thread/PriorityRunnable"
-require "org/allbinary/thread/ThreadObjectUtil"
-require "org/allbinary/thread/ThreadPoolStrings"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :NullRunnable, "org/allbinary/thread/NullRunnable"
+autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable"
+autoload :ThreadObjectUtil, "org/allbinary/thread/ThreadObjectUtil"
+autoload :ThreadPoolStrings, "org/allbinary/thread/ThreadPoolStrings"
 require "java/lang/Runnable"
 require "java/lang/InterruptedException"
 
-class ThreadPool
-    NORMAL_PRIORITY = 5
+begin
+    ThreadPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

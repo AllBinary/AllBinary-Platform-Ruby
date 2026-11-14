@@ -85,16 +85,16 @@ class AdminConfiguration
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/context/configuration/ContextConfiguration"
-require "org/allbinary/business/context/configuration/ContextConfigurationData"
-require "org/allbinary/business/context/configuration/ContextConfigurationDomDocumentMapping"
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
-require "org/allbinary/business/context/configuration/ContextConfigurationInterfaceFactory"
-require "org/allbinary/business/context/configuration/ContextConfigurationPathUtil"
-require "org/allbinary/logic/communication/http/request/RequestParams"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/crypt/file/CryptFileWriter"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/user/modules/admin/configuration/AdminConfigurationData"
+autoload :HashMap, "java/util/HashMap"
+autoload :ContextConfiguration, "org/allbinary/business/context/configuration/ContextConfiguration"
+autoload :ContextConfigurationData, "org/allbinary/business/context/configuration/ContextConfigurationData"
+autoload :ContextConfigurationDomDocumentMapping, "org/allbinary/business/context/configuration/ContextConfigurationDomDocumentMapping"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :ContextConfigurationInterfaceFactory, "org/allbinary/business/context/configuration/ContextConfigurationInterfaceFactory"
+autoload :ContextConfigurationPathUtil, "org/allbinary/business/context/configuration/ContextConfigurationPathUtil"
+autoload :RequestParams, "org/allbinary/logic/communication/http/request/RequestParams"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CryptFileWriter, "org/allbinary/logic/control/crypt/file/CryptFileWriter"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AdminConfigurationData, "org/allbinary/business/user/modules/admin/configuration/AdminConfigurationData"
 

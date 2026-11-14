@@ -26,5 +26,5 @@ class PaymentTransactionTag < TableTag
     end
 end
 
-require "admin/taghelpers/PaymentTransactionHelperFactory"
+autoload :PaymentTransactionHelperFactory, "admin/taghelpers/PaymentTransactionHelperFactory"
 

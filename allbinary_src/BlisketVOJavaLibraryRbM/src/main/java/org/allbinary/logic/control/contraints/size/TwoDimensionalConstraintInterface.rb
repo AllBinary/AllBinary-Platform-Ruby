@@ -38,5 +38,5 @@ module TwoDimensionalConstraintInterface
     end
 end
 
-require "org/allbinary/logic/control/contraints/size/SizeConstraintInterface"
+autoload :SizeConstraintInterface, "org/allbinary/logic/control/contraints/size/SizeConstraintInterface"
 

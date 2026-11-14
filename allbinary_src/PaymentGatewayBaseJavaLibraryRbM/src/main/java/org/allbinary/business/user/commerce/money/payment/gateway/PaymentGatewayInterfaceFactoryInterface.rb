@@ -24,6 +24,6 @@ module PaymentGatewayInterfaceFactoryInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
 

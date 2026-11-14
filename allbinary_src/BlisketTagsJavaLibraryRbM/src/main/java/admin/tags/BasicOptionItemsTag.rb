@@ -32,7 +32,7 @@ class BasicOptionItemsTag < TableTag
     end
 end
 
-require "java/util/HashMap"
-require "admin/taghelpers/BasicOptionItemsHelperFactory"
-require "admin/taghelpers/BasicOptionItemsRequestHelperFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicOptionItemsHelperFactory, "admin/taghelpers/BasicOptionItemsHelperFactory"
+autoload :BasicOptionItemsRequestHelperFactory, "admin/taghelpers/BasicOptionItemsRequestHelperFactory"
 

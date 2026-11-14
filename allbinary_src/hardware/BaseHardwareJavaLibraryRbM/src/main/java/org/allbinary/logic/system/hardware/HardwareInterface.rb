@@ -19,26 +19,30 @@ module HardwareInterface
     
 
     def getComponent(index)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toString()
+        return super if defined?(super)
         raise NotImplementedError
     end
     alias_method :to_s, :toString
     
 
     def compareTo(hardwareInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def difference(hardwareInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
-require "org/allbinary/util/ABHashtable"
+autoload :HardwareComponentInterface, "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 

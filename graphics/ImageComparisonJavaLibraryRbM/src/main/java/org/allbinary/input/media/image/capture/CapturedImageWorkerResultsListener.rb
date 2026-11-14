@@ -25,5 +25,5 @@ module CapturedImageWorkerResultsListener
     end
 end
 
-require "org/allbinary/input/media/image/capture/CapturedImageWorkerResultsEvent"
+autoload :CapturedImageWorkerResultsEvent, "org/allbinary/input/media/image/capture/CapturedImageWorkerResultsEvent"
 

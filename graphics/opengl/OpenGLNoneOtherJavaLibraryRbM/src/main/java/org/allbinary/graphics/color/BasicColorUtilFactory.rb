@@ -23,5 +23,5 @@ class BasicColorUtilFactory
     end
 end
 
-require "org/allbinary/graphics/color/BasicColorUtil"
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
 

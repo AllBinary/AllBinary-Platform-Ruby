@@ -21,9 +21,10 @@ module PlayerGameInputCompositeInterface
     
 
     def getPlayerGameInput()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/input/PlayerGameInput"
+autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput"
 

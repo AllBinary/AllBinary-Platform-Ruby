@@ -149,26 +149,50 @@ class InputRobotFactory
     end
 
     def self.inputRobotFactory()
+        InputRobotFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@inputRobotFactory) ? @@inputRobotFactory : nil
     end
 
     def self.inputRobotFactory=(value)
+        InputRobotFactory.java_static_fields unless @java_static_fields_started
         @@inputRobotFactory = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@inputRobotFactory = InputRobotFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputRobotFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/Iterator"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/help/JavaHelpSetNotifier"
-require "org/allbinary/logic/java/anyType/InterfaceUtil"
-require "org/allbinary/logic/system/loader/SecuredNativeLibraryInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/input/automation/robot/InputRobot"
-require "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :Iterator, "java/util/Iterator"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :JavaHelpSetNotifier, "org/allbinary/logic/java/help/JavaHelpSetNotifier"
+autoload :InterfaceUtil, "org/allbinary/logic/java/anyType/InterfaceUtil"
+autoload :SecuredNativeLibraryInterface, "org/allbinary/logic/system/loader/SecuredNativeLibraryInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :InputRobot, "org/allbinary/input/automation/robot/InputRobot"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
 
-class InputRobotFactory
-    @@inputRobotFactory = InputRobotFactory.new()
+begin
+    InputRobotFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -20,10 +20,11 @@ module GroupItemArrayFactoryInterface
 
     # throws Exception
     def getInstance(groupInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/identification/Group"
-require "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :Group, "org/allbinary/game/identification/Group"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
 

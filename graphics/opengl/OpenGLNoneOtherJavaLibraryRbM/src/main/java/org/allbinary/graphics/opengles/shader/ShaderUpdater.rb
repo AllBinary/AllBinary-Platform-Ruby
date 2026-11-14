@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
-# require "javax/microedition/khronos/egl/EGLConfig"
-# require "javax/microedition/khronos/opengles/GL10"
 
 class ShaderUpdater
     attr_accessor :commonStrings, :rendererStrings
@@ -39,18 +37,44 @@ class ShaderUpdater
     end
 
     def self.instance()
+        ShaderUpdater.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ShaderUpdater.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ShaderUpdater.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ShaderUpdater"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/opengles/renderer/RendererStrings"
-require "org/allbinary/string/CommonStrings"
+autoload :EGLConfig, "javax/microedition/khronos/egl/EGLConfig"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :RendererStrings, "org/allbinary/graphics/opengles/renderer/RendererStrings"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class ShaderUpdater
-    @@instance = ShaderUpdater.new()
+begin
+    ShaderUpdater.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

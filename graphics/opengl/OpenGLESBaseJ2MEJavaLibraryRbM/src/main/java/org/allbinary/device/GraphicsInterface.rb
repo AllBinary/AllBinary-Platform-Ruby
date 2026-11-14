@@ -14,15 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.device
 
-# require "javax/microedition/lcdui/Font"
 
 module GraphicsInterface
     
 
     def setFontDebug(font, fontDebug)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/font/FontDebugBase"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :FontDebugBase, "org/allbinary/graphics/font/FontDebugBase"
 

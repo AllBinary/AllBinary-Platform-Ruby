@@ -193,24 +193,46 @@ class GroupLayerManagerListener < LayerManagerEventListener
         end
         @logUtil.putF(stringBuffer.to_s, self, "log")
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, GroupLayerManagerListener.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GroupLayerManagerListener"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/identification/Group"
-require "org/allbinary/game/identification/GroupInterfaceCompositeInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/event/LayerManagerEvent"
-require "org/allbinary/layer/event/LayerManagerEventHandler"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :Group, "org/allbinary/game/identification/Group"
+autoload :GroupInterfaceCompositeInterface, "org/allbinary/game/identification/GroupInterfaceCompositeInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent"
+autoload :LayerManagerEventHandler, "org/allbinary/layer/event/LayerManagerEventHandler"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 
-class GroupLayerManagerListener
-    SINGLETON = GroupLayerManagerListener.new()
+begin
+    GroupLayerManagerListener.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

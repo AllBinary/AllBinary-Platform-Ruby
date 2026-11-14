@@ -2,8 +2,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/Paintable"
 require "org/allbinary/graphics/form/ItemIndexPaintable"
@@ -52,6 +50,25 @@ class MultipleScrollSelectionHorizontalForm < ScrollSelectionForm
             return @multipleScrollSelectionForm.paintVertical(graphics, index, item, dx, dy)
         end
     end
+    class MultipleScrollSelectionFormRectPaintable < Paintable
+        attr_accessor :multipleScrollSelectionForm
+
+        def initialize_fields
+            @multipleScrollSelectionForm = nil
+        end
+        
+
+        def initialize(multipleScrollSelectionForm)
+            super()
+            initialize_fields
+            @multipleScrollSelectionForm = multipleScrollSelectionForm
+        end
+        
+
+        def paint(graphics)
+            @multipleScrollSelectionForm.fillRect(graphics)
+        end
+    end
 
     def initialize_fields
         @rectPaintable = NullPaintable.getInstance()
@@ -76,14 +93,7 @@ class MultipleScrollSelectionHorizontalForm < ScrollSelectionForm
         initialize_fields
         if J2MEUtil.isJ2ME() || J2MEUtil.isHTML()
         else
-            class MPaintable < Paintable
-                
-
-                def paint(graphics)
-                    self.fillRect(graphics)
-                end
-            end
-            @rectPaintable = MPaintable.new()
+            @rectPaintable = MultipleScrollSelectionFormRectPaintable.new(self)
         end
     end
     
@@ -165,17 +175,19 @@ class MultipleScrollSelectionHorizontalForm < ScrollSelectionForm
     end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/graphics/form/FormType"
-require "org/allbinary/graphics/form/FormTypeFactory"
-require "org/allbinary/graphics/form/ItemPaintableFactory"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :FormType, "org/allbinary/graphics/form/FormType"
+autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory"
+autoload :ItemPaintableFactory, "org/allbinary/graphics/form/ItemPaintableFactory"
 

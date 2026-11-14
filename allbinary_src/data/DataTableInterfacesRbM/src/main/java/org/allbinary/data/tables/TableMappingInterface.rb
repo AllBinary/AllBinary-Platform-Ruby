@@ -36,6 +36,6 @@ module TableMappingInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

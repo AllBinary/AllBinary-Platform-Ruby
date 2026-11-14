@@ -137,16 +137,16 @@ class SpecialItemsRequestHelper < ModifyTable
     end
 end
 
-require "java/util/Calendar"
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/business/user/commerce/inventory/item/special/SpecialItemData"
-require "org/allbinary/data/tables/user/commerce/inventory/item/special/SpecialItemsEntityFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
+autoload :Calendar, "java/util/Calendar"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :SpecialItemData, "org/allbinary/business/user/commerce/inventory/item/special/SpecialItemData"
+autoload :SpecialItemsEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/special/SpecialItemsEntityFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 

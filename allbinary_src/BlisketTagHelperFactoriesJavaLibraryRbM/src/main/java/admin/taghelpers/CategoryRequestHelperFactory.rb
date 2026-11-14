@@ -44,8 +44,8 @@ class CategoryRequestHelperFactory < TagHelperFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "admin/taghelpers/CategoryRequestHelper"
+autoload :HashMap, "java/util/HashMap"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :CategoryRequestHelper, "admin/taghelpers/CategoryRequestHelper"
 

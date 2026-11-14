@@ -43,23 +43,17 @@
             <scope>test</scope>
         </dependency>
         
-        <dependency>
+        <!--<dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>LoggingAndroidAllRb</artifactId>
 
-            <!--
-<artifactId>LoggingJ2MEAllRb</artifactId>
-<artifactId>LoggingNoneRb</artifactId>
-<artifactId>LoggingJ2MEExceptionRb</artifactId>
-<artifactId>LoggingRemoteExceptionRb</artifactId>
-<artifactId>LoggingAndroidAllRb</artifactId>
--->
+            
 
-            <!-- AllBinary Platform Version Start -->
+            
             <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
+            
             <optional>true</optional>
-        </dependency>
+        </dependency>-->
         
         <dependency>
             <groupId>org.allbinary</groupId>
@@ -118,16 +112,14 @@
                                 <argument>${ruby.load.check}</argument>
                                 <argument>${ruby.fail.on.error}</argument>
                                 <!-- Sources of the dependency closure since Maven does not unpack the optional dependencies of dependencies. Written by RubyPomUpdater. -->
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/logging/LoggingAndroidAllRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/EventJ2MELibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/j2me/TempBaseJavaLibraryRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/LogRbM/src/main/java</argument>
-                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/LogAndroidJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/replace_these_stub_projects/allbinary_src/J2MEJsInteropCompatibilityJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/logging/LoggingJ2MEAllRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/LogJ2MEJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/J2MEUtilJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/cache/BaseCacheJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/j2me/TempBaseJavaLibraryRbM/src/main/java</argument>
+                                <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/LogRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/CommonJavaLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/j2me/J2MEExceptionLibraryRbM/src/main/java</argument>
                                 <argument>G:/mnt/bc/mydev/workingruby/allbinary_src/LogNoPlatformJavaLibraryRbM/src/main/java</argument>

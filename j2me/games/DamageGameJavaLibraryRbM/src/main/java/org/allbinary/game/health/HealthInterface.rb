@@ -19,44 +19,52 @@ module HealthInterface
     
 
     def isAlive()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def damage(ahealth)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def heal(ahealth)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def healMax()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMaxHealth()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setMaxHealth(maxHealth)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getHealth()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addListener(healthListenerInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/health/HealthListenerInterface"
+autoload :HealthListenerInterface, "org/allbinary/game/health/HealthListenerInterface"
 

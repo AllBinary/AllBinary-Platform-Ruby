@@ -37,19 +37,43 @@ class PlatformRecordIdUtil
     end
 
     def self.instance()
+        PlatformRecordIdUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PlatformRecordIdUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PlatformRecordIdUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PlatformRecordIdUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
 
-class PlatformRecordIdUtil
-    @@instance = PlatformRecordIdUtil.new()
+begin
+    PlatformRecordIdUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

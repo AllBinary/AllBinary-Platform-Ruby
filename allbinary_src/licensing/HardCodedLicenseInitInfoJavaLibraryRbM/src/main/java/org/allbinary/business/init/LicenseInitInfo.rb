@@ -76,9 +76,9 @@ class LicenseInitInfo
     end
 end
 
-require "org/allbinary/debug/DebugFactory"
-require "org/allbinary/debug/NoDebug"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :DebugFactory, "org/allbinary/debug/DebugFactory"
+autoload :NoDebug, "org/allbinary/debug/NoDebug"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

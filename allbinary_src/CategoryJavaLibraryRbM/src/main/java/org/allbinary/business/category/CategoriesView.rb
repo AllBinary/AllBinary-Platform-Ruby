@@ -45,8 +45,8 @@ class CategoriesView
     end
 end
 
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/CategoryInterface"
-require "org/allbinary/business/category/CategoryView"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+autoload :CategoryView, "org/allbinary/business/category/CategoryView"
 

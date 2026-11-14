@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
 
 class AnimationCompositePaintable < InitUpdatePaintable
@@ -42,5 +41,6 @@ class AnimationCompositePaintable < InitUpdatePaintable
     end
 end
 
-require "org/allbinary/animation/Animation"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
 

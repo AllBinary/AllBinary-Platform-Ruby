@@ -111,14 +111,14 @@ class CategoryEntity < AbSqlBean
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/category/Category"
-require "org/allbinary/business/category/CategoryData"
-require "org/allbinary/business/category/CategoryFactoryInterface"
-require "org/allbinary/business/init/db/InventoryDbInitInfo"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :Category, "org/allbinary/business/category/Category"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
+autoload :CategoryFactoryInterface, "org/allbinary/business/category/CategoryFactoryInterface"
+autoload :InventoryDbInitInfo, "org/allbinary/business/init/db/InventoryDbInitInfo"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

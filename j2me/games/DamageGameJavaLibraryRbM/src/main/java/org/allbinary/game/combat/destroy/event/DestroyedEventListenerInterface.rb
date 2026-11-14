@@ -22,9 +22,10 @@ module DestroyedEventListenerInterface
 
     # throws Exception
     def onDestroyed(destroyedEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/combat/destroy/event/DestroyedEvent"
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
 

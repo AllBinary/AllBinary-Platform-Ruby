@@ -72,7 +72,7 @@ class ShippingAddressTag < StoreValidationTransformTag
     end
 end
 
-require "org/allbinary/business/user/address/ShippingAddressData"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :ShippingAddressData, "org/allbinary/business/user/address/ShippingAddressData"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

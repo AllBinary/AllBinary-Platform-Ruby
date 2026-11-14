@@ -45,9 +45,9 @@ class StoreThemeCategoriesView
     end
 end
 
-require "org/allbinary/business/category/CategoryInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface"
-require "org/allbinary/business/category/store/theme/StoreThemeCategoryView"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :StoreThemeCategoryInterface, "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface"
+autoload :StoreThemeCategoryView, "org/allbinary/business/category/store/theme/StoreThemeCategoryView"
 

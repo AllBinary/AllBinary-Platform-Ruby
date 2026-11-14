@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score.displayable
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/displayable/canvas/GameCommandCanvas"
 require "org/allbinary/game/score/HighScoresResultsListener"
 require "org/allbinary/thread/ARunnable"
@@ -24,6 +21,49 @@ require "org/allbinary/thread/ARunnable"
 class HighScoresCanvas < GameCommandCanvas
     include HighScoresResultsListener
     attr_accessor :paintable, :highScoreCommandsFactory, :waitPaintable, :highScoresPaintable, :highScoresFactoryInterface, :colorFillPaintable, :highScoresHelper, :gameInfo, :highScoresCanvasInputProcessor, :currentCommand, :hasPainted
+    class HighScoreRunnable < ARunnable
+        attr_accessor :highScoresCanvas
+
+        def initialize_fields
+            @highScoresCanvas = nil
+        end
+        
+
+        def initialize(highScoresCanvas)
+            super()
+            initialize_fields
+            @highScoresCanvas = highScoresCanvas
+        end
+        
+
+        def run()
+            commonStrings = CommonStrings.getInstance()
+            logUtil = LogUtil.getInstance()
+            highScoresCanvas = @highScoresCanvas
+            begin
+                isHTML = J2MEUtil.isHTML()
+                if !isHTML
+                    while !highScoresCanvas.hasPainted
+                    end
+                    highScoresCanvas.hasPainted = false
+                end
+                stringMaker = StringMaker.new()
+                systemWrapper = ABSystemWrapper.getInstance()
+                currentTimeMillis = systemWrapper.currentTimeMillis()
+                logUtil.putF(stringMaker.append("HighScoresCanvas - Request repaint to be sure: ").appendlong(currentTimeMillis).to_s, self, commonStrings.RUN)
+                highScoresCanvas.repaintBehavior.onChangeRepaint(highScoresCanvas)
+                if !isHTML
+                    while !highScoresCanvas.hasPainted
+                    end
+                end
+                stringMaker.delete(0, stringMaker.length())
+                logUtil.putF(stringMaker.append("HighScoresCanvas - Now that the canvas has completed repaint go ahead and fetch the scores: ").appendlong(currentTimeMillis).to_s, self, commonStrings.RUN)
+                highScoresCanvas.executeUpdate()
+            rescue StandardError => e
+                logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
+            end
+        end
+    end
 
     def initialize_fields
         @paintable = NullPaintable.getInstance()
@@ -51,55 +91,12 @@ class HighScoresCanvas < GameCommandCanvas
         @waitPaintable.setBasicColorP(allBinaryGameLayerManager.getForegroundBasicColor())
         self.getHighScoresPaintable().setBasicColorP(allBinaryGameLayerManager.getForegroundBasicColor())
         @colorFillPaintable = ColorFillPaintableFactory.getInstance().getInstance(allBinaryGameLayerManager.getBackgroundBasicColor(), false)
-        if @highScoresHelper.getHighScoresArray() == NoHighScoresFactory.getInstance().NO_HIGH_SCORES
+        if @highScoresHelper.getHighScoresArray().length == NoHighScoresFactory.getInstance().NO_HIGH_SCORES.length
             self.setPaintable(@waitPaintable)
         else
             @logUtil.putF("Show HighScores that are already loaded", self, @commonStrings.CONSTRUCTOR)
             self.updateCommand(@currentCommand)
             self.setPaintable(self.getHighScoresPaintable())
-        end
-        class HighScoreRunnable < ARunnable
-            attr_accessor :highScoresCanvas
-
-            def initialize_fields
-                @highScoresCanvas = nil
-            end
-            
-
-            def initialize(highScoresCanvas)
-                super()
-                initialize_fields
-                @highScoresCanvas = highScoresCanvas
-            end
-            
-
-            def run()
-                commonStrings = CommonStrings.getInstance()
-                logUtil = LogUtil.getInstance()
-                highScoresCanvas = @highScoresCanvas
-                begin
-                    isHTML = J2MEUtil.isHTML()
-                    if !isHTML
-                        while !highScoresCanvas.hasPainted
-                        end
-                        highScoresCanvas.hasPainted = false
-                    end
-                    stringMaker = StringMaker.new()
-                    systemWrapper = ABSystemWrapper.getInstance()
-                    currentTimeMillis = systemWrapper.currentTimeMillis()
-                    logUtil.putF(stringMaker.append("HighScoresCanvas - Request repaint to be sure: ").appendlong(currentTimeMillis).to_s, self, commonStrings.RUN)
-                    highScoresCanvas.repaintBehavior.onChangeRepaint(highScoresCanvas)
-                    if !isHTML
-                        while !highScoresCanvas.hasPainted
-                        end
-                    end
-                    stringMaker.delete(0, stringMaker.length())
-                    logUtil.putF(stringMaker.append("HighScoresCanvas - Now that the canvas has completed repaint go ahead and fetch the scores: ").appendlong(currentTimeMillis).to_s, self, commonStrings.RUN)
-                    highScoresCanvas.executeUpdate()
-                rescue StandardError => e
-                    logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
-                end
-            end
         end
         SecondaryThreadPool.getInstance().runTask(HighScoreRunnable.new(self))
     end
@@ -190,7 +187,7 @@ class HighScoresCanvas < GameCommandCanvas
         end
         @currentCommand = command
         self.close()
-        self.class.superclass.instance_method(:initMenu).bind(self).call()
+        HighScoresCanvas.superclass.instance_method(:initMenu).bind(self).call()
         self.open()
         @repaintBehavior.onChangeRepaint(self)
     end
@@ -205,34 +202,59 @@ class HighScoresCanvas < GameCommandCanvas
         @paintable = paintable
         @repaintBehavior.onChangeRepaint(self)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "HighScoresCanvas")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "HighScoresCanvas"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/paint/ColorFillBasePaintable"
-require "org/allbinary/game/paint/ColorFillPaintableFactory"
-require "org/allbinary/game/score/HighScoreCommandsFactory"
-require "org/allbinary/game/score/HighScores"
-require "org/allbinary/game/score/HighScoresCanvasInputProcessor"
-require "org/allbinary/game/score/HighScoresCanvasInputProcessorFactoryInterface"
-require "org/allbinary/game/score/HighScoresFactoryInterface"
-require "org/allbinary/game/score/HighScoresHelperBase"
-require "org/allbinary/game/score/HighScoresPaintable"
-require "org/allbinary/game/score/NoHighScoresFactory"
-require "org/allbinary/game/score/NullHighScoresSingletonFactory"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/graphics/paint/Paintable"
-require "org/allbinary/graphics/paint/SimpleTextPaintable"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/SecondaryThreadPool"
-require "org/allbinary/logic/ABSystemWrapper"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :ColorFillBasePaintable, "org/allbinary/game/paint/ColorFillBasePaintable"
+autoload :ColorFillPaintableFactory, "org/allbinary/game/paint/ColorFillPaintableFactory"
+autoload :HighScoreCommandsFactory, "org/allbinary/game/score/HighScoreCommandsFactory"
+autoload :HighScores, "org/allbinary/game/score/HighScores"
+autoload :HighScoresCanvasInputProcessor, "org/allbinary/game/score/HighScoresCanvasInputProcessor"
+autoload :HighScoresCanvasInputProcessorFactoryInterface, "org/allbinary/game/score/HighScoresCanvasInputProcessorFactoryInterface"
+autoload :HighScoresFactoryInterface, "org/allbinary/game/score/HighScoresFactoryInterface"
+autoload :HighScoresHelperBase, "org/allbinary/game/score/HighScoresHelperBase"
+autoload :HighScoresPaintable, "org/allbinary/game/score/HighScoresPaintable"
+autoload :NoHighScoresFactory, "org/allbinary/game/score/NoHighScoresFactory"
+autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+autoload :SimpleTextPaintable, "org/allbinary/graphics/paint/SimpleTextPaintable"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :SecondaryThreadPool, "org/allbinary/thread/SecondaryThreadPool"
+autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper"
 
-class HighScoresCanvas
-    NAME = "HighScoresCanvas"
+begin
+    HighScoresCanvas.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

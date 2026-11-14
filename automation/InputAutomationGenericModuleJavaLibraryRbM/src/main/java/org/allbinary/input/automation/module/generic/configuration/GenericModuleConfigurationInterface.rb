@@ -28,5 +28,5 @@ module GenericModuleConfigurationInterface
     end
 end
 
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
+autoload :GenericProfile, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
 

@@ -49,14 +49,36 @@ class PreLogUtil
         print(PreLogUtil::LOG_SUCCESS)
         puts(message)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:LOG_SUCCESS, "org.allbinary: ")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PreLogUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:LOG_SUCCESS].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/LogFormatUtil"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil"
 require "java/lang/System"
 
-class PreLogUtil
-    LOG_SUCCESS = "org.allbinary: "
+begin
+    PreLogUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

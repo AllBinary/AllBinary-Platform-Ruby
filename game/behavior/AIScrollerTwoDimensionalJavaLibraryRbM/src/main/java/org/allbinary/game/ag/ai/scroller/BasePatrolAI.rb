@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.scroller
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/ai/BasicAI"
 
 class BasePatrolAI < BasicAI
@@ -74,20 +73,43 @@ class BasePatrolAI < BasicAI
 
     def disable()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:MAX_DISTANCE, SmallIntegerSingletonFactory.getInstance().getAt(2))
+            const_set(:DIRECTION_ARRAY, SmallIntegerSingletonFactory.getInstance().getAt(3))
+            const_set(:FIRING_DISTANCE, SmallIntegerSingletonFactory.getInstance().getAt(4))
+            const_set(:SPEED, SmallIntegerSingletonFactory.getInstance().getAt(5))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasePatrolAI"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:MAX_DISTANCE, :DIRECTION_ARRAY, :FIRING_DISTANCE, :SPEED].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-require "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/math/MathUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/util/ABHashtable"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class BasePatrolAI
-    MAX_DISTANCE = SmallIntegerSingletonFactory.getInstance().getAt(2)
-    DIRECTION_ARRAY = SmallIntegerSingletonFactory.getInstance().getAt(3)
-    FIRING_DISTANCE = SmallIntegerSingletonFactory.getInstance().getAt(4)
-    SPEED = SmallIntegerSingletonFactory.getInstance().getAt(5)
+begin
+    BasePatrolAI.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

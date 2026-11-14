@@ -40,10 +40,10 @@ class OSGIActivatorUtil
     end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/osgi/framework/BundleContext"
-require "org/osgi/framework/NullServiceReferenceFactory"
-require "org/osgi/framework/ServiceReference"
-require "org/osgi/framework/ServiceRegistration"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :NullServiceReferenceFactory, "org/osgi/framework/NullServiceReferenceFactory"
+autoload :ServiceReference, "org/osgi/framework/ServiceReference"
+autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration"
 

@@ -49,6 +49,6 @@ class BasicColorArrayIndexer
     end
 end
 
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/graphics/color/BasicColor"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

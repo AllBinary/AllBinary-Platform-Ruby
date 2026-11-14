@@ -87,11 +87,11 @@ class CategoryModifierTree < CategoryPrivateTree
     end
 end
 
-require "org/allbinary/business/category/CategoryFactoryInterface"
-require "org/allbinary/business/category/CategoryInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :CategoryFactoryInterface, "org/allbinary/business/category/CategoryFactoryInterface"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :Directory, "org/allbinary/logic/io/file/directory/Directory"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

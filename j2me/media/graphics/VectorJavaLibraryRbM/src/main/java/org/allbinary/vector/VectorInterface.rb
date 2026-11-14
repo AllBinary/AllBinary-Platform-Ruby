@@ -19,11 +19,13 @@ module VectorInterface
     
 
     def getPoints(frame)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setPoints(currentPoints)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

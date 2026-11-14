@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.midlet
 
-# require "javax/microedition/midlet/MIDlet"
 require "org/allbinary/canvas/Processor"
 
 class MidletExitProcessor < Processor
@@ -36,4 +35,6 @@ class MidletExitProcessor < Processor
     def process()
     end
 end
+
+autoload :MIDlet, "javax/microedition/midlet/MIDlet"
 

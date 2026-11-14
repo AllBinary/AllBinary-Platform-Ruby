@@ -45,9 +45,9 @@ class PreciseConstantVelocityMovement < BasicConstantVelocityMovement
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-require "org/allbinary/logic/math/BasicDecimal"
-require "org/allbinary/logic/math/MathUtil"
-require "org/allbinary/logic/math/ScaleFactorFactory"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
+autoload :ScaleFactorFactory, "org/allbinary/logic/math/ScaleFactorFactory"
 

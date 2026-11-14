@@ -53,7 +53,7 @@ class OscillateVelocityMovement < BasicConstantVelocityMovement
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/game/physics/velocity/VelocityProperties"
-require "org/allbinary/logic/math/BasicDecimal"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :VelocityProperties, "org/allbinary/game/physics/velocity/VelocityProperties"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
 

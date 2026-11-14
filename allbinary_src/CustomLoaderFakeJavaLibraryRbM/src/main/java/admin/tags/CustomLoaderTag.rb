@@ -79,10 +79,10 @@ class CustomLoaderTag < CustomTagSupport
     end
 end
 
-require "org/allbinary/globals/AppUrlGlobals"
-require "org/allbinary/globals/GLOBALS2"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals"
+autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

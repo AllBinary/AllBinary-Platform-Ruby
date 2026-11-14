@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.draw
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 
 class CanvasDrawLineString
@@ -49,13 +47,37 @@ class CanvasDrawLineString
         @myFontProcessor.process(graphics)
         @drawStringUtil.drawCenterString(graphics, string, 0, string.length, @x, @y + (line * @fontHeight))
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_CANVAS_DRAW_LINE_STRING, CanvasDrawLineString.new(0, 0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CanvasDrawLineString"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_CANVAS_DRAW_LINE_STRING].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/graphics/draw/DrawStringUtil"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :DrawStringUtil, "org/allbinary/graphics/draw/DrawStringUtil"
 
-class CanvasDrawLineString
-    NULL_CANVAS_DRAW_LINE_STRING = CanvasDrawLineString.new(0, 0)
+begin
+    CanvasDrawLineString.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

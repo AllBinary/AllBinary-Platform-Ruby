@@ -43,13 +43,35 @@ class GameMode
         return self.getName()
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NONE, GameMode.new(StringUtil.getInstance().NULL_STRING))
+            const_set(:SERVER, GameMode.new("Server"))
+            const_set(:CLIENT, GameMode.new("Client"))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameMode"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NONE, :SERVER, :CLIENT].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class GameMode
-    NONE = GameMode.new(StringUtil.getInstance().NULL_STRING)
-    SERVER = GameMode.new("Server")
-    CLIENT = GameMode.new("Client")
+begin
+    GameMode.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

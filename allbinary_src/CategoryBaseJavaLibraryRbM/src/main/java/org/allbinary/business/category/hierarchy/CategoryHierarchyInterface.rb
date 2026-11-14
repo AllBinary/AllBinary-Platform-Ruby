@@ -53,5 +53,5 @@ module CategoryHierarchyInterface
     end
 end
 
-require "org/allbinary/business/category/CategoryInterface"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
 

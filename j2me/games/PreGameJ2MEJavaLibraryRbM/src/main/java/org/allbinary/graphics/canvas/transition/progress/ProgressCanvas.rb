@@ -14,39 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.canvas.transition.progress
 
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/NullCanvas"
-# require "javax/microedition/lcdui/NullCommandListener"
 require "org/allbinary/canvas/RunnableCanvas"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
-require "org/allbinary/graphics/paint/Paintable"
 require "org/allbinary/graphics/paint/PaintableInterface"
 
 class ProgressCanvas < RunnableCanvas
     include PaintableInterface
     include UpdateMyFontInterface
     attr_accessor :hasPainted, :backgroundBasicColor, :GAUGE_PAINTABLE, :maxValue, :gauge, :TEXT, :updateMyFontProcessor, :myFontProcessor, :allbinaryMidlet, :value, :text, :background, :paintable, :inProgress, :IN_GAME_PROCESSOR, :inGameProcessor, :progressEndListener, :backgroundLabel, :START_BACKGROUND, :ADD_PORTION, :ADD_EARLY_PORTION
-    class ProgressPaintable < Paintable
-        attr_accessor :progressCanvas
-
-        def initialize_fields
-            @progressCanvas = nil
-        end
-        
-
-        def initialize(progressCanvas)
-            super()
-            initialize_fields
-            @progressCanvas = progressCanvas
-        end
-        
-
-        def paint(graphics)
-            @progressCanvas.paint2(graphics)
-        end
-    end
 
     def initialize_fields
         @hasPainted = false
@@ -252,20 +227,27 @@ class ProgressCanvas < RunnableCanvas
     end
 end
 
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/graphics/form/item/ABCustomGaugeItem"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/midlet/AllBinaryMidlet"
-require "org/allbinary/thread/PathFindingThreadPool"
-require "org/allbinary/thread/ThreadPool"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressEndListener"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
+autoload :NullCommandListener, "javax/microedition/lcdui/NullCommandListener"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :ABCustomGaugeItem, "org/allbinary/graphics/form/item/ABCustomGaugeItem"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet"
+autoload :PathFindingThreadPool, "org/allbinary/thread/PathFindingThreadPool"
+autoload :ThreadPool, "org/allbinary/thread/ThreadPool"
+autoload :ProgressEndListener, "org/allbinary/graphics/canvas/transition/progress/ProgressEndListener"
+autoload :ProgressPaintable, "org/allbinary/graphics/canvas/transition/progress/ProgressPaintable"
 

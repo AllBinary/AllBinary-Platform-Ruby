@@ -36,7 +36,7 @@ class OrderHistoryIdGenerator < UniqueIdGenerator
     end
 end
 
-require "org/allbinary/globals/PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/string/StringMaker"
+autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

@@ -83,10 +83,10 @@ class HtmlForm
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/visual/dhtml/html/input/HtmlInput"
-require "org/allbinary/logic/visual/dhtml/html/table/HtmlTable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :HtmlInput, "org/allbinary/logic/visual/dhtml/html/input/HtmlInput"
+autoload :HtmlTable, "org/allbinary/logic/visual/dhtml/html/table/HtmlTable"
 

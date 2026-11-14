@@ -43,5 +43,5 @@ module TransformInterface
     end
 end
 
-require "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
 

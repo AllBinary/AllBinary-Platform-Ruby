@@ -75,15 +75,15 @@ class CustomUriResolver
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/crypt/file/CryptFileReader"
-require "org/allbinary/logic/io/path/AbFilePath"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/transform/info/template/TransformInfoTemplateData"
-require "org/allbinary/data/tree/dom/BasicUriResolver"
-require "org/allbinary/data/tree/dom/URIResolverStrings"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader"
+autoload :AbFilePath, "org/allbinary/logic/io/path/AbFilePath"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :TransformInfoTemplateData, "org/allbinary/logic/visual/transform/info/template/TransformInfoTemplateData"
+autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver"
+autoload :URIResolverStrings, "org/allbinary/data/tree/dom/URIResolverStrings"
 

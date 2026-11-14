@@ -28,8 +28,8 @@ class PoolInterfaceFactory
     end
 end
 
-require "org/allbinary/logic/util/cache/CachePolicy"
-require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
-require "org/allbinary/logic/util/cache/PoolInterface"
-require "org/allbinary/logic/util/cache/PoolType"
+autoload :CachePolicy, "org/allbinary/logic/util/cache/CachePolicy"
+autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+autoload :PoolInterface, "org/allbinary/logic/util/cache/PoolInterface"
+autoload :PoolType, "org/allbinary/logic/util/cache/PoolType"
 

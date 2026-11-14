@@ -22,12 +22,14 @@ module DamageableInterface
 
     # throws Exception
     def damage(damage, damageType)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getDamage(damageType)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

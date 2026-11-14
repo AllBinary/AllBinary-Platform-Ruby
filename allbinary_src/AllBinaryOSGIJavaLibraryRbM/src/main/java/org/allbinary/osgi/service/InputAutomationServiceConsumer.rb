@@ -88,13 +88,13 @@ class InputAutomationServiceConsumer
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/osgi/framework/BundleContext"
-require "org/osgi/framework/ServiceReference"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/osgi/OSGIServiceInterface"
-require "org/allbinary/osgi/OSGIServiceVisitorInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/osgi/service/OSGIServiceUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
+autoload :ServiceReference, "org/osgi/framework/ServiceReference"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :OSGIServiceInterface, "org/allbinary/osgi/OSGIServiceInterface"
+autoload :OSGIServiceVisitorInterface, "org/allbinary/osgi/OSGIServiceVisitorInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :OSGIServiceUtil, "org/allbinary/osgi/service/OSGIServiceUtil"
 

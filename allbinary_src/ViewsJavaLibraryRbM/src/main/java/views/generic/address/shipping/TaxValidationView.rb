@@ -59,13 +59,13 @@ class TaxValidationView < ShippingAddressView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/address/ShippingAddressData"
-require "org/allbinary/business/user/address/StreetAddress"
-require "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntity"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ShippingAddressData, "org/allbinary/business/user/address/ShippingAddressData"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+autoload :ShippingAddressesEntity, "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntity"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

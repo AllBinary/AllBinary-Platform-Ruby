@@ -20,10 +20,11 @@ module InputMappingInterface
 
     # throws Exception
     def processInputMapping(gameKey, input)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/Input"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :Input, "org/allbinary/game/input/Input"
 

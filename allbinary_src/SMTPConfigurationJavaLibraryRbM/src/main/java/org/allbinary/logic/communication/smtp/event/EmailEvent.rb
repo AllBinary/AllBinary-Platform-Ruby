@@ -62,7 +62,7 @@ class EmailEvent < EventObject
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/communication/smtp/info/EmailInfo"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
+autoload :EmailInfo, "org/allbinary/logic/communication/smtp/info/EmailInfo"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
 

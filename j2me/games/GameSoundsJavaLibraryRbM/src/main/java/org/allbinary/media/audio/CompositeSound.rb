@@ -30,6 +30,6 @@ class CompositeSound < Sound
     end
 end
 
-require "org/allbinary/media/audio/AllBinaryMediaManager"
-require "org/allbinary/media/audio/PlayerComposite"
+autoload :AllBinaryMediaManager, "org/allbinary/media/audio/AllBinaryMediaManager"
+autoload :PlayerComposite, "org/allbinary/media/audio/PlayerComposite"
 

@@ -193,11 +193,11 @@ class ImageActionScriptOutputJPanel < JPanel
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/input/media/image/InputImageType"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputInterface"
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageTypes"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :InputImageType, "org/allbinary/input/media/image/InputImageType"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ImageActionScriptOutputInterface, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputInterface"
+autoload :ImageTypes, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageTypes"
 

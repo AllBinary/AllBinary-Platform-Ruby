@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/TextField"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
 class CustomTextBoxIndexedAnimationFactory
@@ -56,14 +54,16 @@ class CustomTextBoxIndexedAnimationFactory
     end
 end
 
-require "org/allbinary/graphics/form/item/CustomTextBox"
-require "org/allbinary/animation/Animation"
-require "org/allbinary/game/canvas/ABToGBUtil"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/animation/text/CustomTextBox2"
-require "org/allbinary/animation/text/CustomTextBoxIndexedAnimation"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :TextField, "javax/microedition/lcdui/TextField"
+autoload :CustomTextBox, "org/allbinary/graphics/form/item/CustomTextBox"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :ABToGBUtil, "org/allbinary/game/canvas/ABToGBUtil"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :CustomTextBox2, "org/allbinary/animation/text/CustomTextBox2"
+autoload :CustomTextBoxIndexedAnimation, "org/allbinary/animation/text/CustomTextBoxIndexedAnimation"
 

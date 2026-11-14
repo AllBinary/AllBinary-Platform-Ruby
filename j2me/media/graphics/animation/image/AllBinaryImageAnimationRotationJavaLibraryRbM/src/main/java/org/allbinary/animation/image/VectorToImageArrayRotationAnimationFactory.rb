@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
 require "org/allbinary/animation/image/BaseImageAnimationFactory"
 
 class VectorToImageArrayRotationAnimationFactory < BaseImageAnimationFactory
@@ -61,17 +59,19 @@ class VectorToImageArrayRotationAnimationFactory < BaseImageAnimationFactory
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/VectorAnimation"
-require "org/allbinary/game/configuration/GameConfigurationCentral"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/image/AnimationFrameToImageUtil"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/media/image/ImageToRotationImageArrayUtil"
-require "org/allbinary/vector/VectorInfo"
-require "org/allbinary/animation/image/AdjustedImageArrayRotationAnimation"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :VectorAnimation, "org/allbinary/animation/VectorAnimation"
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :AnimationFrameToImageUtil, "org/allbinary/image/AnimationFrameToImageUtil"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :ImageToRotationImageArrayUtil, "org/allbinary/media/image/ImageToRotationImageArrayUtil"
+autoload :VectorInfo, "org/allbinary/vector/VectorInfo"
+autoload :AdjustedImageArrayRotationAnimation, "org/allbinary/animation/image/AdjustedImageArrayRotationAnimation"
 

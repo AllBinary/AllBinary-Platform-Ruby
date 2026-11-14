@@ -28,18 +28,42 @@ class PostGameCommandFactory
     end
 
     def self.instance()
+        PostGameCommandFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PostGameCommandFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PostGameCommandFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PostGameCommandFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/feature/MultiPlayerGameFeatureFactory"
-require "org/allbinary/graphics/displayable/MyCanvas"
+autoload :MultiPlayerGameFeatureFactory, "org/allbinary/game/configuration/feature/MultiPlayerGameFeatureFactory"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
 
-class PostGameCommandFactory
-    @@instance = PostGameCommandFactory.new()
+begin
+    PostGameCommandFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

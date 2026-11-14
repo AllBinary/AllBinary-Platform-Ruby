@@ -21,9 +21,10 @@ module GameFeatureListenerInterface
     
 
     def onGameFeatureChange(gameFeatureEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/configuration/event/GameFeatureEvent"
+autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent"
 

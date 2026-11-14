@@ -28,5 +28,5 @@ module ContextConfigurationInterface
     end
 end
 
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
+autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
 

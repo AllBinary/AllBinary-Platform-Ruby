@@ -28,7 +28,7 @@ class CssElementValidationFactory
     end
 end
 
-require "org/allbinary/logic/control/validate/ValidationInterface"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/visual/dhtml/style/css/CssElementValidation"
+autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CssElementValidation, "org/allbinary/logic/visual/dhtml/style/css/CssElementValidation"
 

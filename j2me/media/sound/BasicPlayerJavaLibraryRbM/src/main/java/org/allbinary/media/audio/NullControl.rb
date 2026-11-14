@@ -14,7 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
-# require "javax/microedition/media/Control"
+require "javax/microedition/media/Control"
 
 class NullControl
     include Control

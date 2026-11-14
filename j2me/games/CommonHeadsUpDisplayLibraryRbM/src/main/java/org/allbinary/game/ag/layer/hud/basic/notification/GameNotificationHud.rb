@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.notification
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/graphics/hud/BasicHud"
 require "org/allbinary/game/layer/hud/event/GameNotificationListenerInterface"
 
@@ -64,18 +63,41 @@ class GameNotificationHud < BasicHud
 
     def clear()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_GAME_NOTIFICATION, GameNotificationHud.new(BasicHudFactory.getInstance().TOPCENTER, BasicHudFactory.getInstance().HORIZONTAL, 0, BasicColorFactory.getInstance().RED))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameNotificationHud"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_GAME_NOTIFICATION].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/graphics/hud/BasicHudFactory"
-require "org/allbinary/game/layer/hud/event/GameNotificationEvent"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/game/ag/layer/hud/basic/notification/GameNotification"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory"
+autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :GameNotification, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotification"
 
-class GameNotificationHud
-    NULL_GAME_NOTIFICATION = GameNotificationHud.new(BasicHudFactory.getInstance().TOPCENTER, BasicHudFactory.getInstance().HORIZONTAL, 0, BasicColorFactory.getInstance().RED)
+begin
+    GameNotificationHud.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

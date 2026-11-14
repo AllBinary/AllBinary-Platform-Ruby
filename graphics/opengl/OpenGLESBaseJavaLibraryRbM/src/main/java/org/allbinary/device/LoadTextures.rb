@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.device
 
-# require "javax/microedition/khronos/opengles/GL10"
 
 class LoadTextures
     
@@ -23,4 +22,6 @@ class LoadTextures
     def load(gl)
     end
 end
+
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
 

@@ -41,5 +41,5 @@ class InputAutomationModuleFactoryInterface
     end
 end
 
-require "org/allbinary/thread/RunnableInterface"
+autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface"
 

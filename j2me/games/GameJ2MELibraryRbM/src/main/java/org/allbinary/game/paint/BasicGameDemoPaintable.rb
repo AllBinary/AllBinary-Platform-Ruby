@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/StatePaintable"
 
 class BasicGameDemoPaintable < StatePaintable
@@ -74,6 +73,7 @@ class BasicGameDemoPaintable < StatePaintable
     end
 end
 
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/graphics/paint/Paintable"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
 

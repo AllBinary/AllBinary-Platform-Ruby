@@ -77,7 +77,7 @@ class HealthBarAnimation < Animation
     end
 end
 
-require "org/allbinary/game/graphics/hud/BasicHudFactory"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/layer/AllBinaryLayer"
+autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
 

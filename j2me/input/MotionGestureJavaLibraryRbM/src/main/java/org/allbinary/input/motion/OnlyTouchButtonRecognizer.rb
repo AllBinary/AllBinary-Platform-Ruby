@@ -59,5 +59,5 @@ class OnlyTouchButtonRecognizer < MotionRecognizer
     end
 end
 
-require "org/allbinary/input/motion/button/TouchButtonRecognizer"
+autoload :TouchButtonRecognizer, "org/allbinary/input/motion/button/TouchButtonRecognizer"
 

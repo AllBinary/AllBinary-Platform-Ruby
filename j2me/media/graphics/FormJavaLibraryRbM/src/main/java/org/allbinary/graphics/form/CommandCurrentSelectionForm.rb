@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/form/ScrollCurrentSelectionForm"
 
@@ -142,7 +140,7 @@ class CommandCurrentSelectionForm < ScrollCurrentSelectionForm
     
 
     def getSelectedCommand()
-        index = self.class.superclass.instance_method(:getSelectedIndex).bind(self).call()
+        index = CommandCurrentSelectionForm.superclass.instance_method(:getSelectedIndex).bind(self).call()
         commandTextItem = self.get(index)
         return commandTextItem.getCommand()
     end
@@ -196,14 +194,16 @@ class CommandCurrentSelectionForm < ScrollCurrentSelectionForm
     end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/animation/vector/RectangleAdjustedAnimation"
-require "org/allbinary/animation/vector/RectangleFilledAdjustedAnimation"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/form/item/CommandTextItem"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/graphics/form/ItemPaintableFactory"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :RectangleAdjustedAnimation, "org/allbinary/animation/vector/RectangleAdjustedAnimation"
+autoload :RectangleFilledAdjustedAnimation, "org/allbinary/animation/vector/RectangleFilledAdjustedAnimation"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :CommandTextItem, "org/allbinary/graphics/form/item/CommandTextItem"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :ItemPaintableFactory, "org/allbinary/graphics/form/ItemPaintableFactory"
 

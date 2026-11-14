@@ -37,7 +37,7 @@ class CustomerStoreAdminUserFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/business/user/modules/admin/store/customer/CustomerStoreAdminUser"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :CustomerStoreAdminUser, "org/allbinary/business/user/modules/admin/store/customer/CustomerStoreAdminUser"
 

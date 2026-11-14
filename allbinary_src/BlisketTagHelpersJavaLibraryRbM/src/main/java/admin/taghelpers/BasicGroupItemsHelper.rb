@@ -104,10 +104,10 @@ class BasicGroupItemsHelper < BasicTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/installer/Portion"
-require "org/allbinary/data/tables/user/commerce/inventory/item/groups/BasicGroupItemsEntity"
-require "org/allbinary/data/tables/user/commerce/inventory/item/groups/BasicGroupItemsEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :Portion, "org/allbinary/business/installer/Portion"
+autoload :BasicGroupItemsEntity, "org/allbinary/data/tables/user/commerce/inventory/item/groups/BasicGroupItemsEntity"
+autoload :BasicGroupItemsEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/groups/BasicGroupItemsEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
 

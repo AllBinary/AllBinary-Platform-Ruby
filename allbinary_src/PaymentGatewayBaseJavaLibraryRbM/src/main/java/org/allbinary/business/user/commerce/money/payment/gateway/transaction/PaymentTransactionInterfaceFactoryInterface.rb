@@ -60,7 +60,7 @@ module PaymentTransactionInterfaceFactoryInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
-require "org/allbinary/business/user/commerce/money/payment/types/TenderType"
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
+autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+autoload :TenderType, "org/allbinary/business/user/commerce/money/payment/types/TenderType"
+autoload :PaymentTransactionInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
 

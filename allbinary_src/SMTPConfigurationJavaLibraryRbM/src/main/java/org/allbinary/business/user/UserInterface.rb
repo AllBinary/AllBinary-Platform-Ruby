@@ -272,8 +272,8 @@ module UserInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/modules/configuration/UserConfigurationInterface"
-require "org/allbinary/business/user/role/UserRole"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserConfigurationInterface, "org/allbinary/business/user/modules/configuration/UserConfigurationInterface"
+autoload :UserRole, "org/allbinary/business/user/role/UserRole"
+autoload :WeblisketSessionInterface, "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
 

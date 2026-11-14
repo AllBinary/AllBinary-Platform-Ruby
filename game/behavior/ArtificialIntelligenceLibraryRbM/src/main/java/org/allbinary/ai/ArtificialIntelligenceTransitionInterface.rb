@@ -19,6 +19,7 @@ module ArtificialIntelligenceTransitionInterface
     
 
     def transition()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

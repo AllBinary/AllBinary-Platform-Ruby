@@ -44,9 +44,9 @@ class MultiPlayerGameLayer < CollidableDestroyableDamageableLayer
     end
 end
 
-require "org/allbinary/game/identification/Group"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/game/multiplayer/layer/MultiplayerBehavior"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :Group, "org/allbinary/game/identification/Group"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :MultiplayerBehavior, "org/allbinary/game/multiplayer/layer/MultiplayerBehavior"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
 

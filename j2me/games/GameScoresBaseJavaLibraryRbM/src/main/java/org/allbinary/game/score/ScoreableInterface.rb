@@ -19,16 +19,19 @@ module ScoreableInterface
     
 
     def getPoints()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def addPoints(points)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def removePoints(points)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

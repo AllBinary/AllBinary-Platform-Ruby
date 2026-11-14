@@ -21,41 +21,49 @@ module VelocityInterface
     
 
     def getMaxForwardVelocity()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMaxReverseVelocity()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def limitMaxXYForwardVelocity()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def limitMaxXYReverseVelocity()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def limitXYToForwardAndReverseMaxVelocity()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def limitMaxXYVelocity(maxVelocity)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setMaxForwardVelocity(maxForwardVelocity)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setMaxReverseVelocity(maxReverseVelocity)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

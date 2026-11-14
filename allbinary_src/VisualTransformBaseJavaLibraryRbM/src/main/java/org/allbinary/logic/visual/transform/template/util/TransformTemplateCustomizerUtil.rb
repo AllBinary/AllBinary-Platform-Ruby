@@ -74,27 +74,51 @@ class TransformTemplateCustomizerUtil
     end
 
     def self.instance()
+        TransformTemplateCustomizerUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformTemplateCustomizerUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformTemplateCustomizerUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformTemplateCustomizerUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/globals/GLOBALS2"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/regex/replace/Replace"
-require "org/allbinary/logic/visual/transform/info/CustomizerTransformInfoData"
-require "org/allbinary/logic/visual/transform/template/customizer/bodies/BodyData"
-require "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleData"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
+autoload :HashMap, "java/util/HashMap"
+autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
+autoload :CustomizerTransformInfoData, "org/allbinary/logic/visual/transform/info/CustomizerTransformInfoData"
+autoload :BodyData, "org/allbinary/logic/visual/transform/template/customizer/bodies/BodyData"
+autoload :TitleData, "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleData"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class TransformTemplateCustomizerUtil
-    @@instance = TransformTemplateCustomizerUtil.new()
+begin
+    TransformTemplateCustomizerUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

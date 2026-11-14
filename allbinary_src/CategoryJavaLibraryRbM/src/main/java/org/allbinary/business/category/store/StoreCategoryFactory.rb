@@ -80,14 +80,14 @@ class StoreCategoryFactory < CategoryAbstractFactory
     end
 end
 
-require "org/allbinary/business/category/Category"
-require "org/allbinary/business/category/CategoryInterface"
-require "org/allbinary/business/category/CategoryUtil"
-require "org/allbinary/business/category/properties/CategoryPropertiesFactoryInterface"
-require "org/allbinary/business/category/properties/root/store/RootStoreCategoryPropertiesFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Node"
+autoload :Category, "org/allbinary/business/category/Category"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+autoload :CategoryUtil, "org/allbinary/business/category/CategoryUtil"
+autoload :CategoryPropertiesFactoryInterface, "org/allbinary/business/category/properties/CategoryPropertiesFactoryInterface"
+autoload :RootStoreCategoryPropertiesFactory, "org/allbinary/business/category/properties/root/store/RootStoreCategoryPropertiesFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Node, "org/w3c/dom/Node"
 

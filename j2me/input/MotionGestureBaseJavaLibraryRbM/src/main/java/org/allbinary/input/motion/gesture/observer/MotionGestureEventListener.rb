@@ -21,55 +21,65 @@ module MotionGestureEventListener
     
 
     def onPressedMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onUpMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDownMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onLeftMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onRightMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDiagonalDownRightMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDiagonalDownLeftMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDiagonalUpRightMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDiagonalUpLeftMotionGestureEvent(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def released(ev)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
 

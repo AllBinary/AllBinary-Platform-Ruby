@@ -152,31 +152,53 @@ class DownloadableInventoryItemView < HttpStoreComponentView
     def getDownloadableItem()
         return @downloadableItem
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:TYPE_ID, 11)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DownloadableInventoryItemView"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:TYPE_ID].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemView"
-require "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
-require "org/allbinary/business/user/commerce/inventory/item/download/DownloadableItem"
-require "org/allbinary/business/user/commerce/inventory/item/download/DownloadableItemView"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/request/MultipartRequestParams"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/FilePathData"
-require "org/allbinary/logic/io/file/FileUtil"
-require "org/allbinary/logic/io/file/zip/ZipFileUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/apache/commons/fileupload/FileItem"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :BasicItemView, "org/allbinary/business/user/commerce/inventory/item/BasicItemView"
+autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
+autoload :DownloadableItem, "org/allbinary/business/user/commerce/inventory/item/download/DownloadableItem"
+autoload :DownloadableItemView, "org/allbinary/business/user/commerce/inventory/item/download/DownloadableItemView"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :MultipartRequestParams, "org/allbinary/logic/communication/http/request/MultipartRequestParams"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
+autoload :FileUtil, "org/allbinary/logic/io/file/FileUtil"
+autoload :ZipFileUtil, "org/allbinary/logic/io/file/zip/ZipFileUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :FileItem, "org/apache/commons/fileupload/FileItem"
 
-class DownloadableInventoryItemView
-    TYPE_ID = 11
+begin
+    DownloadableInventoryItemView.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

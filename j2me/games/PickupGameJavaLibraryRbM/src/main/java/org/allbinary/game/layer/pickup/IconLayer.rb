@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.pickup
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/layer/AllBinaryLayer"
 
 class IconLayer < AllBinaryLayer
@@ -45,16 +44,39 @@ class IconLayer < AllBinaryLayer
     def getAnimationInterface()
         return @animationInterface
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_ICON_LAYER, IconLayer.new(NullAnimationFactory.getFactoryInstance().getInstance(0), 0, 0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "IconLayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_ICON_LAYER].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/view/ViewPosition"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
 
-class IconLayer
-    NULL_ICON_LAYER = IconLayer.new(NullAnimationFactory.getFactoryInstance().getInstance(0), 0, 0)
+begin
+    IconLayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

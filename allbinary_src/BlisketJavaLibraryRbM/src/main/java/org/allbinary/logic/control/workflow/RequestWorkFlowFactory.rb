@@ -49,11 +49,11 @@ class RequestWorkFlowFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tables/workflow/WorkFlowEntityFactory"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/logic/control/workflow/WorkFlowData"
-require "org/allbinary/logic/control/workflow/WorkFlowInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :WorkFlowEntityFactory, "org/allbinary/data/tables/workflow/WorkFlowEntityFactory"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :WorkFlowData, "org/allbinary/logic/control/workflow/WorkFlowData"
+autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface"
 

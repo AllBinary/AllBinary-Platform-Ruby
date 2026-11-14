@@ -59,8 +59,8 @@ class LayerProcessor
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/layer/LayerManager"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :LayerManager, "org/allbinary/layer/LayerManager"
 

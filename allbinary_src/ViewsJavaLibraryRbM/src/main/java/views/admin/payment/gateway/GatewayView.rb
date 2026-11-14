@@ -53,11 +53,11 @@ class GatewayView < PaymentGatewayViewAbstract
     end
 end
 
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
-require "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
-require "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "views/admin/payment/gateway/PaymentGatewayComponent"
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+autoload :BasicPaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentTypeUtil"
+autoload :PaymentGatewayEntityFactory, "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :PaymentGatewayComponent, "views/admin/payment/gateway/PaymentGatewayComponent"
 

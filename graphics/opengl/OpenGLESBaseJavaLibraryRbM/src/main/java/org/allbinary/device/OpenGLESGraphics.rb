@@ -2,10 +2,7 @@
 # frozen_string_literal: false
 # package org.allbinary.device
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/khronos/opengles/GL10"
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
+require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/image/opengles/OpenGLSurfaceChangedInterface"
 require "org/allbinary/device/GraphicsInterface"
 
@@ -62,7 +59,10 @@ class OpenGLESGraphics < Graphics
     end
 end
 
-require "org/allbinary/graphics/font/FontDebugBase"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/device/NullGL10"
+autoload :GL, "javax/microedition/khronos/opengles/GL"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :FontDebugBase, "org/allbinary/graphics/font/FontDebugBase"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :NullGL10, "org/allbinary/device/NullGL10"
 

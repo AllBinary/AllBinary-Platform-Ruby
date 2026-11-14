@@ -71,14 +71,14 @@ class StoreFrontInventoryStatistics
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
-require "org/allbinary/business/user/commerce/money/Money"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
-require "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatisticsData"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+autoload :InventoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityFactory"
+autoload :InventoryEntityInterface, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntityInterface"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StoreFrontInventoryStatisticsData, "org/allbinary/business/context/modules/storefront/statistics/inventory/StoreFrontInventoryStatisticsData"
 

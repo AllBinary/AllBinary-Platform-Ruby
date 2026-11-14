@@ -26,8 +26,8 @@ class ContextTransformer < BasicTransformer
     end
 end
 
-require "org/allbinary/data/tree/dom/BasicUriResolver"
-require "org/allbinary/data/tree/dom/ContextUriResolver"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver"
+autoload :ContextUriResolver, "org/allbinary/data/tree/dom/ContextUriResolver"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

@@ -54,21 +54,43 @@ class MineLayer < SimpleWeaponLayer
             @viewPositionEventHandler.removeListener(self)
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "MineLayer")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MineLayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/ag/weapon/media/audio/DropWeaponSound"
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/media/audio/SecondaryPlayerQueueFactory"
-require "org/allbinary/physics/movement/NoMovementFactory"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/view/event/ViewPositionEventHandler"
-require "org/allbinary/game/ag/layer/weapon/mine/MineWeaponResources"
+autoload :DropWeaponSound, "org/allbinary/ag/weapon/media/audio/DropWeaponSound"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :SecondaryPlayerQueueFactory, "org/allbinary/media/audio/SecondaryPlayerQueueFactory"
+autoload :NoMovementFactory, "org/allbinary/physics/movement/NoMovementFactory"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :ViewPositionEventHandler, "org/allbinary/view/event/ViewPositionEventHandler"
+autoload :MineWeaponResources, "org/allbinary/game/ag/layer/weapon/mine/MineWeaponResources"
 
-class MineLayer
-    NAME = "MineLayer"
+begin
+    MineLayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

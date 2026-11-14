@@ -21,9 +21,10 @@ module BasicColorCompositeSetterInterface
     
 
     def setBasicColorP(basicColor)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

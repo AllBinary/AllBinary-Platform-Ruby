@@ -37,16 +37,38 @@ class CustomLoaderHelperFactory
     def getInstance(abeClientInformation)
         return HelperFactory.getInstance(abeClientInformation, FACTORYNAME, CustomLoaderHelperFactory::CLASSNAME)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:CLASSNAME, "admin.taghelpers.CustomLoaderHelper")
+        const_set(:FACTORYNAME, "CustomLoaderHelperFactory")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CustomLoaderHelperFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:CLASSNAME, :FACTORYNAME].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
-require "admin/taghelpers/HelperFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :HelperFactory, "admin/taghelpers/HelperFactory"
 
-class CustomLoaderHelperFactory
-    CLASSNAME = "admin.taghelpers.CustomLoaderHelper"
-    FACTORYNAME = "CustomLoaderHelperFactory"
+begin
+    CustomLoaderHelperFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

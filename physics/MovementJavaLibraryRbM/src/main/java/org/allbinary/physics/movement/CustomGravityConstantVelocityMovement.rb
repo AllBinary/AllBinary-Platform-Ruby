@@ -41,8 +41,8 @@ class CustomGravityConstantVelocityMovement < BasicConstantVelocityMovement
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/game/physics/acceleration/GravityUtil"
-require "org/allbinary/game/physics/velocity/VelocityProperties"
-require "org/allbinary/logic/math/BasicDecimal"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :GravityUtil, "org/allbinary/game/physics/acceleration/GravityUtil"
+autoload :VelocityProperties, "org/allbinary/game/physics/velocity/VelocityProperties"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
 

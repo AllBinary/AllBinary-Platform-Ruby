@@ -29,7 +29,7 @@ class AbFilePath < AbPath
     end
 end
 
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/io/path/PathUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil"
 

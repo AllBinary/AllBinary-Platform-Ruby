@@ -36,13 +36,13 @@ class ProfileActionScriptConditionFactory
     end
 end
 
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/w3c/dom/Node"
-require "org/allbinary/input/automation/actions/script/condition/AlwaysActionScriptCondition"
-require "org/allbinary/input/automation/actions/script/condition/AlwaysActionScriptConditionData"
-require "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptCondition"
-require "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptConditionData"
-require "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
-require "org/allbinary/input/automation/actions/script/condition/TimeIntervalActionScriptCondition"
-require "org/allbinary/input/automation/actions/script/condition/TimeIntervalActionScriptConditionData"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :Node, "org/w3c/dom/Node"
+autoload :AlwaysActionScriptCondition, "org/allbinary/input/automation/actions/script/condition/AlwaysActionScriptCondition"
+autoload :AlwaysActionScriptConditionData, "org/allbinary/input/automation/actions/script/condition/AlwaysActionScriptConditionData"
+autoload :ColorAtActionScriptCondition, "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptCondition"
+autoload :ColorAtActionScriptConditionData, "org/allbinary/input/automation/actions/script/condition/ColorAtActionScriptConditionData"
+autoload :ProfileActionScriptConditionInterface, "org/allbinary/input/automation/actions/script/condition/ProfileActionScriptConditionInterface"
+autoload :TimeIntervalActionScriptCondition, "org/allbinary/input/automation/actions/script/condition/TimeIntervalActionScriptCondition"
+autoload :TimeIntervalActionScriptConditionData, "org/allbinary/input/automation/actions/script/condition/TimeIntervalActionScriptConditionData"
 

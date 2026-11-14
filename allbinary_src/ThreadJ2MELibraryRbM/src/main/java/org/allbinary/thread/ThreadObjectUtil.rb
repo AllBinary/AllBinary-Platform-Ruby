@@ -44,21 +44,45 @@ class ThreadObjectUtil
     end
 
     def self.instance()
+        ThreadObjectUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ThreadObjectUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ThreadObjectUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ThreadObjectUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/thread/NullPriorityRunnable"
-require "org/allbinary/thread/PriorityRunnable"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :NullPriorityRunnable, "org/allbinary/thread/NullPriorityRunnable"
+autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable"
 require "java/lang/Runnable"
 require "java/lang/Thread"
 
-class ThreadObjectUtil
-    @@instance = ThreadObjectUtil.new()
+begin
+    ThreadObjectUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

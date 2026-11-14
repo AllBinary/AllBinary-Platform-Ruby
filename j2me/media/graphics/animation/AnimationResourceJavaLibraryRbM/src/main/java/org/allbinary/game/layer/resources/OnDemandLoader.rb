@@ -81,16 +81,16 @@ class OnDemandLoader
     end
 end
 
-require "org/allbinary/animation/resource/BaseResourceAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/MainFeatureFactory"
-require "org/allbinary/game/layer/GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory"
-require "org/allbinary/game/layer/LayerPlacementInterfaceBasicArrayListFactoryInterface"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-require "org/allbinary/image/ImageCache"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/layer/resources/OnDemandResources"
-require "org/allbinary/game/layer/resources/OnDemandResourcesFactory"
+autoload :BaseResourceAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/resource/BaseResourceAnimationInterfaceFactoryInterfaceFactory"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
+autoload :GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory, "org/allbinary/game/layer/GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory"
+autoload :LayerPlacementInterfaceBasicArrayListFactoryInterface, "org/allbinary/game/layer/LayerPlacementInterfaceBasicArrayListFactoryInterface"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :ImageCache, "org/allbinary/image/ImageCache"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :OnDemandResources, "org/allbinary/game/layer/resources/OnDemandResources"
+autoload :OnDemandResourcesFactory, "org/allbinary/game/layer/resources/OnDemandResourcesFactory"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.mapping
 
-# require "javax/microedition/lcdui/Canvas"
 require "org/allbinary/game/input/mapping/InputMapping"
 
 class InputToGameKeyMapping < InputMapping
@@ -194,28 +193,53 @@ class InputToGameKeyMapping < InputMapping
     end
 
     def self.instance()
+        InputToGameKeyMapping.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        InputToGameKeyMapping.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputToGameKeyMapping"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/input/GameKey"
-require "org/allbinary/game/input/GameKeyFactory"
-require "org/allbinary/game/input/Input"
-require "org/allbinary/game/input/InputFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :GameKey, "org/allbinary/game/input/GameKey"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 
-class InputToGameKeyMapping
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    InputToGameKeyMapping.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

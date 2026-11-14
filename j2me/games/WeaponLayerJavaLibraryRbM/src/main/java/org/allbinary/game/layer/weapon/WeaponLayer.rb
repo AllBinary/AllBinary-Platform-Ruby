@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.weapon
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/multiplayer/layer/MultiPlayerGameLayer"
 require "org/allbinary/game/tick/TickableInterface"
 
@@ -260,22 +258,24 @@ class WeaponLayer < MultiPlayerGameLayer
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/game/collision/CollidableBaseBehavior"
-require "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
-require "org/allbinary/game/combat/weapon/WeaponProperties"
-require "org/allbinary/game/configuration/GameConfigurationUtil"
-require "org/allbinary/game/identification/BasicGroupFactory"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/game/score/NoScoreable"
-require "org/allbinary/game/score/ScoreableInterface"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/physics/movement/Movement"
-require "org/allbinary/view/ViewPosition"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/game/layer/weapon/CollidableWeaponBehavior"
+autoload :GL, "javax/microedition/khronos/opengles/GL"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :DestroyedLayerProcessor, "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
+autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
+autoload :GameConfigurationUtil, "org/allbinary/game/configuration/GameConfigurationUtil"
+autoload :BasicGroupFactory, "org/allbinary/game/identification/BasicGroupFactory"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :NoScoreable, "org/allbinary/game/score/NoScoreable"
+autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :Movement, "org/allbinary/physics/movement/Movement"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :CollidableWeaponBehavior, "org/allbinary/game/layer/weapon/CollidableWeaponBehavior"
 

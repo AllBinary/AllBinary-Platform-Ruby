@@ -85,13 +85,13 @@ class SpecialItemsEntity < AbSqlBean
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/init/db/InventoryDbInitInfo"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/business/user/commerce/inventory/item/special/SpecialItemData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :InventoryDbInitInfo, "org/allbinary/business/init/db/InventoryDbInitInfo"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :SpecialItemData, "org/allbinary/business/user/commerce/inventory/item/special/SpecialItemData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

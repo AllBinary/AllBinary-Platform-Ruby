@@ -36,9 +36,9 @@ class PopupCommandFormInputProcessor < CommandFormInputProcessor
     end
 end
 
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/displayable/canvas/PopupMenuInputProcessor"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :PopupMenuInputProcessor, "org/allbinary/game/displayable/canvas/PopupMenuInputProcessor"
 

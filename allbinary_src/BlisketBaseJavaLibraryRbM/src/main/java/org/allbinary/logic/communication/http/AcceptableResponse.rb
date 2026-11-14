@@ -33,7 +33,7 @@ class AcceptableResponse
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/http/AcceptableResponseUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AcceptableResponseUtil, "org/allbinary/logic/communication/http/AcceptableResponseUtil"
 

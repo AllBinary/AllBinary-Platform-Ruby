@@ -44,8 +44,8 @@ class OrderHistoryFactory
     end
 end
 
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntity"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+autoload :OrderHistoryEntity, "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
 

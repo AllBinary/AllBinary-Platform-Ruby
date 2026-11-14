@@ -98,16 +98,16 @@ class AdvertisementsEntity < AbSqlBean
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/DynamicObjectData"
-require "org/allbinary/business/advertisement/AdvertisementData"
-require "org/allbinary/business/advertisement/AdvertisementInterface"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/init/db/UserDbInitInfo"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
+autoload :AdvertisementData, "org/allbinary/business/advertisement/AdvertisementData"
+autoload :AdvertisementInterface, "org/allbinary/business/advertisement/AdvertisementInterface"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :UserDbInitInfo, "org/allbinary/business/init/db/UserDbInitInfo"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

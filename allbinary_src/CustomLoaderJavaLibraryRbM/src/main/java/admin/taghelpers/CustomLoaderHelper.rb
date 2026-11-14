@@ -66,9 +66,9 @@ class CustomLoaderHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/globals/AppUrlGlobals"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :HashMap, "java/util/HashMap"
+autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.special
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/combat/damage/DamageableInterface"
 require "org/allbinary/game/combat/destroy/DestroyableInterface"
 require "org/allbinary/game/layer/CollidableCompositeLayer"
@@ -47,7 +46,7 @@ class CollidableDestroyableDamageableLayer < CollidableCompositeLayer
 
     def self.getNullInstance()
         if CollidableDestroyableDamageableLayer::NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER == NullUtil.getInstance().NULL_OBJECT
-            CollidableDestroyableDamageableLayer::NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER = CollidableDestroyableDamageableLayer.new(BasicGroupFactory.getInstance().NONE_ARRAY, StringUtil.getInstance().EMPTY_STRING, RectangleFactory::SINGLETON, ViewPositionBase::NULL_VIEW_POSITION)
+            (CollidableDestroyableDamageableLayer.send(:remove_const, :NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) if CollidableDestroyableDamageableLayer.const_defined?(:NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER, false); CollidableDestroyableDamageableLayer.const_set(:NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER, CollidableDestroyableDamageableLayer.new(BasicGroupFactory.getInstance().NONE_ARRAY, StringUtil.getInstance().EMPTY_STRING, RectangleFactory::SINGLETON, ViewPositionBase::NULL_VIEW_POSITION)))
         end
         return CollidableDestroyableDamageableLayer::NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER
     end
@@ -305,30 +304,53 @@ class CollidableDestroyableDamageableLayer < CollidableCompositeLayer
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:READYFOREXPLOSION, "ReadyForExplosion: ")
+        begin
+            const_set(:NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CollidableDestroyableDamageableLayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER, :READYFOREXPLOSION].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/collision/CollidableNeverCollideBehaviorFactory"
-require "org/allbinary/game/combat/destroy/event/DestroyedEvent"
-require "org/allbinary/game/identification/BasicGroupFactory"
-require "org/allbinary/game/identification/Group"
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-require "org/allbinary/game/layer/pickup/PickupBehavior"
-require "org/allbinary/game/part/PartInterface"
-require "org/allbinary/game/part/PartInterfaceUtil"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/math/PositionStrings"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/view/ViewPositionBase"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :CollidableNeverCollideBehaviorFactory, "org/allbinary/game/collision/CollidableNeverCollideBehaviorFactory"
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
+autoload :BasicGroupFactory, "org/allbinary/game/identification/BasicGroupFactory"
+autoload :Group, "org/allbinary/game/identification/Group"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :PickupBehavior, "org/allbinary/game/layer/pickup/PickupBehavior"
+autoload :PartInterface, "org/allbinary/game/part/PartInterface"
+autoload :PartInterfaceUtil, "org/allbinary/game/part/PartInterfaceUtil"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :PositionStrings, "org/allbinary/math/PositionStrings"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 
-class CollidableDestroyableDamageableLayer
-    NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER = NullUtil.getInstance().NULL_OBJECT
-    READYFOREXPLOSION = "ReadyForExplosion: "
+begin
+    CollidableDestroyableDamageableLayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

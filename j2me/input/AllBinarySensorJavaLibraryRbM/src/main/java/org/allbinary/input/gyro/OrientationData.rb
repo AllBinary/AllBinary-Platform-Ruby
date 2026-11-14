@@ -32,9 +32,31 @@ class OrientationData
     def self.getInstance()
         return OrientationData::SINGLETON
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, OrientationData.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OrientationData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-class OrientationData
-    SINGLETON = OrientationData.new()
+begin
+    OrientationData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

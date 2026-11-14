@@ -2,8 +2,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
 require "org/allbinary/graphics/form/item/ABCustomItem"
 
 class ABCustomImageItem < ABCustomItem
@@ -25,5 +23,7 @@ class ABCustomImageItem < ABCustomItem
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
 

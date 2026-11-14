@@ -49,12 +49,34 @@ class HudGraphicsPosition
     def setPoint(point)
         @point = point
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_HUD_GRAPHICS_POSITION, HudGraphicsPosition.new(PointFactory.getInstance().ZERO_ZERO, 9))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "HudGraphicsPosition"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_HUD_GRAPHICS_POSITION].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
 
-class HudGraphicsPosition
-    NULL_HUD_GRAPHICS_POSITION = HudGraphicsPosition.new(PointFactory.getInstance().ZERO_ZERO, 9)
+begin
+    HudGraphicsPosition.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

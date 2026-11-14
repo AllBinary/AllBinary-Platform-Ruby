@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
-# require "javax/microedition/khronos/egl/EGLConfig"
-# require "javax/microedition/khronos/opengles/GL10"
 require "org/allbinary/graphics/opengles/shader/ShaderUpdater"
 
 class CompositeShaderUpdater < ShaderUpdater
@@ -45,19 +43,45 @@ class CompositeShaderUpdater < ShaderUpdater
     end
 
     def self.instanceC()
+        CompositeShaderUpdater.java_static_fields unless @java_static_fields_started
         return defined?(@@instanceC) ? @@instanceC : nil
     end
 
     def self.instanceC=(value)
+        CompositeShaderUpdater.java_static_fields unless @java_static_fields_started
         @@instanceC = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instanceC = CompositeShaderUpdater.new(StringUtil.getInstance().getArrayInstance(), StringUtil.getInstance().getArrayInstance(), StringUtil.getInstance().getArrayInstance(), NullUtil.getInstance().NULL_INT_ARRAY)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CompositeShaderUpdater"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
+autoload :EGLConfig, "javax/microedition/khronos/egl/EGLConfig"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 
-class CompositeShaderUpdater
-    @@instanceC = CompositeShaderUpdater.new(StringUtil.getInstance().getArrayInstance(), StringUtil.getInstance().getArrayInstance(), StringUtil.getInstance().getArrayInstance(), NullUtil.getInstance().NULL_INT_ARRAY)
+begin
+    CompositeShaderUpdater.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -72,13 +72,13 @@ class PaymentView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/commerce/money/payment/Payment"
-require "org/allbinary/business/user/commerce/money/payment/PaymentData"
-require "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :Payment, "org/allbinary/business/user/commerce/money/payment/Payment"
+autoload :PaymentData, "org/allbinary/business/user/commerce/money/payment/PaymentData"
+autoload :PaymentEntityFactory, "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

@@ -11,5 +11,5 @@ module ServiceRegistration
     end
 end
 
-require "org/osgi/framework/ServiceReference"
+autoload :ServiceReference, "org/osgi/framework/ServiceReference"
 

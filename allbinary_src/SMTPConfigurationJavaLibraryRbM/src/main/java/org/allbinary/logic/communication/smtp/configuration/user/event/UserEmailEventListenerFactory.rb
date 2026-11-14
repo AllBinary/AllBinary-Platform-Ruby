@@ -32,9 +32,9 @@ class UserEmailEventListenerFactory
     end
 end
 
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface"
-require "org/allbinary/logic/system/loader/AbeFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationInterface"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :UserEmailEventListenerInterface, "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface"
+autoload :AbeFactory, "org/allbinary/logic/system/loader/AbeFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :UserEmailEventConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventConfigurationInterface"
 

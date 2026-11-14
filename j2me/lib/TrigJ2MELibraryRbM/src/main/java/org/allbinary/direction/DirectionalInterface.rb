@@ -19,25 +19,29 @@ module DirectionalInterface
     
 
     def setFrameByDirection(direction)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setFrameToAngle(angle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def adjustFrameToAngle(newAngle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def adjustFrame(angle)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/math/Angle"
-require "org/allbinary/direction/Direction"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :Direction, "org/allbinary/direction/Direction"
 

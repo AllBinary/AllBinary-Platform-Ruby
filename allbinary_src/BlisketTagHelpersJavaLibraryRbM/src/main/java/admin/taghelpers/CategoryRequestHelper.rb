@@ -228,37 +228,61 @@ class CategoryRequestHelper < ModifyTable
     end
 
     def self.categoryRequest()
+        CategoryRequestHelper.java_static_fields unless @java_static_fields_started
         return defined?(@@categoryRequest) ? @@categoryRequest : nil
     end
 
     def self.categoryRequest=(value)
+        CategoryRequestHelper.java_static_fields unless @java_static_fields_started
         @@categoryRequest = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@categoryRequest = StringMaker.new().append("<").append(CategoryData.getInstance().REQUEST).append(">").to_s
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CategoryRequestHelper"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/category/CategoryComponent"
-require "org/allbinary/business/category/CategoryData"
-require "org/allbinary/business/category/CategoryInterface"
-require "org/allbinary/business/category/store/StoreCategoryFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/data/tree/category/CategoryLoaderFactory"
-require "org/allbinary/data/tree/category/CategoryLoaderInterface"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoBasic"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :CategoryComponent, "org/allbinary/business/category/CategoryComponent"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+autoload :StoreCategoryFactory, "org/allbinary/business/category/store/StoreCategoryFactory"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :CategoryLoaderFactory, "org/allbinary/data/tree/category/CategoryLoaderFactory"
+autoload :CategoryLoaderInterface, "org/allbinary/data/tree/category/CategoryLoaderInterface"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :TransformInfoBasic, "org/allbinary/logic/visual/transform/info/TransformInfoBasic"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 
-class CategoryRequestHelper
-    @@categoryRequest = StringMaker.new().append("<").append(CategoryData.getInstance().REQUEST).append(">").to_s
+begin
+    CategoryRequestHelper.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

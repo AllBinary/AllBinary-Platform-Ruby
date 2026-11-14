@@ -27,6 +27,6 @@ class ForcedLogUtil
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
 

@@ -20,6 +20,7 @@ module UpdateInterface
 
     # throws Exception
     def update()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

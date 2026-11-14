@@ -37,7 +37,7 @@ class MineLayerFactory
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/view/ViewPositionFactoryInterface"
-require "org/allbinary/game/ag/layer/weapon/mine/MineLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :ViewPositionFactoryInterface, "org/allbinary/view/ViewPositionFactoryInterface"
+autoload :MineLayer, "org/allbinary/game/ag/layer/weapon/mine/MineLayer"
 

@@ -43,15 +43,37 @@ class MusicThreadPool < ThreadPool
     def completedTask(task)
         @logUtil.putF(StringMaker.new().append(@threadPoolStrings.COMPLETE_TASK).append(StringUtil.getInstance().toString(task)).appendlong(((Time.now.to_f * 1000).to_i).to_i).to_s, self, @commonStrings.RUN)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:THREAD_POOL, ThreadPool.new("Music", 2, ThreadPool::NORMAL_PRIORITY))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MusicThreadPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:THREAD_POOL].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 require "java/lang/Runnable"
 require "java/lang/System"
 
-class MusicThreadPool
-    THREAD_POOL = ThreadPool.new("Music", 2, ThreadPool::NORMAL_PRIORITY)
+begin
+    MusicThreadPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

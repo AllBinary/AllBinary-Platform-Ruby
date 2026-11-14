@@ -20,9 +20,10 @@ module ArtificialIntelligenceFactoryInterface
 
     # throws Exception
     def getInstance(anyType)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/ai/ArtificialIntelligence"
+autoload :ArtificialIntelligence, "org/allbinary/ai/ArtificialIntelligence"
 

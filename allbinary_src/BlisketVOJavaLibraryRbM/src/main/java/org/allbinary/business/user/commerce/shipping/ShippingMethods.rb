@@ -64,12 +64,12 @@ class ShippingMethods
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/user/commerce/shipping/ShippingMethodsFactory"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :ShippingInterface, "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ShippingMethodsFactory, "org/allbinary/business/user/commerce/shipping/ShippingMethodsFactory"
 

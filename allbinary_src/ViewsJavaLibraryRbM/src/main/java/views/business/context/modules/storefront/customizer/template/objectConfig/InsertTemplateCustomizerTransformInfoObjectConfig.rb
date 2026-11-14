@@ -81,12 +81,12 @@ class InsertTemplateCustomizerTransformInfoObjectConfig < NoTemplateTransformInf
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoDomNodeView"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfosData"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoDomNodeView, "org/allbinary/logic/visual/transform/info/TransformInfoDomNodeView"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfosData, "org/allbinary/logic/visual/transform/info/TransformInfosData"
+autoload :TransformInfoObjectConfigData, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigData"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
 

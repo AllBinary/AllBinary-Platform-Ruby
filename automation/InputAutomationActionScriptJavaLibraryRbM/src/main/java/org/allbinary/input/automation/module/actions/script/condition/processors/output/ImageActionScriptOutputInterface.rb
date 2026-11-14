@@ -55,5 +55,5 @@ module ImageActionScriptOutputInterface
     end
 end
 
-require "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageTypes"
+autoload :ImageTypes, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageTypes"
 

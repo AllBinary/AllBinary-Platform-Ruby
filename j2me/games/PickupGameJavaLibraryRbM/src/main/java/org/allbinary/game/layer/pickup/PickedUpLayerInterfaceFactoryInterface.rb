@@ -19,21 +19,24 @@ module PickedUpLayerInterfaceFactoryInterface
     
 
     def getPickedUpLayerType()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getIconLayer()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getAnimationInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/layer/pickup/PickedUpLayerType"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType"
 

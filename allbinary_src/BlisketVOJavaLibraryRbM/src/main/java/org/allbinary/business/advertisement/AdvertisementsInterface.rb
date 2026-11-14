@@ -104,5 +104,5 @@ module AdvertisementsInterface
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/business/advertisement/AdvertisementInterface"
+autoload :AdvertisementInterface, "org/allbinary/business/advertisement/AdvertisementInterface"
 

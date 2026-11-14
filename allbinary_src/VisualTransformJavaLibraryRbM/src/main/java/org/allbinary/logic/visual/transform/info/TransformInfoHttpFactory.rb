@@ -48,14 +48,14 @@ class TransformInfoHttpFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpContext"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpStore"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :TransformInfoHttpContext, "org/allbinary/logic/visual/transform/info/TransformInfoHttpContext"
+autoload :TransformInfoHttpStore, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStore"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

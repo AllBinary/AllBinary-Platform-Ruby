@@ -70,6 +70,8 @@ class PlatformImage
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "javax/microedition/lcdui/NullImage"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
 

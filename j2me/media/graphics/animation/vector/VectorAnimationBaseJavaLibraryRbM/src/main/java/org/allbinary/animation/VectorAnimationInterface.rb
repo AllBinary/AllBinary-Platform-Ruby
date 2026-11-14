@@ -23,6 +23,7 @@ module VectorAnimationInterface
     
 
     def getPoints(frame)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

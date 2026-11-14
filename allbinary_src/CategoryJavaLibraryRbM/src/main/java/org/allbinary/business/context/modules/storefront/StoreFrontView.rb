@@ -50,13 +50,13 @@ class StoreFrontView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/commerce/inventory/basket/BasketData"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasketData, "org/allbinary/business/user/commerce/inventory/basket/BasketData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
 

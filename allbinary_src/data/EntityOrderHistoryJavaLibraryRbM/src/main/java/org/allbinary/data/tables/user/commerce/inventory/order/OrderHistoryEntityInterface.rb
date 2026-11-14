@@ -66,10 +66,10 @@ module OrderHistoryEntityInterface
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/commerce/inventory/order/Order"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :Order, "org/allbinary/business/user/commerce/inventory/order/Order"
+autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
 

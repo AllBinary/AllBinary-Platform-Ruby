@@ -61,6 +61,6 @@ class SensorGameUpdateProcessor
     end
 end
 
-require "org/allbinary/input/AllBinarySensor"
-require "org/allbinary/input/NoAllBinarySensor"
+autoload :AllBinarySensor, "org/allbinary/input/AllBinarySensor"
+autoload :NoAllBinarySensor, "org/allbinary/input/NoAllBinarySensor"
 

@@ -42,11 +42,11 @@ class SimpleTransform
     end
 end
 
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/io/AbFileLocalInputStream"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/w3c/dom/Document"
-require "org/allbinary/data/tree/dom/XslHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :AbFileLocalInputStream, "org/allbinary/logic/io/AbFileLocalInputStream"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :Document, "org/w3c/dom/Document"
+autoload :XslHelper, "org/allbinary/data/tree/dom/XslHelper"
 

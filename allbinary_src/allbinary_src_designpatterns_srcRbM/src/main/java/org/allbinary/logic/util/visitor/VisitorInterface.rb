@@ -19,6 +19,7 @@ module VisitorInterface
     
 
     def visit(anyType)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

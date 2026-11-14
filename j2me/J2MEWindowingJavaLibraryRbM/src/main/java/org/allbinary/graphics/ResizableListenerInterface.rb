@@ -19,6 +19,7 @@ module ResizableListenerInterface
     
 
     def onResizable(isResizable)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

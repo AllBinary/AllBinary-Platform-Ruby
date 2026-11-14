@@ -14,14 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/game/Sprite"
 
 module SpriteFactoryInterface
     
 
     def createSprite(image, frameWidth, frameHeight)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
 

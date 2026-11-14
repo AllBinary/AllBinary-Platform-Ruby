@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>AllBinaryOnAllPlatformsJavaLibraryPOMRb</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>AllBinaryOnAllPlatformsJavaLibraryPOMRb</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <modules>
+
+        <!--
+        <module>../j2me/HTMLForJ2MEJavaLibraryRbM</module>
+        -->
+        
+        <module>../../../games/PreGameJ2MEJavaLibraryRbP</module>
+        <module>../../GameJ2MELibraryRbP</module>
+        <module>../../CombatGameJavaLibraryPORbM</module>
+        <module>../../AdvancedCombatGameJavaLibraryRbP</module>
+        
+        <module>../j2me/AllBinaryOnJ2MEBasePlatformJavaLibraryRbM</module>
+        
+        <module>../j2me/AllBinaryOnJ2MEPlatformJavaLibraryRbM</module>
+        
+        <module>../j2se/AllBinaryOnJ2SEBasePlatformJavaLibraryRbM</module>
+        
+        <!--
+        <module>../j2se/AllBinaryOnJ2SEPlatformJavaLibraryRbM</module>
+        
+        <module>../html/AllBinaryOnHTMLBasePlatformJavaLibraryRbM</module>
+        <module>../html/AllBinaryOnHTMLPlatformJavaLibraryRbM</module>
+
+        <module>../android/AllBinaryOnAndroidBasePlatformJavaLibraryRbM</module>
+        <module>../android/AllBinaryOnAndroidBasePlatformDependenciesJavaLibraryRbM</module>
+        <module>../android/AllBinaryOnAndroidPlatformJavaLibraryRbM</module>
+        <module>../android/AllBinaryOnAndroidPlatformDependenciesJavaLibraryRbM</module>
+        
+        -->
+        
+        <module>../AllBinaryOptionalBasePlatformJavaLibraryRbM</module>
+
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

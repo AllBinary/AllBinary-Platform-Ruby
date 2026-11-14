@@ -19,6 +19,7 @@ module DemoPaintableInterface
     
 
     def showGamePaintable()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

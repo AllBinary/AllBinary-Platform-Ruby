@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.compound
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/IndexedAnimation"
 
 class SimultaneousCompoundIndexAnimation < IndexedAnimation
@@ -118,6 +116,8 @@ class SimultaneousCompoundIndexAnimation < IndexedAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :GL, "javax/microedition/khronos/opengles/GL"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
 

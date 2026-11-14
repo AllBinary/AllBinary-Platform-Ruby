@@ -233,10 +233,10 @@ class GenericProfileActionsJPanel < JPanel
     end
 end
 
-require "org/allbinary/input/automation/module/DefaultListModelHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileAction"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionJPanel"
-require "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActions"
+autoload :DefaultListModelHelper, "org/allbinary/input/automation/module/DefaultListModelHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :GenericProfileAction, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileAction"
+autoload :GenericProfileActionJPanel, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionJPanel"
+autoload :GenericProfileActions, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActions"
 

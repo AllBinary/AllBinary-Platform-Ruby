@@ -34,17 +34,39 @@ class FallingPickupLayer < PickupLayer
     def implmentsTickableInterface()
         return true
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "FallingPickupLayer")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FallingPickupLayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/view/ViewPosition"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :CountedPickedUpLayerInterfaceFactory, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
 
-class FallingPickupLayer
-    NAME = "FallingPickupLayer"
+begin
+    FallingPickupLayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

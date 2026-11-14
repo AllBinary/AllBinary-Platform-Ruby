@@ -95,11 +95,11 @@ class TableSearchRequest
     end
 end
 
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/control/search/SearchData"
-require "org/allbinary/logic/control/search/SearchParams"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :SearchData, "org/allbinary/logic/control/search/SearchData"
+autoload :SearchParams, "org/allbinary/logic/control/search/SearchParams"
 

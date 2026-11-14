@@ -48,11 +48,11 @@
         <module>../../../allbinary_src/licensing/ClientInfoLicensingJavaLibraryRbM</module>
 
         <module>../../games/licensing/PartnerJ2MEJavaLibraryRbM</module>
-        <module>../../games/licensing/PartnerHTMLJavaLibraryRbM</module>
+        <!--<module>../../games/licensing/PartnerHTMLJavaLibraryRbM</module>-->
         <module>../../games/licensing/PartnerAndroidJavaLibraryRbM</module>
         <module>../../games/licensing/NoGameLicensingJavaLibraryRbM</module>
         <module>../../games/licensing/GameLicensingOnlyDemoJavaLibraryRbM</module>
-        <module>../../games/licensing/GameLicensingOnlyNormalJavaLibraryRbM</module>
+        <!--<module>../../games/licensing/GameLicensingOnlyNormalJavaLibraryRbM</module>-->
         <module>../../games/licensing/GameLicensingBaseJavaLibraryRbM</module>
 
         <!--
@@ -61,7 +61,7 @@
         <module>../../games/GameScoresBaseJ2MELibraryRbM</module>
         -->
         <module>../../games/GameScoresLocalJavaLibraryRbM</module>
-        <module>../../games/GameScoresRemoteAndLocalJavaLibraryRbM</module>
+        <!--<module>../../games/GameScoresRemoteAndLocalJavaLibraryRbM</module>-->
 
         <module>../../../store/ThirdPartyStoreJavaLibraryRbM</module>
         <module>../../../store/NoThirdPartyStoreJavaLibraryRbM</module>
@@ -111,16 +111,16 @@
         <module>../../../../work/j2me/games/strategy/rts/RTSGameJavaLibraryP</module>
         -->
 
-        <module>../../media/graphics/OtherGraphicsMediaLibraryP</module>
+        <module>../../media/graphics/OtherGraphicsMediaLibraryRbP</module>
 
         <module>../../input/NoTouchButtonResourceAnimationJavaLibraryRbM</module>
         <module>../../input/TouchButtonResourceAnimationJavaLibraryRbM</module>
         <module>../../input/TouchButtonResourceOpenGLESAnimationJavaLibraryRbM</module>
 
         <module>../../input/TrackingEventJavaLibraryRbM</module>
-        <module>../../../game/behavior/BehaviorLibraryP</module>
+        <module>../../../game/behavior/BehaviorLibraryRbP</module>
 
-        <module>../../media/sound/OtherSoundMediaLibraryP</module>
+        <module>../../media/sound/OtherSoundMediaLibraryRbP</module>
 
         <module>../../../allbinary_src/licensing/ApplicationConfigurationJavaLibraryRbM</module>
         <module>../../../allbinary_src/licensing/ApplicationConfigurationNoFSJavaLibraryRbM</module>

@@ -35,6 +35,6 @@ module CategoryLoaderInterface
     end
 end
 
-require "org/allbinary/business/category/CategoryInterface"
-require "org/w3c/dom/Document"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+autoload :Document, "org/w3c/dom/Document"
 

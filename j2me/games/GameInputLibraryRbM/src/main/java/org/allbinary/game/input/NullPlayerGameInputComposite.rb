@@ -37,14 +37,36 @@ class NullPlayerGameInputComposite
     def getPlayerGameInput()
         return NoPlayerGameInput.getInstance()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_PLAYER_GAME_INPUT_COMPOSITE, NullPlayerGameInputComposite.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullPlayerGameInputComposite"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_PLAYER_GAME_INPUT_COMPOSITE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/game/input/NoPlayerGameInput"
-require "org/allbinary/game/input/PlayerGameInput"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :NoPlayerGameInput, "org/allbinary/game/input/NoPlayerGameInput"
+autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput"
 
-class NullPlayerGameInputComposite
-    NULL_PLAYER_GAME_INPUT_COMPOSITE = NullPlayerGameInputComposite.new()
+begin
+    NullPlayerGameInputComposite.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

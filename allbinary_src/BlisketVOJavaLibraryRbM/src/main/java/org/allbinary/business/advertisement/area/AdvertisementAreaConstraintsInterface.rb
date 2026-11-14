@@ -28,6 +28,6 @@ module AdvertisementAreaConstraintsInterface
     end
 end
 
-require "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface"
-require "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
+autoload :DisplayInBrowserContraintsInterface, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface"
+autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
 

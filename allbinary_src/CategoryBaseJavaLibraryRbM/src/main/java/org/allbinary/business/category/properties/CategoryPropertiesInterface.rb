@@ -62,6 +62,6 @@ module CategoryPropertiesInterface
     end
 end
 
-require "org/allbinary/business/category/hierarchy/CategoryHierarchyInterface"
-require "org/allbinary/logic/io/path/AbPath"
+autoload :CategoryHierarchyInterface, "org/allbinary/business/category/hierarchy/CategoryHierarchyInterface"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
 

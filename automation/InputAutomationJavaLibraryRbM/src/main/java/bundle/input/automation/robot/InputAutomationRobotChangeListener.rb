@@ -28,5 +28,5 @@ module InputAutomationRobotChangeListener
     end
 end
 
-require "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
+autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
 

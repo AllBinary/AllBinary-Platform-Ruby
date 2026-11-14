@@ -14,11 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullCanvas"
-# require "javax/microedition/lcdui/NullImage"
 require "org/allbinary/graphics/paint/ProcessPaintable"
 
 class BufferedGameCanvasPaintHelper < ProcessPaintable
@@ -53,14 +48,41 @@ class BufferedGameCanvasPaintHelper < ProcessPaintable
         @previousImage = @offScreenImage[@drawCircularIndexUtil.getIndex()]
         graphics.drawImage(@previousImage, 0, 0, @anchor)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:MAX_IMAGES, 4)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BufferedGameCanvasPaintHelper"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:MAX_IMAGES].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :Anchor, "org/allbinary/graphics/Anchor"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 
-class BufferedGameCanvasPaintHelper
-    MAX_IMAGES = 4
+begin
+    BufferedGameCanvasPaintHelper.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

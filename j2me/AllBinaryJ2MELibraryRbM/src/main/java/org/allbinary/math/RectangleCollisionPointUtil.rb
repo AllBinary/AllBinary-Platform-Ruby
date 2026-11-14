@@ -50,7 +50,7 @@ class RectangleCollisionPointUtil
     end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/math/RectangleCollisionUtil"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :RectangleCollisionUtil, "org/allbinary/math/RectangleCollisionUtil"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/canvas/Processor"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/form/ItemIndexDx"
@@ -307,12 +306,13 @@ class ScrollCurrentSelectionForm < ScrollSelectionForm
     end
 end
 
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/graphics/form/FormType"
-require "org/allbinary/graphics/form/FormTypeFactory"
-require "org/allbinary/graphics/form/ItemPaintableFactory"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :FormType, "org/allbinary/graphics/form/FormType"
+autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory"
+autoload :ItemPaintableFactory, "org/allbinary/graphics/form/ItemPaintableFactory"
 

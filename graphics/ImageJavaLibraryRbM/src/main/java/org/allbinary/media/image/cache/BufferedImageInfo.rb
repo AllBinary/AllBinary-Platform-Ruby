@@ -78,6 +78,6 @@ class BufferedImageInfo
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
 

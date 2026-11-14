@@ -31,5 +31,5 @@ class Memory
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

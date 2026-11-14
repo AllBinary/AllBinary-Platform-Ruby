@@ -75,6 +75,6 @@ class ThirdPartyInApplicationPurchase
     end
 end
 
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/licensing/LockableFeature"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature"
 

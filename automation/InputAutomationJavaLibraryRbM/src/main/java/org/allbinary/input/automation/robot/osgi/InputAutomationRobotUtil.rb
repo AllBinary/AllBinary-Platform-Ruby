@@ -30,7 +30,7 @@ class InputAutomationRobotUtil
     end
 end
 
-require "org/allbinary/input/automation/robot/InputRobotInterface"
-require "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
-require "org/allbinary/input/automation/robot/osgi/InputAutomationRobotInterfaceWrapper"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
+autoload :InputAutomationRobotInterfaceWrapper, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotInterfaceWrapper"
 

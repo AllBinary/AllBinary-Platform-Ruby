@@ -46,8 +46,8 @@ class Vertex
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/math/BasicDecimal"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/math/PositionStrings"
-require "org/allbinary/string/CommonSeps"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :PositionStrings, "org/allbinary/math/PositionStrings"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 

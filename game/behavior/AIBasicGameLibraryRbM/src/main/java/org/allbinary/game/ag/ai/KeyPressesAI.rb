@@ -41,7 +41,7 @@ class KeyPressesAI < BasicAI
     def processAI(allBinaryLayerManager)
         if @on
             (0...@keys.length).each do |index|
-                self.class.superclass.instance_method(:processKeyAI).bind(self).call(@keys[index].to_i)
+                KeyPressesAI.superclass.instance_method(:processKeyAI).bind(self).call(@keys[index].to_i)
             end
         end
     end
@@ -79,9 +79,9 @@ class KeyPressesAI < BasicAI
     end
 end
 
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/util/HashtableUtil"
-require "org/allbinary/util/ABHashtable"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 

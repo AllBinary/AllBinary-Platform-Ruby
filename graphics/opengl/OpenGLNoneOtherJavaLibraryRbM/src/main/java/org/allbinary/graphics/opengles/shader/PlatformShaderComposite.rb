@@ -24,10 +24,10 @@ class PlatformShaderComposite < ShaderComposite
     end
 end
 
-require "org/allbinary/graphics/opengles/NullOpenGLProcessorFactory"
-require "org/allbinary/graphics/opengles/OpenGLProcessor"
-require "org/allbinary/graphics/opengles/shader/CompositeShaderUpdater"
-require "org/allbinary/graphics/opengles/shader/ModelViewProjection"
-require "org/allbinary/graphics/opengles/shader/Shader"
-require "org/allbinary/graphics/opengles/shader/ShaderInitializer"
+autoload :NullOpenGLProcessorFactory, "org/allbinary/graphics/opengles/NullOpenGLProcessorFactory"
+autoload :OpenGLProcessor, "org/allbinary/graphics/opengles/OpenGLProcessor"
+autoload :CompositeShaderUpdater, "org/allbinary/graphics/opengles/shader/CompositeShaderUpdater"
+autoload :ModelViewProjection, "org/allbinary/graphics/opengles/shader/ModelViewProjection"
+autoload :Shader, "org/allbinary/graphics/opengles/shader/Shader"
+autoload :ShaderInitializer, "org/allbinary/graphics/opengles/shader/ShaderInitializer"
 

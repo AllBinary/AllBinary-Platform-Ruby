@@ -64,22 +64,44 @@ class GenericBodyCustomizerView < HttpStoreComponentView
             raise e
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "None")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GenericBodyCustomizerView"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/business/page/PageData"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/visual/transform/StoreTransformer"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/template/customizer/bodies/GenericBodyValidation"
-require "org/allbinary/logic/visual/transform/template/util/TransformTemplateCustomizerUtil"
-require "org/apache/commons/lang3/StringEscapeUtils"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :PageData, "org/allbinary/business/page/PageData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :StoreTransformer, "org/allbinary/logic/visual/transform/StoreTransformer"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :GenericBodyValidation, "org/allbinary/logic/visual/transform/template/customizer/bodies/GenericBodyValidation"
+autoload :TransformTemplateCustomizerUtil, "org/allbinary/logic/visual/transform/template/util/TransformTemplateCustomizerUtil"
+autoload :StringEscapeUtils, "org/apache/commons/lang3/StringEscapeUtils"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 
-class GenericBodyCustomizerView
-    NAME = "None"
+begin
+    GenericBodyCustomizerView.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -18,5 +18,5 @@ class NullIndexedAnimation < IndexedAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

@@ -14,13 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io.file
 
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/IOException"
-# require "java/io/InputStream"
-# require "java/io/OutputStream"
-# require "java/io/Reader"
-# require "java/io/Writer"
-# require "java/nio/CharBuffer"
 
 class SimpleFileUtil
     attr_accessor :logUtil, :NULL_WRITER, :NULL_READER, :commonStrings, :nullUtil, :streamUtil
@@ -45,120 +38,17 @@ class SimpleFileUtil
     
 
     def self.nullOutputStream()
-        return Class.new(OutputStream.is_a?(Class) ? OutputStream : Object) do
-            include(OutputStream) unless OutputStream.is_a?(Class)
-            
-
-            # throws IOException
-            def write(b)
-            end
-            
-
-            # throws IOException
-            def write(b, off, len)
-            end
-            
-
-            def close()
-            end
-        end.new()
+        return NullOutputStream::NULL_OUTPUT_STREAM
     end
     
 
     def self.nullWriter()
-        return Class.new(Writer.is_a?(Class) ? Writer : Object) do
-            include(Writer) unless Writer.is_a?(Class)
-            @closed = false
-            
-
-            # throws IOException
-            def append(c)
-                return self
-            end
-            
-
-            # throws IOException
-            def append(csq)
-                return self
-            end
-            
-
-            # throws IOException
-            def append(csq, start, end_)
-                return self
-            end
-            
-
-            # throws IOException
-            def write(c)
-            end
-            
-
-            # throws IOException
-            def write(cbuf, off, len)
-            end
-            
-
-            # throws IOException
-            def write(str)
-            end
-            
-
-            # throws IOException
-            def write(str, off, len)
-            end
-            
-
-            # throws IOException
-            def flush()
-            end
-            
-
-            # throws IOException
-            def close()
-            end
-        end.new()
+        return NullWriter::NULL_WRITER
     end
     
 
     def self.nullReader()
-        return Class.new(Reader.is_a?(Class) ? Reader : Object) do
-            include(Reader) unless Reader.is_a?(Class)
-            
-
-            # throws IOException
-            def read()
-                return -1
-            end
-            
-
-            # throws IOException
-            def read(cbuf, off, len)
-                return -1
-            end
-            
-
-            # throws IOException
-            def read(target)
-                return -1
-            end
-            
-
-            # throws IOException
-            def ready()
-                return false
-            end
-            
-
-            # throws IOException
-            def skip(n)
-                return 0
-            end
-            
-
-            def close()
-            end
-        end.new()
+        return NullReader::NULL_READER
     end
     
 
@@ -218,23 +108,55 @@ class SimpleFileUtil
     end
 
     def self.instance()
+        SimpleFileUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        SimpleFileUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = SimpleFileUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "SimpleFileUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+autoload :InputStream, "java/io/InputStream"
+autoload :OutputStream, "java/io/OutputStream"
+autoload :Reader, "java/io/Reader"
+autoload :Writer, "java/io/Writer"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :NullOutputStream, "org/allbinary/logic/io/NullOutputStream"
+autoload :NullReader, "org/allbinary/logic/io/NullReader"
+autoload :NullWriter, "org/allbinary/logic/io/NullWriter"
+autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 
-class SimpleFileUtil
-    @@instance = SimpleFileUtil.new()
+begin
+    SimpleFileUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

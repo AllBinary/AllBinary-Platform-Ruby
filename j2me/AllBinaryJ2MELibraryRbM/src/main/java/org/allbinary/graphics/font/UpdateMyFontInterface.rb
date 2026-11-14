@@ -14,13 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.font
 
-# require "javax/microedition/lcdui/Graphics"
 
 module UpdateMyFontInterface
     
 
     def updateMeasurement(graphics)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

@@ -28,9 +28,9 @@ class MotionGestureReceiveInterfaceFactory
     end
 end
 
-require "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
-require "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory"
-require "org/allbinary/input/motion/gesture/observer/CompleteMotionGestureListenerInterface"
-require "org/allbinary/input/motion/gesture/observer/NullCompleteMotionGestureReceiver"
-require "org/allbinary/input/motion/gesture/observer/ResolveCompleteMotionGestureListener"
+autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
+autoload :MotionGestureConfigurationFactory, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory"
+autoload :CompleteMotionGestureListenerInterface, "org/allbinary/input/motion/gesture/observer/CompleteMotionGestureListenerInterface"
+autoload :NullCompleteMotionGestureReceiver, "org/allbinary/input/motion/gesture/observer/NullCompleteMotionGestureReceiver"
+autoload :ResolveCompleteMotionGestureListener, "org/allbinary/input/motion/gesture/observer/ResolveCompleteMotionGestureListener"
 

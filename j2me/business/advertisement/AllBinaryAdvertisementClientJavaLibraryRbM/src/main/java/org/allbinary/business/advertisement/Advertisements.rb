@@ -104,9 +104,9 @@ class Advertisements
     end
 end
 
-require "org/allbinary/game/rand/MyRandomFactory"
-require "org/allbinary/logic/system/security/licensing/LockedUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/advertisement/AdvertisementProcessorInterface"
+autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
+autoload :LockedUtil, "org/allbinary/logic/system/security/licensing/LockedUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :AdvertisementProcessorInterface, "org/allbinary/business/advertisement/AdvertisementProcessorInterface"
 

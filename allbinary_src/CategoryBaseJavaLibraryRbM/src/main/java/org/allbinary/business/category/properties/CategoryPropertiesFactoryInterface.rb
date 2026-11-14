@@ -23,5 +23,5 @@ module CategoryPropertiesFactoryInterface
     end
 end
 
-require "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
 

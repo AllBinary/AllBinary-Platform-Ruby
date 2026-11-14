@@ -32,8 +32,8 @@ class AbFileUpload < FileUpload
     end
 end
 
-require "org/apache/commons/fileupload/FileItemFactory"
-require "org/apache/commons/fileupload/FileItemIterator"
-require "org/apache/commons/fileupload/FileUploadException"
-require "org/apache/commons/fileupload/servlet/ServletRequestContext"
+autoload :FileItemFactory, "org/apache/commons/fileupload/FileItemFactory"
+autoload :FileItemIterator, "org/apache/commons/fileupload/FileItemIterator"
+autoload :FileUploadException, "org/apache/commons/fileupload/FileUploadException"
+autoload :ServletRequestContext, "org/apache/commons/fileupload/servlet/ServletRequestContext"
 

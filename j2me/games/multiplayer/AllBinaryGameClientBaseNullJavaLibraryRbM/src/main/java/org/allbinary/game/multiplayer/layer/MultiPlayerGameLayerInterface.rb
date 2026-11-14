@@ -19,9 +19,10 @@ module MultiPlayerGameLayerInterface
     
 
     def getMultiplayerBehavior()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/multiplayer/layer/MultiplayerBehavior"
+autoload :MultiplayerBehavior, "org/allbinary/game/multiplayer/layer/MultiplayerBehavior"
 

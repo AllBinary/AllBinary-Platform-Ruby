@@ -92,15 +92,15 @@ class DownloadItemsRequestHelper < ModifyTable
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "admin/tags/AbTagData"
-require "org/allbinary/business/user/commerce/inventory/item/download/DownloadableItem"
-require "org/allbinary/data/tables/user/commerce/inventory/item/downloads/DownloadItemsEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonSeps"
-require "tags/HelperTag"
-require "views/admin/inventory/download/DownloadableInventoryItemView"
-require "admin/taghelpers/InventoryItemViewParentTagHelper"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :AbTagData, "admin/tags/AbTagData"
+autoload :DownloadableItem, "org/allbinary/business/user/commerce/inventory/item/download/DownloadableItem"
+autoload :DownloadItemsEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/item/downloads/DownloadItemsEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :HelperTag, "tags/HelperTag"
+autoload :DownloadableInventoryItemView, "views/admin/inventory/download/DownloadableInventoryItemView"
+autoload :InventoryItemViewParentTagHelper, "admin/taghelpers/InventoryItemViewParentTagHelper"
 

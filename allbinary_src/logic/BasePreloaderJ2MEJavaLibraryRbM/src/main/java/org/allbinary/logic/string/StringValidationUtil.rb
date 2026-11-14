@@ -69,7 +69,7 @@ class StringValidationUtil
     
 
     def isValidRequired(value, min, max)
-        if value == nil || value.length < min || value.length > max
+        if value.length < min || value.length > max
             return false
         end
         return true
@@ -88,7 +88,7 @@ class StringValidationUtil
     
 
     def isValidNotRequired(value, min, max)
-        if value != nil
+        if value.length > 0
             if value.length < min || value.length > max
                 return false
             end
@@ -98,7 +98,7 @@ class StringValidationUtil
     
 
     def isValidNotRequiredNumber(value, min, max)
-        if value != nil
+        if value.length > 0
             if @tsUtil.compareTo(value, @stringUtil.NULL_STRING) == 0 || value.length < min || value.length > max
                 return false
             end
@@ -111,7 +111,7 @@ class StringValidationUtil
     
 
     def isEmpty(string)
-        if string != nil && @tsUtil.compareTo(string, @stringUtil.NULL_STRING) != 0 && @tsUtil.compareTo(string, @stringUtil.EMPTY_STRING) != 0
+        if @tsUtil.compareTo(string, @stringUtil.NULL_STRING) != 0 && @tsUtil.compareTo(string, @stringUtil.EMPTY_STRING) != 0
             return false
         else
             return true
@@ -119,18 +119,42 @@ class StringValidationUtil
     end
 
     def self.instance()
+        StringValidationUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        StringValidationUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = StringValidationUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StringValidationUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/string/StringUtil"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class StringValidationUtil
-    @@instance = StringValidationUtil.new()
+begin
+    StringValidationUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

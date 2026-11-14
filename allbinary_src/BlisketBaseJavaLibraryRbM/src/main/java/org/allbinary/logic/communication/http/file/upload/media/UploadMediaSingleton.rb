@@ -117,24 +117,48 @@ class UploadMediaSingleton
     end
 
     def self.uploadMedia()
+        UploadMediaSingleton.java_static_fields unless @java_static_fields_started
         return defined?(@@uploadMedia) ? @@uploadMedia : nil
     end
 
     def self.uploadMedia=(value)
+        UploadMediaSingleton.java_static_fields unless @java_static_fields_started
         @@uploadMedia = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@uploadMedia = nil
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UploadMediaSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/media/MediaData"
-require "org/allbinary/logic/visual/media/MediaIOUtil"
-require "org/allbinary/logic/visual/media/MediaTypeData"
-require "org/allbinary/string/CommonStrings"
+autoload :HashMap, "java/util/HashMap"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :MediaData, "org/allbinary/logic/visual/media/MediaData"
+autoload :MediaIOUtil, "org/allbinary/logic/visual/media/MediaIOUtil"
+autoload :MediaTypeData, "org/allbinary/logic/visual/media/MediaTypeData"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class UploadMediaSingleton
-    @@uploadMedia = nil
+begin
+    UploadMediaSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

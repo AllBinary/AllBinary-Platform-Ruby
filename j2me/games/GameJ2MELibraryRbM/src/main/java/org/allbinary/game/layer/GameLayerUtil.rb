@@ -38,7 +38,7 @@ class GameLayerUtil
     end
 end
 
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/view/ViewPositionBase"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 

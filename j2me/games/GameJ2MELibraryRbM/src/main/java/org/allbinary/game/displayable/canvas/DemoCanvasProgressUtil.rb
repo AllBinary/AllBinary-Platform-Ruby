@@ -34,9 +34,9 @@ class DemoCanvasProgressUtil
     end
 end
 
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/graphics/paint/PaintableComposite"
-require "org/allbinary/graphics/paint/PaintableInterface"
-require "org/allbinary/game/displayable/canvas/DemoCanvas"
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :PaintableComposite, "org/allbinary/graphics/paint/PaintableComposite"
+autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
+autoload :DemoCanvas, "org/allbinary/game/displayable/canvas/DemoCanvas"
 

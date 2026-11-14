@@ -70,8 +70,8 @@ class KeylessBasicArrayListCache < IndexedBasicArrayListCache
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
 

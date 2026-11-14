@@ -46,20 +46,44 @@ class PartnerIdentifierFileUtil
     end
 
     def self.instance()
+        PartnerIdentifierFileUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PartnerIdentifierFileUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PartnerIdentifierFileUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PartnerIdentifierFileUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class PartnerIdentifierFileUtil
-    @@instance = PartnerIdentifierFileUtil.new()
+begin
+    PartnerIdentifierFileUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

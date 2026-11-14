@@ -17,12 +17,12 @@
 require "org/allbinary/input/motion/button/CurrentlyPressedTouchButtonSingleton"
 
 class CurrentlyPressedTouchButtonSingletonDebug < CurrentlyPressedTouchButtonSingleton
-    attr_accessor :string, :listString, :append, :PRESSED_AND_FIRED, :PRESSED_AND_NOT_FIRED, :ASSOCIATED_RELEASED_AND_FIRED, :RELEASED_AND_FIRED, :RELEASED_AND_FIRED_2, :RELEASED_AND_NOT_FIRED
+    attr_accessor :string, :listString, :appendText, :PRESSED_AND_FIRED, :PRESSED_AND_NOT_FIRED, :ASSOCIATED_RELEASED_AND_FIRED, :RELEASED_AND_FIRED, :RELEASED_AND_FIRED_2, :RELEASED_AND_NOT_FIRED
 
     def initialize_fields
         @string = StringUtil.getInstance().EMPTY_STRING
         @listString = StringUtil.getInstance().EMPTY_STRING
-        @append = StringUtil.getInstance().EMPTY_STRING
+        @appendText = StringUtil.getInstance().EMPTY_STRING
         @PRESSED_AND_FIRED = "pressed & fired"
         @PRESSED_AND_NOT_FIRED = "pressed in button but not fired"
         @ASSOCIATED_RELEASED_AND_FIRED = "assoc. rel & fired"
@@ -47,20 +47,20 @@ class CurrentlyPressedTouchButtonSingletonDebug < CurrentlyPressedTouchButtonSin
         stringBuffer.append(touchButtonInput.to_s)
         stringBuffer.append(CommonSeps.getInstance().SPACE)
         stringBuffer.append(append)
-        @append = stringBuffer.to_s
-        @string = StringMaker.new().append(@listString).append(@append).to_s
+        @appendText = stringBuffer.to_s
+        @string = StringMaker.new().append(@listString).append(@appendText).to_s
     end
     
 
     def append(append)
-        @append = StringMaker.new().append(@append).append(append).to_s
-        @string = StringMaker.new().append(@listString).append(@append).to_s
+        @appendText = StringMaker.new().append(@appendText).append(append).to_s
+        @string = StringMaker.new().append(@listString).append(@appendText).to_s
     end
     
 
     def clearLog(x, y)
-        @append = StringMaker.new().append(GPoint.toStringStatic(x, y, 0)).append(CommonSeps.getInstance().SPACE).to_s
-        @string = StringMaker.new().append(@listString).append(@append).to_s
+        @appendText = StringMaker.new().append(GPoint.toStringStatic(x, y, 0)).append(CommonSeps.getInstance().SPACE).to_s
+        @string = StringMaker.new().append(@listString).append(@appendText).to_s
     end
     
 
@@ -97,7 +97,7 @@ class CurrentlyPressedTouchButtonSingletonDebug < CurrentlyPressedTouchButtonSin
     def removeAt(index)
         touchButtonInput = super(index)
         @listString = @list.to_s
-        @string = StringMaker.new().append(@listString).append(@append).to_s
+        @string = StringMaker.new().append(@listString).append(@appendText).to_s
         return touchButtonInput
     end
     
@@ -105,7 +105,7 @@ class CurrentlyPressedTouchButtonSingletonDebug < CurrentlyPressedTouchButtonSin
     def remove(touchButtonInput)
         isRemoved = super(touchButtonInput)
         @listString = @list.to_s
-        @string = StringMaker.new().append(@listString).append(@append).to_s
+        @string = StringMaker.new().append(@listString).append(@appendText).to_s
         return isRemoved
     end
     
@@ -113,7 +113,7 @@ class CurrentlyPressedTouchButtonSingletonDebug < CurrentlyPressedTouchButtonSin
     def add(touchButtonInput)
         super(touchButtonInput)
         @listString = @list.to_s
-        @string = StringMaker.new().append(@listString).append(@append).to_s
+        @string = StringMaker.new().append(@listString).append(@appendText).to_s
     end
     
 
@@ -123,21 +123,45 @@ class CurrentlyPressedTouchButtonSingletonDebug < CurrentlyPressedTouchButtonSin
     alias_method :to_s, :toString
 
     def self.instanceC()
+        CurrentlyPressedTouchButtonSingletonDebug.java_static_fields unless @java_static_fields_started
         return defined?(@@instanceC) ? @@instanceC : nil
     end
 
     def self.instanceC=(value)
+        CurrentlyPressedTouchButtonSingletonDebug.java_static_fields unless @java_static_fields_started
         @@instanceC = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instanceC = CurrentlyPressedTouchButtonSingletonDebug.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CurrentlyPressedTouchButtonSingletonDebug"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/input/motion/button/TouchButtonInput"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput"
 
-class CurrentlyPressedTouchButtonSingletonDebug
-    @@instanceC = CurrentlyPressedTouchButtonSingletonDebug.new()
+begin
+    CurrentlyPressedTouchButtonSingletonDebug.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

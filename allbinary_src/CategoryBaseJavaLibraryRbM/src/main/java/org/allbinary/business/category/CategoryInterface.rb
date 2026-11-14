@@ -98,9 +98,9 @@ module CategoryInterface
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/category/hierarchy/CategoryHierarchyInterface"
-require "org/allbinary/business/category/properties/CategoryPropertiesInterface"
-require "org/allbinary/logic/io/path/AbPath"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :CategoryHierarchyInterface, "org/allbinary/business/category/hierarchy/CategoryHierarchyInterface"
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
 

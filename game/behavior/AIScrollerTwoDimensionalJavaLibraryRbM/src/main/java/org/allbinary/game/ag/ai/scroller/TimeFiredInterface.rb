@@ -19,6 +19,7 @@ module TimeFiredInterface
     
 
     def getLastFireTime()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

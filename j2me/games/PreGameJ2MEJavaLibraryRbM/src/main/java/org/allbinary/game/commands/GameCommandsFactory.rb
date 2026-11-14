@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.commands
 
-# require "javax/microedition/lcdui/Command"
 
 class GameCommandsFactory
     attr_accessor :TOGGLE_FULLSCREEN, :TOGGLE_KEYBOARD, :SET_MENU_DISPLAYABLE, :APPLICATION_UPDATE, :DISPLAY_ABOUT, :OPEN_WEB_URL, :CLOSE_OPTIONS, :DISPLAY_OPTIONS, :START_TRACE, :STOP_TRACE, :DEFAULT_OPTIONS, :SHOW_GAME_CANVAS, :CLOSE_AND_SHOW_GAME_CANVAS, :QUIT_COMMAND, :RESTART_COMMAND, :DISPLAY_SAVE_FORM, :SAVE, :DISPLAY_LOAD_FORM, :LOAD_FILE, :DELETE_FILE, :EXIT_COMMAND, :EXIT_WITHOUT_PROGRESS_COMMAND, :START_COMMAND, :CONTINUE_COMMAND, :SELECT_COMMAND, :FEATURE_UPDATE, :BUY_COMMAND
@@ -63,20 +62,45 @@ class GameCommandsFactory
     end
 
     def self.instance()
+        GameCommandsFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GameCommandsFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameCommandsFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class GameCommandsFactory
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    GameCommandsFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

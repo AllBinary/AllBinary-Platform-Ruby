@@ -14,13 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.midlet
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Display"
-# require "javax/microedition/lcdui/Displayable"
-# require "javax/microedition/lcdui/NullCanvas"
-# require "javax/microedition/midlet/MIDlet"
-# require "javax/microedition/midlet/MIDletStateChangeException"
+require "javax/microedition/lcdui/CommandListener"
+require "javax/microedition/midlet/MIDlet"
 
 class AllBinaryMidlet < MIDlet
     include CommandListener
@@ -40,7 +35,7 @@ class AllBinaryMidlet < MIDlet
 
     def self.getNullInstance()
         if AllBinaryMidlet::NULL_ALLBINARY_MIDLET == NullUtil.getInstance().NULL_OBJECT
-            AllBinaryMidlet::NULL_ALLBINARY_MIDLET = AllBinaryMidlet.new()
+            (AllBinaryMidlet.send(:remove_const, :NULL_ALLBINARY_MIDLET) if AllBinaryMidlet.const_defined?(:NULL_ALLBINARY_MIDLET, false); AllBinaryMidlet.const_set(:NULL_ALLBINARY_MIDLET, AllBinaryMidlet.new()))
         end
         return AllBinaryMidlet::NULL_ALLBINARY_MIDLET
     end
@@ -57,11 +52,7 @@ class AllBinaryMidlet < MIDlet
         title = StringUtil.getInstance().EMPTY_STRING
         if newDisplay != NullCanvas::NULL_CANVAS
             title = newDisplay.getTitle()
-            if title != nil
-                @logUtil.putF(StringMaker.new().append(@SETTING_).append(title).append(@_DISPLAY_).append(StringUtil.getInstance().toString(newDisplay)).to_s, self, @SET_DISPLAY)
-            else
-                @logUtil.putF(StringMaker.new().append(@SETTING_NO_TITLE).append(StringUtil.getInstance().toString(newDisplay)).to_s, self, @SET_DISPLAY)
-            end
+            @logUtil.putF(StringMaker.new().append(@SETTING_).append(title).append(@_DISPLAY_).append(StringUtil.getInstance().toString(newDisplay)).to_s, self, @SET_DISPLAY)
         end
         display = self.getDisplay()
         display.setCurrent(newDisplay)
@@ -138,22 +129,49 @@ class AllBinaryMidlet < MIDlet
 
     def commandAction(command, displayable)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_ALLBINARY_MIDLET, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryMidlet"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_ALLBINARY_MIDLET].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/system/Memory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/util/ABHashtable"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :Display, "javax/microedition/lcdui/Display"
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
+autoload :MIDletStateChangeException, "javax/microedition/midlet/MIDletStateChangeException"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Memory, "org/allbinary/system/Memory"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
 
-class AllBinaryMidlet
-    NULL_ALLBINARY_MIDLET = NullUtil.getInstance().NULL_OBJECT
+begin
+    AllBinaryMidlet.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

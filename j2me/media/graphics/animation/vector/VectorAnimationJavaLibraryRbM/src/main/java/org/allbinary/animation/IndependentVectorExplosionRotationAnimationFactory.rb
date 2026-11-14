@@ -56,12 +56,12 @@ class IndependentVectorExplosionRotationAnimationFactory
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/vector/VectorInfo"
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/animation/VectorAnimationFactoryInterface"
-require "org/allbinary/animation/VectorExplosionGenerator"
-require "org/allbinary/animation/VectorRotationGenerator"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :VectorInfo, "org/allbinary/vector/VectorInfo"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :VectorAnimationFactoryInterface, "org/allbinary/animation/VectorAnimationFactoryInterface"
+autoload :VectorExplosionGenerator, "org/allbinary/animation/VectorExplosionGenerator"
+autoload :VectorRotationGenerator, "org/allbinary/animation/VectorRotationGenerator"
 

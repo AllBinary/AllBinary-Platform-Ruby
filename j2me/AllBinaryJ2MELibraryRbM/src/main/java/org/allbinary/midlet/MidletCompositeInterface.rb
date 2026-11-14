@@ -14,26 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.midlet
 
-# require "javax/microedition/lcdui/Displayable"
-# require "javax/microedition/midlet/MIDlet"
 
 module MidletCompositeInterface
     
 
     def setMidlet(midlet)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMidlet()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getDisplayable()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/midlet/AllBinaryMidlet"
+autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :MIDlet, "javax/microedition/midlet/MIDlet"
+autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet"
 

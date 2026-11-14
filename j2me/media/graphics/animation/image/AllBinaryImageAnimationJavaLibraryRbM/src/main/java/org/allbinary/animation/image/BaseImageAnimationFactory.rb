@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
 class BaseImageAnimationFactory
@@ -100,14 +99,15 @@ class BaseImageAnimationFactory
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/NullAnimationFactory"
-require "org/allbinary/image/AnimationFactoryImageScaleUtil"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/ScaleProperties"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/animation/image/AnimationFactoryInitializationVisitor"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
+autoload :AnimationFactoryImageScaleUtil, "org/allbinary/image/AnimationFactoryImageScaleUtil"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :AnimationFactoryInitializationVisitor, "org/allbinary/animation/image/AnimationFactoryInitializationVisitor"
 

@@ -40,9 +40,9 @@ class CategoryPropertiesView
     end
 end
 
-require "org/allbinary/business/category/CategoryData"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Element"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Element, "org/w3c/dom/Element"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
 

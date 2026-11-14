@@ -24,13 +24,35 @@ class NullXmlRpcHandler
     def execute(method, params)
         return NullUtil.getInstance().NULL_OBJECT
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_XML_RPC_HANDLER, NullXmlRpcHandler.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullXmlRpcHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_XML_RPC_HANDLER].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/NullUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
 
-class NullXmlRpcHandler
-    NULL_XML_RPC_HANDLER = NullXmlRpcHandler.new()
+begin
+    NullXmlRpcHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -36,6 +36,6 @@ class KeyCharDefaultComboBoxModelFactory
     end
 end
 
-require "abbot/tester/KeyStrokeMap"
-require "org/allbinary/input/KeySingletonFactory"
+autoload :KeyStrokeMap, "abbot/tester/KeyStrokeMap"
+autoload :KeySingletonFactory, "org/allbinary/input/KeySingletonFactory"
 

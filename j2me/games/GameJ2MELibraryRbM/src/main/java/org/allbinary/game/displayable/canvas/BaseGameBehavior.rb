@@ -96,23 +96,47 @@ class BaseGameBehavior < DemoGameBehavior
     end
 
     def self.instanceC()
+        BaseGameBehavior.java_static_fields unless @java_static_fields_started
         return defined?(@@instanceC) ? @@instanceC : nil
     end
 
     def self.instanceC=(value)
+        BaseGameBehavior.java_static_fields unless @java_static_fields_started
         @@instanceC = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instanceC = BaseGameBehavior.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BaseGameBehavior"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/business/advertisement/GameAdStateFactory"
-require "org/allbinary/game/GameAdState"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/graphics/opengles/CurrentDisplayableFactory"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory"
+autoload :GameAdState, "org/allbinary/game/GameAdState"
+autoload :Features, "org/allbinary/game/configuration/feature/Features"
+autoload :CurrentDisplayableFactory, "org/allbinary/graphics/opengles/CurrentDisplayableFactory"
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
 
-class BaseGameBehavior
-    @@instanceC = BaseGameBehavior.new()
+begin
+    BaseGameBehavior.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

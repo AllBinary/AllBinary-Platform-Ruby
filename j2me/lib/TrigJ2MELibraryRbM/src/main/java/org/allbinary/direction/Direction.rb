@@ -74,17 +74,41 @@ class Direction
     alias_method :to_s, :toString
 
     def self.directionArray()
+        Direction.java_static_fields unless @java_static_fields_started
         return defined?(@@directionArray) ? @@directionArray : nil
     end
 
     def self.directionArray=(value)
+        Direction.java_static_fields unless @java_static_fields_started
         @@directionArray = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@directionArray = Array.new(13, nil)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Direction"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 
-class Direction
-    @@directionArray = Array.new(13, nil)
+begin
+    Direction.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

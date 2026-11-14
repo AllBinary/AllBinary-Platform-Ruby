@@ -29,6 +29,6 @@ class IIOImageCacheableFactory
     end
 end
 
-require "org/allbinary/logic/util/cache/CacheableInterface"
-require "org/allbinary/media/image/io/IIOImageCacheable"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :IIOImageCacheable, "org/allbinary/media/image/io/IIOImageCacheable"
 

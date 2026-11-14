@@ -36,7 +36,7 @@ class DestroyEventFactory
     end
 end
 
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/game/combat/destroy/event/DestroyedEvent"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
 

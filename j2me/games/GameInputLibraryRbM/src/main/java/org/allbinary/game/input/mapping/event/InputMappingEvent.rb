@@ -40,5 +40,5 @@ class InputMappingEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
 

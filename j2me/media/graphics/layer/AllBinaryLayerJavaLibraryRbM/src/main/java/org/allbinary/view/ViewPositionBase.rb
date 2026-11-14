@@ -41,9 +41,31 @@ class ViewPositionBase < GPoint
 
     def setAllbinaryLayer(allbinaryLayer)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_VIEW_POSITION, ViewPositionBase.new(0, 0, 0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ViewPositionBase"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_VIEW_POSITION].include?(name)
+        end
+        super
+    end
 end
 
-class ViewPositionBase
-    NULL_VIEW_POSITION = ViewPositionBase.new(0, 0, 0)
+begin
+    ViewPositionBase.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

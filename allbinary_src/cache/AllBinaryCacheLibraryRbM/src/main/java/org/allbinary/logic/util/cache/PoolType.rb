@@ -41,5 +41,5 @@ class PoolType
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/util/cache/CacheType"
+autoload :CacheType, "org/allbinary/logic/util/cache/CacheType"
 

@@ -93,10 +93,10 @@ class AbTransformer
     end
 end
 
-require "org/allbinary/data/tree/dom/XslHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGenerator"
-require "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorFactory"
-require "org/allbinary/string/CommonStrings"
+autoload :XslHelper, "org/allbinary/data/tree/dom/XslHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoObjectConfigGenerator, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGenerator"
+autoload :TransformInfoObjectConfigGeneratorFactory, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

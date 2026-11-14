@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/layer/Layer"
 
 class NullLayer < Layer
@@ -34,15 +33,41 @@ class NullLayer < Layer
     end
 
     def self.instance()
+        NullLayer.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        NullLayer.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NullLayer.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullLayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class NullLayer
-    @@instance = NullLayer.new()
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+
+begin
+    NullLayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

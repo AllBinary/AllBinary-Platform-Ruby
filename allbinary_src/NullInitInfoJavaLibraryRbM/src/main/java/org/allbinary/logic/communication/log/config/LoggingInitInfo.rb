@@ -122,28 +122,54 @@ class LoggingInitInfo
     alias_method :to_s, :toString
 
     def self.logConfigInfoList()
+        LoggingInitInfo.java_static_fields unless @java_static_fields_started
         return defined?(@@logConfigInfoList) ? @@logConfigInfoList : nil
     end
 
     def self.logConfigInfoList=(value)
+        LoggingInitInfo.java_static_fields unless @java_static_fields_started
         @@logConfigInfoList = value
     end
 
     def self.hasRead()
+        LoggingInitInfo.java_static_fields unless @java_static_fields_started
         return defined?(@@hasRead) ? @@hasRead : nil
     end
 
     def self.hasRead=(value)
+        LoggingInitInfo.java_static_fields unless @java_static_fields_started
         @@hasRead = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@logConfigInfoList = nil
+        @@hasRead = false
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LoggingInitInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/communication/log/config/LogConfig"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :LogConfig, "org/allbinary/logic/communication/log/config/LogConfig"
 
-class LoggingInitInfo
-    @@logConfigInfoList = nil
-    @@hasRead = false
+begin
+    LoggingInitInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

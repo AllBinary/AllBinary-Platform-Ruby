@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.special
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/layer/special/SpecialGameInputInterface"
 
 class SpecialGameInput
@@ -89,6 +88,7 @@ class SpecialGameInput
     end
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/layer/AllBinaryLayerManager"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
 

@@ -14,8 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/lcdui/Graphics"
+require "org/allbinary/graphics/paint/Paintable"
 require "org/allbinary/image/opengles/OpenGLSurfaceChangedInterface"
 require "org/allbinary/layer/AllBinaryLayer"
 require "org/allbinary/view/event/ViewPositionEventListenerInterface"
@@ -24,22 +23,40 @@ class AllBinaryGameLayer < AllBinaryLayer
     include ViewPositionEventListenerInterface
     include OpenGLSurfaceChangedInterface
     attr_accessor :commonStrings, :basicSetColorUtil, :RED, :paintable, :gameKeyEventList
+    #Named instead of anonymous so the languages generated from this Java can convert it
+    class SWTBlackPaintable < Paintable
+        attr_accessor :basicSetColorUtil, :BLACK
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @basicSetColorUtil = BasicColorSetUtil.getInstance()
-        @RED = BasicColorFactory.getInstance().RED
-        @paintable = (SWTUtil.isSWT ? Class.new(Paintable.is_a?(Class) ? Paintable : Object) do
-        include(Paintable) unless Paintable.is_a?(Class)
-        @basicSetColorUtil = BasicColorSetUtil.getInstance()
-        @BLACK = BasicColorFactory.getInstance().BLACK
+        def initialize_fields
+            @basicSetColorUtil = BasicColorSetUtil.getInstance()
+            @BLACK = BasicColorFactory.getInstance().BLACK
+        end
+
+        def initialize
+            super()
+            initialize_fields
+        end
         
 
         def paint(graphics)
             @basicSetColorUtil.setBasicColorP(graphics, @BLACK)
         end
-    end.new() : NullPaintable.getInstance())
+    end
+
+    def initialize_fields
+        @commonStrings = CommonStrings.getInstance()
+        @basicSetColorUtil = BasicColorSetUtil.getInstance()
+        @RED = BasicColorFactory.getInstance().RED
+        @paintable = AllBinaryGameLayer.createPaintable()
         @gameKeyEventList = BasicArrayListD.new()
+    end
+    
+
+    def self.createPaintable()
+        if SWTUtil.isSWT
+            return SWTBlackPaintable.new()
+        end
+        return NullPaintable.getInstance()
     end
     
 
@@ -112,32 +129,33 @@ class AllBinaryGameLayer < AllBinaryLayer
     
 
     def setWidth(width)
-        self.class.superclass.instance_method(:setLayerWidth).bind(self).call(width)
+        AllBinaryGameLayer.superclass.instance_method(:setLayerWidth).bind(self).call(width)
         self.setHalfWidth(width >> 1)
     end
     
 
     def setHeight(height)
-        self.class.superclass.instance_method(:setLayerHeight).bind(self).call(height)
+        AllBinaryGameLayer.superclass.instance_method(:setLayerHeight).bind(self).call(height)
         self.setHalfHeight(height >> 1)
     end
 end
 
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/color/BasicColorSetUtil"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/graphics/paint/Paintable"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/view/event/ViewPositionEvent"
-require "org/allbinary/game/layer/GameLayerUtil"
-require "org/allbinary/game/layer/SWTUtil"
+autoload :GL, "javax/microedition/khronos/opengles/GL"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :ViewPositionEvent, "org/allbinary/view/event/ViewPositionEvent"
+autoload :GameLayerUtil, "org/allbinary/game/layer/GameLayerUtil"
+autoload :SWTUtil, "org/allbinary/game/layer/SWTUtil"
 

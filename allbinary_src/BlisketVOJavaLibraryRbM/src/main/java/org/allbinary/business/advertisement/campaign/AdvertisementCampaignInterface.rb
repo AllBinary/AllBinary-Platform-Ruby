@@ -43,6 +43,6 @@ module AdvertisementCampaignInterface
     end
 end
 
-require "org/allbinary/business/advertisement/AdvertisementsInterface"
-require "org/allbinary/business/advertisement/search/AdvertisementSearchInterface"
+autoload :AdvertisementsInterface, "org/allbinary/business/advertisement/AdvertisementsInterface"
+autoload :AdvertisementSearchInterface, "org/allbinary/business/advertisement/search/AdvertisementSearchInterface"
 

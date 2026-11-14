@@ -108,14 +108,14 @@ class GenericCssStyleValidation < Validation
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/visual/dhtml/style/StylesData"
-require "org/allbinary/logic/visual/transform/template/customizer/bodies/BodyData"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
+autoload :HashMap, "java/util/HashMap"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StylesData, "org/allbinary/logic/visual/dhtml/style/StylesData"
+autoload :BodyData, "org/allbinary/logic/visual/transform/template/customizer/bodies/BodyData"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
 

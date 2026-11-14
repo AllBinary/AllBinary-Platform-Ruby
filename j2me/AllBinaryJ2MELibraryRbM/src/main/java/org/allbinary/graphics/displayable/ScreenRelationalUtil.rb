@@ -2,7 +2,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable
 
-# require "javax/microedition/lcdui/Image"
 
 class ScreenRelationalUtil
     
@@ -46,17 +45,42 @@ class ScreenRelationalUtil
     end
 
     def self.instance()
+        ScreenRelationalUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ScreenRelationalUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ScreenRelationalUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ScreenRelationalUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
 
-class ScreenRelationalUtil
-    @@instance = ScreenRelationalUtil.new()
+begin
+    ScreenRelationalUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

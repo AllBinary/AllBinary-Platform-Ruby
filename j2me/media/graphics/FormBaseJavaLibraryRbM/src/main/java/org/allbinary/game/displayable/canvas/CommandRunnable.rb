@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
 require "java/lang/Runnable"
 
 class CommandRunnable
@@ -50,8 +48,10 @@ class CommandRunnable
     end
 end
 
-require "org/allbinary/graphics/displayable/MyCanvas"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/displayable/canvas/CommandFormInputProcessor"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :CommandFormInputProcessor, "org/allbinary/game/displayable/canvas/CommandFormInputProcessor"
 

@@ -163,14 +163,14 @@ class StoreFrontsEntity < AbSqlBean
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFront"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/init/db/UserDbInitInfo"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :UserDbInitInfo, "org/allbinary/business/init/db/UserDbInitInfo"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
 

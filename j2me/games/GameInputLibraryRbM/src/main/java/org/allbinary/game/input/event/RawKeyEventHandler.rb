@@ -124,25 +124,49 @@ class RawKeyEventHandler
     alias_method :to_s, :toString
 
     def self.instance()
+        RawKeyEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        RawKeyEventHandler.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:TOTAL_LISTENERS, "Total Listeners: ")
+        const_set(:LISTENER_LABEL, " Listener: ")
+        begin
+            @@instance = RawKeyEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RawKeyEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:TOTAL_LISTENERS, :LISTENER_LABEL].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/input/event/RawKeyEventListener"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :RawKeyEventListener, "org/allbinary/game/input/event/RawKeyEventListener"
 
-class RawKeyEventHandler
-    @@instance = RawKeyEventHandler.new()
-    TOTAL_LISTENERS = "Total Listeners: "
-    LISTENER_LABEL = " Listener: "
+begin
+    RawKeyEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

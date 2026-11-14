@@ -144,41 +144,65 @@ class PaymentTransactionInterfaceRequestFactory
     end
 
     def self.instance()
+        PaymentTransactionInterfaceRequestFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PaymentTransactionInterfaceRequestFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PaymentTransactionInterfaceRequestFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PaymentTransactionInterfaceRequestFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-require "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-require "org/allbinary/business/user/address/StreetAddress"
-require "org/allbinary/business/user/commerce/inventory/basket/Basket"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
-require "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
-require "org/allbinary/business/user/commerce/money/Money"
-require "org/allbinary/business/user/commerce/money/payment/Payment"
-require "org/allbinary/business/user/commerce/money/payment/PaymentData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/business/user/commerce/money/payment/types/TenderTypeFactory"
-require "org/allbinary/business/user/commerce/money/payment/types/TransactionTypeFactory"
-require "org/allbinary/data/generator/OrderIdGenerator"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityFactory"
-require "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityInterface"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
-require "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
+autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
+autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+autoload :Basket, "org/allbinary/business/user/commerce/inventory/basket/Basket"
+autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+autoload :Payment, "org/allbinary/business/user/commerce/money/payment/Payment"
+autoload :PaymentData, "org/allbinary/business/user/commerce/money/payment/PaymentData"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :TenderTypeFactory, "org/allbinary/business/user/commerce/money/payment/types/TenderTypeFactory"
+autoload :TransactionTypeFactory, "org/allbinary/business/user/commerce/money/payment/types/TransactionTypeFactory"
+autoload :OrderIdGenerator, "org/allbinary/data/generator/OrderIdGenerator"
+autoload :OrderHistoryEntityFactory, "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityFactory"
+autoload :OrderHistoryEntityInterface, "org/allbinary/data/tables/user/commerce/inventory/order/OrderHistoryEntityInterface"
+autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :PaymentTransactionInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
+autoload :PaymentTransactionInterfaceFactory, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceFactory"
 
-class PaymentTransactionInterfaceRequestFactory
-    @@instance = PaymentTransactionInterfaceRequestFactory.new()
+begin
+    PaymentTransactionInterfaceRequestFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

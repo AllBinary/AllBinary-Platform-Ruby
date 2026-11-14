@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.damage
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/combat/damage/DamageFloaters"
 
 class AnimationDamageFloaters < DamageFloaters
@@ -72,12 +71,13 @@ class AnimationDamageFloaters < DamageFloaters
     end
 end
 
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/view/ViewPosition"
-require "org/allbinary/view/ViewPositionBase"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 

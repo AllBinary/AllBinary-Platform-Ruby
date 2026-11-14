@@ -39,9 +39,9 @@ module BundleContext
     end
 end
 
-require "org/osgi/framework/Bundle"
-require "org/osgi/framework/BundleException"
-require "org/osgi/framework/InvalidSyntaxException"
-require "org/osgi/framework/ServiceReference"
-require "org/osgi/framework/ServiceRegistration"
+autoload :Bundle, "org/osgi/framework/Bundle"
+autoload :BundleException, "org/osgi/framework/BundleException"
+autoload :InvalidSyntaxException, "org/osgi/framework/InvalidSyntaxException"
+autoload :ServiceReference, "org/osgi/framework/ServiceReference"
+autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration"
 

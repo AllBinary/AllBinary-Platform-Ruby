@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/LocationPaintableInterface"
 
 module AnimationInterface
@@ -23,12 +22,16 @@ module AnimationInterface
 
     # throws Exception
     def nextFrame()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def paintThreedXYZ(graphics, x, y, z)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

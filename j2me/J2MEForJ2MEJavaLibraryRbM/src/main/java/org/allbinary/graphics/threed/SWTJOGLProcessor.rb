@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.threed
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/midlet/MIDlet"
 require "java/lang/Runnable"
 
 #OpenGLNone
@@ -115,17 +113,43 @@ class SWTJOGLProcessor
     end
 
     def self.instance()
+        SWTJOGLProcessor.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        SWTJOGLProcessor.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = SWTJOGLProcessor.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "SWTJOGLProcessor"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/threed/RatioProcessor"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :MIDlet, "javax/microedition/midlet/MIDlet"
+autoload :RatioProcessor, "org/allbinary/graphics/threed/RatioProcessor"
 
-class SWTJOGLProcessor
-    @@instance = SWTJOGLProcessor.new()
+begin
+    SWTJOGLProcessor.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

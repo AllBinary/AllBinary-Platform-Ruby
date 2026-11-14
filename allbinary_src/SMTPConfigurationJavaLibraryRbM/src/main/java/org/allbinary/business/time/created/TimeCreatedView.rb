@@ -60,10 +60,10 @@ class TimeCreatedView
     end
 end
 
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/time/created/TimeCreated"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :TimeCreated, "org/allbinary/business/time/created/TimeCreated"
 

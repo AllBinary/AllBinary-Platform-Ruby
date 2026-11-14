@@ -67,7 +67,7 @@ class GameNotificationEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/logic/string/StringUtil"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

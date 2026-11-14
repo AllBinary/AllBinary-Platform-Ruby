@@ -73,8 +73,8 @@ class ReverseVelocityBoundsVisitor
     end
 end
 
-require "org/allbinary/game/physics/velocity/VelocityInterface"
-require "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
-require "org/allbinary/layer/LayerInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :VelocityInterface, "org/allbinary/game/physics/velocity/VelocityInterface"
+autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
+autoload :LayerInterface, "org/allbinary/layer/LayerInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

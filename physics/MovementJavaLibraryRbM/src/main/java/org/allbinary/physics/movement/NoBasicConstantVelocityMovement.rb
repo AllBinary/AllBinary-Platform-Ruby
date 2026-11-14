@@ -29,7 +29,7 @@ class NoBasicConstantVelocityMovement < BasicConstantVelocityMovement
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-require "org/allbinary/logic/math/BasicDecimal"
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
 

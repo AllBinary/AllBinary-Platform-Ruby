@@ -28,8 +28,8 @@ class NullRotationAnimation < RotationAnimation
     end
 end
 
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/animation/AnimationBehavior"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

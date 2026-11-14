@@ -23,5 +23,5 @@ class LicensedDemoSetupFactory
     end
 end
 
-require "org/allbinary/game/midlet/DemoSetup"
+autoload :DemoSetup, "org/allbinary/game/midlet/DemoSetup"
 

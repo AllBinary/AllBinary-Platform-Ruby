@@ -37,8 +37,8 @@ class TimedVectorAnimation < VectorAnimation
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/animation/AnimationBehavior"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

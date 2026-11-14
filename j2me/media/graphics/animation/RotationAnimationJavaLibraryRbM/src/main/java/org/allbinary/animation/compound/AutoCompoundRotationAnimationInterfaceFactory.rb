@@ -34,9 +34,9 @@ class AutoCompoundRotationAnimationInterfaceFactory < CompoundAnimationInterface
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/animation/AnimationBehaviorFactory"
-require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
-require "org/allbinary/animation/RotationAnimation"
-require "org/allbinary/animation/compound/AutoCompoundRotationAnimation"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
+autoload :AnimationInterfaceFactoryInterface, "org/allbinary/animation/AnimationInterfaceFactoryInterface"
+autoload :RotationAnimation, "org/allbinary/animation/RotationAnimation"
+autoload :AutoCompoundRotationAnimation, "org/allbinary/animation/compound/AutoCompoundRotationAnimation"
 

@@ -92,21 +92,43 @@ class BasicAI < ArtificialIntelligence
     def getSourceId()
         return 1
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:AI_VISITOR, SmallIntegerSingletonFactory.getInstance().getAt(2))
+            const_set(:ID, SmallIntegerSingletonFactory.getInstance().getAt(1))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicAI"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:AI_VISITOR, :ID].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/displayable/canvas/CanvasUtil"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/game/input/event/GameKeyEventFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
+autoload :CanvasUtil, "org/allbinary/game/displayable/canvas/CanvasUtil"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class BasicAI
-    AI_VISITOR = SmallIntegerSingletonFactory.getInstance().getAt(2)
-    ID = SmallIntegerSingletonFactory.getInstance().getAt(1)
+begin
+    BasicAI.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

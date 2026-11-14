@@ -14,6 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "org/allbinary/game/input/Input"
 
 class J2MEGameKey < Input
     
@@ -44,6 +45,7 @@ class J2MEGameKey < Input
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :InputFactory, "org/allbinary/game/input/InputFactory"
 

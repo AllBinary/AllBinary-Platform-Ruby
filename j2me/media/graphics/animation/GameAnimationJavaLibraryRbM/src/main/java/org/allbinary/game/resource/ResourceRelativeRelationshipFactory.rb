@@ -78,10 +78,10 @@ class ResourceRelativeRelationshipFactory
     end
 end
 
-require "org/allbinary/graphics/RelativeRelationship"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
+autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
 

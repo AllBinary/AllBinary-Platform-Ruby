@@ -33,15 +33,39 @@ class PointFactory
     end
 
     def self.pointArray()
+        PointFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@pointArray) ? @@pointArray : nil
     end
 
     def self.pointArray=(value)
+        PointFactory.java_static_fields unless @java_static_fields_started
         @@pointArray = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@pointArray = Array.new(3000) { Array.new(3000, nil) }
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PointFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class PointFactory
-    @@pointArray = Array.new(3000) { Array.new(3000, nil) }
+begin
+    PointFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

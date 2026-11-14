@@ -61,6 +61,6 @@ class HelperTag < PropertiesTag
     end
 end
 
-require "admin/taghelpers/TagHelperFactoryInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
+autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
 

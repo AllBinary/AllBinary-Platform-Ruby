@@ -14,10 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
-# require "javax/microedition/lcdui/Choice"
-# require "javax/microedition/lcdui/ChoiceGroup"
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/NullImage"
 require "org/allbinary/graphics/displayable/screen/CommandForm"
 
 class GameDifficultyOptions < CommandForm
@@ -119,11 +115,15 @@ class GameDifficultyOptions < CommandForm
     end
 end
 
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/game/configuration/persistance/GameDifficultyFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/MEUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
+autoload :Choice, "javax/microedition/lcdui/Choice"
+autoload :ChoiceGroup, "javax/microedition/lcdui/ChoiceGroup"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :NullImage, "javax/microedition/lcdui/NullImage"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :GameDifficultyFactory, "org/allbinary/game/configuration/persistance/GameDifficultyFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :MEUtil, "org/allbinary/logic/MEUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

@@ -37,7 +37,7 @@ class ReviewOrderStoreAdminUserFactory
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/user/UserInterface"
-require "org/allbinary/business/user/modules/admin/store/order/review/ReviewOrderStoreAdminUser"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+autoload :ReviewOrderStoreAdminUser, "org/allbinary/business/user/modules/admin/store/order/review/ReviewOrderStoreAdminUser"
 

@@ -278,16 +278,38 @@ class BasicArrayList
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:SIZE, ", Size: ")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicArrayList"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SIZE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/util/ArrayUtil"
-require "org/allbinary/util/BasicArrayListS"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :ArrayUtil, "org/allbinary/util/ArrayUtil"
+autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS"
 require "java/lang/System"
 
-class BasicArrayList
-    SIZE = ", Size: "
+begin
+    BasicArrayList.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

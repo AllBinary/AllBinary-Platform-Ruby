@@ -25,7 +25,7 @@ class VectorAnimationFactory
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/animation/VectorAnimation"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :VectorAnimation, "org/allbinary/animation/VectorAnimation"
 

@@ -47,9 +47,9 @@ class LogoImageFileUtil
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/FileUtil"
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/apache/commons/fileupload/FileItem"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :FileUtil, "org/allbinary/logic/io/file/FileUtil"
+autoload :Directory, "org/allbinary/logic/io/file/directory/Directory"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :FileItem, "org/apache/commons/fileupload/FileItem"
 

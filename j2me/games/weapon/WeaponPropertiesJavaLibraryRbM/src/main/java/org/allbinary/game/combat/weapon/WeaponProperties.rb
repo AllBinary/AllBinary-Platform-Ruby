@@ -111,25 +111,49 @@ class WeaponProperties < SimpleWeaponProperties
     alias_method :to_s, :toString
 
     def self.messageSent()
+        WeaponProperties.java_static_fields unless @java_static_fields_started
         return defined?(@@messageSent) ? @@messageSent : nil
     end
 
     def self.messageSent=(value)
+        WeaponProperties.java_static_fields unless @java_static_fields_started
         @@messageSent = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@messageSent = false
+        const_set(:DAMAGE, "Damage: ")
+        const_set(:RANGE, "Range: ")
+        const_set(:RELOAD, "Reload: ")
+        begin
+            const_set(:NULL_WEAPON_PROPERTIES, WeaponProperties.new(0, 0, 0, 0, (((0).to_i + 32768) % 65536 - 32768)))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "WeaponProperties"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_WEAPON_PROPERTIES, :DAMAGE, :RANGE, :RELOAD].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/math/BasicDecimal"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 
-class WeaponProperties
-    NULL_WEAPON_PROPERTIES = WeaponProperties.new(0, 0, 0, 0, (((0).to_i + 32768) % 65536 - 32768))
-    @@messageSent = false
-    DAMAGE = "Damage: "
-    RANGE = "Range: "
-    RELOAD = "Reload: "
+begin
+    WeaponProperties.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

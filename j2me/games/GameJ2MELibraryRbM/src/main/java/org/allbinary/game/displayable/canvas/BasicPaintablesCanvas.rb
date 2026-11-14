@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/CommandListener"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/displayable/canvas/GameCommandCanvas"
 
 class BasicPaintablesCanvas < GameCommandCanvas
@@ -45,8 +43,10 @@ class BasicPaintablesCanvas < GameCommandCanvas
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/paint/ColorFillBasePaintable"
-require "org/allbinary/game/paint/ColorFillPaintableFactory"
-require "org/allbinary/graphics/paint/Paintable"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :ColorFillBasePaintable, "org/allbinary/game/paint/ColorFillBasePaintable"
+autoload :ColorFillPaintableFactory, "org/allbinary/game/paint/ColorFillPaintableFactory"
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
 

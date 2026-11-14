@@ -20,17 +20,20 @@ module PopupMenuInterface
 
     # throws Exception
     def popupMenu()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def closeMenu()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def toggleMenu()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

@@ -30,13 +30,13 @@ class TempExplosionWeaponLayer < SimpleWeaponLayer
     end
 end
 
-require "org/allbinary/animation/Animation"
-require "org/allbinary/game/combat/weapon/WeaponProperties"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/physics/movement/Movement"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/view/ViewPositionBase"
+autoload :Animation, "org/allbinary/animation/Animation"
+autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :Movement, "org/allbinary/physics/movement/Movement"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 

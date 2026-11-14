@@ -92,12 +92,12 @@ class CollidableDamageWeaponBehavior < CollidableDestroyableDamageableBehavior
     end
 end
 
-require "org/allbinary/game/collision/CollidableHelperFactory"
-require "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-require "org/allbinary/game/collision/CollisionHelper"
-require "org/allbinary/game/collision/CollisionType"
-require "org/allbinary/game/collision/CollisionTypeFactory"
-require "org/allbinary/game/combat/damage/DamageableInterface"
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/layer/AllBinaryLayer"
+autoload :CollidableHelperFactory, "org/allbinary/game/collision/CollidableHelperFactory"
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
+autoload :CollisionHelper, "org/allbinary/game/collision/CollisionHelper"
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
+autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
+autoload :DamageableInterface, "org/allbinary/game/combat/damage/DamageableInterface"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
 

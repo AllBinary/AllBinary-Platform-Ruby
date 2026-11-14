@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.screen
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Command"
-# require "javax/microedition/lcdui/CommandListener"
 
 class WebCommandProcessor
     attr_accessor :logUtil, :aboutCommandProcessor, :list
@@ -47,21 +44,48 @@ class WebCommandProcessor
     end
 
     def self.instance()
+        WebCommandProcessor.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        WebCommandProcessor.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = WebCommandProcessor.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "WebCommandProcessor"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/graphics/displayable/screen/AboutCommandProcessor"
+autoload :Canvas, "javax/microedition/lcdui/Canvas"
+autoload :Command, "javax/microedition/lcdui/Command"
+autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :AboutCommandProcessor, "org/allbinary/graphics/displayable/screen/AboutCommandProcessor"
 
-class WebCommandProcessor
-    @@instance = WebCommandProcessor.new()
+begin
+    WebCommandProcessor.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

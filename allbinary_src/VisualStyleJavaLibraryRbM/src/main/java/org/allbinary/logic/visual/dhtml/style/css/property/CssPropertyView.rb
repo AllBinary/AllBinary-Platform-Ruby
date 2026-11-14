@@ -56,8 +56,8 @@ class CssPropertyView
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/visual/dhtml/style/css/property/CssProperty"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :CssProperty, "org/allbinary/logic/visual/dhtml/style/css/property/CssProperty"
 

@@ -14,12 +14,35 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics
 
-# require "javax/microedition/lcdui/Graphics"
 
 class Anchor
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:TOP_LEFT, Graphics::TOP & Graphics::LEFT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Anchor"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:TOP_LEFT].include?(name)
+        end
+        super
+    end
 end
 
-class Anchor
-    TOP_LEFT = Graphics::TOP & Graphics::LEFT
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+
+begin
+    Anchor.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -149,12 +149,12 @@ class AbFileItem
     end
 end
 
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/apache/commons/fileupload/FileItemHeaders"
-require "org/apache/commons/fileupload/FileItemUtil"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :FileItemHeaders, "org/apache/commons/fileupload/FileItemHeaders"
+autoload :FileItemUtil, "org/apache/commons/fileupload/FileItemUtil"
 

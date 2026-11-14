@@ -90,7 +90,7 @@ class TouchButtonLocationHelper
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/input/motion/button/CommonButtons"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons"
 

@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
-# require "java/io/InputStream"
-# require "javax/microedition/lcdui/Image"
 
 #ImageCacheBaseJavaLibrary - J2ME
 class ImageFactory
@@ -34,13 +32,13 @@ class ImageFactory
 
     # throws Exception
     def createImage(caller, width, height)
-        return Image.createImage(width, height)
+        return MIDPUtil.getInstance().createImageWH(width, height)
     end
     
 
     # throws Exception
     def createImageFromInputStream(key, inputStream)
-        image = Image.createImage(inputStream)
+        image = MIDPUtil.getInstance().createImageFromInputStream(inputStream)
         return image
     end
     
@@ -48,19 +46,47 @@ class ImageFactory
     # throws Exception
     # Java overloaded method: Ruby keeps the last definition
     def createImageFromInputStream(inputStream)
-        return Image.createImage(inputStream)
+        return MIDPUtil.getInstance().createImageFromInputStream(inputStream)
     end
 
     def self.instance()
+        ImageFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class ImageFactory
-    @@instance = ImageFactory.new()
+autoload :InputStream, "java/io/InputStream"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :MIDPUtil, "org/allbinary/MIDPUtil"
+
+begin
+    ImageFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

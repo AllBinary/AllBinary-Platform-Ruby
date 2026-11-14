@@ -74,12 +74,12 @@ class BasicWorkFlow
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/validate/ValidationComponentInterface"
-require "org/allbinary/logic/control/workflow/WorkFlowData"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
-require "org/allbinary/logic/visual/transform/TransformFactory"
-require "org/allbinary/string/CommonStrings"
+autoload :HashMap, "java/util/HashMap"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ValidationComponentInterface, "org/allbinary/logic/control/validate/ValidationComponentInterface"
+autoload :WorkFlowData, "org/allbinary/logic/control/workflow/WorkFlowData"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :TransformFactory, "org/allbinary/logic/visual/transform/TransformFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

@@ -19,29 +19,34 @@ module TextInterface
     
 
     def setTextWithOnMeasure(text, textChangeListener)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getText()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setText(text)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getFontHeight()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getWidth()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/animation/text/TextChangeListener"
+autoload :TextChangeListener, "org/allbinary/animation/text/TextChangeListener"
 

@@ -54,10 +54,10 @@ class LurchRotationAI < LurchAI
     end
 end
 
-require "org/allbinary/animation/IndexedAnimation"
-require "org/allbinary/animation/RotationAnimationInterface"
-require "org/allbinary/animation/RotationAnimationInterfaceCompositeInterface"
-require "org/allbinary/game/input/GameInput"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/math/AngleIncrementInfo"
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+autoload :RotationAnimationInterface, "org/allbinary/animation/RotationAnimationInterface"
+autoload :RotationAnimationInterfaceCompositeInterface, "org/allbinary/animation/RotationAnimationInterfaceCompositeInterface"
+autoload :GameInput, "org/allbinary/game/input/GameInput"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AngleIncrementInfo, "org/allbinary/math/AngleIncrementInfo"
 

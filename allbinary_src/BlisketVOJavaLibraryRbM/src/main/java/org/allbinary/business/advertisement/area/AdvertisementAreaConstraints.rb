@@ -55,12 +55,12 @@ class AdvertisementAreaConstraints
     end
 end
 
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraints"
-require "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface"
-require "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraint"
-require "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/advertisement/area/AdvertisementAreaData"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :DisplayInBrowserContraints, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraints"
+autoload :DisplayInBrowserContraintsInterface, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface"
+autoload :TwoDimensionalConstraint, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraint"
+autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :AdvertisementAreaData, "org/allbinary/business/advertisement/area/AdvertisementAreaData"
 

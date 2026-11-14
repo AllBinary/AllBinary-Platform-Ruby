@@ -92,10 +92,10 @@ class BasicWeightShippingModuleView < BasicWeightShippingModule
     end
 end
 
-require "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :ShippingMethodData, "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

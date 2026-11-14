@@ -21,7 +21,7 @@ class LifeLayerCircularStaticPool < AllBinaryLayerCircularPool
 
     def initialize(allbinaryLayerFactoryInterface, total)
         super()
-        self.class.superclass.instance_method(:initAllBinaryLayerCircularPool).bind(self).call(allbinaryLayerFactoryInterface, total)
+        LifeLayerCircularStaticPool.superclass.instance_method(:initAllBinaryLayerCircularPool).bind(self).call(allbinaryLayerFactoryInterface, total)
     end
     
 
@@ -34,9 +34,9 @@ class LifeLayerCircularStaticPool < AllBinaryLayerCircularPool
     end
 end
 
-require "org/allbinary/game/ag/life/Life"
-require "org/allbinary/game/ag/life/LifeInterfaceCompositeInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerFactoryInterface"
-require "org/allbinary/game/ag/layer/pickup/life/LifeLayer"
+autoload :Life, "org/allbinary/game/ag/life/Life"
+autoload :LifeInterfaceCompositeInterface, "org/allbinary/game/ag/life/LifeInterfaceCompositeInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerFactoryInterface, "org/allbinary/layer/AllBinaryLayerFactoryInterface"
+autoload :LifeLayer, "org/allbinary/game/ag/layer/pickup/life/LifeLayer"
 

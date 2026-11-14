@@ -46,13 +46,13 @@ class BasicTextEmailHelper < TagHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
-require "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler"
-require "org/allbinary/logic/communication/smtp/event/handler/factory/AdminUserEmailEventHandlerSingletons"
-require "org/allbinary/logic/communication/smtp/info/AdminEmailInfo"
-require "org/allbinary/logic/communication/smtp/info/BasicEmailInfo"
-require "org/allbinary/logic/communication/smtp/info/EmailInfo"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
+autoload :HashMap, "java/util/HashMap"
+autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
+autoload :UserEmailEventHandler, "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler"
+autoload :AdminUserEmailEventHandlerSingletons, "org/allbinary/logic/communication/smtp/event/handler/factory/AdminUserEmailEventHandlerSingletons"
+autoload :AdminEmailInfo, "org/allbinary/logic/communication/smtp/info/AdminEmailInfo"
+autoload :BasicEmailInfo, "org/allbinary/logic/communication/smtp/info/BasicEmailInfo"
+autoload :EmailInfo, "org/allbinary/logic/communication/smtp/info/EmailInfo"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :ServiceClientInformationInterfaceFactory, "org/allbinary/logic/system/security/licensing/ServiceClientInformationInterfaceFactory"
 

@@ -21,11 +21,13 @@ module SpecialAnimationInterface
     
 
     def setLastFrame()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isComplete()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

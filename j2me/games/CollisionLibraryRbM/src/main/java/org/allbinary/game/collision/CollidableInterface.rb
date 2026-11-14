@@ -22,28 +22,32 @@ module CollidableInterface
 
     # throws Exception
     def isCollidable(ownerLayer)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def isCollision(ownerLayer, collidableInterfaceCompositeInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def collide(ownerLayer, collidableInterfaceCompositeInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getCollisionTypeWith(layerInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/collision/CollisionType"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
 

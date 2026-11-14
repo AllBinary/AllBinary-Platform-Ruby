@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
-# require "javax/microedition/lcdui/Graphics"
 
 module PaintableInterface
     
 
     def paint(graphics)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def paintThreed(graphics)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

@@ -127,31 +127,55 @@ class LicenseInitInfoUtil
     end
 
     def self.instance()
+        LicenseInitInfoUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LicenseInitInfoUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = LicenseInitInfoUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LicenseInitInfoUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/globals/PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/AbDataInputStream"
-require "org/allbinary/logic/io/AbDataOutputStream"
-require "org/allbinary/logic/io/AbFileInputStream"
-require "org/allbinary/logic/io/DataOutputStreamFactory"
-require "org/allbinary/logic/io/FileStreamFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/crypt/DatabaseEncoder"
-require "org/allbinary/logic/system/security/crypt/WeakCrypt"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/business/init/LicenseInitInfo"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbDataInputStream, "org/allbinary/logic/io/AbDataInputStream"
+autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream"
+autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream"
+autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory"
+autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :DatabaseEncoder, "org/allbinary/logic/system/security/crypt/DatabaseEncoder"
+autoload :WeakCrypt, "org/allbinary/logic/system/security/crypt/WeakCrypt"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo"
 
-class LicenseInitInfoUtil
-    @@instance = LicenseInitInfoUtil.new()
+begin
+    LicenseInitInfoUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

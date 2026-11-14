@@ -20,11 +20,12 @@ module PartFactoryInterface
 
     # throws Exception
     def getInstance(sourceLayerInterface, relativeRelationship)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/RelativeRelationship"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/part/PartInterface"
+autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :PartInterface, "org/allbinary/game/part/PartInterface"
 

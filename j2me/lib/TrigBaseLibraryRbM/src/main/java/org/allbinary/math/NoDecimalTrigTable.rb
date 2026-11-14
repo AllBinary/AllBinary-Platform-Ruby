@@ -1236,24 +1236,48 @@ class NoDecimalTrigTable
     end
 
     def self.instance()
+        NoDecimalTrigTable.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        NoDecimalTrigTable.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = NoDecimalTrigTable.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NoDecimalTrigTable"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/math/MathUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/math/Angle"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/math/PositionStrings"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :PositionStrings, "org/allbinary/math/PositionStrings"
 
-class NoDecimalTrigTable
-    @@instance = NoDecimalTrigTable.new()
+begin
+    NoDecimalTrigTable.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

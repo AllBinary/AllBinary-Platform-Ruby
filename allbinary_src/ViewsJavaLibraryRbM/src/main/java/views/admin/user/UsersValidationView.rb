@@ -74,13 +74,13 @@ class UsersValidationView < UsersView
     end
 end
 
-require "org/allbinary/business/user/role/UserRole"
-require "org/allbinary/business/user/role/UserRoleB"
-require "org/allbinary/business/user/role/UserRoleData"
-require "org/allbinary/data/tables/user/UserEntityFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :UserRole, "org/allbinary/business/user/role/UserRole"
+autoload :UserRoleB, "org/allbinary/business/user/role/UserRoleB"
+autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData"
+autoload :UserEntityFactory, "org/allbinary/data/tables/user/UserEntityFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

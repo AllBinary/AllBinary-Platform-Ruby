@@ -34,5 +34,5 @@ module AdminConfigurationInterface
     end
 end
 
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
 

@@ -61,14 +61,14 @@ class DefaultGameInitializationListener
     end
 end
 
-require "org/allbinary/game/configuration/event/GameInitializedEvent"
-require "org/allbinary/game/configuration/event/GameInitializedEventHandler"
-require "org/allbinary/game/resource/FeatureResourceInitializationUtil"
-require "org/allbinary/graphics/threed/SWTJOGLProcessor"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/string/CommonStrings"
+autoload :GameInitializedEvent, "org/allbinary/game/configuration/event/GameInitializedEvent"
+autoload :GameInitializedEventHandler, "org/allbinary/game/configuration/event/GameInitializedEventHandler"
+autoload :FeatureResourceInitializationUtil, "org/allbinary/game/resource/FeatureResourceInitializationUtil"
+autoload :SWTJOGLProcessor, "org/allbinary/graphics/threed/SWTJOGLProcessor"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 require "java/lang/Thread"
 

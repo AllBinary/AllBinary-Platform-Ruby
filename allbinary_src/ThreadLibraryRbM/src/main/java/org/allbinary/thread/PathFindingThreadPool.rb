@@ -48,18 +48,42 @@ class PathFindingThreadPool < ThreadPool
     end
 
     def self.instance()
+        PathFindingThreadPool.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PathFindingThreadPool.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PathFindingThreadPool.new("PathFinding", 1, 1)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PathFindingThreadPool"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/thread/PriorityRunnable"
+autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable"
 require "java/lang/Runnable"
 
-class PathFindingThreadPool
-    @@instance = PathFindingThreadPool.new("PathFinding", 1, 1)
+begin
+    PathFindingThreadPool.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

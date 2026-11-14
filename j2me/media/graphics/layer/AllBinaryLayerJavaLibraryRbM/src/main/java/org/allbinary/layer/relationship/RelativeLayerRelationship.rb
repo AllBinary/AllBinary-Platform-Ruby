@@ -46,7 +46,7 @@ class RelativeLayerRelationship < RelativeRelationship
     end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/util/BasicArrayList"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

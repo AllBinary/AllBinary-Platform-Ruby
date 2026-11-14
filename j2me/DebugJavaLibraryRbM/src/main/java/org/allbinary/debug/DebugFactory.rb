@@ -23,6 +23,6 @@ class DebugFactory
     end
 end
 
-require "org/allbinary/debug/DebugInterface"
-require "org/allbinary/debug/NoDebug"
+autoload :DebugInterface, "org/allbinary/debug/DebugInterface"
+autoload :NoDebug, "org/allbinary/debug/NoDebug"
 

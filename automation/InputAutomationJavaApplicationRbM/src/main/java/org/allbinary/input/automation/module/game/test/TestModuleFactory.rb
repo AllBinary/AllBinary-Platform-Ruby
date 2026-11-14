@@ -48,13 +48,35 @@ class TestModuleFactory < AbstractInputAutomationFactory
         return nil
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NAME, "Test New Game" + (InputAutomationModuleData::MODULE_NAME_END).to_s)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TestModuleFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/input/automation/module/InputAutomationModuleData"
-require "org/allbinary/input/automation/module/configuration/BlankModuleConfigurationJPanel"
-require "org/allbinary/thread/RunnableInterface"
+autoload :InputAutomationModuleData, "org/allbinary/input/automation/module/InputAutomationModuleData"
+autoload :BlankModuleConfigurationJPanel, "org/allbinary/input/automation/module/configuration/BlankModuleConfigurationJPanel"
+autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface"
 
-class TestModuleFactory
-    NAME = "Test New Game" + (InputAutomationModuleData::MODULE_NAME_END).to_s
+begin
+    TestModuleFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

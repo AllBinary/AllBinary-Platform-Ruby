@@ -3,7 +3,6 @@
 # package org.allbinary.layer
 
 require "java/lang/Object"
-# require "javax/microedition/lcdui/Graphics"
 
 class LayerManager
     attr_accessor :logUtil, :commonStrings, :systemWrapper, :tsUtil, :layerManagerLogging, :list, :anyType
@@ -123,14 +122,15 @@ class LayerManager
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/SynchObject"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/ABSystemWrapper"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/Layer"
-require "org/allbinary/layer/LayerManagerLoggingBase"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :SynchObject, "org/allbinary/thread/SynchObject"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :Layer, "org/allbinary/layer/Layer"
+autoload :LayerManagerLoggingBase, "org/allbinary/layer/LayerManagerLoggingBase"
 

@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.compound
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/RotationAnimation"
 
 class SimultaneousCompoundRotationAnimation < RotationAnimation
@@ -168,11 +166,13 @@ class SimultaneousCompoundRotationAnimation < RotationAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/direction/Direction"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/math/Angle"
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/util/CircularIndexUtil"
+autoload :GL, "javax/microedition/khronos/opengles/GL"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :Direction, "org/allbinary/direction/Direction"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :Angle, "org/allbinary/math/Angle"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
 

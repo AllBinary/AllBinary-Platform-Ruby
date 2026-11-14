@@ -112,11 +112,11 @@ class StaticPagesTag < TableTag
     end
 end
 
-require "admin/taghelpers/StaticPagesHelperFactory"
-require "admin/taghelpers/StaticPagesRequestHelperFactory"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/search/SearchData"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/logic/visual/transform/info/TransformInfoData"
+autoload :StaticPagesHelperFactory, "admin/taghelpers/StaticPagesHelperFactory"
+autoload :StaticPagesRequestHelperFactory, "admin/taghelpers/StaticPagesRequestHelperFactory"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :SearchData, "org/allbinary/logic/control/search/SearchData"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
 

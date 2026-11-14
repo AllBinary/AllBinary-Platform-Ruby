@@ -2,7 +2,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
-# require "javax/microedition/khronos/opengles/GL10"
 
 class OpenGLObject3dProcessor
     attr_accessor :commonStrings
@@ -25,5 +24,6 @@ class OpenGLObject3dProcessor
     end
 end
 
-require "org/allbinary/string/CommonStrings"
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

@@ -81,10 +81,10 @@ class EditCssStyleValidation < CssStyleValidation
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/visual/dhtml/style/StyleData"
-require "org/allbinary/logic/visual/dhtml/style/StylesData"
-require "org/allbinary/logic/visual/dhtml/style/color/ColorsView"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :StyleData, "org/allbinary/logic/visual/dhtml/style/StyleData"
+autoload :StylesData, "org/allbinary/logic/visual/dhtml/style/StylesData"
+autoload :ColorsView, "org/allbinary/logic/visual/dhtml/style/color/ColorsView"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

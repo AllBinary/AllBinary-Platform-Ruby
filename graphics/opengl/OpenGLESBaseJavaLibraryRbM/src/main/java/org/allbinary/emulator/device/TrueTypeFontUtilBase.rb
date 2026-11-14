@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.emulator.device
 
-# require "javax/microedition/lcdui/Font"
 
 class TrueTypeFontUtilBase
     attr_accessor :shortPattern, :patternAsBytes, :pattern, :charArray, :_characterWidth, :characterArray, :size, :lastCapIndex, :currentFont, :scale, :CELLS_PER_ROW, :fontSize, :baseCharWidth, :cellSize, :textureSize, :actualCellsPerRow
@@ -97,6 +96,7 @@ class TrueTypeFontUtilBase
     end
 end
 
-require "org/allbinary/AvianUtil"
-require "org/allbinary/logic/string/StringUtil"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :AvianUtil, "org/allbinary/AvianUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

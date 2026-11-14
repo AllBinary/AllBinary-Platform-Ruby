@@ -656,16 +656,16 @@ class PaymentGateway
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/user/UserData"
-require "org/allbinary/business/user/commerce/money/payment/PaymentData"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/control/crypt/SuperCrypt"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-require "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayPrimaryKey"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :UserData, "org/allbinary/business/user/UserData"
+autoload :PaymentData, "org/allbinary/business/user/commerce/money/payment/PaymentData"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :SuperCrypt, "org/allbinary/logic/control/crypt/SuperCrypt"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
+autoload :PaymentGatewayPrimaryKey, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayPrimaryKey"
 

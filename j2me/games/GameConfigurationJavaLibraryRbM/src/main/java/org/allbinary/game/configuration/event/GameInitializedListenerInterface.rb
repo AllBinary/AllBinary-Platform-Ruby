@@ -21,9 +21,10 @@ module GameInitializedListenerInterface
     
 
     def onGameInitialized(gameInitializedEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/configuration/event/GameInitializedEvent"
+autoload :GameInitializedEvent, "org/allbinary/game/configuration/event/GameInitializedEvent"
 

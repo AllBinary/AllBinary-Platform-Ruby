@@ -19,9 +19,10 @@ module GroupInterfaceCompositeInterface
     
 
     def getGroupInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/identification/Group"
+autoload :Group, "org/allbinary/game/identification/Group"
 

@@ -196,16 +196,16 @@ class DownloadableItem
     end
 end
 
-require "java/util/Calendar"
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-require "org/allbinary/data/generator/ProductIdGenerator"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/time/TimeUtil"
-require "org/allbinary/business/user/commerce/inventory/item/download/DownloadItemData"
+autoload :Calendar, "java/util/Calendar"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :EntryData, "org/allbinary/business/entry/EntryData"
+autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
+autoload :ProductIdGenerator, "org/allbinary/data/generator/ProductIdGenerator"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :TimeUtil, "org/allbinary/time/TimeUtil"
+autoload :DownloadItemData, "org/allbinary/business/user/commerce/inventory/item/download/DownloadItemData"
 

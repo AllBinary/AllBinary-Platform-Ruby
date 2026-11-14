@@ -74,18 +74,40 @@ class CompleteMotionGestureInputEventHandler < BasicEventHandler
         completeMotionGestureInputEventListenerInterface = eventListenerInterface
         completeMotionGestureInputEventListenerInterface.onCompleteMotionGestureInputEvent(eventObject)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, CompleteMotionGestureInputEventHandler.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CompleteMotionGestureInputEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/input/CompleteMotionGestureInputEvent"
-require "org/allbinary/game/input/CompleteMotionGestureInputEventListener"
-require "org/allbinary/game/input/CompleteMotionGestureInputEventListenerInterface"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
+autoload :CompleteMotionGestureInputEventListener, "org/allbinary/game/input/CompleteMotionGestureInputEventListener"
+autoload :CompleteMotionGestureInputEventListenerInterface, "org/allbinary/game/input/CompleteMotionGestureInputEventListenerInterface"
 
-class CompleteMotionGestureInputEventHandler
-    SINGLETON = CompleteMotionGestureInputEventHandler.new()
+begin
+    CompleteMotionGestureInputEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

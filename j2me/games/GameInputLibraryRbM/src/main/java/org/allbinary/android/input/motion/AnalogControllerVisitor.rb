@@ -22,6 +22,6 @@ class AnalogControllerVisitor
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/android/input/motion/AnalogLocationInputProcessor"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :AnalogLocationInputProcessor, "org/allbinary/android/input/motion/AnalogLocationInputProcessor"
 

@@ -51,10 +51,10 @@ class HttpContextView < HttpComponentView
     end
 end
 
-require "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/ContextTransformer"
-require "org/allbinary/logic/visual/transform/data/TransformHttpRequestDocumentFactory"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonStrings"
+autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ContextTransformer, "org/allbinary/logic/visual/transform/ContextTransformer"
+autoload :TransformHttpRequestDocumentFactory, "org/allbinary/logic/visual/transform/data/TransformHttpRequestDocumentFactory"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

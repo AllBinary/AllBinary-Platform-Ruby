@@ -20,15 +20,17 @@ module PickupBehaviorInterface
 
     # throws Exception
     def doPickup(pickupProcessorInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def doPickupLayer(pickupLayerInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
-require "org/allbinary/game/layer/pickup/PickupProcessorInterface"
+autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
+autoload :PickupProcessorInterface, "org/allbinary/game/layer/pickup/PickupProcessorInterface"
 

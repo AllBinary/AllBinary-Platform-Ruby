@@ -51,11 +51,11 @@ class SpecialCharacterUtil
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/math/MathData"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/logic/string/StringUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :MathData, "org/allbinary/logic/math/MathData"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 

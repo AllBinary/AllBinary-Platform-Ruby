@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system
 
-# require "java/io/InputStream"
 
 class PlatformAssetManager
     
@@ -32,17 +31,42 @@ class PlatformAssetManager
     end
 
     def self.instance()
+        PlatformAssetManager.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PlatformAssetManager.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PlatformAssetManager.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PlatformAssetManager"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/data/resource/ResourceUtil"
+autoload :InputStream, "java/io/InputStream"
+autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil"
 
-class PlatformAssetManager
-    @@instance = PlatformAssetManager.new()
+begin
+    PlatformAssetManager.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

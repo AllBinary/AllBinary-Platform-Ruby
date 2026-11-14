@@ -39,8 +39,8 @@ class PaymentProcessHelper < TagHelper
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpFactory"
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-require "views/admin/payment/PaymentProcessorComponent"
+autoload :HashMap, "java/util/HashMap"
+autoload :TransformInfoHttpFactory, "org/allbinary/logic/visual/transform/info/TransformInfoHttpFactory"
+autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+autoload :PaymentProcessorComponent, "views/admin/payment/PaymentProcessorComponent"
 

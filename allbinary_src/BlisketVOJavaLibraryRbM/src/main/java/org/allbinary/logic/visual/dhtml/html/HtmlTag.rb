@@ -34,6 +34,6 @@ class HtmlTag
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/StdUtil"
+autoload :HashMap, "java/util/HashMap"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
 

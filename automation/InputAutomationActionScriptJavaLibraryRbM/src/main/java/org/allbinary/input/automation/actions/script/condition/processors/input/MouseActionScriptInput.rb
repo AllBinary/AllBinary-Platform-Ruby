@@ -156,24 +156,46 @@ class MouseActionScriptInput < BasicProfileActionScriptInput
         end
         @logUtil.putF("Input Type: " + self.getInputRobotInterface().getName() + " Point: " + (self.getPoint()).to_s + " Buttons Clicked: " + buttonStringBuffer.to_s, self, "log")
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "Mouse")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MouseActionScriptInput"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputData"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputJPanel"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/MouseInputAutomationProcessor"
+autoload :HashMap, "java/util/HashMap"
+autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :NodeList, "org/w3c/dom/NodeList"
+autoload :MouseActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputData"
+autoload :MouseActionScriptInputJPanel, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputJPanel"
+autoload :MouseInputAutomationProcessor, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseInputAutomationProcessor"
 
-class MouseActionScriptInput
-    NAME = "Mouse"
+begin
+    MouseActionScriptInput.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -21,31 +21,37 @@ module TestInputInterface
     
 
     def up()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def down()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def left()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def right()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def strafeLeft()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def strafeRight()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

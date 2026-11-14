@@ -37,7 +37,7 @@ class PaymentGatewayEntityFactory
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntity"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :PaymentGatewayEntity, "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntity"
 

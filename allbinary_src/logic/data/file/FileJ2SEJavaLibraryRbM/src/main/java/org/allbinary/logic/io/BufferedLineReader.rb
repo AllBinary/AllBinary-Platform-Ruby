@@ -41,6 +41,12 @@ class BufferedLineReader
     end
     
 
+    # throws Exception
+    def ready()
+        return @tmpIn.ready()
+    end
+    
+
     def getSize()
         return 0
     end
@@ -51,6 +57,6 @@ class BufferedLineReader
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/AbFileNativeUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil"
 

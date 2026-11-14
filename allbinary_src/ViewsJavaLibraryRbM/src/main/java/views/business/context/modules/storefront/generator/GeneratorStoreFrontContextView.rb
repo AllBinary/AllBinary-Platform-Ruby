@@ -58,9 +58,9 @@ class GeneratorStoreFrontContextView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/visual/transform/generator/TransformsGeneratorUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfosData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :TransformsGeneratorUtil, "org/allbinary/logic/visual/transform/generator/TransformsGeneratorUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfosData, "org/allbinary/logic/visual/transform/info/TransformInfosData"
 

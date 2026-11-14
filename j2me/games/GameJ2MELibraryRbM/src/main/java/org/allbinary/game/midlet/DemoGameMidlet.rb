@@ -99,15 +99,15 @@ class DemoGameMidlet < GameMidlet
     end
 end
 
-require "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/system/security/licensing/ClientInformationFactory"
-require "org/allbinary/thread/PrimaryThreadPool"
-require "org/allbinary/game/displayable/canvas/NullGameCanvasRunnable"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/midlet/CreateGameRunnable"
-require "org/allbinary/game/midlet/DemoRunnable"
+autoload :GameCanvasRunnableInterface, "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface"
+autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :ClientInformationFactory, "org/allbinary/logic/system/security/licensing/ClientInformationFactory"
+autoload :PrimaryThreadPool, "org/allbinary/thread/PrimaryThreadPool"
+autoload :NullGameCanvasRunnable, "org/allbinary/game/displayable/canvas/NullGameCanvasRunnable"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :CreateGameRunnable, "org/allbinary/game/midlet/CreateGameRunnable"
+autoload :DemoRunnable, "org/allbinary/game/midlet/DemoRunnable"
 

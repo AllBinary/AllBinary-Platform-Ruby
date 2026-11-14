@@ -106,25 +106,49 @@ class ImageAnalysis
     end
 
     def self.instance()
+        ImageAnalysis.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageAnalysis.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageAnalysis.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageAnalysis"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/color/ColorCacheFactory"
-require "org/allbinary/graphics/color/ColorCacheable"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/image/analysis/ColorAverage"
-require "org/allbinary/media/image/analysis/ColorRangeInterface"
-require "org/allbinary/media/image/analysis/ImageAnalysisResults"
-require "org/allbinary/media/image/analysis/ImageColorResults"
+autoload :ColorCacheFactory, "org/allbinary/graphics/color/ColorCacheFactory"
+autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :ColorAverage, "org/allbinary/media/image/analysis/ColorAverage"
+autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface"
+autoload :ImageAnalysisResults, "org/allbinary/media/image/analysis/ImageAnalysisResults"
+autoload :ImageColorResults, "org/allbinary/media/image/analysis/ImageColorResults"
 
-class ImageAnalysis
-    @@instance = ImageAnalysis.new()
+begin
+    ImageAnalysis.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

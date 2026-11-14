@@ -29,6 +29,6 @@ class ColorCacheableFactory
     end
 end
 
-require "org/allbinary/logic/util/cache/CacheableInterface"
-require "org/allbinary/graphics/color/ColorCacheable"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable"
 

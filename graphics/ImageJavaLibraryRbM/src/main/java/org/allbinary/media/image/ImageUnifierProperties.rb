@@ -70,5 +70,5 @@ class ImageUnifierProperties
     end
 end
 
-require "org/allbinary/media/image/ImageUnifierCell"
+autoload :ImageUnifierCell, "org/allbinary/media/image/ImageUnifierCell"
 

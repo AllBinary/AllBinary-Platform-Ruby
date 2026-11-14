@@ -55,29 +55,52 @@ class PixelDeltaFactory
     end
 
     def self.cacheInterface()
+        PixelDeltaFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@cacheInterface) ? @@cacheInterface : nil
     end
 
     def self.cacheInterface=(value)
+        PixelDeltaFactory.java_static_fields unless @java_static_fields_started
         @@cacheInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@cacheInterface = nil
+        begin
+            static_init
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PixelDeltaFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/util/cache/AutomaticCacheInterface"
-require "org/allbinary/logic/util/cache/CacheInterfaceFactory"
-require "org/allbinary/logic/util/cache/CachePolicyFactory"
-require "org/allbinary/logic/util/cache/CacheTypeFactory"
-require "org/allbinary/media/image/comparison/color/ColorDelta"
-require "org/allbinary/media/image/comparison/color/ColorDeltaFactory"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/image/comparison/pixel/PixelDelta"
+autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+autoload :CacheInterfaceFactory, "org/allbinary/logic/util/cache/CacheInterfaceFactory"
+autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory"
+autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory"
+autoload :ColorDelta, "org/allbinary/media/image/comparison/color/ColorDelta"
+autoload :ColorDeltaFactory, "org/allbinary/media/image/comparison/color/ColorDeltaFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta"
 
-class PixelDeltaFactory
-    @@cacheInterface = nil
+begin
+    PixelDeltaFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
-
-PixelDeltaFactory.static_init
 

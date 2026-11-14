@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/text/CustomTextAnimation"
 
 class AdjustCustomTextAnimation < CustomTextAnimation
@@ -59,5 +58,6 @@ class AdjustCustomTextAnimation < CustomTextAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
 

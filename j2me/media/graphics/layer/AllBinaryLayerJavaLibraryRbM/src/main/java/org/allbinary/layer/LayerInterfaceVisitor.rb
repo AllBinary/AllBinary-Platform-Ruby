@@ -20,9 +20,10 @@ module LayerInterfaceVisitor
 
     # throws Exception
     def visit(layerInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
 

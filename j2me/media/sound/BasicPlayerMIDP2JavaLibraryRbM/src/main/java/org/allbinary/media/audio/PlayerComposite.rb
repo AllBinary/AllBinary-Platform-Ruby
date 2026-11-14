@@ -15,12 +15,8 @@
 # package org.allbinary.media.audio
 
 require "java/lang/Object"
-# require "javax/microedition/media/Control"
-# require "javax/microedition/media/Controllable"
-# require "javax/microedition/media/MediaException"
-# require "javax/microedition/media/Player"
-# require "javax/microedition/media/PlayerListener"
-# require "javax/microedition/media/TimeBase"
+require "javax/microedition/media/Controllable"
+require "javax/microedition/media/Player"
 
 #BasicPlayerMIDP2
 class PlayerComposite
@@ -173,11 +169,15 @@ class PlayerComposite
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/time/GameTickTimeDelayHelper"
-require "org/allbinary/time/GameTickTimeDelayHelperFactory"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/media/audio/Controllable2"
-require "org/allbinary/media/audio/TimeBaseInterface"
+autoload :Control, "javax/microedition/media/Control"
+autoload :MediaException, "javax/microedition/media/MediaException"
+autoload :PlayerListener, "javax/microedition/media/PlayerListener"
+autoload :TimeBase, "javax/microedition/media/TimeBase"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
+autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+autoload :Controllable2, "org/allbinary/media/audio/Controllable2"
+autoload :TimeBaseInterface, "org/allbinary/media/audio/TimeBaseInterface"
 

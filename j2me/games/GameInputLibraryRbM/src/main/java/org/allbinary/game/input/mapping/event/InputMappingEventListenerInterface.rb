@@ -22,9 +22,10 @@ module InputMappingEventListenerInterface
 
     # throws Exception
     def onInputMappingEvent(inputMappingEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/input/mapping/event/InputMappingEvent"
+autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
 

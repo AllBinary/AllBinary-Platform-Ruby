@@ -302,13 +302,35 @@ class AbFile
         return @file.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_FILE, AbFile.createAbFileFromRawPath(StringUtil.getInstance().EMPTY_STRING))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AbFile"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_FILE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringUtil"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
 
-class AbFile
-    NULL_FILE = AbFile.createAbFileFromRawPath(StringUtil.getInstance().EMPTY_STRING)
+begin
+    AbFile.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

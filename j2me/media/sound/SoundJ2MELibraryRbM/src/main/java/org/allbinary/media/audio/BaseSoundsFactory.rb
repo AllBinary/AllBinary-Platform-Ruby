@@ -49,5 +49,5 @@ class BaseSoundsFactory
     end
 end
 
-require "org/allbinary/media/audio/Sound"
+autoload :Sound, "org/allbinary/media/audio/Sound"
 

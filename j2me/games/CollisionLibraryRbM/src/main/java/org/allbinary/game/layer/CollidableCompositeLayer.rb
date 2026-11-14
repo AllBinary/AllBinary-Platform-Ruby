@@ -28,7 +28,7 @@ class CollidableCompositeLayer < AllBinaryGameLayer
 
     def self.getNullInstance()
         if CollidableCompositeLayer::NULL_COLLIDABLE_COMPOSITE_LAYER == NullUtil.getInstance().NULL_OBJECT
-            CollidableCompositeLayer::NULL_COLLIDABLE_COMPOSITE_LAYER = CollidableCompositeLayer.new(StringUtil.getInstance().EMPTY_STRING, RectangleFactory::SINGLETON, ViewPositionBase::NULL_VIEW_POSITION, CollidableNeverCollideBehaviorFactory.getInstance())
+            (CollidableCompositeLayer.send(:remove_const, :NULL_COLLIDABLE_COMPOSITE_LAYER) if CollidableCompositeLayer.const_defined?(:NULL_COLLIDABLE_COMPOSITE_LAYER, false); CollidableCompositeLayer.const_set(:NULL_COLLIDABLE_COMPOSITE_LAYER, CollidableCompositeLayer.new(StringUtil.getInstance().EMPTY_STRING, RectangleFactory::SINGLETON, ViewPositionBase::NULL_VIEW_POSITION, CollidableNeverCollideBehaviorFactory.getInstance())))
         end
         return CollidableCompositeLayer::NULL_COLLIDABLE_COMPOSITE_LAYER
     end
@@ -78,23 +78,45 @@ class CollidableCompositeLayer < AllBinaryGameLayer
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_COLLIDABLE_COMPOSITE_LAYER, NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CollidableCompositeLayer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_COLLIDABLE_COMPOSITE_LAYER].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/ai/ArtificialIntelligence"
-require "org/allbinary/ai/ArtificialIntelligenceInterface"
-require "org/allbinary/game/collision/CollidableBaseBehavior"
-require "org/allbinary/game/collision/CollidableBaseBehaviorFactory"
-require "org/allbinary/game/collision/CollidableNeverCollideBehaviorFactory"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/graphics/RectangleFactory"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/logic/NullUtil"
+autoload :ArtificialIntelligence, "org/allbinary/ai/ArtificialIntelligence"
+autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :CollidableBaseBehaviorFactory, "org/allbinary/game/collision/CollidableBaseBehaviorFactory"
+autoload :CollidableNeverCollideBehaviorFactory, "org/allbinary/game/collision/CollidableNeverCollideBehaviorFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :RectangleFactory, "org/allbinary/graphics/RectangleFactory"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
 
-class CollidableCompositeLayer
-    NULL_COLLIDABLE_COMPOSITE_LAYER = NullUtil.getInstance().NULL_OBJECT
+begin
+    CollidableCompositeLayer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

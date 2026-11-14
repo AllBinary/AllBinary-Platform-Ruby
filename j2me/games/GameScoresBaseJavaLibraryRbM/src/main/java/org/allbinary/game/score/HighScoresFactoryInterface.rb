@@ -19,21 +19,24 @@ module HighScoresFactoryInterface
     
 
     def fetchHighScores(gameInfo, highScoresResultsListener)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def fetchHighScoresPreload(gameInfo, highScoresResultsListener, preload)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def createHighScoresHelper()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/score/HighScoresHelperBaseInterface"
-require "org/allbinary/game/score/HighScoresResultsListener"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
+autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener"
 

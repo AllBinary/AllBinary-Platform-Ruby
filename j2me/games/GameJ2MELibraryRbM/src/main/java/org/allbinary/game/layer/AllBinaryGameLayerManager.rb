@@ -29,7 +29,7 @@ class AllBinaryGameLayerManager < AllBinaryLayerManager
 
     def self.getNullInstance()
         if AllBinaryGameLayerManager::NULL_ALLBINARY_LAYER_MANAGER == NullUtil.getInstance().NULL_OBJECT
-            AllBinaryGameLayerManager::NULL_ALLBINARY_LAYER_MANAGER = AllBinaryGameLayerManager.new(BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE, GameInfo::NONE)
+            (AllBinaryGameLayerManager.send(:remove_const, :NULL_ALLBINARY_LAYER_MANAGER) if AllBinaryGameLayerManager.const_defined?(:NULL_ALLBINARY_LAYER_MANAGER, false); AllBinaryGameLayerManager.const_set(:NULL_ALLBINARY_LAYER_MANAGER, AllBinaryGameLayerManager.new(BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE, GameInfo::NONE)))
         end
         return AllBinaryGameLayerManager::NULL_ALLBINARY_LAYER_MANAGER
     end
@@ -106,21 +106,43 @@ class AllBinaryGameLayerManager < AllBinaryLayerManager
     def getPlayerGameInputCompositeInterface()
         return @playerGameInputCompositeInterface
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_ALLBINARY_LAYER_MANAGER, NullUtil.getInstance().NULL_OBJECT)
+            const_set(:ID, SmallIntegerSingletonFactory.getInstance().getAt(22))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryGameLayerManager"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_ALLBINARY_LAYER_MANAGER, :ID].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/game/input/NullPlayerGameInputComposite"
-require "org/allbinary/game/input/PlayerGameInputCompositeInterface"
-require "org/allbinary/graphics/ItemColorFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/layer/LayerProcessor"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/util/BasicArrayList"
+autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :NullPlayerGameInputComposite, "org/allbinary/game/input/NullPlayerGameInputComposite"
+autoload :PlayerGameInputCompositeInterface, "org/allbinary/game/input/PlayerGameInputCompositeInterface"
+autoload :ItemColorFactory, "org/allbinary/graphics/ItemColorFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :LayerProcessor, "org/allbinary/layer/LayerProcessor"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 
-class AllBinaryGameLayerManager
-    NULL_ALLBINARY_LAYER_MANAGER = NullUtil.getInstance().NULL_OBJECT
-    ID = SmallIntegerSingletonFactory.getInstance().getAt(22)
+begin
+    AllBinaryGameLayerManager.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

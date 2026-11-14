@@ -19,9 +19,10 @@ module GameInitializationInterfaceFactoryInterface
     
 
     def getInstance()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/init/GameInitializationInterface"
+autoload :GameInitializationInterface, "org/allbinary/game/init/GameInitializationInterface"
 

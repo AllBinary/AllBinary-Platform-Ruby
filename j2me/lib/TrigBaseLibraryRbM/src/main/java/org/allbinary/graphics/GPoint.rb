@@ -91,13 +91,35 @@ class GPoint
         stringBuffer.appendint(z)
         return stringBuffer.to_s
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:POINT_LABEL, "Point: ")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GPoint"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:POINT_LABEL].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/math/PositionStrings"
-require "org/allbinary/string/CommonSeps"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :PositionStrings, "org/allbinary/math/PositionStrings"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 
-class GPoint
-    POINT_LABEL = "Point: "
+begin
+    GPoint.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/Paintable"
 
 class PaintableLayerComposite < Paintable
@@ -50,6 +49,7 @@ class PaintableLayerComposite < Paintable
     end
 end
 
-require "org/allbinary/graphics/paint/PaintableInterface"
-require "org/allbinary/layer/Layer"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
+autoload :Layer, "org/allbinary/layer/Layer"
 

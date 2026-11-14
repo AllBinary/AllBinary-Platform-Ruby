@@ -14,9 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image.sprite
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/game/Sprite"
 require "org/allbinary/animation/RotationAnimation"
 
 class HackRotationSpriteIndexedAnimation < RotationAnimation
@@ -93,8 +90,11 @@ class HackRotationSpriteIndexedAnimation < RotationAnimation
     end
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/logic/math/PrimitiveIntUtil"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/util/CircularIndexUtil"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
 

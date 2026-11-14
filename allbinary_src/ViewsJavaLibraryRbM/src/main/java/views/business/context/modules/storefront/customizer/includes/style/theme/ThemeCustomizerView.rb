@@ -51,8 +51,8 @@ class ThemeCustomizerView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/data/tree/dom/DomNodeInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/validate/ValidationInterface"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

@@ -22,21 +22,24 @@ module CacheInterface
 
     # throws Exception
     def add(cacheableInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def addArray(cacheableInterfaces)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def clear()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
 

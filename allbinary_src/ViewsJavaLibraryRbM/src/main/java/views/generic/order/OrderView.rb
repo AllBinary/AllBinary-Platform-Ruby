@@ -85,13 +85,13 @@ class OrderView < HttpStoreComponentView
     end
 end
 
-require "org/allbinary/business/user/commerce/inventory/basket/Basket"
-require "org/allbinary/business/user/commerce/inventory/basket/BasketReview"
-require "org/allbinary/business/user/commerce/inventory/order/Order"
-require "org/allbinary/business/user/commerce/inventory/order/OrderData"
-require "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :Basket, "org/allbinary/business/user/commerce/inventory/basket/Basket"
+autoload :BasketReview, "org/allbinary/business/user/commerce/inventory/basket/BasketReview"
+autoload :Order, "org/allbinary/business/user/commerce/inventory/order/Order"
+autoload :OrderData, "org/allbinary/business/user/commerce/inventory/order/OrderData"
+autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

@@ -34,5 +34,5 @@ module RemoteFramework
     end
 end
 
-require "org/osgi/framework/BundleContext"
+autoload :BundleContext, "org/osgi/framework/BundleContext"
 

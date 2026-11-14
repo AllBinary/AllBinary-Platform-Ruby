@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
 
 class OverlayPaintable < InitUpdatePaintable
@@ -44,6 +43,7 @@ class OverlayPaintable < InitUpdatePaintable
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

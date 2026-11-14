@@ -71,19 +71,19 @@
 
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.google.android</groupId>
             <artifactId>androidRb</artifactId>
             <version>1.5_r4</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        <!--<dependency>
             <groupId>com.google.android</groupId>
             <artifactId>androidRb</artifactId>
             <version>1.5_r4</version>
             <scope>provided</scope>
             <classifier>sources</classifier>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 

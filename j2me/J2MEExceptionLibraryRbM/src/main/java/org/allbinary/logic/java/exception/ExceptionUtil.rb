@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.exception
 
-# require "java/io/ByteArrayOutputStream"
 
 #ActualPlatform
 class ExceptionUtil
@@ -40,22 +39,45 @@ class ExceptionUtil
         bs = ByteArrayOutputStream.new()
         puts(e.full_message)
         output = bs.to_s
-        if output != nil
-            return String.new(output)
-        end
-        return @NONE
+        return String.new(output)
     end
 
     def self.instance()
+        ExceptionUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ExceptionUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ExceptionUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ExceptionUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class ExceptionUtil
-    @@instance = ExceptionUtil.new()
+autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+
+begin
+    ExceptionUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

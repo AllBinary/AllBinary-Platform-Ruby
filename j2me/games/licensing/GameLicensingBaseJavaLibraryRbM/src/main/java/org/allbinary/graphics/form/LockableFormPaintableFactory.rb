@@ -37,7 +37,7 @@ class LockableFormPaintableFactory < ItemPaintableFactory
     end
 end
 
-require "org/allbinary/graphics/form/ItemPaintable"
-require "org/allbinary/graphics/form/LockablePaintable"
-require "org/allbinary/graphics/form/PaintableForm"
+autoload :ItemPaintable, "org/allbinary/graphics/form/ItemPaintable"
+autoload :LockablePaintable, "org/allbinary/graphics/form/LockablePaintable"
+autoload :PaintableForm, "org/allbinary/graphics/form/PaintableForm"
 

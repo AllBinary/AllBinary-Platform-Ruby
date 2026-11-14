@@ -14,8 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.part
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/PaintableInterface"
 
@@ -54,7 +52,7 @@ class CountedLayersHudPaintable
         end
         if CountedLayersHudPaintable::XXStringWidth == 0
             _XXString = "XX"
-            CountedLayersHudPaintable::XXStringWidth = font.stringWidth(_XXString)
+            (CountedLayersHudPaintable.send(:remove_const, :XXStringWidth) if CountedLayersHudPaintable.const_defined?(:XXStringWidth, false); CountedLayersHudPaintable.const_set(:XXStringWidth, font.stringWidth(_XXString)))
         end
         @myFontProcessor = MyFontProcessor.getInstance()
     end
@@ -95,17 +93,41 @@ class CountedLayersHudPaintable
 
     def paintThreed(graphics)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:XXStringWidth, 0)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CountedLayersHudPaintable"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:XXStringWidth].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/font/MyFontProcessor"
-require "org/allbinary/graphics/font/UpdateMyFontProcessor"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/part/CountedLayerInterfaceFactoryPart"
-require "org/allbinary/game/part/PartInterface"
+autoload :Font, "javax/microedition/lcdui/Font"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
+autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :CountedLayerInterfaceFactoryPart, "org/allbinary/game/part/CountedLayerInterfaceFactoryPart"
+autoload :PartInterface, "org/allbinary/game/part/PartInterface"
 
-class CountedLayersHudPaintable
-    XXStringWidth = 0
+begin
+    CountedLayersHudPaintable.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

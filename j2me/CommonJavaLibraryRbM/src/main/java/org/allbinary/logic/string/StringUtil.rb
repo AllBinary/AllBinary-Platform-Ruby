@@ -20,13 +20,14 @@
 # require "jsinterop/annotations/JsProperty"
 
 class StringUtil
-    attr_accessor :INIT_STRING, :NULL_STRING, :EMPTY_STRING, :ONE_EMPTY_STRING_ARRAY, :stringArray
+    attr_accessor :INIT_STRING, :NULL_STRING, :EMPTY_STRING, :ONE_EMPTY_STRING_ARRAY, :ONE_EMPTY_STRING_ARRAY_OF_ARRAYS, :stringArray
 
     def initialize_fields
         @INIT_STRING = String.new("")
         @NULL_STRING = "null"
         @EMPTY_STRING = ""
         @ONE_EMPTY_STRING_ARRAY = [@EMPTY_STRING]
+        @ONE_EMPTY_STRING_ARRAY_OF_ARRAYS = Array.new(0) { Array.new(0, nil) }
         @stringArray = Array.new(0, nil)
     end
     
@@ -42,11 +43,7 @@ class StringUtil
     
 
     def getNonNull(string)
-        if string == nil
-            return @EMPTY_STRING
-        else
-            return string
-        end
+        return string
     end
     
 
@@ -76,15 +73,39 @@ class StringUtil
     end
 
     def self.instance()
+        StringUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        StringUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = StringUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StringUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class StringUtil
-    @@instance = StringUtil.new()
+begin
+    StringUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

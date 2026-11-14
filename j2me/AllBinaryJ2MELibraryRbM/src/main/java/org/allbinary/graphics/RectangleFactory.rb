@@ -16,13 +16,35 @@
 
 
 class RectangleFactory
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, Rectangle.new(PointFactory.getInstance().ZERO_ZERO, 0, 0))
+            const_set(:ARRAY_OF_ARRAYS, Array.new(0) { Array.new(0, nil) })
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RectangleFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON, :ARRAY_OF_ARRAYS].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/Rectangle"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :Rectangle, "org/allbinary/graphics/Rectangle"
 
-class RectangleFactory
-    SINGLETON = Rectangle.new(PointFactory.getInstance().ZERO_ZERO, 0, 0)
-    ARRAY_OF_ARRAYS = Array.new(0) { Array.new(0, nil) }
+begin
+    RectangleFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

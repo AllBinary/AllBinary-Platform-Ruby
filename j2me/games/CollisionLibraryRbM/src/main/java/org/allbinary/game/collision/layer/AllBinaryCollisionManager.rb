@@ -50,20 +50,44 @@ class AllBinaryCollisionManager
     end
 
     def self.allBinaryCollisionManager()
+        AllBinaryCollisionManager.java_static_fields unless @java_static_fields_started
         return defined?(@@allBinaryCollisionManager) ? @@allBinaryCollisionManager : nil
     end
 
     def self.allBinaryCollisionManager=(value)
+        AllBinaryCollisionManager.java_static_fields unless @java_static_fields_started
         @@allBinaryCollisionManager = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@allBinaryCollisionManager = AllBinaryCollisionManager.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryCollisionManager"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/collision/CollidableBaseBehavior"
-require "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/layer/LayerManager"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
+autoload :LayerManager, "org/allbinary/layer/LayerManager"
 
-class AllBinaryCollisionManager
-    @@allBinaryCollisionManager = AllBinaryCollisionManager.new()
+begin
+    AllBinaryCollisionManager.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

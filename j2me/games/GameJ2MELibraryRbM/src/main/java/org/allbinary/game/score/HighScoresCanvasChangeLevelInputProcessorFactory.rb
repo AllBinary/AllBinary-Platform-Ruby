@@ -25,7 +25,7 @@ class HighScoresCanvasChangeLevelInputProcessorFactory
     end
 end
 
-require "org/allbinary/game/score/displayable/HighScoresCanvas"
-require "org/allbinary/game/score/HighScoresCanvasInputProcessor"
-require "org/allbinary/game/score/HighScoresCanvasLevelChangeInputProcessor"
+autoload :HighScoresCanvas, "org/allbinary/game/score/displayable/HighScoresCanvas"
+autoload :HighScoresCanvasInputProcessor, "org/allbinary/game/score/HighScoresCanvasInputProcessor"
+autoload :HighScoresCanvasLevelChangeInputProcessor, "org/allbinary/game/score/HighScoresCanvasLevelChangeInputProcessor"
 

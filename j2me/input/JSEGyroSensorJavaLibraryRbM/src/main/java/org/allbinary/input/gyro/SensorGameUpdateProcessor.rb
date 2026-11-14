@@ -63,9 +63,9 @@ class SensorGameUpdateProcessor
     end
 end
 
-require "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener"
-require "org/allbinary/input/AllBinarySensor"
-require "org/allbinary/input/NoAllBinarySensor"
-require "org/allbinary/input/accelerometer/AccelerometerSensorFactory"
-require "org/allbinary/input/gyro/GyroSensorFactory"
+autoload :NoCompleteMotionGestureInputEventListener, "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener"
+autoload :AllBinarySensor, "org/allbinary/input/AllBinarySensor"
+autoload :NoAllBinarySensor, "org/allbinary/input/NoAllBinarySensor"
+autoload :AccelerometerSensorFactory, "org/allbinary/input/accelerometer/AccelerometerSensorFactory"
+autoload :GyroSensorFactory, "org/allbinary/input/gyro/GyroSensorFactory"
 

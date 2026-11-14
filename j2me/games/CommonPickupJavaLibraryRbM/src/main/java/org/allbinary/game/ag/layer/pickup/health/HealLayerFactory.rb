@@ -26,6 +26,6 @@ class HealLayerFactory
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/ag/layer/pickup/health/HealLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :HealLayer, "org/allbinary/game/ag/layer/pickup/health/HealLayer"
 

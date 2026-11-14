@@ -132,13 +132,13 @@ class NameSpaceRequestParam
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/tokens/Tokenizer"
-require "org/allbinary/logic/visual/dhtml/html/name/HtmlNameMathData"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/communication/http/request/NameSpaceRequestParamData"
+autoload :HashMap, "java/util/HashMap"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Tokenizer, "org/allbinary/logic/string/tokens/Tokenizer"
+autoload :HtmlNameMathData, "org/allbinary/logic/visual/dhtml/html/name/HtmlNameMathData"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :NameSpaceRequestParamData, "org/allbinary/logic/communication/http/request/NameSpaceRequestParamData"
 

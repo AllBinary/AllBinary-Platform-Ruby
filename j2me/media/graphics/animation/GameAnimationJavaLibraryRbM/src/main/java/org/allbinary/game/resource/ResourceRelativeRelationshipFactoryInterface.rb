@@ -22,16 +22,18 @@ module ResourceRelativeRelationshipFactoryInterface
 
     # throws Exception
     def getResourceRelativeRelationshipList(resource)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def addResourceRelativeRelationship(resource, relativeRelationship)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/RelativeRelationship"
-require "org/allbinary/util/BasicArrayList"
+autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

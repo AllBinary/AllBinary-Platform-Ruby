@@ -26,7 +26,7 @@ class Tokenizer
 
     def initialize(sep)
         initialize_fields
-        if sep == nil || TsUtil.getInstance().compareTo(sep, StringUtil.getInstance().EMPTY_STRING) == 0
+        if TsUtil.getInstance().compareTo(sep, StringUtil.getInstance().EMPTY_STRING) == 0
             raise StandardError.new("Sep provided is not valid")
         end
         @sep = sep
@@ -97,10 +97,10 @@ class Tokenizer
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :TsUtil, "org/allbinary/TsUtil"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

@@ -102,10 +102,10 @@ class HtmlTable < HtmlTag
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/logic/visual/dhtml/html/table/HtmlRow"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+autoload :HtmlRow, "org/allbinary/logic/visual/dhtml/html/table/HtmlRow"
 

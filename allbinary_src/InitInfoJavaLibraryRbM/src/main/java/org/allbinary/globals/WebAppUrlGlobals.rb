@@ -67,6 +67,6 @@ class WebAppUrlGlobals < UrlGlobalsInterface
     end
 end
 
-require "org/allbinary/business/init/InitInfo"
-require "org/allbinary/logic/string/StringValidationUtil"
+autoload :InitInfo, "org/allbinary/business/init/InitInfo"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
 

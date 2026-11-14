@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.damage
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/combat/damage/DamageFloaters"
 
 class PtsDamageFloaters < DamageFloaters
@@ -69,27 +68,52 @@ class PtsDamageFloaters < DamageFloaters
     end
 
     def self.basicColorArrayIndexer()
+        PtsDamageFloaters.java_static_fields unless @java_static_fields_started
         return defined?(@@basicColorArrayIndexer) ? @@basicColorArrayIndexer : nil
     end
 
     def self.basicColorArrayIndexer=(value)
+        PtsDamageFloaters.java_static_fields unless @java_static_fields_started
         @@basicColorArrayIndexer = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@basicColorArrayIndexer = BasicColorArrayIndexer.new([BasicColorFactory.getInstance().WHITE, BasicColorFactory.getInstance().RED, BasicColorFactory.getInstance().YELLOW, BasicColorFactory.getInstance().BLUE])
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PtsDamageFloaters"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/rand/MyRandomFactory"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/color/BasicColorArrayIndexer"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/color/BasicColorSetUtil"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/java/character/CharArrayFactory"
-require "org/allbinary/logic/math/PrimitiveLongUtil"
-require "org/allbinary/util/CircularIndexUtil"
-require "org/allbinary/view/ViewPosition"
-require "org/allbinary/view/ViewPositionBase"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColorArrayIndexer, "org/allbinary/graphics/color/BasicColorArrayIndexer"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :CharArrayFactory, "org/allbinary/logic/java/character/CharArrayFactory"
+autoload :PrimitiveLongUtil, "org/allbinary/logic/math/PrimitiveLongUtil"
+autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
 
-class PtsDamageFloaters
-    @@basicColorArrayIndexer = BasicColorArrayIndexer.new([BasicColorFactory.getInstance().WHITE, BasicColorFactory.getInstance().RED, BasicColorFactory.getInstance().YELLOW, BasicColorFactory.getInstance().BLUE])
+begin
+    PtsDamageFloaters.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

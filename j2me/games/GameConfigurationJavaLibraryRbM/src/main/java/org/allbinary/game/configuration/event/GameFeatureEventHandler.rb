@@ -36,20 +36,44 @@ class GameFeatureEventHandler < BasicEventHandler
     end
 
     def self.gameKeyEventHandler()
+        GameFeatureEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@gameKeyEventHandler) ? @@gameKeyEventHandler : nil
     end
 
     def self.gameKeyEventHandler=(value)
+        GameFeatureEventHandler.java_static_fields unless @java_static_fields_started
         @@gameKeyEventHandler = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@gameKeyEventHandler = GameFeatureEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameFeatureEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/game/configuration/event/GameFeatureEvent"
-require "org/allbinary/game/configuration/event/GameFeatureListenerInterface"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent"
+autoload :GameFeatureListenerInterface, "org/allbinary/game/configuration/event/GameFeatureListenerInterface"
 
-class GameFeatureEventHandler
-    @@gameKeyEventHandler = GameFeatureEventHandler.new()
+begin
+    GameFeatureEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

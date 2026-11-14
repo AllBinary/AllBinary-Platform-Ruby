@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/game/input/TestInputInterface"
 
 class TestInputExample
@@ -63,4 +62,6 @@ class TestInputExample
     def paintThreed(graphics)
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

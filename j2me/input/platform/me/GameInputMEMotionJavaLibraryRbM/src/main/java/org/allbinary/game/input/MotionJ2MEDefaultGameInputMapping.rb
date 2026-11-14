@@ -64,8 +64,9 @@ class MotionJ2MEDefaultGameInputMapping < PersistentInputMapping
     end
 end
 
-require "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-require "org/allbinary/input/motion/button/BasicTouchInputFactory"
-require "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
 

@@ -46,30 +46,54 @@ class UserConfigurationInterfaceFactory
     end
 
     def self.configurationName()
+        UserConfigurationInterfaceFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@configurationName) ? @@configurationName : nil
     end
 
     def self.configurationName=(value)
+        UserConfigurationInterfaceFactory.java_static_fields unless @java_static_fields_started
         @@configurationName = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@configurationName = "DefaultUserConfiguration"
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UserConfigurationInterfaceFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/business/user/role/UserRole"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/control/crypt/file/CryptFileReader"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/user/modules/configuration/UserConfiguration"
-require "org/allbinary/business/user/modules/configuration/UserConfigurationData"
-require "org/allbinary/business/user/modules/configuration/UserConfigurationInterface"
-require "org/allbinary/business/user/modules/configuration/UserConfigurationView"
+autoload :UserRole, "org/allbinary/business/user/role/UserRole"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :UserConfiguration, "org/allbinary/business/user/modules/configuration/UserConfiguration"
+autoload :UserConfigurationData, "org/allbinary/business/user/modules/configuration/UserConfigurationData"
+autoload :UserConfigurationInterface, "org/allbinary/business/user/modules/configuration/UserConfigurationInterface"
+autoload :UserConfigurationView, "org/allbinary/business/user/modules/configuration/UserConfigurationView"
 
-class UserConfigurationInterfaceFactory
-    @@configurationName = "DefaultUserConfiguration"
+begin
+    UserConfigurationInterfaceFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

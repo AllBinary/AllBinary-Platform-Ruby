@@ -437,7 +437,7 @@ class InputAutomationJFrame < JFrame
                 commonStrings = CommonStrings.getInstance()
                 begin
                     logUtil.putF("Running", self, commonStrings.RUN)
-                    INPUTAUTOMATION_JFRAME = InputAutomationJFrame.new()
+                    (InputAutomationJFrame.send(:remove_const, :INPUTAUTOMATION_JFRAME) if InputAutomationJFrame.const_defined?(:INPUTAUTOMATION_JFRAME, false); InputAutomationJFrame.const_set(:INPUTAUTOMATION_JFRAME, InputAutomationJFrame.new()))
                     InputRobotFactory.getInstance().addListener(InputAutomationJFrame.getInstance())
                     if inputAutomationBundleActivatorListenerInterface != nil
                         inputAutomationBundleActivatorListenerInterface.registerAsService()
@@ -519,34 +519,56 @@ class InputAutomationJFrame < JFrame
             @logUtil.put(@commonStrings.EXCEPTION, self, "onRemove", e)
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:INPUTAUTOMATION_JFRAME, nil)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InputAutomationJFrame"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:INPUTAUTOMATION_JFRAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/thread/ARunnable"
-require "bundle/input/automation/InputAutomationBundleActivatorListenerInterface"
-require "org/allbinary/globals/AppUrlGlobals"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/gui/dialog/BasicTextJDialog"
-require "org/allbinary/gui/swing/workers/JListSwingWorker"
-require "org/allbinary/input/automation/configuration/InputAutomationConfiguration"
-require "org/allbinary/input/automation/configuration/InputAutomationConfigurationFactory"
-require "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
-require "org/allbinary/input/automation/module/InputAutomationModuleFactoryFactory"
-require "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
-require "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
-require "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfigurations"
-require "org/allbinary/input/automation/osgi/DesktopBundle"
-require "org/allbinary/input/automation/robot/InputRobotFactory"
-require "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-require "org/allbinary/logic/java/help/JavaHelpUtil"
-require "org/allbinary/logic/system/loader/WebappClassLoaderInfo"
-require "org/allbinary/logic/system/security/licensing/InputAutomationClientInformationFactory"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/RunnableInterface"
+autoload :ARunnable, "org/allbinary/thread/ARunnable"
+autoload :InputAutomationBundleActivatorListenerInterface, "bundle/input/automation/InputAutomationBundleActivatorListenerInterface"
+autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :BasicTextJDialog, "org/allbinary/gui/dialog/BasicTextJDialog"
+autoload :JListSwingWorker, "org/allbinary/gui/swing/workers/JListSwingWorker"
+autoload :InputAutomationConfiguration, "org/allbinary/input/automation/configuration/InputAutomationConfiguration"
+autoload :InputAutomationConfigurationFactory, "org/allbinary/input/automation/configuration/InputAutomationConfigurationFactory"
+autoload :InputAutomationConfigurationModuleChangeEvent, "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
+autoload :InputAutomationModuleFactoryFactory, "org/allbinary/input/automation/module/InputAutomationModuleFactoryFactory"
+autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
+autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
+autoload :InputAutomationModuleConfigurations, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfigurations"
+autoload :DesktopBundle, "org/allbinary/input/automation/osgi/DesktopBundle"
+autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
+autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
+autoload :JavaHelpUtil, "org/allbinary/logic/java/help/JavaHelpUtil"
+autoload :WebappClassLoaderInfo, "org/allbinary/logic/system/loader/WebappClassLoaderInfo"
+autoload :InputAutomationClientInformationFactory, "org/allbinary/logic/system/security/licensing/InputAutomationClientInformationFactory"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface"
 require "java/lang/Thread"
 
-class InputAutomationJFrame
-    INPUTAUTOMATION_JFRAME = nil
+begin
+    InputAutomationJFrame.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

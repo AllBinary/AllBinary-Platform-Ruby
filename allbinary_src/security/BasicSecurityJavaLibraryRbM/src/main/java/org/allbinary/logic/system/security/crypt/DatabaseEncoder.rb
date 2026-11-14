@@ -45,20 +45,12 @@ class DatabaseEncoder
         begin
             tokenizer = Tokenizer.new(CommonSeps.getInstance().SPACE)
             vector = tokenizer.getTokensFromString(value, BasicArrayListD.new())
-            byteVector = BasicArrayListD.new()
             size = vector.size()
+            decode = Array.new(size, 0)
             byteOfData = nil
             (0...size).each do |index|
                 byteOfData = vector.objectArray[index]
-                byteVector.add(byteOfData)
-            end
-            decode = Array.new(byteVector.size(), 0)
-            decodeIndex = 0
-            aByte = nil
-            (0...size).each do |index|
-                aByte = byteVector.objectArray[index]
-                decode[decodeIndex] = aByte.to_i
-                decodeIndex += 1
+                decode[index] = Byte.parseByte(byteOfData)
             end
             return decode
         rescue StandardError => e
@@ -69,13 +61,13 @@ class DatabaseEncoder
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/tokens/Tokenizer"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Tokenizer, "org/allbinary/logic/string/tokens/Tokenizer"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

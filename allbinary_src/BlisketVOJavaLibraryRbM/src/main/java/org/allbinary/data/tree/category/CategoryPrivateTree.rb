@@ -70,13 +70,13 @@ class CategoryPrivateTree
     end
 end
 
-require "org/allbinary/business/category/CategoryComponent"
-require "org/allbinary/business/category/CategoryData"
-require "org/allbinary/business/category/CategoryFactoryInterface"
-require "org/allbinary/business/category/CategoryInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/crypt/file/CryptFileWriter"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
+autoload :CategoryComponent, "org/allbinary/business/category/CategoryComponent"
+autoload :CategoryData, "org/allbinary/business/category/CategoryData"
+autoload :CategoryFactoryInterface, "org/allbinary/business/category/CategoryFactoryInterface"
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CryptFileWriter, "org/allbinary/logic/control/crypt/file/CryptFileWriter"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
 

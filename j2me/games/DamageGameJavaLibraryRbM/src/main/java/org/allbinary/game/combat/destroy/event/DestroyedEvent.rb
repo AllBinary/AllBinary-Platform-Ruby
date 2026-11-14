@@ -64,10 +64,10 @@ class DestroyedEvent < AllBinaryEventObject
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-require "org/allbinary/game/displayable/canvas/NullGameCanvas"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :NullGameCanvas, "org/allbinary/game/displayable/canvas/NullGameCanvas"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :DestroyedEventHandler, "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
 

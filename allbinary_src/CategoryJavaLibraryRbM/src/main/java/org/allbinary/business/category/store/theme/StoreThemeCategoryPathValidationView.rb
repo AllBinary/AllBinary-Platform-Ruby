@@ -50,7 +50,7 @@ class StoreThemeCategoryPathValidationView < StoreThemeCategoryPathView
     end
 end
 
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :StoreThemeCategoryInterface, "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface"
 

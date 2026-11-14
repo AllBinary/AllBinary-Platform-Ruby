@@ -114,10 +114,10 @@ class GenericOperatingSystem
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/java/character/CharacterSet"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/logic/system/os/SystemProperties"
+autoload :CharacterSet, "org/allbinary/logic/java/character/CharacterSet"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+autoload :SystemProperties, "org/allbinary/logic/system/os/SystemProperties"
 

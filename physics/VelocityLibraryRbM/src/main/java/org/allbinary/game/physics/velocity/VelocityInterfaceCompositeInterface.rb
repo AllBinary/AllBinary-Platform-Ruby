@@ -19,9 +19,10 @@ module VelocityInterfaceCompositeInterface
     
 
     def getVelocityProperties()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
 

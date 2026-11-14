@@ -22,9 +22,10 @@ module AnalogControllerConfigurationEventListenerInterface
 
     # throws Exception
     def onAnalogControllerConfigurationEvent(analogControllerConfigurationEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent"
+autoload :AnalogControllerConfigurationEvent, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent"
 

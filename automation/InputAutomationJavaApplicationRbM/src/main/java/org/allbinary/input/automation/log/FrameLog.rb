@@ -77,40 +77,68 @@ class FrameLog
     end
 
     def self.frameBytes()
+        FrameLog.java_static_fields unless @java_static_fields_started
         return defined?(@@frameBytes) ? @@frameBytes : nil
     end
 
     def self.frameBytes=(value)
+        FrameLog.java_static_fields unless @java_static_fields_started
         @@frameBytes = value
     end
 
     def self.info()
+        FrameLog.java_static_fields unless @java_static_fields_started
         return defined?(@@info) ? @@info : nil
     end
 
     def self.info=(value)
+        FrameLog.java_static_fields unless @java_static_fields_started
         @@info = value
     end
 
     def self.actions()
+        FrameLog.java_static_fields unless @java_static_fields_started
         return defined?(@@actions) ? @@actions : nil
     end
 
     def self.actions=(value)
+        FrameLog.java_static_fields unless @java_static_fields_started
         @@actions = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@frameBytes = String.new("Frame: ").getBytes()
+            @@info = String.new("Info: \n").getBytes()
+            @@actions = String.new("Actions: \n").getBytes()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FrameLog"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/input/automation/ImageOutputData"
-require "org/allbinary/logic/java/number/LongUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :ImageOutputData, "org/allbinary/input/automation/ImageOutputData"
+autoload :LongUtil, "org/allbinary/logic/java/number/LongUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonSeps, "org/allbinary/string/CommonSeps"
 
-class FrameLog
-    @@frameBytes = String.new("Frame: ").getBytes()
-    @@info = String.new("Info: \n").getBytes()
-    @@actions = String.new("Actions: \n").getBytes()
+begin
+    FrameLog.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

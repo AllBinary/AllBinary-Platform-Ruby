@@ -21,23 +21,26 @@ module LayerProcessorInterface
     
 
     def getLayerManager()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def processAt(allBinaryLayerManager, layerInterface, index)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def isProcessorLayer(layerInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/layer/LayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :LayerManager, "org/allbinary/layer/LayerManager"
 

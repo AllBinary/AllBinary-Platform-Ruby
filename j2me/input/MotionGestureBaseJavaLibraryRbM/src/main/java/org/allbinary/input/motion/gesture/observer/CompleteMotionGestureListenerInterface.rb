@@ -20,9 +20,10 @@ module CompleteMotionGestureListenerInterface
 
     # throws Exception
     def onMotionGestureCompleted(list)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
 

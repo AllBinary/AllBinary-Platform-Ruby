@@ -39,6 +39,6 @@ class LogUserEmailEventListenerModule
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/smtp/event/EmailEvent"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :EmailEvent, "org/allbinary/logic/communication/smtp/event/EmailEvent"
 

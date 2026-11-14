@@ -30,7 +30,7 @@ class RandomTranslation
     end
 end
 
-require "org/allbinary/game/rand/MyRandomFactory"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/graphics/pipeline/BasicGraphicsPipeline"
+autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline"
 

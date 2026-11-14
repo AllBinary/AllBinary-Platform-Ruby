@@ -24,6 +24,6 @@ class LaptopGameInputMapping < PCGameInputMapping
     end
 end
 
-require "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-require "org/allbinary/game/input/LaptopDefaultGameInputMapping"
+autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
+autoload :LaptopDefaultGameInputMapping, "org/allbinary/game/input/LaptopDefaultGameInputMapping"
 

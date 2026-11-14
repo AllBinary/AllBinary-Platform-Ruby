@@ -45,5 +45,5 @@ module StoreFrontOrdersHistoryStatisticsInterface
     end
 end
 
-require "org/allbinary/business/user/commerce/money/Money"
+autoload :Money, "org/allbinary/business/user/commerce/money/Money"
 

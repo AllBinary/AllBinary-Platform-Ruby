@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.midlet
 
-# require "javax/microedition/lcdui/NullCanvas"
 require "java/lang/Runnable"
 
 class ExitRunnable
@@ -57,8 +56,9 @@ class ExitRunnable
     end
 end
 
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/midlet/AllBinaryMidlet"
+autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
+autoload :Processor, "org/allbinary/canvas/Processor"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet"
 

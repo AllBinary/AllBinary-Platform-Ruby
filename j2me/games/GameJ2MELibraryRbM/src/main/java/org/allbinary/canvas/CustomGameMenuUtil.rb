@@ -28,8 +28,8 @@ class CustomGameMenuUtil
     end
 end
 
-require "org/allbinary/AppletUtil"
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/game/commands/GameCommandsFactory"
-require "org/allbinary/graphics/displayable/MyCanvas"
+autoload :AppletUtil, "org/allbinary/AppletUtil"
+autoload :J2MEUtil, "org/allbinary/J2MEUtil"
+autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
 

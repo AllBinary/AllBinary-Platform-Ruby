@@ -87,10 +87,10 @@ class CustomLoaderTag < CustomTagSupport
     end
 end
 
-require "java/util/HashMap"
-require "admin/taghelpers/CustomLoaderHelperFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :HashMap, "java/util/HashMap"
+autoload :CustomLoaderHelperFactory, "admin/taghelpers/CustomLoaderHelperFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles
 
-# require "javax/microedition/khronos/opengles/GL10"
 
 class OpenGLVUtilBase
     
@@ -30,4 +29,6 @@ class OpenGLVUtilBase
     def glGenerateMipmap(gl, textureId, target, generateMipMap)
     end
 end
+
+autoload :GL10, "javax/microedition/khronos/opengles/GL10"
 

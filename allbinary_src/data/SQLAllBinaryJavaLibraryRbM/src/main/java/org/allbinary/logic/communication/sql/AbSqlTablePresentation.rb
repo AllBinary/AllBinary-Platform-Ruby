@@ -24,5 +24,5 @@ class AbSqlTablePresentation < AbSqlBasic
     end
 end
 
-require "org/allbinary/business/init/db/DbConnectionInfo"
+autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo"
 

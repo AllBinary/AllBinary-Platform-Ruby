@@ -22,9 +22,10 @@ module AutomaticCacheInterface
 
     # throws Exception
     def get(key)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
 

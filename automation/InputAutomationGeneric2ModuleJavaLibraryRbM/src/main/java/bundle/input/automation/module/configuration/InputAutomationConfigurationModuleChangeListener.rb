@@ -28,5 +28,5 @@ module InputAutomationConfigurationModuleChangeListener
     end
 end
 
-require "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
+autoload :InputAutomationConfigurationModuleChangeEvent, "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
 

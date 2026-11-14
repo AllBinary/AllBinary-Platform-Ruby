@@ -40,8 +40,8 @@ class GameInputLayerProcessor < LayerProcessor
     end
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/game/input/GameInputInterface"
-require "org/allbinary/game/input/GameInputLayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+autoload :GameInputInterface, "org/allbinary/game/input/GameInputInterface"
+autoload :GameInputLayerManager, "org/allbinary/game/input/GameInputLayerManager"
 

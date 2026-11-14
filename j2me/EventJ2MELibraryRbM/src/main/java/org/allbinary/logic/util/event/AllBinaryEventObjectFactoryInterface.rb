@@ -19,9 +19,10 @@ module AllBinaryEventObjectFactoryInterface
     
 
     def getInstance()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
 

@@ -2,7 +2,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.vector
 
-# require "javax/microedition/lcdui/Graphics"
 require "org/allbinary/animation/vector/RectangleFilledAnimation"
 
 class ARectangleFilledAnimation < RectangleFilledAnimation
@@ -29,5 +28,6 @@ class ARectangleFilledAnimation < RectangleFilledAnimation
     end
 end
 
-require "org/allbinary/graphics/color/BasicColorFactory"
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
 

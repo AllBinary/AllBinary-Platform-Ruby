@@ -16,10 +16,34 @@
 
 
 class NullImage
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_IMAGE_ARRAY, Array.new(0, nil))
+            const_set(:NULL_IMAGE, Image.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullImage"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_IMAGE_ARRAY, :NULL_IMAGE].include?(name)
+        end
+        super
+    end
 end
 
-class NullImage
-    NULL_IMAGE_ARRAY = Array.new(0, nil)
-    NULL_IMAGE = Image.new()
+autoload :Image, "javax/microedition/lcdui/Image"
+
+begin
+    NullImage.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

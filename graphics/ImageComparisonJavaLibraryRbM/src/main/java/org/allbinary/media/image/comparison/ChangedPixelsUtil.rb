@@ -48,24 +48,46 @@ class ChangedPixelsUtil
         end
         return bufferedImageCacheables
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:START_X, 0)
+        const_set(:START_Y, 0)
+        const_set(:OFFSET, 0)
+        const_set(:SCAN_SIZE, 0)
+        begin
+            const_set(:CLEAR_INT_ARRAY, Array.new(1800 * 1600, 0))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ChangedPixelsUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:START_X, :START_Y, :OFFSET, :SCAN_SIZE, :CLEAR_INT_ARRAY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/util/cache/PoolInterface"
-require "org/allbinary/media/image/cache/BufferedImageCacheable"
-require "org/allbinary/media/image/cache/BufferedImageInfo"
-require "org/allbinary/media/image/cache/BufferedImageInfoFactory"
-require "org/allbinary/media/image/cache/BufferedImagePoolSingleton"
-require "org/allbinary/media/image/comparison/pixel/PixelDelta"
-require "org/allbinary/media/image/comparison/ImageComparisonResult"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :PoolInterface, "org/allbinary/logic/util/cache/PoolInterface"
+autoload :BufferedImageCacheable, "org/allbinary/media/image/cache/BufferedImageCacheable"
+autoload :BufferedImageInfo, "org/allbinary/media/image/cache/BufferedImageInfo"
+autoload :BufferedImageInfoFactory, "org/allbinary/media/image/cache/BufferedImageInfoFactory"
+autoload :BufferedImagePoolSingleton, "org/allbinary/media/image/cache/BufferedImagePoolSingleton"
+autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta"
+autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
 require "java/lang/System"
 
-class ChangedPixelsUtil
-    START_X = 0
-    START_Y = 0
-    OFFSET = 0
-    SCAN_SIZE = 0
-    CLEAR_INT_ARRAY = Array.new(1800 * 1600, 0)
+begin
+    ChangedPixelsUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

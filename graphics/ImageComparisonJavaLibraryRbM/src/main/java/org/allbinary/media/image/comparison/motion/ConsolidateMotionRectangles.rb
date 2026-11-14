@@ -69,15 +69,37 @@ class ConsolidateMotionRectangles < MotionRectangles
             vector.remove(removeVector.get(index))
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "consolidatedMotionRectangles_")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ConsolidateMotionRectangles"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/image/comparison/motion/MotionRectangle"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle"
 
-class ConsolidateMotionRectangles
-    NAME = "consolidatedMotionRectangles_"
+begin
+    ConsolidateMotionRectangles.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

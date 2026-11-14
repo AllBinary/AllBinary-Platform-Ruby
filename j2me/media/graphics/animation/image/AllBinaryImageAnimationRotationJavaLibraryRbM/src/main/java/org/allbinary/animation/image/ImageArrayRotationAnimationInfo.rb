@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
 
 class ImageArrayRotationAnimationInfo
     attr_accessor :imageArray, :angleIncrement, :totalAngle, :dx, :dy
@@ -83,5 +82,6 @@ class ImageArrayRotationAnimationInfo
     end
 end
 
-require "org/allbinary/math/AngleInfo"
+autoload :Image, "javax/microedition/lcdui/Image"
+autoload :AngleInfo, "org/allbinary/math/AngleInfo"
 

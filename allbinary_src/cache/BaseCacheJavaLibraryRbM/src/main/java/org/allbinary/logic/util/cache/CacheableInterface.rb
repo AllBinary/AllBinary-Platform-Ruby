@@ -21,6 +21,7 @@ module CacheableInterface
     
 
     def getKey()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

@@ -57,28 +57,52 @@ class MineCountedPickedUpLayerInterfaceFactory < CountedPickedUpLayerInterfaceFa
     end
 
     def self.pickedUpLayerInterfaceFactoryInterface()
+        MineCountedPickedUpLayerInterfaceFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@pickedUpLayerInterfaceFactoryInterface) ? @@pickedUpLayerInterfaceFactoryInterface : nil
     end
 
     def self.pickedUpLayerInterfaceFactoryInterface=(value)
+        MineCountedPickedUpLayerInterfaceFactory.java_static_fields unless @java_static_fields_started
         @@pickedUpLayerInterfaceFactoryInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory::NULL_COUNTED_PICKUP_LAYER_FACTORY
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MineCountedPickedUpLayerInterfaceFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/game/combat/weapon/WeaponProperties"
-require "org/allbinary/game/layer/pickup/IconLayerFactory"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-require "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
-require "org/allbinary/game/layer/weapon/WeaponLayerCircularPool"
-require "org/allbinary/game/score/ScoreableInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/game/ag/layer/weapon/mine/MineLayerCircularStaticPool"
-require "org/allbinary/game/ag/layer/weapon/mine/MineWeaponResources"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
+autoload :IconLayerFactory, "org/allbinary/game/layer/pickup/IconLayerFactory"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :PickedUpLayerTypeFactory, "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
+autoload :WeaponLayerCircularPool, "org/allbinary/game/layer/weapon/WeaponLayerCircularPool"
+autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :MineLayerCircularStaticPool, "org/allbinary/game/ag/layer/weapon/mine/MineLayerCircularStaticPool"
+autoload :MineWeaponResources, "org/allbinary/game/ag/layer/weapon/mine/MineWeaponResources"
 
-class MineCountedPickedUpLayerInterfaceFactory
-    @@pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory::NULL_COUNTED_PICKUP_LAYER_FACTORY
+begin
+    MineCountedPickedUpLayerInterfaceFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

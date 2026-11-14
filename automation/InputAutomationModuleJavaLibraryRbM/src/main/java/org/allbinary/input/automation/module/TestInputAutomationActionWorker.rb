@@ -57,12 +57,12 @@ class TestInputAutomationActionWorker < AbstractInputAutomationWorker
     end
 end
 
-require "org/allbinary/input/automation/robot/InputRobotFactory"
-require "org/allbinary/input/automation/robot/InputRobotInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/image/comparison/ImageComparatorConstraintsInterface"
-require "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/input/automation/module/InputAutomationActionInterface"
+autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :ImageComparatorConstraintsInterface, "org/allbinary/media/image/comparison/ImageComparatorConstraintsInterface"
+autoload :MotionRectangleConstraintsInterface, "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface"
+autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+autoload :InputAutomationActionInterface, "org/allbinary/input/automation/module/InputAutomationActionInterface"
 require "java/lang/Thread"
 

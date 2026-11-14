@@ -46,6 +46,6 @@ class ValidationView < ShippingMethodsView
     end
 end
 
-require "org/allbinary/globals/MESSAGES"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :MESSAGES, "org/allbinary/globals/MESSAGES"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
 

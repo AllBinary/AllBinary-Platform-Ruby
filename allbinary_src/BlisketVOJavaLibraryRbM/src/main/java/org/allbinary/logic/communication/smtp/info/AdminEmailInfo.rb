@@ -44,10 +44,10 @@ class AdminEmailInfo < BasicEmailInfo
     end
 end
 
-require "org/allbinary/business/context/configuration/ContextConfigurationInterface"
-require "org/allbinary/business/user/modules/admin/configuration/AdminConfiguration"
-require "org/allbinary/business/user/modules/admin/configuration/AdminConfigurationInterface"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
-require "org/allbinary/string/CommonStrings"
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+autoload :AdminConfiguration, "org/allbinary/business/user/modules/admin/configuration/AdminConfiguration"
+autoload :AdminConfigurationInterface, "org/allbinary/business/user/modules/admin/configuration/AdminConfigurationInterface"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
 

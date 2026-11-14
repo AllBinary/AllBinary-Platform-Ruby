@@ -53,23 +53,47 @@ class TransformInfoObjectConfigGeneratorFactory
     end
 
     def self.instance()
+        TransformInfoObjectConfigGeneratorFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformInfoObjectConfigGeneratorFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformInfoObjectConfigGeneratorFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformInfoObjectConfigGeneratorFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/InputOutputTypeData"
-require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/visual/transform/info/objectConfig/generator/BasicGenerator"
-require "org/allbinary/logic/visual/transform/info/objectConfig/generator/StoreFileGenerator"
-require "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGenerator"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :InputOutputTypeData, "org/allbinary/logic/io/InputOutputTypeData"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicGenerator, "org/allbinary/logic/visual/transform/info/objectConfig/generator/BasicGenerator"
+autoload :StoreFileGenerator, "org/allbinary/logic/visual/transform/info/objectConfig/generator/StoreFileGenerator"
+autoload :TransformInfoObjectConfigGenerator, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGenerator"
 
-class TransformInfoObjectConfigGeneratorFactory
-    @@instance = TransformInfoObjectConfigGeneratorFactory.new()
+begin
+    TransformInfoObjectConfigGeneratorFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

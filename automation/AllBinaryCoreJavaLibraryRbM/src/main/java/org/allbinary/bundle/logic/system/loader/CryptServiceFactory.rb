@@ -42,9 +42,9 @@ class CryptServiceFactory
     end
 end
 
-require "org/osgi/framework/Bundle"
-require "org/osgi/framework/ServiceRegistration"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/bundle/logic/system/loader/CryptService"
+autoload :Bundle, "org/osgi/framework/Bundle"
+autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :CryptService, "org/allbinary/bundle/logic/system/loader/CryptService"
 

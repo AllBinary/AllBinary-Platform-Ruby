@@ -77,8 +77,8 @@ class NoShippingModuleView < NoShippingModule
     end
 end
 
-require "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/w3c/dom/Node"
+autoload :ShippingMethodData, "org/allbinary/business/user/commerce/shipping/ShippingMethodData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :Node, "org/w3c/dom/Node"
 

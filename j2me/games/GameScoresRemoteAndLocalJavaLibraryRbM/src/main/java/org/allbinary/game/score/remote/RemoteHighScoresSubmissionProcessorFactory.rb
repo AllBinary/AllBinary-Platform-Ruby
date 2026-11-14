@@ -21,12 +21,34 @@ class RemoteHighScoresSubmissionProcessorFactory
     def self.getInstance()
         return RemoteHighScoresSubmissionProcessorFactory::SINGLETON
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, RemoteHighScoresSubmissionProcessor.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RemoteHighScoresSubmissionProcessorFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessor"
-require "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessorInterface"
+autoload :RemoteHighScoresSubmissionProcessor, "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessor"
+autoload :RemoteHighScoresSubmissionProcessorInterface, "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessorInterface"
 
-class RemoteHighScoresSubmissionProcessorFactory
-    SINGLETON = RemoteHighScoresSubmissionProcessor.new()
+begin
+    RemoteHighScoresSubmissionProcessorFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

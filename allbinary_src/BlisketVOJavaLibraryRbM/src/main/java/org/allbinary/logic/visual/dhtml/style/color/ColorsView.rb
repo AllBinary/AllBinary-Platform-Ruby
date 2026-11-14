@@ -109,11 +109,11 @@ class ColorsView
     end
 end
 
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/logic/visual/dhtml/style/color/ColorData"
-require "org/allbinary/logic/visual/dhtml/style/color/ColorsData"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :ColorData, "org/allbinary/logic/visual/dhtml/style/color/ColorData"
+autoload :ColorsData, "org/allbinary/logic/visual/dhtml/style/color/ColorsData"
 

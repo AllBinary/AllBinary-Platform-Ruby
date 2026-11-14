@@ -53,9 +53,11 @@ class PCGameInputMapping < PersistentInputMapping
     end
 end
 
-require "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
-require "org/allbinary/input/motion/button/BasicTouchInputFactory"
-require "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-require "org/allbinary/input/motion/gesture/TrackballMotionGestureFactory"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+autoload :TrackballMotionGestureFactory, "org/allbinary/input/motion/gesture/TrackballMotionGestureFactory"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+autoload :Input, "org/allbinary/game/input/Input"
+autoload :PCKeyFactory, "org/allbinary/game/input/PCKeyFactory"
 

@@ -54,25 +54,49 @@ class HealPickedUpLayerInterfaceFactory < PickedUpLayerInterfaceFactory
     end
 
     def self.pickedUpLayerInterfaceFactoryInterface()
+        HealPickedUpLayerInterfaceFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@pickedUpLayerInterfaceFactoryInterface) ? @@pickedUpLayerInterfaceFactoryInterface : nil
     end
 
     def self.pickedUpLayerInterfaceFactoryInterface=(value)
+        HealPickedUpLayerInterfaceFactory.java_static_fields unless @java_static_fields_started
         @@pickedUpLayerInterfaceFactoryInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory::NULL_COUNTED_PICKUP_LAYER_FACTORY
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "HealPickedUpLayerInterfaceFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
-require "org/allbinary/game/layer/pickup/IconLayerFactory"
-require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-require "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/ag/layer/pickup/health/HealLayerCircularStaticPool"
-require "org/allbinary/game/ag/layer/pickup/health/HealLayerFactory"
-require "org/allbinary/game/ag/layer/pickup/health/HealthResources"
+autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
+autoload :CountedPickedUpLayerInterfaceFactory, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
+autoload :IconLayerFactory, "org/allbinary/game/layer/pickup/IconLayerFactory"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :PickedUpLayerTypeFactory, "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :HealLayerCircularStaticPool, "org/allbinary/game/ag/layer/pickup/health/HealLayerCircularStaticPool"
+autoload :HealLayerFactory, "org/allbinary/game/ag/layer/pickup/health/HealLayerFactory"
+autoload :HealthResources, "org/allbinary/game/ag/layer/pickup/health/HealthResources"
 
-class HealPickedUpLayerInterfaceFactory
-    @@pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory::NULL_COUNTED_PICKUP_LAYER_FACTORY
+begin
+    HealPickedUpLayerInterfaceFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

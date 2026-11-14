@@ -23,9 +23,9 @@ class TransformInfoEntityBuilder
     end
 end
 
-require "org/allbinary/logic/visual/transform/info/TransformInfoHttpStoreFactory"
-require "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigAndManipulatorFactory"
-require "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorFactory"
-require "org/allbinary/data/tables/transform/info/TransformInfoEntity"
-require "org/allbinary/data/tables/transform/info/TransformInfoEntityFactory"
+autoload :TransformInfoHttpStoreFactory, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStoreFactory"
+autoload :TransformInfoObjectConfigAndManipulatorFactory, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigAndManipulatorFactory"
+autoload :TransformInfoObjectConfigGeneratorFactory, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorFactory"
+autoload :TransformInfoEntity, "org/allbinary/data/tables/transform/info/TransformInfoEntity"
+autoload :TransformInfoEntityFactory, "org/allbinary/data/tables/transform/info/TransformInfoEntityFactory"
 

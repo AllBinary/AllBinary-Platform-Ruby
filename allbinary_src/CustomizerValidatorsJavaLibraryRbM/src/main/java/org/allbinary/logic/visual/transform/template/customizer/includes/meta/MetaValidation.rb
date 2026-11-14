@@ -111,15 +111,15 @@ class MetaValidation < Validation
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/dhtml/html/head/meta/HtmlMetaAttributeData"
-require "org/allbinary/logic/visual/dhtml/html/head/meta/HtmlMetaAttributeDataFactory"
-require "org/allbinary/logic/visual/dhtml/html/head/meta/HtmlMetaData"
-require "org/allbinary/string/CommonStrings"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :HtmlMetaAttributeData, "org/allbinary/logic/visual/dhtml/html/head/meta/HtmlMetaAttributeData"
+autoload :HtmlMetaAttributeDataFactory, "org/allbinary/logic/visual/dhtml/html/head/meta/HtmlMetaAttributeDataFactory"
+autoload :HtmlMetaData, "org/allbinary/logic/visual/dhtml/html/head/meta/HtmlMetaData"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

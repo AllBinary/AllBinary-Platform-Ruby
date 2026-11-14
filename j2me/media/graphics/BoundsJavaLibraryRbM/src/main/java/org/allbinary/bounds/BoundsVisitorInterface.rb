@@ -19,31 +19,37 @@ module BoundsVisitorInterface
     
 
     def getX()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getY()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def maxX()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def maxY()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def minX()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def minY()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

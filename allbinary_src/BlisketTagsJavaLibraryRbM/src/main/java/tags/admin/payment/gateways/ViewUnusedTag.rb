@@ -45,5 +45,5 @@ class ViewUnusedTag < StoreValidationTransformTag
     end
 end
 
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
 

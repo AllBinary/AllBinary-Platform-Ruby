@@ -51,13 +51,13 @@ class HttpFilePermissions
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/business/user/role/BasicUserRoleFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/http/file/upload/FileUploadData"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :FileUploadData, "org/allbinary/logic/communication/http/file/upload/FileUploadData"
 

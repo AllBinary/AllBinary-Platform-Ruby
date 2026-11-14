@@ -50,12 +50,34 @@ class CombatBaseBehavior
     def setReadyForExplosion(readyForExplosion)
         @readyForExplosion = readyForExplosion
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_COMBAT_BEHAVIOR, CombatBaseBehavior.new(DamageableBaseBehavior.getInstance(), DestroyableBaseBehavior.getInstance()))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CombatBaseBehavior"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_COMBAT_BEHAVIOR].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/combat/damage/DamageableBaseBehavior"
-require "org/allbinary/game/combat/destroy/DestroyableBaseBehavior"
+autoload :DamageableBaseBehavior, "org/allbinary/game/combat/damage/DamageableBaseBehavior"
+autoload :DestroyableBaseBehavior, "org/allbinary/game/combat/destroy/DestroyableBaseBehavior"
 
-class CombatBaseBehavior
-    NULL_COMBAT_BEHAVIOR = CombatBaseBehavior.new(DamageableBaseBehavior.getInstance(), DestroyableBaseBehavior.getInstance())
+begin
+    CombatBaseBehavior.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

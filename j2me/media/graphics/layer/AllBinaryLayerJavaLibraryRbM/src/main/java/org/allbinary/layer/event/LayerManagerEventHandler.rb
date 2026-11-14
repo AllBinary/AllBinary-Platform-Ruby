@@ -87,16 +87,16 @@ class LayerManagerEventHandler < BasicEventHandler
         eventListenerInterfaceList = @eventListenerInterfaceList
         eventListenerInterface = nil
         layerManagerEventListenerInterface = nil
-        index = 0
-        while index < eventListenerInterfaceList.size()
+        listenerIndex = 0
+        while listenerIndex < eventListenerInterfaceList.size()
             begin
-                eventListenerInterface = eventListenerInterfaceList.objectArray[index]
+                eventListenerInterface = eventListenerInterfaceList.objectArray[listenerIndex]
                 layerManagerEventListenerInterface = (eventListenerInterface)
                 layerManagerEventListenerInterface.onDeleteLayerManagerEvent(eventObject)
             rescue StandardError => e
                 @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
             end
-            index += 1
+            listenerIndex += 1
         end
         end
     end
@@ -109,24 +109,48 @@ class LayerManagerEventHandler < BasicEventHandler
     end
 
     def self.instance()
+        LayerManagerEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LayerManagerEventHandler.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = LayerManagerEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LayerManagerEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/layer/event/LayerManagerEvent"
-require "org/allbinary/layer/event/LayerManagerEventListener"
-require "org/allbinary/layer/event/LayerManagerEventListenerInterface"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent"
+autoload :LayerManagerEventListener, "org/allbinary/layer/event/LayerManagerEventListener"
+autoload :LayerManagerEventListenerInterface, "org/allbinary/layer/event/LayerManagerEventListenerInterface"
 
-class LayerManagerEventHandler
-    @@instance = LayerManagerEventHandler.new()
+begin
+    LayerManagerEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

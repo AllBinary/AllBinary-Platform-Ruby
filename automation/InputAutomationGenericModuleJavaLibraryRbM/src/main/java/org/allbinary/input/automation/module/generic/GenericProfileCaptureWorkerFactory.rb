@@ -38,12 +38,12 @@ class GenericProfileCaptureWorkerFactory
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
-require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerType"
-require "org/allbinary/input/automation/module/generic/configuration/profile/SavedCaptureGenericProfileDataWorkerType"
-require "org/allbinary/input/media/image/capture/CaptureWorkerInterface"
-require "org/allbinary/input/media/image/capture/ScreenCaptureImagesWorker"
-require "org/allbinary/input/automation/module/generic/SavedCaptureImagesWorker"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :GenericProfile, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
+autoload :GenericProfileDataWorkerType, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerType"
+autoload :SavedCaptureGenericProfileDataWorkerType, "org/allbinary/input/automation/module/generic/configuration/profile/SavedCaptureGenericProfileDataWorkerType"
+autoload :CaptureWorkerInterface, "org/allbinary/input/media/image/capture/CaptureWorkerInterface"
+autoload :ScreenCaptureImagesWorker, "org/allbinary/input/media/image/capture/ScreenCaptureImagesWorker"
+autoload :SavedCaptureImagesWorker, "org/allbinary/input/automation/module/generic/SavedCaptureImagesWorker"
 

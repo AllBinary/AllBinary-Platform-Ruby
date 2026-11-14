@@ -33,11 +33,11 @@ class UrlGlobalsView
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/data/tree/dom/ModDomHelper"
-require "org/allbinary/logic/StdUtil"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/globals/UrlGlobalsData"
+autoload :HashMap, "java/util/HashMap"
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
+autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
+autoload :UrlGlobalsData, "org/allbinary/globals/UrlGlobalsData"
 

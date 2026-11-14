@@ -118,13 +118,13 @@ class PageValidation < Validation
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/page/PageData"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleData"
-require "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleValidation"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
+autoload :HashMap, "java/util/HashMap"
+autoload :PageData, "org/allbinary/business/page/PageData"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :TitleData, "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleData"
+autoload :TitleValidation, "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleValidation"
+autoload :Document, "org/w3c/dom/Document"
+autoload :Node, "org/w3c/dom/Node"
 

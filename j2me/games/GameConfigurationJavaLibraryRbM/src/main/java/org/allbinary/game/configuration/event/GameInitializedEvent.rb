@@ -53,6 +53,6 @@ class GameInitializedEvent < AllBinaryEventObject
     end
 end
 
-require "org/allbinary/game/resource/ResourceLoadingLevel"
-require "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+autoload :ResourceLoadingLevel, "org/allbinary/game/resource/ResourceLoadingLevel"
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
 

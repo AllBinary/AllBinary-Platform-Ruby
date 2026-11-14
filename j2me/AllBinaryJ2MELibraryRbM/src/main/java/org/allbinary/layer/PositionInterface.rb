@@ -19,6 +19,7 @@ module PositionInterface
     
 
     def setPosition(x, y, z)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end

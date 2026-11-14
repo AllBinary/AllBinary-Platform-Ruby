@@ -30,5 +30,5 @@ module RootCategoryPropertiesInterface
     end
 end
 
-require "org/allbinary/logic/io/path/AbPath"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
 

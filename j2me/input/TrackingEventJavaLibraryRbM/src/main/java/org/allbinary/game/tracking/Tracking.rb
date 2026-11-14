@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.game.tracking
 
-# require "javax/microedition/lcdui/Graphics"
 
 class Tracking
     
@@ -26,4 +25,6 @@ class Tracking
     def paint(graphics)
     end
 end
+
+autoload :Graphics, "javax/microedition/lcdui/Graphics"
 

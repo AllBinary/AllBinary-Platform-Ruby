@@ -56,9 +56,9 @@ class AdvertisementCampaign
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/DynamicObjectData"
-require "org/allbinary/business/advertisement/AdvertisementsInterface"
-require "org/allbinary/business/advertisement/search/AdvertisementSearchInterface"
-require "org/allbinary/business/advertisement/campaign/AdvertisementCampaignData"
+autoload :HashMap, "java/util/HashMap"
+autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
+autoload :AdvertisementsInterface, "org/allbinary/business/advertisement/AdvertisementsInterface"
+autoload :AdvertisementSearchInterface, "org/allbinary/business/advertisement/search/AdvertisementSearchInterface"
+autoload :AdvertisementCampaignData, "org/allbinary/business/advertisement/campaign/AdvertisementCampaignData"
 

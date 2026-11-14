@@ -62,7 +62,7 @@ class Group
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/game/identification/GroupCommonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :GroupCommonFactory, "org/allbinary/game/identification/GroupCommonFactory"
 

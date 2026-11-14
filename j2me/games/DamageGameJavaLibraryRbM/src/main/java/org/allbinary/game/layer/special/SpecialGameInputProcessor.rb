@@ -31,5 +31,5 @@ class SpecialGameInputProcessor < GameInputProcessor
     end
 end
 
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
 

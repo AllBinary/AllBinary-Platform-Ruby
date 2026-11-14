@@ -75,24 +75,48 @@ class VectorMirrorGenerator
     end
 
     def self.instance()
+        VectorMirrorGenerator.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        VectorMirrorGenerator.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = VectorMirrorGenerator.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "VectorMirrorGenerator"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/pipeline/BasicGraphicsPipeline"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListS"
-require "org/allbinary/animation/VectorAnimationUtil"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline"
+autoload :NullUtil, "org/allbinary/logic/NullUtil"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS"
+autoload :VectorAnimationUtil, "org/allbinary/animation/VectorAnimationUtil"
 
-class VectorMirrorGenerator
-    @@instance = VectorMirrorGenerator.new()
+begin
+    VectorMirrorGenerator.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

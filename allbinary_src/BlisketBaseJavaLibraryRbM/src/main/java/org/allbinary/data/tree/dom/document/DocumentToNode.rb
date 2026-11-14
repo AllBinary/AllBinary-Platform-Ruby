@@ -50,17 +50,39 @@ class DocumentToNode
         end
         return documentString
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:XMLROOT, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+        const_set(:XMLROOTSTART, "<?xml")
+        const_set(:XMLROOTEND, "?>")
+        const_set(:XMLJSPROOTSTART, "<jsp:root")
+        const_set(:XMLEND, ">")
+        const_set(:XMLJSPROOTENDSTART, "</jsp:root")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DocumentToNode"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:XMLROOT, :XMLROOTSTART, :XMLROOTEND, :XMLJSPROOTSTART, :XMLEND, :XMLJSPROOTENDSTART].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/string/regex/replace/Replace"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
 
-class DocumentToNode
-    XMLROOT = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-    XMLROOTSTART = "<?xml"
-    XMLROOTEND = "?>"
-    XMLJSPROOTSTART = "<jsp:root"
-    XMLEND = ">"
-    XMLJSPROOTENDSTART = "</jsp:root"
+begin
+    DocumentToNode.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

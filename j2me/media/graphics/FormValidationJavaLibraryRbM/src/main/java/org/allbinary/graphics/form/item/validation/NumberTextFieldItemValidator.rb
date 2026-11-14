@@ -103,10 +103,10 @@ class NumberTextFieldItemValidator < ValidatorBase
     end
 end
 
-require "org/allbinary/graphics/form/item/ABTextFieldItem"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+autoload :ABTextFieldItem, "org/allbinary/graphics/form/item/ABTextFieldItem"
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
 

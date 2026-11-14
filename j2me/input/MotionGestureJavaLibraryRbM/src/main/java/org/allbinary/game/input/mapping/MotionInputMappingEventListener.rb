@@ -32,10 +32,10 @@ class MotionInputMappingEventListener
     end
 end
 
-require "org/allbinary/game/input/mapping/event/InputMappingEvent"
-require "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEventFactory"
-require "org/allbinary/input/motion/button/BasicTouchInputFactory"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
+autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
+autoload :GameKeyCompleteMotionGestureInputEventFactory, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEventFactory"
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
+autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
 

@@ -393,16 +393,16 @@ class AuthenticationTag < CustomTagSupport
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "admin/taghelpers/AuthenticationHelperFactory"
-require "admin/taghelpers/AuthenticationRequestHelperFactory"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/http/request/AbResponseHandler"
-require "org/allbinary/logic/communication/http/request/session/WeblisketSessionData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+autoload :HashMap, "java/util/HashMap"
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+autoload :AuthenticationHelperFactory, "admin/taghelpers/AuthenticationHelperFactory"
+autoload :AuthenticationRequestHelperFactory, "admin/taghelpers/AuthenticationRequestHelperFactory"
+autoload :StdUtil, "org/allbinary/logic/StdUtil"
+autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+autoload :WeblisketSessionData, "org/allbinary/logic/communication/http/request/session/WeblisketSessionData"
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
 

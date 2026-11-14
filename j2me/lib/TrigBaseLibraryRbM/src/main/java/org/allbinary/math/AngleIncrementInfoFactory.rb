@@ -47,18 +47,42 @@ class AngleIncrementInfoFactory
     end
 
     def self.instance()
+        AngleIncrementInfoFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AngleIncrementInfoFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AngleIncrementInfoFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AngleIncrementInfoFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/math/AngleFactory"
-require "org/allbinary/math/AngleIncrementInfo"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :AngleIncrementInfo, "org/allbinary/math/AngleIncrementInfo"
 
-class AngleIncrementInfoFactory
-    @@instance = AngleIncrementInfoFactory.new()
+begin
+    AngleIncrementInfoFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 

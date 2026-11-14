@@ -36,11 +36,11 @@ class ProfileActionScriptInputFactory
     end
 end
 
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/w3c/dom/Node"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInput"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputData"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInput"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputData"
-require "org/allbinary/input/automation/actions/script/condition/processors/input/ProfileActionScriptInputInterface"
+autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
+autoload :Node, "org/w3c/dom/Node"
+autoload :KeyboardActionScriptInput, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInput"
+autoload :KeyboardActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputData"
+autoload :MouseActionScriptInput, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInput"
+autoload :MouseActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputData"
+autoload :ProfileActionScriptInputInterface, "org/allbinary/input/automation/actions/script/condition/processors/input/ProfileActionScriptInputInterface"
 

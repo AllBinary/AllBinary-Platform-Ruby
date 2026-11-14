@@ -26,5 +26,5 @@ class UpdateOrderTag < TableTag
     end
 end
 
-require "admin/taghelpers/UpdateOrderHelperFactory"
+autoload :UpdateOrderHelperFactory, "admin/taghelpers/UpdateOrderHelperFactory"
 

@@ -51,19 +51,43 @@ class AbXslHelper
     end
 
     def self.instance()
+        AbXslHelper.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AbXslHelper.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AbXslHelper.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AbXslHelper"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/data/tree/dom/XslHelper"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :XslHelper, "org/allbinary/data/tree/dom/XslHelper"
 
-class AbXslHelper
-    @@instance = AbXslHelper.new()
+begin
+    AbXslHelper.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
 
