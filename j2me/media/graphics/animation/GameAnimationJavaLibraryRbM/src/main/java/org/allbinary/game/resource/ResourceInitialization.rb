@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.resource
 
+require "java/lang/JavaOverload"
 require "org/allbinary/init/Init"
 
-class ResourceInitialization < Init
+module ::Org; module Allbinary; module Game; module Resource
+
+class ResourceInitialization < ::Org::Allbinary::Init::Init
 end
+
+end; end; end; end
 

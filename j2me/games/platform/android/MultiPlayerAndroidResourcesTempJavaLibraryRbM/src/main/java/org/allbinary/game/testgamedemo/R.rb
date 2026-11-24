@@ -8,10 +8,12 @@
 # package org.allbinary.game.testgamedemo
 
 
+module ::Org; module Allbinary; module Game; module Testgamedemo
+
 class R
-    class attr
+    class Attr
     end
-    class drawable
+    class Drawable
 
         def self.testgamedemo_icon()
             return defined?(@@testgamedemo_icon) ? @@testgamedemo_icon : nil
@@ -31,7 +33,7 @@ class R
         @@testgamedemo_icon = 0x7f020000
         @@testgamedemo_wait_256_by_256 = 0x7f020001
     end
-    class id
+    class Id
 
         def self.ad_area_bottom()
             return defined?(@@ad_area_bottom) ? @@ad_area_bottom : nil
@@ -87,7 +89,7 @@ class R
         @@testgamedemo = 0x7f060000
         @@testgamedemo_gl = 0x7f060005
     end
-    class layout
+    class Layout
 
         def self.testgamedemo_ad_overlay_layout()
             return defined?(@@testgamedemo_ad_overlay_layout) ? @@testgamedemo_ad_overlay_layout : nil
@@ -116,7 +118,7 @@ class R
         @@testgamedemo_gl_layout = 0x7f030001
         @@testgamedemo_layout = 0x7f030002
     end
-    class raw
+    class Raw
 
         def self.error()
             return defined?(@@error) ? @@error : nil
@@ -514,7 +516,7 @@ class R
         @@touch_button_up_arrow_64_by_64 = 0x7f040043
         @@touch_button_generic_action_arrow_64_by_64 = 0x7f040009
     end
-    class string
+    class String
 
         def self.progressbar_in_title_string()
             return defined?(@@progressbar_in_title_string) ? @@progressbar_in_title_string : nil
@@ -535,4 +537,6 @@ class R
         @@testgamedemo_app_name = 0x7f050000
     end
 end
+
+end; end; end; end
 

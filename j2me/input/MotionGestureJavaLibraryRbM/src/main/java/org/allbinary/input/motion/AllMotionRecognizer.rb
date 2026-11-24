@@ -14,28 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/MotionRecognizer"
+
+module ::Org; module Allbinary; module Input; module Motion
 
 class AllMotionRecognizer < MotionRecognizer
     attr_accessor :logUtil, :motionGestureRecognizer, :touchButtonProcessing, :touchButtonRecognizer, :id, :lastX, :lastY
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @motionGestureRecognizer = nil
+    def jfields_org_allbinary_input_motion_AllMotionRecognizer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @motionGestureRecognizer = nil unless instance_variable_defined?(:@motionGestureRecognizer)
         @touchButtonProcessing = false
-        @touchButtonRecognizer = nil
-        @id = nil
-        @lastX = 0
-        @lastY = 0
+        @touchButtonRecognizer = nil unless instance_variable_defined?(:@touchButtonRecognizer)
+        @id = nil unless instance_variable_defined?(:@id)
+        @lastX = 0 unless instance_variable_defined?(:@lastX)
+        @lastY = 0 unless instance_variable_defined?(:@lastY)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_AllMotionRecognizer
         @id = ((AllMotionRecognizer.index += 1) - 1)
-        @motionGestureRecognizer = MotionGestureRecognizer.new(@id)
-        @touchButtonRecognizer = TouchButtonRecognizer.new()
+        @motionGestureRecognizer = ::Org::Allbinary::Input::Motion::Gesture::MotionGestureRecognizer.new(@id)
+        @touchButtonRecognizer = ::Org::Allbinary::Input::Motion::Button::TouchButtonRecognizer.new()
     end
     
 
@@ -51,6 +54,7 @@ class AllMotionRecognizer < MotionRecognizer
             @motionGestureRecognizer.processPressedMotionEvent(point, deviceId, modifiers)
         end
     end
+    java_overload :processStartMotionEvent, 4
     
 
     # throws Exception
@@ -67,6 +71,7 @@ class AllMotionRecognizer < MotionRecognizer
             @touchButtonProcessing = false
         end
     end
+    java_overload :processEndMotionEvent, 4
     
 
     # throws Exception
@@ -81,6 +86,7 @@ class AllMotionRecognizer < MotionRecognizer
             @motionGestureRecognizer.processDraggedMotionEvent(point, deviceId, modifiers)
         end
     end
+    java_overload :processDraggedMotionEvent, 4
     
 
     # throws Exception
@@ -94,6 +100,7 @@ class AllMotionRecognizer < MotionRecognizer
             @motionGestureRecognizer.processMovedMotionEvent(point, deviceId, modifiers)
         end
     end
+    java_overload :processMovedMotionEvent, 4
     
 
     # throws Exception
@@ -103,11 +110,13 @@ class AllMotionRecognizer < MotionRecognizer
         point.setY(y)
         @motionGestureRecognizer.processScrolledMotionEvent(point, deviceId, modifiers)
     end
+    java_overload :processScrolledMotionEvent, 4
     
 
     def getMotionGestureRecognizer()
         return @motionGestureRecognizer
     end
+    java_overload :getMotionGestureRecognizer, 0
 
     def self.index()
         AllMotionRecognizer.java_static_fields unless @java_static_fields_started
@@ -134,7 +143,7 @@ class AllMotionRecognizer < MotionRecognizer
         @java_static_fields_started = true
         @@index = 0
         begin
-            @@pointCircularPool = GPointCircularPool.new(40)
+            @@pointCircularPool = ::Org::Allbinary::Graphics::GPointCircularPool.new(40)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -151,15 +160,17 @@ class AllMotionRecognizer < MotionRecognizer
     end
 end
 
-autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
-autoload :GPointCircularPool, "org/allbinary/graphics/GPointCircularPool"
-autoload :TouchButtonRecognizer, "org/allbinary/input/motion/button/TouchButtonRecognizer"
-autoload :MotionGestureRecognizer, "org/allbinary/input/motion/gesture/MotionGestureRecognizer"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+module ::Org; module Allbinary; module Graphics; autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint" unless const_defined?(:CustomGPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPointCircularPool, "org/allbinary/graphics/GPointCircularPool" unless const_defined?(:GPointCircularPool, false); end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Button; autoload :TouchButtonRecognizer, "org/allbinary/input/motion/button/TouchButtonRecognizer" unless const_defined?(:TouchButtonRecognizer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :MotionGestureRecognizer, "org/allbinary/input/motion/gesture/MotionGestureRecognizer" unless const_defined?(:MotionGestureRecognizer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
 
 begin
     AllMotionRecognizer.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

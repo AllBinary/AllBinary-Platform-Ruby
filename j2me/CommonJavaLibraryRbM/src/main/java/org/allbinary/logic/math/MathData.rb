@@ -15,16 +15,18 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class MathData
     attr_accessor :EQUALS, :PLUS, :GREATER_THAN, :MINUS, :DIVIDE, :MULTIPLY
 
-    def initialize_fields
-        @EQUALS = nil
+    def jfields_org_allbinary_logic_math_MathData
+        @EQUALS = nil unless instance_variable_defined?(:@EQUALS)
         @PLUS = "+"
         @GREATER_THAN = ">"
-        @MINUS = nil
-        @DIVIDE = nil
-        @MULTIPLY = nil
+        @MINUS = nil unless instance_variable_defined?(:@MINUS)
+        @DIVIDE = nil unless instance_variable_defined?(:@DIVIDE)
+        @MULTIPLY = nil unless instance_variable_defined?(:@MULTIPLY)
     end
     
 
@@ -34,12 +36,12 @@ class MathData
     
 
     def initialize()
-        initialize_fields
-        commonSeps = CommonSeps.getInstance()
+        jfields_org_allbinary_logic_math_MathData
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         @EQUALS = commonSeps.EQUALS
         @MINUS = commonSeps.DASH
         @DIVIDE = commonSeps.FORWARD_SLASH
-        @MULTIPLY = CommonPhoneStrings.getInstance().STAR
+        @MULTIPLY = ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().STAR
     end
 
     def self.instance()
@@ -73,12 +75,14 @@ class MathData
     end
 end
 
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 
 begin
     MathData.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

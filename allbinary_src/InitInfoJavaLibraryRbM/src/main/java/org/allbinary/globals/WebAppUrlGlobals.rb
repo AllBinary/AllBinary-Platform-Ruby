@@ -15,30 +15,35 @@
 # package org.allbinary.globals
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/globals/UrlGlobalsInterface"
+
+module ::Org; module Allbinary; module Globals
 
 class WebAppUrlGlobals < UrlGlobalsInterface
     attr_accessor :path, :isWebappPathSet
 
-    def initialize_fields
-        @path = nil
+    def jfields_org_allbinary_globals_WebAppUrlGlobals
+        @path = nil unless instance_variable_defined?(:@path)
         @isWebappPathSet = false
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_globals_WebAppUrlGlobals
     end
     
 
     def isTestingMode()
-        return InitInfo.getInstance().isTesting()
+        return ::Org::Allbinary::Business::Init::InitInfo.getInstance().isTesting()
     end
+    java_overload :isTestingMode, 0
     
 
     def getWebappPath()
         return @path
     end
+    java_overload :getWebappPath, 0
     
 
     def setWebappPath(path)
@@ -47,17 +52,19 @@ class WebAppUrlGlobals < UrlGlobalsInterface
         @isWebappPathSet = true
         end
     end
+    java_overload :setWebappPath, 1
     
 
     def getTestHtmlPath()
-        return InitInfo.getInstance().getTestHtmlPath()
+        return ::Org::Allbinary::Business::Init::InitInfo.getInstance().getTestHtmlPath()
     end
+    java_overload :getTestHtmlPath, 0
     
 
     # throws Exception
     def getMainPath()
-        mainPath = InitInfo.getInstance().getMainPath()
-        if !StringValidationUtil.getInstance().isEmpty(mainPath)
+        mainPath = ::Org::Allbinary::Business::Init::InitInfo.getInstance().getMainPath()
+        if !::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(mainPath)
             return mainPath
         elsif @isWebappPathSet
             return self.getWebappPath()
@@ -65,8 +72,11 @@ class WebAppUrlGlobals < UrlGlobalsInterface
             raise StandardError.new("Webapp Path is not set")
         end
     end
+    java_overload :getMainPath, 0
 end
 
-autoload :InitInfo, "org/allbinary/business/init/InitInfo"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+module ::Org; module Allbinary; module Business; module Init; autoload :InitInfo, "org/allbinary/business/init/InitInfo" unless const_defined?(:InitInfo, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+
+end; end; end
 

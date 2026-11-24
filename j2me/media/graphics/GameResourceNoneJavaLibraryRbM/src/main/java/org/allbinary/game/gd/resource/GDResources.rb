@@ -15,16 +15,18 @@
 # package org.allbinary.game.gd.resource
 
 
+module ::Org; module Allbinary; module Game; module Gd; module Resource
+
 class GDResources
     attr_accessor :resourceStringArray, :currentLayoutRequiredTotal
 
-    def initialize_fields
+    def jfields_org_allbinary_game_gd_resource_GDResources
         @resourceStringArray = []
-        @currentLayoutRequiredTotal = 0
+        @currentLayoutRequiredTotal = 0 unless instance_variable_defined?(:@currentLayoutRequiredTotal)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_gd_resource_GDResources
     end
     
 
@@ -68,4 +70,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

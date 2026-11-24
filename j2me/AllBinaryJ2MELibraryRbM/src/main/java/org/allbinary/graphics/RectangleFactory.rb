@@ -15,6 +15,8 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class RectangleFactory
 
     def self.java_static_fields
@@ -39,12 +41,14 @@ class RectangleFactory
     end
 end
 
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false)
+autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false)
 
 begin
     RectangleFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

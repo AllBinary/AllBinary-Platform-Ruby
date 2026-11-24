@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/WaypointPathRunnableBase"
+
+module ::Org; module Allbinary; module Game; module Layer
 
 class WaypointPathRunnable < WaypointPathRunnableBase
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_layer_WaypointPathRunnable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_layer_WaypointPathRunnable
     end
     
 
@@ -42,21 +45,25 @@ class WaypointPathRunnable < WaypointPathRunnableBase
             @pathFindingLayer.getWaypointRunnableLogHelper().end_(@pathFindingLayer)
             sleep((15 + (@priorityP * 2)) / 1000.0)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             self.setRunning(false)
         end
     end
+    java_overload :run, 0
     
 
     def isDone()
         return true
     end
+    java_overload :isDone, 0
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/game/layer/WaypointBehaviorBase"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+autoload :WaypointBehaviorBase, "org/allbinary/game/layer/WaypointBehaviorBase" unless const_defined?(:WaypointBehaviorBase, false)
 require "java/lang/Thread"
+
+end; end; end; end
 

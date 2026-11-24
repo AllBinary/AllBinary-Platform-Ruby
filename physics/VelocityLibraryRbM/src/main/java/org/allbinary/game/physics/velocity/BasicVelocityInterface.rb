@@ -15,6 +15,8 @@
 # package org.allbinary.game.physics.velocity
 
 
+module ::Org; module Allbinary; module Game; module Physics; module Velocity
+
 module BasicVelocityInterface
     
 
@@ -90,7 +92,9 @@ module BasicVelocityInterface
     end
 end
 
-autoload :Direction, "org/allbinary/direction/Direction"
-autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
-autoload :Angle, "org/allbinary/math/Angle"
+module ::Org; module Allbinary; module Direction; autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false); end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :Angle, "org/allbinary/math/Angle" unless const_defined?(:Angle, false); end; end; end
+
+end; end; end; end; end
 

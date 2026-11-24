@@ -15,18 +15,22 @@
 # package org.allbinary.business.init
 
 
+module ::Org; module Allbinary; module Business; module Init
+
 class InitInfoDocument
     attr_accessor :initInfoDocument
 
-    def initialize_fields
-        @initInfoDocument = nil
+    def jfields_org_allbinary_business_init_InitInfoDocument
+        @initInfoDocument = nil unless instance_variable_defined?(:@initInfoDocument)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_init_InitInfoDocument
     end
 end
 
-require "org/w3c/dom/Document"
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+
+end; end; end; end
 

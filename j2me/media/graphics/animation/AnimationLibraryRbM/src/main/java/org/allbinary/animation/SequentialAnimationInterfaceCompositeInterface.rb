@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/IndexedAnimationInterfaceCompositeInterface"
+
+module ::Org; module Allbinary; module Animation
 
 module SequentialAnimationInterfaceCompositeInterface
     include IndexedAnimationInterfaceCompositeInterface
 end
+
+end; end; end
 

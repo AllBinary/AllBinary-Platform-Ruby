@@ -15,12 +15,14 @@
 # package org.allbinary.game.configuration
 
 
+module ::Org; module Allbinary; module Game; module Configuration
+
 class GameConfigurationSingleton
     attr_accessor :list, :hashtable
 
-    def initialize_fields
-        @list = nil
-        @hashtable = nil
+    def jfields_org_allbinary_game_configuration_GameConfigurationSingleton
+        @list = nil unless instance_variable_defined?(:@list)
+        @hashtable = nil unless instance_variable_defined?(:@hashtable)
     end
     
 
@@ -30,9 +32,9 @@ class GameConfigurationSingleton
     
 
     def initialize()
-        initialize_fields
-        @list = BasicArrayListD.new()
-        @hashtable = StdUtil.getInstance().createHashtable()
+        jfields_org_allbinary_game_configuration_GameConfigurationSingleton
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
     end
     
 
@@ -76,15 +78,17 @@ class GameConfigurationSingleton
     end
 end
 
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration" unless const_defined?(:GameConfiguration, false)
 
 begin
     GameConfigurationSingleton.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 module HighScoresInterface
     
 
@@ -43,6 +45,8 @@ module HighScoresInterface
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :HighScore, "org/allbinary/game/score/HighScore"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :HighScore, "org/allbinary/game/score/HighScore" unless const_defined?(:HighScore, false)
+
+end; end; end; end
 

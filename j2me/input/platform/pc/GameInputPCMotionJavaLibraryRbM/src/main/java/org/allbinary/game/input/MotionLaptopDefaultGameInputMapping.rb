@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/mapping/PersistentInputMapping"
 
-class MotionLaptopDefaultGameInputMapping < PersistentInputMapping
+module ::Org; module Allbinary; module Game; module Input
+
+class MotionLaptopDefaultGameInputMapping < ::Org::Allbinary::Game::Input::Mapping::PersistentInputMapping
     
 
     def initialize()
-        super(GamePersistanceStrings.getInstance().DEFAULT_INPUT_MAPPING_RECORD_ID)
+        super(::Org::Allbinary::Game::Configuration::Persistance::GamePersistanceStrings.getInstance().DEFAULT_INPUT_MAPPING_RECORD_ID)
         pcKeyFactory = PCKeyFactory.getInstance()
         inputToGameKeyMapping = self.getInputMapping()
         gameKeyFactory = GameKeyFactory.getInstance()
-        touchMotionGestureFactory = TouchMotionGestureFactory.getInstance()
-        basicTouchInputFactory = BasicTouchInputFactory.getInstance()
+        touchMotionGestureFactory = ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance()
+        basicTouchInputFactory = ::Org::Allbinary::Input::Motion::Button::BasicTouchInputFactory.getInstance()
         inputToGameKeyMapping.add(gameKeyFactory.FIRE, pcKeyFactory.ENTER)
         inputToGameKeyMapping.add(gameKeyFactory.KEY_NUM1, pcKeyFactory.FOUR)
         inputToGameKeyMapping.add(gameKeyFactory.KEY_NUM1, pcKeyFactory._P)
@@ -89,10 +92,12 @@ class MotionLaptopDefaultGameInputMapping < PersistentInputMapping
     end
 end
 
-autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
-autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
-autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :PCKeyFactory, "org/allbinary/game/input/PCKeyFactory"
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings" unless const_defined?(:GamePersistanceStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping" unless const_defined?(:InputToGameKeyMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Button; autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory" unless const_defined?(:TouchMotionGestureFactory, false); end; end; end; end; end
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false)
+autoload :PCKeyFactory, "org/allbinary/game/input/PCKeyFactory" unless const_defined?(:PCKeyFactory, false)
+
+end; end; end; end
 

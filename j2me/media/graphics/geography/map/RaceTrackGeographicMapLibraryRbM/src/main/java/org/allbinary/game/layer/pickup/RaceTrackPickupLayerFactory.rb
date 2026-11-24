@@ -14,18 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.pickup
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/AllBinaryLayerFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 class RaceTrackPickupLayerFactory
-    include AllBinaryLayerFactoryInterface
+    include ::Org::Allbinary::Layer::AllBinaryLayerFactoryInterface
     
 
     # throws Exception
     def getInstance()
         return RaceTrackPickupLayer.new()
     end
+    java_overload :getInstance, 0
 end
 
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/layer/pickup/RaceTrackPickupLayer"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :RaceTrackPickupLayer, "org/allbinary/game/layer/pickup/RaceTrackPickupLayer" unless const_defined?(:RaceTrackPickupLayer, false)
+
+end; end; end; end; end
 

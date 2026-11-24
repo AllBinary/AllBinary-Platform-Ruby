@@ -15,22 +15,25 @@
 # package org.allbinary.input.automation.module.actions.script.condition.processors.output
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Actions; module Script; module Condition; module Processors; module Output
+
 class BasicProfileActionScriptOutputNode
 
     def initialize(*args)
         case args.length
-        when 1 then constructor1(*args)
-        when 0 then constructor0(*args)
+        when 1 then jnew_org_allbinary_input_automation_module_actions_script_condition_processors_output_BasicProfileActionScriptOutputNode_1(*args)
+        when 0 then jnew_org_allbinary_input_automation_module_actions_script_condition_processors_output_BasicProfileActionScriptOutputNode_0(*args)
+        else raise ArgumentError, "No constructor of BasicProfileActionScriptOutputNode takes #{args.length} arguments"
         end
     end
     
 
-    def constructor1(node)
-        actionNode = DomSearchHelper.getNode(GenericProfileActionScriptOutputData::NAME, node.getChildNodes())
+    def jnew_org_allbinary_input_automation_module_actions_script_condition_processors_output_BasicProfileActionScriptOutputNode_1(node)
+        actionNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(GenericProfileActionScriptOutputData::NAME, node.getChildNodes())
     end
     
 
-    def constructor0()
+    def jnew_org_allbinary_input_automation_module_actions_script_condition_processors_output_BasicProfileActionScriptOutputNode_0()
     end
     
 
@@ -41,8 +44,10 @@ class BasicProfileActionScriptOutputNode
     end
 end
 
-autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :GenericProfileActionScriptOutputData, "org/allbinary/input/automation/module/actions/script/condition/processors/output/GenericProfileActionScriptOutputData"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper" unless const_defined?(:DomSearchHelper, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :GenericProfileActionScriptOutputData, "org/allbinary/input/automation/module/actions/script/condition/processors/output/GenericProfileActionScriptOutputData" unless const_defined?(:GenericProfileActionScriptOutputData, false)
+
+end; end; end; end; end; end; end; end; end; end
 

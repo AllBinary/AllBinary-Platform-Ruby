@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/paint/ColorFillPaintable"
+
+module ::Org; module Allbinary; module Game; module Paint
 
 class OverScanColorFillPaintable < ColorFillPaintable
     
@@ -28,8 +31,11 @@ class OverScanColorFillPaintable < ColorFillPaintable
         graphics.setColor(@colorP)
         graphics.fillRect(-graphics.getClipX(), -graphics.getClipY(), @displayInfoSingleton.getLastWidth() + (graphics.getClipX() * 2), @displayInfoSingleton.getLastHeight() + (graphics.getClipY() * 2))
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+
+end; end; end; end
 

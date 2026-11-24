@@ -2,7 +2,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/collision/CollisionProcessor"
+
+module ::Org; module Allbinary; module Game; module Collision
 
 class CollisionThreedProcessor < CollisionProcessor
     
@@ -14,7 +17,10 @@ class CollisionThreedProcessor < CollisionProcessor
             return true
         end
     end
+    java_overload :isCollision, 2
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+
+end; end; end; end
 

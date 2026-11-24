@@ -15,16 +15,18 @@
 # package org.allbinary.input.automation.robot.osgi
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Robot; module Osgi
+
 class InputAutomationRobotInterfaceWrapper
     attr_accessor :inputRobotInterface
 
-    def initialize_fields
-        @inputRobotInterface = nil
+    def jfields_org_allbinary_input_automation_robot_osgi_InputAutomationRobotInterfaceWrapper
+        @inputRobotInterface = nil unless instance_variable_defined?(:@inputRobotInterface)
     end
     
 
     def initialize(inputRobotInterface)
-        initialize_fields
+        jfields_org_allbinary_input_automation_robot_osgi_InputAutomationRobotInterfaceWrapper
         self.setInputRobotInterface(inputRobotInterface)
     end
     
@@ -39,5 +41,7 @@ class InputAutomationRobotInterfaceWrapper
     end
 end
 
-autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface" unless const_defined?(:InputRobotInterface, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

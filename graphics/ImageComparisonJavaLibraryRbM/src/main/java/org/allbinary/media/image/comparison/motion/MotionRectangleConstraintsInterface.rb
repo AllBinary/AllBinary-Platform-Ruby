@@ -14,50 +14,63 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison.motion
 
-# require "java/awt"
+# require "java/awt/Dimension"
+# require "java/awt/Rectangle"
 # require "java/awt/image/BufferedImage"
+
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
 
 module MotionRectangleConstraintsInterface
     
 
     def getMaxMotionRectangles()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMinDimension()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMinArea()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMaxDimension()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isTooSmall(rectangle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isAreaTooSmall(rectangle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isTooBig(rectangle)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def isValid(frame, bufferedImage, rectangle)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end
 

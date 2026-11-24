@@ -15,28 +15,30 @@
 # package org.allbinary.input.motion.gesture.configuration
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Configuration
+
 class MotionGestureConfiguration
     attr_accessor :diagonalMotionGestureAllowed, :diagonalTolerance, :minimumMotionGesture, :button, :color, :executingActions, :mouseButtonMask, :activeCommands
 
-    def initialize_fields
+    def jfields_org_allbinary_input_motion_gesture_configuration_MotionGestureConfiguration
         @diagonalMotionGestureAllowed = true
         @diagonalTolerance = 7
         @minimumMotionGesture = 9
-        @button = StringUtil.getInstance().EMPTY_STRING
-        @color = BasicColorFactory.getInstance().BLUE
+        @button = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @color = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLUE
         @executingActions = true
         @mouseButtonMask = 0
-        @activeCommands = BasicArrayListD.new()
+        @activeCommands = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_motion_gesture_configuration_MotionGestureConfiguration
     end
     
 
     def addMotionGestureAction(list, commandAction)
-        @activeCommands.add(MotionGestureToMotionGestureActionAssociation.new(list, commandAction))
+        @activeCommands.add(::Org::Allbinary::Input::Motion::Gesture::MotionGestureToMotionGestureActionAssociation.new(list, commandAction))
     end
     
 
@@ -120,11 +122,13 @@ class MotionGestureConfiguration
     end
 end
 
-autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :MotionGestureToMotionGestureActionAssociation, "org/allbinary/input/motion/gesture/MotionGestureToMotionGestureActionAssociation"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Game; module Input; autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent" unless const_defined?(:CompleteMotionGestureInputEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :MotionGestureToMotionGestureActionAssociation, "org/allbinary/input/motion/gesture/MotionGestureToMotionGestureActionAssociation" unless const_defined?(:MotionGestureToMotionGestureActionAssociation, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end; end; end
 

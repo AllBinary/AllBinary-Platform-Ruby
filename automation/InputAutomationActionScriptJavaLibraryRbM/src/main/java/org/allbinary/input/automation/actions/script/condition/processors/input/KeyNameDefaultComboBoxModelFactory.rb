@@ -15,7 +15,9 @@
 # package org.allbinary.input.automation.actions.script.condition.processors.input
 
 # require "java/awt/event/KeyEvent"
-# require "javax/swing"
+# require "javax/swing/DefaultComboBoxModel"
+
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition; module Processors; module Input
 
 class KeyNameDefaultComboBoxModelFactory
     
@@ -26,7 +28,7 @@ class KeyNameDefaultComboBoxModelFactory
 
     def self.getInstance()
         defaultComboBoxModel = DefaultComboBoxModel.new()
-        keyArray = KeySingletonFactory.getArray()
+        keyArray = ::Org::Allbinary::Input::KeySingletonFactory.getArray()
         (0...keyArray.length).each do |index|
             keyAsString = KeyEvent.getKeyText(keyArray[index])
             defaultComboBoxModel.addElement(keyAsString)
@@ -35,5 +37,7 @@ class KeyNameDefaultComboBoxModelFactory
     end
 end
 
-autoload :KeySingletonFactory, "org/allbinary/input/KeySingletonFactory"
+module ::Org; module Allbinary; module Input; autoload :KeySingletonFactory, "org/allbinary/input/KeySingletonFactory" unless const_defined?(:KeySingletonFactory, false); end; end; end
+
+end; end; end; end; end; end; end; end; end
 

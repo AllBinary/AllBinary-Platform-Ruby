@@ -15,20 +15,26 @@
 # package org.allbinary.logic.communication.smtp.queue
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module QueuePackage
+
 module EmailQueueInterface
     
 
     # throws Exception
     def offer(emailInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def remove()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :EmailInterface, "org/allbinary/logic/communication/smtp/EmailInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; autoload :EmailInterface, "org/allbinary/logic/communication/smtp/EmailInterface" unless const_defined?(:EmailInterface, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

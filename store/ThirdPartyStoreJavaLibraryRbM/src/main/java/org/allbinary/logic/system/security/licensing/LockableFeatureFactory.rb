@@ -15,15 +15,17 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class LockableFeatureFactory
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_logic_system_security_licensing_LockableFeatureFactory
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_LockableFeatureFactory
     end
     
 
@@ -67,12 +69,14 @@ class LockableFeatureFactory
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     LockableFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

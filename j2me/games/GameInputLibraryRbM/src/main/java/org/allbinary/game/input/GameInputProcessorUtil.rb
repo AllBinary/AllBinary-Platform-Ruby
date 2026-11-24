@@ -15,6 +15,8 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class GameInputProcessorUtil
     
 
@@ -30,6 +32,8 @@ class GameInputProcessorUtil
     end
 end
 
-autoload :GameInputProcessor, "org/allbinary/game/input/GameInputProcessor"
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+autoload :GameInputProcessor, "org/allbinary/game/input/GameInputProcessor" unless const_defined?(:GameInputProcessor, false)
+autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false)
+
+end; end; end; end
 

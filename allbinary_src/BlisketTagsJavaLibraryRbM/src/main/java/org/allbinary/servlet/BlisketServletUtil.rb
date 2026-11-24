@@ -16,6 +16,8 @@
 
 # require "javax/servlet/http/HttpServletRequest"
 
+module ::Org; module Allbinary; module Servlet
+
 class BlisketServletUtil
     
 
@@ -25,10 +27,10 @@ class BlisketServletUtil
     
 
     def init(request)
-        urlGlobals = AppUrlGlobals.new()
-        urlGlobals.setWebappPath(request.getServletContext().getRealPath(AbPathData.getInstance().SEPARATOR))
-        URLGLOBALS.init(urlGlobals)
-        WebappClassLoaderInfo.setLoader(self.class.getClassLoader())
+        urlGlobals = ::Org::Allbinary::Globals::AppUrlGlobals.new()
+        urlGlobals.setWebappPath(request.getServletContext().getRealPath(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATOR))
+        ::Org::Allbinary::Globals::URLGLOBALS.init(urlGlobals)
+        ::Org::Allbinary::Logic::System::Loader::WebappClassLoaderInfo.setLoader(self.class.getClassLoader())
     end
 
     def self.instance()
@@ -62,14 +64,16 @@ class BlisketServletUtil
     end
 end
 
-autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals"
-autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :WebappClassLoaderInfo, "org/allbinary/logic/system/loader/WebappClassLoaderInfo"
+module ::Org; module Allbinary; module Globals; autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals" unless const_defined?(:AppUrlGlobals, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Loader; autoload :WebappClassLoaderInfo, "org/allbinary/logic/system/loader/WebappClassLoaderInfo" unless const_defined?(:WebappClassLoaderInfo, false); end; end; end; end; end
 
 begin
     BlisketServletUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

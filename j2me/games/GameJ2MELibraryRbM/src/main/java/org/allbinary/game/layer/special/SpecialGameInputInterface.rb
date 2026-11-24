@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.special
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/PaintableInterface"
 
+module ::Org; module Allbinary; module Game; module Layer; module Special
+
 module SpecialGameInputInterface
-    include PaintableInterface
+    include ::Org::Allbinary::Graphics::Paint::PaintableInterface
     
 
     # throws Exception
@@ -25,6 +28,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :up, 0
     
 
     # throws Exception
@@ -32,6 +36,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :down, 0
     
 
     # throws Exception
@@ -39,6 +44,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :right, 0
     
 
     # throws Exception
@@ -46,6 +52,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :left, 0
     
 
     # throws Exception
@@ -53,6 +60,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :strafeLeft, 0
     
 
     # throws Exception
@@ -60,6 +68,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :strafeRight, 0
     
 
     # throws Exception
@@ -67,6 +76,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :fire, 2
     
 
     # throws Exception
@@ -74,6 +84,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :special1, 2
     
 
     # throws Exception
@@ -81,6 +92,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :special2, 2
     
 
     # throws Exception
@@ -88,6 +100,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :special3, 2
     
 
     # throws Exception
@@ -95,6 +108,7 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :special4, 2
     
 
     # throws Exception
@@ -102,8 +116,11 @@ module SpecialGameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :special5, 2
 end
 
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end; end; end
 

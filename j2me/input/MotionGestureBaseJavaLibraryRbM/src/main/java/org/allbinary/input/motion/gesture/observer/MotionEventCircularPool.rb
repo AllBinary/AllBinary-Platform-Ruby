@@ -16,12 +16,14 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer
+
 class MotionEventCircularPool
     attr_accessor :MIN, :eventPool
 
-    def initialize_fields
-        @MIN = TouchMotionGestureFactory.getInstance().LAST_MOTION.getId()
-        @eventPool = AllBinaryEventCircularPool.new((InputFactory.getInstance().MAX - 1) - @MIN)
+    def jfields_org_allbinary_input_motion_gesture_observer_MotionEventCircularPool
+        @MIN = ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().LAST_MOTION.getId()
+        @eventPool = ::Org::Allbinary::Logic::Util::Event::AllBinaryEventCircularPool.new((::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 1) - @MIN)
     end
     
 
@@ -31,7 +33,7 @@ class MotionEventCircularPool
     
 
     def initialize(id)
-        initialize_fields
+        jfields_org_allbinary_input_motion_gesture_observer_MotionEventCircularPool
         @eventPool.initAllBinaryEventCircularPool(MotionEventFactory.new(@eventPool, id))
     end
     
@@ -44,10 +46,12 @@ class MotionEventCircularPool
     end
 end
 
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
-autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool"
-autoload :MotionEventFactory, "org/allbinary/input/motion/gesture/observer/MotionEventFactory"
-autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput" unless const_defined?(:MotionGestureInput, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory" unless const_defined?(:TouchMotionGestureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool" unless const_defined?(:AllBinaryEventCircularPool, false); end; end; end; end; end
+autoload :MotionEventFactory, "org/allbinary/input/motion/gesture/observer/MotionEventFactory" unless const_defined?(:MotionEventFactory, false)
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent" unless const_defined?(:MotionGestureEvent, false)
+
+end; end; end; end; end; end
 

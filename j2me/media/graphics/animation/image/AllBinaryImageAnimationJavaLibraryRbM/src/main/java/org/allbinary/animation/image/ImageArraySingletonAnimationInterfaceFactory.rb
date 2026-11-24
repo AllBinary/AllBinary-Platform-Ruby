@@ -14,20 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/SingletonAnimationInterfaceFactory"
 
-class ImageArraySingletonAnimationInterfaceFactory < SingletonAnimationInterfaceFactory
+module ::Org; module Allbinary; module Animation; module Image
+
+class ImageArraySingletonAnimationInterfaceFactory < ::Org::Allbinary::Animation::SingletonAnimationInterfaceFactory
     
 
     def initialize(imageArray)
-        super(ImageArrayAnimation.new(imageArray, AnimationBehavior.getInstance()))
+        super(ImageArrayAnimation.new(imageArray, ::Org::Allbinary::Animation::AnimationBehavior.getInstance()))
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
-autoload :IndexedAnimationToImageArrayUtil, "org/allbinary/image/IndexedAnimationToImageArrayUtil"
-autoload :ImageArrayAnimation, "org/allbinary/animation/image/ImageArrayAnimation"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation" unless const_defined?(:IndexedAnimation, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :IndexedAnimationToImageArrayUtil, "org/allbinary/image/IndexedAnimationToImageArrayUtil" unless const_defined?(:IndexedAnimationToImageArrayUtil, false); end; end; end
+autoload :ImageArrayAnimation, "org/allbinary/animation/image/ImageArrayAnimation" unless const_defined?(:ImageArrayAnimation, false)
+
+end; end; end; end
 

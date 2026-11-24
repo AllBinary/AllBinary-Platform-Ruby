@@ -15,6 +15,8 @@
 # package org.allbinary.data.tables.transform.info
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables; module Transform; module Info
+
 class TransformInfoEntityFactory
     
 
@@ -23,12 +25,12 @@ class TransformInfoEntityFactory
     
 
     def self.getInstance(transformInfoObjectConfigGeneratorFactoryInterface, transformInfoObjectConfigAndManipulatorFactoryInterface, transformInfoFactoryInterface)
-        logUtil = LogUtil.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         begin
             return TransformInfoEntity.new(transformInfoObjectConfigGeneratorFactoryInterface, transformInfoObjectConfigAndManipulatorFactoryInterface, transformInfoFactoryInterface)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
                 logUtil.put(commonStrings.EXCEPTION, "TransformInfoEntityFactory", commonStrings.GET_INSTANCE, e)
             end
             return nil
@@ -36,10 +38,14 @@ class TransformInfoEntityFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :TransformInfoFactoryInterface, "org/allbinary/logic/visual/transform/info/TransformInfoFactoryInterface"
-autoload :TransformInfoObjectConfigAndManipulatorFactoryBase, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigAndManipulatorFactoryBase"
-autoload :TransformInfoObjectConfigGeneratorFactoryInterface, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorFactoryInterface"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TransformInfoEntity, "org/allbinary/data/tables/transform/info/TransformInfoEntity"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoFactoryInterface, "org/allbinary/logic/visual/transform/info/TransformInfoFactoryInterface" unless const_defined?(:TransformInfoFactoryInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module ObjectConfig; autoload :TransformInfoObjectConfigAndManipulatorFactoryBase, "org/allbinary/logic/visual/transform/info/objectConfig/TransformInfoObjectConfigAndManipulatorFactoryBase" unless const_defined?(:TransformInfoObjectConfigAndManipulatorFactoryBase, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module ObjectConfig; module Generator; autoload :TransformInfoObjectConfigGeneratorFactoryInterface, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorFactoryInterface" unless const_defined?(:TransformInfoObjectConfigGeneratorFactoryInterface, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :TransformInfoEntity, "org/allbinary/data/tables/transform/info/TransformInfoEntity" unless const_defined?(:TransformInfoEntity, false)
+
+end; end; end; end; end; end
 

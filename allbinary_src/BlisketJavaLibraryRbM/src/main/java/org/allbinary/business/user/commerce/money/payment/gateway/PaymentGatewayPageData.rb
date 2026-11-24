@@ -15,26 +15,28 @@
 # package org.allbinary.business.user.commerce.money.payment.gateway
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway
+
 class PaymentGatewayPageData
     attr_accessor :MAKEPAYMENT, :CHECKOUT, :SHIPPING, :SHIPPINGADDRESS, :SHIPPINGADDRESSACTION, :BILLINGADDRESS, :PAYMENT, :AUTHORIZE, :FINISH
 
-    def initialize_fields
-        @MAKEPAYMENT = nil
-        @CHECKOUT = nil
-        @SHIPPING = nil
-        @SHIPPINGADDRESS = nil
-        @SHIPPINGADDRESSACTION = nil
-        @BILLINGADDRESS = nil
-        @PAYMENT = nil
-        @AUTHORIZE = nil
-        @FINISH = nil
+    def jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayPageData
+        @MAKEPAYMENT = nil unless instance_variable_defined?(:@MAKEPAYMENT)
+        @CHECKOUT = nil unless instance_variable_defined?(:@CHECKOUT)
+        @SHIPPING = nil unless instance_variable_defined?(:@SHIPPING)
+        @SHIPPINGADDRESS = nil unless instance_variable_defined?(:@SHIPPINGADDRESS)
+        @SHIPPINGADDRESSACTION = nil unless instance_variable_defined?(:@SHIPPINGADDRESSACTION)
+        @BILLINGADDRESS = nil unless instance_variable_defined?(:@BILLINGADDRESS)
+        @PAYMENT = nil unless instance_variable_defined?(:@PAYMENT)
+        @AUTHORIZE = nil unless instance_variable_defined?(:@AUTHORIZE)
+        @FINISH = nil unless instance_variable_defined?(:@FINISH)
     end
     
 
     def initialize(location, paymentMethod)
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayPageData
         paymentMethodString = (PaymentGatewayPageData::NAME).to_s + paymentMethod
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(location)
         stringBuffer.append("MakePayment")
         stringBuffer.append(PaymentGatewayPageData::EXTENSION)
@@ -87,7 +89,7 @@ class PaymentGatewayPageData
         const_set(:EXTENSION, ".jsp")
         const_set(:FORWARDMAKEPAYMENT, "MakePayment.jsp")
         begin
-            const_set(:NAME, StringUtil.getInstance().EMPTY_STRING)
+            const_set(:NAME, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
             const_set(:PAYMENTOPTIONS, "PaymentOptions" + (PaymentGatewayPageData::EXTENSION).to_s)
             const_set(:STARTCHECKOUT, "StartCheckout" + (PaymentGatewayPageData::EXTENSION).to_s)
         rescue StandardError
@@ -106,12 +108,14 @@ class PaymentGatewayPageData
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     PaymentGatewayPageData.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

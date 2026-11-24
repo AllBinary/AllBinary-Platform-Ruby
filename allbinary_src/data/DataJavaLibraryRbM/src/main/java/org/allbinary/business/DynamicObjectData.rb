@@ -15,14 +15,40 @@
 # package org.allbinary.business
 
 
+module ::Org; module Allbinary; module Business
+
 class DynamicObjectData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "DYNAMICCOMPONENT_NAME")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DynamicObjectData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-class DynamicObjectData
-    NAME = "DYNAMICCOMPONENT_NAME"
+begin
+    DynamicObjectData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

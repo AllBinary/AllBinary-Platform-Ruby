@@ -16,15 +16,17 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Game; module Terrain
+
 class TerrainEventCircularStaticPool
     attr_accessor :EVENT_POOL
 
-    def initialize_fields
-        @EVENT_POOL = AllBinaryEventCircularPool.new(20)
+    def jfields_org_allbinary_game_terrain_TerrainEventCircularStaticPool
+        @EVENT_POOL = ::Org::Allbinary::Logic::Util::Event::AllBinaryEventCircularPool.new(20)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_terrain_TerrainEventCircularStaticPool
     end
     
 
@@ -78,14 +80,16 @@ class TerrainEventCircularStaticPool
     end
 end
 
-autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool"
-autoload :BasicTerrainInfo, "org/allbinary/game/terrain/BasicTerrainInfo"
-autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent"
-autoload :TerrainEventFactory, "org/allbinary/game/terrain/TerrainEventFactory"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool" unless const_defined?(:AllBinaryEventCircularPool, false); end; end; end; end; end
+autoload :BasicTerrainInfo, "org/allbinary/game/terrain/BasicTerrainInfo" unless const_defined?(:BasicTerrainInfo, false)
+autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent" unless const_defined?(:TerrainEvent, false)
+autoload :TerrainEventFactory, "org/allbinary/game/terrain/TerrainEventFactory" unless const_defined?(:TerrainEventFactory, false)
 
 begin
     TerrainEventCircularStaticPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

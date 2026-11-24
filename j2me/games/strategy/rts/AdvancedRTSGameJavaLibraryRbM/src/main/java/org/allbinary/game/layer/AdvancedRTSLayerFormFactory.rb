@@ -14,26 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/RTSLayerFormFactory"
 
-class AdvancedRTSLayerFormFactory < RTSLayerFormFactory
+module ::Org; module Allbinary; module Game; module Layer
+
+class AdvancedRTSLayerFormFactory < ::Org::Allbinary::Game::Input::RTSLayerFormFactory
     attr_accessor :logUtil, :scrollSelectionForm
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @scrollSelectionForm = nil
+    def jfields_org_allbinary_game_layer_AdvancedRTSLayerFormFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @scrollSelectionForm = nil unless instance_variable_defined?(:@scrollSelectionForm)
     end
     
 
     def initialize(label, itemArrayFactoryInterface)
         super()
-        initialize_fields
-        scrollSelectionForm = ScrollSelectionForm.getNullScrollSelectionForm()
+        jfields_org_allbinary_game_layer_AdvancedRTSLayerFormFactory
+        scrollSelectionForm = ::Org::Allbinary::Graphics::Form::ScrollSelectionForm.getNullScrollSelectionForm()
         begin
             items = itemArrayFactoryInterface.getItems()
             scrollSelectionForm = RTSScrollSelectionFormFactory.getInstance(label, items)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
         end
         @scrollSelectionForm = scrollSelectionForm
@@ -43,13 +46,16 @@ class AdvancedRTSLayerFormFactory < RTSLayerFormFactory
     def getInstance(rtsLayer)
         return @scrollSelectionForm
     end
+    java_overload :getInstance, 1
 end
 
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
-require "org/allbinary/graphics/form/item/ItemArraySingletonFactoryInterface"
-require "org/allbinary/game/layer/RTSLayer"
-require "org/allbinary/game/layer/RTSScrollSelectionFormFactory"
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm" unless const_defined?(:ScrollSelectionForm, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ItemArraySingletonFactoryInterface, "org/allbinary/graphics/form/item/ItemArraySingletonFactoryInterface" unless const_defined?(:ItemArraySingletonFactoryInterface, false); end; end; end; end; end
+autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false)
+autoload :RTSScrollSelectionFormFactory, "org/allbinary/game/layer/RTSScrollSelectionFormFactory" unless const_defined?(:RTSScrollSelectionFormFactory, false)
+
+end; end; end; end
 

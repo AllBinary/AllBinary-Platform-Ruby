@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.math.vector
 
+require "java/lang/JavaOverload"
+
+module ::Org; module Allbinary; module Logic; module MathPackage; module Vector
 
 class YAxisMathVector < MathVector
     
@@ -27,13 +30,17 @@ class YAxisMathVector < MathVector
     def getResult()
         return @resultBasicDecimal
     end
+    java_overload :getResult, 0
     
 
     def calculate()
         result = YAxisMathVectorUtil.calculate(self.getMagnitude().getUnscaled(), self.getDirection())
-        @resultBasicDecimal = BasicDecimal.new(result)
+        @resultBasicDecimal = ::Org::Allbinary::Logic::MathPackage::BasicDecimal.new(result)
     end
+    java_overload :calculate, 0
 end
 
-require "org/allbinary/logic/math/BasicDecimal"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false); end; end; end; end
+
+end; end; end; end; end
 

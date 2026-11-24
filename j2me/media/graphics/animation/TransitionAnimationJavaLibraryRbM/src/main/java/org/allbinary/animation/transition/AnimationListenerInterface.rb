@@ -15,6 +15,8 @@
 # package org.allbinary.animation.transition
 
 
+module ::Org; module Allbinary; module Animation; module Transition
+
 module AnimationListenerInterface
     
 
@@ -35,4 +37,6 @@ module AnimationListenerInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.device
 
 
+module ::Org; module Allbinary; module Device
+
 class LoadTextures
     
 
@@ -23,5 +25,7 @@ class LoadTextures
     end
 end
 
-autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+
+end; end; end
 

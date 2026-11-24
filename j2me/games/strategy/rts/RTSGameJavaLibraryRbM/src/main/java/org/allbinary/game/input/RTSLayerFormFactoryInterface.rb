@@ -15,14 +15,19 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 module RTSLayerFormFactoryInterface
     
 
     def getInstance(rtsLayer)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/RTSLayer"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm" unless const_defined?(:ScrollSelectionForm, false); end; end; end; end
+
+end; end; end; end
 

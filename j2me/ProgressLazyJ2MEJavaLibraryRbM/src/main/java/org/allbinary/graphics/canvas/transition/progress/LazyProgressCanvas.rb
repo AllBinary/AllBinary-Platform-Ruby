@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.canvas.transition.progress
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress
 
 class LazyProgressCanvas < ProgressCanvas
     
@@ -25,9 +28,10 @@ class LazyProgressCanvas < ProgressCanvas
     
 
     def start()
-        super()
+        LazyProgressCanvas.superclass.java_super_method(:start, 0).bind(self).call()
         @hasPainted = false
     end
+    java_overload :start, 0
     
 
     def end_()
@@ -35,23 +39,26 @@ class LazyProgressCanvas < ProgressCanvas
             @logUtil.putF(@commonStrings.START, self, @commonStrings.END_METHOD_NAME)
             self.endActual()
             @paintable = @GAUGE_PAINTABLE
-            ImageCacheFactory.getInstance().runTask()
-            ImageCacheFactory.getInstance().progressEnded()
+            ::Org::Allbinary::Image::ImageCacheFactory.getInstance().runTask()
+            ::Org::Allbinary::Image::ImageCacheFactory.getInstance().progressEnded()
         rescue StandardError => e
             @logUtil.putF(@commonStrings.EXCEPTION, self, @commonStrings.END_METHOD_NAME)
         end
     end
+    java_overload :end_, 0
     
 
     def inGame()
-        @inGameProcessor = Processor.getInstance()
+        @inGameProcessor = ::Org::Allbinary::Canvas::Processor.getInstance()
     end
+    java_overload :inGame, 0
     
 
     def endFromInitialLazyLoadingComplete()
-        super()
-        @paintable = NullPaintable.getInstance()
+        LazyProgressCanvas.superclass.java_super_method(:endFromInitialLazyLoadingComplete, 0).bind(self).call()
+        @paintable = ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
     end
+    java_overload :endFromInitialLazyLoadingComplete, 0
     
 
     def endIfPaintedSinceStart()
@@ -59,10 +66,13 @@ class LazyProgressCanvas < ProgressCanvas
             self.endFromInitialLazyLoadingComplete()
         end
     end
+    java_overload :endIfPaintedSinceStart, 0
 end
 
-require "org/allbinary/canvas/Processor"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/paint/NullPaintable"
-require "org/allbinary/image/ImageCacheFactory"
+module ::Org; module Allbinary; module Canvas; autoload :Processor, "org/allbinary/canvas/Processor" unless const_defined?(:Processor, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Image; autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory" unless const_defined?(:ImageCacheFactory, false); end; end; end
+
+end; end; end; end; end; end
 

@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module System
 
 class SoftwareInformation
     attr_accessor :name, :shortName, :version
 
-    def initialize_fields
-        @name = nil
-        @shortName = nil
-        @version = nil
+    def jfields_org_allbinary_logic_system_SoftwareInformation
+        @name = nil unless instance_variable_defined?(:@name)
+        @shortName = nil unless instance_variable_defined?(:@shortName)
+        @version = nil unless instance_variable_defined?(:@version)
     end
     
 
     def initialize(name, version, shortName)
-        initialize_fields
+        jfields_org_allbinary_logic_system_SoftwareInformation
         @name = name
         @version = version
-        @shortName = StringMaker.new().append(shortName).append(KotlinUtil.getShortName()).to_s
+        @shortName = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(shortName).append(::Org::Allbinary::KotlinUtil.getShortName()).to_s
     end
     
 
@@ -51,10 +54,10 @@ class SoftwareInformation
     def toString()
         _NAME = "Name: "
         _VERSION = "Version: "
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(_NAME)
         stringBuffer.append(self.getName())
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(_VERSION)
         stringBuffer.append(self.getVersion())
         return stringBuffer.to_s
@@ -62,7 +65,9 @@ class SoftwareInformation
     alias_method :to_s, :toString
 end
 
-autoload :KotlinUtil, "org/allbinary/KotlinUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; autoload :KotlinUtil, "org/allbinary/KotlinUtil" unless const_defined?(:KotlinUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+
+end; end; end; end
 

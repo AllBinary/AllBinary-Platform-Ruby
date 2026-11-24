@@ -15,10 +15,12 @@
 # package org.allbinary.graphics.opengles.renderer
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles; module Renderer
+
 class RendererStrings
     attr_accessor :ON_SURFACE_CREATED, :ON_SURFACE_CHANGED, :ON_DRAW_FRAME, :ON_DRAW_FRAME_THREED, :ON_DRAW_FRAME_2D
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_opengles_renderer_RendererStrings
         @ON_SURFACE_CREATED = "onSurfaceCreated"
         @ON_SURFACE_CHANGED = "onSurfaceChanged"
         @ON_DRAW_FRAME = "onDrawFrame"
@@ -27,7 +29,7 @@ class RendererStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_renderer_RendererStrings
     end
     
 
@@ -71,4 +73,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

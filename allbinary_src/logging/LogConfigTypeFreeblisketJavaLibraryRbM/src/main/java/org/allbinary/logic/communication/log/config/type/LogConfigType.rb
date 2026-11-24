@@ -15,18 +15,20 @@
 # package org.allbinary.logic.communication.log.config.type
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type
+
 class LogConfigType
     attr_accessor :logUtil, :name, :description
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @name = nil
-        @description = nil
+    def jfields_org_allbinary_logic_communication_log_config_type_LogConfigType
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @name = nil unless instance_variable_defined?(:@name)
+        @description = nil unless instance_variable_defined?(:@description)
     end
     
 
     def initialize(name, description)
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_config_type_LogConfigType
         @name = name
         @description = description
         LogConfigType.availableLogConfigTypes.add(self)
@@ -66,7 +68,7 @@ class LogConfigType
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@availableLogConfigTypes = BasicArrayListD.new()
+            @@availableLogConfigTypes = ::Org::Allbinary::Util::BasicArrayListD.new()
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -83,13 +85,15 @@ class LogConfigType
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     LogConfigType.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

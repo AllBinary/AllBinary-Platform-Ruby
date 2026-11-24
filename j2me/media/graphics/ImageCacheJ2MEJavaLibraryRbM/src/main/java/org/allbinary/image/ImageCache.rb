@@ -14,29 +14,33 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/image/ImageCacheBase"
+
+module ::Org; module Allbinary; module Image
 
 class ImageCache < ImageCacheBase
     attr_accessor :commonStrings, :tsUtil
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @tsUtil = TsUtil.getInstance()
+    def jfields_org_allbinary_image_ImageCache
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_image_ImageCache
     end
     
 
     def addListener(renderer)
     end
+    java_overload :addListener, 1
     
 
     def getIndex(key)
-        gdResources = GDResources.getInstance()
+        gdResources = ::Org::Allbinary::Game::Gd::Resource::GDResources.getInstance()
         resourceStringArray = gdResources.resourceStringArray
         size = resourceStringArray.length
         (0...size).each do |index|
@@ -44,16 +48,17 @@ class ImageCache < ImageCacheBase
                 return index
             end
         end
-        @logUtil.putF(StringMaker.new().append("unable to find key: ").append(StringUtil.getInstance().toString(key)).to_s, self, @commonStrings.RUN)
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("unable to find key: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(key)).to_s, self, @commonStrings.RUN)
         raise RuntimeError.new()
     end
+    java_overload :getIndex, 1
     
 
     # throws Exception
     def get(caller, width, height)
         foundIndex = self.getIndexWH(width, height)
         image = self.getFromAvailable(foundIndex, width, height)
-        if image == NullImage::NULL_IMAGE
+        if image == ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
             @volume += width * height
             if @volume > 32000
                 @tsUtil.gc()
@@ -73,29 +78,30 @@ class ImageCache < ImageCacheBase
         end
         return image
     end
+    java_overload :get, 3
     
 
     # throws Exception
     def getWithKey(key)
         image = self.getImage(key)
-        if image == NullImage::NULL_IMAGE
-            resourceUtil = ResourceUtil.getInstance()
+        if image == ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
+            resourceUtil = ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance()
             resourceInputStream = resourceUtil.getResourceAsStream(key)
             if resourceInputStream == nil
-                raise RuntimeError.new(StringMaker.new().append("Image resource is not available for key: ").append(StringUtil.getInstance().toString(key)).to_s)
+                raise RuntimeError.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Image resource is not available for key: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(key)).to_s)
             end
             begin
                 image = self.createImageFromInputStream(key, resourceInputStream)
             rescue StandardError => e
                 @logUtil.put("Exception: Trying Again After GC", self, @commonStrings.GET, e)
-                @logUtil.putF(StringMaker.new().append("InputStream: ").append(StringUtil.getInstance().toString(resourceInputStream)).to_s, self, @commonStrings.GET)
+                @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("InputStream: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(resourceInputStream)).to_s, self, @commonStrings.GET)
                 @tsUtil.gc()
                 @tsUtil.gc()
-                @logUtil.putF(Memory.getInfo(), self, @commonStrings.GET)
+                @logUtil.putF(::Org::Allbinary::System::Memory.getInfo(), self, @commonStrings.GET)
                 sleep((100) / 1000.0)
                 image = self.createImageFromInputStream(key, resourceInputStream)
             end
-            if J2MEUtil.isHTML()
+            if ::Org::Allbinary::J2MEUtil.isHTML()
             else
                 resourceInputStream.close()
             end
@@ -103,24 +109,29 @@ class ImageCache < ImageCacheBase
         end
         return image
     end
+    java_overload :getWithKey, 1
     
 
     # throws Exception
     def loadImageForAnimation()
     end
+    java_overload :loadImageForAnimation, 0
     
 
     def progressEnded()
     end
+    java_overload :progressEnded, 0
     
 
     def runTask()
     end
+    java_overload :runTask, 0
     
 
     def isLazy()
         return false
     end
+    java_overload :isLazy, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -143,18 +154,18 @@ class ImageCache < ImageCacheBase
     end
 end
 
-autoload :InputStream, "java/io/InputStream"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :NullImage, "javax/microedition/lcdui/NullImage"
-autoload :J2MEUtil, "org/allbinary/J2MEUtil"
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil"
-autoload :GDResources, "org/allbinary/game/gd/resource/GDResources"
-autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Memory, "org/allbinary/system/Memory"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; autoload :J2MEUtil, "org/allbinary/J2MEUtil" unless const_defined?(:J2MEUtil, false); end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Gd; module Resource; autoload :GDResources, "org/allbinary/game/gd/resource/GDResources" unless const_defined?(:GDResources, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper" unless const_defined?(:ABSystemWrapper, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module System; autoload :Memory, "org/allbinary/system/Memory" unless const_defined?(:Memory, false); end; end; end
 require "java/lang/Thread"
 
 begin
@@ -162,4 +173,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

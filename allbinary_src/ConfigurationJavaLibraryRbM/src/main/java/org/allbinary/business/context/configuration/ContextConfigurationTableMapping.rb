@@ -14,46 +14,54 @@
 # frozen_string_literal: false
 # package org.allbinary.business.context.configuration
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/TableMappingInterface"
 
+module ::Org; module Allbinary; module Business; module Context; module Configuration
+
 class ContextConfigurationTableMapping
-    include TableMappingInterface
+    include ::Org::Allbinary::DataPackage::Tables::TableMappingInterface
     attr_accessor :contextConfigurationInterface
 
-    def initialize_fields
-        @contextConfigurationInterface = nil
+    def jfields_org_allbinary_business_context_configuration_ContextConfigurationTableMapping
+        @contextConfigurationInterface = nil unless instance_variable_defined?(:@contextConfigurationInterface)
     end
     
 
     def initialize(contextConfigurationInterface)
-        initialize_fields
+        jfields_org_allbinary_business_context_configuration_ContextConfigurationTableMapping
         @contextConfigurationInterface = contextConfigurationInterface
     end
     
 
     def toHashMap()
-        hashMap = StdUtil.getInstance().createHashMap()
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         return hashMap
     end
+    java_overload :toHashMap, 0
     
 
     # throws Exception
     def getKey()
         return ContextConfigurationData.getInstance().NAME
     end
+    java_overload :getKey, 0
     
 
     # throws Exception
     def toVector()
-        vector = BasicArrayListD.new()
+        vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         return vector
     end
+    java_overload :toVector, 0
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ContextConfigurationData, "org/allbinary/business/context/configuration/ContextConfigurationData"
-autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+autoload :ContextConfigurationData, "org/allbinary/business/context/configuration/ContextConfigurationData" unless const_defined?(:ContextConfigurationData, false)
+autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface" unless const_defined?(:ContextConfigurationInterface, false)
+
+end; end; end; end; end
 

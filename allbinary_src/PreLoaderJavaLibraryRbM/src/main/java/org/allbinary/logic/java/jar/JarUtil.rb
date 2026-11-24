@@ -14,28 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.jar
 
+require "java/lang/JavaClass"
 # require "java/io/IOException"
 # require "java/net/URL"
 # require "java/net/URLConnection"
 # require "java/util/jar/JarEntry"
 # require "java/util/jar/JarInputStream"
 
+module ::Org; module Allbinary; module Logic; module Java; module Jar
+
 class JarUtil
     attr_accessor :jarURL
 
-    def initialize_fields
-        @jarURL = nil
+    def jfields_org_allbinary_logic_java_jar_JarUtil
+        @jarURL = nil unless instance_variable_defined?(:@jarURL)
     end
     
 
     def initialize(jarURL)
-        initialize_fields
+        jfields_org_allbinary_logic_java_jar_JarUtil
         @jarURL = jarURL
     end
     
 
     def show()
-        cache = Array.new(1024, 0)
+        cache = (Array.new(1024, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
         begin
             conn = @jarURL.openConnection()
             jis = JarInputStream.new(conn.getInputStream())
@@ -48,12 +51,12 @@ class JarUtil
                         while ((i = jis.read(cache, offset, cache.length - offset))) != -1
                             offset += i
                             if offset >= cache.length
-                                newcache = Array.new(cache.length + 1024, 0)
+                                newcache = (Array.new(cache.length + 1024, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
                                 newcache[0, cache.length] = cache[0, cache.length]
                                 cache = newcache
                             end
                         end
-                        tmp = Array.new(offset, 0)
+                        tmp = (Array.new(offset, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
                         tmp[0, offset] = cache[0, offset]
                         puts(entry.getName())
                     end
@@ -75,4 +78,6 @@ class JarUtil
 end
 
 require "java/lang/System"
+
+end; end; end; end; end
 

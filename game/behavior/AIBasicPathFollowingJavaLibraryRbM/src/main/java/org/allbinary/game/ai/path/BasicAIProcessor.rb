@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ai.path
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Game; module Ai; module Path
 
 class BasicAIProcessor
     attr_accessor :name, :geographicMapCellHistory, :geographicMapCellPositionBasicArrayList, :geographicMapCellPathHistoryInfo, :basicAI, :geographicMapDirectionUtil
 
-    def initialize_fields
-        @name = nil
-        @geographicMapCellHistory = nil
-        @geographicMapCellPositionBasicArrayList = nil
-        @geographicMapCellPathHistoryInfo = nil
-        @basicAI = nil
-        @geographicMapDirectionUtil = GeographicMapDirectionUtil.getInstance()
+    def jfields_org_allbinary_game_ai_path_BasicAIProcessor
+        @name = nil unless instance_variable_defined?(:@name)
+        @geographicMapCellHistory = nil unless instance_variable_defined?(:@geographicMapCellHistory)
+        @geographicMapCellPositionBasicArrayList = nil unless instance_variable_defined?(:@geographicMapCellPositionBasicArrayList)
+        @geographicMapCellPathHistoryInfo = nil unless instance_variable_defined?(:@geographicMapCellPathHistoryInfo)
+        @basicAI = nil unless instance_variable_defined?(:@basicAI)
+        @geographicMapDirectionUtil = ::Org::Allbinary::Media::Graphics::Geography::Map::GeographicMapDirectionUtil.getInstance()
     end
     
 
     def initialize(name, geographicMapCellHistory, geographicMapCellPathHistoryInfo, chosenPathList, angleInfo, seed)
-        initialize_fields
+        jfields_org_allbinary_game_ai_path_BasicAIProcessor
         @name = name
         @geographicMapCellHistory = geographicMapCellHistory
         @geographicMapCellPositionBasicArrayList = chosenPathList
@@ -48,7 +51,7 @@ class BasicAIProcessor
     
 
     def init()
-        @geographicMapCellPathHistoryInfo = GeographicMapCellPathHistoryInfo.new()
+        @geographicMapCellPathHistoryInfo = ::Org::Allbinary::Media::Graphics::Geography::Pathfinding::GeographicMapCellPathHistoryInfo.new()
         @geographicMapCellPathHistoryInfo.setPreviousOnPathGeographicMapCellPosition(@geographicMapCellPositionBasicArrayList.get(@geographicMapCellPositionBasicArrayList.size() - 1))
         @geographicMapCellPathHistoryInfo.setNextOnPathGeographicMapCellPosition(@geographicMapCellPositionBasicArrayList.get(@geographicMapCellPositionBasicArrayList.size() - 1))
         self.update()
@@ -60,7 +63,7 @@ class BasicAIProcessor
         keyDirection = -1
         goToGeographicMapCellPosition = @geographicMapCellPathHistoryInfo.getNextChosenOnPathGeographicMapCellPosition()
         geographicMapDirectionData = @geographicMapDirectionUtil.getDirectionFromCellPositionToAdjacentCellPosition(currentGeographicMapCellPosition, goToGeographicMapCellPosition)
-        if geographicMapDirectionData == DirectionFactory.getInstance().NOT_BORDERED_WITH
+        if geographicMapDirectionData == ::Org::Allbinary::Direction::DirectionFactory.getInstance().NOT_BORDERED_WITH
             geographicMapDirectionData = @geographicMapDirectionUtil.getDirectionFromCellPositionToCellPosition(currentGeographicMapCellPosition, goToGeographicMapCellPosition)
         end
         keyDirection = @basicAI.getAIKeyPressedFromDirection(geographicMapDirectionData)
@@ -118,14 +121,16 @@ class BasicAIProcessor
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/direction/Direction"
-require "org/allbinary/direction/DirectionFactory"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellHistory"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/GeographicMapDirectionUtil"
-require "org/allbinary/media/graphics/geography/pathfinding/GeographicMapCellPathHistoryInfo"
-require "org/allbinary/game/ai/path/BasicDirectionAIHelper"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Direction; autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false); end; end; end
+module ::Org; module Allbinary; module Direction; autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory" unless const_defined?(:DirectionFactory, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellHistory, "org/allbinary/media/graphics/geography/map/GeographicMapCellHistory" unless const_defined?(:GeographicMapCellHistory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapDirectionUtil, "org/allbinary/media/graphics/geography/map/GeographicMapDirectionUtil" unless const_defined?(:GeographicMapDirectionUtil, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding; autoload :GeographicMapCellPathHistoryInfo, "org/allbinary/media/graphics/geography/pathfinding/GeographicMapCellPathHistoryInfo" unless const_defined?(:GeographicMapCellPathHistoryInfo, false); end; end; end; end; end; end
+autoload :BasicDirectionAIHelper, "org/allbinary/game/ai/path/BasicDirectionAIHelper" unless const_defined?(:BasicDirectionAIHelper, false)
+
+end; end; end; end; end
 

@@ -14,48 +14,57 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/physics/FrictionProperties"
 
-class VehicleFrictionProperties < FrictionProperties
+module ::Org; module Allbinary; module Game; module Layer
+
+class VehicleFrictionProperties < ::Org::Allbinary::Game::Physics::FrictionProperties
     attr_accessor :TIRE_FRICTION_NOMINATOR, :BRAKE_FRICTION_NOMINATOR, :AIR_FRICTION_NOMINATOR, :CRASH_FRICTION_NOMINATOR
 
-    def initialize_fields
-        @TIRE_FRICTION_NOMINATOR = nil
-        @BRAKE_FRICTION_NOMINATOR = nil
-        @AIR_FRICTION_NOMINATOR = nil
-        @CRASH_FRICTION_NOMINATOR = nil
+    def jfields_org_allbinary_game_layer_VehicleFrictionProperties
+        @TIRE_FRICTION_NOMINATOR = nil unless instance_variable_defined?(:@TIRE_FRICTION_NOMINATOR)
+        @BRAKE_FRICTION_NOMINATOR = nil unless instance_variable_defined?(:@BRAKE_FRICTION_NOMINATOR)
+        @AIR_FRICTION_NOMINATOR = nil unless instance_variable_defined?(:@AIR_FRICTION_NOMINATOR)
+        @CRASH_FRICTION_NOMINATOR = nil unless instance_variable_defined?(:@CRASH_FRICTION_NOMINATOR)
     end
     
 
     def initialize(tireFriction, brakeFriction, airFriction, crashFriction)
         super()
-        initialize_fields
-        @TIRE_FRICTION_NOMINATOR = FrictionData.getFrictionDenominator() - tireFriction
-        @BRAKE_FRICTION_NOMINATOR = FrictionData.getFrictionDenominator() - brakeFriction
-        @AIR_FRICTION_NOMINATOR = FrictionData.getFrictionDenominator() - airFriction
-        @CRASH_FRICTION_NOMINATOR = FrictionData.getFrictionDenominator() - crashFriction
+        jfields_org_allbinary_game_layer_VehicleFrictionProperties
+        @TIRE_FRICTION_NOMINATOR = ::Org::Allbinary::Game::Physics::Friction::FrictionData.getFrictionDenominator() - tireFriction
+        @BRAKE_FRICTION_NOMINATOR = ::Org::Allbinary::Game::Physics::Friction::FrictionData.getFrictionDenominator() - brakeFriction
+        @AIR_FRICTION_NOMINATOR = ::Org::Allbinary::Game::Physics::Friction::FrictionData.getFrictionDenominator() - airFriction
+        @CRASH_FRICTION_NOMINATOR = ::Org::Allbinary::Game::Physics::Friction::FrictionData.getFrictionDenominator() - crashFriction
     end
     
 
     def getTireFrictionNominator()
         return @TIRE_FRICTION_NOMINATOR
     end
+    java_overload :getTireFrictionNominator, 0
     
 
     def getBrakeFrictionNominator()
         return @BRAKE_FRICTION_NOMINATOR
     end
+    java_overload :getBrakeFrictionNominator, 0
     
 
     def getAirFrictionNominator()
         return @AIR_FRICTION_NOMINATOR
     end
+    java_overload :getAirFrictionNominator, 0
     
 
     def getCrashFrictionNominator()
         return @CRASH_FRICTION_NOMINATOR
     end
+    java_overload :getCrashFrictionNominator, 0
 end
 
-require "org/allbinary/game/physics/friction/FrictionData"
+module ::Org; module Allbinary; module Game; module Physics; module Friction; autoload :FrictionData, "org/allbinary/game/physics/friction/FrictionData" unless const_defined?(:FrictionData, false); end; end; end; end; end
+
+end; end; end; end
 

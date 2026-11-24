@@ -15,19 +15,45 @@
 # package org.allbinary.business.user.commerce.inventory.item.group
 
 
-class BasicGroupItemData
-end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; module Group
 
 class BasicGroupItemData
-    ITEM_ONE = "BASICGROUPITEM_ONE"
-    ITEM_TWO = "BASICGROUPITEM_TWO"
-    ITEM_THREE = "BASICGROUPITEM_THREE"
-    ITEM_FOUR = "BASICGROUPITEM_FOUR"
-    ITEM_FIVE = "BASICGROUPITEM_FIVE"
-    ITEM_SIX = "BASICGROUPITEM_SIX"
-    ITEM_SEVEN = "BASICGROUPITEM_SEVEN"
-    ITEM_EIGHT = "BASICGROUPITEM_EIGHT"
-    ITEM_NINE = "BASICGROUPITEM_NINE"
-    ITEM_TEN = "BASICGROUPITEM_TEN"
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:ITEM_ONE, "BASICGROUPITEM_ONE")
+        const_set(:ITEM_TWO, "BASICGROUPITEM_TWO")
+        const_set(:ITEM_THREE, "BASICGROUPITEM_THREE")
+        const_set(:ITEM_FOUR, "BASICGROUPITEM_FOUR")
+        const_set(:ITEM_FIVE, "BASICGROUPITEM_FIVE")
+        const_set(:ITEM_SIX, "BASICGROUPITEM_SIX")
+        const_set(:ITEM_SEVEN, "BASICGROUPITEM_SEVEN")
+        const_set(:ITEM_EIGHT, "BASICGROUPITEM_EIGHT")
+        const_set(:ITEM_NINE, "BASICGROUPITEM_NINE")
+        const_set(:ITEM_TEN, "BASICGROUPITEM_TEN")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicGroupItemData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:ITEM_ONE, :ITEM_TWO, :ITEM_THREE, :ITEM_FOUR, :ITEM_FIVE, :ITEM_SIX, :ITEM_SEVEN, :ITEM_EIGHT, :ITEM_NINE, :ITEM_TEN].include?(name)
+        end
+        super
+    end
 end
+
+begin
+    BasicGroupItemData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
+end
+
+end; end; end; end; end; end; end; end
 

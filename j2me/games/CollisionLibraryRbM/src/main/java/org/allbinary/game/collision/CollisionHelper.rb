@@ -15,16 +15,18 @@
 # package org.allbinary.game.collision
 
 
+module ::Org; module Allbinary; module Game; module Collision
+
 class CollisionHelper
     attr_accessor :sourceLayerInterface
 
-    def initialize_fields
-        @sourceLayerInterface = nil
+    def jfields_org_allbinary_game_collision_CollisionHelper
+        @sourceLayerInterface = nil unless instance_variable_defined?(:@sourceLayerInterface)
     end
     
 
     def initialize(sourceLayerInterface)
-        initialize_fields
+        jfields_org_allbinary_game_collision_CollisionHelper
         @sourceLayerInterface = sourceLayerInterface
     end
     
@@ -44,6 +46,8 @@ class CollisionHelper
     end
 end
 
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+
+end; end; end; end
 

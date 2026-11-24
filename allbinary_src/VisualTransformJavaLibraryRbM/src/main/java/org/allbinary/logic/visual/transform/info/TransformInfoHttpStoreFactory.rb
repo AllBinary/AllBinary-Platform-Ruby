@@ -14,8 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.info
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/PageContext"
 require "org/allbinary/logic/visual/transform/info/TransformInfoFactoryInterface"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
 
 class TransformInfoHttpStoreFactory
     include TransformInfoFactoryInterface
@@ -31,10 +34,10 @@ class TransformInfoHttpStoreFactory
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(databaseHashMap, propertiesHashMap, pageContext)
         return TransformInfoHttpStore.new(databaseHashMap, propertiesHashMap, pageContext)
     end
+    java_overload :getInstance, 3
 
     def self.instance()
         TransformInfoHttpStoreFactory.java_static_fields unless @java_static_fields_started
@@ -67,13 +70,15 @@ class TransformInfoHttpStoreFactory
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :TransformInfoHttpStore, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStore"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+autoload :TransformInfoHttpStore, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStore" unless const_defined?(:TransformInfoHttpStore, false)
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false)
 
 begin
     TransformInfoHttpStoreFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

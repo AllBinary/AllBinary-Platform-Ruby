@@ -15,18 +15,24 @@
 # package org.allbinary.data.tree.category
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Category
+
 module CategoryModifierTreeInterface
     
 
     def insert(parentCategoryInterface, newChildCategoryInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def delete(parentCategoryInterface, newChildCategoryInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+module ::Org; module Allbinary; module Business; module Category; autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface" unless const_defined?(:CategoryInterface, false); end; end; end; end
+
+end; end; end; end; end
 

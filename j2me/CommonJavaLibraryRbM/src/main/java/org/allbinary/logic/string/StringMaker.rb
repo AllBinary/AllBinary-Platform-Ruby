@@ -6,18 +6,20 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 
+module ::Org; module Allbinary; module Logic; module StringPackage
+
 class StringMaker
     attr_accessor :charArray, :currentLength
 
-    def initialize_fields
-        @charArray = nil
-        @currentLength = 0
+    def jfields_org_allbinary_logic_string_StringMaker
+        @charArray = nil unless instance_variable_defined?(:@charArray)
+        @currentLength = 0 unless instance_variable_defined?(:@currentLength)
     end
     
 
     def initialize()
-        initialize_fields
-        @charArray = Array.new(20, "\0")
+        jfields_org_allbinary_logic_string_StringMaker
+        @charArray = (Array.new(20, "\0")).tap { |java_array| java_array.instance_variable_set(:@java_component, :C) }
     end
     
 
@@ -102,7 +104,7 @@ class StringMaker
             if newCapacity < minSize
                 newCapacity = minSize
             end
-            copy = Array.new(newCapacity, "\0")
+            copy = (Array.new(newCapacity, "\0")).tap { |java_array| java_array.instance_variable_set(:@java_component, :C) }
             min = self.min(@charArray.length, newCapacity)
             copy[0, min] = @charArray[0, min]
             @charArray = copy
@@ -133,4 +135,6 @@ class StringMaker
 end
 
 require "java/lang/System"
+
+end; end; end; end
 

@@ -15,16 +15,18 @@
 # package org.allbinary.input.automation.configuration
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Configuration
+
 class InputAutomationConfigurationModuleChangeEvent
     attr_accessor :inputAutomationModuleConfiguration
 
-    def initialize_fields
-        @inputAutomationModuleConfiguration = nil
+    def jfields_org_allbinary_input_automation_configuration_InputAutomationConfigurationModuleChangeEvent
+        @inputAutomationModuleConfiguration = nil unless instance_variable_defined?(:@inputAutomationModuleConfiguration)
     end
     
 
     def initialize(inputAutomationModuleConfiguration)
-        initialize_fields
+        jfields_org_allbinary_input_automation_configuration_InputAutomationConfigurationModuleChangeEvent
         self.setInputAutomationModuleConfiguration(inputAutomationModuleConfiguration)
     end
     
@@ -39,5 +41,7 @@ class InputAutomationConfigurationModuleChangeEvent
     end
 end
 
-autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Configuration; autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration" unless const_defined?(:InputAutomationModuleConfiguration, false); end; end; end; end; end; end
+
+end; end; end; end; end
 

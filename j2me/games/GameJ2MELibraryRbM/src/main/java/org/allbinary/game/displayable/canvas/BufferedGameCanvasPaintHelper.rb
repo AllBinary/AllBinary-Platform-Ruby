@@ -14,24 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/ProcessPaintable"
 
-class BufferedGameCanvasPaintHelper < ProcessPaintable
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class BufferedGameCanvasPaintHelper < ::Org::Allbinary::Graphics::Paint::ProcessPaintable
     attr_accessor :gameCanvas, :offScreenImage, :previousImage, :circularIndexUtil, :drawCircularIndexUtil, :anchor
 
-    def initialize_fields
-        @gameCanvas = NullCanvas::NULL_CANVAS
+    def jfields_org_allbinary_game_displayable_canvas_BufferedGameCanvasPaintHelper
+        @gameCanvas = ::Javax::Microedition::Lcdui::NullCanvas::NULL_CANVAS
         @offScreenImage = Array.new(BufferedGameCanvasPaintHelper::MAX_IMAGES, nil)
-        @previousImage = NullImage::NULL_IMAGE
-        @circularIndexUtil = CircularIndexUtil.createInstance(BufferedGameCanvasPaintHelper::MAX_IMAGES)
-        @drawCircularIndexUtil = CircularIndexUtil.createInstanceAt(BufferedGameCanvasPaintHelper::MAX_IMAGES - 1, BufferedGameCanvasPaintHelper::MAX_IMAGES)
-        @anchor = Anchor::TOP_LEFT
+        @previousImage = ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(BufferedGameCanvasPaintHelper::MAX_IMAGES)
+        @drawCircularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstanceAt(BufferedGameCanvasPaintHelper::MAX_IMAGES - 1, BufferedGameCanvasPaintHelper::MAX_IMAGES)
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
     end
     
 
     def initialize(gameCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_BufferedGameCanvasPaintHelper
         raise StandardError.new("No Longer Used")
     end
     
@@ -42,12 +45,14 @@ class BufferedGameCanvasPaintHelper < ProcessPaintable
         @circularIndexUtil.next_()
         @drawCircularIndexUtil.next_()
     end
+    java_overload :process, 0
     
 
     def paint(graphics)
         @previousImage = @offScreenImage[@drawCircularIndexUtil.getIndex()]
         graphics.drawImage(@previousImage, 0, 0, @anchor)
     end
+    java_overload :paint, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -70,19 +75,21 @@ class BufferedGameCanvasPaintHelper < ProcessPaintable
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
-autoload :NullImage, "javax/microedition/lcdui/NullImage"
-autoload :Anchor, "org/allbinary/graphics/Anchor"
-autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas" unless const_defined?(:NullCanvas, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas" unless const_defined?(:MyCanvas, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
 
 begin
     BufferedGameCanvasPaintHelper.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,7 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system
 
-# require "java/io/InputStream"
+
+module ::Org; module Allbinary; module Logic; module System
 
 class PlatformAssetManager
     
@@ -26,23 +27,50 @@ class PlatformAssetManager
 
     # throws Exception
     def getResourceAsStream(resource)
-        resourceUtil = ResourceUtil.getInstance()
+        resourceUtil = ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance()
         inputStream = resourceUtil.getResourceAsStream(resource)
         return inputStream
     end
 
     def self.instance()
+        PlatformAssetManager.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PlatformAssetManager.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PlatformAssetManager.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PlatformAssetManager"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/data/resource/ResourceUtil"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
 
-class PlatformAssetManager
-    @@instance = PlatformAssetManager.new()
+begin
+    PlatformAssetManager.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

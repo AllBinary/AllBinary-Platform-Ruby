@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Game; module Configuration
 
 class GameConfiguration
     attr_accessor :name, :defaultValue, :value, :minValue, :maxValue, :modifiable
 
-    def initialize_fields
-        @name = StringUtil.getInstance().EMPTY_STRING
-        @defaultValue = SmallIntegerSingletonFactory.getInstance().getAt(0)
+    def jfields_org_allbinary_game_configuration_GameConfiguration
+        @name = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @defaultValue = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(0)
         @value = GameConfiguration::MIN_VALUE
         @minValue = @defaultValue
         @maxValue = @defaultValue
-        @modifiable = BooleanFactory.getInstance().TRUE
+        @modifiable = ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE
     end
     
 
     def initialize(name, defaultValue, minValue, maxValue)
-        initialize_fields
+        jfields_org_allbinary_game_configuration_GameConfiguration
         self.setName(name)
         self.setDefaultValue(defaultValue)
         @value = self.getDefaultValue()
@@ -44,7 +47,7 @@ class GameConfiguration
         if @value != value
             oldValue = @value
             @value = value
-            GameFeatureEventHandler.getInstance().fireEvent(GameFeatureEvent.new(self, StringMaker.new().append(@name).append(" value: from: ").appendint((oldValue.to_i).to_i).append(" to ").appendint((@value.to_i).to_i).to_s))
+            ::Org::Allbinary::Game::Configuration::Event::GameFeatureEventHandler.getInstance().fireEvent(::Org::Allbinary::Game::Configuration::Event::GameFeatureEvent.new(self, ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@name).append(" value: from: ").appendint(((oldValue.to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).append(" to ").appendint(((@value.to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s))
         end
     end
     
@@ -101,17 +104,17 @@ class GameConfiguration
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Name: ")
         stringBuffer.append(@name)
         stringBuffer.append(" Min: ")
-        stringBuffer.appendint((self.getMinValue().to_i).to_i)
+        stringBuffer.appendint(((self.getMinValue().to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(" Max: ")
-        stringBuffer.appendint((self.getMaxValue().to_i).to_i)
+        stringBuffer.appendint(((self.getMaxValue().to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(" Value: ")
-        stringBuffer.appendint((self.getValue().to_i).to_i)
+        stringBuffer.appendint(((self.getValue().to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(" Default: ")
-        stringBuffer.appendint((self.getDefaultValue().to_i).to_i)
+        stringBuffer.appendint(((self.getDefaultValue().to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(" Modifiable: ")
         stringBuffer.appendboolean(self.isModifiable())
         return stringBuffer.to_s
@@ -149,17 +152,19 @@ class GameConfiguration
     end
 end
 
-autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent"
-autoload :GameFeatureEventHandler, "org/allbinary/game/configuration/event/GameFeatureEventHandler"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :GameConfigurationSingleton, "org/allbinary/game/configuration/GameConfigurationSingleton"
+module ::Org; module Allbinary; module Game; module Configuration; module Event; autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent" unless const_defined?(:GameFeatureEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Event; autoload :GameFeatureEventHandler, "org/allbinary/game/configuration/event/GameFeatureEventHandler" unless const_defined?(:GameFeatureEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :GameConfigurationSingleton, "org/allbinary/game/configuration/GameConfigurationSingleton" unless const_defined?(:GameConfigurationSingleton, false)
 
 begin
     GameConfiguration.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

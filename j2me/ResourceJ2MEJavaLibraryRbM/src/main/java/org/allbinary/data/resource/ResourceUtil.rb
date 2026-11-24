@@ -15,12 +15,14 @@
 # package org.allbinary.data.resource
 
 
+module ::Org; module Allbinary; module DataPackage; module Resource
+
 #J2ME
 class ResourceUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_data_resource_ResourceUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -30,12 +32,12 @@ class ResourceUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_data_resource_ResourceUtil
     end
     
 
     def setLoadingPaths(path, ext)
-        @logUtil.putF(CommonStrings.getInstance().NOT_IMPLEMENTED, self, "setLoadingPaths")
+        @logUtil.putF(::Org::Allbinary::StringPackage::CommonStrings.getInstance().NOT_IMPLEMENTED, self, "setLoadingPaths")
     end
     
 
@@ -47,7 +49,7 @@ class ResourceUtil
             if inputStream == nil
                 inputStream = self.getResourceAsStreamAtStart(resource, 1)
                 if inputStream == nil
-                    stringMaker = StringMaker.new()
+                    stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     index = (resource.rindex("/") || -1)
                     resourcePath = resource[index + 1..]
                     inputStream = resource.class.getResourceAsStream(resourcePath)
@@ -62,7 +64,7 @@ class ResourceUtil
                                 stringMaker.delete(0, stringMaker.length())
                                 resourcePath = stringMaker.append("/").append(_RES).append(resource[index..]).to_s
                                 inputStream = resource.class.getResourceAsStream(resourcePath)
-                                _COLON = CommonSeps.getInstance().COLON
+                                _COLON = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON
                                 if inputStream == nil
                                     stringMaker.delete(0, stringMaker.length())
                                     resourcePath = stringMaker.append(_RES).append(_COLON).append(resource[index..]).to_s
@@ -100,8 +102,8 @@ class ResourceUtil
 
     # throws Exception
     def getResourceAsStreamAtStart(resource, startIndex)
-        stringMaker = StringMaker.new()
-        index = (resource.index(CommonSeps.getInstance().COLON) || -1)
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        index = (resource.index(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON) || -1)
         resourcePath = resource[index + startIndex..]
         inputStream = resource.class.getResourceAsStream(resourcePath)
         if inputStream != nil
@@ -145,15 +147,17 @@ class ResourceUtil
     end
 end
 
-autoload :InputStream, "java/io/InputStream"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     ResourceUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

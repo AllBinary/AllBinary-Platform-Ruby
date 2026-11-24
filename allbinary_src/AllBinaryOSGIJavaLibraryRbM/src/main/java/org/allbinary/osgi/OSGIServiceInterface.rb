@@ -15,6 +15,10 @@
 # package org.allbinary.osgi
 
 
+module ::Org; module Allbinary; module Osgi
+
 module OSGIServiceInterface
 end
+
+end; end; end
 

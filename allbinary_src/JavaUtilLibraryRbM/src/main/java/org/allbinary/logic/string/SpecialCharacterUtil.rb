@@ -15,14 +15,16 @@
 # package org.allbinary.logic.string
 
 
+module ::Org; module Allbinary; module Logic; module StringPackage
+
 class SpecialCharacterUtil
     
 
     def self.getHashMap()
-        commonSeps = CommonSeps.getInstance()
-        commonPhoneStrings = CommonPhoneStrings.getInstance()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+        commonPhoneStrings = ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance()
         stringUtil = StringUtil.getInstance()
-        hashMap = StdUtil.getInstance().createHashMap()
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         hashMap.put("!", stringUtil.EMPTY_STRING)
         hashMap.put("@", stringUtil.EMPTY_STRING)
         hashMap.put(commonPhoneStrings.POUND, stringUtil.EMPTY_STRING)
@@ -35,27 +37,29 @@ class SpecialCharacterUtil
         hashMap.put(commonSeps.PARENTHESIS_CLOSE, stringUtil.EMPTY_STRING)
         hashMap.put(commonSeps.DASH, stringUtil.EMPTY_STRING)
         hashMap.put(commonSeps.UNDERSCORE, stringUtil.EMPTY_STRING)
-        hashMap.put(MathData.getInstance().PLUS, stringUtil.EMPTY_STRING)
+        hashMap.put(::Org::Allbinary::Logic::MathPackage::MathData.getInstance().PLUS, stringUtil.EMPTY_STRING)
         hashMap.put(commonSeps.EQUALS, stringUtil.EMPTY_STRING)
         hashMap.put("\\", stringUtil.EMPTY_STRING)
         hashMap.put("|", stringUtil.EMPTY_STRING)
-        hashMap.put(AbPathData.getInstance().EXTENSION_SEP, stringUtil.EMPTY_STRING)
+        hashMap.put(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP, stringUtil.EMPTY_STRING)
         hashMap.put(",", stringUtil.EMPTY_STRING)
         hashMap.put("<", stringUtil.EMPTY_STRING)
         hashMap.put(">", stringUtil.EMPTY_STRING)
         hashMap.put("?", stringUtil.EMPTY_STRING)
-        hashMap.put(AbPathData.getInstance().SEPARATOR, stringUtil.EMPTY_STRING)
+        hashMap.put(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATOR, stringUtil.EMPTY_STRING)
         hashMap.put("~", stringUtil.EMPTY_STRING)
         hashMap.put("`", stringUtil.EMPTY_STRING)
         return hashMap
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :MathData, "org/allbinary/logic/math/MathData"
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathData, "org/allbinary/logic/math/MathData" unless const_defined?(:MathData, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false)
+
+end; end; end; end
 

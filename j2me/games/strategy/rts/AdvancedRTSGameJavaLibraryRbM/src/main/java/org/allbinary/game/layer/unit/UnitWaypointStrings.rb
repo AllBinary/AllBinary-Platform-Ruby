@@ -15,10 +15,13 @@
 # package org.allbinary.game.layer.unit
 
 
-class UnitWaypointStrings
-    attr_accessor :WANDERING, :THINKING, :THINKING_ABOUT_TARGET, :TARGET, :KILL, :STOP, :WAYPOINT_DESTROYED_SHORT, :WAYPOINT_DESTROYED, :ALL_VISITED_SHORT, :ALL_VISITED, :ALREADY_THERE_SHORT, :ALREADY_THERE, :NEXT_PATH_NODE
+module ::Org; module Allbinary; module Game; module Layer; module Unit
 
-    def initialize_fields
+class UnitWaypointStrings
+    attr_accessor :PATHING, :WANDERING, :THINKING, :THINKING_ABOUT_TARGET, :TARGET, :KILL, :STOP, :WAYPOINT_DESTROYED_SHORT, :WAYPOINT_DESTROYED, :ALL_VISITED_SHORT, :ALL_VISITED, :ALREADY_THERE_SHORT, :ALREADY_THERE, :NEXT_PATH_NODE, :_ALL_VISITED_SHORT, :_ALREADY_THERE_SHORT, :VISITED_MOST_OF_THE_PATH, :RETURNING_AS_WAYPOINT_PATH_LIST
+
+    def jfields_org_allbinary_game_layer_unit_UnitWaypointStrings
+        @PATHING = "Pathing"
         @WANDERING = "Order?"
         @THINKING = "Thinking"
         @THINKING_ABOUT_TARGET = "Hmmm"
@@ -31,11 +34,15 @@ class UnitWaypointStrings
         @ALL_VISITED = "All Visited"
         @ALREADY_THERE_SHORT = "Again?"
         @ALREADY_THERE = "Already There"
-        @NEXT_PATH_NODE = (CommonLabels.getInstance().NEXT).to_s + " Path Node"
+        @NEXT_PATH_NODE = (::Org::Allbinary::StringPackage::CommonLabels.getInstance().NEXT).to_s + " Path Node"
+        @_ALL_VISITED_SHORT = " Arrived"
+        @_ALREADY_THERE_SHORT = " Again?"
+        @VISITED_MOST_OF_THE_PATH = " visited most of the path"
+        @RETURNING_AS_WAYPOINT_PATH_LIST = " returning as waypointPathsList was runningWaypointPathList"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_unit_UnitWaypointStrings
     end
     
 
@@ -44,17 +51,43 @@ class UnitWaypointStrings
     end
 
     def self.instance()
+        UnitWaypointStrings.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        UnitWaypointStrings.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = UnitWaypointStrings.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UnitWaypointStrings"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/string/CommonLabels"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
 
-class UnitWaypointStrings
-    @@instance = UnitWaypointStrings.new()
+begin
+    UnitWaypointStrings.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

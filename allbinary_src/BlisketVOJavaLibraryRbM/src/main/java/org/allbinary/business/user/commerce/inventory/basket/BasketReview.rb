@@ -14,19 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.inventory.basket
 
-# require "java/util/HashSet"
 # require "java/util/Set"
+
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Basket
 
 class BasketReview
     attr_accessor :items
 
-    def initialize_fields
-        @items = BasicArrayListD.new()
+    def jfields_org_allbinary_business_user_commerce_inventory_basket_BasketReview
+        @items = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_inventory_basket_BasketReview
     end
     
 
@@ -87,7 +88,7 @@ class BasketReview
     
 
     def getIds()
-        idSet = HashSet.new()
+        idSet = ::Java::Util::HashSet.new()
         itemArray = @items.toArray()
         size = itemArray.length
         (0...size).each do |index|
@@ -118,18 +119,21 @@ class BasketReview
         size = itemArray.length
         (0...size).each do |index|
             item = itemArray[index]
-            node.appendChild(ItemView.new(item, BasicArrayListD.new()).toXmlNode(document))
+            node.appendChild(::Org::Allbinary::Business::User::Commerce::Inventory::Item::ItemView.new(item, ::Org::Allbinary::Util::BasicArrayListD.new()).toXmlNode(document))
         end
         return node
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :Item, "org/allbinary/business/user/commerce/inventory/item/Item"
-autoload :ItemView, "org/allbinary/business/user/commerce/inventory/item/ItemView"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :BasketData, "org/allbinary/business/user/commerce/inventory/basket/BasketData"
+module ::Java; module Util; autoload :HashSet, "java/util/HashSet" unless const_defined?(:HashSet, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; autoload :Item, "org/allbinary/business/user/commerce/inventory/item/Item" unless const_defined?(:Item, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; autoload :ItemView, "org/allbinary/business/user/commerce/inventory/item/ItemView" unless const_defined?(:ItemView, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :BasketData, "org/allbinary/business/user/commerce/inventory/basket/BasketData" unless const_defined?(:BasketData, false)
+
+end; end; end; end; end; end; end
 

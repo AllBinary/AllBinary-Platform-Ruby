@@ -15,22 +15,24 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class LocalPlayerInputIdFactory
     attr_accessor :logUtil, :MAX_NUMBER_OF_PLAYERS, :MAX_FAST_DEVICEID, :deviceIdToplayerId, :playerIdToDeviceId, :playersInPlay, :totalDevicesMapped
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_input_LocalPlayerInputIdFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @MAX_NUMBER_OF_PLAYERS = 6
         @MAX_FAST_DEVICEID = 65
-        @deviceIdToplayerId = Array.new(@MAX_FAST_DEVICEID, 0)
-        @playerIdToDeviceId = Array.new(@MAX_NUMBER_OF_PLAYERS, 0)
-        @playersInPlay = Array.new(@MAX_NUMBER_OF_PLAYERS, false)
+        @deviceIdToplayerId = (Array.new(@MAX_FAST_DEVICEID, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        @playerIdToDeviceId = (Array.new(@MAX_NUMBER_OF_PLAYERS, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        @playersInPlay = (Array.new(@MAX_NUMBER_OF_PLAYERS, false)).tap { |java_array| java_array.instance_variable_set(:@java_component, :Z) }
         @totalDevicesMapped = 0
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_input_LocalPlayerInputIdFactory
         (@deviceIdToplayerId.length - 1).step(0, -(1)) do |index|
             @deviceIdToplayerId[index] = -1
         end
@@ -65,12 +67,12 @@ class LocalPlayerInputIdFactory
         if deviceId < @MAX_FAST_DEVICEID
             @deviceIdToplayerId[deviceId] = index
         else
-            @logUtil.putF(StringMaker.new().append("Added DeviceId: ").appendint(deviceId).append(" beyond fast Id list").to_s, self, "getPlayerForDevice")
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Added DeviceId: ").appendint(deviceId).append(" beyond fast Id list").to_s, self, "getPlayerForDevice")
         end
         @playerIdToDeviceId[index] = deviceId
-        AnalogLocationInputFactory.getInstance().addPlayer(@totalDevicesMapped)
+        ::Org::Allbinary::Game::Input::Analog::AnalogLocationInputFactory.getInstance().addPlayer(@totalDevicesMapped)
         @totalDevicesMapped += 1
-        @logUtil.putF(StringMaker.new().append("Added DeviceId: ").appendint(deviceId).append(" at: ").appendint(index).append(" Total: ").appendint(@totalDevicesMapped).to_s, self, "getPlayerForDevice")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Added DeviceId: ").appendint(deviceId).append(" at: ").appendint(index).append(" Total: ").appendint(@totalDevicesMapped).to_s, self, "getPlayerForDevice")
         return index
     end
     
@@ -92,13 +94,13 @@ class LocalPlayerInputIdFactory
     
 
     def setPlayerInPlay(playerInputId)
-        @logUtil.putF(StringMaker.new().append("Setting PlayerInPlay with playerInputId: ").appendint(playerInputId).to_s, self, "setPlayerInPlay")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Setting PlayerInPlay with playerInputId: ").appendint(playerInputId).to_s, self, "setPlayerInPlay")
         @playersInPlay[playerInputId] = true
     end
     
 
     def setPlayerOutOfPlay(playerInputId)
-        @logUtil.putF(StringMaker.new().append("Setting PlayerOutOfPlay with playerInputId: ").appendint(playerInputId).to_s, self, "setPlayerOutOfPlay")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Setting PlayerOutOfPlay with playerInputId: ").appendint(playerInputId).to_s, self, "setPlayerOutOfPlay")
         @playersInPlay[playerInputId] = false
     end
     
@@ -138,13 +140,15 @@ class LocalPlayerInputIdFactory
     end
 end
 
-autoload :AnalogLocationInputFactory, "org/allbinary/game/input/analog/AnalogLocationInputFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Game; module Input; module Analog; autoload :AnalogLocationInputFactory, "org/allbinary/game/input/analog/AnalogLocationInputFactory" unless const_defined?(:AnalogLocationInputFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
 begin
     LocalPlayerInputIdFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

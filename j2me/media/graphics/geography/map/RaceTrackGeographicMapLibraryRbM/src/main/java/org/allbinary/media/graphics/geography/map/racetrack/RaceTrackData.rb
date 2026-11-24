@@ -14,29 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map.racetrack
 
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
+
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
 
 class RaceTrackData
     attr_accessor :tileSetImage, :miniTileSetImage, :cellWidth, :cellHeight, :miniCellWidth, :miniCellHeight, :mapArray, :cellTypeIdToGeographicMapCellTypeArray, :NO_OVER_PASSES_ARRAY, :overPassGeographicMapCellPositionArray, :id
 
-    def initialize_fields
-        @tileSetImage = NullImage::NULL_IMAGE
-        @miniTileSetImage = NullImage::NULL_IMAGE
+    def jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackData
+        @tileSetImage = ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
+        @miniTileSetImage = ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
         @cellWidth = 0
         @cellHeight = 0
         @miniCellWidth = 0
         @miniCellHeight = 0
-        @mapArray = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
-        @cellTypeIdToGeographicMapCellTypeArray = NullUtil.getInstance().NULL_INT_ARRAY
+        @mapArray = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
+        @cellTypeIdToGeographicMapCellTypeArray = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY
         @NO_OVER_PASSES_ARRAY = Array.new(0, nil)
         @overPassGeographicMapCellPositionArray = @NO_OVER_PASSES_ARRAY
-        @id = nil
+        @id = nil unless instance_variable_defined?(:@id)
     end
     
 
     def initialize(id, cellWidth, cellHeight, miniCellWidth, miniCellHeight, cellTypeIdToGeographicMapCellTypeArray, mapArray)
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackData
         @id = id
         @cellWidth = cellWidth
         @cellHeight = cellHeight
@@ -147,6 +147,10 @@ class RaceTrackData
     end
 end
 
-require "org/allbinary/graphics/CellPosition"
-require "org/allbinary/logic/NullUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CellPosition, "org/allbinary/graphics/CellPosition" unless const_defined?(:CellPosition, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+
+end; end; end; end; end; end; end
 

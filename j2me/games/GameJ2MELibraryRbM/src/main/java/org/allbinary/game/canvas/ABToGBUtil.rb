@@ -15,16 +15,18 @@
 # package org.allbinary.game.canvas
 
 
+module ::Org; module Allbinary; module Game; module Canvas
+
 class ABToGBUtil
     attr_accessor :abCanvas, :allBinaryGameLayerManager
 
-    def initialize_fields
-        @abCanvas = NullCanvas::NULL_CANVAS
-        @allBinaryGameLayerManager = AllBinaryGameLayerManager.getNullInstance()
+    def jfields_org_allbinary_game_canvas_ABToGBUtil
+        @abCanvas = ::Javax::Microedition::Lcdui::NullCanvas::NULL_CANVAS
+        @allBinaryGameLayerManager = ::Org::Allbinary::Game::Layer::AllBinaryGameLayerManager.getNullInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_canvas_ABToGBUtil
     end
     
 
@@ -63,13 +65,15 @@ class ABToGBUtil
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
-autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas" unless const_defined?(:NullCanvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager" unless const_defined?(:AllBinaryGameLayerManager, false); end; end; end; end
 
 begin
     ABToGBUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

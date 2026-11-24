@@ -15,6 +15,10 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 module IndexedAnimationInterfaceCompositeInterface
 end
+
+end; end; end
 

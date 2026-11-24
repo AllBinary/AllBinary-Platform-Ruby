@@ -15,50 +15,62 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 module AbeLicenseInterface
     
 
     def hasKey()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getKey(keyName)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLicenseId()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getServers()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getSpecial()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLicenseType()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isValid()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toString()
+        return super if defined?(super)
         raise NotImplementedError
     end
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/system/security/licensing/LicenseType"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :LicenseType, "org/allbinary/logic/system/security/licensing/LicenseType" unless const_defined?(:LicenseType, false)
+
+end; end; end; end; end; end
 

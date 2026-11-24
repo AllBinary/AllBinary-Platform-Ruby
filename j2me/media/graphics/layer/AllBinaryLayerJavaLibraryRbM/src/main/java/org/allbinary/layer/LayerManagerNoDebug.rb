@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerManagerLoggingBase"
+
+module ::Org; module Allbinary; module Layer
 
 class LayerManagerNoDebug < LayerManagerLoggingBase
     
@@ -59,4 +62,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

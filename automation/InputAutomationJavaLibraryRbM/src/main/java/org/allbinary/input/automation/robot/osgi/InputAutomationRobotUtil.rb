@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.robot.osgi
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Robot; module Osgi
+
 class InputAutomationRobotUtil
     
 
@@ -30,7 +32,9 @@ class InputAutomationRobotUtil
     end
 end
 
-autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
-autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
-autoload :InputAutomationRobotInterfaceWrapper, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotInterfaceWrapper"
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface" unless const_defined?(:InputRobotInterface, false); end; end; end; end; end
+autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent" unless const_defined?(:InputAutomationRobotChangeEvent, false)
+autoload :InputAutomationRobotInterfaceWrapper, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotInterfaceWrapper" unless const_defined?(:InputAutomationRobotInterfaceWrapper, false)
+
+end; end; end; end; end; end
 

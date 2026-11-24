@@ -3,29 +3,29 @@
 # package org.allbinary.graphics.opengles
 
 require "java/lang/Object"
-# require "javax/microedition/khronos/opengles/GL10"
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Graphics; module Opengles
 
 class OpenGLUtil
     attr_accessor :logUtil, :commonStrings, :renderStrings, :canvasStrings, :displayInfoSingleton, :preResourceImageUtil, :lockObject, :anyType, :list, :runnableList, :created, :surfaceCreatedAndInitialized
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @renderStrings = RendererStrings.getInstance()
-        @canvasStrings = CanvasStrings.getInstance()
-        @displayInfoSingleton = DisplayInfoSingleton.getInstance()
-        @preResourceImageUtil = PreResourceImageUtil.getInstance()
-        @lockObject = SynchObject.new()
-        @anyType = SynchObject.new()
-        @list = BasicArrayListD.new()
-        @runnableList = BasicArrayListD.new()
+    def jfields_org_allbinary_graphics_opengles_OpenGLUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @renderStrings = ::Org::Allbinary::Graphics::Opengles::Renderer::RendererStrings.getInstance()
+        @canvasStrings = ::Org::Allbinary::Graphics::Displayable::CanvasStrings.getInstance()
+        @displayInfoSingleton = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
+        @preResourceImageUtil = ::Org::Allbinary::Image::PreResourceImageUtil.getInstance()
+        @lockObject = ::Org::Allbinary::ThreadPackage::SynchObject.new()
+        @anyType = ::Org::Allbinary::ThreadPackage::SynchObject.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @runnableList = ::Org::Allbinary::Util::BasicArrayListD.new()
         @created = false
         @surfaceCreatedAndInitialized = false
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_OpenGLUtil
     end
     
 
@@ -34,11 +34,11 @@ class OpenGLUtil
     end
     
 
-    def onSurfaceCreated(gl)
+    def onSurfaceCreated_j1(gl)
         begin
             if !@created
                 @created = true
-                PreLogUtil.put((CommonLabels.getInstance().START_LABEL).to_s + OpenGLCapabilities.getInstance().to_s, self, @renderStrings.ON_SURFACE_CREATED)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put((::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).to_s + OpenGLCapabilities.getInstance().to_s, self, @renderStrings.ON_SURFACE_CREATED)
             end
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @renderStrings.ON_SURFACE_CREATED, e)
@@ -46,14 +46,19 @@ class OpenGLUtil
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def onSurfaceCreated(gl, loadTextures)
+    def onSurfaceCreated_j2(gl, loadTextures)
         begin
             loadTextures.load(gl)
             OpenGLLogUtil.getInstance().logError(gl)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @renderStrings.ON_SURFACE_CREATED, e)
         end
+    end
+
+    def onSurfaceCreated(*java_overload_args)
+        return onSurfaceCreated_j1(*java_overload_args) if java_overload_args.length == 1
+        return onSurfaceCreated_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method onSurfaceCreated takes #{java_overload_args.length} arguments"
     end
     
 
@@ -64,9 +69,9 @@ class OpenGLUtil
             @surfaceCreatedAndInitialized = true
         end
         graphics.update()
-        progressCanvas = ProgressCanvasFactory.getInstance()
+        progressCanvas = ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance()
         progressCanvas.update(graphics)
-        (OpenGLImageCacheFactory.getInstance()).update(gl)
+        (::Org::Allbinary::Image::Opengles::OpenGLImageCacheFactory.getInstance()).update(gl)
         self.processRunnables()
         self.set(gl)
     end
@@ -120,42 +125,70 @@ class OpenGLUtil
         image = nil
         (0...size).each do |index2|
             image = @list.get(index2)
-            (image).set(gl)
+            image.set(gl)
         end
     end
 
     def self.instance()
+        OpenGLUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OpenGLUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = OpenGLUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OpenGLUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/device/LoadTextures"
-require "org/allbinary/device/OpenGLESGraphics"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/opengles/renderer/RendererStrings"
-require "org/allbinary/image/PreResourceImageUtil"
-require "org/allbinary/image/opengles/OpenGLESImage"
-require "org/allbinary/image/opengles/OpenGLImageCache"
-require "org/allbinary/image/opengles/OpenGLImageCacheFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/thread/SynchObject"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/graphics/opengles/OpenGLCapabilities"
-require "org/allbinary/graphics/opengles/OpenGLLogUtil"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Device; autoload :LoadTextures, "org/allbinary/device/LoadTextures" unless const_defined?(:LoadTextures, false); end; end; end
+module ::Org; module Allbinary; module Device; autoload :OpenGLESGraphics, "org/allbinary/device/OpenGLESGraphics" unless const_defined?(:OpenGLESGraphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" unless const_defined?(:ProgressCanvasFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings" unless const_defined?(:CanvasStrings, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; module Renderer; autoload :RendererStrings, "org/allbinary/graphics/opengles/renderer/RendererStrings" unless const_defined?(:RendererStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Image; autoload :PreResourceImageUtil, "org/allbinary/image/PreResourceImageUtil" unless const_defined?(:PreResourceImageUtil, false); end; end; end
+module ::Org; module Allbinary; module Image; module Opengles; autoload :OpenGLESImage, "org/allbinary/image/opengles/OpenGLESImage" unless const_defined?(:OpenGLESImage, false); end; end; end; end
+module ::Org; module Allbinary; module Image; module Opengles; autoload :OpenGLImageCache, "org/allbinary/image/opengles/OpenGLImageCache" unless const_defined?(:OpenGLImageCache, false); end; end; end; end
+module ::Org; module Allbinary; module Image; module Opengles; autoload :OpenGLImageCacheFactory, "org/allbinary/image/opengles/OpenGLImageCacheFactory" unless const_defined?(:OpenGLImageCacheFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :SynchObject, "org/allbinary/thread/SynchObject" unless const_defined?(:SynchObject, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :OpenGLCapabilities, "org/allbinary/graphics/opengles/OpenGLCapabilities" unless const_defined?(:OpenGLCapabilities, false)
+autoload :OpenGLLogUtil, "org/allbinary/graphics/opengles/OpenGLLogUtil" unless const_defined?(:OpenGLLogUtil, false)
 require "java/lang/Runnable"
 
-class OpenGLUtil
-    @@instance = OpenGLUtil.new()
+begin
+    OpenGLUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

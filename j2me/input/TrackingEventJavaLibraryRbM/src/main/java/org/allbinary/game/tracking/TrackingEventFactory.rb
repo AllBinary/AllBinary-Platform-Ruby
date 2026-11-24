@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.tracking
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObjectFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module Tracking
+
 class TrackingEventFactory
-    include AllBinaryEventObjectFactoryInterface
+    include ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObjectFactoryInterface
     
 
     def initialize()
@@ -27,9 +30,12 @@ class TrackingEventFactory
     def getInstance()
         return TrackingEvent.new(TrackingEventHandler.getInstance())
     end
+    java_overload :getInstance, 0
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent"
-autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent" unless const_defined?(:TrackingEvent, false)
+autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler" unless const_defined?(:TrackingEventHandler, false)
+
+end; end; end; end
 

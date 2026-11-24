@@ -15,11 +15,13 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class GraphicsFeatureFactory
     attr_accessor :NONE, :TRANSPARENT_IMAGE_CREATION, :IMAGE_GRAPHICS, :IMAGE_ROTATION_ON_THE_FLY, :IMAGE_TO_ARRAY_GRAPHICS, :SPRITE_QUARTER_ROTATION_GRAPHICS, :SPRITE_FULL_GRAPHICS, :VECTOR_GRAPHICS, :VECTOR_TO_IMAGE_GRAPHICS
 
-    def initialize_fields
-        @NONE = GraphicsFeature.new(StringUtil.getInstance().NULL_STRING)
+    def jfields_org_allbinary_game_configuration_feature_GraphicsFeatureFactory
+        @NONE = GraphicsFeature.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING)
         @TRANSPARENT_IMAGE_CREATION = GraphicsFeature.new("Transparent Image Creation")
         @IMAGE_GRAPHICS = GraphicsFeature.new("Image Graphics")
         @IMAGE_ROTATION_ON_THE_FLY = GraphicsFeature.new("Image Rotated On The Fly")
@@ -37,7 +39,7 @@ class GraphicsFeatureFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_GraphicsFeatureFactory
     end
 
     def self.instance()
@@ -71,12 +73,14 @@ class GraphicsFeatureFactory
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :GraphicsFeature, "org/allbinary/game/configuration/feature/GraphicsFeature"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :GraphicsFeature, "org/allbinary/game/configuration/feature/GraphicsFeature" unless const_defined?(:GraphicsFeature, false)
 
 begin
     GraphicsFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

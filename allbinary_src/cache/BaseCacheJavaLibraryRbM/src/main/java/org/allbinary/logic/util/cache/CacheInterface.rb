@@ -17,6 +17,8 @@
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 module CacheInterface
     
 
@@ -41,5 +43,7 @@ module CacheInterface
     end
 end
 
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false)
+
+end; end; end; end; end
 

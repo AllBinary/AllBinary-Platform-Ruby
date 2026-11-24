@@ -15,17 +15,43 @@
 # package org.allbinary.logic.communication.smtp.configuration.server
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module Server
+
 class EmailServerConfigurationData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "EMAIL_SERVER_CONFIGURATION_NAME")
+        const_set(:SERVER, "EMAIL_SERVER_CONFIGURATION_SERVER")
+        const_set(:ACCOUNT, "EMAIL_SERVER_CONFIGURATION_ACCOUNT")
+        const_set(:PASSWORD, "EMAIL_SERVER_CONFIGURATION_PASSWORD")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "EmailServerConfigurationData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME, :SERVER, :ACCOUNT, :PASSWORD].include?(name)
+        end
+        super
+    end
 end
 
-class EmailServerConfigurationData
-    NAME = "EMAIL_SERVER_CONFIGURATION_NAME"
-    SERVER = "EMAIL_SERVER_CONFIGURATION_SERVER"
-    ACCOUNT = "EMAIL_SERVER_CONFIGURATION_ACCOUNT"
-    PASSWORD = "EMAIL_SERVER_CONFIGURATION_PASSWORD"
+begin
+    EmailServerConfigurationData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

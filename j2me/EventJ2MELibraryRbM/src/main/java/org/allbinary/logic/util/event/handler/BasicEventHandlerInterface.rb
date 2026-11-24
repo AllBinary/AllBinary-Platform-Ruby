@@ -17,6 +17,8 @@
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 
+module ::Org; module Allbinary; module Logic; module Util; module Event; module Handler
+
 module BasicEventHandlerInterface
     
 
@@ -51,7 +53,9 @@ module BasicEventHandlerInterface
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end; end; end
 

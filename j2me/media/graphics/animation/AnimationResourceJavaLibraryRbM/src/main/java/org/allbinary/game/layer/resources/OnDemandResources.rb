@@ -15,16 +15,18 @@
 # package org.allbinary.game.layer.resources
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Resources
+
 class OnDemandResources
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_layer_resources_OnDemandResources
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_layer_resources_OnDemandResources
     end
     
 
@@ -64,13 +66,15 @@ class OnDemandResources
     end
 end
 
-autoload :BaseResourceAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/resource/BaseResourceAnimationInterfaceFactoryInterfaceFactory"
-autoload :ImageCache, "org/allbinary/image/ImageCache"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+module ::Org; module Allbinary; module Animation; module Resource; autoload :BaseResourceAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/resource/BaseResourceAnimationInterfaceFactoryInterfaceFactory" unless const_defined?(:BaseResourceAnimationInterfaceFactoryInterfaceFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Image; autoload :ImageCache, "org/allbinary/image/ImageCache" unless const_defined?(:ImageCache, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
 
 begin
     OnDemandResources.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

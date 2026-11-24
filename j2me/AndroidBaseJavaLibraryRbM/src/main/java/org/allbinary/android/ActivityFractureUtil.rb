@@ -15,6 +15,8 @@
 # package org.allbinary.android
 
 
+module ::Org; module Allbinary; module Android
+
 class ActivityFractureUtil
     
 
@@ -27,5 +29,7 @@ class ActivityFractureUtil
     end
 end
 
-require "android/app/Activity"
+module ::Android; module App; autoload :Activity, "android/app/Activity" unless const_defined?(:Activity, false); end; end
+
+end; end; end
 

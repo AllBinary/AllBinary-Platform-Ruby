@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 require "java/util/Vector"
 
-class ABVector < Vector
+module ::Org; module Allbinary; module Util
+
+class ABVector < ::Java::Util::Vector
 end
+
+end; end; end
 

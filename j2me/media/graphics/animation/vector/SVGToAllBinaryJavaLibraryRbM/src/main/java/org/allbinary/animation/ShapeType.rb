@@ -15,16 +15,18 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class ShapeType
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_animation_ShapeType
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_animation_ShapeType
         @name = name
     end
     
@@ -33,4 +35,6 @@ class ShapeType
         return @name
     end
 end
+
+end; end; end
 

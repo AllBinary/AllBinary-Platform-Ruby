@@ -15,28 +15,30 @@
 # package org.allbinary.business.installer
 
 
+module ::Org; module Allbinary; module Business; module Installer
+
 class DeleteCloud
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_business_installer_DeleteCloud
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_installer_DeleteCloud
     end
     
 
     def delete(prePath, current, total)
         begin
-            if AbIOSystem.getInstance().isType("com.vobject.appengine.java.io")
-                stringBuffer = StringMaker.new()
-                stringBuffer.append(URLGLOBALS.getWebappPath())
+            if ::Org::Allbinary::Logic::Io::AbIOSystem.getInstance().isType("com.vobject.appengine.java.io")
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+                stringBuffer.append(::Org::Allbinary::Globals::URLGLOBALS.getWebappPath())
                 stringBuffer.append(prePath)
-                path = AbPath.new(stringBuffer.to_s, StringUtil.getInstance().EMPTY_STRING)
-                file = AbFile.createAbFileFromAbPath(path)
-                fileBasicArrayList = Directory.getInstance().search(file, true)
+                path = ::Org::Allbinary::Logic::Io::Path::AbPath.new(stringBuffer.to_s, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
+                file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(path)
+                fileBasicArrayList = ::Org::Allbinary::Logic::Io::FilePackage::Directory::Directory.getInstance().search(file, true)
                 size = fileBasicArrayList.size()
                 stringBuffer.delete(0, stringBuffer.length())
                 stringBuffer.append("Searched: ")
@@ -58,7 +60,7 @@ class DeleteCloud
                 (start...end_).each do |index|
                     nextFile = fileBasicArrayList.get(index)
                     begin
-                        if nextFile.getPath().indexOf(FileUploadData.getInstance().FILE) < 0
+                        if nextFile.getPath().indexOf(::Org::Allbinary::Logic::Communication::Http::FilePackage::Upload::FileUploadData.getInstance().FILE) < 0
                             nextFile.delete()
                         end
                     rescue StandardError => e
@@ -74,14 +76,16 @@ class DeleteCloud
     end
 end
 
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/http/file/upload/FileUploadData"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/AbIOSystem"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module FilePackage; module Upload; autoload :FileUploadData, "org/allbinary/logic/communication/http/file/upload/FileUploadData" unless const_defined?(:FileUploadData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbIOSystem, "org/allbinary/logic/io/AbIOSystem" unless const_defined?(:AbIOSystem, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :Directory, "org/allbinary/logic/io/file/directory/Directory" unless const_defined?(:Directory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end
 

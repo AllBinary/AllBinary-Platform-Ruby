@@ -2,32 +2,35 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/Object"
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Util
+
 #This is a very fast and simple resizable list.
 class BasicArrayList
     attr_accessor :arrayUtil, :objectArray, :currentIndex
 
-    def initialize_fields
+    def jfields_org_allbinary_util_BasicArrayList
         @arrayUtil = ArrayUtil.getInstance()
-        @objectArray = nil
+        @objectArray = nil unless instance_variable_defined?(:@objectArray)
         @currentIndex = 0
     end
     
 
     def initialize(objectArray)
-        initialize_fields
+        jfields_org_allbinary_util_BasicArrayList
         @objectArray = objectArray
     end
     
 
     def addAt(index, element)
         if index > @currentIndex || index < 0
-            stringBuffer = StringMaker.new()
-            stringBuffer.append(CommonLabels.getInstance().INDEX_LABEL)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+            stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL)
             stringBuffer.appendint(index)
             stringBuffer.append(BasicArrayList::SIZE)
             stringBuffer.appendint(@currentIndex)
@@ -49,8 +52,8 @@ class BasicArrayList
 
     def removeAt(index)
         if index >= @currentIndex
-            stringBuffer = StringMaker.new()
-            stringBuffer.append(CommonLabels.getInstance().INDEX_LABEL)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+            stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL)
             stringBuffer.appendint(index)
             stringBuffer.append(BasicArrayList::SIZE)
             stringBuffer.appendint(@currentIndex)
@@ -190,8 +193,8 @@ class BasicArrayList
 
     def get(index)
         if index >= @currentIndex
-            stringBuffer = StringMaker.new()
-            stringBuffer.append(CommonLabels.getInstance().INDEX_LABEL)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+            stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL)
             stringBuffer.appendint(index)
             stringBuffer.append(BasicArrayList::SIZE)
             stringBuffer.appendint(@currentIndex)
@@ -203,8 +206,8 @@ class BasicArrayList
 
     def set(index, element)
         if index >= @currentIndex
-            stringBuffer = StringMaker.new()
-            stringBuffer.append(CommonLabels.getInstance().INDEX_LABEL)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+            stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL)
             stringBuffer.appendint(index)
             stringBuffer.append(BasicArrayList::SIZE)
             stringBuffer.appendint(@currentIndex)
@@ -269,8 +272,8 @@ class BasicArrayList
     
 
     def toString()
-        _COMMA_SEP = CommonSeps.getInstance().COMMA_SEP
-        stringBuffer = StringMaker.new()
+        _COMMA_SEP = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().COMMA_SEP
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         (0...@currentIndex).each do |index|
             stringBuffer.append(@objectArray[index].to_s)
             stringBuffer.append(_COMMA_SEP)
@@ -300,11 +303,11 @@ class BasicArrayList
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :ArrayUtil, "org/allbinary/util/ArrayUtil"
-autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :ArrayUtil, "org/allbinary/util/ArrayUtil" unless const_defined?(:ArrayUtil, false)
+autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS" unless const_defined?(:BasicArrayListS, false)
 require "java/lang/System"
 
 begin
@@ -312,4 +315,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package bundle.input.automation.module.generic
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/automation/module/osgi/InputAutomationModuleBundleActivator"
 
-class InputAutomationGenericModuleBundleActivator < InputAutomationModuleBundleActivator
+module ::Bundle; module Input; module Automation; module ModulePackage; module Generic
+
+class InputAutomationGenericModuleBundleActivator < ::Org::Allbinary::Input::Automation::ModulePackage::Osgi::InputAutomationModuleBundleActivator
     
 
     def initialize()
@@ -26,11 +29,14 @@ class InputAutomationGenericModuleBundleActivator < InputAutomationModuleBundleA
 
     # throws Exception
     def init()
-        inputAutomationGenericModuleServiceFactory = InputAutomationGenericModuleServiceFactory.getInstance()
+        inputAutomationGenericModuleServiceFactory = ::Org::Allbinary::Input::Automation::ModulePackage::Generic::InputAutomationGenericModuleServiceFactory.getInstance()
         self.setInputAutomationModuleInterface(inputAutomationGenericModuleServiceFactory.getInputAutomationModuleInterfaceArray())
         self.setServiceFactory(inputAutomationGenericModuleServiceFactory)
     end
+    java_overload :init, 0
 end
 
-autoload :InputAutomationGenericModuleServiceFactory, "org/allbinary/input/automation/module/generic/InputAutomationGenericModuleServiceFactory"
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; autoload :InputAutomationGenericModuleServiceFactory, "org/allbinary/input/automation/module/generic/InputAutomationGenericModuleServiceFactory" unless const_defined?(:InputAutomationGenericModuleServiceFactory, false); end; end; end; end; end; end
+
+end; end; end; end; end
 

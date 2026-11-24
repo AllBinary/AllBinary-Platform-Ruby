@@ -18,10 +18,12 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module StringPackage
+
 class CommonStrings
     attr_accessor :EMPTY, :CREATE_IMAGE, :PLEASE_WAIT, :PLEASE_WAIT_FOR_SERVER, :PERIODS, :LOADING, :CONSTRUCTOR, :START, :END, :EXCEPTION, :EXCEPTION_LABEL, :CLEANUP, :INIT, :CLOSE, :UP, :DOWN, :LEFT, :RIGHT, :DIRECTION_NAME, :CREATE, :REMOVE, :UPDATE, :DELETE, :delete, :LOAD, :SAVE, :ADD, :DROP, :INSERT, :VISIT, :START_METHOD_NAME, :END_METHOD_NAME, :GET, :PROCESS, :GET_INSTANCE, :GET_LIST, :RUN, :START_RUNNABLE, :RUNNING, :END_RUNNABLE, :DISABLE, :ENABLE, :SUCCESS, :FAILURE, :NOT_IMPLEMENTED, :UNKNOWN, :ON_EVENT, :IS_VALID, :TOSTRING, :ADD_LISTENER, :REMOVE_LISTENER, :SIZE
 
-    def initialize_fields
+    def jfields_org_allbinary_string_CommonStrings
         @EMPTY = "Empty"
         @CREATE_IMAGE = "createImage"
         @PLEASE_WAIT = "Please Wait"
@@ -77,7 +79,7 @@ class CommonStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_string_CommonStrings
     end
     
 
@@ -121,4 +123,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

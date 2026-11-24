@@ -15,14 +15,19 @@
 # package org.allbinary.logic.visual.transform.info
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
+
 module CompositeTransformInfoInterface
     
 
     # throws Exception
     def getTransformInfoInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false)
+
+end; end; end; end; end; end
 

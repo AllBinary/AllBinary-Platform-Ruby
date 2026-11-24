@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.feature
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
 
 class Feature
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_game_configuration_feature_Feature
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_Feature
         @name = name
         Feature.add(name, self)
-        ChangedGameFeatureListener.getInstance().add(self)
+        ::Org::Allbinary::Game::Configuration::Event::ChangedGameFeatureListener.getInstance().add(self)
     end
     
 
@@ -65,7 +68,7 @@ class Feature
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@hashtable = StdUtil.getInstance().createHashtable()
+            @@hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -82,13 +85,15 @@ class Feature
     end
 end
 
-autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Game; module Configuration; module Event; autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener" unless const_defined?(:ChangedGameFeatureListener, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
 
 begin
     Feature.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

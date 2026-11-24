@@ -15,6 +15,8 @@
 # package org.allbinary.game.configuration
 
 
+module ::Org; module Allbinary; module Game; module Configuration
+
 class GameSpeed
     
 
@@ -65,12 +67,14 @@ class GameSpeed
     end
 end
 
-autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
-autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
+autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration" unless const_defined?(:GameConfiguration, false)
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral" unless const_defined?(:GameConfigurationCentral, false)
 
 begin
     GameSpeed.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

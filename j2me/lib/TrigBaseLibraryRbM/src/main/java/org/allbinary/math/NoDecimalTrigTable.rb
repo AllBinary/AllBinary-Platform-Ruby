@@ -19,14 +19,16 @@
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module MathPackage
+
 class NoDecimalTrigTable
     attr_accessor :mathUtil, :noDecimalSin, :noDecimalCos, :noDecimalTan, :SCALE
 
-    def initialize_fields
-        @mathUtil = MathUtil.getInstance()
-        @noDecimalSin = nil
-        @noDecimalCos = nil
-        @noDecimalTan = nil
+    def jfields_org_allbinary_math_NoDecimalTrigTable
+        @mathUtil = ::Org::Allbinary::Logic::MathPackage::MathUtil.getInstance()
+        @noDecimalSin = nil unless instance_variable_defined?(:@noDecimalSin)
+        @noDecimalCos = nil unless instance_variable_defined?(:@noDecimalCos)
+        @noDecimalTan = nil unless instance_variable_defined?(:@noDecimalTan)
         @SCALE = 10000
     end
     
@@ -37,12 +39,12 @@ class NoDecimalTrigTable
     
 
     def initialize()
-        initialize_fields
-        _TOTAL_ANGLE = (AngleFactory.getInstance().TOTAL_ANGLE).to_i
-        _MAX_VALUE = ((2147483647).to_i)
-        @noDecimalSin = Array.new(_TOTAL_ANGLE, 0)
-        @noDecimalCos = Array.new(_TOTAL_ANGLE, 0)
-        @noDecimalTan = Array.new(_TOTAL_ANGLE + 1, 0)
+        jfields_org_allbinary_math_NoDecimalTrigTable
+        _TOTAL_ANGLE = ((AngleFactory.getInstance().TOTAL_ANGLE).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+        _MAX_VALUE = (((2147483647).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
+        @noDecimalSin = (Array.new(_TOTAL_ANGLE, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :J) }
+        @noDecimalCos = (Array.new(_TOTAL_ANGLE, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :J) }
+        @noDecimalTan = (Array.new(_TOTAL_ANGLE + 1, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :J) }
         @noDecimalSin[0] = 0
         @noDecimalSin[1] = 174
         @noDecimalSin[2] = 348
@@ -1144,8 +1146,8 @@ class NoDecimalTrigTable
 
     # throws Exception
     def antiTan(dx, dy)
-        _MAX_VALUE = ((2147483647).to_i)
-        _MIN_VALUE = (((-2147483648)).to_i)
+        _MAX_VALUE = (((2147483647).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
+        _MIN_VALUE = ((((-2147483648)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         ratio = (_MAX_VALUE - 1)
         if dy != 0
             dxl = (dx)
@@ -1187,13 +1189,13 @@ class NoDecimalTrigTable
                 end
             end
         end
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Invalid Ratio: ")
         stringBuffer.appendlong(ratio)
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(PositionStrings.getInstance().DX_LABEL)
         stringBuffer.appendint(dx)
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(PositionStrings.getInstance().DX_LABEL)
         stringBuffer.appendint(dy)
         raise StandardError.new(stringBuffer.to_s)
@@ -1204,18 +1206,18 @@ class NoDecimalTrigTable
     def antiTanDebug(screenX, screenY, targetX, targetY)
         _METHOD_NAME = "antiTanDebug"
         _TARGET_ANGLE = " Targeting angle: "
-        stringMaker = StringMaker.new()
-        PreLogUtil.put(stringMaker.append("screenX: ").appendint(screenX).append(" screenY: ").appendint(screenY).append(" targetX: ").appendint(targetX).append(" targetY: ").appendint(targetY).to_s, self, _METHOD_NAME)
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(stringMaker.append("screenX: ").appendint(screenX).append(" screenY: ").appendint(screenY).append(" targetX: ").appendint(targetX).append(" targetY: ").appendint(targetY).to_s, self, _METHOD_NAME)
         targetX2 = -targetX
         targetY2 = -targetY
         screenX2 = -screenX
         screenY2 = -screenY
-        dx = Array.new(4, 0)
+        dx = (Array.new(4, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         dx[0] = (screenX - targetX)
         dx[1] = (screenX - targetX2)
         dx[2] = (screenX2 - targetX)
         dx[3] = (screenX2 - targetX2)
-        dy = Array.new(4, 0)
+        dy = (Array.new(4, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         dy[0] = (screenY - targetY)
         dy[1] = (screenY - targetY2)
         dy[2] = (screenY2 - targetY)
@@ -1228,7 +1230,7 @@ class NoDecimalTrigTable
                 angleOfTarget = self.antiTan(dx[index], dy[index2])
                 angle = angleFactory.getAt(angleOfTarget)
                 stringMaker.delete(0, stringMaker.length())
-                PreLogUtil.put(stringMaker.append(CommonLabels.getInstance().INDEX_LABEL).appendint(index).append(" index2: ").appendint(index2).append(PositionStrings.getInstance().DX_LABEL).appendint(dx[index]).append(PositionStrings.getInstance().DY_LABEL).appendint(dy[index2]).append(_TARGET_ANGLE).appendshort(angleOfTarget).append(CommonSeps.getInstance().EQUALS).appendshort((((angle.getValue()).to_i + 32768) % 65536 - 32768)).to_s, self, _METHOD_NAME)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(stringMaker.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL).appendint(index).append(" index2: ").appendint(index2).append(PositionStrings.getInstance().DX_LABEL).appendint(dx[index]).append(PositionStrings.getInstance().DY_LABEL).appendint(dy[index2]).append(_TARGET_ANGLE).appendshort(angleOfTarget).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().EQUALS).appendshort(((((angle.getValue()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + 32768) % 65536 - 32768)).to_s, self, _METHOD_NAME)
             end
         end
         angleOfTarget = self.antiTan(dx[0], dy[0])
@@ -1266,18 +1268,20 @@ class NoDecimalTrigTable
     end
 end
 
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :Angle, "org/allbinary/math/Angle"
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
-autoload :PositionStrings, "org/allbinary/math/PositionStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :Angle, "org/allbinary/math/Angle" unless const_defined?(:Angle, false)
+autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false)
+autoload :PositionStrings, "org/allbinary/math/PositionStrings" unless const_defined?(:PositionStrings, false)
 
 begin
     NoDecimalTrigTable.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

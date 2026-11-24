@@ -14,18 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.content
 
-# require "javax/microedition/lcdui/Command"
+
+module ::Org; module Allbinary; module Content
 
 class CommandUriAction
     attr_accessor :logUtil, :hashtable
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @hashtable = StdUtil.getInstance().createHashtable()
+    def jfields_org_allbinary_content_CommandUriAction
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_content_CommandUriAction
     end
     
 
@@ -42,9 +43,9 @@ class CommandUriAction
     def process(command)
         begin
             intent = self.getIntent(command)
-            ResourceUtil.getInstance().getContext().startActivity(intent)
+            ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance().getContext().startActivity(intent)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.PROCESS, e)
         end
     end
@@ -52,29 +53,56 @@ class CommandUriAction
 
     def getIntent(command)
         url = @hashtable.get(command)
-        uri = Uri.parse(url)
-        intent = Intent.new(Intent::ACTION_VIEW, uri)
+        uri = ::Android::Net::Uri.parse(url)
+        intent = ::Android::Content::Intent.new(::Android::Content::Intent::ACTION_VIEW, uri)
         return intent
     end
 
     def self.instance()
+        CommandUriAction.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        CommandUriAction.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = CommandUriAction.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CommandUriAction"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "android/content/Intent"
-require "android/net/Uri"
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Android; module Content; autoload :Intent, "android/content/Intent" unless const_defined?(:Intent, false); end; end
+module ::Android; module Net; autoload :Uri, "android/net/Uri" unless const_defined?(:Uri, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
 
-class CommandUriAction
-    @@instance = CommandUriAction.new()
+begin
+    CommandUriAction.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

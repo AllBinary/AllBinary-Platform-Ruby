@@ -15,12 +15,14 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class BasicDecimal
     attr_accessor :units, :scaled, :factor, :factorValue
 
-    def initialize_fields
-        @units = nil
-        @scaled = 0
+    def jfields_org_allbinary_logic_math_BasicDecimal
+        @units = nil unless instance_variable_defined?(:@units)
+        @scaled = 0 unless instance_variable_defined?(:@scaled)
         @factor = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR
         @factorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE
     end
@@ -32,7 +34,7 @@ class BasicDecimal
     
 
     def initialize(units)
-        initialize_fields
+        jfields_org_allbinary_logic_math_BasicDecimal
         @units = units
         self.updateScaled()
     end
@@ -179,11 +181,13 @@ class BasicDecimal
     end
 end
 
-autoload :ScaleFactorFactory, "org/allbinary/logic/math/ScaleFactorFactory"
+autoload :ScaleFactorFactory, "org/allbinary/logic/math/ScaleFactorFactory" unless const_defined?(:ScaleFactorFactory, false)
 
 begin
     BasicDecimal.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

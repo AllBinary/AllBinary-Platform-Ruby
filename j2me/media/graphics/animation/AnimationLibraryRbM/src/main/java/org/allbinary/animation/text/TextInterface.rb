@@ -15,6 +15,8 @@
 # package org.allbinary.animation.text
 
 
+module ::Org; module Allbinary; module Animation; module Text
+
 module TextInterface
     
 
@@ -48,5 +50,7 @@ module TextInterface
     end
 end
 
-autoload :TextChangeListener, "org/allbinary/animation/text/TextChangeListener"
+autoload :TextChangeListener, "org/allbinary/animation/text/TextChangeListener" unless const_defined?(:TextChangeListener, false)
+
+end; end; end; end
 

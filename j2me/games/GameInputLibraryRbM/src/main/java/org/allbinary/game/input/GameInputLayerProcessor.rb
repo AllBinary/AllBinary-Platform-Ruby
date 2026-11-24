@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerProcessor"
 
-class GameInputLayerProcessor < LayerProcessor
+module ::Org; module Allbinary; module Game; module Input
+
+class GameInputLayerProcessor < ::Org::Allbinary::Layer::LayerProcessor
     
 
     def initialize()
@@ -29,6 +32,7 @@ class GameInputLayerProcessor < LayerProcessor
         gameInputInterface = layerInterface
         gameInputInterface.processInput(allBinaryLayerManager)
     end
+    java_overload :processAt, 3
     
 
     def isProcessorLayer(layerInterface)
@@ -38,10 +42,13 @@ class GameInputLayerProcessor < LayerProcessor
             return false
         end
     end
+    java_overload :isProcessorLayer, 1
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :GameInputInterface, "org/allbinary/game/input/GameInputInterface"
-autoload :GameInputLayerManager, "org/allbinary/game/input/GameInputLayerManager"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+autoload :GameInputInterface, "org/allbinary/game/input/GameInputInterface" unless const_defined?(:GameInputInterface, false)
+autoload :GameInputLayerManager, "org/allbinary/game/input/GameInputLayerManager" unless const_defined?(:GameInputLayerManager, false)
+
+end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.hardware
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/hardware/HardwareInterface"
+
+module ::Org; module Allbinary; module Logic; module System; module Hardware
 
 class NoHardware
     include HardwareInterface
@@ -26,24 +29,28 @@ class NoHardware
     
 
     def getComponent(index)
-        return NoHardwareComponent.getInstance()
+        return ::Org::Allbinary::Logic::System::Hardware::Components::Interfaces::NoHardwareComponent.getInstance()
     end
+    java_overload :getComponent, 1
     
 
     def toString()
         return "No Hardware"
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
     
 
     def compareTo(hardwareInterface)
         return true
     end
+    java_overload :compareTo, 1
     
 
     def difference(hardwareInterface)
-        return StdUtil.getInstance().NULL_TABLE
+        return ::Org::Allbinary::Logic::StdUtil.getInstance().NULL_TABLE
     end
+    java_overload :difference, 1
 
     def self.instance()
         NoHardware.java_static_fields unless @java_static_fields_started
@@ -76,14 +83,16 @@ class NoHardware
     end
 end
 
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :HardwareComponentInterface, "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
-autoload :NoHardwareComponent, "org/allbinary/logic/system/hardware/components/interfaces/NoHardwareComponent"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Interfaces; autoload :HardwareComponentInterface, "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface" unless const_defined?(:HardwareComponentInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Interfaces; autoload :NoHardwareComponent, "org/allbinary/logic/system/hardware/components/interfaces/NoHardwareComponent" unless const_defined?(:NoHardwareComponent, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
 
 begin
     NoHardware.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

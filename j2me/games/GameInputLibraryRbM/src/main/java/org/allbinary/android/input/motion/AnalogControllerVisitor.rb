@@ -15,6 +15,8 @@
 # package org.allbinary.android.input.motion
 
 
+module ::Org; module Allbinary; module Android; module Input; module Motion
+
 class AnalogControllerVisitor
     
 
@@ -22,6 +24,8 @@ class AnalogControllerVisitor
     end
 end
 
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :AnalogLocationInputProcessor, "org/allbinary/android/input/motion/AnalogLocationInputProcessor"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+autoload :AnalogLocationInputProcessor, "org/allbinary/android/input/motion/AnalogLocationInputProcessor" unless const_defined?(:AnalogLocationInputProcessor, false)
+
+end; end; end; end; end
 

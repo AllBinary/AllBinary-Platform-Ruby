@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package admin.taghelpers
 
+require "java/lang/JavaOverload"
 require "admin/taghelpers/TableInterface"
+
+module ::Admin; module Taghelpers
 
 class Table
     include TableInterface
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_admin_taghelpers_Table
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_admin_taghelpers_Table
     end
     
 
@@ -33,43 +36,52 @@ class Table
     def drop()
         raise RuntimeError.new()
     end
+    java_overload :drop, 0
     
 
     # throws Exception
     def create()
         raise RuntimeError.new()
     end
+    java_overload :create, 0
     
 
     # throws Exception
     def restore()
         raise RuntimeError.new()
     end
+    java_overload :restore, 0
     
 
     # throws Exception
     def backup()
         raise RuntimeError.new()
     end
+    java_overload :backup, 0
     
 
     # throws Exception
     def insert()
         raise RuntimeError.new()
     end
+    java_overload :insert, 0
     
 
     # throws Exception
     def delete()
         raise RuntimeError.new()
     end
+    java_overload :delete, 0
     
 
     # throws Exception
     def update()
         raise RuntimeError.new()
     end
+    java_overload :update, 0
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end
 

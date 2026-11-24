@@ -15,17 +15,19 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 class HighScoreCommandsBaseFactory
     attr_accessor :logUtil, :HIGH_SCORE_COMMANDS
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @HIGH_SCORE_COMMANDS = nil
+    def jfields_org_allbinary_game_score_HighScoreCommandsBaseFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @HIGH_SCORE_COMMANDS = nil unless instance_variable_defined?(:@HIGH_SCORE_COMMANDS)
     end
     
 
     def initialize(_HIGH_SCORE_COMMANDS)
-        initialize_fields
+        jfields_org_allbinary_game_score_HighScoreCommandsBaseFactory
         @HIGH_SCORE_COMMANDS = _HIGH_SCORE_COMMANDS
     end
     
@@ -51,7 +53,9 @@ class HighScoreCommandsBaseFactory
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :J2MEUtil, "org/allbinary/J2MEUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Org; module Allbinary; autoload :J2MEUtil, "org/allbinary/J2MEUtil" unless const_defined?(:J2MEUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+
+end; end; end; end
 

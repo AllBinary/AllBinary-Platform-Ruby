@@ -15,10 +15,12 @@
 # package org.allbinary.business.forward
 
 
+module ::Org; module Allbinary; module Business; module Forward
+
 class ForwardData
     attr_accessor :PAGE, :NAME, :VALUE
 
-    def initialize_fields
+    def jfields_org_allbinary_business_forward_ForwardData
         @PAGE = "FORWARD_PAGE"
         @NAME = "FORWARD_NAME"
         @VALUE = "FORWARD_VALUE"
@@ -26,7 +28,7 @@ class ForwardData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_forward_ForwardData
     end
     
 
@@ -35,15 +37,41 @@ class ForwardData
     end
 
     def self.instance()
+        ForwardData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ForwardData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ForwardData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ForwardData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class ForwardData
-    @@instance = ForwardData.new()
+begin
+    ForwardData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

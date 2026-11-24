@@ -15,6 +15,8 @@
 # package org.allbinary.init
 
 
+module ::Org; module Allbinary; module Init
+
 module UpdateInterface
     
 
@@ -24,4 +26,6 @@ module UpdateInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

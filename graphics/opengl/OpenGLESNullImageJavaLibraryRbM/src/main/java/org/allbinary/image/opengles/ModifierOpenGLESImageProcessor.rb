@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.image.opengles
 
+require "java/lang/JavaOverload"
 require "org/allbinary/image/opengles/OpenGLESImageProcessor"
+
+module ::Org; module Allbinary; module Image; module Opengles
 
 class ModifierOpenGLESImageProcessor < OpenGLESImageProcessor
     
@@ -59,4 +62,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

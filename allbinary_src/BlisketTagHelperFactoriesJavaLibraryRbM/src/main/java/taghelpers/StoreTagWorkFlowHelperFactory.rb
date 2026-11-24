@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package taghelpers
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/PageContext"
 require "admin/taghelpers/TagHelperFactory"
 
-class StoreTagWorkFlowHelperFactory < TagHelperFactory
+module ::Taghelpers
+
+class StoreTagWorkFlowHelperFactory < ::Admin::Taghelpers::TagHelperFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_taghelpers_StoreTagWorkFlowHelperFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_taghelpers_StoreTagWorkFlowHelperFactory
     end
     
 
@@ -36,16 +39,21 @@ class StoreTagWorkFlowHelperFactory < TagHelperFactory
         begin
             return StoreTagWorkFlowHelper.new(hashMap, pageContext)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.GET_INSTANCE, e)
             end
             return nil
         end
     end
+    java_overload :getInstance, 2
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
-autoload :StoreTagWorkFlowHelper, "taghelpers/StoreTagWorkFlowHelper"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :StoreTagWorkFlowHelper, "taghelpers/StoreTagWorkFlowHelper" unless const_defined?(:StoreTagWorkFlowHelper, false)
+
+end
 

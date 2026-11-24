@@ -14,24 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.scroller
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai; module Scroller
+
 class TerrainPatrolAIFactory
-    include ArtificialIntelligenceInterfaceFactoryInterface
+    include ::Org::Allbinary::Game::Ai::ArtificialIntelligenceInterfaceFactoryInterface
     
 
     # throws Exception
     def getInstance(hashtable, ownerLayerInterface, gameInput)
-        hashtable.put(BasePatrolAI::MAX_DISTANCE, SmallIntegerSingletonFactory.getInstance().getAt(220))
+        hashtable.put(BasePatrolAI::MAX_DISTANCE, ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(220))
         return TerrainPatrolAI.new(hashtable, ownerLayerInterface, gameInput)
     end
+    java_overload :getInstance, 3
 end
 
-autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasePatrolAI, "org/allbinary/game/ag/ai/scroller/BasePatrolAI"
-autoload :TerrainPatrolAI, "org/allbinary/game/ag/ai/scroller/TerrainPatrolAI"
+module ::Org; module Allbinary; module Ai; autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface" unless const_defined?(:ArtificialIntelligenceInterface, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :BasePatrolAI, "org/allbinary/game/ag/ai/scroller/BasePatrolAI" unless const_defined?(:BasePatrolAI, false)
+autoload :TerrainPatrolAI, "org/allbinary/game/ag/ai/scroller/TerrainPatrolAI" unless const_defined?(:TerrainPatrolAI, false)
+
+end; end; end; end; end; end
 

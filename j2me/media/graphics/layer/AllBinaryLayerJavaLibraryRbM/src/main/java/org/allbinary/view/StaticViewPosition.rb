@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.view
 
+require "java/lang/JavaOverload"
 require "org/allbinary/view/ViewPosition"
+
+module ::Org; module Allbinary; module View
 
 class StaticViewPosition < ViewPosition
     
@@ -27,15 +30,20 @@ class StaticViewPosition < ViewPosition
     def getX()
         return self.getRawX()
     end
+    java_overload :getX, 0
     
 
     def getY()
         return self.getRawY()
     end
+    java_overload :getY, 0
     
 
     def getZ()
         return self.getRawZ()
     end
+    java_overload :getZ, 0
 end
+
+end; end; end
 

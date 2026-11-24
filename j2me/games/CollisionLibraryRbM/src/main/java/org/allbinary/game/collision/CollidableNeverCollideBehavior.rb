@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/collision/CollidableBaseBehavior"
+
+module ::Org; module Allbinary; module Game; module Collision
 
 class CollidableNeverCollideBehavior < CollidableBaseBehavior
     
@@ -27,22 +30,28 @@ class CollidableNeverCollideBehavior < CollidableBaseBehavior
     def isCollision(ownerLayer, allbinaryCollidableLayer)
         return false
     end
+    java_overload :isCollision, 2
     
 
     # throws Exception
     def collide(ownerLayer, allbinaryCollidableLayer)
     end
+    java_overload :collide, 2
     
 
     def collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
     end
+    java_overload :collideInterface, 2
     
 
     def isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
         return false
     end
+    java_overload :isCollisionInterface, 2
 end
 
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface" unless const_defined?(:CollidableInterfaceCompositeInterface, false)
+
+end; end; end; end
 

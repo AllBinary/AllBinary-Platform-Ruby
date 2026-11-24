@@ -15,6 +15,8 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class TouchScreenTypeFactory
     
 
@@ -23,7 +25,7 @@ class TouchScreenTypeFactory
     end
     
 
-    def TouchScreenTypeFactory()
+    def initialize()
         touchScreenFactory = TouchScreenFactory.getInstance()
         touchScreenFactory.setTouch(false)
     end
@@ -59,11 +61,13 @@ class TouchScreenTypeFactory
     end
 end
 
-autoload :TouchScreenFactory, "org/allbinary/input/motion/button/TouchScreenFactory"
+autoload :TouchScreenFactory, "org/allbinary/input/motion/button/TouchScreenFactory" unless const_defined?(:TouchScreenFactory, false)
 
 begin
     TouchScreenTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

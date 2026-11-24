@@ -15,16 +15,18 @@
 # package views.generic.inventory
 
 
+module ::Views; module Generic; module Inventory
+
 class InventoryColumnUtil
     attr_accessor :logUtil, :basicItemData
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @basicItemData = BasicItemData.getInstance()
+    def jfields_views_generic_inventory_InventoryColumnUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @basicItemData = ::Org::Allbinary::Business::User::Commerce::Inventory::Item::BasicItemData.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_views_generic_inventory_InventoryColumnUtil
     end
     
 
@@ -35,13 +37,13 @@ class InventoryColumnUtil
 
     def getColumnWhereLike(inventoryEntity, category, column)
         @logUtil.putF("Start Category: " + category, self, "getKeywords")
-        keywords = BasicArrayListD.new()
+        keywords = ::Org::Allbinary::Util::BasicArrayListD.new()
         vectorOfHashMaps = inventoryEntity.getAllRows()
         size = vectorOfHashMaps.size()
         (0...size).each do |index|
             hashMap = vectorOfHashMaps.get(index)
             categoryName = hashMap.get(@basicItemData.CATEGORY)
-            if !StringValidationUtil.getInstance().isEmpty(categoryName) && categoryName.start_with?(category)
+            if !::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(categoryName) && categoryName.start_with?(category)
                 keywords.add(hashMap.get(column))
             end
         end
@@ -79,17 +81,19 @@ class InventoryColumnUtil
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData"
-autoload :InventoryEntity, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; autoload :BasicItemData, "org/allbinary/business/user/commerce/inventory/item/BasicItemData" unless const_defined?(:BasicItemData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Commerce; module Inventory; module Item; autoload :InventoryEntity, "org/allbinary/data/tables/user/commerce/inventory/item/InventoryEntity" unless const_defined?(:InventoryEntity, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
 
 begin
     InventoryColumnUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

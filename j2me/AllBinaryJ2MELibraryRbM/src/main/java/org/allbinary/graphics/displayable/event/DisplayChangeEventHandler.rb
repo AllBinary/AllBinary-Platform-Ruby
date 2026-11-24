@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class DisplayChangeEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event
+
+class DisplayChangeEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def self.getInstance()
@@ -34,6 +37,7 @@ class DisplayChangeEventHandler < BasicEventHandler
         displayChangeEventListener = (eventListenerInterface)
         displayChangeEventListener.onDisplayChangeEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -56,14 +60,16 @@ class DisplayChangeEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
-autoload :DisplayChangeEventListener, "org/allbinary/graphics/displayable/event/DisplayChangeEventListener"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent" unless const_defined?(:DisplayChangeEvent, false)
+autoload :DisplayChangeEventListener, "org/allbinary/graphics/displayable/event/DisplayChangeEventListener" unless const_defined?(:DisplayChangeEventListener, false)
 
 begin
     DisplayChangeEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

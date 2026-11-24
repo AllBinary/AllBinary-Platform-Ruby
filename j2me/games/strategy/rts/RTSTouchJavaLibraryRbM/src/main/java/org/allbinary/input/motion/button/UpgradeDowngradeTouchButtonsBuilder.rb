@@ -14,53 +14,59 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/BaseTouchInput"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class UpgradeDowngradeTouchButtonsBuilder < BaseTouchInput
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_input_motion_button_UpgradeDowngradeTouchButtonsBuilder
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_UpgradeDowngradeTouchButtonsBuilder
     end
     
 
     def getList()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
-            list = BasicArrayListD.new()
+            list = ::Org::Allbinary::Util::BasicArrayListD.new()
             touchButtonLocationHelper = TouchButtonLocationHelper.new()
-            cellPositionFactory = CellPositionFactory.getInstance()
+            cellPositionFactory = ::Org::Allbinary::Graphics::CellPositionFactory.getInstance()
             basicTouchButtonCellPositionFactory = BasicTouchButtonCellPositionFactory.new()
             if basicTouchButtonCellPositionFactory.SECOND_FROM_TOP_LEFT != cellPositionFactory.NONE && basicTouchButtonCellPositionFactory.SECOND_FROM_TOP_RIGHT != cellPositionFactory.NONE
                 commonButtons = CommonButtons.getInstance()
-                _UP = TouchButton.createButton(BasicTouchInputFactory.getInstance().SPECIAL_BUTTON_TWO, TouchButtonUpgradeResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_TOP_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf())
-                _DOWN = TouchButton.createButton(BasicTouchInputFactory.getInstance().SPECIAL_BUTTON_ONE, TouchButtonDowngradeResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_TOP_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf())
+                _UP = TouchButton.createButton(BasicTouchInputFactory.getInstance().SPECIAL_BUTTON_TWO, ::Org::Allbinary::Game::Input::Resource::TouchButtonUpgradeResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_TOP_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf())
+                _DOWN = TouchButton.createButton(BasicTouchInputFactory.getInstance().SPECIAL_BUTTON_ONE, ::Org::Allbinary::Game::Input::Resource::TouchButtonDowngradeResource.getInstance(), commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_TOP_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf())
                 list.add(_UP)
                 list.add(_DOWN)
             end
             return list
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.CONSTRUCTOR, e)
-            return BasicArrayListUtil.getInstance().getImmutableInstance()
+            return ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
         end
     end
+    java_overload :getList, 0
 end
 
-require "org/allbinary/game/input/resource/TouchButtonDowngradeResource"
-require "org/allbinary/game/input/resource/TouchButtonUpgradeResource"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/graphics/CellPositionFactory"
-require "org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory"
-require "org/allbinary/input/motion/button/BasicTouchInputFactory"
-require "org/allbinary/input/motion/button/CommonButtons"
-require "org/allbinary/input/motion/button/TouchButton"
-require "org/allbinary/input/motion/button/TouchButtonLocationHelper"
+module ::Org; module Allbinary; module Game; module Input; module Resource; autoload :TouchButtonDowngradeResource, "org/allbinary/game/input/resource/TouchButtonDowngradeResource" unless const_defined?(:TouchButtonDowngradeResource, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Resource; autoload :TouchButtonUpgradeResource, "org/allbinary/game/input/resource/TouchButtonUpgradeResource" unless const_defined?(:TouchButtonUpgradeResource, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CellPositionFactory, "org/allbinary/graphics/CellPositionFactory" unless const_defined?(:CellPositionFactory, false); end; end; end
+autoload :BasicTouchButtonCellPositionFactory, "org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory" unless const_defined?(:BasicTouchButtonCellPositionFactory, false)
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false)
+autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons" unless const_defined?(:CommonButtons, false)
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton" unless const_defined?(:TouchButton, false)
+autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper" unless const_defined?(:TouchButtonLocationHelper, false)
+
+end; end; end; end; end
 

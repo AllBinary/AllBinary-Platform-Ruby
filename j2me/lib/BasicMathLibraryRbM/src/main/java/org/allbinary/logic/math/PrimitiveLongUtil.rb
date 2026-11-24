@@ -15,25 +15,27 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class PrimitiveLongUtil
     attr_accessor :logUtil, :powerOfTen, :maxValue, :maxDigits, :charArray, :currentTotalDigits, :primitiveLongSingleton
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @powerOfTen = nil
-        @maxValue = nil
-        @maxDigits = nil
-        @charArray = nil
-        @currentTotalDigits = 0
+    def jfields_org_allbinary_logic_math_PrimitiveLongUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @powerOfTen = nil unless instance_variable_defined?(:@powerOfTen)
+        @maxValue = nil unless instance_variable_defined?(:@maxValue)
+        @maxDigits = nil unless instance_variable_defined?(:@maxDigits)
+        @charArray = nil unless instance_variable_defined?(:@charArray)
+        @currentTotalDigits = 0 unless instance_variable_defined?(:@currentTotalDigits)
         @primitiveLongSingleton = PrimitiveLongSingleton.getInstance()
     end
     
 
     def self.createPowerOfTen(powerOfTen)
-        primitiveLongUtil = PrimitiveLongUtil.new(powerOfTen, NullUtil.getInstance().NULL_OBJECT)
+        primitiveLongUtil = PrimitiveLongUtil.new(powerOfTen, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
         if powerOfTen % 10 != 0
-            logUtil = LogUtil.getInstance()
-            commonStrings = CommonStrings.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             logUtil.put(commonStrings.EXCEPTION, primitiveLongUtil, commonStrings.CONSTRUCTOR, StandardError.new("Max must be power of 10"))
         end
         return primitiveLongUtil
@@ -41,11 +43,11 @@ class PrimitiveLongUtil
     
 
     def initialize(powerOfTen, unused)
-        initialize_fields
+        jfields_org_allbinary_logic_math_PrimitiveLongUtil
         @maxDigits = MathUtil.getInstance().getTotalDigits(powerOfTen)
         @powerOfTen = powerOfTen
         @maxValue = (powerOfTen * 10) - 1
-        @charArray = Array.new(@maxDigits, "\0")
+        @charArray = (Array.new(@maxDigits, "\0")).tap { |java_array| java_array.instance_variable_set(:@java_component, :C) }
     end
     
 
@@ -92,9 +94,11 @@ class PrimitiveLongUtil
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
-autoload :PrimitiveLongSingleton, "org/allbinary/logic/math/PrimitiveLongSingleton"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false)
+autoload :PrimitiveLongSingleton, "org/allbinary/logic/math/PrimitiveLongSingleton" unless const_defined?(:PrimitiveLongSingleton, false)
+
+end; end; end; end
 

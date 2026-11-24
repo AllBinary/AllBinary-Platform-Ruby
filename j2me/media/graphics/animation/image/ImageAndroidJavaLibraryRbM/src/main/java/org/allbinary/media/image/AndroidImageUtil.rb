@@ -14,7 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class AndroidImageUtil
     
@@ -25,8 +26,8 @@ class AndroidImageUtil
     
 
     def paintBitmap(bitmap, originalBitmap, paint)
-        bitmap.eraseColor(Color::TRANSPARENT)
-        canvas = Canvas.new()
+        bitmap.eraseColor(::Android::Graphics::Color::TRANSPARENT)
+        canvas = ::Android::Graphics::Canvas.new()
         canvas.setBitmap(bitmap)
         canvas.drawBitmap(originalBitmap, 0.0, 0.0, paint)
     end
@@ -34,7 +35,7 @@ class AndroidImageUtil
 
     def paint(image, originalImage, paint)
         androidImage = image
-        androidImage.getBitmap().eraseColor(Color::TRANSPARENT)
+        androidImage.getBitmap().eraseColor(::Android::Graphics::Color::TRANSPARENT)
         canvas = androidImage.getCanvas()
         originalAndroidImage = originalImage
         canvas.drawBitmap(originalAndroidImage.getBitmap(), 0.0, 0.0, paint)
@@ -43,7 +44,7 @@ class AndroidImageUtil
 
     def rotate(image, originalImage, matrix, paint)
         androidImage = image
-        androidImage.getBitmap().eraseColor(Color::TRANSPARENT)
+        androidImage.getBitmap().eraseColor(::Android::Graphics::Color::TRANSPARENT)
         canvas = androidImage.getCanvas()
         canvas.concat(matrix)
         originalAndroidImage = originalImage
@@ -51,22 +52,49 @@ class AndroidImageUtil
     end
 
     def self.instance()
+        AndroidImageUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AndroidImageUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AndroidImageUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AndroidImageUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "android/graphics/Bitmap"
-require "android/graphics/Canvas"
-require "android/graphics/Color"
-require "android/graphics/Matrix"
-require "android/graphics/Paint"
-require "org/microemu/android/device/AndroidImageInterface"
+module ::Android; module Graphics; autoload :Bitmap, "android/graphics/Bitmap" unless const_defined?(:Bitmap, false); end; end
+module ::Android; module Graphics; autoload :Canvas, "android/graphics/Canvas" unless const_defined?(:Canvas, false); end; end
+module ::Android; module Graphics; autoload :Color, "android/graphics/Color" unless const_defined?(:Color, false); end; end
+module ::Android; module Graphics; autoload :Matrix, "android/graphics/Matrix" unless const_defined?(:Matrix, false); end; end
+module ::Android; module Graphics; autoload :Paint, "android/graphics/Paint" unless const_defined?(:Paint, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Microemu; module Android; module Device; autoload :AndroidImageInterface, "org/microemu/android/device/AndroidImageInterface" unless const_defined?(:AndroidImageInterface, false); end; end; end; end
 
-class AndroidImageUtil
-    @@instance = AndroidImageUtil.new()
+begin
+    AndroidImageUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

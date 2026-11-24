@@ -14,22 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/VectorAnimation"
+
+module ::Org; module Allbinary; module Animation
 
 class ColorLessVectorAnimation < VectorAnimation
     
 
     def initialize(currentPoints, animationBehavior)
-        super(currentPoints, BasicColorFactory.getInstance().WHITE, animationBehavior)
+        super(currentPoints, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE, animationBehavior)
     end
     
 
     def paintXY(graphics, x, y)
         self.paintVectors(graphics, x, y)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false)
+
+end; end; end
 

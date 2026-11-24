@@ -15,6 +15,8 @@
 # package javax.microedition.lcdui
 
 
+module ::Javax; module Microedition; module Lcdui
+
 class NullImage
 
     def self.java_static_fields
@@ -39,11 +41,13 @@ class NullImage
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
+autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false)
 
 begin
     NullImage.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

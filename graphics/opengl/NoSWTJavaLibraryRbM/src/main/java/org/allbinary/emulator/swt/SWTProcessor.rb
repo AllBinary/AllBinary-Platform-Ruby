@@ -15,15 +15,17 @@
 # package org.allbinary.emulator.swt
 
 
+module ::Org; module Allbinary; module Emulator; module Swt
+
 class SWTProcessor
     attr_accessor :runnable
 
-    def initialize_fields
-        @runnable = NullRunnable.getInstance()
+    def jfields_org_allbinary_emulator_swt_SWTProcessor
+        @runnable = ::Org::Allbinary::ThreadPackage::NullRunnable.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_emulator_swt_SWTProcessor
     end
     
 
@@ -67,8 +69,8 @@ class SWTProcessor
     end
 end
 
-autoload :Display, "org/eclipse/swt/widgets/Display"
-autoload :NullRunnable, "org/allbinary/thread/NullRunnable"
+module ::Org; module Eclipse; module Swt; module Widgets; autoload :Display, "org/eclipse/swt/widgets/Display" unless const_defined?(:Display, false); end; end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :NullRunnable, "org/allbinary/thread/NullRunnable" unless const_defined?(:NullRunnable, false); end; end; end
 require "java/lang/Runnable"
 
 begin
@@ -76,4 +78,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

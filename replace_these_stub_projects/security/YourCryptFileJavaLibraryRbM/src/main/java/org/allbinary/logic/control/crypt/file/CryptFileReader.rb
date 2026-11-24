@@ -2,7 +2,8 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.control.crypt.file
 
-# require "java/io/InputStream"
+
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Crypt; module FilePackage
 
 class CryptFileReader
     
@@ -23,5 +24,8 @@ class CryptFileReader
     end
 end
 
-require "org/allbinary/logic/io/path/AbPath"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

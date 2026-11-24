@@ -3,6 +3,8 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class PGUtil
     
 
@@ -32,17 +34,43 @@ class PGUtil
     end
 
     def self.instance()
+        PGUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PGUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PGUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PGUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/animation/FixedPoint"
+autoload :FixedPoint, "org/allbinary/animation/FixedPoint" unless const_defined?(:FixedPoint, false)
 
-class PGUtil
-    @@instance = PGUtil.new()
+begin
+    PGUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.displayable.screen
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen
+
 class DisplayPointScalar
     
 
@@ -72,11 +74,13 @@ class DisplayPointScalar
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
 
 begin
     DisplayPointScalar.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

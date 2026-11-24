@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 #NoPlatform
 class LogFormatUtil
     
@@ -73,17 +75,19 @@ class LogFormatUtil
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :ExceptionUtil, "org/allbinary/logic/java/exception/ExceptionUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :TimeStampUtil, "org/allbinary/time/TimeStampUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module ExceptionPackage; autoload :ExceptionUtil, "org/allbinary/logic/java/exception/ExceptionUtil" unless const_defined?(:ExceptionUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeStampUtil, "org/allbinary/time/TimeStampUtil" unless const_defined?(:TimeStampUtil, false); end; end; end
 
 begin
     LogFormatUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,15 +15,17 @@
 # package org.allbinary.graphics.form.item
 
 
+module ::Org; module Allbinary; module Graphics; module Form; module Item
+
 class CustomItemUtil
     attr_accessor :CUSTOM_ITEM_ARRAY
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_form_item_CustomItemUtil
         @CUSTOM_ITEM_ARRAY = Array.new(0, nil)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_form_item_CustomItemUtil
     end
     
 
@@ -62,11 +64,13 @@ class CustomItemUtil
     end
 end
 
-autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false)
 
 begin
     CustomItemUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

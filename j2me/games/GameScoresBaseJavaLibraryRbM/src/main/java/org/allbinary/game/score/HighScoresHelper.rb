@@ -14,26 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/HighScoresHelperBase"
+
+module ::Org; module Allbinary; module Game; module Score
 
 class HighScoresHelper < HighScoresHelperBase
     attr_accessor :circularIndexUtil, :lastIndex
 
-    def initialize_fields
-        @circularIndexUtil = CircularIndexUtil.createInstanceAt(0, 0)
+    def jfields_org_allbinary_game_score_HighScoresHelper
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstanceAt(0, 0)
         @lastIndex = -1
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_score_HighScoresHelper
     end
     
 
     def setHighScoresArray(highScoresArrayP)
-        super(highScoresArrayP)
+        HighScoresHelper.superclass.java_super_method(:setHighScoresArray, 1).bind(self).call(highScoresArrayP)
         @circularIndexUtil.setSize(@highScoresArrayP.length)
     end
+    java_overload :setHighScoresArray, 1
     
 
     def getNextHighScores()
@@ -47,6 +51,7 @@ class HighScoresHelper < HighScoresHelperBase
         @lastIndex = @circularIndexUtil.getIndex()
         return highScores
     end
+    java_overload :getNextHighScores, 0
     
 
     def isAnyHighScores()
@@ -63,8 +68,11 @@ class HighScoresHelper < HighScoresHelperBase
         end
         return anyScores
     end
+    java_overload :isAnyHighScores, 0
 end
 
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :HighScores, "org/allbinary/game/score/HighScores"
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false)
+
+end; end; end; end
 

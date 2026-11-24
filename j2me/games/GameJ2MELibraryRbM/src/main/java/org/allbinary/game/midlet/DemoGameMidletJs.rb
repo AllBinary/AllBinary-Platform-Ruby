@@ -15,6 +15,8 @@
 # package org.allbinary.game.midlet
 
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 module DemoGameMidletJs
     
 
@@ -25,5 +27,7 @@ module DemoGameMidletJs
     end
 end
 
-autoload :GameCanvasRunnableInterface, "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface"
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas; autoload :GameCanvasRunnableInterface, "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface" unless const_defined?(:GameCanvasRunnableInterface, false); end; end; end; end; end
+
+end; end; end; end
 

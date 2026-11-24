@@ -15,6 +15,8 @@
 # package org.allbinary.ai
 
 
+module ::Org; module Allbinary; module Ai
+
 module ArtificialIntelligenceFactoryInterface
     
 
@@ -25,5 +27,7 @@ module ArtificialIntelligenceFactoryInterface
     end
 end
 
-autoload :ArtificialIntelligence, "org/allbinary/ai/ArtificialIntelligence"
+autoload :ArtificialIntelligence, "org/allbinary/ai/ArtificialIntelligence" unless const_defined?(:ArtificialIntelligence, false)
+
+end; end; end
 

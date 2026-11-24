@@ -3,6 +3,8 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class PolygonRasterizer
     
 
@@ -14,9 +16,9 @@ class PolygonRasterizer
     def getPixelBuffer(svgPath, pathX, pathY, pixelBuffer, width, height)
         pointCount = PathParser.parsePath(svgPath, pathX, pathY, pathX.length)
         (0...pixelBuffer.length).each do |i|
-            pixelBuffer[i] = 0xFFFFFFFF
+            pixelBuffer[i] = (0xFFFFFFFF - 0x100000000)
         end
-        PolygonRasterizer.getInstance().fillPolygon(pathX, pathY, pointCount, pixelBuffer, width, height, 0xFFFF00FF)
+        PolygonRasterizer.getInstance().fillPolygon(pathX, pathY, pointCount, pixelBuffer, width, height, (0xFFFF00FF - 0x100000000))
         return pixelBuffer
     end
     
@@ -26,8 +28,8 @@ class PolygonRasterizer
             return
         end
         fixedPoint = FixedPoint.getInstance()
-        x = Array.new(numPoints, 0)
-        y = Array.new(numPoints, 0)
+        x = (Array.new(numPoints, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        y = (Array.new(numPoints, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         minY = height
         maxY = 0
         (0...numPoints).each do |i|
@@ -46,7 +48,7 @@ class PolygonRasterizer
         if maxY >= height
             maxY = height - 1
         end
-        scanlineX = Array.new(numPoints, 0)
+        scanlineX = (Array.new(numPoints, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         (minY..maxY).each do |scanY|
             intersectCount = 0
             (0...numPoints).each do |i|
@@ -95,26 +97,52 @@ class PolygonRasterizer
     def main(args)
         width = 100
         height = 100
-        pathX = Array.new(200, 0)
-        pathY = Array.new(200, 0)
-        pixelBuffer = Array.new(width * height, 0)
+        pathX = (Array.new(200, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        pathY = (Array.new(200, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        pixelBuffer = (Array.new(width * height, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         svgPath = "M 32.139812,81.554575 14.450128,74.294372 V 50.000034 25.705697 l 17.73231,-7.268329 C 41.935209,14.439788 49.953112,11.168898 50,11.168723 c 0.04689,-1.74e-4 8.064791,3.270238 17.817562,7.267583 l 17.73231,7.267899 V 50 74.295795 l -17.73231,7.2679 c -9.752771,3.997344 -17.789855,7.264116 -17.860188,7.259492 -0.07033,-0.0046 -8.088235,-3.275499 -17.817562,-7.268612 z"
         PolygonRasterizer.getInstance().getPixelBuffer(svgPath, pathX, pathY, pixelBuffer, width, height)
     end
 
     def self.instance()
+        PolygonRasterizer.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PolygonRasterizer.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PolygonRasterizer.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PolygonRasterizer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/animation/FixedPoint"
-require "org/allbinary/animation/PathParser"
+autoload :FixedPoint, "org/allbinary/animation/FixedPoint" unless const_defined?(:FixedPoint, false)
+autoload :PathParser, "org/allbinary/animation/PathParser" unless const_defined?(:PathParser, false)
 
-class PolygonRasterizer
-    @@instance = PolygonRasterizer.new()
+begin
+    PolygonRasterizer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

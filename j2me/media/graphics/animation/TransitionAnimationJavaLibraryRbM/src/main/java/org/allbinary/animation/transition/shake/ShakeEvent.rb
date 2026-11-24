@@ -15,10 +15,14 @@
 # package org.allbinary.animation.transition.shake
 
 
+module ::Org; module Allbinary; module Animation; module Transition; module Shake
+
 class ShakeEvent
     
 
     def initialize()
     end
 end
+
+end; end; end; end; end
 

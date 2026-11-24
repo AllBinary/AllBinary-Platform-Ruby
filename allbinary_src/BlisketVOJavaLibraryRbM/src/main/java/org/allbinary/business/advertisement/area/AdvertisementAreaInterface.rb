@@ -15,58 +15,72 @@
 # package org.allbinary.business.advertisement.area
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Area
+
 module AdvertisementAreaInterface
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getStoreName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getDescription()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getConstraints()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getCampaign()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setName(name)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setStoreName(storeName)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setDescription(description)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setConstraints(advertisementConstraintsInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setCampaign(campaign)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :AdvertisementAreaConstraintsInterface, "org/allbinary/business/advertisement/area/AdvertisementAreaConstraintsInterface"
+autoload :AdvertisementAreaConstraintsInterface, "org/allbinary/business/advertisement/area/AdvertisementAreaConstraintsInterface" unless const_defined?(:AdvertisementAreaConstraintsInterface, false)
+
+end; end; end; end; end
 

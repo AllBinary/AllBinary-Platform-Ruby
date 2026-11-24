@@ -15,20 +15,24 @@
 # package org.allbinary.business.user.commerce.inventory.item
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item
+
 class ItemInfo
     attr_accessor :type, :view, :data, :creationDate, :lastModified
 
-    def initialize_fields
-        @type = nil
-        @view = nil
-        @data = nil
-        @creationDate = nil
-        @lastModified = nil
+    def jfields_org_allbinary_business_user_commerce_inventory_item_ItemInfo
+        @type = nil unless instance_variable_defined?(:@type)
+        @view = nil unless instance_variable_defined?(:@view)
+        @data = nil unless instance_variable_defined?(:@data)
+        @creationDate = nil unless instance_variable_defined?(:@creationDate)
+        @lastModified = nil unless instance_variable_defined?(:@lastModified)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_inventory_item_ItemInfo
     end
 end
+
+end; end; end; end; end; end; end
 

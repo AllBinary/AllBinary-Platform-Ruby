@@ -15,17 +15,19 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 class HighScoreCommands
     attr_accessor :DISPLAY, :PERSONAL, :WORLD
 
-    def initialize_fields
-        @DISPLAY = Command.new("Scores", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1)
-        @PERSONAL = Command.new("Personal", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1)
-        @WORLD = Command.new("World", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 1)
+    def jfields_org_allbinary_game_score_HighScoreCommands
+        @DISPLAY = ::Javax::Microedition::Lcdui::Command.new("Scores", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::SCREEN, 1)
+        @PERSONAL = ::Javax::Microedition::Lcdui::Command.new("Personal", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::SCREEN, 1)
+        @WORLD = ::Javax::Microedition::Lcdui::Command.new("World", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::SCREEN, 1)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_score_HighScoreCommands
     end
     
 
@@ -64,12 +66,14 @@ class HighScoreCommands
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     HighScoreCommands.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

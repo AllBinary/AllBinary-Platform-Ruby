@@ -14,8 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison.motion
 
-# require "java/awt"
+require "java/lang/JavaOverload"
+# require "java/awt/Rectangle"
 require "org/allbinary/media/image/comparison/motion/MotionRectangles"
+
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
 
 class AllMotionRectangles < MotionRectangles
     
@@ -35,6 +38,7 @@ class AllMotionRectangles < MotionRectangles
             self.addPixelDeltaToAMotionRectangle(pixelDelta)
         end
     end
+    java_overload :createMotionRectangles, 1
     
 
     # throws Exception
@@ -58,6 +62,7 @@ class AllMotionRectangles < MotionRectangles
         end
         return false
     end
+    java_overload :addPixelDeltaToExistingMotionRectangle, 1
     
 
     # throws Exception
@@ -69,6 +74,7 @@ class AllMotionRectangles < MotionRectangles
             self.getVector().add(motionRectangle)
         end
     end
+    java_overload :addPixelDeltaToAMotionRectangle, 1
     
 
     # throws Exception
@@ -85,6 +91,7 @@ class AllMotionRectangles < MotionRectangles
         end
         return false
     end
+    java_overload :shouldPixelDeltaPartOfMotionRectangle, 2
     
 
     # throws Exception
@@ -98,6 +105,7 @@ class AllMotionRectangles < MotionRectangles
         end
         return false
     end
+    java_overload :isPixelDeltaLikelyPartOfMotionRectangle, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -120,15 +128,17 @@ class AllMotionRectangles < MotionRectangles
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
-autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta"
-autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult" unless const_defined?(:ImageComparisonResult, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Pixel; autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta" unless const_defined?(:PixelDelta, false); end; end; end; end; end; end
+autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle" unless const_defined?(:MotionRectangle, false)
 
 begin
     AllMotionRectangles.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

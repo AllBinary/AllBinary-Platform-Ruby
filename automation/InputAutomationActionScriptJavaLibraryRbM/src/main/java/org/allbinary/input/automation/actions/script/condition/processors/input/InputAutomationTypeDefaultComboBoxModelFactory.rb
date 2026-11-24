@@ -15,7 +15,9 @@
 # package org.allbinary.input.automation.actions.script.condition.processors.input
 
 # require "java/util/Set"
-# require "javax/swing"
+# require "javax/swing/DefaultComboBoxModel"
+
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition; module Processors; module Input
 
 class InputAutomationTypeDefaultComboBoxModelFactory
     
@@ -27,7 +29,7 @@ class InputAutomationTypeDefaultComboBoxModelFactory
     # throws Exception
     def self.getInstance()
         defaultComboBoxModel = DefaultComboBoxModel.new()
-        set = InputRobotFactory.getInstance().get().keySet()
+        set = ::Org::Allbinary::Input::Automation::Robot::InputRobotFactory.getInstance().get().keySet()
         nameArray = set.toArray()
         size = nameArray.length
         (0...size).each do |index|
@@ -37,5 +39,7 @@ class InputAutomationTypeDefaultComboBoxModelFactory
     end
 end
 
-autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory" unless const_defined?(:InputRobotFactory, false); end; end; end; end; end
+
+end; end; end; end; end; end; end; end; end
 

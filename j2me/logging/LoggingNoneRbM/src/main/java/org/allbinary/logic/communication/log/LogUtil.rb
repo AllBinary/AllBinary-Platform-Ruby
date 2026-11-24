@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 #ActualPlatform
 class LogUtil
     
@@ -74,11 +76,13 @@ class LogUtil
     end
 end
 
-autoload :Log, "org/allbinary/logic/communication/log/Log"
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
 
 begin
     LogUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

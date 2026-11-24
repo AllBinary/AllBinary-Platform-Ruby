@@ -14,24 +14,35 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.game
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/automation/module/game/MeteredGameObjectInterface"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game
 
 module HitPointGameObjectInterface
     include MeteredGameObjectInterface
     
 
     def isMoreThan(aFloat)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isMoreThan, 1
     
 
     def isCloseDeath()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isCloseDeath, 0
     
 
     def isDamaged()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isDamaged, 0
 end
+
+end; end; end; end; end; end
 

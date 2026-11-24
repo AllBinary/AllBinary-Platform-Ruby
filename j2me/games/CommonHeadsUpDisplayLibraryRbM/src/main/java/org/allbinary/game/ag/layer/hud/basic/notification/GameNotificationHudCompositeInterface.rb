@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.layer.hud.basic.notification
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Hud; module Basic; module Notification
+
 module GameNotificationHudCompositeInterface
     
 
@@ -24,5 +26,7 @@ module GameNotificationHudCompositeInterface
     end
 end
 
-autoload :GameNotificationHud, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotificationHud"
+autoload :GameNotificationHud, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotificationHud" unless const_defined?(:GameNotificationHud, false)
+
+end; end; end; end; end; end; end; end
 

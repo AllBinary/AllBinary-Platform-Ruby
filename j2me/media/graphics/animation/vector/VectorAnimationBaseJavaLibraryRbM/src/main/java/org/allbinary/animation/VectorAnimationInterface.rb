@@ -14,17 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/color/ColorCompositeInterface"
 require "org/allbinary/animation/IndexedAnimationInterface"
 
+module ::Org; module Allbinary; module Animation
+
 module VectorAnimationInterface
     include IndexedAnimationInterface
-    include ColorCompositeInterface
+    include ::Org::Allbinary::Graphics::Color::ColorCompositeInterface
     
 
     def getPoints(frame)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getPoints, 1
 end
+
+end; end; end
 

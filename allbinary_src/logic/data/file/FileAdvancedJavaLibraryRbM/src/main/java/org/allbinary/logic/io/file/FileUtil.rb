@@ -15,19 +15,21 @@
 # package org.allbinary.logic.io.file
 
 require "java/lang/Object"
-# require "java/io/InputStream"
-# require "java/io/OutputStream"
+require "java/lang/JavaClass"
+# require "java/io/File"
+
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
 
 #data/init/views/TestStore/template/type/genericTemplateObjectConfig.xml
 class FileUtil
     attr_accessor :logUtil, :directory, :logConfigTypeFactory, :commonStrings, :streamUtil, :WRITE_LABEL, :DATA_LABEL, :WRITE_METHOD
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @directory = Directory.getInstance()
-        @logConfigTypeFactory = LogConfigTypeFactory.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @streamUtil = StreamUtil.getInstance()
+    def jfields_org_allbinary_logic_io_file_FileUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @directory = ::Org::Allbinary::Logic::Io::FilePackage::Directory::Directory.getInstance()
+        @logConfigTypeFactory = ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @streamUtil = ::Org::Allbinary::Logic::Io::StreamUtil.getInstance()
         @WRITE_LABEL = "Write file: "
         @DATA_LABEL = " data: "
         @WRITE_METHOD = "write"
@@ -40,49 +42,47 @@ class FileUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_io_file_FileUtil
     end
     
 
     # throws Exception
-    def write(inputStream, file)
-        dataOutputStream = DataOutputStreamFactory.getInstance().getInstanceForAbFile(file)
+    def write_j2_1(inputStream, file)
+        dataOutputStream = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstanceForAbFile(file)
         self.write(inputStream, dataOutputStream)
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def write(inputStream, dataOutputStream)
+    def write_j2_2(inputStream, dataOutputStream)
         begin
-            dataOutputStream = StreamUtil.getInstance().get(inputStream, dataOutputStream, Array.new(16384, 0))
+            dataOutputStream = ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().get(inputStream, dataOutputStream, (Array.new(16384, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) })
             dataOutputStream.flush()
         ensure
-            StreamUtil.getInstance().close(dataOutputStream)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(dataOutputStream)
         end
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def write(inputStream, dataOutputStream, buffer)
+    def write_j3(inputStream, dataOutputStream, buffer)
         begin
-            dataOutputStream = StreamUtil.getInstance().get(inputStream, dataOutputStream, buffer)
+            dataOutputStream = ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().get(inputStream, dataOutputStream, buffer)
             dataOutputStream.flush()
         ensure
-            StreamUtil.getInstance().close(dataOutputStream)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(dataOutputStream)
         end
     end
     
 
     # throws Exception
-    def copy(dataInputStream, dataOutputStream)
+    def copy_j2_1(dataInputStream, dataOutputStream)
         begin
-            dataOutputStream = StreamUtil.getInstance().get(dataInputStream, dataOutputStream, Array.new(16384, 0))
+            dataOutputStream = ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().get(dataInputStream, dataOutputStream, (Array.new(16384, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) })
             dataOutputStream.flush()
         ensure
-            StreamUtil.getInstance().close(dataOutputStream)
-            StreamUtil.getInstance().close(dataInputStream)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(dataOutputStream)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(dataInputStream)
         end
     end
     
@@ -92,34 +92,33 @@ class FileUtil
         beginIndex = file.getPath().indexOf(cloud) + cloud.length
         endIndex = file.getPath().indexOf(file.getName())
         fixedPathString = (realPath.toFileSystemString()).to_s + file.getPath().substring(beginIndex, endIndex)
-        fixedPath = AbPath.new(fixedPathString, StringUtil.getInstance().EMPTY_STRING)
+        fixedPath = ::Org::Allbinary::Logic::Io::Path::AbPath.new(fixedPathString, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         @directory.create(fixedPath)
         string = fixedPath.toFileSystemString()
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
             @logUtil.putF(string, self, "fixPath")
         end
-        outPath = AbPath.new(string, file.getName())
+        outPath = ::Org::Allbinary::Logic::Io::Path::AbPath.new(string, file.getName())
         return outPath
     end
     
 
     # throws Exception
-    def copyToCloud(file, path, realPath, cloud)
+    def copyToCloud_j4_1(file, path, realPath, cloud)
         self.copyToCloud(file, path, realPath, cloud, false, false)
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def copyToCloud(file, path, realPath, cloud, overwriteNewer, overwriteAll)
+    def copyToCloud_j6(file, path, realPath, cloud, overwriteNewer, overwriteAll)
         begin
             outPath = self.fixPath(file, path, realPath, cloud)
             outFile = AbFile.createAbFileFromAbPath(outPath)
             if !self.copyPrepare(file, outFile, overwriteNewer, overwriteAll)
                 return
             else
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
-                    stringBuffer = StringMaker.new()
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
+                    stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     stringBuffer.append("Out File: ")
                     stringBuffer.append(outFile.getPath())
                     stringBuffer.append(" In File: ")
@@ -128,12 +127,12 @@ class FileUtil
                     @logUtil.putF(stringBuffer.to_s, FileUtil.getInstance(), "copyToCloud")
                 end
             end
-            dataOutputStream = DataOutputStreamFactory.getInstance().getInstanceForAbFile(outFile)
-            fileInputStream = AbFileLocalInputStream.new(file)
+            dataOutputStream = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstanceForAbFile(outFile)
+            fileInputStream = ::Org::Allbinary::Logic::Io::AbFileLocalInputStream.new(file)
             self.copy(fileInputStream, dataOutputStream)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILEERROR)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILEERROR)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Error Copying File File: ")
                 stringBuffer.append(file.to_s)
                 stringBuffer.append(" to cloud.")
@@ -145,21 +144,19 @@ class FileUtil
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def copyToCloud(file, outFile)
+    def copyToCloud_j2(file, outFile)
         self.copyToCloud(file, outFile, false, false)
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def copyToCloud(file, outFile, overwriteNewer, overwriteAll)
+    def copyToCloud_j4_2(file, outFile, overwriteNewer, overwriteAll)
         begin
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             if !self.copyPrepare(file, outFile, overwriteNewer, overwriteAll)
                 return
             else
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
                     stringBuffer.delete(0, stringBuffer.length())
                     stringBuffer.append("Out File: ")
                     stringBuffer.append(outFile.getPath())
@@ -169,12 +166,12 @@ class FileUtil
                     @logUtil.putF(stringBuffer.to_s, FileUtil.getInstance(), "copyToCloud")
                 end
             end
-            dataOutputStream = DataOutputStreamFactory.getInstance().getInstanceForAbFile(outFile)
-            fileInputStream = AbFileLocalInputStream.new(file)
+            dataOutputStream = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstanceForAbFile(outFile)
+            fileInputStream = ::Org::Allbinary::Logic::Io::AbFileLocalInputStream.new(file)
             self.copy(fileInputStream, dataOutputStream)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILEERROR)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILEERROR)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Error Copying File File: ")
                 stringBuffer.append(file.to_s)
                 stringBuffer.append(" to cloud.")
@@ -183,14 +180,26 @@ class FileUtil
             raise e
         end
     end
+
+    def copyToCloud(*java_overload_args)
+        return copyToCloud_j4(*java_overload_args) if java_overload_args.length == 4
+        return copyToCloud_j6(*java_overload_args) if java_overload_args.length == 6
+        return copyToCloud_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method copyToCloud takes #{java_overload_args.length} arguments"
+    end
+
+    def copyToCloud_j4(*java_overload_args)
+        return copyToCloud_j4_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(AbFile)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::Org::Allbinary::Logic::Io::Path::AbPath)) && (java_overload_args[2].nil? || java_overload_args[2].is_a?(::Org::Allbinary::Logic::Io::Path::AbPath)) && (java_overload_args[3].nil? || java_overload_args[3].is_a?(::String))
+        return copyToCloud_j4_2(*java_overload_args)
+    end
     
 
     # throws Exception
     def copyPrepare(fromFile, toFile, overwriteNewer, overwriteAll)
         if toFile.exists()
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             if overwriteAll
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
                     stringBuffer.delete(0, stringBuffer.length())
                     stringBuffer.append("Overwriting File: ")
                     stringBuffer.append(toFile.getPath())
@@ -199,10 +208,10 @@ class FileUtil
                 toFile.delete()
                 toFile.createNewFile()
             elsif toFile.lastModified() < fromFile.lastModified() && overwriteNewer
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
                     stringBuffer.delete(0, stringBuffer.length())
                     stringBuffer.append("Newer by: ")
-                    stringBuffer.appendlong((fromFile.lastModified() - toFile.lastModified()).to_i)
+                    stringBuffer.appendlong(((fromFile.lastModified() - toFile.lastModified()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
                     stringBuffer.append("ms ")
                     stringBuffer.append("Copying File: ")
                     stringBuffer.append(toFile.getPath())
@@ -211,7 +220,7 @@ class FileUtil
                 toFile.delete()
                 toFile.createNewFile()
             else
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
                     stringBuffer.delete(0, stringBuffer.length())
                     stringBuffer.append("File Already Exists")
                     if overwriteNewer
@@ -219,7 +228,7 @@ class FileUtil
                     else
                         stringBuffer.append(" And Not A In Overwrite Mode")
                     end
-                    stringBuffer.append(CommonLabels.getInstance().COLON_SEP)
+                    stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().COLON_SEP)
                     stringBuffer.append(toFile.getPath())
                     @logUtil.putF(stringBuffer.to_s, FileUtil.getInstance(), "copyFile")
                 end
@@ -233,17 +242,16 @@ class FileUtil
     
 
     # throws Exception
-    def copyFile(fromFile, toFile)
+    def copyFile_j2(fromFile, toFile)
         self.copyFile(fromFile, toFile, false, false)
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def copyFile(fromFile, toFile, overwriteNewer, overwriteAll)
+    def copyFile_j4(fromFile, toFile, overwriteNewer, overwriteAll)
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Copying ")
                 stringBuffer.appendlong(fromFile.length())
                 stringBuffer.append(" bytes from File: ")
@@ -255,12 +263,12 @@ class FileUtil
             if !self.copyPrepare(fromFile, toFile, overwriteNewer, overwriteAll)
                 return
             end
-            dataOutputStream = DataOutputStreamFactory.getInstance().getInstanceForAbFile(toFile)
-            fileInputStream = AbFileInputStream.new(fromFile)
+            dataOutputStream = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstanceForAbFile(toFile)
+            fileInputStream = ::Org::Allbinary::Logic::Io::AbFileInputStream.createFromAbFile(fromFile)
             self.copy(fileInputStream, dataOutputStream)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILEERROR)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILEERROR)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Error Copying File fromFile: ")
                 stringBuffer.append(fromFile.to_s)
                 stringBuffer.append(" to: ")
@@ -270,13 +278,19 @@ class FileUtil
             raise e
         end
     end
+
+    def copyFile(*java_overload_args)
+        return copyFile_j2(*java_overload_args) if java_overload_args.length == 2
+        return copyFile_j4(*java_overload_args) if java_overload_args.length == 4
+        raise ArgumentError, "No method copyFile takes #{java_overload_args.length} arguments"
+    end
     
 
     def self.getNewDirectory(fromFile)
         newDirectory = fromFile.getPath()
         separatorChar = FilePathData.getInstance().PATH_START
-        if AbIOSystem.getInstance().isType("com.vobject.appengine.java.io")
-            separatorChar = AbPathData.getInstance().SEPARATOR
+        if ::Org::Allbinary::Logic::Io::AbIOSystem.getInstance().isType("com.vobject.appengine.java.io")
+            separatorChar = ::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATOR
         end
         lastIndex = (newDirectory.rindex(separatorChar) || -1)
         if lastIndex >= newDirectory.length
@@ -295,7 +309,7 @@ class FileUtil
         end
         fileList = @directory.search(file, true)
         size = fileList.size()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Searched: ")
         stringBuffer.append(file.getPath())
         stringBuffer.append(" Total: ")
@@ -310,7 +324,7 @@ class FileUtil
         stringBuffer.appendint(start)
         stringBuffer.append(" - ")
         stringBuffer.appendint(end_)
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
             @logUtil.putF(stringBuffer.to_s, FileUtil.getInstance(), "copySomeFilesToDirectory()")
         end
         nextFile = nil
@@ -318,13 +332,13 @@ class FileUtil
             nextFile = fileList.get(index)
             if nextFile.isDirectory()
             else
-                path = AbPath.new(nextFile.getPath(), StringUtil.getInstance().EMPTY_STRING).getPath()
+                path = ::Org::Allbinary::Logic::Io::Path::AbPath.new(nextFile.getPath(), ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING).getPath()
                 beginIndex = fromDirectoryAbPath.getPath().length()
-                if path.indexOf(URLGLOBALS.getWebappPath()) < 0
-                    beginIndex -= AbPath.new(URLGLOBALS.getWebappPath(), StringUtil.getInstance().EMPTY_STRING).getPath().length()
+                if path.indexOf(::Org::Allbinary::Globals::URLGLOBALS.getWebappPath()) < 0
+                    beginIndex -= ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getWebappPath(), ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING).getPath().length()
                 end
                 newPath = (toDirectoryAbPath.toFileSystemString()).to_s + path.substring(beginIndex)
-                toFile = AbFile.createAbFileFromAbPath(AbPath.new(newPath, StringUtil.getInstance().EMPTY_STRING))
+                toFile = AbFile.createAbFileFromAbPath(::Org::Allbinary::Logic::Io::Path::AbPath.new(newPath, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING))
                 self.copyFile(nextFile, toFile, overwriteNewer, overwriteAll)
             end
         end
@@ -334,8 +348,8 @@ class FileUtil
     # throws Exception
     def copyDirectory(fromFile, to)
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Copying Directory from: ")
                 stringBuffer.append(fromFile.getPath())
                 stringBuffer.append(" to: ")
@@ -343,14 +357,14 @@ class FileUtil
                 @logUtil.putF(stringBuffer.to_s, FileUtil.getInstance(), "copyDirectory")
             end
             newDirectory = FileUtil.getNewDirectory(fromFile)
-            newDirectoryAbPath = AbPath.new((to.getPath() + AbPathData.getInstance().SEPARATOR).to_s + newDirectory, StringUtil.getInstance().EMPTY_STRING)
+            newDirectoryAbPath = ::Org::Allbinary::Logic::Io::Path::AbPath.new((to.getPath() + ::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATOR).to_s + newDirectory, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
             if !@directory.create(newDirectoryAbPath)
                 raise StandardError.new("Failed to create directory: " + (newDirectoryAbPath).to_s)
             end
             fileArray = FileWrapperUtil.wrapFiles(fromFile.listFiles())
             size = fileArray.length
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Copying ")
                 stringBuffer.appendint(size)
                 stringBuffer.append(" files from: ")
@@ -371,8 +385,8 @@ class FileUtil
                 end
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILEERROR)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILEERROR)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Error Copying Directory fromFile: ")
                 stringBuffer.append(fromFile.to_s)
                 stringBuffer.append(" to: ")
@@ -385,13 +399,12 @@ class FileUtil
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def copy(fromAbPath, to)
+    def copy_j2_2(fromAbPath, to)
         java_monitor.synchronize do
         _COPY = "copy"
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Copying AbPaths from: ")
                 stringBuffer.append(fromAbPath.to_s)
                 stringBuffer.append(" to: ")
@@ -410,8 +423,8 @@ class FileUtil
                 if toLocationFile.isDirectory()
                     file = AbFile.createAbFileWithChild(toLocationFile, fromLocationFile.getName())
                     self.copyFile(fromLocationFile, file)
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
-                        stringBuffer = StringMaker.new()
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
+                        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                         stringBuffer.append("Copied file=")
                         stringBuffer.append(fromLocationFile.getName())
                         stringBuffer.append(" from: ")
@@ -422,8 +435,8 @@ class FileUtil
                     end
                 else
                     self.copyFile(fromLocationFile, toLocationFile)
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
-                        stringBuffer = StringMaker.new()
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
+                        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                         stringBuffer.append("Copied file with new name ")
                         stringBuffer.append(" from: ")
                         stringBuffer.append(fromLocationFile.getPath())
@@ -433,8 +446,8 @@ class FileUtil
                     end
                 end
             elsif fromLocationFile.isDirectory() && toLocationFile.isDirectory()
-                if fromAbPath.toFileSystemString().charAt(fromAbPath.toFileSystemString().length() - 1) == java.io.File.separatorChar
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+                if fromAbPath.toFileSystemString().charAt(fromAbPath.toFileSystemString().length() - 1) == ::File::SEPARATOR
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
                         @logUtil.putF("Copying subdirectories", FileUtil.getInstance(), _COPY)
                     end
                     fileArray = FileWrapperUtil.wrapFiles(fromLocationFile.listFiles())
@@ -449,23 +462,23 @@ class FileUtil
                             raise StandardError.new("File Copy Error")
                         end
                     end
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
                         @logUtil.putF("Copied subdirectories", FileUtil.getInstance(), _COPY)
                     end
                 else
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
                         @logUtil.putF("Copyinhg directory", FileUtil.getInstance(), _COPY)
                     end
                     self.copyDirectory(fromLocationFile, toLocationFile)
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILE)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILE)
                         @logUtil.putF("Copied directory", FileUtil.getInstance(), _COPY)
                     end
                 end
             end
             return true
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(@logConfigTypeFactory.FILEERROR)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(@logConfigTypeFactory.FILEERROR)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Error Copying fromAbPath: ")
                 stringBuffer.append(fromAbPath.to_s)
                 stringBuffer.append(" to: ")
@@ -475,6 +488,16 @@ class FileUtil
             raise e
         end
         end
+    end
+
+    def copy(*java_overload_args)
+        return copy_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method copy takes #{java_overload_args.length} arguments"
+    end
+
+    def copy_j2(*java_overload_args)
+        return copy_j2_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::Allbinary::Logic::Io::AbFileInputStream)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::Org::Allbinary::Logic::Io::AbDataOutputStream))
+        return copy_j2_2(*java_overload_args)
     end
     
 
@@ -492,19 +515,30 @@ class FileUtil
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def write(filePath, string)
+    def write_j2_3(filePath, string)
         dataOutputStream = nil
         begin
-            PreLogUtil.put(StringMaker.new().append(@WRITE_LABEL).append(filePath).append(@DATA_LABEL).append(string).to_s, self, @WRITE_METHOD)
-            fileInputStreamFactory = FileStreamFactory.getInstance()
-            fileOutputStream = fileInputStreamFactory.getFileOutputStreamInstance(StringUtil.getInstance().EMPTY_STRING, filePath)
-            dataOutputStream = AbDataOutputStream.new(fileOutputStream)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@WRITE_LABEL).append(filePath).append(@DATA_LABEL).append(string).to_s, self, @WRITE_METHOD)
+            fileInputStreamFactory = ::Org::Allbinary::Logic::Io::FileStreamFactory.getInstance()
+            fileOutputStream = fileInputStreamFactory.getFileOutputStreamInstance(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, filePath)
+            dataOutputStream = ::Org::Allbinary::Logic::Io::AbDataOutputStream.new(fileOutputStream)
             dataOutputStream.write(string.bytes, 0, string.length)
             dataOutputStream.flush()
         ensure
-            StreamUtil.getInstance().close(dataOutputStream)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(dataOutputStream)
         end
+    end
+
+    def write(*java_overload_args)
+        return write_j2(*java_overload_args) if java_overload_args.length == 2
+        return write_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method write takes #{java_overload_args.length} arguments"
+    end
+
+    def write_j2(*java_overload_args)
+        return write_j2_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Java::Io::InputStream)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(AbFile))
+        return write_j2_2(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Java::Io::InputStream)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::Org::Allbinary::Logic::Io::AbDataOutputStream))
+        return write_j2_3(*java_overload_args)
     end
     
 
@@ -513,39 +547,68 @@ class FileUtil
     end
 
     def self.instance()
+        FileUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        FileUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = FileUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FileUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-require "org/allbinary/logic/io/AbDataOutputStream"
-require "org/allbinary/logic/io/AbFileInputStream"
-require "org/allbinary/logic/io/AbFileLocalInputStream"
-require "org/allbinary/logic/io/AbIOSystem"
-require "org/allbinary/logic/io/DataOutputStreamFactory"
-require "org/allbinary/logic/io/FileStreamFactory"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/FilePathData"
-require "org/allbinary/logic/io/file/FileUtil2"
-require "org/allbinary/logic/io/file/FileWrapperUtil"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Java; module Io; autoload :OutputStream, "java/io/OutputStream" unless const_defined?(:OutputStream, false); end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileLocalInputStream, "org/allbinary/logic/io/AbFileLocalInputStream" unless const_defined?(:AbFileLocalInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbIOSystem, "org/allbinary/logic/io/AbIOSystem" unless const_defined?(:AbIOSystem, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory" unless const_defined?(:DataOutputStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory" unless const_defined?(:FileStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil" unless const_defined?(:StreamUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :Directory, "org/allbinary/logic/io/file/directory/Directory" unless const_defined?(:Directory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false)
+autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData" unless const_defined?(:FilePathData, false)
+autoload :FileUtil2, "org/allbinary/logic/io/file/FileUtil2" unless const_defined?(:FileUtil2, false)
+autoload :FileWrapperUtil, "org/allbinary/logic/io/file/FileWrapperUtil" unless const_defined?(:FileWrapperUtil, false)
 
-class FileUtil
-    @@instance = FileUtil.new()
+begin
+    FileUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

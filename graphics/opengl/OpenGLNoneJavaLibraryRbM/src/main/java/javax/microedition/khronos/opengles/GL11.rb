@@ -2,10 +2,13 @@
 # frozen_string_literal: false
 # package javax.microedition.khronos.opengles
 
+require "java/lang/JavaOverload"
 # require "java/nio/Buffer"
 # require "java/nio/FloatBuffer"
 # require "java/nio/IntBuffer"
 require "javax/microedition/khronos/opengles/GL10"
+
+module ::Javax; module Microedition; module Khronos; module Opengles
 
 module GL11
     include GL10
@@ -15,30 +18,38 @@ module GL11
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glBindBuffer, 2
     
 
     def glBufferData(target, size, data, usage)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glBufferData, 4
     
 
     def glBufferSubData(target, offset, size, data)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glBufferSubData, 4
     
 
-    def glClipPlanef(plane, equation, offset)
+    def glClipPlanef_j3(plane, equation, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glClipPlanef(plane, equation)
+    def glClipPlanef_j2(plane, equation)
         return super if defined?(super)
         raise NotImplementedError
+    end
+
+    def glClipPlanef(*java_overload_args)
+        return glClipPlanef_j3(*java_overload_args) if java_overload_args.length == 3
+        return glClipPlanef_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method glClipPlanef takes #{java_overload_args.length} arguments"
     end
     
 
@@ -46,24 +57,31 @@ module GL11
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glColor4ub, 4
     
 
     def glColorPointer(size, type, stride, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glColorPointer, 4
     
 
-    def glDeleteBuffers(n, buffers, offset)
+    def glDeleteBuffers_j3(n, buffers, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glDeleteBuffers(n, buffers)
+    def glDeleteBuffers_j2(n, buffers)
         return super if defined?(super)
         raise NotImplementedError
+    end
+
+    def glDeleteBuffers(*java_overload_args)
+        return glDeleteBuffers_j3(*java_overload_args) if java_overload_args.length == 3
+        return glDeleteBuffers_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method glDeleteBuffers takes #{java_overload_args.length} arguments"
     end
     
 
@@ -71,122 +89,168 @@ module GL11
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glDrawElements, 4
     
 
-    def glGenBuffers(n, buffers, offset)
+    def glGenBuffers_j3(n, buffers, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glGenBuffers(n, buffers)
+    def glGenBuffers_j2(n, buffers)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glGenBuffers(*java_overload_args)
+        return glGenBuffers_j3(*java_overload_args) if java_overload_args.length == 3
+        return glGenBuffers_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method glGenBuffers takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glGetBufferParameteriv_j4(target, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    def glGetBufferParameteriv(target, pname, params, offset)
+    def glGetBufferParameteriv_j3(target, pname, params)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glGetBufferParameteriv(*java_overload_args)
+        return glGetBufferParameteriv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glGetBufferParameteriv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glGetBufferParameteriv takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glGetClipPlanef_j3(pname, eqn, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glGetBufferParameteriv(target, pname, params)
+    def glGetClipPlanef_j2(pname, eqn)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glGetClipPlanef(*java_overload_args)
+        return glGetClipPlanef_j3(*java_overload_args) if java_overload_args.length == 3
+        return glGetClipPlanef_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method glGetClipPlanef takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glGetFloatv_j3(pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    def glGetClipPlanef(pname, eqn, offset)
+    def glGetFloatv_j2(pname, params)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glGetFloatv(*java_overload_args)
+        return glGetFloatv_j3(*java_overload_args) if java_overload_args.length == 3
+        return glGetFloatv_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method glGetFloatv takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glGetLightfv_j4(light, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glGetClipPlanef(pname, eqn)
+    def glGetLightfv_j3(light, pname, params)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glGetLightfv(*java_overload_args)
+        return glGetLightfv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glGetLightfv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glGetLightfv takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glGetMaterialfv_j4(face, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    def glGetFloatv(pname, params, offset)
+    def glGetMaterialfv_j3(face, pname, params)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glGetMaterialfv(*java_overload_args)
+        return glGetMaterialfv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glGetMaterialfv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glGetMaterialfv takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glGetTexEnviv_j4(env, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glGetFloatv(pname, params)
+    def glGetTexEnviv_j3(env, pname, params)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glGetTexEnviv(*java_overload_args)
+        return glGetTexEnviv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glGetTexEnviv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glGetTexEnviv takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glGetTexParameterfv_j4(target, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    def glGetLightfv(light, pname, params, offset)
+    def glGetTexParameterfv_j3(target, pname, params)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glGetTexParameterfv(*java_overload_args)
+        return glGetTexParameterfv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glGetTexParameterfv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glGetTexParameterfv takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glGetTexParameteriv_j4(target, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glGetLightfv(light, pname, params)
+    def glGetTexParameteriv_j3(target, pname, params)
         return super if defined?(super)
         raise NotImplementedError
     end
-    
 
-    def glGetMaterialfv(face, pname, params, offset)
-        return super if defined?(super)
-        raise NotImplementedError
-    end
-    
-
-    # Java overloaded method: Ruby keeps the last definition
-    def glGetMaterialfv(face, pname, params)
-        return super if defined?(super)
-        raise NotImplementedError
-    end
-    
-
-    def glGetTexEnviv(env, pname, params, offset)
-        return super if defined?(super)
-        raise NotImplementedError
-    end
-    
-
-    # Java overloaded method: Ruby keeps the last definition
-    def glGetTexEnviv(env, pname, params)
-        return super if defined?(super)
-        raise NotImplementedError
-    end
-    
-
-    def glGetTexParameterfv(target, pname, params, offset)
-        return super if defined?(super)
-        raise NotImplementedError
-    end
-    
-
-    # Java overloaded method: Ruby keeps the last definition
-    def glGetTexParameterfv(target, pname, params)
-        return super if defined?(super)
-        raise NotImplementedError
-    end
-    
-
-    def glGetTexParameteriv(target, pname, params, offset)
-        return super if defined?(super)
-        raise NotImplementedError
-    end
-    
-
-    # Java overloaded method: Ruby keeps the last definition
-    def glGetTexParameteriv(target, pname, params)
-        return super if defined?(super)
-        raise NotImplementedError
+    def glGetTexParameteriv(*java_overload_args)
+        return glGetTexParameteriv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glGetTexParameteriv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glGetTexParameteriv takes #{java_overload_args.length} arguments"
     end
     
 
@@ -194,42 +258,52 @@ module GL11
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glIsBuffer, 1
     
 
     def glIsEnabled(cap)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glIsEnabled, 1
     
 
     def glIsTexture(texture)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glIsTexture, 1
     
 
     def glNormalPointer(type, stride, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glNormalPointer, 3
     
 
     def glPointParameterf(pname, param)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glPointParameterf, 2
     
 
-    def glPointParameterfv(pname, params, offset)
+    def glPointParameterfv_j3(pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glPointParameterfv(pname, params)
+    def glPointParameterfv_j2(pname, params)
         return super if defined?(super)
         raise NotImplementedError
+    end
+
+    def glPointParameterfv(*java_overload_args)
+        return glPointParameterfv_j3(*java_overload_args) if java_overload_args.length == 3
+        return glPointParameterfv_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method glPointParameterfv takes #{java_overload_args.length} arguments"
     end
     
 
@@ -237,50 +311,67 @@ module GL11
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glTexCoordPointer, 4
     
 
     def glTexEnvi(target, pname, param)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glTexEnvi, 3
     
 
-    def glTexEnviv(target, pname, params, offset)
+    def glTexEnviv_j4(target, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glTexEnviv(target, pname, params)
+    def glTexEnviv_j3(target, pname, params)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glTexEnviv(*java_overload_args)
+        return glTexEnviv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glTexEnviv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glTexEnviv takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glTexParameterfv_j4(target, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    def glTexParameterfv(target, pname, params, offset)
+    def glTexParameterfv_j3(target, pname, params)
+        return super if defined?(super)
+        raise NotImplementedError
+    end
+
+    def glTexParameterfv(*java_overload_args)
+        return glTexParameterfv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glTexParameterfv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glTexParameterfv takes #{java_overload_args.length} arguments"
+    end
+    
+
+    def glTexParameteriv_j4(target, pname, params, offset)
         return super if defined?(super)
         raise NotImplementedError
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def glTexParameterfv(target, pname, params)
+    def glTexParameteriv_j3(target, pname, params)
         return super if defined?(super)
         raise NotImplementedError
     end
-    
 
-    def glTexParameteriv(target, pname, params, offset)
-        return super if defined?(super)
-        raise NotImplementedError
-    end
-    
-
-    # Java overloaded method: Ruby keeps the last definition
-    def glTexParameteriv(target, pname, params)
-        return super if defined?(super)
-        raise NotImplementedError
+    def glTexParameteriv(*java_overload_args)
+        return glTexParameteriv_j4(*java_overload_args) if java_overload_args.length == 4
+        return glTexParameteriv_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method glTexParameteriv takes #{java_overload_args.length} arguments"
     end
     
 
@@ -288,6 +379,7 @@ module GL11
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :glVertexPointer, 4
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -436,4 +528,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

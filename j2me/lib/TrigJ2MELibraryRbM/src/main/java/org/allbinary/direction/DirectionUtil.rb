@@ -15,10 +15,12 @@
 # package org.allbinary.direction
 
 
+module ::Org; module Allbinary; module Direction
+
 class DirectionUtil
     attr_accessor :directionArray, :directionArray2
 
-    def initialize_fields
+    def jfields_org_allbinary_direction_DirectionUtil
         @directionArray = Array.new(10, nil)
         @directionArray2 = Array.new(10, nil)
     end
@@ -30,8 +32,8 @@ class DirectionUtil
     
 
     def initialize()
-        initialize_fields
-        angleFactory = AngleFactory.getInstance()
+        jfields_org_allbinary_direction_DirectionUtil
+        angleFactory = ::Org::Allbinary::MathPackage::AngleFactory.getInstance()
         directionFactory = DirectionFactory.getInstance()
         @directionArray[directionFactory.LEFT.getValue()] = angleFactory.LEFT
         @directionArray[directionFactory.RIGHT.getValue()] = angleFactory.RIGHT
@@ -84,14 +86,16 @@ class DirectionUtil
     end
 end
 
-autoload :Angle, "org/allbinary/math/Angle"
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
-autoload :Direction, "org/allbinary/direction/Direction"
-autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory"
+module ::Org; module Allbinary; module MathPackage; autoload :Angle, "org/allbinary/math/Angle" unless const_defined?(:Angle, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false); end; end; end
+autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false)
+autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory" unless const_defined?(:DirectionFactory, false)
 
 begin
     DirectionUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.time
 
 
+module ::Org; module Allbinary; module TimePackage
+
 class RendererInitializedStupidTimerFactory
     
 
@@ -53,11 +55,13 @@ class RendererInitializedStupidTimerFactory
     end
 end
 
-autoload :StupidTimer, "org/allbinary/time/StupidTimer"
+autoload :StupidTimer, "org/allbinary/time/StupidTimer" unless const_defined?(:StupidTimer, false)
 
 begin
     RendererInitializedStupidTimerFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

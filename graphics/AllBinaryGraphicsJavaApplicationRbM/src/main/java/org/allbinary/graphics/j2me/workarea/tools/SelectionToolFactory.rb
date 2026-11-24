@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.j2me.workarea.tools
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/j2me/workarea/tools/GraphicsItemInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools
 
 class SelectionToolFactory
     include GraphicsItemInterfaceFactoryInterface
@@ -23,9 +26,12 @@ class SelectionToolFactory
     def getInstance(canvasJPanel)
         return SelectionTool.new(canvasJPanel)
     end
+    java_overload :getInstance, 1
 end
 
-require "org/allbinary/graphics/j2me/workarea/canvas/CanvasJPanel"
-require "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface"
-require "org/allbinary/graphics/j2me/workarea/tools/SelectionTool"
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Canvas; autoload :CanvasJPanel, "org/allbinary/graphics/j2me/workarea/canvas/CanvasJPanel" unless const_defined?(:CanvasJPanel, false); end; end; end; end; end; end
+autoload :GraphicItemInterface, "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface" unless const_defined?(:GraphicItemInterface, false)
+autoload :SelectionTool, "org/allbinary/graphics/j2me/workarea/tools/SelectionTool" unless const_defined?(:SelectionTool, false)
+
+end; end; end; end; end; end
 

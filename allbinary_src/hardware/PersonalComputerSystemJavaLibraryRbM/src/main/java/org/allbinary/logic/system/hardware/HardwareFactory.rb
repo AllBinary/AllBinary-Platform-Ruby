@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.hardware
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module System; module Hardware
 
 class HardwareFactory
     
 
-    def self.getInstance()
+    def self.getInstance_j0()
         return HardwareFactory.instance
     end
     
@@ -28,19 +31,24 @@ class HardwareFactory
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.getInstance(os)
+    def self.getInstance_j1(os)
         begin
-            operatingSystems = OperatingSystems.getInstance()
+            operatingSystems = ::Org::Allbinary::Logic::System::Os::OperatingSystems.getInstance()
             if os.getName().compareTo(operatingSystems.LINUX) == 0
-                return LinuxHardware.new()
+                return ::Org::Allbinary::Logic::System::Hardware::Linux::LinuxHardware.new()
             elsif os.getName().indexOf(operatingSystems.WINDOWS) >= 0
-                return WindowsHardware.new()
+                return ::Org::Allbinary::Logic::System::Hardware::Windows::WindowsHardware.new()
             end
             raise StandardError.new("No Hardware Imp for: " + os.getName())
         rescue StandardError => e
             raise e
         end
+    end
+
+    def self.getInstance(*java_overload_args)
+        return getInstance_j0(*java_overload_args) if java_overload_args.length == 0
+        return getInstance_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method getInstance takes #{java_overload_args.length} arguments"
     end
 
     def self.instance()
@@ -74,15 +82,17 @@ class HardwareFactory
     end
 end
 
-autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
-autoload :OperatingSystems, "org/allbinary/logic/system/os/OperatingSystems"
-autoload :LinuxHardware, "org/allbinary/logic/system/hardware/linux/LinuxHardware"
-autoload :WindowsHardware, "org/allbinary/logic/system/hardware/windows/WindowsHardware"
-autoload :HardwareInterface, "org/allbinary/logic/system/hardware/HardwareInterface"
+module ::Org; module Allbinary; module Logic; module System; module Os; autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem" unless const_defined?(:GenericOperatingSystem, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Os; autoload :OperatingSystems, "org/allbinary/logic/system/os/OperatingSystems" unless const_defined?(:OperatingSystems, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Linux; autoload :LinuxHardware, "org/allbinary/logic/system/hardware/linux/LinuxHardware" unless const_defined?(:LinuxHardware, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Windows; autoload :WindowsHardware, "org/allbinary/logic/system/hardware/windows/WindowsHardware" unless const_defined?(:WindowsHardware, false); end; end; end; end; end; end
+autoload :HardwareInterface, "org/allbinary/logic/system/hardware/HardwareInterface" unless const_defined?(:HardwareInterface, false)
 
 begin
     HardwareFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

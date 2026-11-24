@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.http.request
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request
+
 class HttpRequestUtil
     
 
@@ -28,7 +30,7 @@ class HttpRequestUtil
     
 
     def getLastSeparatorIndex(requestPath)
-        beginIndex = (requestPath.rindex(AbPathData.getInstance().SEPARATOR) || -1)
+        beginIndex = (requestPath.rindex(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATOR) || -1)
         if beginIndex < 0
             beginIndex = (requestPath.rindex("\\") || -1)
         end
@@ -77,11 +79,13 @@ class HttpRequestUtil
     end
 end
 
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
 
 begin
     HttpRequestUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

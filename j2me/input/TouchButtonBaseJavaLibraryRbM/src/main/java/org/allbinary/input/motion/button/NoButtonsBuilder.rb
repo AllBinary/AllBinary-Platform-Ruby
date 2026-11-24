@@ -14,34 +14,40 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/BaseTouchInput"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class NoButtonsBuilder < BaseTouchInput
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_input_motion_button_NoButtonsBuilder
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_NoButtonsBuilder
     end
     
 
     def getList()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
-            list = BasicArrayListUtil.getInstance().getImmutableInstance()
+            list = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
             return list
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.GET_LIST, e)
-            return BasicArrayListUtil.getInstance().getImmutableInstance()
+            return ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
         end
     end
+    java_overload :getList, 0
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+
+end; end; end; end; end
 

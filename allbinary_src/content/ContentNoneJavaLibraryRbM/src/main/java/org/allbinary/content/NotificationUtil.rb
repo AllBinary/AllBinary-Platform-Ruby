@@ -15,6 +15,8 @@
 # package org.allbinary.content
 
 
+module ::Org; module Allbinary; module Content
+
 class NotificationUtil
     
 
@@ -47,11 +49,13 @@ class NotificationUtil
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
 
 begin
     NotificationUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.tracking
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/AllBinaryLayerCircularPool"
 
-class GenericTrackingLayerCircularStaticPool < AllBinaryLayerCircularPool
+module ::Org; module Allbinary; module Game; module Tracking
+
+class GenericTrackingLayerCircularStaticPool < ::Org::Allbinary::Layer::AllBinaryLayerCircularPool
     
 
     def initialize()
@@ -54,4 +57,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

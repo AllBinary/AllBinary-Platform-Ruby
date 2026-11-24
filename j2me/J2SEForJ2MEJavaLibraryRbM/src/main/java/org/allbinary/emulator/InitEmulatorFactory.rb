@@ -15,15 +15,17 @@
 # package org.allbinary.emulator
 
 
+module ::Org; module Allbinary; module Emulator
+
 class InitEmulatorFactory
     attr_accessor :initEmulator
 
-    def initialize_fields
+    def jfields_org_allbinary_emulator_InitEmulatorFactory
         @initEmulator = false
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_emulator_InitEmulatorFactory
     end
     
 
@@ -77,4 +79,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

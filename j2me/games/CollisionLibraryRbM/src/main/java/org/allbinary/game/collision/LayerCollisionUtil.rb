@@ -15,11 +15,13 @@
 # package org.allbinary.game.collision
 
 
+module ::Org; module Allbinary; module Game; module Collision
+
 class LayerCollisionUtil
     attr_accessor :collisionProcessor
 
-    def initialize_fields
-        @collisionProcessor = nil
+    def jfields_org_allbinary_game_collision_LayerCollisionUtil
+        @collisionProcessor = nil unless instance_variable_defined?(:@collisionProcessor)
     end
     
 
@@ -29,10 +31,10 @@ class LayerCollisionUtil
     
 
     def initialize()
-        initialize_fields
-        features = Features.getInstance()
-        gameFeatureFactory = GameFeatureFactory.getInstance()
-        if OpenGLFeatureUtil.getInstance().isAnyThreed() && !features.isFeature(gameFeatureFactory.COLLISIONS_FORCED_TWO_DIMENSIONAL)
+        jfields_org_allbinary_game_collision_LayerCollisionUtil
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        gameFeatureFactory = ::Org::Allbinary::Game::Configuration::Feature::GameFeatureFactory.getInstance()
+        if ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureUtil.getInstance().isAnyThreed() && !features.isFeature(gameFeatureFactory.COLLISIONS_FORCED_TWO_DIMENSIONAL)
             @collisionProcessor = CollisionThreedProcessor.new()
         else
             @collisionProcessor = Collision2DProcessor.new()
@@ -75,17 +77,19 @@ class LayerCollisionUtil
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
-autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :Collision2DProcessor, "org/allbinary/game/collision/Collision2DProcessor"
-autoload :CollisionProcessor, "org/allbinary/game/collision/CollisionProcessor"
-autoload :CollisionThreedProcessor, "org/allbinary/game/collision/CollisionThreedProcessor"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory" unless const_defined?(:GameFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil" unless const_defined?(:OpenGLFeatureUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :Collision2DProcessor, "org/allbinary/game/collision/Collision2DProcessor" unless const_defined?(:Collision2DProcessor, false)
+autoload :CollisionProcessor, "org/allbinary/game/collision/CollisionProcessor" unless const_defined?(:CollisionProcessor, false)
+autoload :CollisionThreedProcessor, "org/allbinary/game/collision/CollisionThreedProcessor" unless const_defined?(:CollisionThreedProcessor, false)
 
 begin
     LayerCollisionUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

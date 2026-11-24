@@ -14,19 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.money.payment.gateway
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
+require "java/io/Serializable"
+
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway
 
 class PaymentGatewayPrimaryKey
-    include Serializable
+    include ::Java::Io::Serializable
     attr_accessor :storeName, :name
 
-    def initialize_fields
-        @storeName = nil
-        @name = nil
+    def jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayPrimaryKey
+        @storeName = nil unless instance_variable_defined?(:@storeName)
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(storeName, gatewayName)
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayPrimaryKey
         self.setStoreName(storeName)
         self.setName(gatewayName)
     end
@@ -35,40 +40,47 @@ class PaymentGatewayPrimaryKey
     def getStoreName()
         return @storeName
     end
+    java_overload :getStoreName, 0
     
 
     def setStoreName(storeName)
         @storeName = storeName
     end
+    java_overload :setStoreName, 1
     
 
     def getName()
         return @name
     end
+    java_overload :getName, 0
     
 
     def setName(name)
         @name = name
     end
+    java_overload :setName, 1
     
 
     def toString()
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(PaymentGatewayPrimaryKey.getName())
-        stringBuffer.append(StoreFront.getName())
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(PaymentGatewayPrimaryKey.java_name)
+        stringBuffer.append(::Org::Allbinary::Business::Context::Modules::Storefront::StoreFront.java_name)
         stringBuffer.append(" =")
         stringBuffer.append(self.getStoreName())
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
-        stringBuffer.append(PaymentGateway.getName())
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
+        stringBuffer.append(PaymentGateway.java_name)
         stringBuffer.append("=")
         stringBuffer.append(self.getName())
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :PaymentGateway, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGateway"
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront" unless const_defined?(:StoreFront, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :PaymentGateway, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGateway" unless const_defined?(:PaymentGateway, false)
+
+end; end; end; end; end; end; end; end
 

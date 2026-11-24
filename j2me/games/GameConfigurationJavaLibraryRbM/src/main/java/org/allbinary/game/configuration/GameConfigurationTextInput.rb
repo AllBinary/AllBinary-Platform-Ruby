@@ -15,17 +15,19 @@
 # package org.allbinary.game.configuration
 
 
+module ::Org; module Allbinary; module Game; module Configuration
+
 class GameConfigurationTextInput
     attr_accessor :label, :text
 
-    def initialize_fields
-        @label = StringUtil.getInstance().EMPTY_STRING
-        @text = StringUtil.getInstance().EMPTY_STRING
+    def jfields_org_allbinary_game_configuration_GameConfigurationTextInput
+        @label = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @text = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def initialize(label, text)
-        initialize_fields
+        jfields_org_allbinary_game_configuration_GameConfigurationTextInput
         self.setText(text)
         self.setLabel(label)
         GameConfigurationTextInput.hashtable.put(self.getLabel(), self)
@@ -77,7 +79,7 @@ class GameConfigurationTextInput
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@hashtable = StdUtil.getInstance().createHashtable()
+            @@hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
             const_set(:SIMULATOR_IP, GameConfigurationTextInput.new("IP: ", "192.168.1.3"))
             const_set(:SIMULATOR_PORT, GameConfigurationTextInput.new("Port: ", "8010"))
         rescue StandardError
@@ -96,14 +98,16 @@ class GameConfigurationTextInput
     end
 end
 
-autoload :TextField, "javax/microedition/lcdui/TextField"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Javax; module Microedition; module Lcdui; autoload :TextField, "javax/microedition/lcdui/TextField" unless const_defined?(:TextField, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
 
 begin
     GameConfigurationTextInput.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

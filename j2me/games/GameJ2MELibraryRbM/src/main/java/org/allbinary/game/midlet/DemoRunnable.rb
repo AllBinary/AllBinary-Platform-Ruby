@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.game.midlet
 
+require "java/lang/JavaOverload"
 require "java/lang/Runnable"
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 class DemoRunnable
-    include Runnable
+    include ::Java::Lang::Runnable
     attr_accessor :logUtil, :commonStrings, :demoGameMidlet, :startDemoGameMidletEvent
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @demoGameMidlet = nil
-        @startDemoGameMidletEvent = nil
+    def jfields_org_allbinary_game_midlet_DemoRunnable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @demoGameMidlet = nil unless instance_variable_defined?(:@demoGameMidlet)
+        @startDemoGameMidletEvent = nil unless instance_variable_defined?(:@startDemoGameMidletEvent)
     end
     
 
     def initialize(demoGameMidlet)
-        initialize_fields
+        jfields_org_allbinary_game_midlet_DemoRunnable
         @demoGameMidlet = demoGameMidlet
         @startDemoGameMidletEvent = DemoGameMidletEvent.new(@demoGameMidlet, DemoGameMidletStateFactory.getInstance().START_DEMO)
     end
@@ -37,8 +40,8 @@ class DemoRunnable
 
     def run()
         begin
-            @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().START_LABEL).append("GameCanvasRunnableInterface").to_s, self, @commonStrings.RUN)
-            @demoGameMidlet.commandAction(MyCommandsFactory.getInstance().SET_DISPLAYABLE, ProgressCanvasFactory.getInstance())
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).append("GameCanvasRunnableInterface").to_s, self, @commonStrings.RUN)
+            @demoGameMidlet.commandAction(::Org::Allbinary::Graphics::Displayable::Command::MyCommandsFactory.getInstance().SET_DISPLAYABLE, ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance())
             @demoGameMidlet.setGameCanvasRunnableInterface(@demoGameMidlet.createDemoGameCanvasRunnableInterface())
             @demoGameMidlet.demoSetup()
             DemoGameMidletEventHandler.getInstance().fireEvent(@startDemoGameMidletEvent)
@@ -49,16 +52,19 @@ class DemoRunnable
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.RUN, e)
         end
     end
+    java_overload :run, 0
 end
 
-autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :DemoGameMidlet, "org/allbinary/game/midlet/DemoGameMidlet"
-autoload :DemoGameMidletEvent, "org/allbinary/game/midlet/DemoGameMidletEvent"
-autoload :DemoGameMidletEventHandler, "org/allbinary/game/midlet/DemoGameMidletEventHandler"
-autoload :DemoGameMidletStateFactory, "org/allbinary/game/midlet/DemoGameMidletStateFactory"
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" unless const_defined?(:ProgressCanvasFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Command; autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory" unless const_defined?(:MyCommandsFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :DemoGameMidlet, "org/allbinary/game/midlet/DemoGameMidlet" unless const_defined?(:DemoGameMidlet, false)
+autoload :DemoGameMidletEvent, "org/allbinary/game/midlet/DemoGameMidletEvent" unless const_defined?(:DemoGameMidletEvent, false)
+autoload :DemoGameMidletEventHandler, "org/allbinary/game/midlet/DemoGameMidletEventHandler" unless const_defined?(:DemoGameMidletEventHandler, false)
+autoload :DemoGameMidletStateFactory, "org/allbinary/game/midlet/DemoGameMidletStateFactory" unless const_defined?(:DemoGameMidletStateFactory, false)
+
+end; end; end; end
 

@@ -18,11 +18,13 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 #ActualPlatform
 class LogUtil
     attr_accessor :logFormatUtil, :LOG_SUCCESS
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_log_LogUtil
         @logFormatUtil = LogFormatUtil.getInstance()
         @LOG_SUCCESS = "org.allbinary: "
     end
@@ -34,7 +36,7 @@ class LogUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_LogUtil
     end
     
 
@@ -53,17 +55,17 @@ class LogUtil
     def putF(specialMessage, anyType, functionName)
         className = PreLogUtil.getClassName(anyType)
         if className == nil
-            className = CommonStrings.getInstance().EMPTY
+            className = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY
         end
         message = @logFormatUtil.getS(className, functionName, specialMessage)
-        playN = PlayN.getInstance()
+        playN = ::Playn::Core::PlayN.getInstance()
         playN.log().debug(@LOG_SUCCESS + message)
     end
     
 
     def putFS(specialMessage, className, functionName)
         message = @logFormatUtil.getS(className, functionName, specialMessage)
-        playN = PlayN.getInstance()
+        playN = ::Playn::Core::PlayN.getInstance()
         playN.log().debug(@LOG_SUCCESS + message)
     end
     
@@ -71,10 +73,10 @@ class LogUtil
     def put(specialMessage, anyType, functionName, exception)
         className = PreLogUtil.getClassName(anyType)
         if className == nil
-            className = CommonStrings.getInstance().EMPTY
+            className = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY
         end
         message = @logFormatUtil.get(className, functionName, specialMessage, exception)
-        playN = PlayN.getInstance()
+        playN = ::Playn::Core::PlayN.getInstance()
         if exception != nil
             playN.log().error(@LOG_SUCCESS + message, exception)
         else
@@ -83,21 +85,47 @@ class LogUtil
     end
 
     def self.instance()
+        LogUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LogUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = LogUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LogUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "playn/core/PlayN"
-require "org/allbinary/logic/communication/log/Log"
-require "org/allbinary/logic/communication/log/LogFormatUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Playn; module Core; autoload :PlayN, "playn/core/PlayN" unless const_defined?(:PlayN, false); end; end
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
+autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil" unless const_defined?(:LogFormatUtil, false)
+autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false)
 
-class LogUtil
-    @@instance = LogUtil.new()
+begin
+    LogUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

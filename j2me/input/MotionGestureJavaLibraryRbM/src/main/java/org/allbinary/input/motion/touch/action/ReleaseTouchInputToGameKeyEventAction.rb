@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.touch.action
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
 
-class ReleaseTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputEvent
+module ::Org; module Allbinary; module Input; module Motion; module Touch; module Action
+
+class ReleaseTouchInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Motion::Action::GameKeyCompleteMotionGestureInputEvent
     attr_accessor :NONE
 
-    def initialize_fields
-        @NONE = GameKeyFactory.getInstance().NONE
+    def jfields_org_allbinary_input_motion_touch_action_ReleaseTouchInputToGameKeyEventAction
+        @NONE = ::Org::Allbinary::Game::Input::GameKeyFactory.getInstance().NONE
     end
     
 
     def self.getInstance()
-        if ReleaseTouchInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT
+        if ReleaseTouchInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             ReleaseTouchInputToGameKeyEventAction.instance = ReleaseTouchInputToGameKeyEventAction.new()
         end
         return ReleaseTouchInputToGameKeyEventAction.instance
@@ -33,13 +36,13 @@ class ReleaseTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputE
     
 
     def initialize()
-        super("Release Action", TouchMotionGestureFactory.getInstance().RELEASED, PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance().getInputMapping())
-        initialize_fields
+        super("Release Action", ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().RELEASED, ::Org::Allbinary::Game::Input::PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance().getInputMapping())
+        jfields_org_allbinary_input_motion_touch_action_ReleaseTouchInputToGameKeyEventAction
         begin
             self.setGameKey(@NONE)
-            self.setGameKeyEvent(GameKeyEventFactory.getInstance().getInstanceForInput(self, @NONE))
+            self.setGameKeyEvent(::Org::Allbinary::Game::Input::Event::GameKeyEventFactory.getInstance().getInstanceForInput(self, @NONE))
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
         end
     end
@@ -47,6 +50,7 @@ class ReleaseTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputE
 
     def update()
     end
+    java_overload :update, 0
 
     def self.instance()
         ReleaseTouchInputToGameKeyEventAction.java_static_fields unless @java_static_fields_started
@@ -62,7 +66,7 @@ class ReleaseTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputE
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -79,17 +83,19 @@ class ReleaseTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputE
     end
 end
 
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
-autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
-autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory" unless const_defined?(:PlatformInputMappingFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory" unless const_defined?(:GameKeyEventFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory" unless const_defined?(:TouchMotionGestureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     ReleaseTouchInputToGameKeyEventAction.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

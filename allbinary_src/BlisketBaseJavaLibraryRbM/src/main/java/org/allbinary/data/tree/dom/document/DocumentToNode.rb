@@ -15,6 +15,8 @@
 # package org.allbinary.data.tree.dom.document
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document
+
 class DocumentToNode
     
 
@@ -26,7 +28,7 @@ class DocumentToNode
     def self.convertDocumentToNodeString(documentString)
         documentString = DocumentToNode.remove(documentString, DocumentToNode::XMLJSPROOTSTART, DocumentToNode::XMLEND)
         documentString = DocumentToNode.remove(documentString, DocumentToNode::XMLJSPROOTENDSTART, DocumentToNode::XMLEND)
-        replaceXmlRoot = Replace.new(XMLROOT, StringUtil.getInstance().EMPTY_STRING)
+        replaceXmlRoot = ::Org::Allbinary::Logic::StringPackage::Regex::Replace::Replace.new(XMLROOT, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         return replaceXmlRoot.all(documentString)
     end
     
@@ -77,12 +79,14 @@ class DocumentToNode
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; module Regex; module Replace; autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace" unless const_defined?(:Replace, false); end; end; end; end; end; end
 
 begin
     DocumentToNode.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -16,6 +16,8 @@
 
 # require "java/security/spec/KeySpec"
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Crypt; module Jcehelper
+
 class KeySpecFactory
     
 
@@ -26,10 +28,34 @@ class KeySpecFactory
     def self.getInstance(algorithm, keyData)
         return nil
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:DES, "DES")
+        const_set(:DESEDE, "DESede")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "KeySpecFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DES, :DESEDE].include?(name)
+        end
+        super
+    end
 end
 
-class KeySpecFactory
-    DES = "DES"
-    DESEDE = "DESede"
+begin
+    KeySpecFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

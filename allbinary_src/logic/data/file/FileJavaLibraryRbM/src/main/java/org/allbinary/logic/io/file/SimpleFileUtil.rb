@@ -15,20 +15,22 @@
 # package org.allbinary.logic.io.file
 
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 class SimpleFileUtil
     attr_accessor :logUtil, :NULL_WRITER, :NULL_READER, :commonStrings, :nullUtil, :streamUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_io_file_SimpleFileUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @NULL_WRITER = SimpleFileUtil.nullWriter()
         @NULL_READER = SimpleFileUtil.nullReader()
-        @commonStrings = CommonStrings.getInstance()
-        @nullUtil = NullUtil.getInstance()
-        @streamUtil = StreamUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @nullUtil = ::Org::Allbinary::Logic::NullUtil.getInstance()
+        @streamUtil = ::Org::Allbinary::Logic::Io::StreamUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_io_file_SimpleFileUtil
     end
     
 
@@ -38,17 +40,17 @@ class SimpleFileUtil
     
 
     def self.nullOutputStream()
-        return NullOutputStream::NULL_OUTPUT_STREAM
+        return ::Org::Allbinary::Logic::Io::NullOutputStream::NULL_OUTPUT_STREAM
     end
     
 
     def self.nullWriter()
-        return NullWriter::NULL_WRITER
+        return ::Org::Allbinary::Logic::Io::NullWriter::NULL_WRITER
     end
     
 
     def self.nullReader()
-        return NullReader::NULL_READER
+        return ::Org::Allbinary::Logic::Io::NullReader::NULL_READER
     end
     
 
@@ -58,13 +60,13 @@ class SimpleFileUtil
     
 
     def loadFileAsListReturnLine(inputStream, max, byteArray1, includeReturnLine)
-        stringList = BasicArrayListD.new()
+        stringList = ::Org::Allbinary::Util::BasicArrayListD.new()
         if inputStream == nil
             return stringList
         end
         byteArray = @nullUtil.NULL_BYTE_ARRAY
         begin
-            outputStream2 = ByteArrayOutputStream.new(max)
+            outputStream2 = ::Java::Io::ByteArrayOutputStream.new(max)
             byteArray = @streamUtil.getByteArray(inputStream, outputStream2, byteArray1)
             @streamUtil.close(inputStream)
         rescue StandardError => e
@@ -99,7 +101,7 @@ class SimpleFileUtil
     
 
     def createStringFromArrayOfStrings(stringArray)
-        stringMaker = StringMaker.new()
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         size = stringArray.length
         (0...size).each do |index|
             stringMaker.append(stringArray[index])
@@ -138,25 +140,27 @@ class SimpleFileUtil
     end
 end
 
-autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
-autoload :InputStream, "java/io/InputStream"
-autoload :OutputStream, "java/io/OutputStream"
-autoload :Reader, "java/io/Reader"
-autoload :Writer, "java/io/Writer"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :NullOutputStream, "org/allbinary/logic/io/NullOutputStream"
-autoload :NullReader, "org/allbinary/logic/io/NullReader"
-autoload :NullWriter, "org/allbinary/logic/io/NullWriter"
-autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Java; module Io; autoload :OutputStream, "java/io/OutputStream" unless const_defined?(:OutputStream, false); end; end
+module ::Java; module Io; autoload :Reader, "java/io/Reader" unless const_defined?(:Reader, false); end; end
+module ::Java; module Io; autoload :Writer, "java/io/Writer" unless const_defined?(:Writer, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :NullOutputStream, "org/allbinary/logic/io/NullOutputStream" unless const_defined?(:NullOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :NullReader, "org/allbinary/logic/io/NullReader" unless const_defined?(:NullReader, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :NullWriter, "org/allbinary/logic/io/NullWriter" unless const_defined?(:NullWriter, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil" unless const_defined?(:StreamUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     SimpleFileUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

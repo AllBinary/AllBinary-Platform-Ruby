@@ -15,10 +15,12 @@
 # package org.allbinary.business.page
 
 
+module ::Org; module Allbinary; module Business; module Page
+
 class PageData
     attr_accessor :NAME
 
-    def initialize_fields
+    def jfields_org_allbinary_business_page_PageData
         @NAME = "PAGE_NAME"
     end
     
@@ -29,19 +31,45 @@ class PageData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_page_PageData
     end
 
     def self.instance()
+        PageData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PageData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PageData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PageData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class PageData
-    @@instance = PageData.new()
+begin
+    PageData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,22 +14,26 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map.racetrack
 
-# require "javax/microedition/lcdui/game/TiledLayer"
+
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
 
 class TiledLayerFactory
     
 
     def getInstance(raceTrackData)
         mapArray = raceTrackData.getMapArray()
-        return TiledLayer.new(mapArray[0].length, mapArray.length, raceTrackData.getTileSetImage(), raceTrackData.getCellWidth(), raceTrackData.getCellHeight())
+        return ::Javax::Microedition::Lcdui::Game::TiledLayer.new(mapArray[0].length, mapArray.length, raceTrackData.getTileSetImage(), raceTrackData.getCellWidth(), raceTrackData.getCellHeight())
     end
     
 
     def getMiniInstance(raceTrackData)
         mapArray = raceTrackData.getMapArray()
-        return TiledLayer.new(mapArray[0].length, mapArray.length, raceTrackData.getMiniTileSetImage(), raceTrackData.getMiniCellWidth(), raceTrackData.getMiniCellHeight())
+        return ::Javax::Microedition::Lcdui::Game::TiledLayer.new(mapArray[0].length, mapArray.length, raceTrackData.getMiniTileSetImage(), raceTrackData.getMiniCellWidth(), raceTrackData.getMiniCellHeight())
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackData"
+module ::Javax; module Microedition; module Lcdui; module Game; autoload :TiledLayer, "javax/microedition/lcdui/game/TiledLayer" unless const_defined?(:TiledLayer, false); end; end; end; end
+autoload :RaceTrackData, "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackData" unless const_defined?(:RaceTrackData, false)
+
+end; end; end; end; end; end; end
 

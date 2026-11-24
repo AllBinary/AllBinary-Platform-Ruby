@@ -15,6 +15,8 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 class GameInfoCopyFactory
     
 
@@ -28,5 +30,7 @@ class GameInfoCopyFactory
     end
 end
 
-autoload :GameInfo, "org/allbinary/game/GameInfo"
+autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false)
+
+end; end; end
 

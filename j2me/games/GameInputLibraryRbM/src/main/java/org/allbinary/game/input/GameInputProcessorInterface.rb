@@ -15,6 +15,8 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 module GameInputProcessorInterface
     
 
@@ -25,5 +27,7 @@ module GameInputProcessorInterface
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end
 

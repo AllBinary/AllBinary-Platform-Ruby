@@ -15,15 +15,17 @@
 # package org.allbinary.logic.java.character
 
 
+module ::Org; module Allbinary; module Logic; module Java; module Character
+
 class CharArrayFactory
     attr_accessor :zeroCharArray
 
-    def initialize_fields
-        @zeroCharArray = Array.new(0, "\0")
+    def jfields_org_allbinary_logic_java_character_CharArrayFactory
+        @zeroCharArray = (Array.new(0, "\0")).tap { |java_array| java_array.instance_variable_set(:@java_component, :C) }
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_java_character_CharArrayFactory
     end
     
 
@@ -72,4 +74,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

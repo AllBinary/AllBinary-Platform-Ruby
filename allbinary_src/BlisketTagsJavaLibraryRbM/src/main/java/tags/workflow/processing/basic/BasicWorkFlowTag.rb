@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package tags.workflow.processing.basic
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/JspTagException"
 require "tags/StoreWorkFlowTag"
 
+module ::Tags; module Workflow; module Processing; module Basic
+
 #and remove the hidden fields
-class BasicWorkFlowTag < StoreWorkFlowTag
+class BasicWorkFlowTag < ::Tags::StoreWorkFlowTag
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_tags_workflow_processing_basic_BasicWorkFlowTag
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+        jfields_tags_workflow_processing_basic_BasicWorkFlowTag
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         end
     end
@@ -38,19 +41,24 @@ class BasicWorkFlowTag < StoreWorkFlowTag
     # throws JspTagException
     def doStartTag()
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                 @logUtil.putF(@commonStrings.START, self, @tagStrings.DO_START_TAG)
             end
-            self.getPropertiesHashMap().put(DynamicObjectData::NAME, "workflows.template.data.BasicStoreWorkFlow")
-            return super()
+            self.getPropertiesHashMap().put(::Org::Allbinary::Business::DynamicObjectData::NAME, "workflows.template.data.BasicStoreWorkFlow")
+            return BasicWorkFlowTag.superclass.java_super_method(:doStartTag, 0).bind(self).call()
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+module ::Org; module Allbinary; module Business; autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData" unless const_defined?(:DynamicObjectData, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end
 

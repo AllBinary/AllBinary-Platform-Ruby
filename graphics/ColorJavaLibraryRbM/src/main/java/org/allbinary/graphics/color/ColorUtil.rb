@@ -14,7 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.color
 
-# require "java/awt"
+# require "java/awt/Color"
+
+module ::Org; module Allbinary; module Graphics; module Color
 
 class ColorUtil
     
@@ -75,4 +77,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

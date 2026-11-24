@@ -15,18 +15,20 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 class LogBuffer
     attr_accessor :logUtil, :logEntryVector
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_log_LogBuffer
         @logUtil = LogUtil.getInstance()
-        @logEntryVector = nil
+        @logEntryVector = nil unless instance_variable_defined?(:@logEntryVector)
     end
     
 
     def initialize()
-        initialize_fields
-        @logEntryVector = BasicArrayListD.new()
+        jfields_org_allbinary_logic_communication_log_LogBuffer
+        @logEntryVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -44,9 +46,11 @@ class LogBuffer
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/Log"
-require "org/allbinary/logic/communication/log/LogUtil"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false)
+
+end; end; end; end; end
 

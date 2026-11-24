@@ -2,9 +2,12 @@
 # frozen_string_literal: false
 # package org.bouncycastle.jce.provider
 
+require "java/lang/JavaOverload"
 require "java/security/Provider"
 
-class BouncyCastleProvider < Provider
+module ::Org; module Bouncycastle; module Jce; module Provider
+
+class BouncyCastleProvider < ::Java::Security::Provider
     
 
     def initialize()
@@ -14,6 +17,7 @@ class BouncyCastleProvider < Provider
 
     def setParameter(parameterName, parameter)
     end
+    java_overload :setParameter, 2
 
     def self.info()
         BouncyCastleProvider.java_static_fields unless @java_static_fields_started
@@ -52,4 +56,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,23 +14,26 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.weapon
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/special/CollidableDestroyableDamageableBehavior"
 
-class CollidableDamageWeaponBehavior < CollidableDestroyableDamageableBehavior
+module ::Org; module Allbinary; module Game; module Layer; module Weapon
+
+class CollidableDamageWeaponBehavior < ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableBehavior
     attr_accessor :collided, :collisionHelper
 
-    def initialize_fields
-        @collided = false
-        @collisionHelper = nil
+    def jfields_org_allbinary_game_layer_weapon_CollidableDamageWeaponBehavior
+        @collided = false unless instance_variable_defined?(:@collided)
+        @collisionHelper = nil unless instance_variable_defined?(:@collisionHelper)
     end
     
 
     def initialize(collidable)
         super(collidable)
-        initialize_fields
+        jfields_org_allbinary_game_layer_weapon_CollidableDamageWeaponBehavior
         self.setCollided(false)
         self.setCollidable(true)
-        @collisionHelper = CollidableHelperFactory.getInstance()
+        @collisionHelper = ::Org::Allbinary::Game::Collision::CollidableHelperFactory.getInstance()
     end
     
 
@@ -38,23 +41,26 @@ class CollidableDamageWeaponBehavior < CollidableDestroyableDamageableBehavior
         self.setCollided(false)
         @collisionHelper.setOwnerLayerInterface(sourceLayerInterface)
     end
+    java_overload :init, 1
     
 
     def isCollision(ownerLayer, collisionLayer)
         if @collisionHelper.isCollidable(collisionLayer)
             if ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]
-                return super(ownerLayer, collisionLayer)
+                return CollidableDamageWeaponBehavior.superclass.java_super_method(:isCollision, 2).bind(self).call(ownerLayer, collisionLayer)
             end
         end
         return false
     end
+    java_overload :isCollision, 2
     
 
     # throws Exception
     def collide(ownerLayer, collisionLayer)
-        super(ownerLayer, collisionLayer)
+        CollidableDamageWeaponBehavior.superclass.java_super_method(:collide, 2).bind(self).call(ownerLayer, collisionLayer)
         @collided = true
     end
+    java_overload :collide, 2
     
 
     def isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
@@ -68,6 +74,7 @@ class CollidableDamageWeaponBehavior < CollidableDestroyableDamageableBehavior
         end
         return false
     end
+    java_overload :isCollisionInterface, 2
     
 
     # throws Exception
@@ -75,29 +82,35 @@ class CollidableDamageWeaponBehavior < CollidableDestroyableDamageableBehavior
         @damageUtil.process(ownerLayer, collidableInterfaceCompositeInterface)
         @collided = true
     end
+    java_overload :collideInterface, 2
     
 
     def getCollisionTypeWith(layerInterface)
-        return CollisionTypeFactory.getInstance().COLLISION
+        return ::Org::Allbinary::Game::Collision::CollisionTypeFactory.getInstance().COLLISION
     end
+    java_overload :getCollisionTypeWith, 1
     
 
     def isCollided()
         return @collided
     end
+    java_overload :isCollided, 0
     
 
     def setCollided(collided)
         @collided = collided
     end
+    java_overload :setCollided, 1
 end
 
-autoload :CollidableHelperFactory, "org/allbinary/game/collision/CollidableHelperFactory"
-autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-autoload :CollisionHelper, "org/allbinary/game/collision/CollisionHelper"
-autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
-autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
-autoload :DamageableInterface, "org/allbinary/game/combat/damage/DamageableInterface"
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollidableHelperFactory, "org/allbinary/game/collision/CollidableHelperFactory" unless const_defined?(:CollidableHelperFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface" unless const_defined?(:CollidableInterfaceCompositeInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollisionHelper, "org/allbinary/game/collision/CollisionHelper" unless const_defined?(:CollisionHelper, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollisionType, "org/allbinary/game/collision/CollisionType" unless const_defined?(:CollisionType, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory" unless const_defined?(:CollisionTypeFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Combat; module Damage; autoload :DamageableInterface, "org/allbinary/game/combat/damage/DamageableInterface" unless const_defined?(:DamageableInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+
+end; end; end; end; end
 

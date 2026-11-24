@@ -15,28 +15,36 @@
 # package org.allbinary.canvas
 
 
+module ::Org; module Allbinary; module Canvas
+
 module FullScreenInterface
     
 
     def isFullScreenMode()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setFullScreenMode(mode)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def stopWaiting()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def waitOnNotify(wait)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end
 

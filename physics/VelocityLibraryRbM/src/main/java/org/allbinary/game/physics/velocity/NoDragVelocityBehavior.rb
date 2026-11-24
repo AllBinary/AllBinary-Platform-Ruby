@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.physics.velocity
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/physics/velocity/VelocityBehaviorBase"
+
+module ::Org; module Allbinary; module Game; module Physics; module Velocity
 
 class NoDragVelocityBehavior < VelocityBehaviorBase
 
@@ -54,4 +57,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

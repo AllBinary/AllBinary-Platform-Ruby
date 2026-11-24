@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.color
 
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class BasicColorUtilFactory
     
 
@@ -23,5 +25,7 @@ class BasicColorUtilFactory
     end
 end
 
-autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil" unless const_defined?(:BasicColorUtil, false)
+
+end; end; end; end
 

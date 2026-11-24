@@ -15,11 +15,13 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class GameKeyUtil
     
 
     def isDirectionKey(key)
-        if key == Canvas::UP || key == Canvas::DOWN || key == Canvas::LEFT || key == Canvas::RIGHT
+        if key == ::Javax::Microedition::Lcdui::Canvas::UP || key == ::Javax::Microedition::Lcdui::Canvas::DOWN || key == ::Javax::Microedition::Lcdui::Canvas::LEFT || key == ::Javax::Microedition::Lcdui::Canvas::RIGHT
             return true
         else
             return false
@@ -62,11 +64,13 @@ class GameKeyUtil
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
 
 begin
     GameKeyUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,13 +14,17 @@
 # frozen_string_literal: false
 # package org.allbinary.media
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/AllBinaryVibrationME"
+
+module ::Org; module Allbinary; module Media
 
 class AllBinaryNoVibration < AllBinaryVibrationME
     
 
     def vibrate(duration, type, volume)
     end
+    java_overload :vibrate, 3
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -48,4 +52,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

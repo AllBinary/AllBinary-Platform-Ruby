@@ -15,15 +15,20 @@
 # package org.allbinary.logic.visual.transform.info.objectConfig.generator
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module ObjectConfig; module Generator
+
 module TransformInfoObjectConfigGeneratorFactoryInterface
     
 
     # throws Exception
     def getInstance(transformInfoInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :TransformInfoObjectConfigGenerator, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGenerator"
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+autoload :TransformInfoObjectConfigGenerator, "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGenerator" unless const_defined?(:TransformInfoObjectConfigGenerator, false)
+
+end; end; end; end; end; end; end; end
 

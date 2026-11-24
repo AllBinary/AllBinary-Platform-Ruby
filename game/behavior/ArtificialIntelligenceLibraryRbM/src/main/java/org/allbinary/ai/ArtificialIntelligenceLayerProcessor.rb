@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerProcessor"
 
-class ArtificialIntelligenceLayerProcessor < LayerProcessor
+module ::Org; module Allbinary; module Ai
+
+class ArtificialIntelligenceLayerProcessor < ::Org::Allbinary::Layer::LayerProcessor
     
 
     def initialize()
@@ -29,6 +32,7 @@ class ArtificialIntelligenceLayerProcessor < LayerProcessor
         artificialIntelligenceCompositeInterface = layerInterface
         artificialIntelligenceCompositeInterface.getArtificialIntelligenceInterface().processAI(allBinaryLayerManager)
     end
+    java_overload :processAt, 3
     
 
     # throws Exception
@@ -39,10 +43,13 @@ class ArtificialIntelligenceLayerProcessor < LayerProcessor
             return false
         end
     end
+    java_overload :isProcessorLayer, 1
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :ArtificialIntelligenceCompositeInterface, "org/allbinary/ai/ArtificialIntelligenceCompositeInterface"
-autoload :ArtificialIntelligenceLayerManager, "org/allbinary/ai/ArtificialIntelligenceLayerManager"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+autoload :ArtificialIntelligenceCompositeInterface, "org/allbinary/ai/ArtificialIntelligenceCompositeInterface" unless const_defined?(:ArtificialIntelligenceCompositeInterface, false)
+autoload :ArtificialIntelligenceLayerManager, "org/allbinary/ai/ArtificialIntelligenceLayerManager" unless const_defined?(:ArtificialIntelligenceLayerManager, false)
+
+end; end; end
 

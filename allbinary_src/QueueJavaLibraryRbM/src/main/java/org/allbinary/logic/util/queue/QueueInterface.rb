@@ -15,25 +15,37 @@
 # package org.allbinary.logic.util.queue
 
 
+module ::Org; module Allbinary; module Logic; module Util; module QueuePackage
+
 module QueueInterface
     
 
     # throws Exception
     def offer(anyType)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
-    def remove(anyType)
+    def remove_j1(anyType)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def remove()
+    def remove_j0()
+        return super if defined?(super)
         raise NotImplementedError
+    end
+
+    def remove(*java_overload_args)
+        return remove_j1(*java_overload_args) if java_overload_args.length == 1
+        return remove_j0(*java_overload_args) if java_overload_args.length == 0
+        raise ArgumentError, "No method remove takes #{java_overload_args.length} arguments"
     end
 end
+
+end; end; end; end; end
 

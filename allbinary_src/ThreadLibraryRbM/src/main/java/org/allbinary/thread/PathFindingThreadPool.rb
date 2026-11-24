@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.thread
 
+require "java/lang/JavaOverload"
 require "org/allbinary/thread/ThreadPool"
+
+module ::Org; module Allbinary; module ThreadPackage
 
 #This is mainly for network communications.
 class PathFindingThreadPool < ThreadPool
@@ -31,21 +34,25 @@ class PathFindingThreadPool < ThreadPool
     
 
     def runTaskWithPriority(task)
-        super(task)
+        PathFindingThreadPool.superclass.java_super_method(:runTaskWithPriority, 1).bind(self).call(task)
     end
+    java_overload :runTaskWithPriority, 1
     
 
     def runTask(task)
-        super(task)
+        PathFindingThreadPool.superclass.java_super_method(:runTask, 1).bind(self).call(task)
     end
+    java_overload :runTask, 1
     
 
     def startTask(task)
     end
+    java_overload :startTask, 1
     
 
     def completedTask(task)
     end
+    java_overload :completedTask, 1
 
     def self.instance()
         PathFindingThreadPool.java_static_fields unless @java_static_fields_started
@@ -78,7 +85,7 @@ class PathFindingThreadPool < ThreadPool
     end
 end
 
-autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable"
+autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable" unless const_defined?(:PriorityRunnable, false)
 require "java/lang/Runnable"
 
 begin
@@ -86,4 +93,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

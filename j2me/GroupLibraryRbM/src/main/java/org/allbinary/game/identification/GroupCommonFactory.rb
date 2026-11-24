@@ -15,11 +15,13 @@
 # package org.allbinary.game.identification
 
 
+module ::Org; module Allbinary; module Game; module Identification
+
 class GroupCommonFactory
     attr_accessor :ID, :GROUP_NAME_LABEL, :ID_LABEL, :ADDING_LABEL, :TO_LABEL
 
-    def initialize_fields
-        @ID = SmallIntegerSingletonFactory.getInstance().getAt(10)
+    def jfields_org_allbinary_game_identification_GroupCommonFactory
+        @ID = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(10)
         @GROUP_NAME_LABEL = "Group Name: "
         @ID_LABEL = " Id: "
         @ADDING_LABEL = "Adding: "
@@ -27,12 +29,12 @@ class GroupCommonFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_identification_GroupCommonFactory
     end
     
 
     def self.getInstance()
-        if GroupCommonFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if GroupCommonFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             GroupCommonFactory.instance = GroupCommonFactory.new()
         end
         return GroupCommonFactory.instance
@@ -52,7 +54,7 @@ class GroupCommonFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -69,12 +71,14 @@ class GroupCommonFactory
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
 
 begin
     GroupCommonFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,34 +15,43 @@
 # package org.allbinary.business.advertisement.campaign
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Campaign
+
 module AdvertisementCampaignInterface
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getComponent()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setName(name)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setComponentName(name)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def search(advertisementSearchInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :AdvertisementsInterface, "org/allbinary/business/advertisement/AdvertisementsInterface"
-autoload :AdvertisementSearchInterface, "org/allbinary/business/advertisement/search/AdvertisementSearchInterface"
+module ::Org; module Allbinary; module Business; module Advertisement; autoload :AdvertisementsInterface, "org/allbinary/business/advertisement/AdvertisementsInterface" unless const_defined?(:AdvertisementsInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module Advertisement; module Search; autoload :AdvertisementSearchInterface, "org/allbinary/business/advertisement/search/AdvertisementSearchInterface" unless const_defined?(:AdvertisementSearchInterface, false); end; end; end; end; end
+
+end; end; end; end; end
 

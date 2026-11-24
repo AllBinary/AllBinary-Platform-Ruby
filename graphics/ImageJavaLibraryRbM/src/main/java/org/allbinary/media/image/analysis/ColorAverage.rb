@@ -15,18 +15,20 @@
 # package org.allbinary.media.image.analysis
 
 
+module ::Org; module Allbinary; module Media; module Image; module Analysis
+
 class ColorAverage
     attr_accessor :avgRed, :avgGreen, :avgBlue
 
-    def initialize_fields
-        @avgRed = 0.0
-        @avgGreen = 0.0
-        @avgBlue = 0.0
+    def jfields_org_allbinary_media_image_analysis_ColorAverage
+        @avgRed = 0.0 unless instance_variable_defined?(:@avgRed)
+        @avgGreen = 0.0 unless instance_variable_defined?(:@avgGreen)
+        @avgBlue = 0.0 unless instance_variable_defined?(:@avgBlue)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_analysis_ColorAverage
         self.setAvgRed(0)
         self.setAvgGreen(0)
         self.setAvgBlue(0)
@@ -34,16 +36,16 @@ class ColorAverage
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("getAvgRed(): ")
         stringBuffer.appendfloat(self.getAvgRed())
-        stringBuffer.append(CommonSeps.getInstance().NEW_LINE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE)
         stringBuffer.append("getAvgRed(): ")
         stringBuffer.appendfloat(self.getAvgRed())
-        stringBuffer.append(CommonSeps.getInstance().NEW_LINE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE)
         stringBuffer.append("getAvgGreen(): ")
         stringBuffer.appendfloat(self.getAvgGreen())
-        stringBuffer.append(CommonSeps.getInstance().NEW_LINE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE)
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
@@ -79,6 +81,8 @@ class ColorAverage
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+
+end; end; end; end; end
 

@@ -15,17 +15,19 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class CacheType
     attr_accessor :vendor, :type
 
-    def initialize_fields
-        @vendor = nil
-        @type = nil
+    def jfields_org_allbinary_logic_util_cache_CacheType
+        @vendor = nil unless instance_variable_defined?(:@vendor)
+        @type = nil unless instance_variable_defined?(:@type)
     end
     
 
     def initialize(vendor, type)
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_CacheType
         @vendor = vendor
         @type = type
     end
@@ -42,7 +44,7 @@ class CacheType
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("CacheType: Vendor: ")
         stringBuffer.append(self.getVendor())
         stringBuffer.append(" Type: ")
@@ -52,5 +54,7 @@ class CacheType
     alias_method :to_s, :toString
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end; end; end
 

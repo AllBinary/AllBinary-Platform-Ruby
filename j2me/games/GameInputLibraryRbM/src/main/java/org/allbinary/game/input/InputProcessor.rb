@@ -15,15 +15,17 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class InputProcessor
     attr_accessor :gameInputStrings
 
-    def initialize_fields
+    def jfields_org_allbinary_game_input_InputProcessor
         @gameInputStrings = GameInputStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_InputProcessor
     end
     
 
@@ -35,6 +37,8 @@ class InputProcessor
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings" unless const_defined?(:GameInputStrings, false)
+
+end; end; end; end
 

@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/ImageSegmentAnimation"
+
+module ::Org; module Allbinary; module Animation; module Image
 
 class TopToBottomImageAnimation < ImageSegmentAnimation
     attr_accessor :currentHeight, :anchor
 
-    def initialize_fields
-        @currentHeight = nil
-        @anchor = Anchor::TOP_LEFT
+    def jfields_org_allbinary_animation_image_TopToBottomImageAnimation
+        @currentHeight = nil unless instance_variable_defined?(:@currentHeight)
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
     end
     
 
     def initialize(image, sequenceArray, animationBehavior)
         super(image, sequenceArray, animationBehavior)
-        initialize_fields
+        jfields_org_allbinary_animation_image_TopToBottomImageAnimation
         @currentHeight = 0
         if self.getSequence()[0] == -1
             self.setFrame(self.getSize() - 1)
@@ -37,43 +40,50 @@ class TopToBottomImageAnimation < ImageSegmentAnimation
 
     def nextFrame()
         if self.getSequence()[0] == -1
-            TopToBottomImageAnimation.superclass.instance_method(:previousFrame).bind(self).call()
+            TopToBottomImageAnimation.superclass.java_super_method(:previousFrame, 0).bind(self).call()
         else
-            super()
+            TopToBottomImageAnimation.superclass.java_super_method(:nextFrame, 0).bind(self).call()
         end
         self.update()
     end
+    java_overload :nextFrame, 0
     
 
     def previousFrame()
         if self.getSequence()[0] == -1
-            TopToBottomImageAnimation.superclass.instance_method(:nextFrame).bind(self).call()
+            TopToBottomImageAnimation.superclass.java_super_method(:nextFrame, 0).bind(self).call()
         else
-            super()
+            TopToBottomImageAnimation.superclass.java_super_method(:previousFrame, 0).bind(self).call()
         end
         self.update()
     end
+    java_overload :previousFrame, 0
     
 
     def setFrame(index)
-        super(index)
+        TopToBottomImageAnimation.superclass.java_super_method(:setFrame, 1).bind(self).call(index)
         self.update()
     end
+    java_overload :setFrame, 1
     
 
     def update()
         @currentHeight = self.getDrawHeight() * self.getFrame() / self.getSize()
     end
+    java_overload :update, 0
     
 
     def paintXY(graphics, x, y)
-        graphics.drawRegion(self.getImage(), self.getStartX(), self.getStartY(), self.getDrawWidth(), @currentHeight, Sprite::TRANS_NONE, x, y, @anchor)
+        graphics.drawRegion(self.getImage(), self.getStartX(), self.getStartY(), self.getDrawWidth(), @currentHeight, ::Javax::Microedition::Lcdui::Game::Sprite::TRANS_NONE, x, y, @anchor)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :Anchor, "org/allbinary/graphics/Anchor"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; module Game; autoload :Sprite, "javax/microedition/lcdui/game/Sprite" unless const_defined?(:Sprite, false); end; end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+
+end; end; end; end
 

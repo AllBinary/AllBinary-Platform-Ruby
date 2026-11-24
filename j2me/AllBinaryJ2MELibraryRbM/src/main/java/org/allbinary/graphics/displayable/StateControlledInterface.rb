@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.displayable
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable
+
 module StateControlledInterface
     
 
@@ -23,4 +25,6 @@ module StateControlledInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

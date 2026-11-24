@@ -15,11 +15,13 @@
 # package org.allbinary.game.input.form
 
 
+module ::Org; module Allbinary; module Game; module Input; module Form
+
 class PrimaryWaypointHelper
     attr_accessor :waypointLayer
 
-    def initialize_fields
-        @waypointLayer = NullPathFindingLayer::NULL_PATH_FINDING_LAYER
+    def jfields_org_allbinary_game_input_form_PrimaryWaypointHelper
+        @waypointLayer = ::Org::Allbinary::Game::Layer::NullPathFindingLayer::NULL_PATH_FINDING_LAYER
     end
     
 
@@ -29,7 +31,7 @@ class PrimaryWaypointHelper
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_input_form_PrimaryWaypointHelper
     end
     
 
@@ -43,19 +45,45 @@ class PrimaryWaypointHelper
     end
 
     def self.instance()
+        PrimaryWaypointHelper.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PrimaryWaypointHelper.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PrimaryWaypointHelper.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PrimaryWaypointHelper"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/NullPathFindingLayer"
-require "org/allbinary/game/layer/PathFindingLayerInterface"
-require "org/allbinary/game/layer/waypoint/WaypointLayer"
+module ::Org; module Allbinary; module Game; module Layer; autoload :NullPathFindingLayer, "org/allbinary/game/layer/NullPathFindingLayer" unless const_defined?(:NullPathFindingLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :PathFindingLayerInterface, "org/allbinary/game/layer/PathFindingLayerInterface" unless const_defined?(:PathFindingLayerInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Waypoint; autoload :WaypointLayer, "org/allbinary/game/layer/waypoint/WaypointLayer" unless const_defined?(:WaypointLayer, false); end; end; end; end; end
 
-class PrimaryWaypointHelper
-    @@instance = PrimaryWaypointHelper.new()
+begin
+    PrimaryWaypointHelper.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

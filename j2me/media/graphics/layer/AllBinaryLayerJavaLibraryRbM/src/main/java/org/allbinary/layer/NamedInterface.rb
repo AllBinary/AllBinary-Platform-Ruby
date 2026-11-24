@@ -15,6 +15,8 @@
 # package org.allbinary.layer
 
 
+module ::Org; module Allbinary; module Layer
+
 module NamedInterface
     
 
@@ -23,4 +25,6 @@ module NamedInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

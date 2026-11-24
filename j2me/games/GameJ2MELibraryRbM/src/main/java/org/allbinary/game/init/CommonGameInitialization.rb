@@ -14,56 +14,63 @@
 # frozen_string_literal: false
 # package org.allbinary.game.init
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/init/BaseGameInitialization"
+
+module ::Org; module Allbinary; module Game; module Init
 
 class CommonGameInitialization < BaseGameInitialization
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_game_init_CommonGameInitialization
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
     
 
     def initialize(resourceInitializationArray, portion)
         super(resourceInitializationArray, portion)
-        initialize_fields
+        jfields_org_allbinary_game_init_CommonGameInitialization
     end
     
 
     # throws Exception
     def init(abeClientInformation, commandListener, level)
-        super(abeClientInformation, commandListener, level)
-        resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
+        CommonGameInitialization.superclass.java_super_method(:init, 3).bind(self).call(abeClientInformation, commandListener, level)
+        resourceLoadingLevelFactory = ::Org::Allbinary::Game::Resource::ResourceLoadingLevelFactory.getInstance()
         if !self.isGameInitialized() && level == resourceLoadingLevelFactory.LOAD_ALL.getLevel()
             self.setGameInitialized(true)
-            progressCanvas = ProgressCanvasFactory.getInstance()
-            SmallIntegerSingletonFactory.getInstance().init()
+            progressCanvas = ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance()
+            ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().init()
             progressCanvas.addNormalPortion(50, "Integers")
-            PointFactory.getInstance().init()
+            ::Org::Allbinary::Graphics::PointFactory.getInstance().init()
             progressCanvas.addNormalPortion(50, "Points")
-            AngleFactory.getInstance()
+            ::Org::Allbinary::MathPackage::AngleFactory.getInstance()
             progressCanvas.addNormalPortion(50, "Angles")
             self.initGame()
             @resourceInitializationArray[@GAME_RESOURCES].init()
         end
-        CommonGameInitialization.superclass.instance_method(:resourceInitialization).bind(self).call(level)
+        CommonGameInitialization.superclass.java_super_method(:resourceInitialization, 1).bind(self).call(level)
     end
+    java_overload :init, 3
     
 
     # throws Exception
     def initGame()
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :initGame, 0
 end
 
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
-autoload :ResourceInitialization, "org/allbinary/game/resource/ResourceInitialization"
-autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+module ::Org; module Allbinary; module Game; module Resource; autoload :ResourceInitialization, "org/allbinary/game/resource/ResourceInitialization" unless const_defined?(:ResourceInitialization, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Resource; autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory" unless const_defined?(:ResourceLoadingLevelFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" unless const_defined?(:ProgressCanvasFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end
 

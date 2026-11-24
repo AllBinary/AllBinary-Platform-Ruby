@@ -15,18 +15,20 @@
 # package org.allbinary.game.identification
 
 
+module ::Org; module Allbinary; module Game; module Identification
+
 class GroupFactory
     attr_accessor :logUtil, :NULL_GROUP_ARRAY, :list, :index
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_identification_GroupFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @NULL_GROUP_ARRAY = Array.new(0, nil)
-        @list = BasicArrayListD.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
         @index = 0
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_identification_GroupFactory
     end
     
 
@@ -50,8 +52,8 @@ class GroupFactory
     
 
     def init(groups, nameArray)
-        stringMaker = StringMaker.new()
-        stringUtil = StringUtil.getInstance()
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         _TEAM = "Team "
         @list.clear()
         @index = 0
@@ -101,16 +103,18 @@ class GroupFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :Group, "org/allbinary/game/identification/Group"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :Group, "org/allbinary/game/identification/Group" unless const_defined?(:Group, false)
 
 begin
     GroupFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

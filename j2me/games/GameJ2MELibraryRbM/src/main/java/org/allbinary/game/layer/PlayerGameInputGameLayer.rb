@@ -14,23 +14,26 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/PlayerGameInputCompositeInterface"
 require "org/allbinary/game/layer/AllBinaryGameLayer"
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class PlayerGameInputGameLayer < AllBinaryGameLayer
-    include PlayerGameInputCompositeInterface
+    include ::Org::Allbinary::Game::Input::PlayerGameInputCompositeInterface
     attr_accessor :playerGameInput
 
-    def initialize_fields
-        @playerGameInput = nil
+    def jfields_org_allbinary_game_layer_PlayerGameInputGameLayer
+        @playerGameInput = nil unless instance_variable_defined?(:@playerGameInput)
     end
     
 
     def initialize(playerInputId)
-        super(StringUtil.getInstance().EMPTY_STRING, Rectangle.new(PointFactory.getInstance().ZERO_ZERO, 0, 0), StaticViewPosition.new(0, 0, 0))
-        initialize_fields
-        @playerGameInput = PlayerGameInput.new(self.getGameKeyEventList(), BasicArrayListD.new(), playerInputId)
-        canvasStrings = CanvasStrings.getInstance()
+        super(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Graphics::Rectangle.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, 0, 0), ::Org::Allbinary::View::StaticViewPosition.new(0, 0, 0))
+        jfields_org_allbinary_game_layer_PlayerGameInputGameLayer
+        @playerGameInput = ::Org::Allbinary::Game::Input::PlayerGameInput.new(self.getGameKeyEventList(), ::Org::Allbinary::Util::BasicArrayListD.new(), playerInputId)
+        canvasStrings = ::Org::Allbinary::Graphics::Displayable::CanvasStrings.getInstance()
         @logUtil.putF("Danger Danger Danger: Should Not Be Called Except For Testing Input", self, canvasStrings.PAINT)
     end
     
@@ -38,28 +41,34 @@ class PlayerGameInputGameLayer < AllBinaryGameLayer
     def getPlayerGameInput()
         return @playerGameInput
     end
+    java_overload :getPlayerGameInput, 0
     
 
     def initInputProcessors()
     end
+    java_overload :initInputProcessors, 0
     
 
     # throws Exception
     def processInput(myManager)
     end
+    java_overload :processInput, 1
     
 
     def paint(graphics)
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StaticViewPosition, "org/allbinary/view/StaticViewPosition"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput" unless const_defined?(:PlayerGameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings" unless const_defined?(:CanvasStrings, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module View; autoload :StaticViewPosition, "org/allbinary/view/StaticViewPosition" unless const_defined?(:StaticViewPosition, false); end; end; end
+
+end; end; end; end
 

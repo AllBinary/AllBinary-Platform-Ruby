@@ -14,17 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.money.payment.gateway.processor
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Processor
+
 module PaymentProcessorInterface
-    include DomNodeInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     
 
     # throws PaymentException, Exception
     def process()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :process, 0
 end
 
-autoload :PaymentException, "org/allbinary/business/user/commerce/money/payment/PaymentException"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; autoload :PaymentException, "org/allbinary/business/user/commerce/money/payment/PaymentException" unless const_defined?(:PaymentException, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end; end; end; end
 

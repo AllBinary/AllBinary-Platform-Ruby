@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.android.api1
 
+require "java/lang/JavaOverload"
 require "org/allbinary/android/ActivityFractureUtil"
 
-class ActivityFractureUtilAPI1 < ActivityFractureUtil
+module ::Org; module Allbinary; module Android; module Api1
+
+class ActivityFractureUtilAPI1 < ::Org::Allbinary::Android::ActivityFractureUtil
     
 
     def self.getInstance()
@@ -27,25 +30,53 @@ class ActivityFractureUtilAPI1 < ActivityFractureUtil
     # throws Exception
     def process(activity)
     end
+    java_overload :process, 1
     
 
     def setFullScreen(activity)
-        activity.getWindow().setFlags(WindowManager::LayoutParams.FLAG_FULLSCREEN, WindowManager::LayoutParams.FLAG_FULLSCREEN)
+        activity.getWindow().setFlags(::Android::View::WindowManager::LayoutParams.FLAG_FULLSCREEN, ::Android::View::WindowManager::LayoutParams.FLAG_FULLSCREEN)
     end
+    java_overload :setFullScreen, 1
 
     def self.instance()
+        ActivityFractureUtilAPI1.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ActivityFractureUtilAPI1.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ActivityFractureUtilAPI1.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ActivityFractureUtilAPI1"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "android/app/Activity"
-require "android/view/WindowManager"
+module ::Android; module App; autoload :Activity, "android/app/Activity" unless const_defined?(:Activity, false); end; end
+module ::Android; module View; autoload :WindowManager, "android/view/WindowManager" unless const_defined?(:WindowManager, false); end; end
 
-class ActivityFractureUtilAPI1
-    @@instance = ActivityFractureUtilAPI1.new()
+begin
+    ActivityFractureUtilAPI1.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

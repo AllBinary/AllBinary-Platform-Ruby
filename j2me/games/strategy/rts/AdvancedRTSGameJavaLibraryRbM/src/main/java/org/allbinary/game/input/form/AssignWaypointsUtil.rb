@@ -15,16 +15,18 @@
 # package org.allbinary.game.input.form
 
 
+module ::Org; module Allbinary; module Game; module Input; module Form
+
 class AssignWaypointsUtil
     attr_accessor :logUtil, :WAYPOINT_EVENT
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @WAYPOINT_EVENT = RTSLayerEvent.new(NullPathFindingLayer::NULL_PATH_FINDING_LAYER)
+    def jfields_org_allbinary_game_input_form_AssignWaypointsUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @WAYPOINT_EVENT = ::Org::Allbinary::Game::Layer::RTSLayerEvent.new(::Org::Allbinary::Game::Layer::NullPathFindingLayer::NULL_PATH_FINDING_LAYER)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_form_AssignWaypointsUtil
     end
     
 
@@ -38,43 +40,69 @@ class AssignWaypointsUtil
             list = ownerAdvancedRTSGameLayer.getWaypointBehavior().getOwnedWaypointList()
             unitWaypointBehavior = unitLayer.getWaypointBehavior()
             (list.size() - 1).step(0, -(1)) do |index|
-                waypointLayer = list.get(index)
-                @WAYPOINT_EVENT.setRtsLayer(waypointLayer)
+                ownedWaypointLayer = list.get(index)
+                @WAYPOINT_EVENT.setRtsLayer(ownedWaypointLayer)
                 unitWaypointBehavior.onWaypointEvent(@WAYPOINT_EVENT)
             end
             waypointLayer = PrimaryWaypointHelper.getInstance().getWaypointLayer()
-            if waypointLayer != NullPathFindingLayer::NULL_PATH_FINDING_LAYER
+            if waypointLayer != ::Org::Allbinary::Game::Layer::NullPathFindingLayer::NULL_PATH_FINDING_LAYER
                 @WAYPOINT_EVENT.setRtsLayer(waypointLayer)
                 unitWaypointBehavior.onWaypointEvent(@WAYPOINT_EVENT)
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, "set", e)
         end
     end
 
     def self.instance()
+        AssignWaypointsUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AssignWaypointsUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AssignWaypointsUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AssignWaypointsUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/AdvancedRTSGameLayer"
-require "org/allbinary/game/layer/NullPathFindingLayer"
-require "org/allbinary/game/layer/PathFindingLayerInterface"
-require "org/allbinary/game/layer/RTSLayer"
-require "org/allbinary/game/layer/RTSLayerEvent"
-require "org/allbinary/game/layer/unit/UnitLayer"
-require "org/allbinary/game/layer/unit/UnitWaypointBehavior"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/game/input/form/PrimaryWaypointHelper"
+module ::Org; module Allbinary; module Game; module Layer; autoload :AdvancedRTSGameLayer, "org/allbinary/game/layer/AdvancedRTSGameLayer" unless const_defined?(:AdvancedRTSGameLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :NullPathFindingLayer, "org/allbinary/game/layer/NullPathFindingLayer" unless const_defined?(:NullPathFindingLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :PathFindingLayerInterface, "org/allbinary/game/layer/PathFindingLayerInterface" unless const_defined?(:PathFindingLayerInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayerEvent, "org/allbinary/game/layer/RTSLayerEvent" unless const_defined?(:RTSLayerEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Unit; autoload :UnitLayer, "org/allbinary/game/layer/unit/UnitLayer" unless const_defined?(:UnitLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Unit; autoload :UnitWaypointBehavior, "org/allbinary/game/layer/unit/UnitWaypointBehavior" unless const_defined?(:UnitWaypointBehavior, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :PrimaryWaypointHelper, "org/allbinary/game/input/form/PrimaryWaypointHelper" unless const_defined?(:PrimaryWaypointHelper, false)
 
-class AssignWaypointsUtil
-    @@instance = AssignWaypointsUtil.new()
+begin
+    AssignWaypointsUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

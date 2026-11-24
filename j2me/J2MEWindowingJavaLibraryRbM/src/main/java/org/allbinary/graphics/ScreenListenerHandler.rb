@@ -15,15 +15,17 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class ScreenListenerHandler
     attr_accessor :screenListenerInterface
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_ScreenListenerHandler
         @screenListenerInterface = ScreenEmptyListener.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_ScreenListenerHandler
     end
     
 
@@ -77,12 +79,14 @@ class ScreenListenerHandler
     end
 end
 
-autoload :ScreenEmptyListener, "org/allbinary/graphics/ScreenEmptyListener"
-autoload :ScreenListenerInterface, "org/allbinary/graphics/ScreenListenerInterface"
+autoload :ScreenEmptyListener, "org/allbinary/graphics/ScreenEmptyListener" unless const_defined?(:ScreenEmptyListener, false)
+autoload :ScreenListenerInterface, "org/allbinary/graphics/ScreenListenerInterface" unless const_defined?(:ScreenListenerInterface, false)
 
 begin
     ScreenListenerHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

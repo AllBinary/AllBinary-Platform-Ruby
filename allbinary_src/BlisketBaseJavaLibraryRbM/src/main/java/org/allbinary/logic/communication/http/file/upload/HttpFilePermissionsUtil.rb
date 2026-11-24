@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.http.file.upload
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module FilePackage; module Upload
+
 class HttpFilePermissionsUtil
     
 
@@ -25,7 +27,7 @@ class HttpFilePermissionsUtil
 
     # throws Exception
     def create(path)
-        file = AbFile.createAbFileFromAbPath(path)
+        file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(path)
         if !file.isFile()
             file.createNewFile()
         end
@@ -62,12 +64,14 @@ class HttpFilePermissionsUtil
     end
 end
 
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
 
 begin
     HttpFilePermissionsUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

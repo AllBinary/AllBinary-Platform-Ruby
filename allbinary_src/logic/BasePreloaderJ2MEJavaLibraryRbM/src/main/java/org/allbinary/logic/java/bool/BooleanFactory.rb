@@ -15,10 +15,12 @@
 # package org.allbinary.logic.java.bool
 
 
+module ::Org; module Allbinary; module Logic; module Java; module Bool
+
 class BooleanFactory
     attr_accessor :TRUE, :FALSE, :TRUE_STRING, :FALSE_STRING, :YES, :NO
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_java_bool_BooleanFactory
         @TRUE = true
         @FALSE = false
         @TRUE_STRING = @TRUE.to_s
@@ -28,7 +30,7 @@ class BooleanFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_java_bool_BooleanFactory
     end
     
 
@@ -81,4 +83,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

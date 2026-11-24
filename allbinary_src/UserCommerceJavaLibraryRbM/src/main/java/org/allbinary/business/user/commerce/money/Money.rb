@@ -15,46 +15,53 @@
 # package org.allbinary.business.user.commerce.money
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money
+
 class Money
     attr_accessor :units, :DEFAULT_CURRENCY
 
-    def initialize_fields
-        @units = nil
+    def jfields_org_allbinary_business_user_commerce_money_Money
+        @units = nil unless instance_variable_defined?(:@units)
         @DEFAULT_CURRENCY = "USD"
     end
 
     def initialize(*args)
         case args.length
-        when 1 then constructor1(*args)
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
-        when 1 then constructor1(*args)
+        when 1 then jnew_org_allbinary_business_user_commerce_money_Money_1(*args)
+        when 0 then jnew_org_allbinary_business_user_commerce_money_Money_0(*args)
+        else raise ArgumentError, "No constructor of Money takes #{args.length} arguments"
         end
+    end
+
+    def jnew_org_allbinary_business_user_commerce_money_Money_1(*java_overload_args)
+        return jnew_org_allbinary_business_user_commerce_money_Money_1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(Money))
+        return jnew_org_allbinary_business_user_commerce_money_Money_1_2(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::String))
+        return jnew_org_allbinary_business_user_commerce_money_Money_1_3(*java_overload_args)
     end
     
 
-    def constructor1(money)
-        initialize_fields
+    def jnew_org_allbinary_business_user_commerce_money_Money_1_1(money)
+        jfields_org_allbinary_business_user_commerce_money_Money
         @units = money.getUnits()
     end
     
 
-    def constructor0()
-        initialize_fields
+    def jnew_org_allbinary_business_user_commerce_money_Money_0()
+        jfields_org_allbinary_business_user_commerce_money_Money
         @units = 0
     end
     
 
-    def constructor1(usDollarStr)
-        initialize_fields
-        if usDollarStr != nil && StringValidationUtil.getInstance().isNumber(usDollarStr)
+    def jnew_org_allbinary_business_user_commerce_money_Money_1_2(usDollarStr)
+        jfields_org_allbinary_business_user_commerce_money_Money
+        if usDollarStr != nil && ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isNumber(usDollarStr)
             @units = convertUsdToUnits(usDollarStr)
         end
     end
     
 
-    def constructor1(units)
-        initialize_fields
+    def jnew_org_allbinary_business_user_commerce_money_Money_1_3(units)
+        jfields_org_allbinary_business_user_commerce_money_Money
         @units = units
     end
     
@@ -68,14 +75,23 @@ class Money
     end
     
 
-    def add(moreMoney)
+    def add_j1_1(moreMoney)
         self.add(moreMoney.to_s)
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def add(usDollarStr)
+    def add_j1_2(usDollarStr)
         @units = @units.to_i + convertUsdToUnits(usDollarStr)
+    end
+
+    def add(*java_overload_args)
+        return add_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method add takes #{java_overload_args.length} arguments"
+    end
+
+    def add_j1(*java_overload_args)
+        return add_j1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(Money))
+        return add_j1_2(*java_overload_args)
     end
     
 
@@ -84,26 +100,35 @@ class Money
     end
     
 
-    def multiply(multiplier)
+    def multiply_j1_1(multiplier)
         @units = @units.to_i * multiplier.to_f.to_i
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def multiply(multiplier)
+    def multiply_j1_2(multiplier)
         @units = @units.to_i * multiplier
+    end
+
+    def multiply(*java_overload_args)
+        return multiply_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method multiply takes #{java_overload_args.length} arguments"
+    end
+
+    def multiply_j1(*java_overload_args)
+        return multiply_j1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Numeric))
+        return multiply_j1_2(*java_overload_args)
     end
     
 
     def convertUnitsTo(currency)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         if (currency <=> @DEFAULT_CURRENCY) == 0
             dollar = @units.to_i / 100
             cents = @units.to_i - (dollar * 100)
             stringBuffer.append(dollar.to_s)
-            stringBuffer.append(AbPathData.getInstance().EXTENSION_SEP)
+            stringBuffer.append(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP)
             if cents < 10
-                stringBuffer.append(CommonPhoneStrings.getInstance().ZERO)
+                stringBuffer.append(::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().ZERO)
             end
             stringBuffer.append(cents.to_s)
         end
@@ -113,8 +138,8 @@ class Money
 
     def convertUsdToUnits(usDollarStr)
         localUnit = 0
-        index = (usDollarStr.index(AbPathData.getInstance().EXTENSION_SEP) || -1)
-        stringUtil = StringUtil.getInstance()
+        index = (usDollarStr.index(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP) || -1)
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         dollarStr = stringUtil.EMPTY_STRING
         centsStr = stringUtil.EMPTY_STRING
         if index < 1
@@ -146,9 +171,11 @@ class Money
     alias_method :to_s, :toString
 end
 
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+
+end; end; end; end; end; end
 

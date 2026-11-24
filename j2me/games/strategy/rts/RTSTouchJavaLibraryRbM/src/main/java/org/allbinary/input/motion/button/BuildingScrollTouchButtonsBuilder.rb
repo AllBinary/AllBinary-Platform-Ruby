@@ -14,25 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/BaseTouchInput"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class BuildingScrollTouchButtonsBuilder < BaseTouchInput
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_input_motion_button_BuildingScrollTouchButtonsBuilder
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_BuildingScrollTouchButtonsBuilder
     end
     
 
     def getList()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
-            list = BasicArrayListD.new()
+            list = ::Org::Allbinary::Util::BasicArrayListD.new()
             touchButtonLocationHelper = TouchButtonLocationHelper.new()
             commonButtons = CommonButtons.getInstance()
             basicTouchButtonCellPositionFactory = BasicTouchButtonCellPositionFactory.new()
@@ -43,20 +46,23 @@ class BuildingScrollTouchButtonsBuilder < BaseTouchInput
             return list
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.CONSTRUCTOR, e)
-            return BasicArrayListUtil.getInstance().getImmutableInstance()
+            return ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
         end
     end
+    java_overload :getList, 0
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory"
-require "org/allbinary/input/motion/button/BasicTouchInputFactory"
-require "org/allbinary/input/motion/button/CommonButtons"
-require "org/allbinary/input/motion/button/TouchButton"
-require "org/allbinary/input/motion/button/TouchButtonLocationHelper"
-require "org/allbinary/input/motion/button/TouchButtonStrafeLeftResource"
-require "org/allbinary/input/motion/button/TouchButtonStrafeRightResource"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :BasicTouchButtonCellPositionFactory, "org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory" unless const_defined?(:BasicTouchButtonCellPositionFactory, false)
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false)
+autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons" unless const_defined?(:CommonButtons, false)
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton" unless const_defined?(:TouchButton, false)
+autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper" unless const_defined?(:TouchButtonLocationHelper, false)
+autoload :TouchButtonStrafeLeftResource, "org/allbinary/input/motion/button/TouchButtonStrafeLeftResource" unless const_defined?(:TouchButtonStrafeLeftResource, false)
+autoload :TouchButtonStrafeRightResource, "org/allbinary/input/motion/button/TouchButtonStrafeRightResource" unless const_defined?(:TouchButtonStrafeRightResource, false)
+
+end; end; end; end; end
 

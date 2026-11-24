@@ -15,10 +15,12 @@
 # package org.allbinary.game.combat.damage
 
 
+module ::Org; module Allbinary; module Game; module Combat; module Damage
+
 class ExplosionResources
     attr_accessor :EXPLOSION_90_RESOURCE, :EXPLOSION_60_RESOURCE, :HALF_EXPLOSION_RESOURCE, :THIRD_EXPLOSION_RESOURCE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_combat_damage_ExplosionResources
         @EXPLOSION_90_RESOURCE = "/explosion_sprite_90_by_90.png"
         @EXPLOSION_60_RESOURCE = "/explosion_sprite_60_by_60.png"
         @HALF_EXPLOSION_RESOURCE = "/explosion_sprite_30_by_30.png"
@@ -32,7 +34,7 @@ class ExplosionResources
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_combat_damage_ExplosionResources
     end
 
     def self.instance()
@@ -71,4 +73,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

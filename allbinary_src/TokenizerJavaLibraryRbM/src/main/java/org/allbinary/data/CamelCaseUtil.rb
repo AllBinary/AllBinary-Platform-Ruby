@@ -15,15 +15,17 @@
 # package org.allbinary.data
 
 
+module ::Org; module Allbinary; module DataPackage
+
 class CamelCaseUtil
     attr_accessor :commonSeps
 
-    def initialize_fields
-        @commonSeps = CommonSeps.getInstance()
+    def jfields_org_allbinary_data_CamelCaseUtil
+        @commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_data_CamelCaseUtil
     end
     
 
@@ -34,16 +36,16 @@ class CamelCaseUtil
 
     # throws Exception
     def getAsCamelCase(string, stringBuilder)
-        stringValidationUtil = StringValidationUtil.getInstance()
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
         stringBuilder.delete(0, stringBuilder.length())
-        list = BasicArrayListD.new()
-        tokenizer = Tokenizer.new(@commonSeps.UNDERSCORE)
+        list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        tokenizer = ::Org::Allbinary::Logic::StringPackage::Tokens::Tokenizer.new(@commonSeps.UNDERSCORE)
         tokenizer.getTokensFromString(string, list)
         size = list.size()
         word = nil
         (0...size).each do |i|
             word = list.get(i)
-            word = (stringValidationUtil.isEmpty(word) ? word : StringMaker.new().appendchar((word[0]).upcase).append(word[1..].downcase).to_s)
+            word = (stringValidationUtil.isEmpty(word) ? word : ::Org::Allbinary::Logic::StringPackage::StringMaker.new().appendchar((word[0]).upcase).append(word[1..].downcase).to_s)
             stringBuilder.append(word)
         end
         return stringBuilder.to_s
@@ -80,17 +82,19 @@ class CamelCaseUtil
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :Tokenizer, "org/allbinary/logic/string/tokens/Tokenizer"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; module Tokens; autoload :Tokenizer, "org/allbinary/logic/string/tokens/Tokenizer" unless const_defined?(:Tokenizer, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     CamelCaseUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

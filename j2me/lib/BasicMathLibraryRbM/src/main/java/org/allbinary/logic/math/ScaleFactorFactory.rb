@@ -15,16 +15,18 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class ScaleFactorFactory
     attr_accessor :DEFAULT_SCALE_FACTOR, :DEFAULT_SCALE_VALUE
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_math_ScaleFactorFactory
         @DEFAULT_SCALE_FACTOR = 10
         @DEFAULT_SCALE_VALUE = 1024
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_math_ScaleFactorFactory
     end
     
 
@@ -68,4 +70,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/SequentialAnimationInterface"
+
+module ::Org; module Allbinary; module Animation
 
 module IndexedAnimationInterface
     include SequentialAnimationInterface
@@ -24,17 +27,22 @@ module IndexedAnimationInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :reset, 0
     
 
     def setFrame(index)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setFrame, 1
     
 
     def getFrame()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getFrame, 0
 end
+
+end; end; end
 

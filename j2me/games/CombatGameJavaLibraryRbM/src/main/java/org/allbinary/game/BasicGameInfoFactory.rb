@@ -3,13 +3,15 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 class BasicGameInfoFactory
     attr_accessor :currentReleaseIndex, :currentDestroyIndex, :total
 
-    def initialize_fields
-        @currentReleaseIndex = 0
-        @currentDestroyIndex = 0
-        @total = 0
+    def jfields_org_allbinary_game_BasicGameInfoFactory
+        @currentReleaseIndex = 0 unless instance_variable_defined?(:@currentReleaseIndex)
+        @currentDestroyIndex = 0 unless instance_variable_defined?(:@currentDestroyIndex)
+        @total = 0 unless instance_variable_defined?(:@total)
     end
     
 
@@ -19,7 +21,7 @@ class BasicGameInfoFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_BasicGameInfoFactory
     end
     
 
@@ -69,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

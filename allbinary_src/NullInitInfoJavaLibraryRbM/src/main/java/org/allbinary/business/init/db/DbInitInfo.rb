@@ -15,7 +15,10 @@
 # package org.allbinary.business.init.db
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/business/init/db/DbConnectionInfo"
+
+module ::Org; module Allbinary; module Business; module Init; module Db
 
 #import org.allbinary.logic.communication.log.config.type.LogConfigTypes;
 class DbInitInfo < DbConnectionInfo
@@ -27,10 +30,11 @@ class DbInitInfo < DbConnectionInfo
     
 
     def getUrl()
-        url = super()
-        PreLogUtil.put("Url: " + url, self, "getUrl")
+        url = DbInitInfo.superclass.java_super_method(:getUrl, 0).bind(self).call()
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Url: " + url, self, "getUrl")
         return url
     end
+    java_overload :getUrl, 0
     
 
     # throws Exception
@@ -38,6 +42,7 @@ class DbInitInfo < DbConnectionInfo
         java_monitor.synchronize do
         end
     end
+    java_overload :write, 0
     
 
     # throws Exception
@@ -45,13 +50,17 @@ class DbInitInfo < DbConnectionInfo
         java_monitor.synchronize do
         end
     end
+    java_overload :load, 0
     
 
     def setHasRead(value)
         java_monitor.synchronize do
         end
     end
+    java_overload :setHasRead, 1
 end
 
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+
+end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.form
 
 
+module ::Org; module Allbinary; module Graphics; module Form
+
 class ItemIndexPaintable
     
 
@@ -59,12 +61,14 @@ class ItemIndexPaintable
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false); end; end; end; end; end
 
 begin
     ItemIndexPaintable.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

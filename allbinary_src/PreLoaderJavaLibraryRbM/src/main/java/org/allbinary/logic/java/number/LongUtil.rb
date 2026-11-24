@@ -15,6 +15,8 @@
 # package org.allbinary.logic.java.number
 
 
+module ::Org; module Allbinary; module Logic; module Java; module Number
+
 class LongUtil
     
 
@@ -23,9 +25,9 @@ class LongUtil
     
 
     def self.fillIn(end_)
-        frameStringBuffer = StringMaker.new()
+        frameStringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         if frameStringBuffer.length() < LongData::MAX_LONG_LENGTH
-            commonPhoneStrings = CommonPhoneStrings.getInstance()
+            commonPhoneStrings = ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance()
             size = LongData::MAX_LONG_LENGTH - frameStringBuffer.length()
             (0...size).each do |index|
                 frameStringBuffer.append(commonPhoneStrings.ZERO)
@@ -36,7 +38,9 @@ class LongUtil
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/logic/java/number/LongData"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+autoload :LongData, "org/allbinary/logic/java/number/LongData" unless const_defined?(:LongData, false)
+
+end; end; end; end; end
 

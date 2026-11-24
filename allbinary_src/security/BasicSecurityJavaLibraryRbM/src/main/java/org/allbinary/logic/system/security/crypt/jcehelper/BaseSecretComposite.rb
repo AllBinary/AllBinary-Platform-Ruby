@@ -15,18 +15,20 @@
 # package org.allbinary.logic.system.security.crypt.jcehelper
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; module Jcehelper
+
 class BaseSecretComposite
     
 
     # throws Exception
     def encrypt(array)
-        return NullUtil.getInstance().NULL_BYTE_ARRAY
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_BYTE_ARRAY
     end
     
 
     # throws Exception
     def decrypt(array)
-        return NullUtil.getInstance().NULL_BYTE_ARRAY
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_BYTE_ARRAY
     end
 
     def self.java_static_fields
@@ -50,11 +52,13 @@ class BaseSecretComposite
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
 
 begin
     BaseSecretComposite.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

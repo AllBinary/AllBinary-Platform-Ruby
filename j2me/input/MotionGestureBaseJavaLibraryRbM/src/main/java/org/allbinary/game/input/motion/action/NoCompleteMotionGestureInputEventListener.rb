@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.motion.action
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/CompleteMotionGestureInputEventListener"
 
-class NoCompleteMotionGestureInputEventListener < CompleteMotionGestureInputEventListener
+module ::Org; module Allbinary; module Game; module Input; module Motion; module Action
+
+class NoCompleteMotionGestureInputEventListener < ::Org::Allbinary::Game::Input::CompleteMotionGestureInputEventListener
     
 
     def initialize()
@@ -25,12 +28,14 @@ class NoCompleteMotionGestureInputEventListener < CompleteMotionGestureInputEven
     
 
     def onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
     end
+    java_overload :onEvent, 1
     
 
     def onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
     end
+    java_overload :onCompleteMotionGestureInputEvent, 1
     
 
     def self.getInstance()
@@ -68,14 +73,16 @@ class NoCompleteMotionGestureInputEventListener < CompleteMotionGestureInputEven
     end
 end
 
-autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+module ::Org; module Allbinary; module Game; module Input; autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent" unless const_defined?(:CompleteMotionGestureInputEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
 
 begin
     NoCompleteMotionGestureInputEventListener.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

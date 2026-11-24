@@ -15,14 +15,19 @@
 # package org.allbinary.gui.dialog
 
 
+module ::Org; module Allbinary; module Gui; module Dialog
+
 module HashMapJDialogListenerInterface
     
 
     # throws Exception
     def onHashMap(hashMap)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "java/util/HashMap"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+
+end; end; end; end
 

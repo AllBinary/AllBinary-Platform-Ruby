@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module
 
-# require "javax/swing"
+# require "javax/swing/DefaultListModel"
+# require "javax/swing/ListModel"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage
 
 class DefaultListModelHelper
     attr_accessor :defaultListModel, :vector
 
-    def initialize_fields
-        @defaultListModel = nil
-        @vector = nil
+    def jfields_org_allbinary_input_automation_module_DefaultListModelHelper
+        @defaultListModel = nil unless instance_variable_defined?(:@defaultListModel)
+        @vector = nil unless instance_variable_defined?(:@vector)
     end
     
 
     def initialize()
-        initialize_fields
-        @vector = BasicArrayListD.new()
+        jfields_org_allbinary_input_automation_module_DefaultListModelHelper
+        @vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         @defaultListModel = DefaultListModel.new()
     end
     
@@ -57,7 +60,9 @@ class DefaultListModelHelper
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+
+end; end; end; end; end
 

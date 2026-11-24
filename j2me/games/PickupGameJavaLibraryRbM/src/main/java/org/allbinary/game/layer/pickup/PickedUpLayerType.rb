@@ -15,16 +15,18 @@
 # package org.allbinary.game.layer.pickup
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 class PickedUpLayerType
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_game_layer_pickup_PickedUpLayerType
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_game_layer_pickup_PickedUpLayerType
         @name = name
     end
     
@@ -34,4 +36,6 @@ class PickedUpLayerType
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end
 

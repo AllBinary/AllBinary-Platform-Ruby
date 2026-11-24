@@ -15,15 +15,17 @@
 # package org.allbinary.input.gyro
 
 
+module ::Org; module Allbinary; module Input; module Gyro
+
 class SensorGameUpdateProcessor
     attr_accessor :inputSensor
 
-    def initialize_fields
-        @inputSensor = nil
+    def jfields_org_allbinary_input_gyro_SensorGameUpdateProcessor
+        @inputSensor = nil unless instance_variable_defined?(:@inputSensor)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_input_gyro_SensorGameUpdateProcessor
     end
     
 
@@ -48,7 +50,7 @@ class SensorGameUpdateProcessor
     
 
     def isAnySensor()
-        if @inputSensor == NoAllBinarySensor.getInstance()
+        if @inputSensor == ::Org::Allbinary::Input::NoAllBinarySensor.getInstance()
             return false
         else
             return true
@@ -57,15 +59,17 @@ class SensorGameUpdateProcessor
     
 
     def setNoSensors()
-        GyroSensorFactory.getInstance().setCompleteMotionGestureInputEventListener(NoCompleteMotionGestureInputEventListener.getInstance())
-        AccelerometerSensorFactory.getInstance().setCompleteMotionGestureInputEventListener(NoCompleteMotionGestureInputEventListener.getInstance())
-        self.setInputSensor(NoAllBinarySensor.getInstance())
+        GyroSensorFactory.getInstance().setCompleteMotionGestureInputEventListener(::Org::Allbinary::Game::Input::Motion::Action::NoCompleteMotionGestureInputEventListener.getInstance())
+        ::Org::Allbinary::Input::Accelerometer::AccelerometerSensorFactory.getInstance().setCompleteMotionGestureInputEventListener(::Org::Allbinary::Game::Input::Motion::Action::NoCompleteMotionGestureInputEventListener.getInstance())
+        self.setInputSensor(::Org::Allbinary::Input::NoAllBinarySensor.getInstance())
     end
 end
 
-autoload :NoCompleteMotionGestureInputEventListener, "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener"
-autoload :AllBinarySensor, "org/allbinary/input/AllBinarySensor"
-autoload :NoAllBinarySensor, "org/allbinary/input/NoAllBinarySensor"
-autoload :AccelerometerSensorFactory, "org/allbinary/input/accelerometer/AccelerometerSensorFactory"
-autoload :GyroSensorFactory, "org/allbinary/input/gyro/GyroSensorFactory"
+module ::Org; module Allbinary; module Game; module Input; module Motion; module Action; autoload :NoCompleteMotionGestureInputEventListener, "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener" unless const_defined?(:NoCompleteMotionGestureInputEventListener, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; autoload :AllBinarySensor, "org/allbinary/input/AllBinarySensor" unless const_defined?(:AllBinarySensor, false); end; end; end
+module ::Org; module Allbinary; module Input; autoload :NoAllBinarySensor, "org/allbinary/input/NoAllBinarySensor" unless const_defined?(:NoAllBinarySensor, false); end; end; end
+module ::Org; module Allbinary; module Input; module Accelerometer; autoload :AccelerometerSensorFactory, "org/allbinary/input/accelerometer/AccelerometerSensorFactory" unless const_defined?(:AccelerometerSensorFactory, false); end; end; end; end
+autoload :GyroSensorFactory, "org/allbinary/input/gyro/GyroSensorFactory" unless const_defined?(:GyroSensorFactory, false)
+
+end; end; end; end
 

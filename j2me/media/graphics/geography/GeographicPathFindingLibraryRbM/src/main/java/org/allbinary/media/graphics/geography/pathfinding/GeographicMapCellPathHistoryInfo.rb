@@ -15,19 +15,21 @@
 # package org.allbinary.media.graphics.geography.pathfinding
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding
+
 class GeographicMapCellPathHistoryInfo
     attr_accessor :previousGeographicMapCellPosition, :previousOnPathGeographicMapCellPosition, :nextUnvisitedOnPathGeographicMapCellPosition, :nextOnPathGeographicMapCellPosition, :nextChosenOnPathGeographicMapCellPosition
 
-    def initialize_fields
-        @previousGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
-        @previousOnPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
-        @nextUnvisitedOnPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
-        @nextOnPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
-        @nextChosenOnPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+    def jfields_org_allbinary_media_graphics_geography_pathfinding_GeographicMapCellPathHistoryInfo
+        @previousGeographicMapCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+        @previousOnPathGeographicMapCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+        @nextUnvisitedOnPathGeographicMapCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+        @nextOnPathGeographicMapCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+        @nextChosenOnPathGeographicMapCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_pathfinding_GeographicMapCellPathHistoryInfo
     end
     
 
@@ -81,6 +83,8 @@ class GeographicMapCellPathHistoryInfo
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory"
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :SimpleGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory" unless const_defined?(:SimpleGeographicMapCellPositionFactory, false); end; end; end; end; end; end
+
+end; end; end; end; end; end
 

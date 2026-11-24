@@ -15,10 +15,12 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class GraphicsStrings
     attr_accessor :ANIMATION, :ANGLE, :MOVEMENT_ANGLE, :ROTATION, :OPACITY, :HTML, :WIDTH, :HEIGHT
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_GraphicsStrings
         @ANIMATION = "animation"
         @ANGLE = "angle"
         @MOVEMENT_ANGLE = "movement_angle"
@@ -30,7 +32,7 @@ class GraphicsStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_GraphicsStrings
     end
     
 
@@ -74,4 +76,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

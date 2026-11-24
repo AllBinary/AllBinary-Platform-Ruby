@@ -16,15 +16,17 @@
 
 # require "jsinterop/annotations/JsType"
 
+module ::Org; module Allbinary; module Util
+
 class HashtableUtil
     attr_accessor :enumerationUtil
 
-    def initialize_fields
+    def jfields_org_allbinary_util_HashtableUtil
         @enumerationUtil = EnumerationUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_util_HashtableUtil
     end
     
 
@@ -99,15 +101,17 @@ class HashtableUtil
     end
 end
 
-autoload :Enumeration, "java/util/Enumeration"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS"
-autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil"
+module ::Java; module Util; autoload :Enumeration, "java/util/Enumeration" unless const_defined?(:Enumeration, false); end; end
+autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false)
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false)
+autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS" unless const_defined?(:BasicArrayListS, false)
+autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil" unless const_defined?(:EnumerationUtil, false)
 
 begin
     HashtableUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

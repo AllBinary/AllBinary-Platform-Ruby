@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Cache
 
 class NoCacheableFactory
     include CacheableInterfaceFactoryInterface
@@ -28,7 +31,10 @@ class NoCacheableFactory
     def getInstance(key)
         raise StandardError.new("This Factory Does Not")
     end
+    java_overload :getInstance, 1
 end
 
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false)
+
+end; end; end; end; end
 

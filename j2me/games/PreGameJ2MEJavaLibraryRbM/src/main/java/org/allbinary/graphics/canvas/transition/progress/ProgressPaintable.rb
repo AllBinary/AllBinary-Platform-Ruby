@@ -14,20 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.canvas.transition.progress
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/Paintable"
 
-#Was a nested class of ProgressCanvas. It paints the gauge of its ProgressCanvas.
-class ProgressPaintable < Paintable
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress
+
+class ProgressPaintable < ::Org::Allbinary::Graphics::Paint::Paintable
     attr_accessor :progressCanvas
 
-    def initialize_fields
-        @progressCanvas = nil
+    def jfields_org_allbinary_graphics_canvas_transition_progress_ProgressPaintable
+        @progressCanvas = nil unless instance_variable_defined?(:@progressCanvas)
     end
     
 
     def initialize(progressCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_canvas_transition_progress_ProgressPaintable
         @progressCanvas = progressCanvas
     end
     
@@ -35,8 +37,11 @@ class ProgressPaintable < Paintable
     def paint(graphics)
         @progressCanvas.paint2(graphics)
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false)
+
+end; end; end; end; end; end
 

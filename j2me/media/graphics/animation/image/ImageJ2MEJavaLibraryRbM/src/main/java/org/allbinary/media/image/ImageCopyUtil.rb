@@ -15,16 +15,18 @@
 # package org.allbinary.media.image
 
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageCopyUtil
     attr_accessor :logUtil, :commonStrings, :imageCreationUtil, :anchor, :gameFeatureFactory, :features, :NO_COPY
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_media_image_ImageCopyUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @imageCreationUtil = ImageCreationUtil.getInstance()
-        @anchor = Anchor::TOP_LEFT
-        @gameFeatureFactory = GameFeatureFactory.getInstance()
-        @features = Features.getInstance()
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
+        @gameFeatureFactory = ::Org::Allbinary::Game::Configuration::Feature::GameFeatureFactory.getInstance()
+        @features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
         @NO_COPY = "J2ME does not need to copy images after initial loading"
     end
     
@@ -35,7 +37,7 @@ class ImageCopyUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageCopyUtil
     end
     
 
@@ -67,8 +69,8 @@ class ImageCopyUtil
             @logUtil.put(@NO_COPY, self, @commonStrings.CONSTRUCTOR, StandardError.new())
             return originalImage
         end
-        newWidth = ((originalImage.getWidth() * canvasScale)).to_i
-        newHeight = ((originalImage.getHeight() * canvasScale)).to_i
+        newWidth = (((originalImage.getWidth() * canvasScale)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+        newHeight = (((originalImage.getHeight() * canvasScale)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
         if resize
             if newWidth < newHeight
                 newWidth = newHeight
@@ -120,18 +122,20 @@ class ImageCopyUtil
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
-autoload :Anchor, "org/allbinary/graphics/Anchor"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ImageCreationUtil, "org/allbinary/media/image/ImageCreationUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory" unless const_defined?(:GameFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :ImageCreationUtil, "org/allbinary/media/image/ImageCreationUtil" unless const_defined?(:ImageCreationUtil, false)
 
 begin
     ImageCopyUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

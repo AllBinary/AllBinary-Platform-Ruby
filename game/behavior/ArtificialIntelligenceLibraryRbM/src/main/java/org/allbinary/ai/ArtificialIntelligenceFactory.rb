@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/ai/ArtificialIntelligenceFactoryInterface"
+
+module ::Org; module Allbinary; module Ai
 
 class ArtificialIntelligenceFactory
     include ArtificialIntelligenceFactoryInterface
@@ -24,7 +27,10 @@ class ArtificialIntelligenceFactory
     def getInstance(anyType)
         raise RuntimeError.new()
     end
+    java_overload :getInstance, 1
 end
 
-autoload :ArtificialIntelligence, "org/allbinary/ai/ArtificialIntelligence"
+autoload :ArtificialIntelligence, "org/allbinary/ai/ArtificialIntelligence" unless const_defined?(:ArtificialIntelligence, false)
+
+end; end; end
 

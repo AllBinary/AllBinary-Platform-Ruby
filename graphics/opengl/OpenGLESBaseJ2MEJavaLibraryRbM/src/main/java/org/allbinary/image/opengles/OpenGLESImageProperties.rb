@@ -15,24 +15,28 @@
 # package org.allbinary.image.opengles
 
 
+module ::Org; module Allbinary; module Image; module Opengles
+
 class OpenGLESImageProperties
     attr_accessor :textureID, :scaleX, :scaleY, :scaleX2, :scaleY2, :angle, :redf, :greenf, :bluef, :alphaf
 
-    def initialize_fields
+    def jfields_org_allbinary_image_opengles_OpenGLESImageProperties
         @textureID = -1
         @scaleX = 1.0
         @scaleY = 1.0
         @scaleX2 = 1.0
         @scaleY2 = 1.0
-        @angle = 0
+        @angle = 0 unless instance_variable_defined?(:@angle)
         @redf = 1.0
         @greenf = 1.0
         @bluef = 1.0
-        @alphaf = 0.0
+        @alphaf = 0.0 unless instance_variable_defined?(:@alphaf)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_image_opengles_OpenGLESImageProperties
     end
 end
+
+end; end; end; end
 

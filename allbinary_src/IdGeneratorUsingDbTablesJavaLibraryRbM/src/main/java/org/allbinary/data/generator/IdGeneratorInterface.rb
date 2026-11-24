@@ -16,12 +16,17 @@
 
 # require "java/io/IOException"
 
+module ::Org; module Allbinary; module DataPackage; module Generator
+
 module IdGeneratorInterface
     
 
     # throws IOException
     def getNext()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

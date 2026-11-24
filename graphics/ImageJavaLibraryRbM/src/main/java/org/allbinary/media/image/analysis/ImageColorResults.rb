@@ -15,17 +15,19 @@
 # package org.allbinary.media.image.analysis
 
 
+module ::Org; module Allbinary; module Media; module Image; module Analysis
+
 class ImageColorResults
     attr_accessor :colorRange, :colorAverage
 
-    def initialize_fields
-        @colorRange = nil
-        @colorAverage = nil
+    def jfields_org_allbinary_media_image_analysis_ImageColorResults
+        @colorRange = nil unless instance_variable_defined?(:@colorRange)
+        @colorAverage = nil unless instance_variable_defined?(:@colorAverage)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_analysis_ImageColorResults
         self.setColorRange(ColorRange.new())
         self.getColorRange().setMaxRed(-1)
         self.getColorRange().setMaxGreen(-1)
@@ -57,6 +59,8 @@ class ImageColorResults
     end
 end
 
-autoload :ColorAverage, "org/allbinary/media/image/analysis/ColorAverage"
-autoload :ColorRange, "org/allbinary/media/image/analysis/ColorRange"
+autoload :ColorAverage, "org/allbinary/media/image/analysis/ColorAverage" unless const_defined?(:ColorAverage, false)
+autoload :ColorRange, "org/allbinary/media/image/analysis/ColorRange" unless const_defined?(:ColorRange, false)
+
+end; end; end; end; end
 

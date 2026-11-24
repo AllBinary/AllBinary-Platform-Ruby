@@ -15,10 +15,12 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class RTSGameStrings
     attr_accessor :DRAG_TO_SPOT, :NOT_YOURS, :NEW_UNIT, :NEW_WAYPOINT, :BUILDING, :UPGRADE, :DOWNGRADE, :NO_MONEY, :SPOT_TAKEN, :BUILDING_COLLISION, :STRUCTURE_TO_CLOSE, :MAP_EDGE, :ROAD_COLLISION, :SELECT_BUILD_SPOT, :BUILD_ON_PATH, :DRAGGABLE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_layer_RTSGameStrings
         @DRAG_TO_SPOT = "Please Drag"
         @NOT_YOURS = "Not Yours"
         @NEW_UNIT = "New Unit"
@@ -38,7 +40,7 @@ class RTSGameStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_RTSGameStrings
     end
     
 
@@ -47,15 +49,41 @@ class RTSGameStrings
     end
 
     def self.instance()
+        RTSGameStrings.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        RTSGameStrings.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = RTSGameStrings.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RTSGameStrings"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class RTSGameStrings
-    @@instance = RTSGameStrings.new()
+begin
+    RTSGameStrings.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.resource
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/configuration/feature/GameFeatureControlledInterface"
 
+module ::Org; module Allbinary; module Game; module Resource
+
 module ResourceRelativeRelationshipFactoryInterface
-    include GameFeatureControlledInterface
+    include ::Org::Allbinary::Game::Configuration::Feature::GameFeatureControlledInterface
     
 
     # throws Exception
@@ -25,6 +28,7 @@ module ResourceRelativeRelationshipFactoryInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getResourceRelativeRelationshipList, 1
     
 
     # throws Exception
@@ -32,8 +36,11 @@ module ResourceRelativeRelationshipFactoryInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :addResourceRelativeRelationship, 2
 end
 
-autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Graphics; autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship" unless const_defined?(:RelativeRelationship, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end
 

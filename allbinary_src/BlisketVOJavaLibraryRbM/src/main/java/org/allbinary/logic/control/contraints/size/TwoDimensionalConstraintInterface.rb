@@ -15,28 +15,36 @@
 # package org.allbinary.logic.control.contraints.size
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Size
+
 module TwoDimensionalConstraintInterface
     
 
     def getHeight()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getWidth()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setHeight(heightSizeConstraintInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setWidth(widthSizeConstraintInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :SizeConstraintInterface, "org/allbinary/logic/control/contraints/size/SizeConstraintInterface"
+autoload :SizeConstraintInterface, "org/allbinary/logic/control/contraints/size/SizeConstraintInterface" unless const_defined?(:SizeConstraintInterface, false)
+
+end; end; end; end; end; end
 

@@ -15,21 +15,28 @@
 # package org.allbinary.input.automation.actions.script.condition
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition
+
 module AlwaysActionScriptConditionInterface
     
 
     def setIsOn(isOn)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isIsOn()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def log()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end; end
 

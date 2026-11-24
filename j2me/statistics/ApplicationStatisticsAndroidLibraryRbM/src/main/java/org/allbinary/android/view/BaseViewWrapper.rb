@@ -15,6 +15,8 @@
 # package org.allbinary.android.view
 
 
+module ::Org; module Allbinary; module Android; module View
+
 class BaseViewWrapper
     
 
@@ -24,9 +26,33 @@ class BaseViewWrapper
 
     def postInvalidate()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_VIEW_WRAPPER, BaseViewWrapper.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BaseViewWrapper"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_VIEW_WRAPPER].include?(name)
+        end
+        super
+    end
 end
 
-class BaseViewWrapper
-    NULL_VIEW_WRAPPER = BaseViewWrapper.new()
+begin
+    BaseViewWrapper.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

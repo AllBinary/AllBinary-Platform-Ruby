@@ -16,23 +16,25 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Game; module Input
+
 class GameInput
     attr_accessor :logUtil, :commonStrings, :gameKeyEventList, :removalGameKeyEventList, :isRemoveDuplicateKeyPresses
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @gameKeyEventList = nil
-        @removalGameKeyEventList = nil
-        @isRemoveDuplicateKeyPresses = nil
+    def jfields_org_allbinary_game_input_GameInput
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @gameKeyEventList = nil unless instance_variable_defined?(:@gameKeyEventList)
+        @removalGameKeyEventList = nil unless instance_variable_defined?(:@removalGameKeyEventList)
+        @isRemoveDuplicateKeyPresses = nil unless instance_variable_defined?(:@isRemoveDuplicateKeyPresses)
     end
     
 
     def initialize(gameKeyEventList, removalGameKeyEventList)
-        initialize_fields
+        jfields_org_allbinary_game_input_GameInput
         @gameKeyEventList = gameKeyEventList
         @removalGameKeyEventList = removalGameKeyEventList
-        @isRemoveDuplicateKeyPresses = Features.getInstance().isFeature(InputFeatureFactory.getInstance().REMOVE_DUPLICATE_KEY_PRESSES)
+        @isRemoveDuplicateKeyPresses = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::InputFeatureFactory.getInstance().REMOVE_DUPLICATE_KEY_PRESSES)
     end
     
 
@@ -115,10 +117,12 @@ class GameInput
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory"
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory" unless const_defined?(:InputFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end
 

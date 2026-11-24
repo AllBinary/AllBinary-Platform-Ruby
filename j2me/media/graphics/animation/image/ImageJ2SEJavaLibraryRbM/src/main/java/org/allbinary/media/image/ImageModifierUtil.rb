@@ -17,18 +17,19 @@
 # require "java/awt/image/BufferedImage"
 # require "java/awt/image/ColorModel"
 # require "java/awt/image/WritableRaster"
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageModifierUtil
     attr_accessor :imageUtil, :colorArray
 
-    def initialize_fields
+    def jfields_org_allbinary_media_image_ImageModifierUtil
         @imageUtil = ImageUtil.getInstance()
-        @colorArray = Array.new(1, 0)
+        @colorArray = (Array.new(1, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageModifierUtil
     end
     
 
@@ -125,13 +126,13 @@ class ImageModifierUtil
             (0...size).each do |index|
                 originalImage = originalImageArray[index]
                 image = ImageCreationUtil.getInstance().createImageWH(originalImage.getWidth(), originalImage.getHeight())
-                image.getGraphics().drawImage(originalImage, 0, 0, Anchor::TOP_LEFT)
+                image.getGraphics().drawImage(originalImage, 0, 0, ::Org::Allbinary::Graphics::Anchor::TOP_LEFT)
                 newImageArray[index] = image
             end
             return newImageArray
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putOE(commonStrings.EXCEPTION, self, "getImageArray", e)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(commonStrings.EXCEPTION, self, "getImageArray", e)
             return originalImageArray
         end
     end
@@ -145,22 +146,49 @@ class ImageModifierUtil
     end
 
     def self.instance()
+        ImageModifierUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageModifierUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageModifierUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageModifierUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/image/ImageCreationUtil"
-require "org/allbinary/media/image/ImageUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :ImageCreationUtil, "org/allbinary/media/image/ImageCreationUtil" unless const_defined?(:ImageCreationUtil, false)
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false)
 
-class ImageModifierUtil
-    @@instance = ImageModifierUtil.new()
+begin
+    ImageModifierUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

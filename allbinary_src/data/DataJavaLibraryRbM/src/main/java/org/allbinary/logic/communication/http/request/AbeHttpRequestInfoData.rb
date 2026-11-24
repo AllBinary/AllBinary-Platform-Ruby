@@ -15,10 +15,12 @@
 # package org.allbinary.logic.communication.http.request
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request
+
 class AbeHttpRequestInfoData
     attr_accessor :HTTP_USER_AGENT, :REMOTE_ADDRESS, :REMOTE_HOST, :REMOTE_HOST_BY_ADDRESS, :REMOTE_PORT, :REQUEST_FILE_PATH
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_http_request_AbeHttpRequestInfoData
         @HTTP_USER_AGENT = "HTTP_USER_AGENT"
         @REMOTE_ADDRESS = "REMOTE_ADDRESS"
         @REMOTE_HOST = "REMOTE_HOST"
@@ -34,19 +36,45 @@ class AbeHttpRequestInfoData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_http_request_AbeHttpRequestInfoData
     end
 
     def self.instance()
+        AbeHttpRequestInfoData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AbeHttpRequestInfoData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AbeHttpRequestInfoData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AbeHttpRequestInfoData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class AbeHttpRequestInfoData
-    @@instance = AbeHttpRequestInfoData.new()
+begin
+    AbeHttpRequestInfoData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

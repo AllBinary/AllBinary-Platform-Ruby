@@ -14,160 +14,38 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
-require "org/allbinary/canvas/Processor"
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
-require "org/allbinary/graphics/form/ItemIndexDx"
 require "org/allbinary/graphics/form/ScrollSelectionForm"
 
+module ::Org; module Allbinary; module Graphics; module Form
+
 class ScrollCurrentSelectionForm < ScrollSelectionForm
-    include UpdateMyFontInterface
+    include ::Org::Allbinary::Graphics::Font::UpdateMyFontInterface
     attr_accessor :moveForSmallScreen, :updateMyFontProcessor, :myFontProcessor, :processor, :preItemIndexDx, :dx, :dy, :maxWidth
-    class TempHorizontalFormProcessor < Processor
-        attr_accessor :scrollCurrentSelectionForm
 
-        def initialize_fields
-            @scrollCurrentSelectionForm = nil
-        end
-        
-
-        def initialize(scrollCurrentSelectionForm)
-            super()
-            initialize_fields
-            @scrollCurrentSelectionForm = scrollCurrentSelectionForm
-        end
-        
-
-        # throws Exception
-        def process()
-            @scrollCurrentSelectionForm.processTempHorizontalForm()
-            @scrollCurrentSelectionForm.processor = Processor.getInstance()
-        end
-    end
-    class HorizontalFormProcessor < Processor
-        attr_accessor :scrollCurrentSelectionForm
-
-        def initialize_fields
-            @scrollCurrentSelectionForm = nil
-        end
-        
-
-        def initialize(scrollCurrentSelectionForm)
-            super()
-            initialize_fields
-            @scrollCurrentSelectionForm = scrollCurrentSelectionForm
-        end
-        
-
-        # throws Exception
-        def process()
-            @scrollCurrentSelectionForm.processHorizontalForm()
-            @scrollCurrentSelectionForm.processor = Processor.getInstance()
-        end
-    end
-    class VerticalFormProcessor < Processor
-        attr_accessor :scrollCurrentSelectionForm
-
-        def initialize_fields
-            @scrollCurrentSelectionForm = nil
-        end
-        
-
-        def initialize(scrollCurrentSelectionForm)
-            super()
-            initialize_fields
-            @scrollCurrentSelectionForm = scrollCurrentSelectionForm
-        end
-        
-
-        # throws Exception
-        def process()
-            @scrollCurrentSelectionForm.processVerticalForm()
-            @scrollCurrentSelectionForm.processor = Processor.getInstance()
-        end
-    end
-    class TempHorizontalItemIndexDx < ItemIndexDx
-        attr_accessor :scrollCurrentSelectionForm
-
-        def initialize_fields
-            @scrollCurrentSelectionForm = nil
-        end
-        
-
-        def initialize(scrollCurrentSelectionForm)
-            super()
-            initialize_fields
-            @scrollCurrentSelectionForm = scrollCurrentSelectionForm
-        end
-        
-
-        # throws Exception
-        def getDx(index, item, dx, dy)
-            return @scrollCurrentSelectionForm.getXTempHorizontalForm(index, item, dx, dy)
-        end
-    end
-    class HorizontalItemIndexDx < ItemIndexDx
-        attr_accessor :scrollCurrentSelectionForm
-
-        def initialize_fields
-            @scrollCurrentSelectionForm = nil
-        end
-        
-
-        def initialize(scrollCurrentSelectionForm)
-            super()
-            initialize_fields
-            @scrollCurrentSelectionForm = scrollCurrentSelectionForm
-        end
-        
-
-        # throws Exception
-        def getDx(index, item, dx, dy)
-            return @scrollCurrentSelectionForm.getXHorizontalForm(index, item, dx, dy)
-        end
-    end
-    class VerticalItemIndexDx < ItemIndexDx
-        attr_accessor :scrollCurrentSelectionForm
-
-        def initialize_fields
-            @scrollCurrentSelectionForm = nil
-        end
-        
-
-        def initialize(scrollCurrentSelectionForm)
-            super()
-            initialize_fields
-            @scrollCurrentSelectionForm = scrollCurrentSelectionForm
-        end
-        
-
-        # throws Exception
-        def getDx(index, item, dx, dy)
-            return @scrollCurrentSelectionForm.getXVerticalForm(index, item, dx, dy)
-        end
-    end
-
-    def initialize_fields
-        @moveForSmallScreen = nil
-        @updateMyFontProcessor = UpdateMyFontProcessor.new(self)
+    def jfields_org_allbinary_graphics_form_ScrollCurrentSelectionForm
+        @moveForSmallScreen = nil unless instance_variable_defined?(:@moveForSmallScreen)
+        @updateMyFontProcessor = ::Org::Allbinary::Graphics::Font::UpdateMyFontProcessor.new(self)
         @myFontProcessor = @updateMyFontProcessor
-        @processor = Processor.getInstance()
+        @processor = ::Org::Allbinary::Canvas::Processor.getInstance()
         @preItemIndexDx = ItemIndexDx.getInstance()
-        @dx = 0
-        @dy = 0
+        @dx = 0 unless instance_variable_defined?(:@dx)
+        @dy = 0 unless instance_variable_defined?(:@dy)
         @maxWidth = 0
     end
     
 
     def initialize(title, items, formPaintableFactory, border, adjustedExtraBorder, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
         super(title, items, formPaintableFactory, border, adjustedExtraBorder, backgroundBasicColor, foregroundBasicColor)
-        initialize_fields
+        jfields_org_allbinary_graphics_form_ScrollCurrentSelectionForm
         @moveForSmallScreen = moveForSmallScreen
     end
     
 
     # throws Exception
     def init(rectangle, formType)
-        super(rectangle, formType)
+        ScrollCurrentSelectionForm.superclass.java_super_method(:init, 2).bind(self).call(rectangle, formType)
         formTypeFactory = FormTypeFactory.getInstance()
         if formType == formTypeFactory.TEMP_HORIZONTAL_FORM
             @processor = TempHorizontalFormProcessor.new(self)
@@ -184,17 +62,20 @@ class ScrollCurrentSelectionForm < ScrollSelectionForm
         end
         @myFontProcessor = @updateMyFontProcessor
     end
+    java_overload :init, 2
     
 
     def updateMeasurement(graphics)
-        @myFontProcessor = MyFontProcessor.getInstance()
+        @myFontProcessor = ::Org::Allbinary::Graphics::Font::MyFontProcessor.getInstance()
     end
+    java_overload :updateMeasurement, 1
     
 
     def processTempHorizontalForm()
         @dx = @x - 30 + (@rectangle.getWidth() >> 1)
         @dy = @y
     end
+    java_overload :processTempHorizontalForm, 0
     
 
     def processHorizontalForm()
@@ -214,6 +95,7 @@ class ScrollCurrentSelectionForm < ScrollSelectionForm
             end
         end
     end
+    java_overload :processHorizontalForm, 0
     
 
     def processVerticalForm()
@@ -240,36 +122,43 @@ class ScrollCurrentSelectionForm < ScrollSelectionForm
             @dy = @y
         end
     end
+    java_overload :processVerticalForm, 0
     
 
     def getXTempHorizontalForm(index, item, dx, dy)
         return self.getDiffX(item)
     end
+    java_overload :getXTempHorizontalForm, 4
     
 
     def getXHorizontalForm(index, item, dx, dy)
         return 0
     end
+    java_overload :getXHorizontalForm, 4
     
 
     def getXVerticalForm(index, item, dx, dy)
         return self.getDiffX(item) + @halfBorder
     end
+    java_overload :getXVerticalForm, 4
     
 
     def getDiffX(item)
         return ((@maxWidth - item.getMinimumWidth()) >> 1)
     end
+    java_overload :getDiffX, 1
     
 
     def getDx()
         return @dx
     end
+    java_overload :getDx, 0
     
 
     def getDy()
         return @dy
     end
+    java_overload :getDy, 0
     
 
     def paint(graphics)
@@ -304,15 +193,26 @@ class ScrollCurrentSelectionForm < ScrollSelectionForm
             @logUtil.put(@commonStrings.EXCEPTION, self, @canvasStrings.PAINT, e)
         end
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
-autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
-autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
-autoload :FormType, "org/allbinary/graphics/form/FormType"
-autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory"
-autoload :ItemPaintableFactory, "org/allbinary/graphics/form/ItemPaintableFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Canvas; autoload :Processor, "org/allbinary/canvas/Processor" unless const_defined?(:Processor, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor" unless const_defined?(:MyFontProcessor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor" unless const_defined?(:UpdateMyFontProcessor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false); end; end; end; end; end
+autoload :FormType, "org/allbinary/graphics/form/FormType" unless const_defined?(:FormType, false)
+autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory" unless const_defined?(:FormTypeFactory, false)
+autoload :HorizontalFormProcessor, "org/allbinary/graphics/form/HorizontalFormProcessor" unless const_defined?(:HorizontalFormProcessor, false)
+autoload :HorizontalItemIndexDx, "org/allbinary/graphics/form/HorizontalItemIndexDx" unless const_defined?(:HorizontalItemIndexDx, false)
+autoload :ItemIndexDx, "org/allbinary/graphics/form/ItemIndexDx" unless const_defined?(:ItemIndexDx, false)
+autoload :ItemPaintableFactory, "org/allbinary/graphics/form/ItemPaintableFactory" unless const_defined?(:ItemPaintableFactory, false)
+autoload :TempHorizontalFormProcessor, "org/allbinary/graphics/form/TempHorizontalFormProcessor" unless const_defined?(:TempHorizontalFormProcessor, false)
+autoload :TempHorizontalItemIndexDx, "org/allbinary/graphics/form/TempHorizontalItemIndexDx" unless const_defined?(:TempHorizontalItemIndexDx, false)
+autoload :VerticalFormProcessor, "org/allbinary/graphics/form/VerticalFormProcessor" unless const_defined?(:VerticalFormProcessor, false)
+autoload :VerticalItemIndexDx, "org/allbinary/graphics/form/VerticalItemIndexDx" unless const_defined?(:VerticalItemIndexDx, false)
+
+end; end; end; end
 

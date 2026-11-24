@@ -14,8 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.canvas
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/CommandListener"
+
+module ::Org; module Allbinary; module Canvas
 
 class FullScreenUtil
     
@@ -35,8 +35,8 @@ class FullScreenUtil
     
 
     def init(fullScreenInterface)
-        mainFeatureFactory = MainFeatureFactory.getInstance()
-        features = Features.getInstance()
+        mainFeatureFactory = ::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
         if features.isFeature(mainFeatureFactory.FULL_SCREEN)
             fullScreenInterface.setFullScreenMode(true)
         else
@@ -46,8 +46,8 @@ class FullScreenUtil
     
 
     def isScreenChange(isFullScreen)
-        mainFeatureFactory = MainFeatureFactory.getInstance()
-        features = Features.getInstance()
+        mainFeatureFactory = ::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
         if features.isFeature(mainFeatureFactory.FULL_SCREEN) != isFullScreen
             return true
         end
@@ -60,19 +60,47 @@ class FullScreenUtil
     end
 
     def self.instance()
+        FullScreenUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        FullScreenUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = FullScreenUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FullScreenUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/MainFeatureFactory"
-require "org/allbinary/canvas/RunnableCanvas"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory" unless const_defined?(:MainFeatureFactory, false); end; end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+autoload :RunnableCanvas, "org/allbinary/canvas/RunnableCanvas" unless const_defined?(:RunnableCanvas, false)
 
-class FullScreenUtil
-    @@instance = FullScreenUtil.new()
+begin
+    FullScreenUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -14,36 +14,43 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
 
-class OverlayPaintable < InitUpdatePaintable
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class OverlayPaintable < ::Org::Allbinary::Graphics::Paint::InitUpdatePaintable
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_displayable_canvas_OverlayPaintable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_OverlayPaintable
     end
     
 
     def update()
         begin
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.UPDATE, e)
         end
     end
+    java_overload :update, 0
     
 
     def paint(graphics)
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end
 

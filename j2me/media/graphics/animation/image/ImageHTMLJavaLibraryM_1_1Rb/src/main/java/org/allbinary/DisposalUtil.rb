@@ -14,7 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary
 
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary
 
 class DisposalUtil
     
@@ -35,17 +36,44 @@ class DisposalUtil
     end
 
     def self.instance()
+        DisposalUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        DisposalUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = DisposalUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DisposalUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/eclipse/swt/graphics/Resource"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Eclipse; module Swt; module Graphics; autoload :Resource, "org/eclipse/swt/graphics/Resource" unless const_defined?(:Resource, false); end; end; end; end
 
-class DisposalUtil
-    @@instance = DisposalUtil.new()
+begin
+    DisposalUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end
 

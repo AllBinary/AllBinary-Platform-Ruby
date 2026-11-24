@@ -15,16 +15,19 @@
 # package org.allbinary.logic.communication.sql
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 # require "java/sql/ResultSet"
 # require "java/sql/ResultSetMetaData"
 # require "java/util/Set"
 require "org/allbinary/logic/communication/sql/AbSqlColumn"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Sql
+
 class AbSqlRow < AbSqlColumn
     attr_accessor :logUtil, :EQUAL_QUOTE, :ESCAPE_QUOTES, :GET_ROW, :METHOD_GET_ROW, :METHOD_GET_ROWS, :METHOD_GET_ALL_ROWS, :METHOD_UPDATE_WHERE, :METHOD_GET_ROWS_WHERE_BETWEEN, :METHOD_DELETE_WHERE, :ROW_VALUE_LABEL, :ROW_VALUES_LABEL, :NO_RESULTS_IN_RESULT_SET, :COLUMN_NAME_LABEL, :INSERT_END
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_communication_sql_AbSqlRow
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @EQUAL_QUOTE = "=\""
         @ESCAPE_QUOTES = "\\\""
         @GET_ROW = "Row Value: "
@@ -44,24 +47,25 @@ class AbSqlRow < AbSqlColumn
 
     def initialize(databaseConnectionInfoInterface)
         super(databaseConnectionInfoInterface)
-        initialize_fields
+        jfields_org_allbinary_logic_communication_sql_AbSqlRow
     end
     
 
     def getValue(value)
         java_monitor.synchronize do
-        if StringValidationUtil.getInstance().isEmpty(value)
+        if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(value)
             return @stringUtil.EMPTY_STRING
         else
             return value
         end
         end
     end
+    java_overload :getValue, 1
     
 
-    def updateWhere(key, value, updatedKeyValuePairs)
+    def updateWhere_j3(key, value, updatedKeyValuePairs)
         java_monitor.synchronize do
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.UPDATE)
         stringBuffer.append(self.getTableName())
         stringBuffer.append(@sqlStrings.SET)
@@ -77,7 +81,7 @@ class AbSqlRow < AbSqlColumn
                 if columnValue == nil
                     columnValue = @stringUtil.EMPTY_STRING
                 else
-                    columnValue = Replace.new(@sqlStrings.CLOSE_QUOTE, @ESCAPE_QUOTES).all(columnValue)
+                    columnValue = ::Org::Allbinary::Logic::StringPackage::Regex::Replace::Replace.new(@sqlStrings.CLOSE_QUOTE, @ESCAPE_QUOTES).all(columnValue)
                 end
                 stringBuffer.append(self.getValue(columnValue))
                 stringBuffer.append(@sqlStrings.CLOSE_QUOTE)
@@ -92,11 +96,11 @@ class AbSqlRow < AbSqlColumn
             stringBuffer.append(@sqlStrings.CLOSE_QUOTE)
             sqlStatement = stringBuffer.to_s
             self.executeSQLStatement(sqlStatement)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF((@SUCCESS_SQL_STATEMENT).to_s + sqlStatement, self, @METHOD_UPDATE_WHERE)
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put(@FAILED_SQL_STATEMENT + stringBuffer, self, @METHOD_UPDATE_WHERE, e)
             end
         end
@@ -105,10 +109,9 @@ class AbSqlRow < AbSqlColumn
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def updateWhere(whereKeyValuePairs, updatedKeyValuePairs)
+    def updateWhere_j2(whereKeyValuePairs, updatedKeyValuePairs)
         java_monitor.synchronize do
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.UPDATE)
         stringBuffer.append(self.getTableName())
         stringBuffer.append(@sqlStrings.SET)
@@ -120,14 +123,14 @@ class AbSqlRow < AbSqlColumn
                 stringBuffer.append(@commonSeps.SPACE)
                 stringBuffer.append(columnName)
                 stringBuffer.append(@EQUAL_QUOTE)
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                     @logUtil.putF(@COLUMN_NAME_LABEL + columnName, self, @METHOD_UPDATE_WHERE)
                 end
                 columnValue = updatedKeyValuePairs.get(columnName)
                 if columnValue == nil
                     columnValue = @stringUtil.EMPTY_STRING
                 else
-                    columnValue = Replace.new(@sqlStrings.CLOSE_QUOTE, @ESCAPE_QUOTES).all(columnValue)
+                    columnValue = ::Org::Allbinary::Logic::StringPackage::Regex::Replace::Replace.new(@sqlStrings.CLOSE_QUOTE, @ESCAPE_QUOTES).all(columnValue)
                 end
                 stringBuffer.append(self.getValue(columnValue))
                 stringBuffer.append(@sqlStrings.CLOSE_QUOTE)
@@ -154,22 +157,28 @@ class AbSqlRow < AbSqlColumn
             end
             sqlStatement = stringBuffer.to_s
             self.executeSQLStatement(sqlStatement)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF((@SUCCESS_SQL_STATEMENT).to_s + sqlStatement, self, @METHOD_UPDATE_WHERE)
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put(@FAILED_SQL_STATEMENT + stringBuffer, self, @METHOD_UPDATE_WHERE, e)
             end
             raise e
         end
         end
     end
+
+    def updateWhere(*java_overload_args)
+        return updateWhere_j3(*java_overload_args) if java_overload_args.length == 3
+        return updateWhere_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method updateWhere takes #{java_overload_args.length} arguments"
+    end
     
 
-    def deleteWhere(key, value)
+    def deleteWhere_j2(key, value)
         java_monitor.synchronize do
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.DELETE)
         stringBuffer.append(@sqlStrings.FROM)
         stringBuffer.append(self.getTableName())
@@ -181,11 +190,11 @@ class AbSqlRow < AbSqlColumn
         begin
             sqlStatement = stringBuffer.to_s
             self.executeSQLStatement(sqlStatement)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF((@SUCCESS_SQL_STATEMENT).to_s + sqlStatement, self, @METHOD_DELETE_WHERE)
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put((@FAILED_SQL_STATEMENT).to_s + stringBuffer.to_s, self, @METHOD_DELETE_WHERE, e)
             end
         end
@@ -193,10 +202,9 @@ class AbSqlRow < AbSqlColumn
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def deleteWhere(keysAndValues)
+    def deleteWhere_j1(keysAndValues)
         java_monitor.synchronize do
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.DELETE)
         stringBuffer.append(@sqlStrings.FROM)
         stringBuffer.append(self.getTableName())
@@ -218,49 +226,56 @@ class AbSqlRow < AbSqlColumn
             end
             sqlStatement = stringBuffer.to_s
             self.executeSQLStatement(sqlStatement)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF((@SUCCESS_SQL_STATEMENT).to_s + sqlStatement, self, @METHOD_DELETE_WHERE)
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put((@FAILED_SQL_STATEMENT).to_s + stringBuffer.to_s, self, @METHOD_DELETE_WHERE, e)
             end
         end
         end
     end
+
+    def deleteWhere(*java_overload_args)
+        return deleteWhere_j2(*java_overload_args) if java_overload_args.length == 2
+        return deleteWhere_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method deleteWhere takes #{java_overload_args.length} arguments"
+    end
     
 
     def insert(values)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.INSERT_INTO)
         stringBuffer.append(self.getTableName())
         stringBuffer.append(@sqlStrings.VALUES)
         begin
             (0...values.size() - 1).each do |i|
                 value = self.getValue(values.get(i))
-                value = Replace.new(@sqlStrings.ESCAPE, @sqlStrings.DOUBLE_ESCAPE).all(value)
+                value = ::Org::Allbinary::Logic::StringPackage::Regex::Replace::Replace.new(@sqlStrings.ESCAPE, @sqlStrings.DOUBLE_ESCAPE).all(value)
                 stringBuffer.append(value)
                 stringBuffer.append(@sqlStrings.SINGLE_QUOTE_COMMA_SEP)
             end
             value = self.getValue(values.get(values.size() - 1))
-            value = Replace.new(@sqlStrings.ESCAPE, @sqlStrings.DOUBLE_ESCAPE).all(value)
+            value = ::Org::Allbinary::Logic::StringPackage::Regex::Replace::Replace.new(@sqlStrings.ESCAPE, @sqlStrings.DOUBLE_ESCAPE).all(value)
             stringBuffer.append(value)
             stringBuffer.append(@INSERT_END)
             sqlStatement = stringBuffer.to_s
             self.executeSQLStatement(sqlStatement)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF((@SUCCESS_SQL_STATEMENT).to_s + sqlStatement, self, @INSERT)
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put((@FAILED_SQL_STATEMENT).to_s + stringBuffer.to_s, self, INSERT, e)
             end
         end
     end
+    java_overload :insert, 1
     
 
     def getRow(keysAndValues)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.SELECT_ALL_FROM)
         stringBuffer.append(self.getTableName())
         stringBuffer.append(@sqlStrings.WHERE)
@@ -281,7 +296,7 @@ class AbSqlRow < AbSqlColumn
                 end
             end
             sqlStatement = stringBuffer.to_s
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF((@sqlStrings.SQL_STATEMENT_LABEL).to_s + sqlStatement, self, @METHOD_GET_ROW)
             end
             rset = self.executeSQLStatement(sqlStatement)
@@ -294,37 +309,37 @@ class AbSqlRow < AbSqlColumn
                     field = rset.getString(columnName)
                     result.put(columnName, field)
                 end
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                     @logUtil.putF(@ROW_VALUE_LABEL + result.to_s, self, @METHOD_GET_ROW)
                 end
                 return result
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.putF(@NO_RESULTS_IN_RESULT_SET, self, @METHOD_GET_ROW)
             end
             return nil
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put(@FAILED_SQL_STATEMENT + stringBuffer, self, @METHOD_GET_ROW, e)
             end
             return nil
         end
     end
+    java_overload :getRow, 1
     
 
-    def getRows(keysAndValues)
-        return self.getRows(keysAndValues, StringUtil.getInstance().EMPTY_STRING)
+    def getRows_j1(keysAndValues)
+        return self.getRows(keysAndValues, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getRows(keysAndValues, more)
-        stringBuffer = StringMaker.new()
+    def getRows_j2(keysAndValues, more)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.SELECT_ALL_FROM)
         stringBuffer.append(self.getTableName())
         stringBuffer.append(@sqlStrings.WHERE)
         begin
-            rows = BasicArrayListD.new()
+            rows = ::Org::Allbinary::Util::BasicArrayListD.new()
             set = keysAndValues.keySet()
             keyArray = set.toArray()
             size = keyArray.length
@@ -339,7 +354,7 @@ class AbSqlRow < AbSqlColumn
                     stringBuffer.append(@sqlStrings.AND)
                 end
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF(@sqlStrings.SQL_STATEMENT_LABEL + stringBuffer, self, @METHOD_GET_ROWS)
             end
             stringBuffer.append(more)
@@ -355,30 +370,36 @@ class AbSqlRow < AbSqlColumn
                     result.put(columnName, field)
                 end
                 resultAsString = result.to_s
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                     @logUtil.putF(@GET_ROW + resultAsString, self, @METHOD_GET_ROWS)
                 end
                 rows.add(result)
             end
             return rows
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put(@FAILED_SQL_STATEMENT + stringBuffer, self, @METHOD_GET_ROWS, e)
             end
             return nil
         end
     end
+
+    def getRows(*java_overload_args)
+        return getRows_j1(*java_overload_args) if java_overload_args.length == 1
+        return getRows_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method getRows takes #{java_overload_args.length} arguments"
+    end
     
 
     def getAllRows()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.SELECT_ALL_FROM)
         stringBuffer.append(self.getTableName())
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF(@sqlStrings.SQL_STATEMENT_LABEL + stringBuffer, self, @METHOD_GET_ALL_ROWS)
             end
-            rows = BasicArrayListD.new()
+            rows = ::Org::Allbinary::Util::BasicArrayListD.new()
             sqlStatement = stringBuffer.to_s
             rset = self.executeSQLStatement(sqlStatement)
             resultSetMetaData = rset.getMetaData()
@@ -390,27 +411,28 @@ class AbSqlRow < AbSqlColumn
                     field = rset.getString(columnName)
                     result.put(columnName, field)
                 end
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                     @logUtil.putF(@ROW_VALUES_LABEL + result.to_s, self, @METHOD_GET_ALL_ROWS)
                 end
                 rows.add(result)
             end
             return rows
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put(@FAILED_SQL_STATEMENT + stringBuffer, self, @METHOD_GET_ALL_ROWS, e)
             end
             return nil
         end
     end
+    java_overload :getAllRows, 0
     
 
-    def getRowsWhereBetween(whereKeyValuePairs, betweenColumn, smallest, largest)
-        stringBuffer = StringMaker.new()
+    def getRowsWhereBetween_j4(whereKeyValuePairs, betweenColumn, smallest, largest)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.SELECT_ALL_FROM)
         stringBuffer.append(self.getTableName())
         begin
-            rows = BasicArrayListD.new()
+            rows = ::Org::Allbinary::Util::BasicArrayListD.new()
             stringBuffer.append(@sqlStrings.WHERE)
             set = whereKeyValuePairs.keySet()
             key = nil
@@ -436,7 +458,7 @@ class AbSqlRow < AbSqlColumn
             stringBuffer.append(largest)
             stringBuffer.append(@sqlStrings.CLOSE_QUOTE)
             sqlStatement = stringBuffer.to_s
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF((@sqlStrings.SQL_STATEMENT_LABEL).to_s + sqlStatement, self, @METHOD_GET_ROWS_WHERE_BETWEEN)
             end
             rset = self.executeSQLStatement(sqlStatement)
@@ -448,21 +470,21 @@ class AbSqlRow < AbSqlColumn
             field = nil
             while rset.next_()
                 result = @stdUtil.createHashMap()
-                columnNames = BasicArrayListD.new()
+                columnNames = ::Org::Allbinary::Util::BasicArrayListD.new()
                 columnCount = resultSetMetaData.getColumnCount()
                 (1..columnCount).each do |index|
                     columnName = resultSetMetaData.getColumnName(index)
                     field = rset.getString(columnName)
                     result.put(columnName, field)
                 end
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                     @logUtil.putF(@ROW_VALUE_LABEL + result.to_s, self, @METHOD_GET_ROWS_WHERE_BETWEEN)
                 end
                 rows.add(result)
             end
             return rows
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put(@FAILED_SQL_STATEMENT + stringBuffer, self, @METHOD_GET_ROWS_WHERE_BETWEEN, e)
             end
             return nil
@@ -470,13 +492,12 @@ class AbSqlRow < AbSqlColumn
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getRowsWhereBetween(betweenColumn, smallest, largest)
-        stringBuffer = StringMaker.new()
+    def getRowsWhereBetween_j3(betweenColumn, smallest, largest)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@sqlStrings.SELECT_ALL_FROM)
         stringBuffer.append(self.getTableName())
         begin
-            rows = BasicArrayListD.new()
+            rows = ::Org::Allbinary::Util::BasicArrayListD.new()
             stringBuffer.append(@sqlStrings.WHERE)
             stringBuffer.append(betweenColumn)
             stringBuffer.append(@sqlStrings.MORE_THAN_QUOTE)
@@ -488,7 +509,7 @@ class AbSqlRow < AbSqlColumn
             stringBuffer.append(largest)
             stringBuffer.append(@sqlStrings.CLOSE_QUOTE)
             sqlStatement = stringBuffer.to_s
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                 @logUtil.putF((@sqlStrings.SQL_STATEMENT_LABEL).to_s + sqlStatement, self, @METHOD_GET_ROWS_WHERE_BETWEEN)
             end
             rset = self.executeSQLStatement(sqlStatement)
@@ -500,35 +521,45 @@ class AbSqlRow < AbSqlColumn
             columnCount = 0
             while rset.next_()
                 result = @stdUtil.createHashMap()
-                columnNames = BasicArrayListD.new()
+                columnNames = ::Org::Allbinary::Util::BasicArrayListD.new()
                 columnCount = resultSetMetaData.getColumnCount()
                 (1..columnCount).each do |index|
                     columnName = resultSetMetaData.getColumnName(index)
                     field = rset.getString(columnName)
                     result.put(columnName, field)
                 end
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGING)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGING)
                     @logUtil.putF(@ROW_VALUE_LABEL + result.to_s, self, @METHOD_GET_ROWS_WHERE_BETWEEN)
                 end
                 rows.add(result)
             end
             return rows
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGERROR)
                 @logUtil.put(@FAILED_SQL_STATEMENT + stringBuffer, self, @METHOD_GET_ROWS_WHERE_BETWEEN, e)
             end
             return nil
         end
     end
+
+    def getRowsWhereBetween(*java_overload_args)
+        return getRowsWhereBetween_j4(*java_overload_args) if java_overload_args.length == 4
+        return getRowsWhereBetween_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method getRowsWhereBetween takes #{java_overload_args.length} arguments"
+    end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo" unless const_defined?(:DbConnectionInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; module Regex; module Replace; autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace" unless const_defined?(:Replace, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end; end
 

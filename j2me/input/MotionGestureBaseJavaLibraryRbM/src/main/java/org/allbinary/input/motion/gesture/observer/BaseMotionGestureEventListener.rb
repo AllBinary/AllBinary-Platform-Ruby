@@ -14,23 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.gesture.observer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer
+
 module BaseMotionGestureEventListener
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     def onMotionGestureEvent(motionGestureEvent)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onMotionGestureEvent, 1
     
 
     def onScrolledMotionGestureEvent(motionGestureEvent)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onScrolledMotionGestureEvent, 1
 end
 
-autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent" unless const_defined?(:MotionGestureEvent, false)
+
+end; end; end; end; end; end
 

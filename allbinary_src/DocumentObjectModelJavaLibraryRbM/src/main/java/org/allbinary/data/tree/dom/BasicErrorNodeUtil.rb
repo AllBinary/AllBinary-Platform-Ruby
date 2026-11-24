@@ -15,6 +15,8 @@
 # package org.allbinary.data.tree.dom
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
+
 class BasicErrorNodeUtil
     
 
@@ -25,8 +27,8 @@ class BasicErrorNodeUtil
     # throws Exception
     def self.get(document, errorText)
         begin
-            node = document.createElement(ErrorData.getInstance().NAME)
-            node.appendChild(ModDomHelper.createNameValueNodes(document, ErrorData.getInstance().TEXT, errorText))
+            node = document.createElement(::Org::Allbinary::Business::Error::ErrorData.getInstance().NAME)
+            node.appendChild(ModDomHelper.createNameValueNodes(document, ::Org::Allbinary::Business::Error::ErrorData.getInstance().TEXT, errorText))
             return node
         rescue StandardError => e
             raise StandardError.new("Error Node Creation Failure")
@@ -34,8 +36,10 @@ class BasicErrorNodeUtil
     end
 end
 
-autoload :ErrorData, "org/allbinary/business/error/ErrorData"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
+module ::Org; module Allbinary; module Business; module Error; autoload :ErrorData, "org/allbinary/business/error/ErrorData" unless const_defined?(:ErrorData, false); end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper" unless const_defined?(:ModDomHelper, false)
+
+end; end; end; end; end
 

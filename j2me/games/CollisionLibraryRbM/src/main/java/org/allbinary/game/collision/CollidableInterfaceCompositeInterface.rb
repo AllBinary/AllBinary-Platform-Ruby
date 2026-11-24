@@ -15,6 +15,8 @@
 # package org.allbinary.game.collision
 
 
+module ::Org; module Allbinary; module Game; module Collision
+
 module CollidableInterfaceCompositeInterface
     
 
@@ -24,5 +26,7 @@ module CollidableInterfaceCompositeInterface
     end
 end
 
-autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior" unless const_defined?(:CollidableBaseBehavior, false)
+
+end; end; end; end
 

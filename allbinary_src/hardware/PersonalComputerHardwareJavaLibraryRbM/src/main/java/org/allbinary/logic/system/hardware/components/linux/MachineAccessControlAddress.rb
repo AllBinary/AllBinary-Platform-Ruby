@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.hardware.components.linux
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
 require "org/allbinary/logic/system/hardware/components/interfaces/MachineAccessControlAddressInterface"
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux
+
 class MachineAccessControlAddress
-    include HardwareComponentInterface
-    include MachineAccessControlAddressInterface
+    include ::Org::Allbinary::Logic::System::Hardware::Components::Interfaces::HardwareComponentInterface
+    include ::Org::Allbinary::Logic::System::Hardware::Components::Interfaces::MachineAccessControlAddressInterface
     
 
     def initialize()
@@ -29,13 +32,17 @@ class MachineAccessControlAddress
     def compareTo(componentInterface)
         return true
     end
+    java_overload :compareTo, 1
     
 
     def toString()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end; end; end
 

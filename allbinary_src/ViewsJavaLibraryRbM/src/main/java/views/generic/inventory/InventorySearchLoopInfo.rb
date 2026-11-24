@@ -15,10 +15,12 @@
 # package views.generic.inventory
 
 
+module ::Views; module Generic; module Inventory
+
 class InventorySearchLoopInfo
     attr_accessor :lastPage, :currentPage, :numberOfResultsOnCurrentPage, :numberOfResults, :CURRENT, :NUM, :LAST
 
-    def initialize_fields
+    def jfields_views_generic_inventory_InventorySearchLoopInfo
         @lastPage = -1
         @currentPage = -1
         @numberOfResultsOnCurrentPage = 0
@@ -29,12 +31,12 @@ class InventorySearchLoopInfo
     end
 
     def initialize
-        initialize_fields
+        jfields_views_generic_inventory_InventorySearchLoopInfo
     end
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@CURRENT)
         stringBuffer.appendint(@currentPage)
         stringBuffer.append(@NUM)
@@ -46,5 +48,7 @@ class InventorySearchLoopInfo
     alias_method :to_s, :toString
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end
 

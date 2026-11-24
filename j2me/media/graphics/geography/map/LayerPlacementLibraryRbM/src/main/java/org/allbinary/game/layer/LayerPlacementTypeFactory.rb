@@ -15,19 +15,21 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class LayerPlacementTypeFactory
     attr_accessor :MAP, :LEFT, :DOWN, :UP, :RIGHT
 
-    def initialize_fields
+    def jfields_org_allbinary_game_layer_LayerPlacementTypeFactory
         @MAP = LayerPlacementType.new(2147483647)
-        @LEFT = LayerPlacementType.new(DirectionFactory.getInstance().LEFT.getValue())
-        @DOWN = LayerPlacementType.new(DirectionFactory.getInstance().DOWN.getValue())
-        @UP = LayerPlacementType.new(DirectionFactory.getInstance().UP.getValue())
-        @RIGHT = LayerPlacementType.new(DirectionFactory.getInstance().RIGHT.getValue())
+        @LEFT = LayerPlacementType.new(::Org::Allbinary::Direction::DirectionFactory.getInstance().LEFT.getValue())
+        @DOWN = LayerPlacementType.new(::Org::Allbinary::Direction::DirectionFactory.getInstance().DOWN.getValue())
+        @UP = LayerPlacementType.new(::Org::Allbinary::Direction::DirectionFactory.getInstance().UP.getValue())
+        @RIGHT = LayerPlacementType.new(::Org::Allbinary::Direction::DirectionFactory.getInstance().RIGHT.getValue())
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_LayerPlacementTypeFactory
     end
     
 
@@ -66,12 +68,14 @@ class LayerPlacementTypeFactory
     end
 end
 
-autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory"
-autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType"
+module ::Org; module Allbinary; module Direction; autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory" unless const_defined?(:DirectionFactory, false); end; end; end
+autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType" unless const_defined?(:LayerPlacementType, false)
 
 begin
     LayerPlacementTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

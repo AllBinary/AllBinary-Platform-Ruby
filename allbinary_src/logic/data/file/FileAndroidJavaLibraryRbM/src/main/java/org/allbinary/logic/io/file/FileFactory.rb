@@ -16,16 +16,18 @@
 
 # require "java/io/FileNotFoundException"
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 class FileFactory
     attr_accessor :context
 
-    def initialize_fields
-        @context = nil
+    def jfields_org_allbinary_logic_io_file_FileFactory
+        @context = nil unless instance_variable_defined?(:@context)
     end
     
 
     def initialize(context)
-        initialize_fields
+        jfields_org_allbinary_logic_io_file_FileFactory
         @context = context
     end
     
@@ -58,17 +60,40 @@ class FileFactory
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(file, childFilePath)
         return AbFile.createAbFileWithChild(file, childFilePath)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, FileFactory.new(::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance().getContext()))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FileFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "android/content/Context"
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/logic/io/file/AbFile"
+module ::Android; module Content; autoload :Context, "android/content/Context" unless const_defined?(:Context, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false)
 
-class FileFactory
-    SINGLETON = FileFactory.new(ResourceUtil.getInstance().getContext())
+begin
+    FileFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

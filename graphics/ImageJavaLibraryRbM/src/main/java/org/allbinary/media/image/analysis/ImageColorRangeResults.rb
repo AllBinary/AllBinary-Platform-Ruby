@@ -15,18 +15,20 @@
 # package org.allbinary.media.image.analysis
 
 
+module ::Org; module Allbinary; module Media; module Image; module Analysis
+
 class ImageColorRangeResults
     attr_accessor :colorRangeInterface, :matchingPixelsChecked, :totalPixelsChecked
 
-    def initialize_fields
-        @colorRangeInterface = nil
-        @matchingPixelsChecked = 0
-        @totalPixelsChecked = 0
+    def jfields_org_allbinary_media_image_analysis_ImageColorRangeResults
+        @colorRangeInterface = nil unless instance_variable_defined?(:@colorRangeInterface)
+        @matchingPixelsChecked = 0 unless instance_variable_defined?(:@matchingPixelsChecked)
+        @totalPixelsChecked = 0 unless instance_variable_defined?(:@totalPixelsChecked)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_analysis_ImageColorRangeResults
         self.setColorRangeInterface(ColorRange.new())
     end
     
@@ -76,6 +78,8 @@ class ImageColorRangeResults
     end
 end
 
-autoload :ColorRange, "org/allbinary/media/image/analysis/ColorRange"
-autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface"
+autoload :ColorRange, "org/allbinary/media/image/analysis/ColorRange" unless const_defined?(:ColorRange, false)
+autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface" unless const_defined?(:ColorRangeInterface, false)
+
+end; end; end; end; end
 

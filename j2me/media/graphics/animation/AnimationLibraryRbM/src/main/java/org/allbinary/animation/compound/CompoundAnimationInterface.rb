@@ -14,35 +14,44 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.compound
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterface"
 
+module ::Org; module Allbinary; module Animation; module Compound
+
 module CompoundAnimationInterface
-    include AnimationInterface
+    include ::Org::Allbinary::Animation::AnimationInterface
     
 
     def nextAnimation()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :nextAnimation, 0
     
 
     def previousAnimation()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :previousAnimation, 0
     
 
     def setAnimation(index)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setAnimation, 1
     
 
     def getCurrentAnimation()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getCurrentAnimation, 0
 end
 
-autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
+module ::Org; module Allbinary; module Animation; autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation" unless const_defined?(:IndexedAnimation, false); end; end; end
+
+end; end; end; end
 

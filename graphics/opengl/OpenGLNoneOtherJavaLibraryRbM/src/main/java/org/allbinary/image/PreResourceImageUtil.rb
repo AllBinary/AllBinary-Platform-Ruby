@@ -15,6 +15,8 @@
 # package org.allbinary.image
 
 
+module ::Org; module Allbinary; module Image
+
 class PreResourceImageUtil
     
 
@@ -66,13 +68,15 @@ class PreResourceImageUtil
     end
 end
 
-autoload :GL, "javax/microedition/khronos/opengles/GL"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL, "javax/microedition/khronos/opengles/GL" unless const_defined?(:GL, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
 
 begin
     PreResourceImageUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

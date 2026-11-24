@@ -14,29 +14,33 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 # require "java/lang/reflect/Method"
 # require "javax/servlet/http/HttpServletRequest"
 # require "javax/servlet/jsp/JspTagException"
 require "tags/PropertiesTag"
 
-class TableTag < PropertiesTag
+module ::Admin; module Tags
+
+class TableTag < ::Tags::PropertiesTag
     attr_accessor :logUtil, :enabled, :tagHelperFactoryInterface, :tagRequestHelperFactoryInterface, :requestObject, :current, :total
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @enabled = nil
-        @tagHelperFactoryInterface = nil
-        @tagRequestHelperFactoryInterface = nil
-        @requestObject = nil
-        @current = nil
-        @total = nil
+    def jfields_admin_tags_TableTag
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @enabled = nil unless instance_variable_defined?(:@enabled)
+        @tagHelperFactoryInterface = nil unless instance_variable_defined?(:@tagHelperFactoryInterface)
+        @tagRequestHelperFactoryInterface = nil unless instance_variable_defined?(:@tagRequestHelperFactoryInterface)
+        @requestObject = nil unless instance_variable_defined?(:@requestObject)
+        @current = nil unless instance_variable_defined?(:@current)
+        @total = nil unless instance_variable_defined?(:@total)
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+        jfields_admin_tags_TableTag
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         end
     end
@@ -45,57 +49,67 @@ class TableTag < PropertiesTag
     def setIsSelected(enabled)
         @enabled = enabled
     end
+    java_overload :setIsSelected, 1
     
 
     # throws Exception
     def isEnabled()
-        if !StringValidationUtil.getInstance().isEmpty(@enabled)
-            if BooleanUtil.getInstance().getFromString(@enabled) || (@enabled <=> "on") == 0
+        if !::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(@enabled)
+            if ::Org::Allbinary::Logic::Java::Bool::BooleanUtil.getInstance().getFromString(@enabled) || (@enabled <=> "on") == 0
                 return true
             end
         end
         return false
     end
+    java_overload :isEnabled, 0
     
 
     def setTagHelperFactory(tagHelperFactoryInterface)
         @tagHelperFactoryInterface = tagHelperFactoryInterface
     end
+    java_overload :setTagHelperFactory, 1
     
 
     def getTagHelperFactoryInterface()
         return @tagHelperFactoryInterface
     end
+    java_overload :getTagHelperFactoryInterface, 0
     
 
     def setTagRequestHelperFactory(tagHelperFactoryInterface)
         @tagRequestHelperFactoryInterface = tagHelperFactoryInterface
     end
+    java_overload :setTagRequestHelperFactory, 1
     
 
     def getTagRequestHelperFactoryInterface()
         return @tagRequestHelperFactoryInterface
     end
+    java_overload :getTagRequestHelperFactoryInterface, 0
     
 
     def setCurrent(current)
         @current = current
     end
+    java_overload :setCurrent, 1
     
 
     def getCurrent()
         return @current
     end
+    java_overload :getCurrent, 0
     
 
     def setTotal(total)
         @total = total
     end
+    java_overload :setTotal, 1
     
 
     def getTotal()
         return @total
     end
+    java_overload :getTotal, 0
     
 
     # throws LicensingException
@@ -108,12 +122,13 @@ class TableTag < PropertiesTag
             return result
         rescue StandardError => e
             error = "Failed to drop table"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.DROP, e)
             end
             return error
         end
     end
+    java_overload :drop, 0
     
 
     # throws LicensingException
@@ -126,12 +141,13 @@ class TableTag < PropertiesTag
             return result
         rescue StandardError => e
             error = "Failed to create table"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "create()", e)
             end
             return error
         end
     end
+    java_overload :create, 0
     
 
     # throws LicensingException
@@ -144,12 +160,13 @@ class TableTag < PropertiesTag
             return result
         rescue StandardError => e
             error = "Failed to restore backup"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "restore()", e)
             end
             return error
         end
     end
+    java_overload :restore, 0
     
 
     # throws LicensingException
@@ -162,12 +179,13 @@ class TableTag < PropertiesTag
             return result
         rescue StandardError => e
             error = "Failed to make backup"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "backup()", e)
             end
             return error
         end
     end
+    java_overload :backup, 0
     
 
     # throws LicensingException
@@ -179,12 +197,13 @@ class TableTag < PropertiesTag
             return result
         rescue StandardError => e
             error = "Failed to insert"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "insert()", e)
             end
             return error
         end
     end
+    java_overload :insert, 0
     
 
     # throws LicensingException
@@ -196,12 +215,13 @@ class TableTag < PropertiesTag
             return result
         rescue StandardError => e
             error = "Failed to delete"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "delete()", e)
             end
             return error
         end
     end
+    java_overload :delete, 0
     
 
     # throws LicensingException
@@ -213,111 +233,118 @@ class TableTag < PropertiesTag
             return result
         rescue StandardError => e
             error = "Failed to update"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "update()", e)
             end
             return error
         end
     end
+    java_overload :update, 0
     
 
     # throws JspTagException
     def doStartTag()
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                 request = @pageContext.getRequest()
-                stringBuffer = StringMaker.new()
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("TableTag Helper: ")
-                stringBuffer.append(self.getTagHelperFactoryInterface().class.name)
+                stringBuffer.append(self.getTagHelperFactoryInterface().class.java_name)
                 stringBuffer.append(" Request URI: ")
                 stringBuffer.append(request.getRequestURI())
                 @logUtil.putF(stringBuffer.to_s, self, @tagStrings.DO_START_TAG)
             end
             if self.getTagRequestHelperFactoryInterface() != nil
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
-                    @logUtil.putF("TableTag RequestHelper: " + self.getTagRequestHelperFactoryInterface().class.name, self, @tagStrings.DO_START_TAG)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
+                    @logUtil.putF("TableTag RequestHelper: " + self.getTagRequestHelperFactoryInterface().class.java_name, self, @tagStrings.DO_START_TAG)
                 end
             else
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                     @logUtil.putF("TableTag RequestHelper: null", self, @tagStrings.DO_START_TAG)
                 end
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                 @logUtil.putF("TableTag this.getCommand(): " + (self.getCommand()).to_s, self, @tagStrings.DO_START_TAG)
             end
             if self.isEnabled()
                 if self.getCommand() != nil
-                    if self.getCommand().compareTo(@commonStrings.INSERT) == 0 || self.getCommand().compareTo(SqlStrings.getInstance().INSERT_INTO) == 0 || self.getCommand().compareTo(@commonStrings.DELETE) == 0 || self.getCommand().compareTo(@commonStrings.UPDATE) == 0 || self.getCommand().compareTo(SqlStrings.getInstance().UPDATE) == 0
+                    if self.getCommand().compareTo(@commonStrings.INSERT) == 0 || self.getCommand().compareTo(::Org::Allbinary::Logic::Communication::Sql::SqlStrings.getInstance().INSERT_INTO) == 0 || self.getCommand().compareTo(@commonStrings.DELETE) == 0 || self.getCommand().compareTo(@commonStrings.UPDATE) == 0 || self.getCommand().compareTo(::Org::Allbinary::Logic::Communication::Sql::SqlStrings.getInstance().UPDATE) == 0
                         @requestObject = self.getTagRequestHelperFactoryInterface().getInstance(self.getPropertiesHashMap(), @pageContext)
                     end
-                    if self.getCommand().compareTo(@commonStrings.INSERT) == 0 || self.getCommand().compareTo(SqlStrings.getInstance().INSERT_INTO) == 0
+                    if self.getCommand().compareTo(@commonStrings.INSERT) == 0 || self.getCommand().compareTo(::Org::Allbinary::Logic::Communication::Sql::SqlStrings.getInstance().INSERT_INTO) == 0
                         self.insert()
                     elsif self.getCommand().compareTo(@commonStrings.DELETE) == 0
                         self.delete()
-                    elsif self.getCommand().compareTo(@commonStrings.UPDATE) == 0 || self.getCommand().compareTo(SqlStrings.getInstance().UPDATE) == 0
+                    elsif self.getCommand().compareTo(@commonStrings.UPDATE) == 0 || self.getCommand().compareTo(::Org::Allbinary::Logic::Communication::Sql::SqlStrings.getInstance().UPDATE) == 0
                         self.update()
                     end
-                    if self.getCommand().compareTo(org.allbinary.globals.GLOBALS2.BACKUP) == 0
+                    if self.getCommand().compareTo(::Org::Allbinary::Globals::GLOBALS2::BACKUP) == 0
                         output = self.backup()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                             @pageContext.getOut().print(output + "<br />")
                         end
                         return SKIP_BODY
-                    elsif self.getCommand().compareTo(org.allbinary.globals.GLOBALS2.RESTORE) == 0
+                    elsif self.getCommand().compareTo(::Org::Allbinary::Globals::GLOBALS2::RESTORE) == 0
                         self.getPropertiesHashMap().put("current", self.getCurrent())
                         self.getPropertiesHashMap().put("total", self.getTotal())
                         output = self.restore()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                             @pageContext.getOut().print(output + "<br />")
                         end
                         return SKIP_BODY
                     elsif self.getCommand().compareTo(@commonStrings.DROP) == 0
                         output = self.drop()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                             @pageContext.getOut().print(output + "<br />")
                         end
                         return SKIP_BODY
                     elsif self.getCommand().compareTo(@commonStrings.CREATE) == 0
                         output = self.create()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                             @pageContext.getOut().print(output + "<br />")
                         end
                         return SKIP_BODY
                     elsif self.getCommand().compareTo(@commonStrings.INSERT) == 0
                         output = self.insert()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                             @pageContext.getOut().print(output + "<br />")
                         end
                     elsif self.getCommand().compareTo(@commonStrings.DELETE) == 0
                         output = self.delete()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                             @pageContext.getOut().print(output + "<br />")
                         end
                     elsif self.getCommand().compareTo(@commonStrings.UPDATE) == 0
                         output = self.update()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                             @pageContext.getOut().print(output + "<br />")
                         end
                     end
                 end
             end
             return EVAL_BODY_INCLUDE
-        rescue LicensingException => e
-            AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
             return SKIP_BODY
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :SqlStrings, "org/allbinary/logic/communication/sql/SqlStrings"
-autoload :BooleanUtil, "org/allbinary/logic/java/bool/BooleanUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+module ::Admin; module Taghelpers; autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface" unless const_defined?(:TagHelperFactoryInterface, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Sql; autoload :SqlStrings, "org/allbinary/logic/communication/sql/SqlStrings" unless const_defined?(:SqlStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanUtil, "org/allbinary/logic/java/bool/BooleanUtil" unless const_defined?(:BooleanUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2" unless const_defined?(:GLOBALS2, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end
 

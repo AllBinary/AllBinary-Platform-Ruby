@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/ai/ArtificialIntelligenceInterface"
+
+module ::Org; module Allbinary; module Ai
 
 class ArtificialIntelligence
     include ArtificialIntelligenceInterface
@@ -32,11 +35,13 @@ class ArtificialIntelligence
     # throws Exception
     def processAI(layerManager)
     end
+    java_overload :processAI, 1
     
 
     def getId()
         return 1
     end
+    java_overload :getId, 0
 
     def self.instance()
         ArtificialIntelligence.java_static_fields unless @java_static_fields_started
@@ -70,11 +75,13 @@ class ArtificialIntelligence
     end
 end
 
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
 
 begin
     ArtificialIntelligence.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

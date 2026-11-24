@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.info
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
 
 class TransformInfoObjectFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_visual_transform_info_TransformInfoObjectFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -29,26 +32,25 @@ class TransformInfoObjectFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_info_TransformInfoObjectFactory
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(abeClientInformation, transformInfoInterface)
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.putF("Creating View: " + transformInfoInterface.getName(), self, commonStrings.GET_INSTANCE)
             end
             params = Array.new(1, nil)
             classes = Array.new(1, nil)
             classes[0] = TransformInfoInterface
             params[0] = transformInfoInterface
-            anyType = AbeFactory.getInstance().getInstance(abeClientInformation, transformInfoInterface.getObjectFile(), classes, params)
+            anyType = ::Org::Allbinary::Logic::System::Loader::AbeFactory.getInstance().getInstance(abeClientInformation, transformInfoInterface.getObjectFile(), classes, params)
             if anyType == nil
                 if transformInfoInterface != nil
-                    stringBuffer = StringMaker.new()
+                    stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     stringBuffer.append("\nNo Such View Name: ")
                     stringBuffer.append(transformInfoInterface.getName())
                     stringBuffer.append("\nNo Such View Object: ")
@@ -59,13 +61,13 @@ class TransformInfoObjectFactory
                 end
             end
             return anyType
-        rescue LicensingException => e
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
             error = "Failed To Get Instance: "
             if transformInfoInterface != nil
                 error = error + transformInfoInterface.getName()
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(error, self, commonStrings.GET_INSTANCE, e)
             end
             raise e
@@ -74,8 +76,8 @@ class TransformInfoObjectFactory
             if transformInfoInterface != nil
                 error = error + transformInfoInterface.getName()
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(error, self, commonStrings.GET_INSTANCE, e)
             end
             raise e
@@ -113,18 +115,22 @@ class TransformInfoObjectFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :AbeFactory, "org/allbinary/logic/system/loader/AbeFactory"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
-autoload :TransformInterface, "org/allbinary/logic/visual/transform/TransformInterface"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Loader; autoload :AbeFactory, "org/allbinary/logic/system/loader/AbeFactory" unless const_defined?(:AbeFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; autoload :TransformInterface, "org/allbinary/logic/visual/transform/TransformInterface" unless const_defined?(:TransformInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false)
 
 begin
     TransformInfoObjectFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

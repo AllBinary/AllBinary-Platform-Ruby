@@ -14,15 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/BaseCircularPool"
 
-class AllBinaryEventCircularPool < BaseCircularPool
+module ::Org; module Allbinary; module Logic; module Util; module Event
+
+class AllBinaryEventCircularPool < ::Org::Allbinary::Logic::Util::Cache::BaseCircularPool
     
 
     def initialize(max)
         super()
         @OBJECT_ARRAY = Array.new(max, nil)
-        @circularIndexUtil = CircularIndexUtil.createInstance(max)
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(max)
     end
     
 
@@ -33,8 +36,11 @@ class AllBinaryEventCircularPool < BaseCircularPool
             @OBJECT_ARRAY[index] = allBinaryEventObjectFactoryInterface.getInstance()
         end
     end
+    java_overload :initAllBinaryEventCircularPool, 1
 end
 
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :AllBinaryEventObjectFactoryInterface, "org/allbinary/logic/util/event/AllBinaryEventObjectFactoryInterface"
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :AllBinaryEventObjectFactoryInterface, "org/allbinary/logic/util/event/AllBinaryEventObjectFactoryInterface" unless const_defined?(:AllBinaryEventObjectFactoryInterface, false)
+
+end; end; end; end; end
 

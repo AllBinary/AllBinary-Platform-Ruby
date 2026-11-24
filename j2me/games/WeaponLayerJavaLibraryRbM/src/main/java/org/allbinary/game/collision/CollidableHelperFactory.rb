@@ -15,21 +15,25 @@
 # package org.allbinary.game.collision
 
 
+module ::Org; module Allbinary; module Game; module Collision
+
 class CollidableHelperFactory
     
 
     def self.getInstance()
-        if Features.getInstance().isFeature(GameFeatureFactory.getInstance().COLLISIONS_WITH_SOURCE)
-            return CollisionHelper.new(AllBinaryLayer::NULL_ALLBINARY_LAYER)
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::GameFeatureFactory.getInstance().COLLISIONS_WITH_SOURCE)
+            return CollisionHelper.new(::Org::Allbinary::Layer::AllBinaryLayer::NULL_ALLBINARY_LAYER)
         else
-            return SourceCollisionHelper.new(AllBinaryLayer::NULL_ALLBINARY_LAYER)
+            return SourceCollisionHelper.new(::Org::Allbinary::Layer::AllBinaryLayer::NULL_ALLBINARY_LAYER)
         end
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :CollisionHelper, "org/allbinary/game/collision/CollisionHelper"
-autoload :SourceCollisionHelper, "org/allbinary/game/collision/SourceCollisionHelper"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory" unless const_defined?(:GameFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :CollisionHelper, "org/allbinary/game/collision/CollisionHelper" unless const_defined?(:CollisionHelper, false)
+autoload :SourceCollisionHelper, "org/allbinary/game/collision/SourceCollisionHelper" unless const_defined?(:SourceCollisionHelper, false)
+
+end; end; end; end
 

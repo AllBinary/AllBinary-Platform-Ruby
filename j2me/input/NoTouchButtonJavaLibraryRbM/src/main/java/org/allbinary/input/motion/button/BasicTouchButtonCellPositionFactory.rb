@@ -15,6 +15,8 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class BasicTouchButtonCellPositionFactory
     
 
@@ -25,4 +27,6 @@ class BasicTouchButtonCellPositionFactory
     def self.init()
     end
 end
+
+end; end; end; end; end
 

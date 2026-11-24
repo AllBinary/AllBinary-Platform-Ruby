@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/HtmlForm"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html
 
 class HtmlPostForm < HtmlForm
     
@@ -24,4 +27,6 @@ class HtmlPostForm < HtmlForm
         setPost()
     end
 end
+
+end; end; end; end; end; end
 

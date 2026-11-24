@@ -14,43 +14,57 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.j2me.workarea.canvas
 
-# require "java/awt"
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
+# require "java/awt/Color"
+# require "java/awt/Dimension"
+# require "java/awt/Graphics"
 # require "javax/swing/tree/DefaultMutableTreeNode"
 # require "javax/swing/tree/MutableTreeNode"
 require "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEventListener"
+# require "java/awt/GridLayout"
+# require "java/awt/event/KeyEvent"
+# require "java/awt/event/KeyListener"
+# require "java/awt/event/MouseEvent"
+# require "java/awt/event/MouseListener"
+# require "java/awt/event/MouseMotionListener"
+# require "javax/swing/JPanel"
+
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Canvas
 
 class CanvasJPanel < JPanel
     include MouseListener
     include MouseMotionListener
     include KeyListener
-    include MyGraphicItemEventListener
+    include ::Org::Allbinary::Graphics::J2me::Workarea::Tools::Event::MyGraphicItemEventListener
     attr_accessor :logUtil, :guiLog, :gameInputStrings, :selectedTool, :graphicItemHashMap, :canvasDimension, :angle, :canvasTreeNode, :frameLabel, :workAreaJTreeJPanel, :grid
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @guiLog = GuiLog.getInstance()
-        @gameInputStrings = GameInputStrings.getInstance()
+    def jfields_org_allbinary_graphics_j2me_workarea_canvas_CanvasJPanel
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @guiLog = ::Org::Allbinary::Logic::Communication::Log::GuiLog.getInstance()
+        @gameInputStrings = ::Org::Allbinary::Game::Input::GameInputStrings.getInstance()
         @selectedTool = nil
-        @graphicItemHashMap = nil
-        @canvasDimension = nil
+        @graphicItemHashMap = nil unless instance_variable_defined?(:@graphicItemHashMap)
+        @canvasDimension = nil unless instance_variable_defined?(:@canvasDimension)
         @angle = 0.0
-        @canvasTreeNode = nil
-        @frameLabel = nil
-        @workAreaJTreeJPanel = nil
-        @grid = nil
+        @canvasTreeNode = nil unless instance_variable_defined?(:@canvasTreeNode)
+        @frameLabel = nil unless instance_variable_defined?(:@frameLabel)
+        @workAreaJTreeJPanel = nil unless instance_variable_defined?(:@workAreaJTreeJPanel)
+        @grid = nil unless instance_variable_defined?(:@grid)
     end
 
     def initialize(*args)
         case args.length
-        when 4 then constructor4(*args)
-        when 3 then constructor3(*args)
+        when 4 then jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasJPanel_4(*args)
+        when 3 then jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasJPanel_3(*args)
+        else raise ArgumentError, "No constructor of CanvasJPanel takes #{args.length} arguments"
         end
     end
     
 
-    def constructor4(workAreaJTreeJPanel, dimension, x, y)
-        method(:initialize).super_method.call()
-        initialize_fields
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasJPanel_4(workAreaJTreeJPanel, dimension, x, y)
+        CanvasJPanel.superclass.instance_method(:initialize).bind(self).call()
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_CanvasJPanel
         @grid = Grid.new()
         begin
             @workAreaJTreeJPanel = workAreaJTreeJPanel
@@ -59,16 +73,16 @@ class CanvasJPanel < JPanel
             self.setSize(dimension)
             self.setCanvasSize(x, y)
         rescue StandardError => e
-            if LOGGING.contains(LOGGING.GRAPHICSCREATION)
+            if ::Org::Allbinary::Log::LOGGING.contains(::Org::Allbinary::Log::LOGGING::GRAPHICSCREATION)
                 @guiLog.put("Constructor Error", self, "contructor", e)
             end
         end
     end
     
 
-    def constructor3(workAreaJTreeJPanel, dimension, canvasDom)
-        method(:initialize).super_method.call()
-        initialize_fields
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasJPanel_3(workAreaJTreeJPanel, dimension, canvasDom)
+        CanvasJPanel.superclass.instance_method(:initialize).bind(self).call()
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_CanvasJPanel
         @grid = Grid.new(canvasDom.getGrid())
         begin
             @workAreaJTreeJPanel = workAreaJTreeJPanel
@@ -89,7 +103,7 @@ class CanvasJPanel < JPanel
             @workAreaJTreeJPanel.expand()
             @workAreaJTreeJPanel.repaint()
         rescue StandardError => e
-            if LOGGING.contains(LOGGING.GRAPHICSCREATION)
+            if ::Org::Allbinary::Log::LOGGING.contains(::Org::Allbinary::Log::LOGGING::GRAPHICSCREATION)
                 @guiLog.put("Constructor Error", self, "contructor", e)
             end
         end
@@ -102,25 +116,28 @@ class CanvasJPanel < JPanel
         @canvasTreeNode = DefaultMutableTreeNode.new(@frameLabel)
         CanvasJPanel.frame += 1
         @workAreaJTreeJPanel.add(self.getTreeNode())
-        @graphicItemHashMap = StdUtil.getInstance().createHashMap()
-        @grid.grid = PointFactory.getInstance().createXY(0, 0)
+        @graphicItemHashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
+        @grid.grid = ::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(0, 0)
         self.setCanvasDimension(IntegerDimension.new(0, 0))
         @selectedTool = nil
         self.addKeyListener(self)
         self.addMouseListener(self)
         self.addMouseMotionListener(self)
-        MyGraphicItemEventService.addListener(self)
+        ::Org::Allbinary::Graphics::J2me::Workarea::Tools::Event::MyGraphicItemEventService.addListener(self)
     end
+    java_overload :initMyComponents, 0
     
 
     def getTreeNode()
         return @canvasTreeNode
     end
+    java_overload :getTreeNode, 0
     
 
     def initComponents()
         setLayout(GridLayout.new(1, 1))
     end
+    java_overload :initComponents, 0
     
 
     # throws Exception
@@ -128,11 +145,11 @@ class CanvasJPanel < JPanel
         @grid.isGridPossible = true
         if x <= 0
             @grid.isGridPossible = false
-            raise GraphicsException.new("X Size Error: " + (x).to_s, self, "setWorkAreaSize")
+            raise ::Org::Allbinary::Graphics::J2me::GraphicsException.new("X Size Error: " + (x).to_s, self, "setWorkAreaSize")
         end
         if y <= 0
             @grid.isGridPossible = false
-            raise GraphicsException.new("Y Size Error: " + (y).to_s, self, "setWorkAreaSize")
+            raise ::Org::Allbinary::Graphics::J2me::GraphicsException.new("Y Size Error: " + (y).to_s, self, "setWorkAreaSize")
         end
         if x > self.getWidth()
             @grid.isGridPossible = false
@@ -143,26 +160,32 @@ class CanvasJPanel < JPanel
         self.setCanvasDimension(IntegerDimension.new(x, y))
         @grid.isChanged = true
     end
+    java_overload :setCanvasSize, 2
     
 
-    def setGrid(point)
+    def setGrid_j1(point)
         self.setGrid(point.getX(), point.getY())
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def setGrid(xSize, ySize)
+    def setGrid_j2(xSize, ySize)
         begin
             if xSize >= getCanvasDimension().getWidth() / 2 || xSize < 1
-                raise GraphicsException.new("X Size Error: " + (xSize).to_s + " WorkArea X: " + (getCanvasDimension().getWidth()).to_s, self, "setGrid")
+                raise ::Org::Allbinary::Graphics::J2me::GraphicsException.new("X Size Error: " + (xSize).to_s + " WorkArea X: " + (getCanvasDimension().getWidth()).to_s, self, "setGrid")
             end
             if ySize >= getCanvasDimension().getHeight() / 2 || ySize < 1
-                raise GraphicsException.new("Y Size Error" + (ySize).to_s + " WorkArea Y: " + (getCanvasDimension().getHeight()).to_s, self, "setGrid")
+                raise ::Org::Allbinary::Graphics::J2me::GraphicsException.new("Y Size Error" + (ySize).to_s + " WorkArea Y: " + (getCanvasDimension().getHeight()).to_s, self, "setGrid")
             end
-            @grid.grid = PointFactory.getInstance().createXY(xSize, ySize)
+            @grid.grid = ::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(xSize, ySize)
             @grid.isChanged = true
         rescue StandardError => e
         end
+    end
+
+    def setGrid(*java_overload_args)
+        return setGrid_j1(*java_overload_args) if java_overload_args.length == 1
+        return setGrid_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method setGrid takes #{java_overload_args.length} arguments"
     end
     
 
@@ -173,35 +196,39 @@ class CanvasJPanel < JPanel
         self.setGrid(1, 1)
         @grid.isChanged = true
     end
+    java_overload :setDefaultGrid, 0
     
 
     def getAngle()
         return @angle
     end
+    java_overload :getAngle, 0
     
 
     def setAngle(angle)
         @angle = angle
     end
+    java_overload :setAngle, 1
     
 
     def addAngle(angle)
         self.setAngle(@angle + angle)
     end
+    java_overload :addAngle, 1
     
 
     def explodeAll()
-        newPoints = BasicArrayListD.new()
+        newPoints = ::Org::Allbinary::Util::BasicArrayListD.new()
         graphicItemArray = self.getGraphicItemHashMap().keySet().toArray()
         size = graphicItemArray.length
         (0...size).each do |index|
             graphicItemNode = graphicItemArray[index]
             graphicItem = self.getGraphicItemHashMap().get(graphicItemNode)
-            if graphicItem.getName() == LinesGraphicItem.getStaticName()
+            if graphicItem.getName() == ::Org::Allbinary::Graphics::J2me::Workarea::Tools::LinesGraphicItem.getStaticName()
                 while graphicItem.getPointsInterface().getSize() > 2
-                    newGraphicItem = GraphicItemFactory.getInstance().getInstance(graphicItem.getName()).getInstance(self)
-                    pointOne = GPoint.getInstance(graphicItem.removePoint())
-                    pointTwo = GPoint.getInstance(graphicItem.removePoint())
+                    newGraphicItem = ::Org::Allbinary::Graphics::J2me::Workarea::Tools::GraphicItemFactory.getInstance().getInstance(graphicItem.getName()).getInstance(self)
+                    pointOne = ::Org::Allbinary::Graphics::GPoint.getInstance(graphicItem.removePoint())
+                    pointTwo = ::Org::Allbinary::Graphics::GPoint.getInstance(graphicItem.removePoint())
                     if pointOne != nil && pointTwo != nil
                         newGraphicItem.addPoint(pointOne)
                         newGraphicItem.addPoint(pointTwo)
@@ -220,6 +247,7 @@ class CanvasJPanel < JPanel
         @workAreaJTreeJPanel.expand()
         @workAreaJTreeJPanel.repaint()
     end
+    java_overload :explodeAll, 0
     
 
     # throws Exception
@@ -228,15 +256,16 @@ class CanvasJPanel < JPanel
         size = graphicItemArray.length
         (0...size).each do |index|
             item = self.getGraphicItemHashMap().get(graphicItemArray[index])
-            basicArrayList = VectorExplosionGenerator.getInstance().createList(item.getPointsInterface().getPoints(), howMuch, VectorExplosionGenerator.getInstance().RANDOM)
-            newPoints = Points.new()
+            basicArrayList = ::Org::Allbinary::Animation::VectorExplosionGenerator.getInstance().createList(item.getPointsInterface().getPoints(), howMuch, ::Org::Allbinary::Animation::VectorExplosionGenerator.getInstance().RANDOM)
+            newPoints = ::Org::Allbinary::Graphics::J2me::Workarea::Tools::Points.new()
             newPoints.addPoints(basicArrayList)
             item.setPointsInterface(newPoints)
-            angleDelta = RandomRotationFactory.getInstance().getNextRandomAngle(howMuch)
+            angleDelta = ::Org::Allbinary::Graphics::Pipeline::RandomRotationFactory.getInstance().getNextRandomAngle(howMuch)
             item.setAngle(angleDelta)
         end
         self.repaint()
     end
+    java_overload :explode, 2
     
 
     # throws Exception
@@ -246,35 +275,38 @@ class CanvasJPanel < JPanel
         size = graphicItemArray.length
         (0...size).each do |index|
             item = self.getGraphicItemHashMap().get(graphicItemArray[index])
-            basicArrayList = VectorMirrorGenerator.getInstance().getInstance(item.getPointsInterface().getPoints(), width)
-            newPoints = Points.new()
+            basicArrayList = ::Org::Allbinary::Animation::VectorMirrorGenerator.getInstance().getInstance(item.getPointsInterface().getPoints(), width)
+            newPoints = ::Org::Allbinary::Graphics::J2me::Workarea::Tools::Points.new()
             newPoints.addPoints(basicArrayList)
             item.setPointsInterface(newPoints)
         end
         self.repaint()
     end
+    java_overload :mirror, 0
     
 
     # throws Exception
     def center()
-        VectorCenterGenerator.new().transform(self.getGraphicItemHashMap())
+        ::Org::Allbinary::Animation::Vector::VectorCenterGenerator.new().transform(self.getGraphicItemHashMap())
         self.repaint()
     end
+    java_overload :center, 0
     
 
     def setNewTool()
         begin
-            StatusFactory.getInstance().setStatus("Tool Selected")
-            @selectedTool = ToolFactory.getInstance().getSelectedToolFactory().getInstance(self)
+            ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatus("Tool Selected")
+            @selectedTool = ::Org::Allbinary::Graphics::J2me::Workarea::Tools::ToolFactory.getInstance().getSelectedToolFactory().getInstance(self)
             newNode = @selectedTool.getTreeNode()
             self.getGraphicItemHashMap().put(newNode, @selectedTool)
             @canvasTreeNode.add(newNode)
             if self.getSelectedTool() == nil
-                raise GraphicsException.new("No Tool Selected", self, "setSelectedTool")
+                raise ::Org::Allbinary::Graphics::J2me::GraphicsException.new("No Tool Selected", self, "setSelectedTool")
             end
         rescue StandardError => e
         end
     end
+    java_overload :setNewTool, 0
     
 
     # throws Exception
@@ -283,6 +315,7 @@ class CanvasJPanel < JPanel
         self.getGraphicItemHashMap().put(graphicItemClone.getTreeNode(), graphicItemClone)
         @canvasTreeNode.add(graphicItemClone.getTreeNode())
     end
+    java_overload :duplicateGraphicItem, 1
     
 
     # throws Exception
@@ -295,11 +328,13 @@ class CanvasJPanel < JPanel
             self.duplicateGraphicItem(graphicItem)
         end
     end
+    java_overload :duplicateGraphicItemHashMap, 1
     
 
     def getGraphicItemHashMap()
         return @graphicItemHashMap
     end
+    java_overload :getGraphicItemHashMap, 0
     
 
     def getXPixelsPerWorkAreaPixel()
@@ -310,6 +345,7 @@ class CanvasJPanel < JPanel
             return x
         end
     end
+    java_overload :getXPixelsPerWorkAreaPixel, 0
     
 
     def getYPixelsPerWorkAreaPixel()
@@ -320,11 +356,13 @@ class CanvasJPanel < JPanel
             return y
         end
     end
+    java_overload :getYPixelsPerWorkAreaPixel, 0
     
 
     def getSelectedTool()
         return @selectedTool
     end
+    java_overload :getSelectedTool, 0
     
 
     def drawItems(graphics)
@@ -336,6 +374,7 @@ class CanvasJPanel < JPanel
             item.paint(graphics, angleDouble, self.getCanvasDimension(), self.getXPixelsPerWorkAreaPixel(), self.getYPixelsPerWorkAreaPixel())
         end
     end
+    java_overload :drawItems, 1
     
 
     def drawGrid(graphics)
@@ -353,6 +392,7 @@ class CanvasJPanel < JPanel
             graphics.drawLine(value, yUpper, value, yLower)
         end
     end
+    java_overload :drawGrid, 1
     
 
     def paint(graphics)
@@ -371,29 +411,33 @@ class CanvasJPanel < JPanel
         rescue StandardError => e
         end
     end
+    java_overload :paint, 1
     
 
     def repaint()
         if @grid != nil
             @grid.isChanged = true
         end
-        super()
+        CanvasJPanel.superclass.java_super_method(:repaint, 0).bind(self).call()
     end
+    java_overload :repaint, 0
     
 
     # throws Exception
     def toDom()
         return CanvasDom.new(self).toDom()
     end
+    java_overload :toDom, 0
     
 
     def changed()
         @grid.isChanged = true
     end
+    java_overload :changed, 0
     
 
     def mouseClicked(mouseEvent)
-        StatusFactory.getInstance().setStatusNoLog(MouseStrings.getInstance().MOUSE_CLICKED_LABEL + self.logMouseEvent(mouseEvent))
+        ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatusNoLog(::Org::Allbinary::Graphics::J2me::Workarea::Tools::MouseStrings.getInstance().MOUSE_CLICKED_LABEL + self.logMouseEvent(mouseEvent))
         if self.getSelectedTool() != nil && self.getSelectedTool().isActive()
             graphicItem = self.getSelectedTool()
             graphicItem.mouseClicked(mouseEvent, self.getXPixelsPerWorkAreaPixel(), self.getYPixelsPerWorkAreaPixel())
@@ -410,20 +454,23 @@ class CanvasJPanel < JPanel
         @workAreaJTreeJPanel.expand()
         @workAreaJTreeJPanel.repaint()
     end
+    java_overload :mouseClicked, 1
     
 
     def mouseEntered(mouseEvent)
-        StatusFactory.getInstance().setStatusNoLog(self.logMouseEvent(mouseEvent))
+        ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatusNoLog(self.logMouseEvent(mouseEvent))
     end
+    java_overload :mouseEntered, 1
     
 
     def mouseExited(mouseEvent)
-        StatusFactory.getInstance().setStatusNoLog(self.logMouseEvent(mouseEvent))
+        ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatusNoLog(self.logMouseEvent(mouseEvent))
     end
+    java_overload :mouseExited, 1
     
 
     def mousePressed(mouseEvent)
-        StatusFactory.getInstance().setStatusNoLog(MouseStrings.getInstance().MOUSE_PRESSED_LABEL + self.logMouseEvent(mouseEvent))
+        ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatusNoLog(::Org::Allbinary::Graphics::J2me::Workarea::Tools::MouseStrings.getInstance().MOUSE_PRESSED_LABEL + self.logMouseEvent(mouseEvent))
         if self.getSelectedTool() != nil
             graphicItem = self.getSelectedTool()
             graphicItem.mousePressed(mouseEvent, self.getXPixelsPerWorkAreaPixel(), self.getYPixelsPerWorkAreaPixel())
@@ -432,10 +479,11 @@ class CanvasJPanel < JPanel
         @grid.isChanged = true
         self.repaint()
     end
+    java_overload :mousePressed, 1
     
 
     def mouseReleased(mouseEvent)
-        StatusFactory.getInstance().setStatusNoLog(MouseStrings.getInstance().MOUSE_RELEASED_LABEL + self.logMouseEvent(mouseEvent))
+        ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatusNoLog(::Org::Allbinary::Graphics::J2me::Workarea::Tools::MouseStrings.getInstance().MOUSE_RELEASED_LABEL + self.logMouseEvent(mouseEvent))
         graphicItem = self.getSelectedTool()
         if graphicItem != nil
             graphicItem.mouseReleased(mouseEvent, self.getXPixelsPerWorkAreaPixel(), self.getYPixelsPerWorkAreaPixel())
@@ -444,10 +492,11 @@ class CanvasJPanel < JPanel
         @grid.isChanged = true
         self.repaint()
     end
+    java_overload :mouseReleased, 1
     
 
     def mouseDragged(mouseEvent)
-        StatusFactory.getInstance().setStatusNoLog(MouseStrings.getInstance().MOUSE_DRAGGED_LABEL + self.logMouseEvent(mouseEvent))
+        ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatusNoLog(::Org::Allbinary::Graphics::J2me::Workarea::Tools::MouseStrings.getInstance().MOUSE_DRAGGED_LABEL + self.logMouseEvent(mouseEvent))
         graphicItem = self.getSelectedTool()
         if graphicItem != nil
             graphicItem.mouseDragged(mouseEvent, self.getXPixelsPerWorkAreaPixel(), self.getYPixelsPerWorkAreaPixel())
@@ -456,10 +505,11 @@ class CanvasJPanel < JPanel
         @grid.isChanged = true
         self.repaint()
     end
+    java_overload :mouseDragged, 1
     
 
     def mouseMoved(mouseEvent)
-        StatusFactory.getInstance().setStatusNoLog(MouseStrings.getInstance().MOUSE_MOVED_LABEL + self.logMouseEvent(mouseEvent))
+        ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatusNoLog(::Org::Allbinary::Graphics::J2me::Workarea::Tools::MouseStrings.getInstance().MOUSE_MOVED_LABEL + self.logMouseEvent(mouseEvent))
         if self.getSelectedTool() != nil && self.getSelectedTool().isActive()
             graphicItem = self.getSelectedTool()
             graphicItem.mouseMoved(mouseEvent, self.getXPixelsPerWorkAreaPixel(), self.getYPixelsPerWorkAreaPixel())
@@ -468,21 +518,23 @@ class CanvasJPanel < JPanel
         @grid.isChanged = true
         self.repaint()
     end
+    java_overload :mouseMoved, 1
     
 
     def logMouseEvent(mouseEvent)
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(PositionStrings.getInstance().X_LABEL)
-        stringBuffer.appendint((mouseEvent.getX() / self.getXPixelsPerWorkAreaPixel()).to_i)
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
-        stringBuffer.append(PositionStrings.getInstance().Y_LABEL)
-        stringBuffer.appendint((mouseEvent.getY() / self.getYPixelsPerWorkAreaPixel()).to_i)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(::Org::Allbinary::MathPackage::PositionStrings.getInstance().X_LABEL)
+        stringBuffer.appendint(((mouseEvent.getX() / self.getXPixelsPerWorkAreaPixel()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::MathPackage::PositionStrings.getInstance().Y_LABEL)
+        stringBuffer.appendint(((mouseEvent.getY() / self.getYPixelsPerWorkAreaPixel()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         return stringBuffer.to_s
     end
+    java_overload :logMouseEvent, 1
     
 
     def keyPressed(keyEvent)
-        StatusFactory.getInstance().setStatus("Key Pressed")
+        ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatus("Key Pressed")
         begin
             graphicItemArray = @graphicItemHashMap.keySet().toArray()
             size = graphicItemArray.length
@@ -502,11 +554,11 @@ class CanvasJPanel < JPanel
                 end
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, @gameInputStrings.KEY_PRESSED, e)
         end
         if self.getSelectedTool() != nil && self.getSelectedTool().isActive()
-            StatusFactory.getInstance().setStatus("Key Pressed for Tool")
+            ::Org::Allbinary::Graphics::J2me::StatusFactory.getInstance().setStatus("Key Pressed for Tool")
             graphicItem = self.getSelectedTool()
             graphicItem.keyPressed(keyEvent)
         else
@@ -515,14 +567,17 @@ class CanvasJPanel < JPanel
         @grid.isChanged = true
         self.repaint()
     end
+    java_overload :keyPressed, 1
     
 
     def keyReleased(keyEvent)
     end
+    java_overload :keyReleased, 1
     
 
     def keyTyped(keyEvent)
     end
+    java_overload :keyTyped, 1
     
 
     def delete(evt)
@@ -531,6 +586,7 @@ class CanvasJPanel < JPanel
         @workAreaJTreeJPanel.expand()
         @workAreaJTreeJPanel.repaint()
     end
+    java_overload :delete, 1
     
 
     def deselect(evt)
@@ -541,6 +597,7 @@ class CanvasJPanel < JPanel
             @workAreaJTreeJPanel.repaint()
         end
     end
+    java_overload :deselect, 1
     
 
     def highlight(evt)
@@ -551,10 +608,11 @@ class CanvasJPanel < JPanel
             @workAreaJTreeJPanel.repaint()
         end
     end
+    java_overload :highlight, 1
     
 
     # throws Exception
-    def duplicate()
+    def duplicate_j0()
         newCanvasJPanel = CanvasJPanel.new(@workAreaJTreeJPanel, self.getSize(), self.getCanvasDimension().getWidth(), self.getCanvasDimension().getHeight())
         newCanvasJPanel.setGrid(self.getGrid().getGrid())
         newCanvasJPanel.setAngle(self.getAngle())
@@ -567,8 +625,7 @@ class CanvasJPanel < JPanel
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def duplicate(event)
+    def duplicate_j1(event)
         treeNode = event.getTreeNode()
         graphicItem = self.getGraphicItemHashMap().get(treeNode)
         if graphicItem != nil
@@ -577,6 +634,12 @@ class CanvasJPanel < JPanel
             @workAreaJTreeJPanel.expand()
             @workAreaJTreeJPanel.repaint()
         end
+    end
+
+    def duplicate(*java_overload_args)
+        return duplicate_j0(*java_overload_args) if java_overload_args.length == 0
+        return duplicate_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method duplicate takes #{java_overload_args.length} arguments"
     end
     
 
@@ -587,86 +650,120 @@ class CanvasJPanel < JPanel
             graphicItem.addAngle(event.getAngle())
         end
     end
+    java_overload :rotate, 1
     
 
     def getCanvasDimension()
         return @canvasDimension
     end
+    java_overload :getCanvasDimension, 0
     
 
     def setCanvasDimension(canvasDimension)
         @canvasDimension = canvasDimension
     end
+    java_overload :setCanvasDimension, 1
     
 
     def getGrid()
         return @grid
     end
+    java_overload :getGrid, 0
 
     def self.frame()
+        CanvasJPanel.java_static_fields unless @java_static_fields_started
         return defined?(@@frame) ? @@frame : nil
     end
 
     def self.frame=(value)
+        CanvasJPanel.java_static_fields unless @java_static_fields_started
         @@frame = value
     end
 
     def self.gridColor()
+        CanvasJPanel.java_static_fields unless @java_static_fields_started
         return defined?(@@gridColor) ? @@gridColor : nil
     end
 
     def self.gridColor=(value)
+        CanvasJPanel.java_static_fields unless @java_static_fields_started
         @@gridColor = value
     end
 
     def self.backgroundColor()
+        CanvasJPanel.java_static_fields unless @java_static_fields_started
         return defined?(@@backgroundColor) ? @@backgroundColor : nil
     end
 
     def self.backgroundColor=(value)
+        CanvasJPanel.java_static_fields unless @java_static_fields_started
         @@backgroundColor = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@frame = 0
+        begin
+            @@gridColor = Color.new(::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE.to_i)
+            @@backgroundColor = Color.new(::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().CLEAR_COLOR.to_i)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CanvasJPanel"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/animation/VectorExplosionGenerator"
-require "org/allbinary/animation/VectorMirrorGenerator"
-require "org/allbinary/animation/vector/VectorCenterGenerator"
-require "org/allbinary/game/input/GameInputStrings"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/j2me/GraphicsException"
-require "org/allbinary/graphics/j2me/StatusFactory"
-require "org/allbinary/graphics/j2me/workarea/WorkAreaJTreeJPanel"
-require "org/allbinary/graphics/j2me/workarea/tools/GraphicItemFactory"
-require "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface"
-require "org/allbinary/graphics/j2me/workarea/tools/LinesGraphicItem"
-require "org/allbinary/graphics/j2me/workarea/tools/MouseStrings"
-require "org/allbinary/graphics/j2me/workarea/tools/Points"
-require "org/allbinary/graphics/j2me/workarea/tools/ToolFactory"
-require "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEvent"
-require "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEventService"
-require "org/allbinary/graphics/pipeline/RandomRotationFactory"
-require "org/allbinary/log/LOGGING"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/GuiLog"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/math/PositionStrings"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/w3c/dom/Node"
-require "org/allbinary/graphics/j2me/workarea/canvas/CanvasDom"
-require "org/allbinary/graphics/j2me/workarea/canvas/CanvasTreeLabel"
-require "org/allbinary/graphics/j2me/workarea/canvas/Grid"
-require "org/allbinary/graphics/j2me/workarea/canvas/IntegerDimension"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Animation; autoload :VectorExplosionGenerator, "org/allbinary/animation/VectorExplosionGenerator" unless const_defined?(:VectorExplosionGenerator, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :VectorMirrorGenerator, "org/allbinary/animation/VectorMirrorGenerator" unless const_defined?(:VectorMirrorGenerator, false); end; end; end
+module ::Org; module Allbinary; module Animation; module Vector; autoload :VectorCenterGenerator, "org/allbinary/animation/vector/VectorCenterGenerator" unless const_defined?(:VectorCenterGenerator, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings" unless const_defined?(:GameInputStrings, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; autoload :GraphicsException, "org/allbinary/graphics/j2me/GraphicsException" unless const_defined?(:GraphicsException, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; autoload :StatusFactory, "org/allbinary/graphics/j2me/StatusFactory" unless const_defined?(:StatusFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; autoload :WorkAreaJTreeJPanel, "org/allbinary/graphics/j2me/workarea/WorkAreaJTreeJPanel" unless const_defined?(:WorkAreaJTreeJPanel, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :GraphicItemFactory, "org/allbinary/graphics/j2me/workarea/tools/GraphicItemFactory" unless const_defined?(:GraphicItemFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :GraphicItemInterface, "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface" unless const_defined?(:GraphicItemInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :LinesGraphicItem, "org/allbinary/graphics/j2me/workarea/tools/LinesGraphicItem" unless const_defined?(:LinesGraphicItem, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :MouseStrings, "org/allbinary/graphics/j2me/workarea/tools/MouseStrings" unless const_defined?(:MouseStrings, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :Points, "org/allbinary/graphics/j2me/workarea/tools/Points" unless const_defined?(:Points, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :ToolFactory, "org/allbinary/graphics/j2me/workarea/tools/ToolFactory" unless const_defined?(:ToolFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; module Event; autoload :MyGraphicItemEvent, "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEvent" unless const_defined?(:MyGraphicItemEvent, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; module Event; autoload :MyGraphicItemEventService, "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEventService" unless const_defined?(:MyGraphicItemEventService, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Pipeline; autoload :RandomRotationFactory, "org/allbinary/graphics/pipeline/RandomRotationFactory" unless const_defined?(:RandomRotationFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Log; autoload :LOGGING, "org/allbinary/log/LOGGING" unless const_defined?(:LOGGING, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :GuiLog, "org/allbinary/logic/communication/log/GuiLog" unless const_defined?(:GuiLog, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :PositionStrings, "org/allbinary/math/PositionStrings" unless const_defined?(:PositionStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :CanvasDom, "org/allbinary/graphics/j2me/workarea/canvas/CanvasDom" unless const_defined?(:CanvasDom, false)
+autoload :CanvasTreeLabel, "org/allbinary/graphics/j2me/workarea/canvas/CanvasTreeLabel" unless const_defined?(:CanvasTreeLabel, false)
+autoload :Grid, "org/allbinary/graphics/j2me/workarea/canvas/Grid" unless const_defined?(:Grid, false)
+autoload :IntegerDimension, "org/allbinary/graphics/j2me/workarea/canvas/IntegerDimension" unless const_defined?(:IntegerDimension, false)
 
-class CanvasJPanel
-    @@frame = 0
-    @@gridColor = Color.new(BasicColorFactory.getInstance().WHITE.to_i)
-    @@backgroundColor = Color.new(BasicColorFactory.getInstance().CLEAR_COLOR.to_i)
+begin
+    CanvasJPanel.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -17,22 +17,24 @@
 # require "java/util/Set"
 # require "javax/servlet/http/HttpServletRequest"
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Search
+
 class SearchParams
     attr_accessor :columnsAndSearchValues, :order, :sortBy, :listLength, :startPage, :endPage
 
-    def initialize_fields
-        @columnsAndSearchValues = nil
-        @order = nil
-        @sortBy = nil
-        @listLength = nil
-        @startPage = nil
-        @endPage = nil
+    def jfields_org_allbinary_logic_control_search_SearchParams
+        @columnsAndSearchValues = nil unless instance_variable_defined?(:@columnsAndSearchValues)
+        @order = nil unless instance_variable_defined?(:@order)
+        @sortBy = nil unless instance_variable_defined?(:@sortBy)
+        @listLength = nil unless instance_variable_defined?(:@listLength)
+        @startPage = nil unless instance_variable_defined?(:@startPage)
+        @endPage = nil unless instance_variable_defined?(:@endPage)
     end
     
 
     def initialize(request)
-        initialize_fields
-        @columnsAndSearchValues = StdUtil.getInstance().createHashMap()
+        jfields_org_allbinary_logic_control_search_SearchParams
+        @columnsAndSearchValues = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         self.setLength(request.getParameter(SearchData::LENGTH))
         self.setOrder(request.getParameter(SearchData::ORDER))
         page = request.getParameter(SearchData::PAGE)
@@ -140,7 +142,7 @@ class SearchParams
 
     # throws Exception
     def getParamsNode(document)
-        paramsNode = ModDomHelper.createNameValueNodes(document, SearchData::PARAMS, SearchData::PARAMS)
+        paramsNode = ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, SearchData::PARAMS, SearchData::PARAMS)
         paramsNode.appendChild(self.getFieldsNode(document))
         paramsNode.appendChild(self.getOrderNode(document))
         paramsNode.appendChild(self.getSortByNode(document))
@@ -151,14 +153,14 @@ class SearchParams
 
     # throws Exception
     def getFieldsNode(document)
-        fieldsNode = ModDomHelper.createNameValueNodes(document, SearchData::FIELDS, @columnsAndSearchValues.size().to_s)
+        fieldsNode = ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, SearchData::FIELDS, @columnsAndSearchValues.size().to_s)
         set = @columnsAndSearchValues.keySet()
         searchValueArray = set.toArray()
         size = searchValueArray.length
         (0...size).each do |index|
             key = searchValueArray[index]
             searchValue = @columnsAndSearchValues.get(key)
-            fieldsNode.appendChild(ModDomHelper.createNameValueNodes(document, SearchData::FIELD, key, ToDomHelper.convertNull(searchValue)))
+            fieldsNode.appendChild(::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, SearchData::FIELD, key, ::Org::Allbinary::DataPackage::Tree::Dom::ToDomHelper.convertNull(searchValue)))
         end
         return fieldsNode
     end
@@ -166,27 +168,29 @@ class SearchParams
 
     # throws Exception
     def getOrderNode(document)
-        return ModDomHelper.createNameValueNodes(document, SearchData::ORDER, ToDomHelper.convertNull(self.getOrder()))
+        return ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, SearchData::ORDER, ::Org::Allbinary::DataPackage::Tree::Dom::ToDomHelper.convertNull(self.getOrder()))
     end
     
 
     # throws Exception
     def getSortByNode(document)
-        return ModDomHelper.createNameValueNodes(document, SearchData::SORTBY, ToDomHelper.convertNull(self.getSortBy()))
+        return ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, SearchData::SORTBY, ::Org::Allbinary::DataPackage::Tree::Dom::ToDomHelper.convertNull(self.getSortBy()))
     end
     
 
     # throws Exception
     def getLengthNode(document)
-        return ModDomHelper.createNameValueNodes(document, SearchData::LENGTH, ToDomHelper.convertNull(self.getLength()))
+        return ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, SearchData::LENGTH, ::Org::Allbinary::DataPackage::Tree::Dom::ToDomHelper.convertNull(self.getLength()))
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
-autoload :ToDomHelper, "org/allbinary/data/tree/dom/ToDomHelper"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :SearchData, "org/allbinary/logic/control/search/SearchData"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper" unless const_defined?(:ModDomHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :ToDomHelper, "org/allbinary/data/tree/dom/ToDomHelper" unless const_defined?(:ToDomHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :SearchData, "org/allbinary/logic/control/search/SearchData" unless const_defined?(:SearchData, false)
+
+end; end; end; end; end
 

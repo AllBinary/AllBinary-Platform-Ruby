@@ -16,6 +16,8 @@
 
 # require "jsinterop/annotations/JsType"
 
+module ::Org; module Allbinary; module Logic
+
 class ABSystemWrapper
     
 
@@ -30,7 +32,7 @@ class ABSystemWrapper
     
 
     def currentTimeMillis()
-        return (Time.now.to_f * 1000).to_i
+        return (::Time.now.to_f * 1000).to_i
     end
 
     def self.instance()
@@ -71,4 +73,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

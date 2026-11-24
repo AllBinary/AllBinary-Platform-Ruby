@@ -16,25 +16,27 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class ThreadPool
     attr_accessor :logUtil, :commonStrings, :NULL_RUNNABLE, :threadPoolStrings, :threadObjectUtil, :isAlive, :taskQueue, :numThreads, :runningTask, :currentPriorityRunnable
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_thread_ThreadPool
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @NULL_RUNNABLE = NullRunnable.getInstance()
         @threadPoolStrings = ThreadPoolStrings.getInstance()
         @threadObjectUtil = ThreadObjectUtil.getInstance()
-        @isAlive = false
-        @taskQueue = BasicArrayListD.new()
-        @numThreads = 0
-        @runningTask = false
+        @isAlive = false unless instance_variable_defined?(:@isAlive)
+        @taskQueue = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @numThreads = 0 unless instance_variable_defined?(:@numThreads)
+        @runningTask = false unless instance_variable_defined?(:@runningTask)
         @currentPriorityRunnable = @threadObjectUtil.NULL_PRIORITY_RUNNABLE
     end
     
 
     def initialize(poolName, numThreads, priority)
-        initialize_fields
+        jfields_org_allbinary_thread_ThreadPool
     end
     
 
@@ -48,7 +50,7 @@ class ThreadPool
                 return
             end
             @currentPriorityRunnable = runnable
-            if !(@currentPriorityRunnable == @threadObjectUtil.NULL_PRIORITY_RUNNABLE)
+            if !@currentPriorityRunnable == @threadObjectUtil.NULL_PRIORITY_RUNNABLE
                 @currentPriorityRunnable.reset()
                 @currentPriorityRunnable.run()
             end
@@ -68,7 +70,7 @@ class ThreadPool
     def init()
         if !@isAlive
             @isAlive = true
-            @taskQueue = BasicArrayListD.new()
+            @taskQueue = ::Org::Allbinary::Util::BasicArrayListD.new()
         end
     end
     
@@ -203,14 +205,14 @@ class ThreadPool
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :NullRunnable, "org/allbinary/thread/NullRunnable"
-autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable"
-autoload :ThreadObjectUtil, "org/allbinary/thread/ThreadObjectUtil"
-autoload :ThreadPoolStrings, "org/allbinary/thread/ThreadPoolStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :NullRunnable, "org/allbinary/thread/NullRunnable" unless const_defined?(:NullRunnable, false)
+autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable" unless const_defined?(:PriorityRunnable, false)
+autoload :ThreadObjectUtil, "org/allbinary/thread/ThreadObjectUtil" unless const_defined?(:ThreadObjectUtil, false)
+autoload :ThreadPoolStrings, "org/allbinary/thread/ThreadPoolStrings" unless const_defined?(:ThreadPoolStrings, false)
 require "java/lang/Runnable"
 require "java/lang/InterruptedException"
 
@@ -219,4 +221,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

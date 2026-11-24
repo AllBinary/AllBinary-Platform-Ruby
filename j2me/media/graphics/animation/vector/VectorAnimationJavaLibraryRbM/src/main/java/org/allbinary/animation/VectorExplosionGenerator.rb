@@ -15,14 +15,16 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class VectorExplosionGenerator
     attr_accessor :RANDOM, :ROTATION, :vectorAnimationUtil, :randomRotationFactory
 
-    def initialize_fields
+    def jfields_org_allbinary_animation_VectorExplosionGenerator
         @RANDOM = VectorExplosionType.new()
         @ROTATION = VectorExplosionType.new()
         @vectorAnimationUtil = VectorAnimationUtil.getInstance()
-        @randomRotationFactory = RandomRotationFactory.getInstance()
+        @randomRotationFactory = ::Org::Allbinary::Graphics::Pipeline::RandomRotationFactory.getInstance()
     end
     
 
@@ -32,7 +34,7 @@ class VectorExplosionGenerator
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_animation_VectorExplosionGenerator
     end
     
 
@@ -51,7 +53,6 @@ class VectorExplosionGenerator
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(points, howMuch, type)
         pointsBasicArrayList = self.getInstanceStartFrame(points, howMuch, type, true)
         tempBasicArrayList = pointsBasicArrayList.objectArray[0]
@@ -63,7 +64,7 @@ class VectorExplosionGenerator
     # throws Exception
     def getInstanceStartFrame(points, howMuch, type, startFrame)
         begin
-            pointsBasicArrayList = BasicArrayListS.new(howMuch)
+            pointsBasicArrayList = ::Org::Allbinary::Util::BasicArrayListS.new(howMuch)
             pointsBasicArrayList.add(self.createPointsBasicArrayList(points))
             frameIndex = 0
             tempBasicArrayList = nil
@@ -87,10 +88,10 @@ class VectorExplosionGenerator
     # throws Exception
     def createListFromPoints(tempBasicArrayList, points, howMuch, type)
         index = 0
-        pointBasicArrayList = BasicArrayListD.new()
+        pointBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
         sectionBasicArrayList = nil
         while index < points.length
-            sectionBasicArrayList = BasicArrayListD.new()
+            sectionBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
             while points[index][0] != 1000
                 sectionBasicArrayList.add(tempBasicArrayList.objectArray[index])
                 index += 1
@@ -98,7 +99,7 @@ class VectorExplosionGenerator
                     break
                 end
             end
-            sectionBasicArrayList = RandomTranslation.getInstance(sectionBasicArrayList, howMuch)
+            sectionBasicArrayList = ::Org::Allbinary::Graphics::Pipeline::RandomTranslation.getInstance(sectionBasicArrayList, howMuch)
             if type == @ROTATION
                 sectionBasicArrayList = @randomRotationFactory.getInstanceList(sectionBasicArrayList, howMuch)
             end
@@ -122,8 +123,8 @@ class VectorExplosionGenerator
         if points.length == 0
             raise StandardError.new("Not Points Provided")
         end
-        firstPointBasicArrayList = BasicArrayListS.new(points.length)
-        pointFactory = PointFactory.getInstance()
+        firstPointBasicArrayList = ::Org::Allbinary::Util::BasicArrayListS.new(points.length)
+        pointFactory = ::Org::Allbinary::Graphics::PointFactory.getInstance()
         (0...points.length).each do |index|
             firstPointBasicArrayList.add(pointFactory.createXY(points[index][0], points[index][1]))
         end
@@ -161,19 +162,21 @@ class VectorExplosionGenerator
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :RandomRotationFactory, "org/allbinary/graphics/pipeline/RandomRotationFactory"
-autoload :RandomTranslation, "org/allbinary/graphics/pipeline/RandomTranslation"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS"
-autoload :VectorAnimationUtil, "org/allbinary/animation/VectorAnimationUtil"
-autoload :VectorExplosionType, "org/allbinary/animation/VectorExplosionType"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Pipeline; autoload :RandomRotationFactory, "org/allbinary/graphics/pipeline/RandomRotationFactory" unless const_defined?(:RandomRotationFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Pipeline; autoload :RandomTranslation, "org/allbinary/graphics/pipeline/RandomTranslation" unless const_defined?(:RandomTranslation, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS" unless const_defined?(:BasicArrayListS, false); end; end; end
+autoload :VectorAnimationUtil, "org/allbinary/animation/VectorAnimationUtil" unless const_defined?(:VectorAnimationUtil, false)
+autoload :VectorExplosionType, "org/allbinary/animation/VectorExplosionType" unless const_defined?(:VectorExplosionType, false)
 
 begin
     VectorExplosionGenerator.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

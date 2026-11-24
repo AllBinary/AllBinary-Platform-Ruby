@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
-# require "javax/sound/sampled/Control"
+require "java/lang/JavaOverload"
+require "javax/sound/sampled/Control"
 
-class NullJ2SEControl < Control
+module ::Org; module Allbinary; module Media; module Audio
+
+class NullJ2SEControl < ::Javax::Sound::Sampled::Control
     
 
     def initialize(type)
         super(type)
     end
 end
+
+end; end; end; end
 

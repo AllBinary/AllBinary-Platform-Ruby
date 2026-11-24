@@ -14,8 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.smtp
 
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/PrintStream"
+require "java/lang/JavaOverload"
 # require "java/util/Properties"
 # require "javax/mail/Address"
 # require "javax/mail/Authenticator"
@@ -29,45 +28,48 @@
 # require "javax/mail/internet/MimeMultipart"
 require "org/allbinary/logic/communication/smtp/EmailInterface"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp
+
 class Email
     include EmailInterface
     attr_accessor :logUtil, :commonStrings, :msg, :properties, :bs, :isDebug
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @msg = nil
-        @properties = nil
-        @bs = nil
-        @isDebug = nil
+    def jfields_org_allbinary_logic_communication_smtp_Email
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @msg = nil unless instance_variable_defined?(:@msg)
+        @properties = nil unless instance_variable_defined?(:@properties)
+        @bs = nil unless instance_variable_defined?(:@bs)
+        @isDebug = nil unless instance_variable_defined?(:@isDebug)
     end
 
     def initialize(*args)
         case args.length
-        when 7 then constructor7(*args)
-        when 8 then constructor8(*args)
+        when 7 then jnew_org_allbinary_logic_communication_smtp_Email_7(*args)
+        when 8 then jnew_org_allbinary_logic_communication_smtp_Email_8(*args)
+        else raise ArgumentError, "No constructor of Email takes #{args.length} arguments"
         end
     end
     
 
-    def constructor7(from, to, subject, server, textBody, htmlAttachment, contentBase)
-        initialize_fields
+    def jnew_org_allbinary_logic_communication_smtp_Email_7(from, to, subject, server, textBody, htmlAttachment, contentBase)
+        jfields_org_allbinary_logic_communication_smtp_Email
         @isDebug = false
         self.init(from, to, subject, server, textBody, htmlAttachment, contentBase)
     end
     
 
-    def constructor8(from, to, subject, server, textBody, htmlAttachment, contentBase, isDebug)
-        initialize_fields
+    def jnew_org_allbinary_logic_communication_smtp_Email_8(from, to, subject, server, textBody, htmlAttachment, contentBase, isDebug)
+        jfields_org_allbinary_logic_communication_smtp_Email
         @isDebug = isDebug
         self.init(from, to, subject, server, textBody, htmlAttachment, contentBase)
     end
     
 
     # throws Exception
-    def init(from, to, subject, server, textBody, htmlAttachment, contentBase)
+    def init_j7(from, to, subject, server, textBody, htmlAttachment, contentBase)
         begin
-            stringValidationUtil = StringValidationUtil.getInstance()
+            stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
             mimeBodyParts = Array.new((!stringValidationUtil.isEmpty(htmlAttachment) ? 2 : 1), nil)
             mimeBodyParts[0] = MimeBodyPart.new()
             mimeBodyParts[0].setText(textBody)
@@ -81,8 +83,8 @@ class Email
             end
             self.init(server, nil, [InternetAddress.new(from)], [InternetAddress.new(to)], nil, nil, subject, mimeBodyParts)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(commonStrings.EXCEPTION, self, "emailConstructor", e)
             end
             raise e
@@ -91,20 +93,19 @@ class Email
     
 
     # throws MessagingException
-    # Java overloaded method: Ruby keeps the last definition
-    def init(server, authenticator, addresses_from, addresses_to, addresses_cc, addresses_bcc, subject, mimeBodyParts)
+    def init_j8(server, authenticator, addresses_from, addresses_to, addresses_cc, addresses_bcc, subject, mimeBodyParts)
         @properties = Properties.new()
         @properties.put(Email::SMTP_HOST, server)
         begin
-            hostName = StringUtil.getInstance().EMPTY_STRING
-            if StringValidationUtil.getInstance().isEmpty(hostName)
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
+            hostName = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(hostName)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
                     @logUtil.putF("Unable to get HostName so using fake", self, "init()")
                 end
                 @properties.put(Email::SMTP_LOCAL_HOST, "FakeHostName")
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
                 @logUtil.put("Continuing on Exception: Unable to get HostName", self, "init()", e)
             end
             @properties.put(Email::SMTP_LOCAL_HOST, "FakeHostName")
@@ -115,8 +116,8 @@ class Email
         session = Session.getInstance(@properties, authenticator)
         if @isDebug
             session.setDebug(true)
-            @bs = ByteArrayOutputStream.new()
-            printStream = PrintStream.new(@bs)
+            @bs = ::Java::Io::ByteArrayOutputStream.new()
+            printStream = ::Java::Io::PrintStream.new(@bs)
             session.setDebugOut(printStream)
         end
         @msg = MimeMessage.new(session)
@@ -131,11 +132,18 @@ class Email
         end
         @msg.setContent(mimeMultipart)
     end
+
+    def init(*java_overload_args)
+        return init_j7(*java_overload_args) if java_overload_args.length == 7
+        return init_j8(*java_overload_args) if java_overload_args.length == 8
+        raise ArgumentError, "No method init takes #{java_overload_args.length} arguments"
+    end
     
 
     def getMimeMessage()
         return @msg
     end
+    java_overload :getMimeMessage, 0
     
 
     def getDebugInfo()
@@ -145,18 +153,20 @@ class Email
             return "Debugging Is Off"
         end
     end
+    java_overload :getDebugInfo, 0
     
 
     # throws Exception
     def log()
         return "\nHashMap: " + self.toHashMap().to_s
     end
+    java_overload :log, 0
     
 
     # throws Exception
     def toHashMap()
         begin
-            hashMap = StdUtil.getInstance().createHashMap()
+            hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
             hashMap.put(EmailData::SERVER, @properties.get(Email::SMTP_HOST))
             addresses = @msg.getFrom()
             if addresses != nil
@@ -192,25 +202,28 @@ class Email
             end
             return hashMap
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "toHashMap()", e)
             end
             raise e
         end
     end
+    java_overload :toHashMap, 0
     
 
     # throws Exception
     def toXmlNode(document)
-        node = ModDomHelper.createNameValueNodes(document, EmailData::NAME, self.toHashMap())
+        node = ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, EmailData::NAME, self.toHashMap())
         return node
     end
+    java_overload :toXmlNode, 1
     
 
     # throws Exception
     def toXmlDoc()
-        raise StandardError.new(CommonStrings.getInstance().NOT_IMPLEMENTED)
+        raise StandardError.new(::Org::Allbinary::StringPackage::CommonStrings.getInstance().NOT_IMPLEMENTED)
     end
+    java_overload :toXmlDoc, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -238,20 +251,26 @@ class Email
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :EmailData, "org/allbinary/logic/communication/smtp/EmailData"
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Java; module Io; autoload :PrintStream, "java/io/PrintStream" unless const_defined?(:PrintStream, false); end; end
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper" unless const_defined?(:ModDomHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :EmailData, "org/allbinary/logic/communication/smtp/EmailData" unless const_defined?(:EmailData, false)
 
 begin
     Email.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,26 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.money.payment.types
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
 
 class PaymentType
     attr_accessor :basicPaymentType, :paymentTransactionInterfaceFactoryInterface, :paymentProcessorInterfaceFactoryInterface
 
-    def initialize_fields
-        @basicPaymentType = nil
-        @paymentTransactionInterfaceFactoryInterface = nil
-        @paymentProcessorInterfaceFactoryInterface = nil
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_PaymentType
+        @basicPaymentType = nil unless instance_variable_defined?(:@basicPaymentType)
+        @paymentTransactionInterfaceFactoryInterface = nil unless instance_variable_defined?(:@paymentTransactionInterfaceFactoryInterface)
+        @paymentProcessorInterfaceFactoryInterface = nil unless instance_variable_defined?(:@paymentProcessorInterfaceFactoryInterface)
     end
 
     def initialize(*args)
         case args.length
-        when 1 then constructor1(*args)
-        when 3 then constructor3(*args)
+        when 1 then jnew_org_allbinary_business_user_commerce_money_payment_types_PaymentType_1(*args)
+        when 3 then jnew_org_allbinary_business_user_commerce_money_payment_types_PaymentType_3(*args)
+        else raise ArgumentError, "No constructor of PaymentType takes #{args.length} arguments"
         end
     end
     
 
-    def constructor1(basicPaymentType)
-        initialize_fields
+    def jnew_org_allbinary_business_user_commerce_money_payment_types_PaymentType_1(basicPaymentType)
+        jfields_org_allbinary_business_user_commerce_money_payment_types_PaymentType
         @basicPaymentType = basicPaymentType
         @paymentTransactionInterfaceFactoryInterface = nil
         @paymentProcessorInterfaceFactoryInterface = nil
@@ -41,8 +45,8 @@ class PaymentType
     end
     
 
-    def constructor3(basicPaymentType, paymentTransactionInterfaceFactoryInterface, paymentProcessorInterfaceFactoryInterface)
-        initialize_fields
+    def jnew_org_allbinary_business_user_commerce_money_payment_types_PaymentType_3(basicPaymentType, paymentTransactionInterfaceFactoryInterface, paymentProcessorInterfaceFactoryInterface)
+        jfields_org_allbinary_business_user_commerce_money_payment_types_PaymentType
         @basicPaymentType = basicPaymentType
         @paymentTransactionInterfaceFactoryInterface = paymentTransactionInterfaceFactoryInterface
         @paymentProcessorInterfaceFactoryInterface = paymentProcessorInterfaceFactoryInterface
@@ -69,26 +73,26 @@ class PaymentType
     
 
     def toVector()
-        vector = BasicArrayListD.new()
+        vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         vector.addAllList(self.getBasicPaymentType().toVector())
         if @paymentTransactionInterfaceFactoryInterface != nil
-            vector.add(@paymentTransactionInterfaceFactoryInterface.class.name)
+            vector.add(@paymentTransactionInterfaceFactoryInterface.class.java_name)
         end
         if @paymentProcessorInterfaceFactoryInterface != nil
-            vector.add(@paymentProcessorInterfaceFactoryInterface.class.name)
+            vector.add(@paymentProcessorInterfaceFactoryInterface.class.java_name)
         end
         return vector
     end
     
 
     def toHashMap()
-        hashMap = StdUtil.getInstance().createHashMap()
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         hashMap.putAll(self.getBasicPaymentType().toHashMap())
         if @paymentTransactionInterfaceFactoryInterface != nil
-            hashMap.put(PaymentGatewayData::PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE.to_s, @paymentTransactionInterfaceFactoryInterface.class.name)
+            hashMap.put(::Org::Allbinary::Business::User::Commerce::Money::Payment::Gateway::PaymentGatewayData::PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE.to_s, @paymentTransactionInterfaceFactoryInterface.class.java_name)
         end
         if @paymentProcessorInterfaceFactoryInterface != nil
-            hashMap.put(PaymentGatewayData::PAYMENTPROCESSORINTERFACEFACTORYINTERFACE.to_s, @paymentProcessorInterfaceFactoryInterface.class.name)
+            hashMap.put(::Org::Allbinary::Business::User::Commerce::Money::Payment::Gateway::PaymentGatewayData::PAYMENTPROCESSORINTERFACEFACTORYINTERFACE.to_s, @paymentProcessorInterfaceFactoryInterface.class.java_name)
         end
         return hashMap
     end
@@ -99,13 +103,15 @@ class PaymentType
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-autoload :PaymentProcessorInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactoryInterface"
-autoload :PaymentTransactionInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceFactoryInterface"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :BasicPaymentType, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType"
-autoload :PaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/PaymentTypeUtil"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData" unless const_defined?(:PaymentGatewayData, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Processor; autoload :PaymentProcessorInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactoryInterface" unless const_defined?(:PaymentProcessorInterfaceFactoryInterface, false); end; end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Transaction; autoload :PaymentTransactionInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceFactoryInterface" unless const_defined?(:PaymentTransactionInterfaceFactoryInterface, false); end; end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+autoload :BasicPaymentType, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType" unless const_defined?(:BasicPaymentType, false)
+autoload :PaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/PaymentTypeUtil" unless const_defined?(:PaymentTypeUtil, false)
+
+end; end; end; end; end; end; end; end
 

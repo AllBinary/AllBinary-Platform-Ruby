@@ -15,16 +15,18 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class ImageCacheable
     attr_accessor :name
 
-    def initialize_fields
-        @name = StringUtil.getInstance().EMPTY_STRING
+    def jfields_org_allbinary_logic_util_cache_ImageCacheable
+        @name = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def initialize(name, anyType)
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_ImageCacheable
     end
     
 
@@ -39,5 +41,7 @@ class ImageCacheable
     alias_method :to_s, :toString
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end
 

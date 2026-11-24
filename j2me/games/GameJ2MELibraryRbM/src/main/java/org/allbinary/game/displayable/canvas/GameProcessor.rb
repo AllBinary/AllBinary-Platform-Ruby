@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/Processor"
 
-class GameProcessor < Processor
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class GameProcessor < ::Org::Allbinary::Canvas::Processor
     attr_accessor :gameCanvas
 
-    def initialize_fields
-        @gameCanvas = nil
+    def jfields_org_allbinary_game_displayable_canvas_GameProcessor
+        @gameCanvas = nil unless instance_variable_defined?(:@gameCanvas)
     end
     
 
     def initialize(gameCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_GameProcessor
         @gameCanvas = gameCanvas
     end
     
@@ -35,7 +38,10 @@ class GameProcessor < Processor
     def process()
         @gameCanvas.processPlayingGame()
     end
+    java_overload :process, 0
 end
 
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
+
+end; end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.business.user.commerce.money.payment.types
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
+
 class CreditCardTypeFactory
     attr_accessor :VISA, :MASTERCARD, :DISCOVER, :AMERICANEXPRESS
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_CreditCardTypeFactory
         @VISA = CreditCardType.new("Visa")
         @MASTERCARD = CreditCardType.new("MasterCard")
         @DISCOVER = CreditCardType.new("Discover")
@@ -26,7 +28,7 @@ class CreditCardTypeFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_types_CreditCardTypeFactory
     end
     
 
@@ -65,11 +67,13 @@ class CreditCardTypeFactory
     end
 end
 
-autoload :CreditCardType, "org/allbinary/business/user/commerce/money/payment/types/CreditCardType"
+autoload :CreditCardType, "org/allbinary/business/user/commerce/money/payment/types/CreditCardType" unless const_defined?(:CreditCardType, false)
 
 begin
     CreditCardTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

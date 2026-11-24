@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.view
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/GPoint"
 
-class ViewPositionBase < GPoint
+module ::Org; module Allbinary; module View
+
+class ViewPositionBase < ::Org::Allbinary::Graphics::GPoint
     
 
     def initialize(x, y, z)
@@ -27,20 +30,24 @@ class ViewPositionBase < GPoint
     def getX2()
         return self.getX()
     end
+    java_overload :getX2, 0
     
 
     def getY2()
         return self.getY()
     end
+    java_overload :getY2, 0
     
 
     def getZ2()
         return self.getZ()
     end
+    java_overload :getZ2, 0
     
 
     def setAllbinaryLayer(allbinaryLayer)
     end
+    java_overload :setAllbinaryLayer, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -68,4 +75,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

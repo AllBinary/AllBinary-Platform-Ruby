@@ -15,6 +15,8 @@
 # package org.allbinary.data.tables.advertisement
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables; module Advertisement
+
 class AdvertisementsEntityFactory
     
 
@@ -23,12 +25,12 @@ class AdvertisementsEntityFactory
     
 
     def self.getInstance()
-        logUtil = LogUtil.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         begin
             return AdvertisementsEntity.new()
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 logUtil.put(commonStrings.EXCEPTION, "AdvertisementEntityFactory", commonStrings.GET_INSTANCE, e)
             end
             return nil
@@ -56,14 +58,18 @@ class AdvertisementsEntityFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AdvertisementsEntity, "org/allbinary/data/tables/advertisement/AdvertisementsEntity"
-autoload :AdvertisementsEntityInterface, "org/allbinary/data/tables/advertisement/AdvertisementsEntityInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :AdvertisementsEntity, "org/allbinary/data/tables/advertisement/AdvertisementsEntity" unless const_defined?(:AdvertisementsEntity, false)
+autoload :AdvertisementsEntityInterface, "org/allbinary/data/tables/advertisement/AdvertisementsEntityInterface" unless const_defined?(:AdvertisementsEntityInterface, false)
 
 begin
     AdvertisementsEntityFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

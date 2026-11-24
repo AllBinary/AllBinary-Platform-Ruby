@@ -15,6 +15,8 @@
 # package org.allbinary.thirdparty.store
 
 
+module ::Org; module Allbinary; module Thirdparty; module Store
+
 class ThirdPartyStoreFactory
     
 
@@ -57,12 +59,14 @@ class ThirdPartyStoreFactory
     end
 end
 
-autoload :NoThirdPartyStore, "org/allbinary/thirdparty/store/NoThirdPartyStore"
-autoload :ThirdPartyStore, "org/allbinary/thirdparty/store/ThirdPartyStore"
+autoload :NoThirdPartyStore, "org/allbinary/thirdparty/store/NoThirdPartyStore" unless const_defined?(:NoThirdPartyStore, false)
+autoload :ThirdPartyStore, "org/allbinary/thirdparty/store/ThirdPartyStore" unless const_defined?(:ThirdPartyStore, false)
 
 begin
     ThirdPartyStoreFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

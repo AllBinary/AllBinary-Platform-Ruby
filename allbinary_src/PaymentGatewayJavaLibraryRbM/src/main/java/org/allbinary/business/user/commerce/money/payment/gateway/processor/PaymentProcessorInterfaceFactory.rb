@@ -16,11 +16,13 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Processor
+
 class PaymentProcessorInterfaceFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_business_user_commerce_money_payment_gateway_processor_PaymentProcessorInterfaceFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -30,26 +32,25 @@ class PaymentProcessorInterfaceFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_gateway_processor_PaymentProcessorInterfaceFactory
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(transformInfoInterface)
         java_monitor.synchronize do
         begin
-            paymentTransactionInterface = PaymentTransactionInterfaceRequestFactory.getInstance().getInstance(transformInfoInterface)
+            paymentTransactionInterface = ::Org::Allbinary::Business::User::Commerce::Money::Payment::Gateway::Transaction::PaymentTransactionInterfaceRequestFactory.getInstance().getInstance(transformInfoInterface)
             gatewayName = paymentTransactionInterface.getOrderHistory().getPaymentMethod()
-            if !StringValidationUtil.getInstance().isEmpty(gatewayName)
-                paymentType = PaymentTypeUtil.getInstance().get(gatewayName)
+            if !::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(gatewayName)
+                paymentType = ::Org::Allbinary::Business::User::Commerce::Money::Payment::Types::PaymentTypeUtil.getInstance().get(gatewayName)
                 paymentProcessorInterfaceFactoryInterface = paymentType.getPaymentProcessorInterfaceFactoryInterface()
                 return paymentProcessorInterfaceFactoryInterface.getInstance(transformInfoInterface, paymentTransactionInterface)
             end
             raise StandardError.new("Error Getting PaymentProcessorInterface")
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().PAYMENTERROR)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PAYMENTERROR)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
             end
             raise e
@@ -88,20 +89,24 @@ class PaymentProcessorInterfaceFactory
     end
 end
 
-autoload :PaymentTransactionInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface"
-autoload :PaymentTransactionInterfaceRequestFactory, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceRequestFactory"
-autoload :PaymentType, "org/allbinary/business/user/commerce/money/payment/types/PaymentType"
-autoload :PaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/PaymentTypeUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :PaymentProcessorInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterface"
-autoload :PaymentProcessorInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactoryInterface"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Transaction; autoload :PaymentTransactionInterface, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterface" unless const_defined?(:PaymentTransactionInterface, false); end; end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Transaction; autoload :PaymentTransactionInterfaceRequestFactory, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionInterfaceRequestFactory" unless const_defined?(:PaymentTransactionInterfaceRequestFactory, false); end; end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types; autoload :PaymentType, "org/allbinary/business/user/commerce/money/payment/types/PaymentType" unless const_defined?(:PaymentType, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types; autoload :PaymentTypeUtil, "org/allbinary/business/user/commerce/money/payment/types/PaymentTypeUtil" unless const_defined?(:PaymentTypeUtil, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :PaymentProcessorInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterface" unless const_defined?(:PaymentProcessorInterface, false)
+autoload :PaymentProcessorInterfaceFactoryInterface, "org/allbinary/business/user/commerce/money/payment/gateway/processor/PaymentProcessorInterfaceFactoryInterface" unless const_defined?(:PaymentProcessorInterfaceFactoryInterface, false)
 
 begin
     PaymentProcessorInterfaceFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end; end
 

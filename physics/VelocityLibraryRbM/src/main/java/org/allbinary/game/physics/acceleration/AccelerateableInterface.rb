@@ -15,6 +15,8 @@
 # package org.allbinary.game.physics.acceleration
 
 
+module ::Org; module Allbinary; module Game; module Physics; module Acceleration
+
 module AccelerateableInterface
     
 
@@ -24,5 +26,7 @@ module AccelerateableInterface
     end
 end
 
-autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false); end; end; end; end
+
+end; end; end; end; end
 

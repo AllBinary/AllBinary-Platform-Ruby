@@ -15,22 +15,24 @@
 # package org.allbinary.media.image.comparison.motion
 
 
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
+
 class MotionRectangles
     attr_accessor :name, :rectangleVector, :imageComparisonResult, :MAX_PIXEL_DISTANCE_THRESHOLD
 
-    def initialize_fields
-        @name = nil
-        @rectangleVector = nil
-        @imageComparisonResult = nil
+    def jfields_org_allbinary_media_image_comparison_motion_MotionRectangles
+        @name = nil unless instance_variable_defined?(:@name)
+        @rectangleVector = nil unless instance_variable_defined?(:@rectangleVector)
+        @imageComparisonResult = nil unless instance_variable_defined?(:@imageComparisonResult)
         @MAX_PIXEL_DISTANCE_THRESHOLD = 2
     end
     
 
     def initialize(name, imageComparisonResult)
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_motion_MotionRectangles
         @name = name
         self.setImageComparisonResult(imageComparisonResult)
-        self.setVector(BasicArrayListD.new())
+        self.setVector(::Org::Allbinary::Util::BasicArrayListD.new())
     end
     
 
@@ -59,7 +61,9 @@ class MotionRectangles
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult" unless const_defined?(:ImageComparisonResult, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

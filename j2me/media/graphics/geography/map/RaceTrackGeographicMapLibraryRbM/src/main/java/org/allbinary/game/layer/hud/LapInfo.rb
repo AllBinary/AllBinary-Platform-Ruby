@@ -15,17 +15,19 @@
 # package org.allbinary.game.layer.hud
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Hud
+
 class LapInfo
     attr_accessor :numberOfLaps, :totalLaps
 
-    def initialize_fields
-        @numberOfLaps = nil
-        @totalLaps = nil
+    def jfields_org_allbinary_game_layer_hud_LapInfo
+        @numberOfLaps = nil unless instance_variable_defined?(:@numberOfLaps)
+        @totalLaps = nil unless instance_variable_defined?(:@totalLaps)
     end
     
 
     def initialize(totalLaps)
-        initialize_fields
+        jfields_org_allbinary_game_layer_hud_LapInfo
         @totalLaps = totalLaps
         @numberOfLaps = 1
     end
@@ -55,7 +57,7 @@ class LapInfo
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("isDone: ")
         stringBuffer.appendboolean(self.isDone())
         stringBuffer.append(" CurrentLap: ")
@@ -65,11 +67,35 @@ class LapInfo
         return stringBuffer.to_s
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_LAP_INFO, LapInfo.new(-1))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LapInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_LAP_INFO].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
-class LapInfo
-    NULL_LAP_INFO = LapInfo.new(-1)
+begin
+    LapInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -3,6 +3,8 @@
 # package org.allbinary.graphics.displayable
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable
+
 class ScreenRelationalUtil
     
 
@@ -75,12 +77,14 @@ class ScreenRelationalUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false)
 
 begin
     ScreenRelationalUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

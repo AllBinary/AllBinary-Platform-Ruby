@@ -14,9 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles
 
-# require "javax/microedition/khronos/opengles/GL10"
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
+
+module ::Org; module Allbinary; module Graphics; module Opengles
 
 class OpenGLESStrings
     
@@ -68,14 +67,25 @@ class OpenGLESStrings
     end
     
 
-    def stringWidth(string)
+    def stringWidth_j1(string)
         raise RuntimeError.new()
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def stringWidth(string, offset, len)
+    def stringWidth_j3(string, offset, len)
         raise RuntimeError.new()
     end
+
+    def stringWidth(*java_overload_args)
+        return stringWidth_j1(*java_overload_args) if java_overload_args.length == 1
+        return stringWidth_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method stringWidth takes #{java_overload_args.length} arguments"
+    end
 end
+
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+
+end; end; end; end
 

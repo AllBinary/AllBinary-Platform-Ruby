@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package views.admin.payment.gateway
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/validate/ValidationComponentInterface"
 require "views/business/context/modules/storefront/HttpStoreComponentView"
 
-class GatewayValidationView < HttpStoreComponentView
-    include ValidationComponentInterface
+module ::Views; module Admin; module Payment; module Gateway
+
+class GatewayValidationView < ::Views::Business::Context::Modules::Storefront::HttpStoreComponentView
+    include ::Org::Allbinary::Logic::ControlPackage::Validate::ValidationComponentInterface
     
 
     def initialize(transformInfoInterface)
@@ -29,42 +32,58 @@ class GatewayValidationView < HttpStoreComponentView
     def isValid()
         return true
     end
+    java_overload :isValid, 0
     
 
     def toValidationInfoDoc()
         return nil
     end
+    java_overload :toValidationInfoDoc, 0
     
 
     def toValidationInfoNode(document)
         return nil
     end
+    java_overload :toValidationInfoNode, 1
     
 
     # throws Exception
     def validationInfo()
         raise StandardError.new("validationInfo")
     end
+    java_overload :validationInfo, 0
     
 
     def toXmlDoc()
         return nil
     end
+    java_overload :toXmlDoc, 0
     
 
     def toXmlNode(document)
         return nil
     end
+    java_overload :toXmlNode, 1
     
 
     # throws Exception
     def view()
         return GatewayView.new(self.getTransformInfoInterface()).view()
     end
+    java_overload :view, 0
+    
+
+    # throws Exception
+    def getTransformInfoInterface()
+        return GatewayValidationView.superclass.java_super_method(:getTransformInfoInterface, 0).bind(self).call()
+    end
+    java_overload :getTransformInfoInterface, 0
 end
 
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :GatewayView, "views/admin/payment/gateway/GatewayView"
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :GatewayView, "views/admin/payment/gateway/GatewayView" unless const_defined?(:GatewayView, false)
+
+end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/displayable/canvas/BaseMenuBehavior"
+
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
 
 class InGameMenuBehavior < BaseMenuBehavior
     
@@ -28,34 +31,40 @@ class InGameMenuBehavior < BaseMenuBehavior
     def onDisplayChangeEvent(allBinaryGameCanvas, displayChangeEvent)
         allBinaryGameCanvas.updateMenuFromEvent(displayChangeEvent)
     end
+    java_overload :onDisplayChangeEvent, 2
     
 
     def initSpecialPaint(allBinaryGameCanvas)
         allBinaryGameCanvas.setNonBotPaintableP(GameCanvasNonBotPaintable.new(allBinaryGameCanvas))
     end
+    java_overload :initSpecialPaint, 1
     
 
     # throws Exception
     def initMenu(allBinaryGameCanvas)
         allBinaryGameCanvas.initMenu2()
     end
+    java_overload :initMenu, 1
     
 
     # throws Exception
     def updateMenu(allBinaryGameCanvas)
         allBinaryGameCanvas.initMenu2()
     end
+    java_overload :updateMenu, 1
     
 
     # throws Exception
     def popupMenu(allBinaryGameCanvas)
         allBinaryGameCanvas.popupMenu2()
     end
+    java_overload :popupMenu, 1
     
 
     def closeMenu(allBinaryGameCanvas)
         allBinaryGameCanvas.closeMenu2()
     end
+    java_overload :closeMenu, 1
 
     def self.instanceC()
         InGameMenuBehavior.java_static_fields unless @java_static_fields_started
@@ -88,13 +97,15 @@ class InGameMenuBehavior < BaseMenuBehavior
     end
 end
 
-autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-autoload :GameCanvasNonBotPaintable, "org/allbinary/game/displayable/canvas/GameCanvasNonBotPaintable"
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event; autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent" unless const_defined?(:DisplayChangeEvent, false); end; end; end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
+autoload :GameCanvasNonBotPaintable, "org/allbinary/game/displayable/canvas/GameCanvasNonBotPaintable" unless const_defined?(:GameCanvasNonBotPaintable, false)
 
 begin
     InGameMenuBehavior.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/Paintable"
 
-class FormPaintable < Paintable
+module ::Org; module Allbinary; module Graphics; module Form
+
+class FormPaintable < ::Org::Allbinary::Graphics::Paint::Paintable
     attr_accessor :form
 
-    def initialize_fields
-        @form = nil
+    def jfields_org_allbinary_graphics_form_FormPaintable
+        @form = nil unless instance_variable_defined?(:@form)
     end
     
 
     def initialize(form)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_form_FormPaintable
         @form = form
     end
     
@@ -34,13 +37,17 @@ class FormPaintable < Paintable
     def paint(graphics)
         @form.paint(graphics)
     end
+    java_overload :paint, 1
     
 
     def getForm()
         return @form
     end
+    java_overload :getForm, 0
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :PaintableForm, "org/allbinary/graphics/form/PaintableForm"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+autoload :PaintableForm, "org/allbinary/graphics/form/PaintableForm" unless const_defined?(:PaintableForm, false)
+
+end; end; end; end
 

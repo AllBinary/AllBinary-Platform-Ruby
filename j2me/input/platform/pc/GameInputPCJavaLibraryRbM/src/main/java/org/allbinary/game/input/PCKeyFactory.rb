@@ -15,10 +15,12 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class PCKeyFactory
     attr_accessor :keyEventWrapper, :UNKNOWN, :ENTER, :_A, :_B, :_C, :_D, :_E, :_F, :_G, :_H, :_I, :_J, :_K, :_L, :_M, :_N, :_O, :_P, :_Q, :_R, :_S, :_T, :_U, :_V, :_W, :_X, :_Y, :_Z, :a, :b, :c, :d, :e, :f, :g, :h, :i, :j, :k, :l, :m, :n, :o, :p, :q, :r, :s, :t, :u, :v, :w, :x, :y, :z, :ZERO, :ONE, :TWO, :THREE, :FOUR, :FIVE, :SIX, :SEVEN, :EIGHT, :NINE, :DPAD_UP, :DPAD_DOWN, :DPAD_LEFT, :DPAD_RIGHT, :DPAD_UP2, :DPAD_DOWN2, :DPAD_LEFT2, :DPAD_RIGHT2, :COMMA, :SPACE, :DEL, :STAR, :QUESTION, :PERIOD, :ESCAPE, :BACK_SPACE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_input_PCKeyFactory
         @keyEventWrapper = ABKeyEventWrapper.getInstance()
         @UNKNOWN = PCGameKey.new(@keyEventWrapper.VK_UNDEFINED, "UNKNOWN")
         @ENTER = PCGameKey.new(5, "Enter")
@@ -71,23 +73,23 @@ class PCKeyFactory
         @u = PCGameKey.new(117, "u")
         @v = PCGameKey.new(118, "v")
         @w = PCGameKey.new(119, "w")
-        @x = PCGameKey.new(120, PositionStrings.getInstance().X)
-        @y = PCGameKey.new(121, PositionStrings.getInstance().Y)
+        @x = PCGameKey.new(120, ::Org::Allbinary::MathPackage::PositionStrings.getInstance().X)
+        @y = PCGameKey.new(121, ::Org::Allbinary::MathPackage::PositionStrings.getInstance().Y)
         @z = PCGameKey.new(122, "z")
-        @ZERO = PCGameKey.new(@keyEventWrapper.VK_0, CommonPhoneStrings.getInstance().ZERO)
-        @ONE = PCGameKey.new(@keyEventWrapper.VK_1, CommonPhoneStrings.getInstance().ONE)
-        @TWO = PCGameKey.new(@keyEventWrapper.VK_2, CommonPhoneStrings.getInstance().TWO)
-        @THREE = PCGameKey.new(@keyEventWrapper.VK_3, CommonPhoneStrings.getInstance().THREE)
-        @FOUR = PCGameKey.new(@keyEventWrapper.VK_4, CommonPhoneStrings.getInstance().FOUR)
-        @FIVE = PCGameKey.new(@keyEventWrapper.VK_5, CommonPhoneStrings.getInstance().FIVE)
-        @SIX = PCGameKey.new(@keyEventWrapper.VK_6, CommonPhoneStrings.getInstance().SIX)
-        @SEVEN = PCGameKey.new(@keyEventWrapper.VK_7, CommonPhoneStrings.getInstance().SEVEN)
-        @EIGHT = PCGameKey.new(@keyEventWrapper.VK_8, CommonPhoneStrings.getInstance().EIGHT)
-        @NINE = PCGameKey.new(@keyEventWrapper.VK_9, CommonPhoneStrings.getInstance().NINE)
-        @DPAD_UP = PCGameKey.new(@keyEventWrapper.VK_UP, CommonPhoneStrings.getInstance().UP)
-        @DPAD_DOWN = PCGameKey.new(@keyEventWrapper.VK_DOWN, CommonPhoneStrings.getInstance().DOWN)
-        @DPAD_LEFT = PCGameKey.new(@keyEventWrapper.VK_LEFT, CommonPhoneStrings.getInstance().LEFT)
-        @DPAD_RIGHT = PCGameKey.new(@keyEventWrapper.VK_RIGHT, CommonPhoneStrings.getInstance().RIGHT)
+        @ZERO = PCGameKey.new(@keyEventWrapper.VK_0, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().ZERO)
+        @ONE = PCGameKey.new(@keyEventWrapper.VK_1, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().ONE)
+        @TWO = PCGameKey.new(@keyEventWrapper.VK_2, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().TWO)
+        @THREE = PCGameKey.new(@keyEventWrapper.VK_3, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().THREE)
+        @FOUR = PCGameKey.new(@keyEventWrapper.VK_4, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().FOUR)
+        @FIVE = PCGameKey.new(@keyEventWrapper.VK_5, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().FIVE)
+        @SIX = PCGameKey.new(@keyEventWrapper.VK_6, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().SIX)
+        @SEVEN = PCGameKey.new(@keyEventWrapper.VK_7, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().SEVEN)
+        @EIGHT = PCGameKey.new(@keyEventWrapper.VK_8, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().EIGHT)
+        @NINE = PCGameKey.new(@keyEventWrapper.VK_9, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().NINE)
+        @DPAD_UP = PCGameKey.new(@keyEventWrapper.VK_UP, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().UP)
+        @DPAD_DOWN = PCGameKey.new(@keyEventWrapper.VK_DOWN, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().DOWN)
+        @DPAD_LEFT = PCGameKey.new(@keyEventWrapper.VK_LEFT, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().LEFT)
+        @DPAD_RIGHT = PCGameKey.new(@keyEventWrapper.VK_RIGHT, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().RIGHT)
         @DPAD_UP2 = @DPAD_UP
         @DPAD_DOWN2 = @DPAD_DOWN
         @DPAD_LEFT2 = @DPAD_LEFT
@@ -95,15 +97,15 @@ class PCKeyFactory
         @COMMA = PCGameKey.new(@keyEventWrapper.VK_COMMA, "COMMA")
         @SPACE = PCGameKey.new(@keyEventWrapper.VK_SPACE, "SPACE")
         @DEL = PCGameKey.new(@keyEventWrapper.VK_DELETE, "DEL")
-        @STAR = PCGameKey.new(42, CommonPhoneStrings.getInstance().STAR)
+        @STAR = PCGameKey.new(42, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().STAR)
         @QUESTION = PCGameKey.new(47, "?")
-        @PERIOD = PCGameKey.new(@keyEventWrapper.VK_PERIOD, CommonSeps.getInstance().PERIOD)
+        @PERIOD = PCGameKey.new(@keyEventWrapper.VK_PERIOD, ::Org::Allbinary::StringPackage::CommonSeps.getInstance().PERIOD)
         @ESCAPE = PCGameKey.new(@keyEventWrapper.VK_ESCAPE, "Esc")
         @BACK_SPACE = PCGameKey.new(@keyEventWrapper.VK_BACK_SPACE, "Backspace")
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_PCKeyFactory
     end
     
 
@@ -196,16 +198,18 @@ class PCKeyFactory
     end
 end
 
-autoload :PositionStrings, "org/allbinary/math/PositionStrings"
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :ABKeyEventWrapper, "org/allbinary/game/input/ABKeyEventWrapper"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :PCGameKey, "org/allbinary/game/input/PCGameKey"
+module ::Org; module Allbinary; module MathPackage; autoload :PositionStrings, "org/allbinary/math/PositionStrings" unless const_defined?(:PositionStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :ABKeyEventWrapper, "org/allbinary/game/input/ABKeyEventWrapper" unless const_defined?(:ABKeyEventWrapper, false)
+autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false)
+autoload :PCGameKey, "org/allbinary/game/input/PCGameKey" unless const_defined?(:PCGameKey, false)
 
 begin
     PCKeyFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

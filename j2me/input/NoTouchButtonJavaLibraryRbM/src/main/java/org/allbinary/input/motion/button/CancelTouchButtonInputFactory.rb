@@ -15,16 +15,18 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class CancelTouchButtonInputFactory
     attr_accessor :cancelInputArray
 
-    def initialize_fields
-        @cancelInputArray = Array.new(InputFactory.getInstance().MAX, nil)
+    def jfields_org_allbinary_input_motion_button_CancelTouchButtonInputFactory
+        @cancelInputArray = Array.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX, nil)
     end
     
 
     def self.getInstance()
-        if CancelTouchButtonInputFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if CancelTouchButtonInputFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             CancelTouchButtonInputFactory.instance = CancelTouchButtonInputFactory.new()
         end
         return CancelTouchButtonInputFactory.instance
@@ -32,7 +34,7 @@ class CancelTouchButtonInputFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_CancelTouchButtonInputFactory
         basicTouchInputFactory = BasicTouchInputFactory.getInstance()
         (@cancelInputArray.length - 1).step(0, -(1)) do |index|
             @cancelInputArray[index] = basicTouchInputFactory.NONE
@@ -62,7 +64,7 @@ class CancelTouchButtonInputFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -79,14 +81,16 @@ class CancelTouchButtonInputFactory
     end
 end
 
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
-autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput"
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false)
+autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput" unless const_defined?(:TouchButtonInput, false)
 
 begin
     CancelTouchButtonInputFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

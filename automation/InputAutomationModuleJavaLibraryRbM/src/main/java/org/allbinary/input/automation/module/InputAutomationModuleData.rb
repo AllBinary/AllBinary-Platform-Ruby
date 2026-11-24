@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.module
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage
+
 class InputAutomationModuleData
     
 
@@ -48,4 +50,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

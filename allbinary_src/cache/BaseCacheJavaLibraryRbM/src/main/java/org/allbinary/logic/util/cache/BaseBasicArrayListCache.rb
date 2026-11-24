@@ -18,27 +18,31 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class BaseBasicArrayListCache
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_logic_util_cache_BaseBasicArrayListCache
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_BaseBasicArrayListCache
     end
     
 
     def log()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("S: ")
         stringBuffer.appendint(@list.size())
         return stringBuffer.to_s
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end; end
 

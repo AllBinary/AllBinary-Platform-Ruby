@@ -15,14 +15,16 @@
 # package org.allbinary.logic.io.path
 
 
+module ::Org; module Allbinary; module Logic; module Io; module Path
+
 class AbPath
     attr_accessor :commonSeps, :abPathData, :abPathUtil, :EMPTY_STRING, :schema, :path, :nameP, :hasSchemaP, :numberOfSeps
 
-    def initialize_fields
-        @commonSeps = CommonSeps.getInstance()
+    def jfields_org_allbinary_logic_io_path_AbPath
+        @commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         @abPathData = AbPathData.getInstance()
         @abPathUtil = PathUtil.getInstance()
-        @EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
+        @EMPTY_STRING = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         @schema = @EMPTY_STRING
         @path = @EMPTY_STRING
         @nameP = @EMPTY_STRING
@@ -33,7 +35,7 @@ class AbPath
 
     def self.createAbPath()
         begin
-            _EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
+            _EMPTY_STRING = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
             return AbPath.new(_EMPTY_STRING, _EMPTY_STRING)
         rescue StandardError => ex
             raise RuntimeError.new()
@@ -42,8 +44,8 @@ class AbPath
     
 
     def initialize(aPath, name)
-        initialize_fields
-        stringValidationUtil = StringValidationUtil.getInstance()
+        jfields_org_allbinary_logic_io_path_AbPath
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
         if !stringValidationUtil.isEmpty(aPath)
             @schema = self.getSchema(aPath)
             @nameP = name
@@ -82,7 +84,7 @@ class AbPath
 
     # throws Exception
     def getPathFromPath(aPath)
-        filePathData = FilePathData.getInstance()
+        filePathData = ::Org::Allbinary::Logic::Io::FilePackage::FilePathData.getInstance()
         tempPath = aPath
         if !self.hasSchema()
             tempPath = @abPathUtil.adjustStart(tempPath)
@@ -115,7 +117,7 @@ class AbPath
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         if self.hasSchema()
             stringBuffer.append(@schema)
             stringBuffer.append(AbPath::NETWORK_SEP)
@@ -129,16 +131,16 @@ class AbPath
 
     def toFileSystemString()
         if self.hasSchema()
-            filePathData = FilePathData.getInstance()
-            stringBuffer = StringMaker.new()
+            filePathData = ::Org::Allbinary::Logic::Io::FilePackage::FilePathData.getInstance()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append(@schema)
             stringBuffer.append(@commonSeps.COLON)
             stringBuffer.append(filePathData.PATH_START)
-            stringBuffer.append(FilePathUtil.adjust(self.getPath()))
+            stringBuffer.append(::Org::Allbinary::Logic::Io::FilePackage::FilePathUtil.adjust(self.getPath()))
             stringBuffer.append(@nameP)
             return stringBuffer.to_s
         else
-            return (FilePathUtil.adjust(self.getPath())).to_s + @nameP
+            return (::Org::Allbinary::Logic::Io::FilePackage::FilePathUtil.adjust(self.getPath())).to_s + @nameP
         end
     end
     
@@ -173,18 +175,20 @@ class AbPath
     end
 end
 
-autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
-autoload :FilePathUtil, "org/allbinary/logic/io/file/FilePathUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData" unless const_defined?(:FilePathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FilePathUtil, "org/allbinary/logic/io/file/FilePathUtil" unless const_defined?(:FilePathUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false)
+autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil" unless const_defined?(:PathUtil, false)
 
 begin
     AbPath.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

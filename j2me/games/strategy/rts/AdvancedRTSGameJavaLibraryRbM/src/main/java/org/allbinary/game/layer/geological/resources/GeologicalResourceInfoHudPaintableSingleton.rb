@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer.geological.resources
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Geological; module Resources
+
 class GeologicalResourceInfoHudPaintableSingleton
     
 
@@ -23,17 +25,43 @@ class GeologicalResourceInfoHudPaintableSingleton
     end
 
     def self.instance()
+        GeologicalResourceInfoHudPaintableSingleton.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GeologicalResourceInfoHudPaintableSingleton.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GeologicalResourceInfoHudPaintable.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GeologicalResourceInfoHudPaintableSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/geological/resources/GeologicalResourceInfoHudPaintable"
+autoload :GeologicalResourceInfoHudPaintable, "org/allbinary/game/layer/geological/resources/GeologicalResourceInfoHudPaintable" unless const_defined?(:GeologicalResourceInfoHudPaintable, false)
 
-class GeologicalResourceInfoHudPaintableSingleton
-    @@instance = GeologicalResourceInfoHudPaintable.new()
+begin
+    GeologicalResourceInfoHudPaintableSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

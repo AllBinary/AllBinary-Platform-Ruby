@@ -14,11 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.input.media.image.capture
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandlerInterface"
 require "org/allbinary/thread/RunnableInterface"
 
+module ::Org; module Allbinary; module Input; module Media; module Image; module Capture
+
 module CaptureWorkerInterface
-    include RunnableInterface
-    include BasicEventHandlerInterface
+    include ::Org::Allbinary::ThreadPackage::RunnableInterface
+    include ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandlerInterface
 end
+
+end; end; end; end; end; end
 

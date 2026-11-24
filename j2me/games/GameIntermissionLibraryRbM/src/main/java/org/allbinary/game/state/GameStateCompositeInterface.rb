@@ -15,6 +15,8 @@
 # package org.allbinary.game.state
 
 
+module ::Org; module Allbinary; module Game; module State
+
 module GameStateCompositeInterface
     
 
@@ -31,5 +33,7 @@ module GameStateCompositeInterface
     end
 end
 
-autoload :GameState, "org/allbinary/game/state/GameState"
+autoload :GameState, "org/allbinary/game/state/GameState" unless const_defined?(:GameState, false)
+
+end; end; end; end
 

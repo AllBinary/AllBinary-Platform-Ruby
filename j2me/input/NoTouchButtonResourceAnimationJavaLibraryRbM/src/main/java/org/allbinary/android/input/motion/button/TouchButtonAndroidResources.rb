@@ -14,12 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.android.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/init/Init"
 
-class TouchButtonAndroidResources < Init
+module ::Org; module Allbinary; module Android; module Input; module Motion; module Button
+
+class TouchButtonAndroidResources < ::Org::Allbinary::Init::Init
     
 
     def init()
     end
+    java_overload :init, 0
 end
+
+end; end; end; end; end; end
 

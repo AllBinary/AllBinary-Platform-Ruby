@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system
 
 
+module ::Org; module Allbinary; module Logic; module System
+
 class PlatformAssetManager
     
 
@@ -25,7 +27,7 @@ class PlatformAssetManager
 
     # throws Exception
     def getResourceAsStream(resource)
-        resourceUtil = ResourceUtil.getInstance()
+        resourceUtil = ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance()
         inputStream = resourceUtil.getResourceAsStream(resource)
         return inputStream
     end
@@ -61,12 +63,14 @@ class PlatformAssetManager
     end
 end
 
-autoload :InputStream, "java/io/InputStream"
-autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
 
 begin
     PlatformAssetManager.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

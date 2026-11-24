@@ -15,18 +15,24 @@
 # package org.allbinary.logic.communication.smtp.configuration.user
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module User
+
 module UserEmailConfigurationInterface
     
 
     def getUserEmailEventsConfigurationInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setUserEmailEventsConfigurationInterface(emailEventsConfigurationInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :UserEmailEventsConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfigurationInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module User; module Event; autoload :UserEmailEventsConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfigurationInterface" unless const_defined?(:UserEmailEventsConfigurationInterface, false); end; end; end; end; end; end; end; end
+
+end; end; end; end; end; end; end
 

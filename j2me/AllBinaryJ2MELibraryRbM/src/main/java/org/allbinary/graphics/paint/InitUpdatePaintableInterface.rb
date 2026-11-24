@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/init/InitInterface"
 require "org/allbinary/init/UpdateInterface"
 require "org/allbinary/graphics/paint/PaintableInterface"
 
+module ::Org; module Allbinary; module Graphics; module Paint
+
 module InitUpdatePaintableInterface
-    include InitInterface
-    include UpdateInterface
+    include ::Org::Allbinary::Init::InitInterface
+    include ::Org::Allbinary::Init::UpdateInterface
     include PaintableInterface
 end
+
+end; end; end; end
 

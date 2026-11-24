@@ -18,10 +18,12 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class BasicColorFactory
     attr_accessor :NULL_COLOR, :TAN, :SKIN_PINK, :RED, :LIGHT_RED, :DARK_GREEN, :GREEN, :LIGHT_GREEN, :PURPLE, :BLUE, :LIGHT_BLUE, :VERY_LIGHT_BLUE, :PUCE, :AQUA, :YELLOW, :PINK, :BLACK, :GREY, :LIGHT_GREY, :DARK_GREY, :ORANGE, :BROWN, :WHITE, :TRANSPARENT_COLOR, :TRANSPARENT_GREY, :TRANSPARENT_BLACK, :TRANSPARENT_RED, :CLEAR_COLOR, :BORDER_COLOR
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_color_BasicColorFactory
         @NULL_COLOR = self.createInstanceARGB(255, 255, 255, 255, "null color")
         @TAN = self.createInstance(0xE9D8B5)
         @SKIN_PINK = self.createInstance(0xFDCECE)
@@ -45,16 +47,16 @@ class BasicColorFactory
         @ORANGE = self.createInstance(0xe07718)
         @BROWN = self.createInstance(0x956B00)
         @WHITE = self.createInstance(0xFFFFFF)
-        @TRANSPARENT_COLOR = self.createInstanceAN(0x00000000, 0x000000, StringUtil.getInstance().EMPTY_STRING)
-        @TRANSPARENT_GREY = self.createInstanceAN(0x52000000, 0xECECEC, StringUtil.getInstance().EMPTY_STRING)
-        @TRANSPARENT_BLACK = self.createInstanceAN(0x52000000, 0x000000, StringUtil.getInstance().EMPTY_STRING)
-        @TRANSPARENT_RED = self.createInstanceAN(0x52000000, 0xFF0000, StringUtil.getInstance().EMPTY_STRING)
+        @TRANSPARENT_COLOR = self.createInstanceAN(0x00000000, 0x000000, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
+        @TRANSPARENT_GREY = self.createInstanceAN(0x52000000, 0xECECEC, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
+        @TRANSPARENT_BLACK = self.createInstanceAN(0x52000000, 0x000000, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
+        @TRANSPARENT_RED = self.createInstanceAN(0x52000000, 0xFF0000, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         @CLEAR_COLOR = @BLACK
         @BORDER_COLOR = @WHITE
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_color_BasicColorFactory
     end
     
 
@@ -64,12 +66,12 @@ class BasicColorFactory
     
 
     def createInstance(value)
-        return BasicColor.new(BasicColorUtil.getInstance().ALPHA, value, StringUtil.getInstance().EMPTY_STRING)
+        return BasicColor.new(BasicColorUtil.getInstance().ALPHA, value, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
     end
     
 
     def createInstanceA(alphaValue, value)
-        return BasicColor.new(alphaValue, value, StringUtil.getInstance().EMPTY_STRING)
+        return BasicColor.new(alphaValue, value, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
     end
     
 
@@ -79,8 +81,8 @@ class BasicColorFactory
     
 
     def createInstanceARGB(alphaValue, r, g, b, name)
-        _ALPHA_MASK = 0xFF000000
-        return BasicColor.new(alphaValue, ((alphaValue << 24) & _ALPHA_MASK) + ((r << 16) & 0x00FF0000) + ((g << 8) & 0x0000FF00) + (b & 0x000000FF), StringUtil.getInstance().EMPTY_STRING)
+        _ALPHA_MASK = (0xFF000000 - 0x100000000)
+        return BasicColor.new(alphaValue, ((alphaValue << 24) & _ALPHA_MASK) + ((r << 16) & 0x00FF0000) + ((g << 8) & 0x0000FF00) + (b & 0x000000FF), ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
     end
 
     def self.instance()
@@ -114,13 +116,15 @@ class BasicColorFactory
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil" unless const_defined?(:BasicColorUtil, false)
 
 begin
     BasicColorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

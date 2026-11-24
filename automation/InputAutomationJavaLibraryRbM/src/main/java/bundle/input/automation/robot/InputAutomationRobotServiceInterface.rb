@@ -14,16 +14,23 @@
 # frozen_string_literal: false
 # package bundle.input.automation.robot
 
+require "java/lang/JavaOverload"
 require "org/allbinary/osgi/OSGIServiceInterface"
 
+module ::Bundle; module Input; module Automation; module Robot
+
 module InputAutomationRobotServiceInterface
-    include OSGIServiceInterface
+    include ::Org::Allbinary::Osgi::OSGIServiceInterface
     
 
     def getInputRobotInterfaceArray()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getInputRobotInterfaceArray, 0
 end
 
-autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface" unless const_defined?(:InputRobotInterface, false); end; end; end; end; end
+
+end; end; end; end
 

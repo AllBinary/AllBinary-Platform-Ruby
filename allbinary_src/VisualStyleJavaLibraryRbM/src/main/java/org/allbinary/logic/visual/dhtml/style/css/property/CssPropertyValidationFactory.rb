@@ -15,6 +15,8 @@
 # package org.allbinary.logic.visual.dhtml.style.css.property
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Style; module Css; module Property
+
 class CssPropertyValidationFactory
     
 
@@ -24,11 +26,13 @@ class CssPropertyValidationFactory
 
     # throws Exception
     def self.getInstance(node)
-        return FontFamilyValidation.new(node)
+        return ::Org::Allbinary::Logic::Visual::Dhtml::Style::Css::Property::Font::FontFamilyValidation.new(node)
     end
 end
 
-autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
-autoload :FontFamilyValidation, "org/allbinary/logic/visual/dhtml/style/css/property/font/FontFamilyValidation"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate; autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface" unless const_defined?(:ValidationInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Style; module Css; module Property; module Font; autoload :FontFamilyValidation, "org/allbinary/logic/visual/dhtml/style/css/property/font/FontFamilyValidation" unless const_defined?(:FontFamilyValidation, false); end; end; end; end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end; end; end; end; end; end
 

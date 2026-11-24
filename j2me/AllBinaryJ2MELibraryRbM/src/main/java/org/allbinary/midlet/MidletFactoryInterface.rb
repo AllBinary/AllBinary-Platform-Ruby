@@ -15,6 +15,8 @@
 # package org.allbinary.midlet
 
 
+module ::Org; module Allbinary; module Midlet
+
 class MidletFactoryInterface
     
 
@@ -23,6 +25,8 @@ class MidletFactoryInterface
     end
 end
 
-autoload :MIDlet, "javax/microedition/midlet/MIDlet"
-autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet"
+module ::Javax; module Microedition; module Midlet; autoload :MIDlet, "javax/microedition/midlet/MIDlet" unless const_defined?(:MIDlet, false); end; end; end
+autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet" unless const_defined?(:AllBinaryMidlet, false)
+
+end; end; end
 

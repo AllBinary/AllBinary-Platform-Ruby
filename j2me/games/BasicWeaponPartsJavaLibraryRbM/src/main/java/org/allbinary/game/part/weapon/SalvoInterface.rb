@@ -15,6 +15,8 @@
 # package org.allbinary.game.part.weapon
 
 
+module ::Org; module Allbinary; module Game; module Part; module Weapon
+
 module SalvoInterface
     
 
@@ -32,7 +34,9 @@ module SalvoInterface
     end
 end
 
-autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
-autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Game; module Combat; module Weapon; autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties" unless const_defined?(:WeaponProperties, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface" unless const_defined?(:ScoreableInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end; end; end
 

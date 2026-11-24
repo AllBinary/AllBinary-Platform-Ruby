@@ -3,11 +3,13 @@
 # package org.allbinary.graphics.form.item
 
 
+module ::Org; module Allbinary; module Graphics; module Form; module Item
+
 class ABStringComponent
     
 
     def getBackgroundBasicColor()
-        return BasicColorFactory.getInstance().WHITE
+        return ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE
     end
     
 
@@ -16,7 +18,7 @@ class ABStringComponent
     
 
     def getForegroundBasicColor()
-        return BasicColorFactory.getInstance().WHITE
+        return ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE
     end
     
 
@@ -27,7 +29,7 @@ class ABStringComponent
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_STRING_COMPONENT, ABStringComponent.new(BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE))
+            const_set(:NULL_STRING_COMPONENT, ABStringComponent.new(::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -44,12 +46,14 @@ class ABStringComponent
     end
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
 
 begin
     ABStringComponent.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

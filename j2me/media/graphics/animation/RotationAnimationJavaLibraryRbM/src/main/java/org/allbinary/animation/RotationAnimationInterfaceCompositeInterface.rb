@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/IndexedAnimationInterfaceCompositeInterface"
+
+module ::Org; module Allbinary; module Animation
 
 module RotationAnimationInterfaceCompositeInterface
     include IndexedAnimationInterfaceCompositeInterface
@@ -24,13 +27,17 @@ module RotationAnimationInterfaceCompositeInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getRotationAnimationInterface, 0
     
 
     def setFrame(index)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setFrame, 1
 end
 
-autoload :RotationAnimation, "org/allbinary/animation/RotationAnimation"
+autoload :RotationAnimation, "org/allbinary/animation/RotationAnimation" unless const_defined?(:RotationAnimation, false)
+
+end; end; end
 

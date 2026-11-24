@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.special
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/special/SpecialGameInputProcessor"
+
+module ::Org; module Allbinary; module Game; module Layer; module Special
 
 class SpecialLeftGameInputProcessor < SpecialGameInputProcessor
     
@@ -28,9 +31,12 @@ class SpecialLeftGameInputProcessor < SpecialGameInputProcessor
     def processEvent(allbinaryLayerManager, gameKeyEvent)
         @collidableDestroyableDamageableLayer.left()
     end
+    java_overload :processEvent, 2
 end
 
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false)
+
+end; end; end; end; end
 

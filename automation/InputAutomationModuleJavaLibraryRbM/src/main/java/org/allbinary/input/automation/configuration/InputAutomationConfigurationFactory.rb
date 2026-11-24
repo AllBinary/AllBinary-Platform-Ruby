@@ -15,18 +15,19 @@
 # package org.allbinary.input.automation.configuration
 
 # require "java/io/File"
-# require "java/io/FileInputStream"
 # require "java/util/List"
 # require "javax/xml/bind/JAXBContext"
 # require "javax/xml/bind/JAXBElement"
 # require "javax/xml/bind/Unmarshaller"
 # require "javax/xml/transform/stream/StreamSource"
 
+module ::Org; module Allbinary; module Input; module Automation; module Configuration
+
 class InputAutomationConfigurationFactory
     attr_accessor :logUtil, :inputAutomationConfiguration
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_input_automation_configuration_InputAutomationConfigurationFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @inputAutomationConfiguration = nil
     end
     
@@ -37,21 +38,21 @@ class InputAutomationConfigurationFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_automation_configuration_InputAutomationConfigurationFactory
     end
     
 
     # throws Exception
     def init(abeClientInformation)
-        logUtil = LogUtil.getInstance()
-        commonStrings = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         _INPUT_AUTOMATION_CONFIGURATION = "InputAutomationConfiguration"
         file = InputAutomationConfiguration.getFile()
         if file.isFile()
             logUtil.putF("LoadingConfiguration", _INPUT_AUTOMATION_CONFIGURATION, commonStrings.INIT)
             jaxbContext = JAXBContext.newInstance(InputAutomationConfiguration)
             unmarshaller = jaxbContext.createUnmarshaller()
-            root = unmarshaller.unmarshal(StreamSource.new(FileInputStream.new(file)), InputAutomationConfiguration)
+            root = unmarshaller.unmarshal(StreamSource.new(::Java::Io::FileInputStream.new(file)), InputAutomationConfiguration)
             @inputAutomationConfiguration = root.getValue()
             inputAutomationModuleConfigurationList = @inputAutomationConfiguration.getInputAutomationModuleConfigurationList()
             logUtil.putF("isInstalled: " + (@inputAutomationConfiguration.isInstalled()).to_s + " inputAutomationModuleConfigurationList: " + (inputAutomationModuleConfigurationList).to_s, _INPUT_AUTOMATION_CONFIGURATION, commonStrings.INIT)
@@ -101,15 +102,18 @@ class InputAutomationConfigurationFactory
     end
 end
 
-autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :InputAutomationConfiguration, "org/allbinary/input/automation/configuration/InputAutomationConfiguration"
+module ::Java; module Io; autoload :FileInputStream, "java/io/FileInputStream" unless const_defined?(:FileInputStream, false); end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Configuration; autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration" unless const_defined?(:InputAutomationModuleConfiguration, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :InputAutomationConfiguration, "org/allbinary/input/automation/configuration/InputAutomationConfiguration" unless const_defined?(:InputAutomationConfiguration, false)
 
 begin
     InputAutomationConfigurationFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

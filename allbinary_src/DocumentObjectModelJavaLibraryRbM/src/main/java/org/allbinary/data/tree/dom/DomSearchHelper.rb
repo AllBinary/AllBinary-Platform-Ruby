@@ -15,6 +15,8 @@
 # package org.allbinary.data.tree.dom
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
+
 class DomSearchHelper
     
 
@@ -64,7 +66,7 @@ class DomSearchHelper
     
 
     def self.getAllNodesNoThrow(nodeName, nodeList)
-        nodeVector = BasicArrayListD.new()
+        nodeVector = ::Org::Allbinary::Util::BasicArrayListD.new()
         numberOfNodes = nodeList.getLength()
         (0...numberOfNodes).each do |index|
             node = nodeList.item(index)
@@ -76,8 +78,10 @@ class DomSearchHelper
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :Node, "org/w3c/dom/Node"
-autoload :NodeList, "org/w3c/dom/NodeList"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :NodeList, "org/w3c/dom/NodeList" unless const_defined?(:NodeList, false); end; end; end
+
+end; end; end; end; end
 

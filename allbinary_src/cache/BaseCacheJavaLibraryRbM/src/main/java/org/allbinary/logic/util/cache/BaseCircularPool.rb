@@ -19,16 +19,18 @@ require "java/lang/Object"
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class BaseCircularPool
     attr_accessor :circularIndexUtil, :OBJECT_ARRAY
 
-    def initialize_fields
-        @circularIndexUtil = CircularIndexUtil::NULL_CIRCULAR_INDEX_UTIL
-        @OBJECT_ARRAY = NullUtil.getInstance().NULL_OBJECT_ARRAY
+    def jfields_org_allbinary_logic_util_cache_BaseCircularPool
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil::NULL_CIRCULAR_INDEX_UTIL
+        @OBJECT_ARRAY = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT_ARRAY
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_BaseCircularPool
     end
     
 
@@ -57,7 +59,9 @@ class BaseCircularPool
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :AllBinaryObjectFactoryInterface, "org/allbinary/logic/util/cache/AllBinaryObjectFactoryInterface"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :AllBinaryObjectFactoryInterface, "org/allbinary/logic/util/cache/AllBinaryObjectFactoryInterface" unless const_defined?(:AllBinaryObjectFactoryInterface, false)
+
+end; end; end; end; end
 

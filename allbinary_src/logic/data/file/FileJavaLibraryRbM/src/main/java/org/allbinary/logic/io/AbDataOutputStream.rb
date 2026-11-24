@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
+require "java/lang/JavaOverload"
 require "java/io/DataOutputStream"
 
-class AbDataOutputStream < DataOutputStream
+module ::Org; module Allbinary; module Logic; module Io
+
+class AbDataOutputStream < ::Java::Io::DataOutputStream
     
 
     def initialize(out)
@@ -24,5 +27,7 @@ class AbDataOutputStream < DataOutputStream
     end
 end
 
-autoload :OutputStream, "java/io/OutputStream"
+module ::Java; module Io; autoload :OutputStream, "java/io/OutputStream" unless const_defined?(:OutputStream, false); end; end
+
+end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.form.item
 
 
+module ::Org; module Allbinary; module Graphics; module Form; module Item
+
 module ItemArraySingletonFactoryInterface
     
 
@@ -25,5 +27,7 @@ module ItemArraySingletonFactoryInterface
     end
 end
 
-autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false)
+
+end; end; end; end; end
 

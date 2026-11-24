@@ -15,6 +15,8 @@
 # package org.allbinary.business.context.modules.storefront
 
 
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront
+
 class StoreFrontFactory
     
 
@@ -23,13 +25,13 @@ class StoreFrontFactory
     
 
     def self.getInstance(storeName)
-        logUtil = LogUtil.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         begin
-            storeFronts = StoreFrontsEntityFactory.getInstance().getStoreFrontsEntityInstance()
+            storeFronts = ::Org::Allbinary::DataPackage::Tables::Context::ModulePackage::Storefronts::StoreFrontsEntityFactory.getInstance().getStoreFrontsEntityInstance()
             return storeFronts.getStoreFrontInterface(storeName)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().FACTORYERROR)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().FACTORYERROR)
                 logUtil.put(commonStrings.EXCEPTION, "StoreFrontFactory", commonStrings.GET_INSTANCE, e)
             end
             return nil
@@ -37,9 +39,13 @@ class StoreFrontFactory
     end
 end
 
-autoload :StoreFrontsEntity, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntity"
-autoload :StoreFrontsEntityFactory, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntityFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront"
+module ::Org; module Allbinary; module DataPackage; module Tables; module Context; module ModulePackage; module Storefronts; autoload :StoreFrontsEntity, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntity" unless const_defined?(:StoreFrontsEntity, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module Context; module ModulePackage; module Storefronts; autoload :StoreFrontsEntityFactory, "org/allbinary/data/tables/context/module/storefronts/StoreFrontsEntityFactory" unless const_defined?(:StoreFrontsEntityFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :StoreFront, "org/allbinary/business/context/modules/storefront/StoreFront" unless const_defined?(:StoreFront, false)
+
+end; end; end; end; end; end
 

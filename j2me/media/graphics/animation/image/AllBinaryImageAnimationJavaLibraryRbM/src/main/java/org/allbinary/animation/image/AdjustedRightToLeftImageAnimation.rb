@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/RightToLeftImageAnimation"
+
+module ::Org; module Allbinary; module Animation; module Image
 
 class AdjustedRightToLeftImageAnimation < RightToLeftImageAnimation
     attr_accessor :dx, :dy
 
-    def initialize_fields
-        @dx = 0
-        @dy = 0
+    def jfields_org_allbinary_animation_image_AdjustedRightToLeftImageAnimation
+        @dx = 0 unless instance_variable_defined?(:@dx)
+        @dy = 0 unless instance_variable_defined?(:@dy)
     end
     
 
     def initialize(image, dx, dy, animationBehavior)
         super(image, animationBehavior)
-        initialize_fields
+        jfields_org_allbinary_animation_image_AdjustedRightToLeftImageAnimation
         self.init(dx, dy)
     end
     
@@ -37,14 +40,18 @@ class AdjustedRightToLeftImageAnimation < RightToLeftImageAnimation
         @dx = dx
         @dy = dy
     end
+    java_overload :init, 2
     
 
     def paintXY(graphics, x, y)
-        super(graphics, x + @dx, y + @dy)
+        AdjustedRightToLeftImageAnimation.superclass.java_super_method(:paintXY, 3).bind(self).call(graphics, x + @dx, y + @dy)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+
+end; end; end; end
 

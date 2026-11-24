@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 module SpriteFactoryInterface
     
 
@@ -24,6 +26,8 @@ module SpriteFactoryInterface
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; module Game; autoload :Sprite, "javax/microedition/lcdui/game/Sprite" unless const_defined?(:Sprite, false); end; end; end; end
+
+end; end; end; end
 

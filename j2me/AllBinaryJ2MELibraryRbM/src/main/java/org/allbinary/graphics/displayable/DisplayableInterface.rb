@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.displayable
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable
+
 module DisplayableInterface
     
 
@@ -48,6 +50,8 @@ module DisplayableInterface
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+
+end; end; end; end
 

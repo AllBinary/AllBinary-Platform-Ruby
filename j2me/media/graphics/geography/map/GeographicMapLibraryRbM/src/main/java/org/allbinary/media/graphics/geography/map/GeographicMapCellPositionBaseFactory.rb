@@ -15,6 +15,8 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 class GeographicMapCellPositionBaseFactory
     
 
@@ -24,6 +26,8 @@ class GeographicMapCellPositionBaseFactory
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory"
+autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false)
+autoload :BasicGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory" unless const_defined?(:BasicGeographicMapCellPositionFactory, false)
+
+end; end; end; end; end; end
 

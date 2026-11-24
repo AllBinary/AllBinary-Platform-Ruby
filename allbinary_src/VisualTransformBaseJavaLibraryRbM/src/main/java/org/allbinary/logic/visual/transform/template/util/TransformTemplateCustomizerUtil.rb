@@ -15,19 +15,21 @@
 # package org.allbinary.logic.visual.transform.template.util
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Template; module Util
+
 class TransformTemplateCustomizerUtil
     attr_accessor :logUtil, :CUSTOMIZER_NAME, :BODY_VIEWNAMEKEY, :TITLE_VIEWNAMEKEY, :GLOBALS_NEW, :GLOBALS_INSERT, :GLOBALS_DELETE, :GLOBALS_EDIT, :GLOBALS_UPDATE
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @CUSTOMIZER_NAME = nil
-        @BODY_VIEWNAMEKEY = nil
-        @TITLE_VIEWNAMEKEY = nil
-        @GLOBALS_NEW = nil
-        @GLOBALS_INSERT = nil
-        @GLOBALS_DELETE = nil
-        @GLOBALS_EDIT = nil
-        @GLOBALS_UPDATE = nil
+    def jfields_org_allbinary_logic_visual_transform_template_util_TransformTemplateCustomizerUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @CUSTOMIZER_NAME = nil unless instance_variable_defined?(:@CUSTOMIZER_NAME)
+        @BODY_VIEWNAMEKEY = nil unless instance_variable_defined?(:@BODY_VIEWNAMEKEY)
+        @TITLE_VIEWNAMEKEY = nil unless instance_variable_defined?(:@TITLE_VIEWNAMEKEY)
+        @GLOBALS_NEW = nil unless instance_variable_defined?(:@GLOBALS_NEW)
+        @GLOBALS_INSERT = nil unless instance_variable_defined?(:@GLOBALS_INSERT)
+        @GLOBALS_DELETE = nil unless instance_variable_defined?(:@GLOBALS_DELETE)
+        @GLOBALS_EDIT = nil unless instance_variable_defined?(:@GLOBALS_EDIT)
+        @GLOBALS_UPDATE = nil unless instance_variable_defined?(:@GLOBALS_UPDATE)
     end
     
 
@@ -37,24 +39,24 @@ class TransformTemplateCustomizerUtil
     
 
     def initialize()
-        initialize_fields
-        commonStrings = CommonStrings.getInstance()
-        _SPACE = CommonSeps.getInstance().SPACE
-        @CUSTOMIZER_NAME = _SPACE + (CustomizerTransformInfoData::NAME).to_s
-        @BODY_VIEWNAMEKEY = _SPACE + (BodyData.getInstance().VIEWNAMEKEY).to_s
-        @TITLE_VIEWNAMEKEY = _SPACE + (TitleData.getInstance().VIEWNAMEKEY).to_s
-        @GLOBALS_NEW = (GLOBALS2.NEW).to_s + _SPACE
+        jfields_org_allbinary_logic_visual_transform_template_util_TransformTemplateCustomizerUtil
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        _SPACE = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE
+        @CUSTOMIZER_NAME = _SPACE + (::Org::Allbinary::Logic::Visual::Transform::Info::CustomizerTransformInfoData::NAME).to_s
+        @BODY_VIEWNAMEKEY = _SPACE + (::Org::Allbinary::Logic::Visual::Transform::Template::Customizer::Bodies::BodyData.getInstance().VIEWNAMEKEY).to_s
+        @TITLE_VIEWNAMEKEY = _SPACE + (::Org::Allbinary::Logic::Visual::Transform::Template::Customizer::Widgets::Title::TitleData.getInstance().VIEWNAMEKEY).to_s
+        @GLOBALS_NEW = (::Org::Allbinary::Globals::GLOBALS2::NEW).to_s + _SPACE
         @GLOBALS_INSERT = (commonStrings.INSERT).to_s + _SPACE
         @GLOBALS_DELETE = (commonStrings.DELETE).to_s + _SPACE
-        @GLOBALS_EDIT = (GLOBALS2.EDIT).to_s + _SPACE
+        @GLOBALS_EDIT = (::Org::Allbinary::Globals::GLOBALS2::EDIT).to_s + _SPACE
         @GLOBALS_UPDATE = (commonStrings.UPDATE).to_s + _SPACE
     end
     
 
     def getPageNameHack(viewName, storeName)
-        _SPACE = CommonSeps.getInstance().SPACE
-        _ONE_EMPTY_STRING_ARRAY = StringUtil.getInstance().ONE_EMPTY_STRING_ARRAY
-        hashMap = StdUtil.getInstance().createHashMap()
+        _SPACE = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE
+        _ONE_EMPTY_STRING_ARRAY = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().ONE_EMPTY_STRING_ARRAY
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         hashMap.put([viewName + _SPACE], _ONE_EMPTY_STRING_ARRAY)
         hashMap.put([storeName + _SPACE], _ONE_EMPTY_STRING_ARRAY)
         hashMap.put([@CUSTOMIZER_NAME], _ONE_EMPTY_STRING_ARRAY)
@@ -67,7 +69,7 @@ class TransformTemplateCustomizerUtil
         hashMap.put([@GLOBALS_UPDATE], _ONE_EMPTY_STRING_ARRAY)
         replace = nil
         rootViewName = replace.all(viewName)
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
             @logUtil.putF("RootViewName for ObjectConfig: " + rootViewName, self, "getPageNameHack")
         end
         return rootViewName
@@ -104,21 +106,25 @@ class TransformTemplateCustomizerUtil
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace"
-autoload :CustomizerTransformInfoData, "org/allbinary/logic/visual/transform/info/CustomizerTransformInfoData"
-autoload :BodyData, "org/allbinary/logic/visual/transform/template/customizer/bodies/BodyData"
-autoload :TitleData, "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleData"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Globals; autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2" unless const_defined?(:GLOBALS2, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; module Regex; module Replace; autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace" unless const_defined?(:Replace, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :CustomizerTransformInfoData, "org/allbinary/logic/visual/transform/info/CustomizerTransformInfoData" unless const_defined?(:CustomizerTransformInfoData, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Template; module Customizer; module Bodies; autoload :BodyData, "org/allbinary/logic/visual/transform/template/customizer/bodies/BodyData" unless const_defined?(:BodyData, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Template; module Customizer; module Widgets; module Title; autoload :TitleData, "org/allbinary/logic/visual/transform/template/customizer/widgets/title/TitleData" unless const_defined?(:TitleData, false); end; end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
 begin
     TransformTemplateCustomizerUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

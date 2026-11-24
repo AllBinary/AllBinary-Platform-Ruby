@@ -15,16 +15,18 @@
 # package org.allbinary.logic.communication.log.config.type
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type
+
 class LogConfigTypesData
     attr_accessor :NAME, :DESCRIPTION
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_log_config_type_LogConfigTypesData
         @NAME = "LOG_CONFIG_TYPES_NAME"
         @DESCRIPTION = "LOG_CONFIG_TYPES_DESCRIPTION"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_config_type_LogConfigTypesData
     end
     
 
@@ -33,15 +35,41 @@ class LogConfigTypesData
     end
 
     def self.instance()
+        LogConfigTypesData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LogConfigTypesData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = LogConfigTypesData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LogConfigTypesData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class LogConfigTypesData
-    @@instance = LogConfigTypesData.new()
+begin
+    LogConfigTypesData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

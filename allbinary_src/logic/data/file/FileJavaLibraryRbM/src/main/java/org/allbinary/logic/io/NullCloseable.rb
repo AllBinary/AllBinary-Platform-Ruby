@@ -14,16 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
+require "java/lang/JavaOverload"
 require "java/io/Closeable"
 # require "java/io/IOException"
 
+module ::Org; module Allbinary; module Logic; module Io
+
 class NullCloseable
-    include Closeable
+    include ::Java::Io::Closeable
     
 
     # throws IOException
     def close()
     end
+    java_overload :close, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -51,4 +55,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

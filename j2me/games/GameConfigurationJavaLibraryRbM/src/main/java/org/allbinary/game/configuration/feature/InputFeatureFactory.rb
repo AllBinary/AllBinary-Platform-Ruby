@@ -15,10 +15,12 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class InputFeatureFactory
     attr_accessor :REMOVE_DUPLICATE_KEY_PRESSES, :INPUT_MAPPING, :MULTI_KEY_PRESS, :SINGLE_KEY_REPEAT_PRESS, :SINGLE_KEY_PRESS
 
-    def initialize_fields
+    def jfields_org_allbinary_game_configuration_feature_InputFeatureFactory
         @REMOVE_DUPLICATE_KEY_PRESSES = InputFeature.new("Remove Duplicate Key Presses")
         @INPUT_MAPPING = InputFeature.new("Input Mapping")
         @MULTI_KEY_PRESS = InputFeature.new("Multi Key Press")
@@ -33,7 +35,7 @@ class InputFeatureFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_InputFeatureFactory
     end
     
 
@@ -77,12 +79,14 @@ class InputFeatureFactory
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :InputFeature, "org/allbinary/game/configuration/feature/InputFeature"
+autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false)
+autoload :InputFeature, "org/allbinary/game/configuration/feature/InputFeature" unless const_defined?(:InputFeature, false)
 
 begin
     InputFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

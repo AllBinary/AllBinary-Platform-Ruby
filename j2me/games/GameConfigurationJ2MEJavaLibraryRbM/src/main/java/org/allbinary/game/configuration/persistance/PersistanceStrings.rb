@@ -15,10 +15,12 @@
 # package org.allbinary.game.configuration.persistance
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance
+
 class PersistanceStrings
     attr_accessor :SAVING, :NUMBER_OF_RECORDS, :LOADING_ID, :LOAD_ALL, :DELETING_WITH_ID, :CLOSING_RECORDSTORE, :NOT_SAVING, :ERROR_LOADING, :ERROR_LOADING_ID, :ID, :GAME_ACTION_INPUT
 
-    def initialize_fields
+    def jfields_org_allbinary_game_configuration_persistance_PersistanceStrings
         @SAVING = "Saving: "
         @NUMBER_OF_RECORDS = "Number of records: "
         @LOADING_ID = "Loading data with id: "
@@ -33,7 +35,7 @@ class PersistanceStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_configuration_persistance_PersistanceStrings
     end
     
 
@@ -77,4 +79,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

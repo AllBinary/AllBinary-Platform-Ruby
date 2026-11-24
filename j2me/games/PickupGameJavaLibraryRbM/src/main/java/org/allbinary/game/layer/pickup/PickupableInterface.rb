@@ -15,6 +15,10 @@
 # package org.allbinary.game.layer.pickup
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 module PickupableInterface
 end
+
+end; end; end; end; end
 

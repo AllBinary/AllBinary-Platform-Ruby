@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.android.input.motion.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class AnalogControllerConfigurationEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Android; module Input; module Motion; module Event
+
+class AnalogControllerConfigurationEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_android_input_motion_event_AnalogControllerConfigurationEventHandler
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -31,7 +34,7 @@ class AnalogControllerConfigurationEventHandler < BasicEventHandler
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_android_input_motion_event_AnalogControllerConfigurationEventHandler
     end
     
 
@@ -40,18 +43,21 @@ class AnalogControllerConfigurationEventHandler < BasicEventHandler
             @list.add(analogControllerConfigurationEventListenerInterface)
         end
     end
+    java_overload :addListener, 1
     
 
     def removeAllListeners()
         @list.clear()
-        super()
+        AnalogControllerConfigurationEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListener(eventListenerInterface)
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        AnalogControllerConfigurationEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -62,11 +68,12 @@ class AnalogControllerConfigurationEventHandler < BasicEventHandler
                 playerGameInput = @list.objectArray[index]
                 playerGameInput.onAnalogControllerConfigurationEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
-        super(eventObject)
+        AnalogControllerConfigurationEventHandler.superclass.java_super_method(:fireEvent, 1).bind(self).call(eventObject)
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
@@ -74,6 +81,7 @@ class AnalogControllerConfigurationEventHandler < BasicEventHandler
         analogControllerConfigurationEventListenerInterface = (eventListenerInterface)
         analogControllerConfigurationEventListenerInterface.onAnalogControllerConfigurationEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.instance()
         AnalogControllerConfigurationEventHandler.java_static_fields unless @java_static_fields_started
@@ -106,17 +114,19 @@ class AnalogControllerConfigurationEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :AnalogControllerConfigurationEvent, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent"
-autoload :AnalogControllerConfigurationEventListenerInterface, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEventListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :AnalogControllerConfigurationEvent, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent" unless const_defined?(:AnalogControllerConfigurationEvent, false)
+autoload :AnalogControllerConfigurationEventListenerInterface, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEventListenerInterface" unless const_defined?(:AnalogControllerConfigurationEventListenerInterface, false)
 
 begin
     AnalogControllerConfigurationEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

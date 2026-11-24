@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/AllBinaryLayerManager"
 
-class AllBinaryGameLayerManager < AllBinaryLayerManager
+module ::Org; module Allbinary; module Game; module Layer
+
+class AllBinaryGameLayerManager < ::Org::Allbinary::Layer::AllBinaryLayerManager
     attr_accessor :backgroundBasicColor, :foregroundBasicColor, :gameInfo, :playerGameInputCompositeInterface
 
-    def initialize_fields
-        @backgroundBasicColor = nil
-        @foregroundBasicColor = nil
-        @gameInfo = nil
-        @playerGameInputCompositeInterface = NullPlayerGameInputComposite::NULL_PLAYER_GAME_INPUT_COMPOSITE
+    def jfields_org_allbinary_game_layer_AllBinaryGameLayerManager
+        @backgroundBasicColor = nil unless instance_variable_defined?(:@backgroundBasicColor)
+        @foregroundBasicColor = nil unless instance_variable_defined?(:@foregroundBasicColor)
+        @gameInfo = nil unless instance_variable_defined?(:@gameInfo)
+        @playerGameInputCompositeInterface = ::Org::Allbinary::Game::Input::NullPlayerGameInputComposite::NULL_PLAYER_GAME_INPUT_COMPOSITE
     end
     
 
     def self.getNullInstance()
-        if AllBinaryGameLayerManager::NULL_ALLBINARY_LAYER_MANAGER == NullUtil.getInstance().NULL_OBJECT
-            (AllBinaryGameLayerManager.send(:remove_const, :NULL_ALLBINARY_LAYER_MANAGER) if AllBinaryGameLayerManager.const_defined?(:NULL_ALLBINARY_LAYER_MANAGER, false); AllBinaryGameLayerManager.const_set(:NULL_ALLBINARY_LAYER_MANAGER, AllBinaryGameLayerManager.new(BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE, GameInfo::NONE)))
+        if AllBinaryGameLayerManager::NULL_ALLBINARY_LAYER_MANAGER == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            (AllBinaryGameLayerManager.instance_exec(AllBinaryGameLayerManager.new(::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE, ::Org::Allbinary::Game::GameInfo::NONE)) { |java_value| remove_const(:NULL_ALLBINARY_LAYER_MANAGER) if const_defined?(:NULL_ALLBINARY_LAYER_MANAGER, false); const_set(:NULL_ALLBINARY_LAYER_MANAGER, java_value) })
         end
         return AllBinaryGameLayerManager::NULL_ALLBINARY_LAYER_MANAGER
     end
@@ -37,10 +40,10 @@ class AllBinaryGameLayerManager < AllBinaryLayerManager
 
     def initialize(backgroundBasicColor, foregroundBasicColor, gameInfo)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_layer_AllBinaryGameLayerManager
         @backgroundBasicColor = backgroundBasicColor
         @foregroundBasicColor = foregroundBasicColor
-        itemColorFactory = ItemColorFactory.getInstance()
+        itemColorFactory = ::Org::Allbinary::Graphics::ItemColorFactory.getInstance()
         itemColorFactory.INVERT_PAINT = @backgroundBasicColor.to_i
         itemColorFactory.PAINT = @foregroundBasicColor.to_i
         @gameInfo = gameInfo
@@ -50,42 +53,50 @@ class AllBinaryGameLayerManager < AllBinaryLayerManager
     def getLayerManager()
         return self
     end
+    java_overload :getLayerManager, 0
     
 
     def init()
     end
+    java_overload :init, 0
     
 
     def getBackgroundBasicColor()
         return @backgroundBasicColor
     end
+    java_overload :getBackgroundBasicColor, 0
     
 
     def setBackgroundBasicColor(backgroundBasicColor)
         @backgroundBasicColor = backgroundBasicColor
-        ItemColorFactory.getInstance().INVERT_PAINT = @backgroundBasicColor.to_i
+        ::Org::Allbinary::Graphics::ItemColorFactory.getInstance().INVERT_PAINT = @backgroundBasicColor.to_i
     end
+    java_overload :setBackgroundBasicColor, 1
     
 
     def getForegroundBasicColor()
         return @foregroundBasicColor
     end
+    java_overload :getForegroundBasicColor, 0
     
 
     def setForegroundBasicColor(foregroundBasicColor)
         @foregroundBasicColor = foregroundBasicColor
-        ItemColorFactory.getInstance().PAINT = @foregroundBasicColor.to_i
+        ::Org::Allbinary::Graphics::ItemColorFactory.getInstance().PAINT = @foregroundBasicColor.to_i
     end
+    java_overload :setForegroundBasicColor, 1
     
 
     def getGameInfo()
         return @gameInfo
     end
+    java_overload :getGameInfo, 0
     
 
     def setGameInfo(gameInfo)
         @gameInfo = gameInfo
     end
+    java_overload :setGameInfo, 1
     
 
     def setLayerProcessorList(list)
@@ -96,23 +107,26 @@ class AllBinaryGameLayerManager < AllBinaryLayerManager
         end
         self.setLayerProcessorArray(layerProcessorInterfaceArray)
     end
+    java_overload :setLayerProcessorList, 1
     
 
     def setPlayerGameInputCompositeInterface(playerGameInputCompositeInterface)
         @playerGameInputCompositeInterface = playerGameInputCompositeInterface
     end
+    java_overload :setPlayerGameInputCompositeInterface, 1
     
 
     def getPlayerGameInputCompositeInterface()
         return @playerGameInputCompositeInterface
     end
+    java_overload :getPlayerGameInputCompositeInterface, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_ALLBINARY_LAYER_MANAGER, NullUtil.getInstance().NULL_OBJECT)
-            const_set(:ID, SmallIntegerSingletonFactory.getInstance().getAt(22))
+            const_set(:NULL_ALLBINARY_LAYER_MANAGER, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
+            const_set(:ID, ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(22))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -129,20 +143,22 @@ class AllBinaryGameLayerManager < AllBinaryLayerManager
     end
 end
 
-autoload :GameInfo, "org/allbinary/game/GameInfo"
-autoload :NullPlayerGameInputComposite, "org/allbinary/game/input/NullPlayerGameInputComposite"
-autoload :PlayerGameInputCompositeInterface, "org/allbinary/game/input/PlayerGameInputCompositeInterface"
-autoload :ItemColorFactory, "org/allbinary/graphics/ItemColorFactory"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :LayerProcessor, "org/allbinary/layer/LayerProcessor"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Game; autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :NullPlayerGameInputComposite, "org/allbinary/game/input/NullPlayerGameInputComposite" unless const_defined?(:NullPlayerGameInputComposite, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :PlayerGameInputCompositeInterface, "org/allbinary/game/input/PlayerGameInputCompositeInterface" unless const_defined?(:PlayerGameInputCompositeInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :ItemColorFactory, "org/allbinary/graphics/ItemColorFactory" unless const_defined?(:ItemColorFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :LayerProcessor, "org/allbinary/layer/LayerProcessor" unless const_defined?(:LayerProcessor, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
 
 begin
     AllBinaryGameLayerManager.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.game.midlet
 
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 class DemoGameMidletStateFactory
     attr_accessor :NONE, :START_DEMO, :START_GAME, :START_INPUT_MAPPING
 
-    def initialize_fields
+    def jfields_org_allbinary_game_midlet_DemoGameMidletStateFactory
         @NONE = DemoGameMidletState.new()
         @START_DEMO = DemoGameMidletState.new()
         @START_GAME = DemoGameMidletState.new()
@@ -27,7 +29,7 @@ class DemoGameMidletStateFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_midlet_DemoGameMidletStateFactory
     end
     
 
@@ -56,11 +58,13 @@ class DemoGameMidletStateFactory
     end
 end
 
-autoload :DemoGameMidletState, "org/allbinary/game/midlet/DemoGameMidletState"
+autoload :DemoGameMidletState, "org/allbinary/game/midlet/DemoGameMidletState" unless const_defined?(:DemoGameMidletState, false)
 
 begin
     DemoGameMidletStateFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

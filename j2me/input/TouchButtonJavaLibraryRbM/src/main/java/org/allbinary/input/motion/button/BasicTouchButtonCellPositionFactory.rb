@@ -15,41 +15,43 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class BasicTouchButtonCellPositionFactory
     attr_accessor :logUtil, :commonStrings, :TOP_RIGHT, :TOP_LEFT, :SECOND_FROM_TOP_LEFT, :SECOND_FROM_TOP_RIGHT, :TOP_SECOND_FROM_LEFT, :TOP_SECOND_FROM_RIGHT, :BOTTOM_RIGHT, :BOTTOM_SECOND_FROM_RIGHT, :SECOND_FROM_BOTTOM_RIGHT, :THIRD_FROM_BOTTOM_RIGHT, :FOURTH_FROM_BOTTOM_RIGHT, :SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT, :SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT, :SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT, :BOTTOM_THIRD_FROM_RIGHT, :BOTTOM_FOURTH_FROM_RIGHT, :BOTTOM_SECOND_FROM_LEFT, :SECOND_FROM_BOTTOM_LEFT, :THIRD_FROM_BOTTOM_LEFT, :BOTTOM_LEFT, :SECOND_FROM_BOTTOM_SECOND_FROM_LEFT
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @TOP_RIGHT = nil
-        @TOP_LEFT = nil
-        @SECOND_FROM_TOP_LEFT = nil
-        @SECOND_FROM_TOP_RIGHT = nil
-        @TOP_SECOND_FROM_LEFT = nil
-        @TOP_SECOND_FROM_RIGHT = nil
-        @BOTTOM_RIGHT = nil
-        @BOTTOM_SECOND_FROM_RIGHT = nil
-        @SECOND_FROM_BOTTOM_RIGHT = nil
-        @THIRD_FROM_BOTTOM_RIGHT = nil
-        @FOURTH_FROM_BOTTOM_RIGHT = nil
-        @SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT = nil
-        @SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT = nil
-        @SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT = nil
-        @BOTTOM_THIRD_FROM_RIGHT = nil
-        @BOTTOM_FOURTH_FROM_RIGHT = nil
-        @BOTTOM_SECOND_FROM_LEFT = nil
-        @SECOND_FROM_BOTTOM_LEFT = nil
-        @THIRD_FROM_BOTTOM_LEFT = nil
-        @BOTTOM_LEFT = nil
-        @SECOND_FROM_BOTTOM_SECOND_FROM_LEFT = nil
+    def jfields_org_allbinary_input_motion_button_BasicTouchButtonCellPositionFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @TOP_RIGHT = nil unless instance_variable_defined?(:@TOP_RIGHT)
+        @TOP_LEFT = nil unless instance_variable_defined?(:@TOP_LEFT)
+        @SECOND_FROM_TOP_LEFT = nil unless instance_variable_defined?(:@SECOND_FROM_TOP_LEFT)
+        @SECOND_FROM_TOP_RIGHT = nil unless instance_variable_defined?(:@SECOND_FROM_TOP_RIGHT)
+        @TOP_SECOND_FROM_LEFT = nil unless instance_variable_defined?(:@TOP_SECOND_FROM_LEFT)
+        @TOP_SECOND_FROM_RIGHT = nil unless instance_variable_defined?(:@TOP_SECOND_FROM_RIGHT)
+        @BOTTOM_RIGHT = nil unless instance_variable_defined?(:@BOTTOM_RIGHT)
+        @BOTTOM_SECOND_FROM_RIGHT = nil unless instance_variable_defined?(:@BOTTOM_SECOND_FROM_RIGHT)
+        @SECOND_FROM_BOTTOM_RIGHT = nil unless instance_variable_defined?(:@SECOND_FROM_BOTTOM_RIGHT)
+        @THIRD_FROM_BOTTOM_RIGHT = nil unless instance_variable_defined?(:@THIRD_FROM_BOTTOM_RIGHT)
+        @FOURTH_FROM_BOTTOM_RIGHT = nil unless instance_variable_defined?(:@FOURTH_FROM_BOTTOM_RIGHT)
+        @SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT = nil unless instance_variable_defined?(:@SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT)
+        @SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT = nil unless instance_variable_defined?(:@SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT)
+        @SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT = nil unless instance_variable_defined?(:@SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT)
+        @BOTTOM_THIRD_FROM_RIGHT = nil unless instance_variable_defined?(:@BOTTOM_THIRD_FROM_RIGHT)
+        @BOTTOM_FOURTH_FROM_RIGHT = nil unless instance_variable_defined?(:@BOTTOM_FOURTH_FROM_RIGHT)
+        @BOTTOM_SECOND_FROM_LEFT = nil unless instance_variable_defined?(:@BOTTOM_SECOND_FROM_LEFT)
+        @SECOND_FROM_BOTTOM_LEFT = nil unless instance_variable_defined?(:@SECOND_FROM_BOTTOM_LEFT)
+        @THIRD_FROM_BOTTOM_LEFT = nil unless instance_variable_defined?(:@THIRD_FROM_BOTTOM_LEFT)
+        @BOTTOM_LEFT = nil unless instance_variable_defined?(:@BOTTOM_LEFT)
+        @SECOND_FROM_BOTTOM_SECOND_FROM_LEFT = nil unless instance_variable_defined?(:@SECOND_FROM_BOTTOM_SECOND_FROM_LEFT)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_BasicTouchButtonCellPositionFactory
         @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         touchButtonLocationHelper = TouchButtonLocationHelper.new()
-        cellPositionFactory = CellPositionFactory.getInstance()
+        cellPositionFactory = ::Org::Allbinary::Graphics::CellPositionFactory.getInstance()
         cellPositionFactory.init(touchButtonLocationHelper.getTotalColumns(), touchButtonLocationHelper.getTotalRows())
         @TOP_LEFT = cellPositionFactory.getInstanceColRow(0, 0)
         @TOP_RIGHT = cellPositionFactory.getInstanceColRow(touchButtonLocationHelper.getTotalColumns() - 1, 0)
@@ -95,9 +97,11 @@ class BasicTouchButtonCellPositionFactory
     end
 end
 
-autoload :CellPosition, "org/allbinary/graphics/CellPosition"
-autoload :CellPositionFactory, "org/allbinary/graphics/CellPositionFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper"
+module ::Org; module Allbinary; module Graphics; autoload :CellPosition, "org/allbinary/graphics/CellPosition" unless const_defined?(:CellPosition, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CellPositionFactory, "org/allbinary/graphics/CellPositionFactory" unless const_defined?(:CellPositionFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper" unless const_defined?(:TouchButtonLocationHelper, false)
+
+end; end; end; end; end
 

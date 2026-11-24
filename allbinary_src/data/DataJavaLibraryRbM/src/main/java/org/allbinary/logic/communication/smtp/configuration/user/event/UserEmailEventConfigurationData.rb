@@ -15,15 +15,41 @@
 # package org.allbinary.logic.communication.smtp.configuration.user.event
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module User; module Event
+
 class UserEmailEventConfigurationData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "EMAIL_EVENT_CONFIGURATION_NAME")
+        const_set(:LISTENER_CLASSPATH, "EMAIL_EVENT_CONFIGURATION_LISTENER_CLASSPATH")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UserEmailEventConfigurationData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME, :LISTENER_CLASSPATH].include?(name)
+        end
+        super
+    end
 end
 
-class UserEmailEventConfigurationData
-    NAME = "EMAIL_EVENT_CONFIGURATION_NAME"
-    LISTENER_CLASSPATH = "EMAIL_EVENT_CONFIGURATION_LISTENER_CLASSPATH"
+begin
+    UserEmailEventConfigurationData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

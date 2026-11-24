@@ -14,49 +14,57 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
-# require "javax/microedition/lcdui/Graphics"
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
 
-class PreGameSelectorPaintable < InitUpdatePaintable
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class PreGameSelectorPaintable < ::Org::Allbinary::Graphics::Paint::InitUpdatePaintable
     attr_accessor :title, :canvasDrawLineString, :preGameScrollSelectionForm
 
-    def initialize_fields
-        @title = nil
-        @canvasDrawLineString = nil
-        @preGameScrollSelectionForm = nil
+    def jfields_org_allbinary_game_displayable_canvas_PreGameSelectorPaintable
+        @title = nil unless instance_variable_defined?(:@title)
+        @canvasDrawLineString = nil unless instance_variable_defined?(:@canvasDrawLineString)
+        @preGameScrollSelectionForm = nil unless instance_variable_defined?(:@preGameScrollSelectionForm)
     end
     
 
     def initialize(title, preGameScrollSelectionForm)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_PreGameSelectorPaintable
         @title = title
-        displayInfo = DisplayInfoSingleton.getInstance()
-        @canvasDrawLineString = CanvasDrawLineString.new(displayInfo.getLastHalfWidth(), 0)
+        displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
+        @canvasDrawLineString = ::Org::Allbinary::Graphics::Draw::CanvasDrawLineString.new(displayInfo.getLastHalfWidth(), 0)
         @preGameScrollSelectionForm = preGameScrollSelectionForm
     end
     
 
     def update()
-        displayInfo = DisplayInfoSingleton.getInstance()
-        @canvasDrawLineString = CanvasDrawLineString.new(displayInfo.getLastHalfWidth(), 0)
+        displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
+        @canvasDrawLineString = ::Org::Allbinary::Graphics::Draw::CanvasDrawLineString.new(displayInfo.getLastHalfWidth(), 0)
     end
+    java_overload :update, 0
     
 
     def paint(graphics)
-        graphics.setColor(BasicColorFactory.getInstance().WHITE.to_i)
+        graphics.setColor(::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE.to_i)
         @canvasDrawLineString.paint(graphics, @title, 0)
         self.getPreGameSelectionForm().paint(graphics)
     end
+    java_overload :paint, 1
     
 
     def getPreGameSelectionForm()
         return @preGameScrollSelectionForm
     end
+    java_overload :getPreGameSelectionForm, 0
 end
 
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-require "org/allbinary/graphics/draw/CanvasDrawLineString"
-require "org/allbinary/game/displayable/canvas/PreGameScrollSelectionForm"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Draw; autoload :CanvasDrawLineString, "org/allbinary/graphics/draw/CanvasDrawLineString" unless const_defined?(:CanvasDrawLineString, false); end; end; end; end
+autoload :PreGameScrollSelectionForm, "org/allbinary/game/displayable/canvas/PreGameScrollSelectionForm" unless const_defined?(:PreGameScrollSelectionForm, false)
+
+end; end; end; end; end
 

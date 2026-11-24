@@ -17,6 +17,8 @@
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 module BasicColorCompositeSetterInterface
     
 
@@ -26,5 +28,7 @@ module BasicColorCompositeSetterInterface
     end
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
+
+end; end; end; end
 

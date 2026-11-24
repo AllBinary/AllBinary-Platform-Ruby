@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.osgi
 
+require "java/lang/JavaOverload"
 require "org/osgi/framework/ServiceFactory"
 
+module ::Org; module Allbinary; module Input; module Automation; module Osgi
+
 class InputAutomationServiceFactory
-    include ServiceFactory
+    include ::Org::Osgi::Framework::ServiceFactory
     attr_accessor :logUtil, :commonStrings
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_input_automation_osgi_InputAutomationServiceFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_automation_osgi_InputAutomationServiceFactory
     end
     
 
@@ -38,12 +41,14 @@ class InputAutomationServiceFactory
 
     def getService(bundle, registration)
         @logUtil.putF(@commonStrings.START, self, "getService")
-        return InputAutomationJFrame.getInstance()
+        return ::Org::Allbinary::Input::Automation::InputAutomationJFrame.getInstance()
     end
+    java_overload :getService, 2
     
 
     def ungetService(bundle, registration, service)
     end
+    java_overload :ungetService, 3
 
     def self.inputAutomationServiceFactory()
         InputAutomationServiceFactory.java_static_fields unless @java_static_fields_started
@@ -76,15 +81,17 @@ class InputAutomationServiceFactory
     end
 end
 
-autoload :Bundle, "org/osgi/framework/Bundle"
-autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration"
-autoload :InputAutomationJFrame, "org/allbinary/input/automation/InputAutomationJFrame"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Osgi; module Framework; autoload :Bundle, "org/osgi/framework/Bundle" unless const_defined?(:Bundle, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration" unless const_defined?(:ServiceRegistration, false); end; end; end
+module ::Org; module Allbinary; module Input; module Automation; autoload :InputAutomationJFrame, "org/allbinary/input/automation/InputAutomationJFrame" unless const_defined?(:InputAutomationJFrame, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     InputAutomationServiceFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.input.motion
 
 
+module ::Org; module Allbinary; module Input; module Motion
+
 class MotionRecognizer
     
 
@@ -32,4 +34,6 @@ class MotionRecognizer
     def processDraggedMotionEvent(x, y, deviceId, modifiers)
     end
 end
+
+end; end; end; end
 

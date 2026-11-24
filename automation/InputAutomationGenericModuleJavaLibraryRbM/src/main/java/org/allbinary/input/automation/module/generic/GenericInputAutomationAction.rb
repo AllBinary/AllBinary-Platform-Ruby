@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.generic
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/automation/module/InputAutomationActionInterface"
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic
+
 class GenericInputAutomationAction
-    include InputAutomationActionInterface
+    include ::Org::Allbinary::Input::Automation::ModulePackage::InputAutomationActionInterface
     
 
     def initialize()
@@ -27,12 +30,16 @@ class GenericInputAutomationAction
     # throws Exception
     def test()
     end
+    java_overload :test, 0
     
 
     def getInputRobotInterfaceArray()
         return nil
     end
+    java_overload :getInputRobotInterfaceArray, 0
 end
 
-autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface" unless const_defined?(:InputRobotInterface, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

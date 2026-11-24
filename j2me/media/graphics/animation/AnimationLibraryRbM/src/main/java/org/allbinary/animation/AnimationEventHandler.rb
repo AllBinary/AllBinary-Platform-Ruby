@@ -15,9 +15,12 @@
 # package org.allbinary.animation
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class AnimationEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Animation
+
+class AnimationEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def initialize()
@@ -67,4 +70,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

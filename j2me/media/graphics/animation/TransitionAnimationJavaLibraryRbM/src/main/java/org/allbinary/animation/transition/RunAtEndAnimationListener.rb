@@ -14,34 +14,42 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.transition
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/transition/AnimationListenerInterface"
+
+module ::Org; module Allbinary; module Animation; module Transition
 
 class RunAtEndAnimationListener
     include AnimationListenerInterface
     attr_accessor :runnable
 
-    def initialize_fields
-        @runnable = nil
+    def jfields_org_allbinary_animation_transition_RunAtEndAnimationListener
+        @runnable = nil unless instance_variable_defined?(:@runnable)
     end
     
 
     def initialize(runnable)
-        initialize_fields
+        jfields_org_allbinary_animation_transition_RunAtEndAnimationListener
         @runnable = runnable
     end
     
 
     def onPlatformAnimationStart()
     end
+    java_overload :onPlatformAnimationStart, 0
     
 
     def onPlatformAnimationEnd()
     end
+    java_overload :onPlatformAnimationEnd, 0
     
 
     def onPlatformAnimationRepeat()
     end
+    java_overload :onPlatformAnimationRepeat, 0
 end
 
 require "java/lang/Runnable"
+
+end; end; end; end
 

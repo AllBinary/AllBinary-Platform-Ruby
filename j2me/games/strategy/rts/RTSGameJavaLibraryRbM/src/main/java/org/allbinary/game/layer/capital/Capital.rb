@@ -15,16 +15,18 @@
 # package org.allbinary.game.layer.capital
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Capital
+
 class Capital
     attr_accessor :value
 
-    def initialize_fields
-        @value = 0
+    def jfields_org_allbinary_game_layer_capital_Capital
+        @value = 0 unless instance_variable_defined?(:@value)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_layer_capital_Capital
     end
     
 
@@ -42,4 +44,6 @@ class Capital
         @value += points
     end
 end
+
+end; end; end; end; end
 

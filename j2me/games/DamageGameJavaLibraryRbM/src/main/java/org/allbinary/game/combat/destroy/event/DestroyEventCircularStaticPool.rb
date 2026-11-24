@@ -15,11 +15,13 @@
 # package org.allbinary.game.combat.destroy.event
 
 
+module ::Org; module Allbinary; module Game; module Combat; module Destroy; module Event
+
 class DestroyEventCircularStaticPool
     attr_accessor :EVENT_POOL
 
-    def initialize_fields
-        @EVENT_POOL = AllBinaryEventCircularPool.new(20)
+    def jfields_org_allbinary_game_combat_destroy_event_DestroyEventCircularStaticPool
+        @EVENT_POOL = ::Org::Allbinary::Logic::Util::Event::AllBinaryEventCircularPool.new(20)
     end
     
 
@@ -29,7 +31,7 @@ class DestroyEventCircularStaticPool
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_combat_destroy_event_DestroyEventCircularStaticPool
     end
     
 
@@ -76,15 +78,17 @@ class DestroyEventCircularStaticPool
     end
 end
 
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool"
-autoload :DestroyEventFactory, "org/allbinary/game/combat/destroy/event/DestroyEventFactory"
-autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas; autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool" unless const_defined?(:AllBinaryEventCircularPool, false); end; end; end; end; end
+autoload :DestroyEventFactory, "org/allbinary/game/combat/destroy/event/DestroyEventFactory" unless const_defined?(:DestroyEventFactory, false)
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent" unless const_defined?(:DestroyedEvent, false)
 
 begin
     DestroyEventCircularStaticPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

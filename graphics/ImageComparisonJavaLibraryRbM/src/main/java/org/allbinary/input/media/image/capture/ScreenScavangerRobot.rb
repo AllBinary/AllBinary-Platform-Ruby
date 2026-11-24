@@ -19,17 +19,19 @@
 # require "java/awt/Toolkit"
 # require "java/awt/image/BufferedImage"
 
+module ::Org; module Allbinary; module Input; module Media; module Image; module Capture
+
 class ScreenScavangerRobot
     attr_accessor :logUtil, :commonStrings
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_input_media_image_capture_ScreenScavangerRobot
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_media_image_capture_ScreenScavangerRobot
     end
     
 
@@ -38,7 +40,7 @@ class ScreenScavangerRobot
         @logUtil.putF(@commonStrings.START, self, "getScreenAsBufferedImages")
         dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize()
         rectScreenSize = Rectangle.new(dimScreenSize)
-        robotHashtable = InputRobotFactory.getInstance().get()
+        robotHashtable = ::Org::Allbinary::Input::Automation::Robot::InputRobotFactory.getInstance().get()
         bufferedImageArray = Array.new(1, nil)
         index = 0
         inputRobotInterface = robotHashtable.get("Java Robot")
@@ -48,9 +50,11 @@ class ScreenScavangerRobot
     end
 end
 
-autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
-autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory" unless const_defined?(:InputRobotFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface" unless const_defined?(:InputRobotInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+
+end; end; end; end; end; end
 

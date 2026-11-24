@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/form/ItemPaintableFactory"
+
+module ::Org; module Allbinary; module Graphics; module Form
 
 class LockableFormPaintableFactory < ItemPaintableFactory
     attr_accessor :lockedIndex
 
-    def initialize_fields
-        @lockedIndex = nil
+    def jfields_org_allbinary_graphics_form_LockableFormPaintableFactory
+        @lockedIndex = nil unless instance_variable_defined?(:@lockedIndex)
     end
     
 
     def initialize(lockedIndex)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_form_LockableFormPaintableFactory
         @lockedIndex = lockedIndex
     end
     
@@ -35,9 +38,12 @@ class LockableFormPaintableFactory < ItemPaintableFactory
     def getInstanceItemPaintable(paintableForm)
         return LockablePaintable.new(@lockedIndex)
     end
+    java_overload :getInstanceItemPaintable, 1
 end
 
-autoload :ItemPaintable, "org/allbinary/graphics/form/ItemPaintable"
-autoload :LockablePaintable, "org/allbinary/graphics/form/LockablePaintable"
-autoload :PaintableForm, "org/allbinary/graphics/form/PaintableForm"
+autoload :ItemPaintable, "org/allbinary/graphics/form/ItemPaintable" unless const_defined?(:ItemPaintable, false)
+autoload :LockablePaintable, "org/allbinary/graphics/form/LockablePaintable" unless const_defined?(:LockablePaintable, false)
+autoload :PaintableForm, "org/allbinary/graphics/form/PaintableForm" unless const_defined?(:PaintableForm, false)
+
+end; end; end; end
 

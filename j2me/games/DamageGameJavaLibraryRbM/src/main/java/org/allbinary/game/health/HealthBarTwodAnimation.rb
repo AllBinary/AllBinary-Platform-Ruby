@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.health
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/health/HealthBarAnimation"
+
+module ::Org; module Allbinary; module Game; module Health
 
 class HealthBarTwodAnimation < HealthBarAnimation
     
@@ -29,8 +32,11 @@ class HealthBarTwodAnimation < HealthBarAnimation
         @basicSetColorUtil.setBasicColorP3(graphics, @basicColor, @colorP)
         graphics.fillRect(ax, self.getY() - 1, @x2, @thickness)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+
+end; end; end; end
 

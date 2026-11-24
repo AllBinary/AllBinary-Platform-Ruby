@@ -15,16 +15,18 @@
 # package org.osgi.framework
 
 
+module ::Org; module Osgi; module Framework
+
 class NullServiceReference
     
 
     def getProperty(key)
-        return NullUtil.getInstance().NULL_OBJECT
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
     end
     
 
     def getPropertyKeys()
-        return StringUtil.getInstance().getArrayInstance()
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().getArrayInstance()
     end
     
 
@@ -33,6 +35,8 @@ class NullServiceReference
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end
 

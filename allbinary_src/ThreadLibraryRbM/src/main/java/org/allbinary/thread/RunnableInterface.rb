@@ -14,22 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.thread
 
+require "java/lang/JavaOverload"
 require "java/lang/Runnable"
 
+module ::Org; module Allbinary; module ThreadPackage
+
 module RunnableInterface
-    include Runnable
+    include ::Java::Lang::Runnable
     
 
     def isRunning()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isRunning, 0
     
 
     def setRunning(isRunning)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setRunning, 1
     
 
     # throws Exception
@@ -37,7 +42,10 @@ module RunnableInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setThread, 1
 end
 
 require "java/lang/Thread"
+
+end; end; end
 

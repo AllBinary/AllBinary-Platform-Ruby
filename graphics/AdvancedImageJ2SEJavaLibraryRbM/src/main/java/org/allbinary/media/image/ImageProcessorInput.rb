@@ -17,18 +17,20 @@
 # require "java/awt/image/BufferedImage"
 # require "java/io/File"
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageProcessorInput
     attr_accessor :bufferedImageArray, :files
 
-    def initialize_fields
-        @bufferedImageArray = nil
-        @files = nil
+    def jfields_org_allbinary_media_image_ImageProcessorInput
+        @bufferedImageArray = nil unless instance_variable_defined?(:@bufferedImageArray)
+        @files = nil unless instance_variable_defined?(:@files)
     end
     
 
     def initialize(files, bufferedImageArray)
         super()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageProcessorInput
         @bufferedImageArray = bufferedImageArray
         @files = files
     end
@@ -43,4 +45,6 @@ class ImageProcessorInput
         return @files
     end
 end
+
+end; end; end; end
 

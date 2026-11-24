@@ -14,14 +14,16 @@
 # frozen_string_literal: false
 # package views.admin.inventory
 
-# require "java/io/ByteArrayInputStream"
+require "java/lang/JavaClass"
+
+module ::Views; module Admin; module Inventory
 
 class InventoryUploadMediaUtil
     attr_accessor :logUtil, :mediaUtil, :LARGEWIDTH, :LARGEHEIGHT, :MEDIUMWIDTH, :MEDIUMHEIGHT, :SMALLWIDTH, :SMALLHEIGHT, :SMALL, :MEDIUM, :LARGE, :storeFrontInterface, :itemInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @mediaUtil = MediaUtil.getInstance()
+    def jfields_views_admin_inventory_InventoryUploadMediaUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @mediaUtil = ::Org::Allbinary::Logic::Visual::Media::MediaUtil.getInstance()
         @LARGEWIDTH = 1024
         @LARGEHEIGHT = 1024
         @MEDIUMWIDTH = 256
@@ -31,13 +33,13 @@ class InventoryUploadMediaUtil
         @SMALL = "Small"
         @MEDIUM = "Medium"
         @LARGE = "Large"
-        @storeFrontInterface = nil
-        @itemInterface = nil
+        @storeFrontInterface = nil unless instance_variable_defined?(:@storeFrontInterface)
+        @itemInterface = nil unless instance_variable_defined?(:@itemInterface)
     end
     
 
     def initialize(storeFrontInterface, itemInterface)
-        initialize_fields
+        jfields_views_admin_inventory_InventoryUploadMediaUtil
         @storeFrontInterface = storeFrontInterface
         @itemInterface = itemInterface
     end
@@ -45,36 +47,36 @@ class InventoryUploadMediaUtil
 
     # throws Exception
     def saveFiles(byteArray, fileName, mediaData)
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().CATEGORY)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().CATEGORY)
             @logUtil.putF("Start FileName: " + fileName, self, "saveFiles()")
         end
-        if StringValidationUtil.getInstance().isEmpty(fileName)
+        if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(fileName)
             raise StandardError.new("Image File Name Was Null")
         end
-        fileUtil = FileUtil.getInstance()
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(URLGLOBALS.getWebappPath())
+        fileUtil = ::Org::Allbinary::Logic::Io::FilePackage::FileUtil.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(::Org::Allbinary::Globals::URLGLOBALS.getWebappPath())
         stringBuffer.append(@storeFrontInterface.getCurrentHostNamePath())
         stringBuffer.append(@itemInterface.getCategory())
         fullPath = stringBuffer.to_s
-        imageDirectoryFile = AbFile.createAbFile(fullPath)
+        imageDirectoryFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(fullPath)
         if !imageDirectoryFile.isDirectory()
             raise StandardError.new("Unable to save file to non existant directory")
         end
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(fullPath)
         stringBuffer.append(fileName)
-        stringBuffer.append(AbPathData.getInstance().EXTENSION_SEP)
+        stringBuffer.append(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP)
         stringBuffer.append(mediaData.getName())
-        originalImageFile = AbFile.createAbFile(stringBuffer.to_s)
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().CATEGORY)
+        originalImageFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(stringBuffer.to_s)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().CATEGORY)
             @logUtil.putF("Saving Original Image: " + (originalImageFile).to_s, self, "saveFiles()")
         end
         originalImageFile.createNewFile()
-        fileUtil.write(ByteArrayInputStream.new(byteArray), originalImageFile)
-        uploadMedia = UploadMediaSingleton.getInstance()
+        fileUtil.write(::Java::Io::ByteArrayInputStream.new(byteArray), originalImageFile)
+        uploadMedia = ::Org::Allbinary::Logic::Communication::Http::FilePackage::Upload::Media::UploadMediaSingleton.getInstance()
         isMediaSupported = uploadMedia.isWriterSupported(mediaData.getName()) || uploadMedia.isReaderSupported(mediaData.getName())
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().CATEGORY)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().CATEGORY)
             stringBuffer.delete(0, stringBuffer.length())
             stringBuffer.append("Is Image Type: ")
             stringBuffer.append(mediaData.getName())
@@ -82,11 +84,11 @@ class InventoryUploadMediaUtil
             stringBuffer.appendboolean(isMediaSupported)
             @logUtil.putF(stringBuffer.to_s, self, "saveFiles()")
         end
-        defaultMediaData = MediaData.getDefault()
+        defaultMediaData = ::Org::Allbinary::Logic::Visual::Media::MediaData.getDefault()
         self.setFileNames(fileName)
         if isMediaSupported
-            isMediaResizable = uploadMedia.isWriterMedia(mediaData.getName(), MediaTypeData.getInstance().RESIZABLE_MEDIA)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().CATEGORY)
+            isMediaResizable = uploadMedia.isWriterMedia(mediaData.getName(), ::Org::Allbinary::Logic::Visual::Media::MediaTypeData.getInstance().RESIZABLE_MEDIA)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().CATEGORY)
                 stringBuffer.delete(0, stringBuffer.length())
                 stringBuffer.append("Is ")
                 stringBuffer.append(mediaData.to_s)
@@ -97,7 +99,7 @@ class InventoryUploadMediaUtil
                 @logUtil.putF(stringBuffer.to_s, self, "saveFiles()")
             end
             if isMediaResizable
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().CATEGORY)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().CATEGORY)
                     @logUtil.putF("Saving Small Image: " + (@itemInterface.getSmallImage()).to_s, self, "saveFiles()")
                 end
                 @mediaUtil.saveImageFile(originalImageFile, @itemInterface.getSmallImage(), fullPath, mediaData, @SMALLWIDTH, @SMALLHEIGHT)
@@ -105,7 +107,7 @@ class InventoryUploadMediaUtil
                 @mediaUtil.saveImageFile(originalImageFile, @itemInterface.getLargeImage(), fullPath, mediaData, @LARGEWIDTH, @LARGEHEIGHT)
             else
                 isConvertable = mediaData.isConvertableTo(defaultMediaData)
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().CATEGORY)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().CATEGORY)
                     stringBuffer.delete(0, stringBuffer.length())
                     stringBuffer.append("Converting: ")
                     stringBuffer.append(defaultMediaData.getName())
@@ -116,27 +118,27 @@ class InventoryUploadMediaUtil
                     @logUtil.putF(stringBuffer.to_s, self, "saveFiles()")
                 end
                 if isConvertable
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().CATEGORY)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().CATEGORY)
                         @logUtil.putF("Saving Small Image: " + (@itemInterface.getSmallImage()).to_s, self, "saveFiles()")
                     end
                     @mediaUtil.saveImageFile(originalImageFile, @itemInterface.getSmallImage(), fullPath, defaultMediaData, @SMALLWIDTH, @SMALLHEIGHT)
                     @mediaUtil.saveImageFile(originalImageFile, @itemInterface.getMediumImage(), fullPath, defaultMediaData, @MEDIUMWIDTH, @MEDIUMHEIGHT)
                     @mediaUtil.saveImageFile(originalImageFile, @itemInterface.getLargeImage(), fullPath, defaultMediaData, @LARGEWIDTH, @LARGEHEIGHT)
                 else
-                    smallImageFile = AbFile.createAbFile(@itemInterface.getSmallImage())
+                    smallImageFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(@itemInterface.getSmallImage())
                     smallImageFile.createNewFile()
-                    fileUtil.write(ByteArrayInputStream.new(byteArray), smallImageFile)
-                    mediumImageFile = AbFile.createAbFile(@itemInterface.getMediumImage())
+                    fileUtil.write(::Java::Io::ByteArrayInputStream.new(byteArray), smallImageFile)
+                    mediumImageFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(@itemInterface.getMediumImage())
                     smallImageFile.createNewFile()
-                    fileUtil.write(ByteArrayInputStream.new(byteArray), mediumImageFile)
-                    largeImageFile = AbFile.createAbFile(@itemInterface.getSmallImage())
+                    fileUtil.write(::Java::Io::ByteArrayInputStream.new(byteArray), mediumImageFile)
+                    largeImageFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(@itemInterface.getSmallImage())
                     largeImageFile.createNewFile()
-                    fileUtil.write(ByteArrayInputStream.new(byteArray), largeImageFile)
+                    fileUtil.write(::Java::Io::ByteArrayInputStream.new(byteArray), largeImageFile)
                 end
             end
         end
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().CATEGORY)
-            commonStrings = CommonStrings.getInstance()
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().CATEGORY)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.putF(commonStrings.END_, self, "saveFiles()")
         end
         return @itemInterface
@@ -144,10 +146,10 @@ class InventoryUploadMediaUtil
     
 
     def setFileNames(fileName)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@itemInterface.getId())
-        stringBuffer.append(AbPathData.getInstance().EXTENSION_SEP)
-        stringBuffer.append(MediaData.getDefault().getName())
+        stringBuffer.append(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP)
+        stringBuffer.append(::Org::Allbinary::Logic::Visual::Media::MediaData.getDefault().getName())
         _END_ = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(fileName)
@@ -170,18 +172,23 @@ class InventoryUploadMediaUtil
     end
 end
 
-autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
-autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
-autoload :UploadMediaSingleton, "org/allbinary/logic/communication/http/file/upload/media/UploadMediaSingleton"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :FileUtil, "org/allbinary/logic/io/file/FileUtil"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :MediaData, "org/allbinary/logic/visual/media/MediaData"
-autoload :MediaTypeData, "org/allbinary/logic/visual/media/MediaTypeData"
-autoload :MediaUtil, "org/allbinary/logic/visual/media/MediaUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Java; module Io; autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream" unless const_defined?(:ByteArrayInputStream, false); end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface" unless const_defined?(:StoreFrontInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface" unless const_defined?(:ItemInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module FilePackage; module Upload; module Media; autoload :UploadMediaSingleton, "org/allbinary/logic/communication/http/file/upload/media/UploadMediaSingleton" unless const_defined?(:UploadMediaSingleton, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FileUtil, "org/allbinary/logic/io/file/FileUtil" unless const_defined?(:FileUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Media; autoload :MediaData, "org/allbinary/logic/visual/media/MediaData" unless const_defined?(:MediaData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Media; autoload :MediaTypeData, "org/allbinary/logic/visual/media/MediaTypeData" unless const_defined?(:MediaTypeData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Media; autoload :MediaUtil, "org/allbinary/logic/visual/media/MediaUtil" unless const_defined?(:MediaUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end
 

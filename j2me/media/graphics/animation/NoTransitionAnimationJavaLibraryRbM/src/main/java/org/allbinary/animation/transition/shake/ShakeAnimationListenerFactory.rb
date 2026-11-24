@@ -15,6 +15,8 @@
 # package org.allbinary.animation.transition.shake
 
 
+module ::Org; module Allbinary; module Animation; module Transition; module Shake
+
 class ShakeAnimationListenerFactory
     
 
@@ -23,6 +25,8 @@ class ShakeAnimationListenerFactory
     end
 end
 
-autoload :NoShakeAnimationListener, "org/allbinary/animation/transition/shake/NoShakeAnimationListener"
-autoload :ShakeAnimationListener, "org/allbinary/animation/transition/shake/ShakeAnimationListener"
+autoload :NoShakeAnimationListener, "org/allbinary/animation/transition/shake/NoShakeAnimationListener" unless const_defined?(:NoShakeAnimationListener, false)
+autoload :ShakeAnimationListener, "org/allbinary/animation/transition/shake/ShakeAnimationListener" unless const_defined?(:ShakeAnimationListener, false)
+
+end; end; end; end; end
 

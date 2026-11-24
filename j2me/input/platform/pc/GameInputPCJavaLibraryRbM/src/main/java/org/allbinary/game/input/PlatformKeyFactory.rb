@@ -15,11 +15,13 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class PlatformKeyFactory
     
 
     def self.getInstance()
-        if PlatformKeyFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if PlatformKeyFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             PlatformKeyFactory.instance = PlatformKeyFactory.new()
         end
         return PlatformKeyFactory.instance
@@ -84,7 +86,7 @@ class PlatformKeyFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -101,14 +103,16 @@ class PlatformKeyFactory
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :PCGameKey, "org/allbinary/game/input/PCGameKey"
-autoload :PCKeyFactory, "org/allbinary/game/input/PCKeyFactory"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false)
+autoload :PCGameKey, "org/allbinary/game/input/PCGameKey" unless const_defined?(:PCGameKey, false)
+autoload :PCKeyFactory, "org/allbinary/game/input/PCKeyFactory" unless const_defined?(:PCKeyFactory, false)
 
 begin
     PlatformKeyFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

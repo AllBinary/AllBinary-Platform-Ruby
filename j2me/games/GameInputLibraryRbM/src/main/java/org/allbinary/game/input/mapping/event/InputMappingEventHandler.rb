@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.mapping.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class InputMappingEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Input; module Mapping; module Event
+
+class InputMappingEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def initialize()
@@ -34,6 +37,7 @@ class InputMappingEventHandler < BasicEventHandler
         inputMappingEventListenerInterface = eventListenerInterface
         inputMappingEventListenerInterface.onInputMappingEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.gameKeyEventHandler()
         InputMappingEventHandler.java_static_fields unless @java_static_fields_started
@@ -66,14 +70,16 @@ class InputMappingEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
-autoload :InputMappingEventListenerInterface, "org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent" unless const_defined?(:InputMappingEvent, false)
+autoload :InputMappingEventListenerInterface, "org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface" unless const_defined?(:InputMappingEventListenerInterface, false)
 
 begin
     InputMappingEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

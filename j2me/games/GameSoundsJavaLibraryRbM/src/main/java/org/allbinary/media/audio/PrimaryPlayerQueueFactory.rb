@@ -15,6 +15,8 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 class PrimaryPlayerQueueFactory
     
 
@@ -43,11 +45,13 @@ class PrimaryPlayerQueueFactory
     end
 end
 
-autoload :PlayerQueue, "org/allbinary/media/audio/PlayerQueue"
+autoload :PlayerQueue, "org/allbinary/media/audio/PlayerQueue" unless const_defined?(:PlayerQueue, false)
 
 begin
     PrimaryPlayerQueueFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

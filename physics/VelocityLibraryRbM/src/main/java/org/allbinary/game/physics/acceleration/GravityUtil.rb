@@ -15,16 +15,18 @@
 # package org.allbinary.game.physics.acceleration
 
 
+module ::Org; module Allbinary; module Game; module Physics; module Acceleration
+
 class GravityUtil
     attr_accessor :GAME_GRAVITY_VELOCITY, :MAX_GAME_VELOCITY
 
-    def initialize_fields
+    def jfields_org_allbinary_game_physics_acceleration_GravityUtil
         @GAME_GRAVITY_VELOCITY = 1800
         @MAX_GAME_VELOCITY = 18000
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_physics_acceleration_GravityUtil
     end
     
 
@@ -68,11 +70,13 @@ class GravityUtil
     end
 end
 
-autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties" unless const_defined?(:BasicVelocityProperties, false); end; end; end; end; end
 
 begin
     GravityUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

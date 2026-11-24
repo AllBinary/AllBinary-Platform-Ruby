@@ -15,6 +15,8 @@
 # package org.allbinary.game.score.remote
 
 
+module ::Org; module Allbinary; module Game; module Score; module Remote
+
 class RemoteHighScoresSubmissionProcessorFactory
     
 
@@ -43,12 +45,14 @@ class RemoteHighScoresSubmissionProcessorFactory
     end
 end
 
-autoload :RemoteHighScoresSubmissionProcessor, "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessor"
-autoload :RemoteHighScoresSubmissionProcessorInterface, "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessorInterface"
+autoload :RemoteHighScoresSubmissionProcessor, "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessor" unless const_defined?(:RemoteHighScoresSubmissionProcessor, false)
+autoload :RemoteHighScoresSubmissionProcessorInterface, "org/allbinary/game/score/remote/RemoteHighScoresSubmissionProcessorInterface" unless const_defined?(:RemoteHighScoresSubmissionProcessorInterface, false)
 
 begin
     RemoteHighScoresSubmissionProcessorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

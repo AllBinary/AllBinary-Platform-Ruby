@@ -15,6 +15,8 @@
 # package org.allbinary.time
 
 
+module ::Org; module Allbinary; module TimePackage
+
 class GameTickTimeDelayHelperFactory
     
 
@@ -57,11 +59,13 @@ class GameTickTimeDelayHelperFactory
     end
 end
 
-autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
+autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper" unless const_defined?(:GameTickTimeDelayHelper, false)
 
 begin
     GameTickTimeDelayHelperFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

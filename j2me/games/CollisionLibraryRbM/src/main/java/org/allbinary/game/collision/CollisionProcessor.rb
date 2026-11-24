@@ -3,6 +3,8 @@
 # package org.allbinary.game.collision
 
 
+module ::Org; module Allbinary; module Game; module Collision
+
 class CollisionProcessor
     
 
@@ -11,5 +13,7 @@ class CollisionProcessor
     end
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+
+end; end; end; end
 

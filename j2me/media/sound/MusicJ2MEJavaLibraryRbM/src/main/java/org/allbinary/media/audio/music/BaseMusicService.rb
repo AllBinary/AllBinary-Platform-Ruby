@@ -15,6 +15,10 @@
 # package org.allbinary.media.audio.music
 
 
+module ::Org; module Allbinary; module Media; module Audio; module Music
+
 class BaseMusicService
 end
+
+end; end; end; end; end
 

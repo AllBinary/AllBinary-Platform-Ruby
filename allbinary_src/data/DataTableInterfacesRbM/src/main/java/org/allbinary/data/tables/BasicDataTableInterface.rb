@@ -15,16 +15,22 @@
 # package org.allbinary.data.tables
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables
+
 module BasicDataTableInterface
     
 
     def createTable()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def dropTable()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

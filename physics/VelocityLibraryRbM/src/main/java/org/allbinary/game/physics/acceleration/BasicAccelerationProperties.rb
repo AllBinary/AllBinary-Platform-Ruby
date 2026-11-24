@@ -15,17 +15,19 @@
 # package org.allbinary.game.physics.acceleration
 
 
+module ::Org; module Allbinary; module Game; module Physics; module Acceleration
+
 class BasicAccelerationProperties
     attr_accessor :forward, :reverse
 
-    def initialize_fields
-        @forward = 0
-        @reverse = 0
+    def jfields_org_allbinary_game_physics_acceleration_BasicAccelerationProperties
+        @forward = 0 unless instance_variable_defined?(:@forward)
+        @reverse = 0 unless instance_variable_defined?(:@reverse)
     end
     
 
     def initialize(forward, reverse)
-        initialize_fields
+        jfields_org_allbinary_game_physics_acceleration_BasicAccelerationProperties
         self.setForward(forward)
         self.setReverse(reverse)
     end
@@ -50,4 +52,6 @@ class BasicAccelerationProperties
         return @forward
     end
 end
+
+end; end; end; end; end
 

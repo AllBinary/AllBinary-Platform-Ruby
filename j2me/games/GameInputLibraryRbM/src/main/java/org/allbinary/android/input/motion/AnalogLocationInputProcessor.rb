@@ -15,6 +15,8 @@
 # package org.allbinary.android.input.motion
 
 
+module ::Org; module Allbinary; module Android; module Input; module Motion
+
 class AnalogLocationInputProcessor
     
 
@@ -22,6 +24,8 @@ class AnalogLocationInputProcessor
     end
 end
 
-autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Game; module Input; module Analog; autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput" unless const_defined?(:AnalogLocationInput, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end; end; end
 

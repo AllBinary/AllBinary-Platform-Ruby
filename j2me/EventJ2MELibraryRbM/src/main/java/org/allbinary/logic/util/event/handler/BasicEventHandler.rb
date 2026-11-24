@@ -14,33 +14,37 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.event.handler
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 require "org/allbinary/logic/util/event/handler/BasicEventHandlerInterface"
 
+module ::Org; module Allbinary; module Logic; module Util; module Event; module Handler
+
 class BasicEventHandler
     include BasicEventHandlerInterface
     attr_accessor :logUtil, :commonStrings, :eventStrings, :eventListenerInterfaceList
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @eventStrings = EventStrings.getInstance()
-        @eventListenerInterfaceList = nil
+    def jfields_org_allbinary_logic_util_event_handler_BasicEventHandler
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @eventStrings = ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance()
+        @eventListenerInterfaceList = nil unless instance_variable_defined?(:@eventListenerInterfaceList)
     end
     
 
     def initialize()
-        initialize_fields
-        @eventListenerInterfaceList = BasicArrayListD.new()
+        jfields_org_allbinary_logic_util_event_handler_BasicEventHandler
+        @eventListenerInterfaceList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def removeAllListeners()
-        @eventListenerInterfaceList = BasicArrayListD.new()
+        @eventListenerInterfaceList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
+    java_overload :removeAllListeners, 0
     
 
     def addListeners(vector)
@@ -51,6 +55,7 @@ class BasicEventHandler
             self.addListenerInterface(eventListenerInterface)
         end
     end
+    java_overload :addListeners, 1
     
 
     def removeListeners(vector)
@@ -61,6 +66,7 @@ class BasicEventHandler
             self.removeListener(eventListenerInterface)
         end
     end
+    java_overload :removeListeners, 1
     
 
     def addListenerSingleThreaded(eventListenerInterface)
@@ -68,6 +74,7 @@ class BasicEventHandler
             @eventListenerInterfaceList.add(eventListenerInterface)
         end
     end
+    java_overload :addListenerSingleThreaded, 1
     
 
     def addListenerInterface(eventListenerInterface)
@@ -75,16 +82,19 @@ class BasicEventHandler
             @eventListenerInterfaceList.add(eventListenerInterface)
         end
     end
+    java_overload :addListenerInterface, 1
     
 
     def removeListenerSingleThreaded(eventListenerInterface)
         @eventListenerInterfaceList.remove(eventListenerInterface)
     end
+    java_overload :removeListenerSingleThreaded, 1
     
 
     def removeListener(eventListenerInterface)
         @eventListenerInterfaceList.remove(eventListenerInterface)
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -101,21 +111,24 @@ class BasicEventHandler
             index += 1
         end
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
     def process(eventObject, eventListenerInterface)
         eventListenerInterface.onEvent(eventObject)
     end
+    java_overload :process, 2
     
 
     def getEventListenerInterfaceListP()
         return @eventListenerInterfaceList
     end
+    java_overload :getEventListenerInterfaceListP, 0
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@eventStrings.TOTAL_LISTENERS)
         stringBuffer.appendint(@eventListenerInterfaceList.size())
         eventListenerInterface = nil
@@ -132,15 +145,18 @@ class BasicEventHandler
         end
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end; end; end
 

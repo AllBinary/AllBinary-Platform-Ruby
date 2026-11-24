@@ -15,6 +15,8 @@
 # package org.allbinary
 
 
+module ::Org; module Allbinary
+
 #import org.allbinary.logic.communication.log.PreLogUtil;
 class AppletUtil
     
@@ -68,4 +70,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end
 

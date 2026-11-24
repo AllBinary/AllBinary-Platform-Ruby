@@ -14,7 +14,6 @@
 # frozen_string_literal: false
 # package org.allbinary.dom
 
-# require "java/io/ByteArrayOutputStream"
 # require "java/io/File"
 # require "javax/xml/parsers/DocumentBuilder"
 # require "javax/xml/parsers/DocumentBuilderFactory"
@@ -23,11 +22,13 @@
 # require "javax/xml/transform/dom/DOMSource"
 # require "javax/xml/transform/stream/StreamResult"
 
+module ::Org; module Allbinary; module Dom
+
 class DomHelper
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_dom_DomHelper
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -37,11 +38,11 @@ class DomHelper
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_dom_DomHelper
     end
     
 
-    def createDocument()
+    def createDocument_j0()
         begin
             factory = DocumentBuilderFactory.newInstance()
             builder = factory.newDocumentBuilder()
@@ -54,8 +55,7 @@ class DomHelper
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def createDocument(xmlFile)
+    def createDocument_j1(xmlFile)
         begin
             factory = DocumentBuilderFactory.newInstance()
             builder = factory.newDocumentBuilder()
@@ -65,13 +65,19 @@ class DomHelper
             raise e
         end
     end
+
+    def createDocument(*java_overload_args)
+        return createDocument_j0(*java_overload_args) if java_overload_args.length == 0
+        return createDocument_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method createDocument takes #{java_overload_args.length} arguments"
+    end
     
 
     # throws Exception
     def toString(document)
         begin
             domSource = DOMSource.new(document)
-            byteArrayOutputStream = ByteArrayOutputStream.new()
+            byteArrayOutputStream = ::Java::Io::ByteArrayOutputStream.new()
             streamResult = StreamResult.new(byteArrayOutputStream)
             copyTransformerFactory = TransformerFactory.newInstance()
             copyTransformer = copyTransformerFactory.newTransformer()
@@ -113,12 +119,12 @@ class DomHelper
 
     # throws Exception
     def getChildrenWithoutTextNodes(nodeName, nodeList)
-        list = BasicArrayListD.new()
+        list = ::Org::Allbinary::Util::BasicArrayListD.new()
         childNodeList = self.getChildNodeList(nodeName, nodeList)
         numberOfChildren = childNodeList.getLength()
         (0...numberOfChildren).each do |index|
             node = childNodeList.item(index)
-            if node.getNodeType() != Node::TEXT_NODE
+            if node.getNodeType() != ::Org::W3c::Dom::Node::TEXT_NODE
                 list.add(node)
             end
         end
@@ -128,11 +134,11 @@ class DomHelper
 
     # throws Exception
     def getWithoutTextNodes(nodeList)
-        list = BasicArrayListD.new()
+        list = ::Org::Allbinary::Util::BasicArrayListD.new()
         numberOfChildren = nodeList.getLength()
         (0...numberOfChildren).each do |index|
             node = nodeList.item(index)
-            if node.getNodeType() != Node::TEXT_NODE
+            if node.getNodeType() != ::Org::W3c::Dom::Node::TEXT_NODE
                 list.add(node)
             end
         end
@@ -141,7 +147,7 @@ class DomHelper
     
 
     # throws Exception
-    def searchNodeList(nodeName, nodeList)
+    def searchNodeList_j2_1(nodeName, nodeList)
         numberOfNodes = nodeList.getLength()
         (0...numberOfNodes).each do |index|
             node = nodeList.item(index)
@@ -155,8 +161,7 @@ class DomHelper
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def searchNodeList(nodeName, nodeList)
+    def searchNodeList_j2_2(nodeName, nodeList)
         numberOfNodes = nodeList.size()
         (0...numberOfNodes).each do |index|
             node = nodeList.get(index)
@@ -168,23 +173,60 @@ class DomHelper
         raise StandardError.new(nodeName + " Node Not Found in search")
     end
 
+    def searchNodeList(*java_overload_args)
+        return searchNodeList_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method searchNodeList takes #{java_overload_args.length} arguments"
+    end
+
+    def searchNodeList_j2(*java_overload_args)
+        return searchNodeList_j2_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::String)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::Org::W3c::Dom::NodeList))
+        return searchNodeList_j2_2(*java_overload_args)
+    end
+
     def self.instance()
+        DomHelper.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        DomHelper.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = DomHelper.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DomHelper"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :NodeList, "org/w3c/dom/NodeList" unless const_defined?(:NodeList, false); end; end; end
 
-class DomHelper
-    @@instance = DomHelper.new()
+begin
+    DomHelper.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

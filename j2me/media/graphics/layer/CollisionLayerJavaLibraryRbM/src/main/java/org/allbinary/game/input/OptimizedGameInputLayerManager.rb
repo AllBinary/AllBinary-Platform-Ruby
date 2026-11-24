@@ -14,15 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerManager"
 
-class OptimizedGameInputLayerManager < LayerManager
+module ::Org; module Allbinary; module Game; module Input
+
+class OptimizedGameInputLayerManager < ::Org::Allbinary::Layer::LayerManager
     
 
     def initialize()
-        super(LayerManagerNoDebug.getInstance())
+        super(::Org::Allbinary::Layer::LayerManagerNoDebug.getInstance())
     end
 end
 
-autoload :LayerManagerNoDebug, "org/allbinary/layer/LayerManagerNoDebug"
+module ::Org; module Allbinary; module Layer; autoload :LayerManagerNoDebug, "org/allbinary/layer/LayerManagerNoDebug" unless const_defined?(:LayerManagerNoDebug, false); end; end; end
+
+end; end; end; end
 

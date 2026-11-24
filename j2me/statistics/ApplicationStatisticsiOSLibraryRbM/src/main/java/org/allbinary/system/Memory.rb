@@ -15,12 +15,14 @@
 # package org.allbinary.system
 
 
+module ::Org; module Allbinary; module System
+
 #ActualPlatform
 class Memory
     
 
     def self.getInfo()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Memory: Free: ")
         stringBuffer.append(Runtime.getRuntime().freeMemory())
         stringBuffer.append(" Total: ")
@@ -29,5 +31,7 @@ class Memory
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end
 

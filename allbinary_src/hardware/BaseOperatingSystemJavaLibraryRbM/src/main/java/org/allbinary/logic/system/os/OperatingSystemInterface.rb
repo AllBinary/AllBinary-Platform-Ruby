@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.os
 
 
+module ::Org; module Allbinary; module Logic; module System; module Os
+
 module OperatingSystemInterface
     
 
@@ -79,5 +81,7 @@ module OperatingSystemInterface
     alias_method :to_s, :toString
 end
 
-autoload :CharacterSet, "org/allbinary/logic/java/character/CharacterSet"
+module ::Org; module Allbinary; module Logic; module Java; module Character; autoload :CharacterSet, "org/allbinary/logic/java/character/CharacterSet" unless const_defined?(:CharacterSet, false); end; end; end; end; end
+
+end; end; end; end; end
 

@@ -14,33 +14,37 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io.file.directory
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/io/file/visitor/IncludeFileExtensionsBooleanFileVisitor"
 
-class DirectoryOrIncludeFileExtensionBooleanFileVisitor < IncludeFileExtensionsBooleanFileVisitor
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory
+
+class DirectoryOrIncludeFileExtensionBooleanFileVisitor < ::Org::Allbinary::Logic::Io::FilePackage::Visitor::IncludeFileExtensionsBooleanFileVisitor
     attr_accessor :includesString
 
-    def initialize_fields
-        @includesString = nil
+    def jfields_org_allbinary_logic_io_file_directory_DirectoryOrIncludeFileExtensionBooleanFileVisitor
+        @includesString = nil unless instance_variable_defined?(:@includesString)
     end
 
     def initialize(*args)
         case args.length
-        when 1 then constructor1(*args)
-        when 2 then constructor2(*args)
+        when 1 then jnew_org_allbinary_logic_io_file_directory_DirectoryOrIncludeFileExtensionBooleanFileVisitor_1(*args)
+        when 2 then jnew_org_allbinary_logic_io_file_directory_DirectoryOrIncludeFileExtensionBooleanFileVisitor_2(*args)
+        else raise ArgumentError, "No constructor of DirectoryOrIncludeFileExtensionBooleanFileVisitor takes #{args.length} arguments"
         end
     end
     
 
-    def constructor1(filterStringBasicArrayList)
-        method(:initialize).super_method.call(filterStringBasicArrayList)
-        initialize_fields
+    def jnew_org_allbinary_logic_io_file_directory_DirectoryOrIncludeFileExtensionBooleanFileVisitor_1(filterStringBasicArrayList)
+        DirectoryOrIncludeFileExtensionBooleanFileVisitor.superclass.instance_method(:initialize).bind(self).call(filterStringBasicArrayList)
+        jfields_org_allbinary_logic_io_file_directory_DirectoryOrIncludeFileExtensionBooleanFileVisitor
         @includesString = nil
     end
     
 
-    def constructor2(filterStringBasicArrayList, includesString)
-        method(:initialize).super_method.call(filterStringBasicArrayList)
-        initialize_fields
+    def jnew_org_allbinary_logic_io_file_directory_DirectoryOrIncludeFileExtensionBooleanFileVisitor_2(filterStringBasicArrayList, includesString)
+        DirectoryOrIncludeFileExtensionBooleanFileVisitor.superclass.instance_method(:initialize).bind(self).call(filterStringBasicArrayList)
+        jfields_org_allbinary_logic_io_file_directory_DirectoryOrIncludeFileExtensionBooleanFileVisitor
         @includesString = includesString
     end
     
@@ -50,13 +54,16 @@ class DirectoryOrIncludeFileExtensionBooleanFileVisitor < IncludeFileExtensionsB
             return true
         end
         if @includesString == nil || file.getAbsolutePath().indexOf(@includesString) >= 0
-            return super(file)
+            return DirectoryOrIncludeFileExtensionBooleanFileVisitor.superclass.java_super_method(:visit, 1).bind(self).call(file)
         else
             return false
         end
     end
+    java_overload :visit, 1
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end; end; end
 

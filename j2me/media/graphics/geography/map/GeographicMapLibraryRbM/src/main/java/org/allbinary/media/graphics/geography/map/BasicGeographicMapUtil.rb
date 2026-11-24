@@ -15,15 +15,17 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 class BasicGeographicMapUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_graphics_geography_map_BasicGeographicMapUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_BasicGeographicMapUtil
     end
     
 
@@ -123,20 +125,46 @@ class BasicGeographicMapUtil
     end
 
     def self.instance()
+        BasicGeographicMapUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        BasicGeographicMapUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = BasicGeographicMapUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicGeographicMapUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/layer/Layer"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
+module ::Org; module Allbinary; module Layer; autoload :Layer, "org/allbinary/layer/Layer" unless const_defined?(:Layer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false)
+autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false)
 
-class BasicGeographicMapUtil
-    @@instance = BasicGeographicMapUtil.new()
+begin
+    BasicGeographicMapUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -14,23 +14,26 @@
 # frozen_string_literal: false
 # package tags
 
+require "java/lang/JavaOverload"
 # require "java/lang/reflect/Method"
 # require "javax/servlet/http/HttpServletRequest"
 # require "javax/servlet/jsp/JspTagException"
 require "tags/HelperTag"
 
+module ::Tags
+
 class ModifyTag < HelperTag
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_tags_ModifyTag
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize(tagHelperFactoryInterface)
         super(tagHelperFactoryInterface)
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+        jfields_tags_ModifyTag
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         end
     end
@@ -45,12 +48,13 @@ class ModifyTag < HelperTag
             return result
         rescue StandardError => e
             error = "Failed to insert"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "insert()", e)
             end
             return error
         end
     end
+    java_overload :insert, 0
     
 
     # throws LicensingException
@@ -62,12 +66,13 @@ class ModifyTag < HelperTag
             return result
         rescue StandardError => e
             error = "Failed to delete"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "delete()", e)
             end
             return error
         end
     end
+    java_overload :delete, 0
     
 
     # throws LicensingException
@@ -79,63 +84,69 @@ class ModifyTag < HelperTag
             return result
         rescue StandardError => e
             error = "Failed to update"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "update()", e)
             end
             return error
         end
     end
+    java_overload :update, 0
     
 
     # throws JspTagException
     def doStartTag()
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                 request = @pageContext.getRequest()
-                stringBuffer = StringMaker.new()
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Command: ")
                 stringBuffer.append(self.getCommand())
                 stringBuffer.append(" Request URI: ")
                 stringBuffer.append(request.getRequestURI())
                 @logUtil.putF(stringBuffer.to_s, self, @tagStrings.DO_START_TAG)
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
             end
             if self.getCommand() != nil
                 self.setHelper()
-                commonStrings = CommonStrings.getInstance()
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 if self.getCommand().compareTo(commonStrings.INSERT) == 0
                     output = self.insert()
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                         @pageContext.getOut().print(output + "<br />")
                     end
                 elsif self.getCommand().compareTo(commonStrings.DELETE) == 0
                     output = self.delete()
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                         @pageContext.getOut().print(output + "<br />")
                     end
                 elsif self.getCommand().compareTo(commonStrings.UPDATE) == 0
                     output = self.update()
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGEXTRAOUTPUT)
                         @pageContext.getOut().print(output + "<br />")
                     end
                 end
             end
             return @EVAL_BODY_INCLUDE
-        rescue LicensingException => e
-            AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
             return SKIP_BODY
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Admin; module Taghelpers; autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface" unless const_defined?(:TagHelperFactoryInterface, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end
 

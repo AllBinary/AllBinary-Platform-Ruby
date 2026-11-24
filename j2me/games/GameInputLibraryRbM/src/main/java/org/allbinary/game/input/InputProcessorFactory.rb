@@ -15,15 +15,17 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class InputProcessorFactory
     attr_accessor :inputProcessor
 
-    def initialize_fields
+    def jfields_org_allbinary_game_input_InputProcessorFactory
         @inputProcessor = InputProcessor.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_InputProcessorFactory
     end
     
 
@@ -67,11 +69,13 @@ class InputProcessorFactory
     end
 end
 
-autoload :InputProcessor, "org/allbinary/game/input/InputProcessor"
+autoload :InputProcessor, "org/allbinary/game/input/InputProcessor" unless const_defined?(:InputProcessor, false)
 
 begin
     InputProcessorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

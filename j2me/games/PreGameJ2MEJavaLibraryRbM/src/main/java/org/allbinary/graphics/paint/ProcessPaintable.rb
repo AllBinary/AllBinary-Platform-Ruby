@@ -14,12 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/Paintable"
+
+module ::Org; module Allbinary; module Graphics; module Paint
 
 class ProcessPaintable < Paintable
     
 
     def process()
     end
+    java_overload :process, 0
 end
+
+end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.business.user.commerce.money.payment.types
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
+
 class AuthorizationTypeFactory
     attr_accessor :NONE, :VOICE, :RETINAL, :IMAGE, :DNA, :PRINT, :CHIP
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_AuthorizationTypeFactory
         @NONE = AuthorizationType.new("None")
         @VOICE = AuthorizationType.new("Voice")
         @RETINAL = AuthorizationType.new("Retinal")
@@ -29,7 +31,7 @@ class AuthorizationTypeFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_types_AuthorizationTypeFactory
     end
     
 
@@ -68,11 +70,13 @@ class AuthorizationTypeFactory
     end
 end
 
-autoload :AuthorizationType, "org/allbinary/business/user/commerce/money/payment/types/AuthorizationType"
+autoload :AuthorizationType, "org/allbinary/business/user/commerce/money/payment/types/AuthorizationType" unless const_defined?(:AuthorizationType, false)
 
 begin
     AuthorizationTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

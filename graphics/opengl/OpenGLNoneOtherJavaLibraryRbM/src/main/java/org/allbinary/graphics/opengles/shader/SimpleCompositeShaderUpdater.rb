@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/opengles/shader/CompositeShaderUpdater"
+
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
 
 class SimpleCompositeShaderUpdater < CompositeShaderUpdater
     
@@ -23,4 +26,6 @@ class SimpleCompositeShaderUpdater < CompositeShaderUpdater
         super(uniformBlockArray, uniformArray, attributeArray, attributeHandleArray)
     end
 end
+
+end; end; end; end; end
 

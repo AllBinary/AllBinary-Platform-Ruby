@@ -14,11 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.generic.constraints
 
-# require "java/awt"
+require "java/lang/JavaOverload"
+# require "java/awt/Dimension"
+# require "java/awt/Rectangle"
 # require "java/awt/image/BufferedImage"
 require "org/allbinary/input/automation/module/MotionRectangleConstraints"
 
-class NoMotionRectangleConstraints < MotionRectangleConstraints
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Constraints
+
+class NoMotionRectangleConstraints < ::Org::Allbinary::Input::Automation::ModulePackage::MotionRectangleConstraints
     
 
     def initialize()
@@ -33,5 +37,8 @@ class NoMotionRectangleConstraints < MotionRectangleConstraints
     def isValid(frame, bufferedImage, rectangle)
         return true
     end
+    java_overload :isValid, 3
 end
+
+end; end; end; end; end; end; end
 

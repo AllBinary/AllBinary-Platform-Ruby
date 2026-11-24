@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.input.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class VirtualKeyboardEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Input; module Event
+
+class VirtualKeyboardEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     
 
     def initialize(anyType)
         super(anyType)
     end
 end
+
+end; end; end; end
 

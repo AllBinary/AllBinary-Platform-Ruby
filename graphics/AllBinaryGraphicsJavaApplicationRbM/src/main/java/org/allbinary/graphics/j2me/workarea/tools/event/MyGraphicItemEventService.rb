@@ -15,6 +15,9 @@
 # package org.allbinary.graphics.j2me.workarea.tools.event
 
 require "java/lang/Object"
+# require "javax/swing/event/EventListenerList"
+
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; module Event
 
 class MyGraphicItemEventService
     
@@ -25,14 +28,14 @@ class MyGraphicItemEventService
 
     def self.addListener(listener)
         java_monitor.synchronize do
-        MyGraphicItemEventService.listenerList.add(listener.class, listener)
+        MyGraphicItemEventService.listenerList.add((listener.class), listener)
         end
     end
     
 
     def self.removeListener(listener)
         java_monitor.synchronize do
-        MyGraphicItemEventService.listenerList.remove(listener.class, listener)
+        MyGraphicItemEventService.listenerList.remove((listener.class), listener)
         end
     end
     
@@ -60,23 +63,50 @@ class MyGraphicItemEventService
     end
 
     def self.listenerList()
+        MyGraphicItemEventService.java_static_fields unless @java_static_fields_started
         return defined?(@@listenerList) ? @@listenerList : nil
     end
 
     def self.listenerList=(value)
+        MyGraphicItemEventService.java_static_fields unless @java_static_fields_started
         @@listenerList = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:DELETE, "delete")
+        const_set(:DESELECT, "deselect")
+        const_set(:SELECT, "select")
+        const_set(:DUPLICATE, "duplicate")
+        const_set(:ROTATE, "rotate")
+        begin
+            @@listenerList = EventListenerList.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MyGraphicItemEventService"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DELETE, :DESELECT, :SELECT, :DUPLICATE, :ROTATE].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEvent"
-require "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEventListener"
+module ::Java; module Util; autoload :EventListener, "java/util/EventListener" unless const_defined?(:EventListener, false); end; end
+autoload :MyGraphicItemEvent, "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEvent" unless const_defined?(:MyGraphicItemEvent, false)
+autoload :MyGraphicItemEventListener, "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEventListener" unless const_defined?(:MyGraphicItemEventListener, false)
 
-class MyGraphicItemEventService
-    @@listenerList = EventListenerList.new()
-    DELETE = "delete"
-    DESELECT = "deselect"
-    SELECT = "select"
-    DUPLICATE = "duplicate"
-    ROTATE = "rotate"
+begin
+    MyGraphicItemEventService.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

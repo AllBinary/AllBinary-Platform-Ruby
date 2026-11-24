@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/Layer"
+
+module ::Org; module Allbinary; module Layer
 
 class NullLayer < Layer
     
@@ -31,6 +34,7 @@ class NullLayer < Layer
 
     def paint(graphics)
     end
+    java_overload :paint, 1
 
     def self.instance()
         NullLayer.java_static_fields unless @java_static_fields_started
@@ -63,11 +67,13 @@ class NullLayer < Layer
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
 
 begin
     NullLayer.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

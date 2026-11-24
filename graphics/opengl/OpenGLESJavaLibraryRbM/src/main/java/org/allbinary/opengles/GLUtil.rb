@@ -19,15 +19,18 @@
 # require "java/nio/ByteOrder"
 # require "java/nio/FloatBuffer"
 
-class GLUtil
-    attr_accessor :BYTES_PER_FLOAT
+module ::Org; module Allbinary; module Opengles
 
-    def initialize_fields
+class GLUtil
+    attr_accessor :BYTES_PER_FLOAT, :NULL_FLOAT_BUFFER
+
+    def jfields_org_allbinary_opengles_GLUtil
         @BYTES_PER_FLOAT = 4
+        @NULL_FLOAT_BUFFER = ByteBuffer.allocateDirect(0).asFloatBuffer()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_opengles_GLUtil
     end
     
 
@@ -68,7 +71,7 @@ class GLUtil
         unsigned = 0
         v = 0.0
         while byteBuffer.hasRemaining()
-            unsigned = byteBuffer.get() & 0xFF
+            unsigned = (((byteBuffer.get()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })) & 0xFF
             v = ((unsigned).to_f) / 255.0
             buffer.put(v)
         end
@@ -99,15 +102,41 @@ class GLUtil
     end
 
     def self.instance()
+        GLUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GLUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GLUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GLUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class GLUtil
-    @@instance = GLUtil.new()
+begin
+    GLUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

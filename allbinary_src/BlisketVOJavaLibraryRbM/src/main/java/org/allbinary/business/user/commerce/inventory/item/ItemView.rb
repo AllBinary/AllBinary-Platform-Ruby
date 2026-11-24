@@ -16,17 +16,19 @@
 
 # require "java/util/Set"
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item
+
 class ItemView
     attr_accessor :itemInterface, :vector
 
-    def initialize_fields
-        @itemInterface = nil
-        @vector = nil
+    def jfields_org_allbinary_business_user_commerce_inventory_item_ItemView
+        @itemInterface = nil unless instance_variable_defined?(:@itemInterface)
+        @vector = nil unless instance_variable_defined?(:@vector)
     end
     
 
     def initialize(itemInterface, vector)
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_inventory_item_ItemView
         @itemInterface = itemInterface
         @vector = vector
     end
@@ -39,30 +41,32 @@ class ItemView
         node = document.createElement(ItemData::ITEM)
         basicItemView = BasicItemView.new(@itemInterface, @vector)
         node.appendChild(basicItemView.toXmlNode(document))
-        stringUtil = StringUtil.getInstance()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         nameArray = keySet.toArray()
         size = nameArray.length
         (0...size).each do |index|
             name = nameArray[index]
             value = hashMap.get(name)
             value = stringUtil.getNonNull(value)
-            node.appendChild(ModDomHelper.createNameValueNodes(document, name, value))
+            node.appendChild(::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, name, value))
         end
-        shippingAddressNode = document.createElement(StreetAddressData::NAME)
+        shippingAddressNode = document.createElement(::Org::Allbinary::Business::User::Address::StreetAddressData::NAME)
         shippingAddressNode.appendChild(@itemInterface.getShippingAddress().toXmlNode(document))
         return node
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData"
-autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :BasicItemView, "org/allbinary/business/user/commerce/inventory/item/BasicItemView"
-autoload :ItemData, "org/allbinary/business/user/commerce/inventory/item/ItemData"
-autoload :OrderItemInterface, "org/allbinary/business/user/commerce/inventory/item/OrderItemInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData" unless const_defined?(:StreetAddressData, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper" unless const_defined?(:ModDomHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :BasicItemView, "org/allbinary/business/user/commerce/inventory/item/BasicItemView" unless const_defined?(:BasicItemView, false)
+autoload :ItemData, "org/allbinary/business/user/commerce/inventory/item/ItemData" unless const_defined?(:ItemData, false)
+autoload :OrderItemInterface, "org/allbinary/business/user/commerce/inventory/item/OrderItemInterface" unless const_defined?(:OrderItemInterface, false)
+
+end; end; end; end; end; end; end
 

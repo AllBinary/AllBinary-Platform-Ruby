@@ -14,31 +14,39 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/direction/DirectionalInterface"
 require "org/allbinary/animation/IndexedAnimationInterface"
 
+module ::Org; module Allbinary; module Animation
+
 module RotationAnimationInterface
     include IndexedAnimationInterface
-    include DirectionalInterface
+    include ::Org::Allbinary::Direction::DirectionalInterface
     
 
     def getAngleInfoP()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getAngleInfoP, 0
     
 
     def nextRotation()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :nextRotation, 0
     
 
     def previousRotation()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :previousRotation, 0
 end
 
-autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+
+end; end; end
 

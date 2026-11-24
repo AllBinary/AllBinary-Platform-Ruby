@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/VectorAnimationFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class VectorAnimationFactory
     include VectorAnimationFactoryInterface
@@ -23,9 +26,12 @@ class VectorAnimationFactory
     def getInstance(points, basicColor)
         return VectorAnimation.new(points, basicColor, AnimationBehavior.getInstance())
     end
+    java_overload :getInstance, 2
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :VectorAnimation, "org/allbinary/animation/VectorAnimation"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false)
+autoload :VectorAnimation, "org/allbinary/animation/VectorAnimation" unless const_defined?(:VectorAnimation, false)
+
+end; end; end
 

@@ -14,32 +14,39 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.color
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class ColorChangeEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Graphics; module Color
+
+class ColorChangeEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     attr_accessor :basicColor
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_color_ColorChangeEvent
         @basicColor = BasicColorFactory.getInstance().WHITE
     end
     
 
     def initialize(anyType)
         super(anyType)
-        initialize_fields
+        jfields_org_allbinary_graphics_color_ColorChangeEvent
     end
     
 
     def setBasicColorP(basicColor)
         @basicColor = basicColor
     end
+    java_overload :setBasicColorP, 1
     
 
     def getBasicColorP()
         return @basicColor
     end
+    java_overload :getBasicColorP, 0
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false)
+
+end; end; end; end
 

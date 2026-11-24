@@ -2,34 +2,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics
 
+require "java/lang/JavaOverload"
 # require "java/io/IOException"
-# require "java/io/InputStream"
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/platform/graphics/PlatformBitmapBaseFactory"
 
-class OpenGLBitmapFactory < PlatformBitmapBaseFactory
+module ::Org; module Allbinary; module Graphics
+
+class OpenGLBitmapFactory < ::Org::Allbinary::Platform::Graphics::PlatformBitmapBaseFactory
     attr_accessor :ARGB_8888
-    class Config
-        attr_accessor :bitmapConfig
 
-        def initialize_fields
-            @bitmapConfig = nil
-        end
-        
-
-        def initialize(bitmapConfig)
-            initialize_fields
-            @bitmapConfig = bitmapConfig
-        end
-    end
-
-    def initialize_fields
-        @ARGB_8888 = Config.new(nil)
+    def jfields_org_allbinary_graphics_OpenGLBitmapFactory
+        @ARGB_8888 = OpenGLBitmapConfig.new(nil)
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_OpenGLBitmapFactory
     end
     
 
@@ -38,36 +26,71 @@ class OpenGLBitmapFactory < PlatformBitmapBaseFactory
     end
     
 
-    def createBitmap(width, height, config)
-        return OpenGLBitmap.new(Image.createImage(width, height))
+    def createBitmap_j3(width, height, config)
+        return OpenGLBitmap.new(::Javax::Microedition::Lcdui::Image.createImage(width, height))
     end
     
 
     # throws Exception
     def decodeStream(inputStream)
-        return OpenGLBitmap.new(ImageFactory.getInstance().createImageFromInputStream(inputStream))
+        return OpenGLBitmap.new(::Org::Allbinary::Image::ImageFactory.getInstance().createImageFromInputStream(inputStream))
     end
+    java_overload :decodeStream, 1
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def createBitmap(image)
+    def createBitmap_j1(image)
         return OpenGLBitmap.new(image)
     end
 
+    def createBitmap(*java_overload_args)
+        return createBitmap_j3(*java_overload_args) if java_overload_args.length == 3
+        return createBitmap_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method createBitmap takes #{java_overload_args.length} arguments"
+    end
+
     def self.instance()
+        OpenGLBitmapFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OpenGLBitmapFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = OpenGLBitmapFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OpenGLBitmapFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/image/ImageFactory"
-require "org/allbinary/platform/graphics/PlatformBitmapBase"
-require "org/allbinary/graphics/OpenGLBitmap"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :ImageFactory, "org/allbinary/image/ImageFactory" unless const_defined?(:ImageFactory, false); end; end; end
+module ::Org; module Allbinary; module Platform; module Graphics; autoload :PlatformBitmapBase, "org/allbinary/platform/graphics/PlatformBitmapBase" unless const_defined?(:PlatformBitmapBase, false); end; end; end; end
+autoload :OpenGLBitmap, "org/allbinary/graphics/OpenGLBitmap" unless const_defined?(:OpenGLBitmap, false)
+autoload :OpenGLBitmapConfig, "org/allbinary/graphics/OpenGLBitmapConfig" unless const_defined?(:OpenGLBitmapConfig, false)
 
-class OpenGLBitmapFactory
-    @@instance = OpenGLBitmapFactory.new()
+begin
+    OpenGLBitmapFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

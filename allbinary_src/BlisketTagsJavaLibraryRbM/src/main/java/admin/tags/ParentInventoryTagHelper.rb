@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/JavaClass"
 # require "javax/servlet/jsp/tagext/Tag"
+
+module ::Admin; module Tags
 
 class ParentInventoryTagHelper
     
@@ -28,13 +31,13 @@ class ParentInventoryTagHelper
     def isValid(tagClass, parentTag)
         if parentTag == nil
             raise StandardError.new("Must have parent tag.")
-        elsif !(parentTag.is_a?(HelperTag))
-            stringBuffer = StringMaker.new()
+        elsif !parentTag.is_a?(::Tags::HelperTag)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Must have at least a ")
             stringBuffer.append("tags.HelperTag")
             stringBuffer.append(" as parent")
             stringBuffer.append("and not: ")
-            stringBuffer.append(parentTag.class.name)
+            stringBuffer.append(parentTag.class.java_name)
             raise StandardError.new(stringBuffer.to_s)
         end
     end
@@ -70,11 +73,14 @@ class ParentInventoryTagHelper
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Tags; autoload :HelperTag, "tags/HelperTag" unless const_defined?(:HelperTag, false); end
 
 begin
     ParentInventoryTagHelper.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end
 

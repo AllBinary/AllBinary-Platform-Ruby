@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/input/HtmlLengthInput"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Input
 
 class HtmlPasswordInput < HtmlLengthInput
     
@@ -26,5 +29,7 @@ class HtmlPasswordInput < HtmlLengthInput
     end
 end
 
-autoload :HtmlInputData, "org/allbinary/logic/visual/dhtml/html/input/HtmlInputData"
+autoload :HtmlInputData, "org/allbinary/logic/visual/dhtml/html/input/HtmlInputData" unless const_defined?(:HtmlInputData, false)
+
+end; end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer.identification
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Identification
+
 module GroupItemArrayFactoryInterface
     
 
@@ -25,6 +27,8 @@ module GroupItemArrayFactoryInterface
     end
 end
 
-autoload :Group, "org/allbinary/game/identification/Group"
-autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
+module ::Org; module Allbinary; module Game; module Identification; autoload :Group, "org/allbinary/game/identification/Group" unless const_defined?(:Group, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false); end; end; end; end; end
+
+end; end; end; end; end
 

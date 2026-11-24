@@ -15,6 +15,10 @@
 # package org.allbinary.input.automation.module
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage
+
 module InputAutomationWorkerInterface
 end
+
+end; end; end; end; end
 

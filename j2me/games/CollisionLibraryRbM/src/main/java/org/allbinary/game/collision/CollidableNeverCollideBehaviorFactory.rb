@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/collision/CollidableBaseBehaviorFactory"
+
+module ::Org; module Allbinary; module Game; module Collision
 
 class CollidableNeverCollideBehaviorFactory < CollidableBaseBehaviorFactory
     attr_accessor :instance
 
-    def initialize_fields
+    def jfields_org_allbinary_game_collision_CollidableNeverCollideBehaviorFactory
         @instance = CollidableNeverCollideBehavior.new(false)
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_collision_CollidableNeverCollideBehaviorFactory
     end
     
 
@@ -37,6 +40,7 @@ class CollidableNeverCollideBehaviorFactory < CollidableBaseBehaviorFactory
     def createBehavior()
         return @instance
     end
+    java_overload :createBehavior, 0
 
     def self.instanceC()
         CollidableNeverCollideBehaviorFactory.java_static_fields unless @java_static_fields_started
@@ -69,12 +73,14 @@ class CollidableNeverCollideBehaviorFactory < CollidableBaseBehaviorFactory
     end
 end
 
-autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
-autoload :CollidableNeverCollideBehavior, "org/allbinary/game/collision/CollidableNeverCollideBehavior"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior" unless const_defined?(:CollidableBaseBehavior, false)
+autoload :CollidableNeverCollideBehavior, "org/allbinary/game/collision/CollidableNeverCollideBehavior" unless const_defined?(:CollidableNeverCollideBehavior, false)
 
 begin
     CollidableNeverCollideBehaviorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/AllBinaryVibrationME"
+
+module ::Org; module Allbinary; module Media
 
 class AllBinaryVibration < AllBinaryVibrationME
     
@@ -30,16 +33,17 @@ class AllBinaryVibration < AllBinaryVibrationME
     
 
     def self.init()
-        if GameConfigurationCentral.getInstance().VIBRATION.getValue().to_i == 0
-            (AllBinaryVibration.send(:remove_const, :VIBRATION) if AllBinaryVibration.const_defined?(:VIBRATION, false); AllBinaryVibration.const_set(:VIBRATION, AllBinaryNoVibration::NO_VIBRATION))
+        if ::Org::Allbinary::Game::Configuration::GameConfigurationCentral.getInstance().VIBRATION.getValue().to_i == 0
+            (AllBinaryVibration.instance_exec(AllBinaryNoVibration::NO_VIBRATION) { |java_value| remove_const(:VIBRATION) if const_defined?(:VIBRATION, false); const_set(:VIBRATION, java_value) })
         else
-            (AllBinaryVibration.send(:remove_const, :VIBRATION) if AllBinaryVibration.const_defined?(:VIBRATION, false); AllBinaryVibration.const_set(:VIBRATION, AllBinaryVibration.new()))
+            (AllBinaryVibration.instance_exec(AllBinaryVibration.new()) { |java_value| remove_const(:VIBRATION) if const_defined?(:VIBRATION, false); const_set(:VIBRATION, java_value) })
         end
     end
     
 
     def vibrate(duration, type, volume)
     end
+    java_overload :vibrate, 3
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -62,12 +66,14 @@ class AllBinaryVibration < AllBinaryVibrationME
     end
 end
 
-autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
-autoload :AllBinaryNoVibration, "org/allbinary/media/AllBinaryNoVibration"
+module ::Org; module Allbinary; module Game; module Configuration; autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral" unless const_defined?(:GameConfigurationCentral, false); end; end; end; end
+autoload :AllBinaryNoVibration, "org/allbinary/media/AllBinaryNoVibration" unless const_defined?(:AllBinaryNoVibration, false)
 
 begin
     AllBinaryVibration.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

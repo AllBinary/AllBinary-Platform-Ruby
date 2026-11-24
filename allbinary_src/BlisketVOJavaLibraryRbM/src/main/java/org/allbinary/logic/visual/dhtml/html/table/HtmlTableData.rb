@@ -15,12 +15,14 @@
 # package org.allbinary.logic.visual.dhtml.html.table
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Table
+
 class HtmlTableData
     attr_accessor :LEFT, :RIGHT, :NONE, :TOP, :BOTTOM, :TOPBOT, :SIDES, :ALL, :BORDERED, :BASIC, :ROWS, :FRAMES
 
-    def initialize_fields
-        @LEFT = CommonStrings.getInstance().LEFT
-        @RIGHT = CommonStrings.getInstance().RIGHT
+    def jfields_org_allbinary_logic_visual_dhtml_html_table_HtmlTableData
+        @LEFT = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().LEFT
+        @RIGHT = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().RIGHT
         @NONE = "none"
         @TOP = "top"
         @BOTTOM = "bottom"
@@ -34,7 +36,7 @@ class HtmlTableData
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_table_HtmlTableData
     end
     
 
@@ -73,11 +75,13 @@ class HtmlTableData
     end
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     HtmlTableData.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

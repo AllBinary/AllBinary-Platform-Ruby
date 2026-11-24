@@ -3,22 +3,24 @@
 # package org.allbinary.game.input.analog
 
 
+module ::Org; module Allbinary; module Game; module Input; module Analog
+
 class AnalogLocationInput
     attr_accessor :playerId, :customGPoint, :rz, :rightTrigger, :leftTrigger
 
-    def initialize_fields
-        @playerId = nil
-        @customGPoint = nil
-        @rz = 0
-        @rightTrigger = 0
-        @leftTrigger = 0
+    def jfields_org_allbinary_game_input_analog_AnalogLocationInput
+        @playerId = nil unless instance_variable_defined?(:@playerId)
+        @customGPoint = nil unless instance_variable_defined?(:@customGPoint)
+        @rz = 0 unless instance_variable_defined?(:@rz)
+        @rightTrigger = 0 unless instance_variable_defined?(:@rightTrigger)
+        @leftTrigger = 0 unless instance_variable_defined?(:@leftTrigger)
     end
     
 
     def initialize(playerId)
-        initialize_fields
+        jfields_org_allbinary_game_input_analog_AnalogLocationInput
         @playerId = playerId
-        @customGPoint = CustomGPoint.new(0, 0, 0)
+        @customGPoint = ::Org::Allbinary::Graphics::CustomGPoint.new(0, 0, 0)
     end
     
 
@@ -82,11 +84,13 @@ class AnalogLocationInput
     end
 end
 
-autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
+module ::Org; module Allbinary; module Graphics; autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint" unless const_defined?(:CustomGPoint, false); end; end; end
 
 begin
     AnalogLocationInput.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

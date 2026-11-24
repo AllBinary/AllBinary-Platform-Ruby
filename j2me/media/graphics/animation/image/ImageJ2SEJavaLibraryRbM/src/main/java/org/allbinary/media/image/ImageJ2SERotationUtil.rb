@@ -18,10 +18,12 @@
 # require "java/awt/Image"
 # require "java/awt/image/BufferedImage"
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageJ2SERotationUtil
     attr_accessor :imageUtil, :imageJ2SEUtil, :TWO_PIE
 
-    def initialize_fields
+    def jfields_org_allbinary_media_image_ImageJ2SERotationUtil
         @imageUtil = ImageUtil.getInstance()
         @imageJ2SEUtil = ImageJ2SEUtil.getInstance()
         @TWO_PIE = 2 * Math::PI
@@ -34,7 +36,7 @@ class ImageJ2SERotationUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageJ2SERotationUtil
     end
     
 
@@ -114,18 +116,44 @@ class ImageJ2SERotationUtil
     end
 
     def self.instance()
+        ImageJ2SERotationUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageJ2SERotationUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageJ2SERotationUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageJ2SERotationUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/media/image/ImageJ2SEUtil"
-require "org/allbinary/media/image/ImageUtil"
+autoload :ImageJ2SEUtil, "org/allbinary/media/image/ImageJ2SEUtil" unless const_defined?(:ImageJ2SEUtil, false)
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false)
 
-class ImageJ2SERotationUtil
-    @@instance = ImageJ2SERotationUtil.new()
+begin
+    ImageJ2SERotationUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

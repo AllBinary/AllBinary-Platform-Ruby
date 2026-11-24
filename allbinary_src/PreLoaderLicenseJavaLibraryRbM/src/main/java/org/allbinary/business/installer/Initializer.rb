@@ -14,63 +14,71 @@
 # frozen_string_literal: false
 # package org.allbinary.business.installer
 
+require "java/lang/JavaClass"
 # require "java/util/Map"
 # require "java/util/Set"
+
+module ::Org; module Allbinary; module Business; module Installer
 
 class Initializer
     attr_accessor :logUtil, :userJdbcDriver, :userName, :userUserName, :userPassword, :userSchema, :userServer, :userPort, :historyJdbcDriver, :historyName, :historyUserName, :historyPassword, :historySchema, :historyServer, :historyPort, :logJdbcDriver, :logName, :logUserName, :logPassword, :logSchema, :logServer, :logPort, :inventoryJdbcDriver, :inventoryName, :inventoryUserName, :inventoryPassword, :inventorySchema, :inventoryServer, :inventoryPort, :staticPagesJdbcDriver, :staticPagesName, :staticPagesUserName, :staticPagesPassword, :staticPagesSchema, :staticPagesServer, :staticPagesPort
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @userJdbcDriver = nil
-        @userName = nil
-        @userUserName = nil
-        @userPassword = nil
-        @userSchema = nil
-        @userServer = nil
-        @userPort = nil
-        @historyJdbcDriver = nil
-        @historyName = nil
-        @historyUserName = nil
-        @historyPassword = nil
-        @historySchema = nil
-        @historyServer = nil
-        @historyPort = nil
-        @logJdbcDriver = nil
-        @logName = nil
-        @logUserName = nil
-        @logPassword = nil
-        @logSchema = nil
-        @logServer = nil
-        @logPort = nil
-        @inventoryJdbcDriver = nil
-        @inventoryName = nil
-        @inventoryUserName = nil
-        @inventoryPassword = nil
-        @inventorySchema = nil
-        @inventoryServer = nil
-        @inventoryPort = nil
-        @staticPagesJdbcDriver = nil
-        @staticPagesName = nil
-        @staticPagesUserName = nil
-        @staticPagesPassword = nil
-        @staticPagesSchema = nil
-        @staticPagesServer = nil
-        @staticPagesPort = nil
+    def jfields_org_allbinary_business_installer_Initializer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @userJdbcDriver = nil unless instance_variable_defined?(:@userJdbcDriver)
+        @userName = nil unless instance_variable_defined?(:@userName)
+        @userUserName = nil unless instance_variable_defined?(:@userUserName)
+        @userPassword = nil unless instance_variable_defined?(:@userPassword)
+        @userSchema = nil unless instance_variable_defined?(:@userSchema)
+        @userServer = nil unless instance_variable_defined?(:@userServer)
+        @userPort = nil unless instance_variable_defined?(:@userPort)
+        @historyJdbcDriver = nil unless instance_variable_defined?(:@historyJdbcDriver)
+        @historyName = nil unless instance_variable_defined?(:@historyName)
+        @historyUserName = nil unless instance_variable_defined?(:@historyUserName)
+        @historyPassword = nil unless instance_variable_defined?(:@historyPassword)
+        @historySchema = nil unless instance_variable_defined?(:@historySchema)
+        @historyServer = nil unless instance_variable_defined?(:@historyServer)
+        @historyPort = nil unless instance_variable_defined?(:@historyPort)
+        @logJdbcDriver = nil unless instance_variable_defined?(:@logJdbcDriver)
+        @logName = nil unless instance_variable_defined?(:@logName)
+        @logUserName = nil unless instance_variable_defined?(:@logUserName)
+        @logPassword = nil unless instance_variable_defined?(:@logPassword)
+        @logSchema = nil unless instance_variable_defined?(:@logSchema)
+        @logServer = nil unless instance_variable_defined?(:@logServer)
+        @logPort = nil unless instance_variable_defined?(:@logPort)
+        @inventoryJdbcDriver = nil unless instance_variable_defined?(:@inventoryJdbcDriver)
+        @inventoryName = nil unless instance_variable_defined?(:@inventoryName)
+        @inventoryUserName = nil unless instance_variable_defined?(:@inventoryUserName)
+        @inventoryPassword = nil unless instance_variable_defined?(:@inventoryPassword)
+        @inventorySchema = nil unless instance_variable_defined?(:@inventorySchema)
+        @inventoryServer = nil unless instance_variable_defined?(:@inventoryServer)
+        @inventoryPort = nil unless instance_variable_defined?(:@inventoryPort)
+        @staticPagesJdbcDriver = nil unless instance_variable_defined?(:@staticPagesJdbcDriver)
+        @staticPagesName = nil unless instance_variable_defined?(:@staticPagesName)
+        @staticPagesUserName = nil unless instance_variable_defined?(:@staticPagesUserName)
+        @staticPagesPassword = nil unless instance_variable_defined?(:@staticPagesPassword)
+        @staticPagesSchema = nil unless instance_variable_defined?(:@staticPagesSchema)
+        @staticPagesServer = nil unless instance_variable_defined?(:@staticPagesServer)
+        @staticPagesPort = nil unless instance_variable_defined?(:@staticPagesPort)
     end
 
     def initialize(*args)
         case args.length
-        when 1 then constructor1(*args)
-        when 1 then constructor1(*args)
+        when 1 then jnew_org_allbinary_business_installer_Initializer_1(*args)
+        else raise ArgumentError, "No constructor of Initializer takes #{args.length} arguments"
         end
+    end
+
+    def jnew_org_allbinary_business_installer_Initializer_1(*java_overload_args)
+        return jnew_org_allbinary_business_installer_Initializer_1_1(*java_overload_args) if true && !(java_overload_args[0].is_a?(::Numeric) || java_overload_args[0] == true || java_overload_args[0] == false || java_overload_args[0].is_a?(::Array))
+        return jnew_org_allbinary_business_installer_Initializer_1_2(*java_overload_args)
     end
     
 
-    def constructor1(map)
-        initialize_fields
-        stringBuffer = StringMaker.new()
-        hashMap = StdUtil.getInstance().createHashMap()
+    def jnew_org_allbinary_business_installer_Initializer_1_1(map)
+        jfields_org_allbinary_business_installer_Initializer
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         keys = map.keySet()
         keyArray = keys.toArray()
         size = keyArray.length
@@ -89,8 +97,8 @@ class Initializer
     end
     
 
-    def constructor1(initHashMap)
-        initialize_fields
+    def jnew_org_allbinary_business_installer_Initializer_1_2(initHashMap)
+        jfields_org_allbinary_business_installer_Initializer
         self.getFormData(initHashMap)
     end
     
@@ -144,8 +152,8 @@ class Initializer
             Class.forName(jdbcDriverClassPathString).newInstance()
             return true
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().PRELOADERERROR)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADERERROR)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.IS_VALID, e)
             end
             return false
@@ -158,7 +166,7 @@ class Initializer
         if !self.isJdbcDriverValid(@userJdbcDriver)
             isValid = false
         end
-        stringValidationUtil = StringValidationUtil.getInstance()
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
         if !stringValidationUtil.isValidRequired(@userName, Initializer::MIN, Initializer::MAXDB)
             isValid = false
         end
@@ -221,7 +229,7 @@ class Initializer
     
 
     def getJdbcDriverValidationInfo(jdbcDriver)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("The JDBC driver (")
         stringBuffer.append(jdbcDriver)
         stringBuffer.append(") you have provided is not valid.<br/>")
@@ -230,7 +238,7 @@ class Initializer
     
 
     def getJdbcDriverSolutionInfo()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("The following describes the possible problems and solutions regarding the Jdbc Driver error(s):<p/>")
         stringBuffer.append("1. A JDBC driver you specified is not in your classpath.<br/>")
         stringBuffer.append("Solution 1: Move the JDBC driver into any directory specified in the existing classpath. <br/>")
@@ -246,12 +254,12 @@ class Initializer
 
     def getInvalidInfo()
         isJdbcDriversValid = true
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         if !self.isJdbcDriverValid(@userJdbcDriver)
             isJdbcDriversValid = false
             stringBuffer.append(self.getJdbcDriverValidationInfo(@userJdbcDriver))
         end
-        stringValidationUtil = StringValidationUtil.getInstance()
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
         if !stringValidationUtil.isValidRequired(@userName, Initializer::MIN, Initializer::MAXDB)
             stringBuffer.append("User db name should be < " + (Initializer::MAXDB).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
         end
@@ -323,7 +331,7 @@ class Initializer
     # throws Exception
     def set()
         @logUtil.putF("Creating DB connection files", self, "set()")
-        userDbInitInfo = UserDbInitInfo.new(false)
+        userDbInitInfo = ::Org::Allbinary::Business::Init::Db::UserDbInitInfo.new(false)
         userDbInitInfo.setJdbcDriver(@userJdbcDriver)
         userDbInitInfo.setName(@userName)
         userDbInitInfo.setUserName(@userUserName)
@@ -333,7 +341,7 @@ class Initializer
         userDbInitInfo.setPort(@userPort)
         userDbInitInfo.setHasRead(true)
         userDbInitInfo.write()
-        historyDbInitInfo = HistoryDbInitInfo.new(false)
+        historyDbInitInfo = ::Org::Allbinary::Business::Init::Db::HistoryDbInitInfo.new(false)
         historyDbInitInfo.setJdbcDriver(@historyJdbcDriver)
         historyDbInitInfo.setName(@historyName)
         historyDbInitInfo.setUserName(@historyUserName)
@@ -343,7 +351,7 @@ class Initializer
         historyDbInitInfo.setPort(@historyPort)
         historyDbInitInfo.setHasRead(true)
         historyDbInitInfo.write()
-        logDbInitInfo = LogDbInitInfo.new(false)
+        logDbInitInfo = ::Org::Allbinary::Business::Init::Db::LogDbInitInfo.new(false)
         logDbInitInfo.setJdbcDriver(@logJdbcDriver)
         logDbInitInfo.setName(@logName)
         logDbInitInfo.setUserName(@logUserName)
@@ -353,7 +361,7 @@ class Initializer
         logDbInitInfo.setPort(@logPort)
         logDbInitInfo.setHasRead(true)
         logDbInitInfo.write()
-        staticPagesDbInitInfo = StaticPagesDbInitInfo.new(false)
+        staticPagesDbInitInfo = ::Org::Allbinary::Business::Init::Db::StaticPagesDbInitInfo.new(false)
         staticPagesDbInitInfo.setJdbcDriver(@staticPagesJdbcDriver)
         staticPagesDbInitInfo.setName(@staticPagesName)
         staticPagesDbInitInfo.setUserName(@staticPagesUserName)
@@ -363,7 +371,7 @@ class Initializer
         staticPagesDbInitInfo.setPort(@staticPagesPort)
         staticPagesDbInitInfo.setHasRead(true)
         staticPagesDbInitInfo.write()
-        inventoryDbInitInfo = InventoryDbInitInfo.new(false)
+        inventoryDbInitInfo = ::Org::Allbinary::Business::Init::Db::InventoryDbInitInfo.new(false)
         inventoryDbInitInfo.setJdbcDriver(@inventoryJdbcDriver)
         inventoryDbInitInfo.setName(@inventoryName)
         inventoryDbInitInfo.setUserName(@inventoryUserName)
@@ -375,25 +383,51 @@ class Initializer
         inventoryDbInitInfo.write()
         @logUtil.putF("Created DB connection files", self, "set()")
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:MAXDB, 30)
+        const_set(:MAX, 16)
+        const_set(:MIN, 4)
+        const_set(:MINPASSWORD, 0)
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "Initializer"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:MAXDB, :MAX, :MIN, :MINPASSWORD].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/init/db/HistoryDbInitInfo"
-require "org/allbinary/business/init/db/InventoryDbInitInfo"
-require "org/allbinary/business/init/db/LogDbInitInfo"
-require "org/allbinary/business/init/db/StaticPagesDbInitInfo"
-require "org/allbinary/business/init/db/UserDbInitInfo"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/business/installer/InitializerData"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :HistoryDbInitInfo, "org/allbinary/business/init/db/HistoryDbInitInfo" unless const_defined?(:HistoryDbInitInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :InventoryDbInitInfo, "org/allbinary/business/init/db/InventoryDbInitInfo" unless const_defined?(:InventoryDbInitInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :LogDbInitInfo, "org/allbinary/business/init/db/LogDbInitInfo" unless const_defined?(:LogDbInitInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :StaticPagesDbInitInfo, "org/allbinary/business/init/db/StaticPagesDbInitInfo" unless const_defined?(:StaticPagesDbInitInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :UserDbInitInfo, "org/allbinary/business/init/db/UserDbInitInfo" unless const_defined?(:UserDbInitInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :InitializerData, "org/allbinary/business/installer/InitializerData" unless const_defined?(:InitializerData, false)
 
-class Initializer
-    MAXDB = 30
-    MAX = 16
-    MIN = 4
-    MINPASSWORD = 0
+begin
+    Initializer.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,23 +15,30 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 module BuildMenuCompositeInterface
     
 
     def getCurrentScrollSelectionForm()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setCurrentScrollSelectionForm(currentScrollSelectionForm)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getBuildingScrollSelectionForm()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/form/ScrollSelectionForm"
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm" unless const_defined?(:ScrollSelectionForm, false); end; end; end; end
+
+end; end; end; end
 

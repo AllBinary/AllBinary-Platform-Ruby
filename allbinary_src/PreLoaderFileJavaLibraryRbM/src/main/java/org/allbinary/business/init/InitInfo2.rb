@@ -15,15 +15,17 @@
 # package org.allbinary.business.init
 
 
+module ::Org; module Allbinary; module Business; module Init
+
 class InitInfo2
     attr_accessor :directory
 
-    def initialize_fields
-        @directory = Directory.getInstance()
+    def jfields_org_allbinary_business_init_InitInfo2
+        @directory = ::Org::Allbinary::Logic::Io::FilePackage::Directory::Directory.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_init_InitInfo2
     end
     
 
@@ -42,18 +44,44 @@ class InitInfo2
     end
 
     def self.instance()
+        InitInfo2.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        InitInfo2.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = InitInfo2.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InitInfo2"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/io/path/AbPath"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :Directory, "org/allbinary/logic/io/file/directory/Directory" unless const_defined?(:Directory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
 
-class InitInfo2
-    @@instance = InitInfo2.new()
+begin
+    InitInfo2.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

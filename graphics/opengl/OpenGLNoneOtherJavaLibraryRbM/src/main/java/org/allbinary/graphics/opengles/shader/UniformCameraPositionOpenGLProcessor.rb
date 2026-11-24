@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/opengles/shader/OpenGLObject3dProcessor"
+
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
 
 class UniformCameraPositionOpenGLProcessor < OpenGLObject3dProcessor
     
@@ -26,8 +29,11 @@ class UniformCameraPositionOpenGLProcessor < OpenGLObject3dProcessor
 
     def process(gl, anyType)
     end
+    java_overload :process, 2
 end
 
-autoload :GL10, "javax/microedition/khronos/opengles/GL10"
-autoload :ShaderComposite, "org/allbinary/graphics/opengles/shader/ShaderComposite"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+autoload :ShaderComposite, "org/allbinary/graphics/opengles/shader/ShaderComposite" unless const_defined?(:ShaderComposite, false)
+
+end; end; end; end; end
 

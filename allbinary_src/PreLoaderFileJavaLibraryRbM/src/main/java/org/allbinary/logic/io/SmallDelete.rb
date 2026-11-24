@@ -14,24 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
-# require "java/io/DataOutputStream"
-# require "java/io/FileOutputStream"
+
+module ::Org; module Allbinary; module Logic; module Io
 
 class SmallDelete
     attr_accessor :logUtil, :commonStrings, :fileName, :string
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @fileName = nil
-        @string = nil
+    def jfields_org_allbinary_logic_io_SmallDelete
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @fileName = nil unless instance_variable_defined?(:@fileName)
+        @string = nil unless instance_variable_defined?(:@string)
     end
     
 
     def initialize(fileName)
-        initialize_fields
+        jfields_org_allbinary_logic_io_SmallDelete
         @fileName = fileName
-        @string = AbFileSystem.getInstance().readAsString(fileName)
+        @string = ::Org::Allbinary::Logic::Io::FilePackage::AbFileSystem.getInstance().readAsString(fileName)
     end
     
 
@@ -43,14 +43,14 @@ class SmallDelete
             endIndex = (@string.index(end_) || -1)
             if endIndex > beginIndex && beginIndex >= 0 && endIndex >= 0 && beginIndex < 10 && endIndex < 525
                 text = @string[endIndex...@string.length]
-                idFile = FileOutputStream.new(@fileName)
-                idOutData = DataOutputStream.new(idFile)
+                idFile = ::Java::Io::FileOutputStream.new(@fileName)
+                idOutData = ::Java::Io::DataOutputStream.new(idFile)
                 idOutData.writeBytes(text)
                 return true
             end
             return false
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().IDLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().IDLOGGING)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "deleteAtStart", e)
             end
             return false
@@ -67,14 +67,14 @@ class SmallDelete
             if endIndex > beginIndex && beginIndex >= 0 && endIndex >= 0 && beginIndex < 50 && endIndex < 425
                 newStart = @string[0...beginIndex]
                 text = @string[endIndex + end_.length...@string.length]
-                idFile = FileOutputStream.new(@fileName)
-                idOutData = DataOutputStream.new(idFile)
+                idFile = ::Java::Io::FileOutputStream.new(@fileName)
+                idOutData = ::Java::Io::DataOutputStream.new(idFile)
                 idOutData.writeBytes(newStart + newText + text)
                 return true
             end
             return false
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().IDLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().IDLOGGING)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "deleteAtStart", e)
             end
             return false
@@ -82,7 +82,13 @@ class SmallDelete
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/AbFileSystem"
-require "org/allbinary/string/CommonStrings"
+module ::Java; module Io; autoload :DataOutputStream, "java/io/DataOutputStream" unless const_defined?(:DataOutputStream, false); end; end
+module ::Java; module Io; autoload :FileOutputStream, "java/io/FileOutputStream" unless const_defined?(:FileOutputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFileSystem, "org/allbinary/logic/io/file/AbFileSystem" unless const_defined?(:AbFileSystem, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end
 

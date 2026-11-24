@@ -15,7 +15,11 @@
 # package org.allbinary.logic.java
 
 
+module ::Org; module Allbinary; module Logic; module Java
+
 #import org.omg.CosNaming.NamingContext;
 class JNDIUtil
 end
+
+end; end; end; end
 

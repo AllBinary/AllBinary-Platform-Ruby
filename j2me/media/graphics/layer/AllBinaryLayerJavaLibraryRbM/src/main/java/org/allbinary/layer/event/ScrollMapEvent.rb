@@ -14,46 +14,56 @@
 # frozen_string_literal: false
 # package org.allbinary.layer.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class ScrollMapEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Layer; module Event
+
+class ScrollMapEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     attr_accessor :dx, :dy
 
-    def initialize_fields
-        @dx = 0
-        @dy = 0
+    def jfields_org_allbinary_layer_event_ScrollMapEvent
+        @dx = 0 unless instance_variable_defined?(:@dx)
+        @dy = 0 unless instance_variable_defined?(:@dy)
     end
     
 
     def initialize(anyType)
         super(anyType)
-        initialize_fields
+        jfields_org_allbinary_layer_event_ScrollMapEvent
     end
     
 
     def setDx(dx)
         @dx = dx
     end
+    java_overload :setDx, 1
     
 
     def getDx()
         return @dx
     end
+    java_overload :getDx, 0
     
 
     def setDy(dy)
         @dy = dy
     end
+    java_overload :setDy, 1
     
 
     def getDy()
         return @dy
     end
+    java_overload :getDy, 0
     
 
     def setDxDy(dx, dy)
         @dx = dx
         @dy = dy
     end
+    java_overload :setDxDy, 2
 end
+
+end; end; end; end
 

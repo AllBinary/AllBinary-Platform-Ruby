@@ -15,13 +15,18 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 module DriverCompositeInterface
     
 
     def getDriver()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/Driver"
+autoload :Driver, "org/allbinary/game/layer/Driver" unless const_defined?(:Driver, false)
+
+end; end; end; end
 

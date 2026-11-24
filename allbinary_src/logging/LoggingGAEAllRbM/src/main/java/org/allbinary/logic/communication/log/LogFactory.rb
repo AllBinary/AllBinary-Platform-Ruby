@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 class LogFactory
     
 
@@ -24,10 +26,12 @@ class LogFactory
     
 
     def self.getInstanceF(specialMessage, anyType, functionName)
-        return Log.new(specialMessage, anyType, functionName, NullUtil.getInstance().NULL_OBJECT)
+        return Log.new(specialMessage, anyType, functionName, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :Log, "org/allbinary/logic/communication/log/Log"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
+
+end; end; end; end; end
 

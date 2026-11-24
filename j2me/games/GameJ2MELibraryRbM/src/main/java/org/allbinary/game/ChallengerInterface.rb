@@ -7,6 +7,8 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 module ChallengerInterface
     
 
@@ -15,4 +17,6 @@ module ChallengerInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

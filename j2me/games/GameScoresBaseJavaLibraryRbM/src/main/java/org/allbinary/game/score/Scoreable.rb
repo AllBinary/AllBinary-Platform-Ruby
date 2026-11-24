@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/ScoreableInterface"
+
+module ::Org; module Allbinary; module Game; module Score
 
 class Scoreable
     include ScoreableInterface
     attr_accessor :points
 
-    def initialize_fields
-        @points = nil
+    def jfields_org_allbinary_game_score_Scoreable
+        @points = nil unless instance_variable_defined?(:@points)
     end
     
 
     def initialize(points)
-        initialize_fields
+        jfields_org_allbinary_game_score_Scoreable
         @points = points
     end
     
@@ -34,27 +37,31 @@ class Scoreable
     def addPoints(points)
         @points += points
     end
+    java_overload :addPoints, 1
     
 
     def removePoints(points)
         @points -= points
     end
+    java_overload :removePoints, 1
     
 
     def setPoints(points)
         @points = points
     end
+    java_overload :setPoints, 1
     
 
     def getPoints()
         return @points
     end
+    java_overload :getPoints, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:ID, SmallIntegerSingletonFactory.getInstance().getAt(3))
+            const_set(:ID, ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(3))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -71,11 +78,13 @@ class Scoreable
     end
 end
 
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
 
 begin
     Scoreable.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

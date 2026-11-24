@@ -18,17 +18,19 @@
 # require "javax/servlet/http/HttpSession"
 # require "javax/servlet/jsp/PageContext"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; module Session
+
 class BasicWeblisketSession
     attr_accessor :session, :pageContext
 
-    def initialize_fields
-        @session = nil
-        @pageContext = nil
+    def jfields_org_allbinary_logic_communication_http_request_session_BasicWeblisketSession
+        @session = nil unless instance_variable_defined?(:@session)
+        @pageContext = nil unless instance_variable_defined?(:@pageContext)
     end
     
 
     def initialize(pageContext)
-        initialize_fields
+        jfields_org_allbinary_logic_communication_http_request_session_BasicWeblisketSession
         @pageContext = pageContext
         request = pageContext.getRequest()
         @session = request.getSession(true)
@@ -36,32 +38,32 @@ class BasicWeblisketSession
     
 
     def setRole(aRole)
-        @session.setAttribute(BasicUserRoleData::NAME.to_s, aRole)
+        @session.setAttribute(::Org::Allbinary::Business::User::Role::BasicUserRoleData::NAME.to_s, aRole)
     end
     
 
     def getRole()
-        return @session.getAttribute(BasicUserRoleData::NAME.to_s)
+        return @session.getAttribute(::Org::Allbinary::Business::User::Role::BasicUserRoleData::NAME.to_s)
     end
     
 
     def setPassword(password)
-        @session.setAttribute(UserData::PASSWORD, password)
+        @session.setAttribute(::Org::Allbinary::Business::User::UserData::PASSWORD, password)
     end
     
 
     def setUserName(userName)
-        @session.setAttribute(UserData::USERNAME, userName)
+        @session.setAttribute(::Org::Allbinary::Business::User::UserData::USERNAME, userName)
     end
     
 
     def setPaymentMethod(value)
-        @session.setAttribute(PaymentGatewayData::NAME.to_s, value)
+        @session.setAttribute(::Org::Allbinary::Business::User::Commerce::Money::Payment::Gateway::PaymentGatewayData::NAME.to_s, value)
     end
     
 
-    def setAuthenticated()
-        @session.setAttribute(WeblisketSessionData::AUTHENTICATED, BooleanFactory.getInstance().TRUE_STRING)
+    def setAuthenticated_j0()
+        @session.setAttribute(WeblisketSessionData::AUTHENTICATED, ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE_STRING)
     end
     
 
@@ -76,27 +78,27 @@ class BasicWeblisketSession
     
 
     def setStoreName(value)
-        @session.setAttribute(StoreFrontData.getInstance().NAME, value)
+        @session.setAttribute(::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontData.getInstance().NAME, value)
     end
     
 
     def getWebAppPath()
-        return @session.getAttribute(org.allbinary.globals.GLOBALS2.WEBAPPPATH)
+        return @session.getAttribute(::Org::Allbinary::Globals::GLOBALS2::WEBAPPPATH)
     end
     
 
     def getUserName()
-        return @session.getAttribute(UserData::USERNAME)
+        return @session.getAttribute(::Org::Allbinary::Business::User::UserData::USERNAME)
     end
     
 
     def getPassword()
-        return @session.getAttribute(UserData::PASSWORD)
+        return @session.getAttribute(::Org::Allbinary::Business::User::UserData::PASSWORD)
     end
     
 
     def getPaymentMethod()
-        return @session.getAttribute(PaymentGatewayData::NAME.to_s)
+        return @session.getAttribute(::Org::Allbinary::Business::User::Commerce::Money::Payment::Gateway::PaymentGatewayData::NAME.to_s)
     end
     
 
@@ -116,21 +118,26 @@ class BasicWeblisketSession
     
 
     def getStoreName()
-        return @session.getAttribute(StoreFrontData.getInstance().NAME)
+        return @session.getAttribute(::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontData.getInstance().NAME)
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def setAuthenticated(value)
-        @session.setAttribute(WeblisketSessionData::AUTHENTICATED, BooleanFactory.getInstance().FALSE_STRING)
+    def setAuthenticated_j1(value)
+        @session.setAttribute(WeblisketSessionData::AUTHENTICATED, ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().FALSE_STRING)
+    end
+
+    def setAuthenticated(*java_overload_args)
+        return setAuthenticated_j0(*java_overload_args) if java_overload_args.length == 0
+        return setAuthenticated_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method setAuthenticated takes #{java_overload_args.length} arguments"
     end
     
 
     def clear()
         @session.removeAttribute(WeblisketSessionData::AUTHENTICATED)
         @session.removeAttribute(WeblisketSessionData::TIMEOUT)
-        @session.removeAttribute(BasicUserRoleData::NAME.to_s)
-        @session.removeAttribute(UserData::USERNAME)
+        @session.removeAttribute(::Org::Allbinary::Business::User::Role::BasicUserRoleData::NAME.to_s)
+        @session.removeAttribute(::Org::Allbinary::Business::User::UserData::USERNAME)
     end
     
 
@@ -145,11 +152,14 @@ class BasicWeblisketSession
     end
 end
 
-autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
-autoload :UserData, "org/allbinary/business/user/UserData"
-autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData"
-autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
-autoload :BasicUserRoleData, "org/allbinary/business/user/role/BasicUserRoleData"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :WeblisketSessionData, "org/allbinary/logic/communication/http/request/session/WeblisketSessionData"
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData" unless const_defined?(:StoreFrontData, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; autoload :UserData, "org/allbinary/business/user/UserData" unless const_defined?(:UserData, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; autoload :PaymentGatewayData, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayData" unless const_defined?(:PaymentGatewayData, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Role; autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole" unless const_defined?(:BasicUserRole, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Role; autoload :BasicUserRoleData, "org/allbinary/business/user/role/BasicUserRoleData" unless const_defined?(:BasicUserRoleData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2" unless const_defined?(:GLOBALS2, false); end; end; end
+autoload :WeblisketSessionData, "org/allbinary/logic/communication/http/request/session/WeblisketSessionData" unless const_defined?(:WeblisketSessionData, false)
+
+end; end; end; end; end; end; end
 

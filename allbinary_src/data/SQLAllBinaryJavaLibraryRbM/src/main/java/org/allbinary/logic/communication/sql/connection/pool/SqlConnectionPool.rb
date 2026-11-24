@@ -19,12 +19,14 @@ require "java/lang/Object"
 # require "java/sql/DriverManager"
 # require "java/sql/SQLException"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Sql; module Connection; module Pool
+
 class SqlConnectionPool
     attr_accessor :logUtil, :stdUtil, :connectionHashMap, :FIRST_NEW_CONNECTION_CREATED, :FIRST, :NEW_CONNECTION_FOR, :CREATED, :NUMBER_OF_SQL_CONNECTIONS_FOR, :NUMBER_OF_SQL_CONNECTION_VECTORS, :IS, :CONNECTION_ALLREADY_CLOSED, :METHOD_GET, :METHOD_ADD
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @stdUtil = StdUtil.getInstance()
+    def jfields_org_allbinary_logic_communication_sql_connection_pool_SqlConnectionPool
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @stdUtil = ::Org::Allbinary::Logic::StdUtil.getInstance()
         @connectionHashMap = nil
         @FIRST_NEW_CONNECTION_CREATED = "First New Connection Created: "
         @FIRST = "First "
@@ -45,7 +47,7 @@ class SqlConnectionPool
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_sql_connection_pool_SqlConnectionPool
     end
     
 
@@ -54,16 +56,16 @@ class SqlConnectionPool
         java_monitor.synchronize do
         if @connectionHashMap == nil
             @connectionHashMap = @stdUtil.createHashMap()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
                 @logUtil.putF(@FIRST_NEW_CONNECTION_CREATED + url, self, @METHOD_GET)
             end
             return DriverManager.getConnection(url)
         else
             connectionVector = @connectionHashMap.get(url)
             if connectionVector == nil
-                connectionVector = BasicArrayListD.new()
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
-                    stringBuffer = StringMaker.new()
+                connectionVector = ::Org::Allbinary::Util::BasicArrayListD.new()
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
+                    stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     stringBuffer.append(@FIRST)
                     stringBuffer.append(@NEW_CONNECTION_FOR)
                     stringBuffer.append(url)
@@ -72,19 +74,19 @@ class SqlConnectionPool
                 end
                 return DriverManager.getConnection(url)
             elsif connectionVector.size() == 0
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
-                    @logUtil.putF(StringMaker.new().append(@NEW_CONNECTION_FOR).append(url).append(@CREATED).to_s, self, @METHOD_GET)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
+                    @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@NEW_CONNECTION_FOR).append(url).append(@CREATED).to_s, self, @METHOD_GET)
                 end
                 return DriverManager.getConnection(url)
             else
-                stringBuffer = StringMaker.new()
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 size = connectionVector.size()
                 (0...size).each do |i|
                     sqlConnection = connectionVector.get(i)
                     if !sqlConnection.isClosed()
                         connectionVector.remove(sqlConnection)
                         @connectionHashMap.put(url, connectionVector)
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
                             stringBuffer.delete(0, stringBuffer.length())
                             stringBuffer.append(@NUMBER_OF_SQL_CONNECTIONS_FOR)
                             stringBuffer.append(url)
@@ -98,8 +100,8 @@ class SqlConnectionPool
                 end
             end
         end
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
-            stringBuffer = StringMaker.new()
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append(@NEW_CONNECTION_FOR)
             stringBuffer.append(url)
             stringBuffer.append(@CREATED)
@@ -117,18 +119,18 @@ class SqlConnectionPool
             connectionVector = nil
             if @connectionHashMap == nil
                 @connectionHashMap = @stdUtil.createHashMap()
-                connectionVector = BasicArrayListD.new()
+                connectionVector = ::Org::Allbinary::Util::BasicArrayListD.new()
                 connectionVector.add(sqlConnection)
             else
                 connectionVector = @connectionHashMap.get(url)
                 if connectionVector == nil
-                    connectionVector = BasicArrayListD.new()
+                    connectionVector = ::Org::Allbinary::Util::BasicArrayListD.new()
                 end
                 connectionVector.add(sqlConnection)
                 @connectionHashMap.put(url, connectionVector)
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append(@NUMBER_OF_SQL_CONNECTIONS_FOR)
                 stringBuffer.append(url)
                 stringBuffer.append(@IS)
@@ -137,7 +139,7 @@ class SqlConnectionPool
                 @logUtil.putF(stringBuffer.to_s, self, @METHOD_ADD)
             end
         end
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLLOGGINGPOOL)
             @logUtil.putF(@CONNECTION_ALLREADY_CLOSED, self, @METHOD_ADD)
         end
         end
@@ -174,16 +176,20 @@ class SqlConnectionPool
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
 begin
     SqlConnectionPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

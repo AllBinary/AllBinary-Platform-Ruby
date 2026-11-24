@@ -15,21 +15,23 @@
 # package org.allbinary.logic.communication.smtp.info
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Info
+
 class BasicEmailInfo
     attr_accessor :logUtil, :subject, :textBody, :emailServerConfigurationInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @subject = nil
-        @textBody = nil
-        @emailServerConfigurationInterface = nil
+    def jfields_org_allbinary_logic_communication_smtp_info_BasicEmailInfo
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @subject = nil unless instance_variable_defined?(:@subject)
+        @textBody = nil unless instance_variable_defined?(:@textBody)
+        @emailServerConfigurationInterface = nil unless instance_variable_defined?(:@emailServerConfigurationInterface)
     end
     
 
     def initialize(subject, textBody)
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
-            commonStrings = CommonStrings.getInstance()
+        jfields_org_allbinary_logic_communication_smtp_info_BasicEmailInfo
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.putF(commonStrings.START, self, commonStrings.CONSTRUCTOR)
         end
         @subject = subject
@@ -58,9 +60,9 @@ class BasicEmailInfo
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(self.getEmailServerConfigurationInterface().to_s)
-        stringBuffer.append(CommonSeps.getInstance().NEW_LINE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE)
         stringBuffer.append("Subject: \n")
         stringBuffer.append(self.getSubject())
         stringBuffer.append("\nText Body: \n")
@@ -76,9 +78,13 @@ class BasicEmailInfo
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module Server; autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface" unless const_defined?(:EmailServerConfigurationInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end
 

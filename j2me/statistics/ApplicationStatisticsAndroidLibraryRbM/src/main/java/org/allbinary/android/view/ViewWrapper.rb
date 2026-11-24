@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.android.view
 
+require "java/lang/JavaOverload"
 require "org/allbinary/android/view/BaseViewWrapper"
+
+module ::Org; module Allbinary; module Android; module View
 
 class ViewWrapper < BaseViewWrapper
     attr_accessor :view
 
-    def initialize_fields
-        @view = nil
+    def jfields_org_allbinary_android_view_ViewWrapper
+        @view = nil unless instance_variable_defined?(:@view)
     end
     
 
     def initialize(view)
         super()
-        initialize_fields
+        jfields_org_allbinary_android_view_ViewWrapper
         @view = view
     end
     
@@ -34,12 +37,16 @@ class ViewWrapper < BaseViewWrapper
     def invalidate()
         @view.invalidate()
     end
+    java_overload :invalidate, 0
     
 
     def postInvalidate()
         @view.postInvalidate()
     end
+    java_overload :postInvalidate, 0
 end
 
-require "android/view/View"
+module ::Android; module View; autoload :View, "android/view/View" unless const_defined?(:View, false); end; end
+
+end; end; end; end
 

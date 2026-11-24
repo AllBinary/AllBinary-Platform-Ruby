@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/NamedInterface"
 
+module ::Org; module Allbinary; module Game; module Input
+
 module GameInputInterface
-    include NamedInterface
+    include ::Org::Allbinary::Layer::NamedInterface
     
 
     # throws Exception
@@ -25,13 +28,17 @@ module GameInputInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :processInput, 1
     
 
     def initInputProcessors()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :initInputProcessors, 0
 end
 
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end; end
 

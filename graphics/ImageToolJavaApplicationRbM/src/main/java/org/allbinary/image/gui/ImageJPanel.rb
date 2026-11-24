@@ -14,24 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.image.gui
 
-# require "java/awt"
+require "java/lang/JavaOverload"
+# require "java/awt/Graphics"
 # require "java/awt/image/BufferedImage"
+# require "javax/swing/GroupLayout"
+# require "javax/swing/JPanel"
+
+module ::Org; module Allbinary; module Image; module Gui
 
 class ImageJPanel < JPanel
     attr_accessor :logUtil, :commonStrings, :canvasStrings, :isDrawn, :bufferedImage
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @canvasStrings = CanvasStrings.getInstance()
+    def jfields_org_allbinary_image_gui_ImageJPanel
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @canvasStrings = ::Org::Allbinary::Graphics::Displayable::CanvasStrings.getInstance()
         @isDrawn = false
-        @bufferedImage = nil
+        @bufferedImage = nil unless instance_variable_defined?(:@bufferedImage)
     end
     
 
     def initialize(bufferedImage)
         super()
-        initialize_fields
+        jfields_org_allbinary_image_gui_ImageJPanel
         self.initComponents()
         @bufferedImage = bufferedImage
         self.setSize(@bufferedImage.getWidth(nil), @bufferedImage.getHeight(nil))
@@ -45,17 +50,21 @@ class ImageJPanel < JPanel
             @isDrawn = true
         end
     end
+    java_overload :paint, 1
     
 
     def initComponents()
         layout = GroupLayout.new(self)
         self.setLayout(layout)
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 400, 32767))
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 300, 32767))
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addGap(0, 400, 32767))
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addGap(0, 300, 32767))
     end
+    java_overload :initComponents, 0
 end
 
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings" unless const_defined?(:CanvasStrings, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end
 

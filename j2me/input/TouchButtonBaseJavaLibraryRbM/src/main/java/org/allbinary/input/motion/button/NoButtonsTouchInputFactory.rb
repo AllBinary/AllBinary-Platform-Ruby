@@ -15,6 +15,8 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class NoButtonsTouchInputFactory
     
 
@@ -53,11 +55,13 @@ class NoButtonsTouchInputFactory
     end
 end
 
-autoload :BaseTouchInput, "org/allbinary/input/motion/button/BaseTouchInput"
+autoload :BaseTouchInput, "org/allbinary/input/motion/button/BaseTouchInput" unless const_defined?(:BaseTouchInput, false)
 
 begin
     NoButtonsTouchInputFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

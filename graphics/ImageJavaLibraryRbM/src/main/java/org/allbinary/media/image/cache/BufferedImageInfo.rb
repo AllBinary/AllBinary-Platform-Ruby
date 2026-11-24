@@ -15,18 +15,20 @@
 # package org.allbinary.media.image.cache
 
 
+module ::Org; module Allbinary; module Media; module Image; module Cache
+
 class BufferedImageInfo
     attr_accessor :width, :height, :type
 
-    def initialize_fields
-        @width = nil
-        @height = nil
-        @type = nil
+    def jfields_org_allbinary_media_image_cache_BufferedImageInfo
+        @width = nil unless instance_variable_defined?(:@width)
+        @height = nil unless instance_variable_defined?(:@height)
+        @type = nil unless instance_variable_defined?(:@type)
     end
     
 
     def initialize(width, height, type)
-        initialize_fields
+        jfields_org_allbinary_media_image_cache_BufferedImageInfo
         @width = width
         @height = height
         @type = type
@@ -64,8 +66,8 @@ class BufferedImageInfo
     
 
     def toString()
-        commonLabels = CommonLabels.getInstance()
-        stringBuffer = StringMaker.new()
+        commonLabels = ::Org::Allbinary::StringPackage::CommonLabels.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("BufferedImageInfo -")
         stringBuffer.append(commonLabels.WIDTH_LABEL)
         stringBuffer.appendint(self.getWidth())
@@ -78,6 +80,8 @@ class BufferedImageInfo
     alias_method :to_s, :toString
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+
+end; end; end; end; end
 

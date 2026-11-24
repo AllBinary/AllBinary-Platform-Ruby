@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/collision/CollidableBaseBehaviorFactory"
+
+module ::Org; module Allbinary; module Game; module Collision
 
 class CollidableAlwaysPickupNeverCollideBehaviorFactory < CollidableBaseBehaviorFactory
     attr_accessor :instance
 
-    def initialize_fields
+    def jfields_org_allbinary_game_collision_CollidableAlwaysPickupNeverCollideBehaviorFactory
         @instance = CollidableAlwaysPickupNeverCollideBehavior.new()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_collision_CollidableAlwaysPickupNeverCollideBehaviorFactory
     end
     
 
@@ -37,6 +40,7 @@ class CollidableAlwaysPickupNeverCollideBehaviorFactory < CollidableBaseBehavior
     def createBehavior()
         return @instance
     end
+    java_overload :createBehavior, 0
 
     def self.instanceC()
         CollidableAlwaysPickupNeverCollideBehaviorFactory.java_static_fields unless @java_static_fields_started
@@ -69,12 +73,14 @@ class CollidableAlwaysPickupNeverCollideBehaviorFactory < CollidableBaseBehavior
     end
 end
 
-autoload :CollidableAlwaysPickupNeverCollideBehavior, "org/allbinary/game/collision/CollidableAlwaysPickupNeverCollideBehavior"
-autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :CollidableAlwaysPickupNeverCollideBehavior, "org/allbinary/game/collision/CollidableAlwaysPickupNeverCollideBehavior" unless const_defined?(:CollidableAlwaysPickupNeverCollideBehavior, false)
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior" unless const_defined?(:CollidableBaseBehavior, false)
 
 begin
     CollidableAlwaysPickupNeverCollideBehaviorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

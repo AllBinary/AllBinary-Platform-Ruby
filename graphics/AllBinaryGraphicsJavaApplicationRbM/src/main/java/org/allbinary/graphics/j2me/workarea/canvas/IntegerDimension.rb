@@ -15,17 +15,19 @@
 # package org.allbinary.graphics.j2me.workarea.canvas
 
 
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Canvas
+
 class IntegerDimension
     attr_accessor :width, :height
 
-    def initialize_fields
-        @width = 0
-        @height = 0
+    def jfields_org_allbinary_graphics_j2me_workarea_canvas_IntegerDimension
+        @width = 0 unless instance_variable_defined?(:@width)
+        @height = 0 unless instance_variable_defined?(:@height)
     end
     
 
     def initialize(width, height)
-        initialize_fields
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_IntegerDimension
         self.setWidth(width)
         self.setHeight(height)
     end
@@ -50,4 +52,6 @@ class IntegerDimension
         @height = height
     end
 end
+
+end; end; end; end; end; end
 

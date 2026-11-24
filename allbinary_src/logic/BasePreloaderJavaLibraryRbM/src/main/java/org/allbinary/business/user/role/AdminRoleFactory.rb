@@ -15,21 +15,23 @@
 # package org.allbinary.business.user.role
 
 
+module ::Org; module Allbinary; module Business; module User; module Role
+
 class AdminRoleFactory
     attr_accessor :adminRoles, :storeAdminRoles, :storeManagementRoles, :productManagementRoles, :reviewManagementRoles, :customerManagementRoles, :workflowManagementRoles, :orderManagementRoles, :adjusterManagementRoles, :shippingManagementRoles, :webManagementRoles
 
-    def initialize_fields
-        @adminRoles = BasicArrayListD.new()
-        @storeAdminRoles = BasicArrayListD.new()
-        @storeManagementRoles = BasicArrayListD.new()
-        @productManagementRoles = BasicArrayListD.new()
-        @reviewManagementRoles = BasicArrayListD.new()
-        @customerManagementRoles = BasicArrayListD.new()
-        @workflowManagementRoles = BasicArrayListD.new()
-        @orderManagementRoles = BasicArrayListD.new()
-        @adjusterManagementRoles = BasicArrayListD.new()
-        @shippingManagementRoles = BasicArrayListD.new()
-        @webManagementRoles = BasicArrayListD.new()
+    def jfields_org_allbinary_business_user_role_AdminRoleFactory
+        @adminRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @storeAdminRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @storeManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @productManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @reviewManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @customerManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @workflowManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @orderManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @adjusterManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @shippingManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @webManagementRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -39,7 +41,7 @@ class AdminRoleFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_role_AdminRoleFactory
         basicUserRoleFactory = BasicUserRoleFactory.getInstance()
         @adminRoles.add(basicUserRoleFactory.ADMINISTRATOR)
         @storeAdminRoles.add(basicUserRoleFactory.ADMINISTRATOR)
@@ -164,13 +166,15 @@ class AdminRoleFactory
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory" unless const_defined?(:BasicUserRoleFactory, false)
 
 begin
     AdminRoleFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

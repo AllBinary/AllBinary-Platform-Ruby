@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer.pickup
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 module PickupProcessorInterface
     
 
@@ -25,5 +27,7 @@ module PickupProcessorInterface
     end
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+
+end; end; end; end; end
 

@@ -18,6 +18,8 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 
+module ::Org; module Allbinary; module MathPackage
+
 class RectangleCollisionUtil
     
 
@@ -83,4 +85,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

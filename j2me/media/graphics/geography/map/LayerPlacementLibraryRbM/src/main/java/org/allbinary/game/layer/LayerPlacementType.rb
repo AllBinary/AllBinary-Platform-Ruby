@@ -15,16 +15,18 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class LayerPlacementType
     attr_accessor :type
 
-    def initialize_fields
-        @type = nil
+    def jfields_org_allbinary_game_layer_LayerPlacementType
+        @type = nil unless instance_variable_defined?(:@type)
     end
     
 
     def initialize(type)
-        initialize_fields
+        jfields_org_allbinary_game_layer_LayerPlacementType
         @type = type
     end
     
@@ -38,4 +40,6 @@ class LayerPlacementType
         @type = type
     end
 end
+
+end; end; end; end
 

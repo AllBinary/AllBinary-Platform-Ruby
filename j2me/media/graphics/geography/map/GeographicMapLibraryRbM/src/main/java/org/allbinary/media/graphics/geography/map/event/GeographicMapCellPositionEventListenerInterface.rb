@@ -14,23 +14,32 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Event
+
 module GeographicMapCellPositionEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
     def onGeographicMapCellPositionEvent(geographicMapCellPositionEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onGeographicMapCellPositionEvent, 1
     
 
     # throws Exception
     def onRemoveGeographicMapCellPositionEvent(geographicMapCellPositionEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onRemoveGeographicMapCellPositionEvent, 1
 end
 
-require "org/allbinary/media/graphics/geography/map/event/GeographicMapCellPositionEvent"
+autoload :GeographicMapCellPositionEvent, "org/allbinary/media/graphics/geography/map/event/GeographicMapCellPositionEvent" unless const_defined?(:GeographicMapCellPositionEvent, false)
+
+end; end; end; end; end; end; end
 

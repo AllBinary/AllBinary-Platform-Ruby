@@ -15,6 +15,8 @@
 # package org.allbinary.game.identification
 
 
+module ::Org; module Allbinary; module Game; module Identification
+
 module GroupInterface
     
 
@@ -29,4 +31,6 @@ module GroupInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

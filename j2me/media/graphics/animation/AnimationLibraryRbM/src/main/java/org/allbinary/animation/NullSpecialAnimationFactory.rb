@@ -14,8 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class NullSpecialAnimationFactory
     include AnimationInterfaceFactoryInterface
@@ -33,18 +36,21 @@ class NullSpecialAnimationFactory
 
     # throws Exception
     def getInstance(instanceId)
-        return SpecialAnimation.getInstance()
+        return ::Org::Allbinary::Animation::Special::SpecialAnimation.getInstance()
     end
+    java_overload :getInstance, 1
     
 
     # throws Exception
     def getInstanceAnimation(animationInterface)
-        return SpecialAnimation.getInstance()
+        return ::Org::Allbinary::Animation::Special::SpecialAnimation.getInstance()
     end
+    java_overload :getInstanceAnimation, 1
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -67,13 +73,15 @@ class NullSpecialAnimationFactory
     end
 end
 
-autoload :SpecialAnimation, "org/allbinary/animation/special/SpecialAnimation"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :Animation, "org/allbinary/animation/Animation"
+module ::Org; module Allbinary; module Animation; module Special; autoload :SpecialAnimation, "org/allbinary/animation/special/SpecialAnimation" unless const_defined?(:SpecialAnimation, false); end; end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
 
 begin
     NullSpecialAnimationFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

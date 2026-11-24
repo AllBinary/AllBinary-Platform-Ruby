@@ -15,24 +15,31 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 module GeographicMapCompositeInterface
     
 
     def geographicMapCellTypeArray()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getGeographicMapInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setGeographicMapInterface(geographicMapInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
+autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false)
+autoload :GeographicMapCellType, "org/allbinary/media/graphics/geography/map/GeographicMapCellType" unless const_defined?(:GeographicMapCellType, false)
+
+end; end; end; end; end; end
 

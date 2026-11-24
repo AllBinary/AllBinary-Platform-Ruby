@@ -15,15 +15,17 @@
 # package org.allbinary.math
 
 
+module ::Org; module Allbinary; module MathPackage
+
 class AngleIncrementInfoFactory
     attr_accessor :angleIncrementInfo
 
-    def initialize_fields
-        @angleIncrementInfo = Array.new((AngleFactory.getInstance().TOTAL_ANGLE).to_i, nil)
+    def jfields_org_allbinary_math_AngleIncrementInfoFactory
+        @angleIncrementInfo = Array.new(((AngleFactory.getInstance().TOTAL_ANGLE).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }), nil)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_math_AngleIncrementInfoFactory
     end
     
 
@@ -77,12 +79,14 @@ class AngleIncrementInfoFactory
     end
 end
 
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
-autoload :AngleIncrementInfo, "org/allbinary/math/AngleIncrementInfo"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false)
+autoload :AngleIncrementInfo, "org/allbinary/math/AngleIncrementInfo" unless const_defined?(:AngleIncrementInfo, false)
 
 begin
     AngleIncrementInfoFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

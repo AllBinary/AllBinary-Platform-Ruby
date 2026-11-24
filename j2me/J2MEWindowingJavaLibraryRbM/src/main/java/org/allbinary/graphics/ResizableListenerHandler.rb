@@ -16,6 +16,8 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Graphics
+
 class ResizableListenerHandler
     
 
@@ -69,11 +71,13 @@ class ResizableListenerHandler
     end
 end
 
-autoload :ResizableListenerInterface, "org/allbinary/graphics/ResizableListenerInterface"
+autoload :ResizableListenerInterface, "org/allbinary/graphics/ResizableListenerInterface" unless const_defined?(:ResizableListenerInterface, false)
 
 begin
     ResizableListenerHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

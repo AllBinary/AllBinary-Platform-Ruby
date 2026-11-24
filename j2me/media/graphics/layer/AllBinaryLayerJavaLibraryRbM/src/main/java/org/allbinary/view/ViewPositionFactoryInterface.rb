@@ -15,6 +15,8 @@
 # package org.allbinary.view
 
 
+module ::Org; module Allbinary; module View
+
 module ViewPositionFactoryInterface
     
 
@@ -25,5 +27,7 @@ module ViewPositionFactoryInterface
     end
 end
 
-autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false)
+
+end; end; end
 

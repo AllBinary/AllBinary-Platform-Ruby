@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.log
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module Communication; module Log
 
 #ActualPlatform
 class PreLogUtil
@@ -24,36 +27,60 @@ class PreLogUtil
     
 
     def self.put(specialMessage, anyType, functionName)
-        PreLogUtil.putOE(specialMessage, anyType, functionName, NullUtil.getInstance().NULL_OBJECT)
+        PreLogUtil.putOE(specialMessage, anyType, functionName, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
     end
     
 
     def self.putOE(specialMessage, anyType, functionName, exception)
         className = PreLogUtil::LABEL
-        actualClassName = anyType.class.name
+        actualClassName = anyType.class.java_name
         if actualClassName != nil
             className = actualClassName
         end
-        message = LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-        android.util.Log.i(PreLogUtil::LABEL, message)
+        message = ::Org::Allbinary::Logic::Communication::Log::LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
+        ::Android::Util::Log.i(PreLogUtil::LABEL, message)
     end
     
 
     def self.putS(specialMessage, className, functionName)
-        PreLogUtil.putSE(specialMessage, className, functionName, NullUtil.getInstance().NULL_OBJECT)
+        PreLogUtil.putSE(specialMessage, className, functionName, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
     end
     
 
     def self.putSE(specialMessage, className, functionName, exception)
-        message = LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-        android.util.Log.i(className, message)
+        message = ::Org::Allbinary::Logic::Communication::Log::LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
+        ::Android::Util::Log.i(className, message)
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:LABEL, "org.allbinary")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PreLogUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:LABEL].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogFormatUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil" unless const_defined?(:LogFormatUtil, false); end; end; end; end; end
 
-class PreLogUtil
-    LABEL = "org.allbinary"
+begin
+    PreLogUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

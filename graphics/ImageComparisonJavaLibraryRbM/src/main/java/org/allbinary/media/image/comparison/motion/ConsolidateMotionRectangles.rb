@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison.motion
 
-# require "java/awt"
+require "java/lang/JavaOverload"
+# require "java/awt/Rectangle"
 require "org/allbinary/media/image/comparison/motion/MotionRectangles"
+
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
 
 class ConsolidateMotionRectangles < MotionRectangles
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_image_comparison_motion_ConsolidateMotionRectangles
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize(motionRectangles)
         super(NAME, motionRectangles.getImageComparisonResult())
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_motion_ConsolidateMotionRectangles
         vector = motionRectangles.getVector()
         size = vector.size()
         (0...size).each do |index|
@@ -41,7 +44,7 @@ class ConsolidateMotionRectangles < MotionRectangles
     def consolidateMotionRectangles()
         vector = self.getVector()
         @logUtil.putF("Start - Size Before: " + (vector.size()).to_s, self, "consolidateMotionRectangleConstraints")
-        removeVector = BasicArrayListD.new()
+        removeVector = ::Org::Allbinary::Util::BasicArrayListD.new()
         size = vector.size()
         (0...size).each do |index|
             motionRectangle = vector.get(index)
@@ -60,6 +63,7 @@ class ConsolidateMotionRectangles < MotionRectangles
         end
         self.remove(removeVector)
     end
+    java_overload :consolidateMotionRectangles, 0
     
 
     def remove(removeVector)
@@ -69,6 +73,7 @@ class ConsolidateMotionRectangles < MotionRectangles
             vector.remove(removeVector.get(index))
         end
     end
+    java_overload :remove, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -91,15 +96,17 @@ class ConsolidateMotionRectangles < MotionRectangles
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle" unless const_defined?(:MotionRectangle, false)
 
 begin
     ConsolidateMotionRectangles.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

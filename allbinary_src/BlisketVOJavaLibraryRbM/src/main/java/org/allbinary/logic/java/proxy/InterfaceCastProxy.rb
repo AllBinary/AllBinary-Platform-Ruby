@@ -14,20 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.proxy
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 # require "java/lang/reflect/Method"
 # require "java/lang/reflect/Proxy"
+require "java/lang/reflect/InvocationHandler"
+
+module ::Org; module Allbinary; module Logic; module Java; module Proxy
 
 class InterfaceCastProxy
-    include InvocationHandler
+    include ::Java::Lang::Reflect::InvocationHandler
     attr_accessor :anyType
 
-    def initialize_fields
-        @anyType = nil
+    def jfields_org_allbinary_logic_java_proxy_InterfaceCastProxy
+        @anyType = nil unless instance_variable_defined?(:@anyType)
     end
     
 
     def initialize(anyType)
-        initialize_fields
+        jfields_org_allbinary_logic_java_proxy_InterfaceCastProxy
         @anyType = anyType
     end
     
@@ -46,5 +51,8 @@ class InterfaceCastProxy
         end
         return proxyMethod.invoke(@anyType, proxyArgs)
     end
+    java_overload :invoke, 3
 end
+
+end; end; end; end; end
 

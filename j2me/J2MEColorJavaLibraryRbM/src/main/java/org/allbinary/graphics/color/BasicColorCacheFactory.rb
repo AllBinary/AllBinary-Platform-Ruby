@@ -16,11 +16,13 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class BasicColorCacheFactory
     attr_accessor :hashtable
 
-    def initialize_fields
-        @hashtable = StdUtil.getInstance().createHashtable()
+    def jfields_org_allbinary_graphics_color_BasicColorCacheFactory
+        @hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
     end
     
 
@@ -30,7 +32,7 @@ class BasicColorCacheFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_color_BasicColorCacheFactory
     end
     
 
@@ -81,14 +83,16 @@ class BasicColorCacheFactory
     end
 end
 
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false)
 
 begin
     BasicColorCacheFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

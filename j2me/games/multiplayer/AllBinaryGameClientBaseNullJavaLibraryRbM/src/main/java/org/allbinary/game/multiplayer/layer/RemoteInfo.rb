@@ -7,6 +7,8 @@
 # package org.allbinary.game.multiplayer.layer
 
 
+module ::Org; module Allbinary; module Game; module Multiplayer; module Layer
+
 class RemoteInfo
     
 
@@ -18,7 +20,7 @@ class RemoteInfo
         @java_static_fields_started = true
         const_set(:NEW_PLAYER_ID, 0)
         begin
-            const_set(:REMOTE_INFO, RemoteInfo.new(StringUtil.getInstance().EMPTY_STRING, -1, -1, RemoteInfo::NEW_PLAYER_ID))
+            const_set(:REMOTE_INFO, RemoteInfo.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, -1, -1, RemoteInfo::NEW_PLAYER_ID))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -35,11 +37,13 @@ class RemoteInfo
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     RemoteInfo.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

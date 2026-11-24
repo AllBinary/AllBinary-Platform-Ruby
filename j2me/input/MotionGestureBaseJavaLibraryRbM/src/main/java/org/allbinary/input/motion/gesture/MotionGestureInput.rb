@@ -14,17 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.gesture
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/Input"
 
-class MotionGestureInput < Input
+module ::Org; module Allbinary; module Input; module Motion; module Gesture
+
+class MotionGestureInput < ::Org::Allbinary::Game::Input::Input
     
 
     def initialize(id, name)
         super(id, name)
-        inputFactory = InputFactory.getInstance()
+        inputFactory = ::Org::Allbinary::Game::Input::InputFactory.getInstance()
         inputFactory.add(self.getId(), self)
     end
 end
 
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+
+end; end; end; end; end
 

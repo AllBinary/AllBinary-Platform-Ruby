@@ -15,19 +15,21 @@
 # package org.allbinary.direction
 
 
+module ::Org; module Allbinary; module Direction
+
 class DirectionFactory
     attr_accessor :NAME, :LEFT, :RIGHT, :DOWN, :UP, :UP_LEFT, :UP_RIGHT, :DOWN_LEFT, :DOWN_RIGHT, :NOT_BORDERED_WITH, :NO_DIRECTION, :TOP, :BOTTOM, :ALL_DIRECTION
 
-    def initialize_fields
+    def jfields_org_allbinary_direction_DirectionFactory
         @NAME = "DIRECTION"
-        @LEFT = Direction.new(CommonPhoneStrings.getInstance().LEFT, "WEST", 0, 1)
-        @RIGHT = Direction.new(CommonPhoneStrings.getInstance().RIGHT, "EAST", 1, 0)
-        @DOWN = Direction.new(CommonPhoneStrings.getInstance().DOWN, "SOUTH", 2, 0)
-        @UP = Direction.new(CommonPhoneStrings.getInstance().UP, "NORTH", 3, 0)
-        @UP_LEFT = nil
-        @UP_RIGHT = nil
-        @DOWN_LEFT = nil
-        @DOWN_RIGHT = nil
+        @LEFT = Direction.new(::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().LEFT, "WEST", 0, 1)
+        @RIGHT = Direction.new(::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().RIGHT, "EAST", 1, 0)
+        @DOWN = Direction.new(::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().DOWN, "SOUTH", 2, 0)
+        @UP = Direction.new(::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().UP, "NORTH", 3, 0)
+        @UP_LEFT = nil unless instance_variable_defined?(:@UP_LEFT)
+        @UP_RIGHT = nil unless instance_variable_defined?(:@UP_RIGHT)
+        @DOWN_LEFT = nil unless instance_variable_defined?(:@DOWN_LEFT)
+        @DOWN_RIGHT = nil unless instance_variable_defined?(:@DOWN_RIGHT)
         @NOT_BORDERED_WITH = Direction.new("NOT_BORDERED_WITH", "NOT_BORDERED_WITH", 8, 0)
         @NO_DIRECTION = Direction.new("NO_DIRECTION", "NO_DIRECTION", 9, 0)
         @TOP = Direction.new("TOP", "TOP", 10, 0)
@@ -42,9 +44,9 @@ class DirectionFactory
     
 
     def initialize()
-        initialize_fields
-        stringBuffer = StringMaker.new()
-        commonSeps = CommonSeps.getInstance()
+        jfields_org_allbinary_direction_DirectionFactory
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         @UP_LEFT = Direction.new("UP LEFT", stringBuffer.append(@UP.getOtherName()).append(commonSeps.SPACE).append(@LEFT.getOtherName()).to_s, 4, 0)
         stringBuffer.delete(0, stringBuffer.length())
         @UP_RIGHT = Direction.new("UP RIGHT", stringBuffer.append(@UP.getOtherName()).append(commonSeps.SPACE).append(@RIGHT.getOtherName()).to_s, 5, 0)
@@ -85,14 +87,16 @@ class DirectionFactory
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :Direction, "org/allbinary/direction/Direction"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false)
 
 begin
     DirectionFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

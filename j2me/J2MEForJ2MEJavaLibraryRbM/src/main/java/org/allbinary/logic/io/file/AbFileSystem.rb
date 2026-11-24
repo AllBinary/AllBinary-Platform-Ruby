@@ -15,17 +15,19 @@
 # package org.allbinary.logic.io.file
 
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 #J2MEForJ2ME
 class AbFileSystem
     attr_accessor :logUtil, :commonStrings
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_logic_io_file_AbFileSystem
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_io_file_AbFileSystem
     end
     
 
@@ -45,19 +47,24 @@ class AbFileSystem
     
 
     def getFilesAsStringArrayForPath(currentDirPath)
-        return StringUtil.getInstance().getArrayInstance()
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().getArrayInstance()
     end
     
 
-    def readAsString(fileName)
-        bytes = Array.new(1000000, 0)
+    def readAsString_j1(fileName)
+        bytes = (Array.new(1000000, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
         return self.readAsString(fileName, bytes)
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def readAsString(fileName, bytes)
-        return StringUtil.getInstance().EMPTY_STRING
+    def readAsString_j2(fileName, bytes)
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+    end
+
+    def readAsString(*java_overload_args)
+        return readAsString_j1(*java_overload_args) if java_overload_args.length == 1
+        return readAsString_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method readAsString takes #{java_overload_args.length} arguments"
     end
     
 
@@ -105,15 +112,17 @@ class AbFileSystem
     end
 end
 
-autoload :InputStream, "java/io/InputStream"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     AbFileSystem.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

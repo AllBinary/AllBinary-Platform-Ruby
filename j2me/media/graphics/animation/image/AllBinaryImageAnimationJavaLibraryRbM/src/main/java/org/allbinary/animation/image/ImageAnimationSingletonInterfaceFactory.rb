@@ -14,18 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/SingletonAnimationInterfaceFactory"
 
-class ImageAnimationSingletonInterfaceFactory < SingletonAnimationInterfaceFactory
+module ::Org; module Allbinary; module Animation; module Image
+
+class ImageAnimationSingletonInterfaceFactory < ::Org::Allbinary::Animation::SingletonAnimationInterfaceFactory
     
 
     def initialize(animationInterface, width, height)
-        super(ImageAnimation.new(AnimationFrameToImageUtil.getInstance().getInstanceWH(width, height, animationInterface), AnimationBehavior.getInstance()))
+        super(ImageAnimation.new(::Org::Allbinary::Image::AnimationFrameToImageUtil.getInstance().getInstanceWH(width, height, animationInterface), ::Org::Allbinary::Animation::AnimationBehavior.getInstance()))
     end
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :AnimationFrameToImageUtil, "org/allbinary/image/AnimationFrameToImageUtil"
-autoload :ImageAnimation, "org/allbinary/animation/image/ImageAnimation"
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :AnimationFrameToImageUtil, "org/allbinary/image/AnimationFrameToImageUtil" unless const_defined?(:AnimationFrameToImageUtil, false); end; end; end
+autoload :ImageAnimation, "org/allbinary/animation/image/ImageAnimation" unless const_defined?(:ImageAnimation, false)
+
+end; end; end; end
 

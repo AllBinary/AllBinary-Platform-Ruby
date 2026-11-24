@@ -15,10 +15,12 @@
 # package org.allbinary.business.context.modules.storefront.statistics.orders
 
 
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; module Statistics; module Orders
+
 class StoreFrontOrdersStatisticsData
     attr_accessor :NAME
 
-    def initialize_fields
+    def jfields_org_allbinary_business_context_modules_storefront_statistics_orders_StoreFrontOrdersStatisticsData
         @NAME = "STOREFRONT_ORDERS_STATISTICS_NAME"
     end
     
@@ -29,19 +31,45 @@ class StoreFrontOrdersStatisticsData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_context_modules_storefront_statistics_orders_StoreFrontOrdersStatisticsData
     end
 
     def self.instance()
+        StoreFrontOrdersStatisticsData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        StoreFrontOrdersStatisticsData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = StoreFrontOrdersStatisticsData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StoreFrontOrdersStatisticsData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class StoreFrontOrdersStatisticsData
-    @@instance = StoreFrontOrdersStatisticsData.new()
+begin
+    StoreFrontOrdersStatisticsData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

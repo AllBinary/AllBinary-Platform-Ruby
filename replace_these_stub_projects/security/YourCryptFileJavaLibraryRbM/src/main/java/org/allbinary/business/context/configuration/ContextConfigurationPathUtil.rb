@@ -3,6 +3,8 @@
 # package org.allbinary.business.context.configuration
 
 
+module ::Org; module Allbinary; module Business; module Context; module Configuration
+
 class ContextConfigurationPathUtil
     
 
@@ -29,6 +31,8 @@ class ContextConfigurationPathUtil
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/path/AbPath"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+
+end; end; end; end; end
 

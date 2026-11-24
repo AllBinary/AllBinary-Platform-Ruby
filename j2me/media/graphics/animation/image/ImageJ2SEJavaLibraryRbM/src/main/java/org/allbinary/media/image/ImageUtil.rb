@@ -21,14 +21,15 @@
 # require "java/awt/Transparency"
 # require "java/awt/geom/AffineTransform"
 # require "java/awt/image/BufferedImage"
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageUtil
     attr_accessor :commonStrings, :commonSeps, :IIOIMAGE_POOL_NAME, :CREATE_BUFFERED_IMAGE
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @commonSeps = CommonSeps.getInstance()
+    def jfields_org_allbinary_media_image_ImageUtil
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         @IIOIMAGE_POOL_NAME = "IIOIMAGE_POOL_NAME"
         @CREATE_BUFFERED_IMAGE = "createBufferedImage"
     end
@@ -40,7 +41,7 @@ class ImageUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageUtil
     end
     
 
@@ -64,8 +65,8 @@ class ImageUtil
         bufferedImage = nil
         (0...size).each do |index|
             bufferedImage = bufferedImageArray[index]
-            newWidth = ((bufferedImage.getWidth() * percent / 100)).to_i
-            newHeight = ((bufferedImage.getHeight() * percent / 100)).to_i
+            newWidth = (((bufferedImage.getWidth() * percent / 100)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+            newHeight = (((bufferedImage.getHeight() * percent / 100)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
             scaledBufferedImageArray[index] = self.createBufferedImage(bufferedImage, newWidth, newHeight, scale)
         end
         return scaledBufferedImageArray
@@ -79,8 +80,8 @@ class ImageUtil
         bufferedImage = nil
         (0...size).each do |index|
             bufferedImage = bufferedImageArray[index]
-            newWidth = ((bufferedImage.getWidth() * percent)).to_i
-            newHeight = ((bufferedImage.getHeight() * percent)).to_i
+            newWidth = (((bufferedImage.getWidth() * percent)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+            newHeight = (((bufferedImage.getHeight() * percent)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
             scaledBufferedImageArray[index] = self.createBufferedImage(bufferedImage, newWidth, newHeight, scale)
         end
         return scaledBufferedImageArray
@@ -184,35 +185,62 @@ class ImageUtil
     
 
     def toString(bufferedImage)
-        commonLabels = CommonLabels.getInstance()
-        stringBuffer = StringMaker.new()
+        commonLabels = ::Org::Allbinary::StringPackage::CommonLabels.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(" BufferedImage -")
         stringBuffer.append(commonLabels.WIDTH_LABEL)
-        stringBuffer.appendint((bufferedImage.getWidth()).to_i)
+        stringBuffer.appendint(((bufferedImage.getWidth()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(commonLabels.HEIGHT_LABEL)
-        stringBuffer.appendint((bufferedImage.getHeight()).to_i)
+        stringBuffer.appendint(((bufferedImage.getHeight()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(" Type: ")
-        stringBuffer.appendint((bufferedImage.getType()).to_i)
+        stringBuffer.appendint(((bufferedImage.getType()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         return stringBuffer.to_s
     end
 
     def self.instance()
+        ImageUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/microemu/device/j2se/J2SEImmutableImage"
-require "org/microemu/device/j2se/J2SEMutableImage"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Microemu; module Device; module J2se; autoload :J2SEImmutableImage, "org/microemu/device/j2se/J2SEImmutableImage" unless const_defined?(:J2SEImmutableImage, false); end; end; end; end
+module ::Org; module Microemu; module Device; module J2se; autoload :J2SEMutableImage, "org/microemu/device/j2se/J2SEMutableImage" unless const_defined?(:J2SEMutableImage, false); end; end; end; end
 
-class ImageUtil
-    @@instance = ImageUtil.new()
+begin
+    ImageUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

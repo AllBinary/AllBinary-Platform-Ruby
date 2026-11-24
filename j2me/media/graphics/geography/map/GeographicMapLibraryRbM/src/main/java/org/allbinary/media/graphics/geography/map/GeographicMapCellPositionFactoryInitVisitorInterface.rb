@@ -15,15 +15,20 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 module GeographicMapCellPositionFactoryInitVisitorInterface
     
 
     # throws Exception
     def visit(tiledLayer, cellPosition)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryTiledLayer"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryTiledLayer, "org/allbinary/game/layer/AllBinaryTiledLayer" unless const_defined?(:AllBinaryTiledLayer, false); end; end; end; end
+autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false)
+
+end; end; end; end; end; end
 

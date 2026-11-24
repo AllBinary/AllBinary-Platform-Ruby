@@ -14,31 +14,37 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/VectorAnimation"
+
+module ::Org; module Allbinary; module Animation
 
 class AdjustedVectorAnimation < VectorAnimation
     attr_accessor :dx, :dy
 
-    def initialize_fields
-        @dx = nil
-        @dy = nil
+    def jfields_org_allbinary_animation_AdjustedVectorAnimation
+        @dx = nil unless instance_variable_defined?(:@dx)
+        @dy = nil unless instance_variable_defined?(:@dy)
     end
     
 
     def initialize(currentPoints, basicColor, dx, dy, animationBehavior)
         super(currentPoints, basicColor, animationBehavior)
-        initialize_fields
+        jfields_org_allbinary_animation_AdjustedVectorAnimation
         @dx = dx
         @dy = dy
     end
     
 
     def paintXY(graphics, x, y)
-        super(graphics, x + @dx, y + @dy)
+        AdjustedVectorAnimation.superclass.java_super_method(:paintXY, 3).bind(self).call(graphics, x + @dx, y + @dy)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false)
+
+end; end; end
 

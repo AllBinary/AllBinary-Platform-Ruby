@@ -14,40 +14,48 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 require "org/allbinary/util/BasicArrayListS"
+
+module ::Org; module Allbinary; module Util
 
 class ImmutableBasicArrayList < BasicArrayListS
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_util_ImmutableBasicArrayList
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name, size)
         super(size)
-        initialize_fields
+        jfields_org_allbinary_util_ImmutableBasicArrayList
         @name = name
     end
     
 
     def add(e)
-        ForcedLogUtil.log(@name, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(@name, self)
         return true
     end
+    java_overload :add, 1
     
 
     def addAt(index, element)
-        ForcedLogUtil.log(@name, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(@name, self)
     end
+    java_overload :addAt, 2
     
 
     def toString()
         return @name
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+
+end; end; end
 

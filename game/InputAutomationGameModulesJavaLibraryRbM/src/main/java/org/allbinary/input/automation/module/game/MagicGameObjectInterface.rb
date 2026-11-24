@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.game
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/automation/module/game/MeteredGameObjectInterface"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game
 
 module MagicGameObjectInterface
     include MeteredGameObjectInterface
 end
+
+end; end; end; end; end; end
 

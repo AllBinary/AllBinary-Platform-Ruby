@@ -15,16 +15,18 @@
 # package org.allbinary.game.input.motion.action
 
 
+module ::Org; module Allbinary; module Game; module Input; module Motion; module Action
+
 class GameKeyCompleteMotionGestureInputEventFactory
     attr_accessor :logUtil, :eventList
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @eventList = BasicArrayListD.new()
+    def jfields_org_allbinary_game_input_motion_action_GameKeyCompleteMotionGestureInputEventFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @eventList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_motion_action_GameKeyCompleteMotionGestureInputEventFactory
     end
     
 
@@ -39,7 +41,7 @@ class GameKeyCompleteMotionGestureInputEventFactory
     
 
     def updateAll()
-        @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().START_LABEL).appendint(@eventList.size()).to_s, self, "updateAll")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).appendint(@eventList.size()).to_s, self, "updateAll")
         (@eventList.size() - 1).step(0, -(1)) do |index|
             gameKeyCompleteMotionGestureInputEvent = @eventList.objectArray[index]
             gameKeyCompleteMotionGestureInputEvent.update()
@@ -67,16 +69,18 @@ class GameKeyCompleteMotionGestureInputEventFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :GameKeyCompleteMotionGestureInputEvent, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :GameKeyCompleteMotionGestureInputEvent, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent" unless const_defined?(:GameKeyCompleteMotionGestureInputEvent, false)
 
 begin
     GameKeyCompleteMotionGestureInputEventFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

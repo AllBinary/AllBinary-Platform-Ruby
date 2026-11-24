@@ -14,24 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.business.init
 
+require "java/lang/JavaOverload"
+
+module ::Org; module Allbinary; module Business; module Init
 
 class InitException < StandardError
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_org_allbinary_business_init_InitException_0(*args)
+        when 1 then jnew_org_allbinary_business_init_InitException_1(*args)
+        else raise ArgumentError, "No constructor of InitException takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        method(:initialize).super_method.call()
+    def jnew_org_allbinary_business_init_InitException_0()
+        InitException.superclass.instance_method(:initialize).bind(self).call()
     end
     
 
-    def constructor1(msg)
-        method(:initialize).super_method.call(msg)
+    def jnew_org_allbinary_business_init_InitException_1(msg)
+        InitException.superclass.instance_method(:initialize).bind(self).call(msg)
     end
 end
+
+end; end; end; end
 

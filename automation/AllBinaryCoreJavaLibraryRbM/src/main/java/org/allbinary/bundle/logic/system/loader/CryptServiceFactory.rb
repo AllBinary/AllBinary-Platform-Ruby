@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.bundle.logic.system.loader
 
+require "java/lang/JavaOverload"
 require "org/osgi/framework/ServiceFactory"
 
+module ::Org; module Allbinary; module Bundle; module Logic; module System; module Loader
+
 class CryptServiceFactory
-    include ServiceFactory
+    include ::Org::Osgi::Framework::ServiceFactory
     attr_accessor :logUtil, :commonStrings, :cryptService
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_bundle_logic_system_loader_CryptServiceFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @cryptService = CryptService.new()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_bundle_logic_system_loader_CryptServiceFactory
     end
     
 
@@ -36,15 +39,19 @@ class CryptServiceFactory
         @logUtil.putF(@commonStrings.START, self, "getService")
         return @cryptService
     end
+    java_overload :getService, 2
     
 
     def ungetService(bundle, registration, service)
     end
+    java_overload :ungetService, 3
 end
 
-autoload :Bundle, "org/osgi/framework/Bundle"
-autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :CryptService, "org/allbinary/bundle/logic/system/loader/CryptService"
+module ::Org; module Osgi; module Framework; autoload :Bundle, "org/osgi/framework/Bundle" unless const_defined?(:Bundle, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration" unless const_defined?(:ServiceRegistration, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :CryptService, "org/allbinary/bundle/logic/system/loader/CryptService" unless const_defined?(:CryptService, false)
+
+end; end; end; end; end; end
 

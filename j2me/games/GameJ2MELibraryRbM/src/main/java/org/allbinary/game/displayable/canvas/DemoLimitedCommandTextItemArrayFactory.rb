@@ -15,15 +15,17 @@
 # package org.allbinary.game.displayable.canvas
 
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 class DemoLimitedCommandTextItemArrayFactory
     attr_accessor :commandTextItemArrayFactory
 
-    def initialize_fields
-        @commandTextItemArrayFactory = CommandTextItemArrayFactory.new(LimitCommandsVisitor.new())
+    def jfields_org_allbinary_game_displayable_canvas_DemoLimitedCommandTextItemArrayFactory
+        @commandTextItemArrayFactory = ::Org::Allbinary::Graphics::Form::Item::CommandTextItemArrayFactory.new(::Org::Allbinary::Graphics::Form::Item::LimitCommandsVisitor.new())
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_DemoLimitedCommandTextItemArrayFactory
     end
     
 
@@ -67,12 +69,14 @@ class DemoLimitedCommandTextItemArrayFactory
     end
 end
 
-autoload :CommandTextItemArrayFactory, "org/allbinary/graphics/form/item/CommandTextItemArrayFactory"
-autoload :LimitCommandsVisitor, "org/allbinary/graphics/form/item/LimitCommandsVisitor"
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :CommandTextItemArrayFactory, "org/allbinary/graphics/form/item/CommandTextItemArrayFactory" unless const_defined?(:CommandTextItemArrayFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :LimitCommandsVisitor, "org/allbinary/graphics/form/item/LimitCommandsVisitor" unless const_defined?(:LimitCommandsVisitor, false); end; end; end; end; end
 
 begin
     DemoLimitedCommandTextItemArrayFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

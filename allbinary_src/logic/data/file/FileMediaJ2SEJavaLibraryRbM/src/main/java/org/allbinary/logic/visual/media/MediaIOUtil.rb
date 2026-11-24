@@ -4,6 +4,8 @@
 
 # require "javax/imageio/ImageIO"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Media
+
 class MediaIOUtil
     
 
@@ -57,4 +59,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

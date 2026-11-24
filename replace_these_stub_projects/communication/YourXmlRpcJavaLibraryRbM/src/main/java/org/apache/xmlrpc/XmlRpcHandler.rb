@@ -3,6 +3,8 @@
 # package org.apache.xmlrpc
 
 
+module ::Org; module Apache; module Xmlrpc
+
 module XmlRpcHandler
     
 
@@ -13,6 +15,8 @@ module XmlRpcHandler
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end
 

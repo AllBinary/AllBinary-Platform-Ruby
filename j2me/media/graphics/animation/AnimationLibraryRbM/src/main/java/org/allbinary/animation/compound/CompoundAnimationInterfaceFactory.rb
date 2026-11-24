@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.compound
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Animation; module Compound
+
 class CompoundAnimationInterfaceFactory
-    include AnimationInterfaceFactoryInterface
+    include ::Org::Allbinary::Animation::AnimationInterfaceFactoryInterface
     attr_accessor :basicAnimationInterfaceFactoryInterfaceArrayP, :animationBehaviorFactory
 
-    def initialize_fields
-        @basicAnimationInterfaceFactoryInterfaceArrayP = nil
-        @animationBehaviorFactory = nil
+    def jfields_org_allbinary_animation_compound_CompoundAnimationInterfaceFactory
+        @basicAnimationInterfaceFactoryInterfaceArrayP = nil unless instance_variable_defined?(:@basicAnimationInterfaceFactoryInterfaceArrayP)
+        @animationBehaviorFactory = nil unless instance_variable_defined?(:@animationBehaviorFactory)
     end
     
 
     def initialize(basicAnimationInterfaceFactoryInterfaceArray, animationBehaviorFactory)
-        initialize_fields
+        jfields_org_allbinary_animation_compound_CompoundAnimationInterfaceFactory
         @basicAnimationInterfaceFactoryInterfaceArrayP = basicAnimationInterfaceFactoryInterfaceArray
         @animationBehaviorFactory = animationBehaviorFactory
     end
@@ -42,21 +45,25 @@ class CompoundAnimationInterfaceFactory
         end
         return self.createAnimation(animationInterfaceArray)
     end
+    java_overload :getInstance, 1
     
 
     def createArray(size)
-        return NullAnimationFactory.getFactoryInstance().EMPTY_ARRAY
+        return ::Org::Allbinary::Animation::NullAnimationFactory.getFactoryInstance().EMPTY_ARRAY
     end
+    java_overload :createArray, 1
     
 
     def createAnimation(animationInterfaceArray)
-        return NullAnimationFactory.getFactoryInstance().getInstance(0)
+        return ::Org::Allbinary::Animation::NullAnimationFactory.getFactoryInstance().getInstance(0)
     end
+    java_overload :createAnimation, 1
     
 
     def getBasicAnimationInterfaceFactoryInterfaceArray()
         return @basicAnimationInterfaceFactoryInterfaceArrayP
     end
+    java_overload :getBasicAnimationInterfaceFactoryInterfaceArray, 0
     
 
     def setInitialScale(scaleProperties)
@@ -65,11 +72,14 @@ class CompoundAnimationInterfaceFactory
             @basicAnimationInterfaceFactoryInterfaceArrayP[index].setInitialScale(scaleProperties)
         end
     end
+    java_overload :setInitialScale, 1
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
-autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory" unless const_defined?(:AnimationBehaviorFactory, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory" unless const_defined?(:NullAnimationFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+
+end; end; end; end
 

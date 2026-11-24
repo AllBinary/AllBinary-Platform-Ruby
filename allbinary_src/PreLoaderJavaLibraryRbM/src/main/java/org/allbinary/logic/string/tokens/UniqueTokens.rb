@@ -14,26 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.string.tokens
 
-# require "java/util/HashSet"
+
+module ::Org; module Allbinary; module Logic; module StringPackage; module Tokens
 
 class UniqueTokens
     attr_accessor :specialCharacters
 
-    def initialize_fields
-        @specialCharacters = BasicArrayListD.new()
+    def jfields_org_allbinary_logic_string_tokens_UniqueTokens
+        @specialCharacters = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_string_tokens_UniqueTokens
         @specialCharacters.add("!")
         @specialCharacters.add("@")
-        @specialCharacters.add(CommonPhoneStrings.getInstance().POUND)
+        @specialCharacters.add(::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().POUND)
         @specialCharacters.add("$")
         @specialCharacters.add("%")
         @specialCharacters.add("^")
-        @specialCharacters.add(CommonSeps.getInstance().AMPERSAND)
-        @specialCharacters.add(CommonPhoneStrings.getInstance().STAR)
+        @specialCharacters.add(::Org::Allbinary::StringPackage::CommonSeps.getInstance().AMPERSAND)
+        @specialCharacters.add(::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().STAR)
         @specialCharacters.add("(")
         @specialCharacters.add(")")
         @specialCharacters.add("-")
@@ -42,7 +43,7 @@ class UniqueTokens
         @specialCharacters.add("=")
         @specialCharacters.add("\\")
         @specialCharacters.add("|")
-        @specialCharacters.add(AbPathData.getInstance().EXTENSION_SEP)
+        @specialCharacters.add(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP)
         @specialCharacters.add(",")
         @specialCharacters.add("<")
         @specialCharacters.add(">")
@@ -56,23 +57,23 @@ class UniqueTokens
     # throws Exception
     def getWhithoutDashesAndSkipNumberOnlyTokens(stringVector)
         begin
-            hashSet = HashSet.new()
+            hashSet = ::Java::Util::HashSet.new()
             index = 0
-            commonSeps = CommonSeps.getInstance()
+            commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
             while index < stringVector.size()
                 keywords = stringVector.get(index)
                 tokenizer = Tokenizer.new(commonSeps.COMMA)
-                keywordVector = tokenizer.getTokensFromString(keywords, BasicArrayListD.new())
+                keywordVector = tokenizer.getTokensFromString(keywords, ::Org::Allbinary::Util::BasicArrayListD.new())
                 (0...keywordVector.size()).each do |forIndex|
                     cleanString = keywordVector.get(forIndex)
                     cleanString = cleanString.strip
                     if (cleanString.index("-") || -1) != -1
-                        cleanString = Replace.new("-", commonSeps.SPACE).all(cleanString)
+                        cleanString = ::Org::Allbinary::Logic::StringPackage::Regex::Replace::Replace.new("-", commonSeps.SPACE).all(cleanString)
                     end
                     hashSet.add(cleanString)
                     if (cleanString.index(" ") || -1) != -1
                         spaceTokenizer = Tokenizer.new(commonSeps.SPACE)
-                        subKeywordVector = spaceTokenizer.getTokensFromString(cleanString, BasicArrayListD.new())
+                        subKeywordVector = spaceTokenizer.getTokensFromString(cleanString, ::Org::Allbinary::Util::BasicArrayListD.new())
                         (0...subKeywordVector.size()).each do |spaceIndex|
                             subCleanString = subKeywordVector.get(spaceIndex)
                             if !isSpecialCharacter(subCleanString) && !numberOnly(subCleanString)
@@ -110,11 +111,14 @@ class UniqueTokens
     end
 end
 
-require "org/allbinary/logic/io/path/AbPathData"
-require "org/allbinary/logic/string/regex/replace/Replace"
-require "org/allbinary/string/CommonPhoneStrings"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/string/tokens/Tokenizer"
+module ::Java; module Util; autoload :HashSet, "java/util/HashSet" unless const_defined?(:HashSet, false); end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; module Regex; module Replace; autoload :Replace, "org/allbinary/logic/string/regex/replace/Replace" unless const_defined?(:Replace, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :Tokenizer, "org/allbinary/logic/string/tokens/Tokenizer" unless const_defined?(:Tokenizer, false)
+
+end; end; end; end; end
 

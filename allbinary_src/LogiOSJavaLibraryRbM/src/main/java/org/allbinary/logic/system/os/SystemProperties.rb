@@ -15,11 +15,13 @@
 # package org.allbinary.logic.system.os
 
 
+module ::Org; module Allbinary; module Logic; module System; module Os
+
 #ActualPlatform
 class SystemProperties
     attr_accessor :OS_NAME, :OS_ARCH, :OS_VERSION
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_os_SystemProperties
         @OS_NAME = "os.name"
         @OS_ARCH = "os.arch"
         @OS_VERSION = "os.version"
@@ -32,22 +34,22 @@ class SystemProperties
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_os_SystemProperties
     end
     
 
     def getName()
-        return System.getProperty(@OS_NAME)
+        return ::Java::Lang::System.getProperty(@OS_NAME)
     end
     
 
     def getArch()
-        return System.getProperty(@OS_ARCH)
+        return ::Java::Lang::System.getProperty(@OS_ARCH)
     end
     
 
     def getVersion()
-        return System.getProperty(@OS_VERSION)
+        return ::Java::Lang::System.getProperty(@OS_VERSION)
     end
     
 
@@ -56,17 +58,43 @@ class SystemProperties
     end
 
     def self.instance()
+        SystemProperties.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        SystemProperties.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = SystemProperties.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "SystemProperties"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
 require "java/lang/System"
 
-class SystemProperties
-    @@instance = SystemProperties.new()
+begin
+    SystemProperties.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

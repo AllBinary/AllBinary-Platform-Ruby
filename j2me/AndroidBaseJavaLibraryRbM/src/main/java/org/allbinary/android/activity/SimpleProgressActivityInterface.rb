@@ -15,31 +15,39 @@
 # package org.allbinary.android.activity
 
 
+module ::Org; module Allbinary; module Android; module Activity
+
 module SimpleProgressActivityInterface
     
 
     def runOnUiThread(action)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def onSetProgress(value, text)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def onDismissProgress(animationSequence)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def onShowProgress(indeterminate, animationSequence)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
 require "java/lang/Runnable"
+
+end; end; end; end
 

@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
+require "java/lang/JavaOverload"
 require "javax/microedition/media/Control"
 
+module ::Org; module Allbinary; module Media; module Audio
+
 class NullControl
-    include Control
+    include ::Javax::Microedition::Media::Control
 end
+
+end; end; end; end
 

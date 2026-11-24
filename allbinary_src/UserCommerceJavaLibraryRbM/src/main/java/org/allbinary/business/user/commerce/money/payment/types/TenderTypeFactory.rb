@@ -15,17 +15,19 @@
 # package org.allbinary.business.user.commerce.money.payment.types
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
+
 class TenderTypeFactory
     attr_accessor :CREDITCARD, :CHECK, :ACH
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_TenderTypeFactory
         @CREDITCARD = TenderType.new("Credit Card")
         @CHECK = TenderType.new("Check")
         @ACH = TenderType.new("Ach")
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_types_TenderTypeFactory
     end
     
 
@@ -64,11 +66,13 @@ class TenderTypeFactory
     end
 end
 
-autoload :TenderType, "org/allbinary/business/user/commerce/money/payment/types/TenderType"
+autoload :TenderType, "org/allbinary/business/user/commerce/money/payment/types/TenderType" unless const_defined?(:TenderType, false)
 
 begin
     TenderTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

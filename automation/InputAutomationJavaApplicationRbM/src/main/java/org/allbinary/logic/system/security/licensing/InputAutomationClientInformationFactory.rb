@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class InputAutomationClientInformationFactory
     
 
@@ -53,11 +55,13 @@ class InputAutomationClientInformationFactory
     end
 end
 
-autoload :InputAutomationClientInformation, "org/allbinary/logic/system/security/licensing/InputAutomationClientInformation"
+autoload :InputAutomationClientInformation, "org/allbinary/logic/system/security/licensing/InputAutomationClientInformation" unless const_defined?(:InputAutomationClientInformation, false)
 
 begin
     InputAutomationClientInformationFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

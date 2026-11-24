@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.robot
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Robot
+
 class TempInputRobotNames
     
 
@@ -49,4 +51,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,18 +15,20 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class Rectangle
     attr_accessor :point, :width, :height
 
-    def initialize_fields
-        @point = nil
-        @width = nil
-        @height = nil
+    def jfields_org_allbinary_graphics_Rectangle
+        @point = nil unless instance_variable_defined?(:@point)
+        @width = nil unless instance_variable_defined?(:@width)
+        @height = nil unless instance_variable_defined?(:@height)
     end
     
 
     def initialize(point, width, height)
-        initialize_fields
+        jfields_org_allbinary_graphics_Rectangle
         @point = point
         @width = width
         @height = height
@@ -74,13 +76,13 @@ class Rectangle
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(self.getPoint().to_s)
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
-        stringBuffer.append(CommonLabels.getInstance().WIDTH_LABEL)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().WIDTH_LABEL)
         stringBuffer.appendint(self.getWidth())
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
-        stringBuffer.append(CommonLabels.getInstance().HEIGHT_LABEL)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().HEIGHT_LABEL)
         stringBuffer.appendint(self.getHeight())
         stringBuffer.append(" MaxX: ")
         stringBuffer.appendint(self.getMaxX())
@@ -91,8 +93,10 @@ class Rectangle
     alias_method :to_s, :toString
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :GPoint, "org/allbinary/graphics/GPoint"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false)
+
+end; end; end
 

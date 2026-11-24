@@ -15,16 +15,18 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class GameFeatureChoiceGroups
     attr_accessor :hashtable
 
-    def initialize_fields
-        @hashtable = StdUtil.getInstance().createHashtable()
+    def jfields_org_allbinary_game_configuration_feature_GameFeatureChoiceGroups
+        @hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_GameFeatureChoiceGroups
     end
     
 
@@ -89,13 +91,15 @@ class GameFeatureChoiceGroups
     end
 end
 
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
 
 begin
     GameFeatureChoiceGroups.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

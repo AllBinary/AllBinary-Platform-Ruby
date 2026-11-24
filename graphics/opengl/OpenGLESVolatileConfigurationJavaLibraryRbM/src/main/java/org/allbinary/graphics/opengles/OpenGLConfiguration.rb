@@ -15,12 +15,14 @@
 # package org.allbinary.graphics.opengles
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles
+
 class OpenGLConfiguration
     attr_accessor :logUtil, :commonStrings, :opengl, :type, :imageColor, :color, :versionSelector
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_graphics_opengles_OpenGLConfiguration
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @opengl = false
         @type = OpenGLFeatureFactory.getInstance().OPENGL_AS_GAME_THREAD
         @imageColor = OpenGLFeatureFactory.getInstance().IMAGE_COLOR_DEPTH_4444
@@ -30,7 +32,7 @@ class OpenGLConfiguration
     
 
     def self.getInstance()
-        if OpenGLConfiguration.instance == NullUtil.getInstance().NULL_OBJECT
+        if OpenGLConfiguration.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             OpenGLConfiguration.instance = OpenGLConfiguration.new()
         end
         return OpenGLConfiguration.instance
@@ -38,7 +40,7 @@ class OpenGLConfiguration
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_OpenGLConfiguration
     end
     
 
@@ -48,8 +50,8 @@ class OpenGLConfiguration
 
     # throws Exception
     def init()
-        features = Features.getInstance()
-        if ChangedGameFeatureListener.getInstance().isChangedFeature(MainFeatureFactory.getInstance().STATIC)
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        if ::Org::Allbinary::Game::Configuration::Event::ChangedGameFeatureListener.getInstance().isChangedFeature(::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance().STATIC)
             if self.isOpenGL()
                 if !features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL)
                     @logUtil.putF("Turning on OpenGL", self, @commonStrings.INIT)
@@ -68,16 +70,16 @@ class OpenGLConfiguration
             end
         else
             if self.isOpenGL() && !features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL)
-                PreLogUtil.put("OpenGL is set but not Enabled since Statics where not cleared (Reboot or Complete exit is Required)", self, @commonStrings.INIT)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("OpenGL is set but not Enabled since Statics where not cleared (Reboot or Complete exit is Required)", self, @commonStrings.INIT)
             end
         end
-        PreLogUtil.put(self.to_s, self, @commonStrings.INIT)
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(self.to_s, self, @commonStrings.INIT)
     end
     
 
     # throws Exception
     def update(gameFeature, colorLocked)
-        features = Features.getInstance()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
         openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
         modified = false
         if gameFeature == openGLFeatureFactory.OPENGL
@@ -186,8 +188,8 @@ class OpenGLConfiguration
     
 
     def toString()
-        stringBuffer = StringMaker.new()
-        stringUtil = StringUtil.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         stringBuffer.append(" isOpenGL: ")
         stringBuffer.appendboolean(self.isOpenGL())
         stringBuffer.append(" VersionSelector: ")
@@ -203,28 +205,54 @@ class OpenGLConfiguration
     alias_method :to_s, :toString
 
     def self.instance()
+        OpenGLConfiguration.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OpenGLConfiguration.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OpenGLConfiguration"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
-require "org/allbinary/game/configuration/feature/Feature"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/MainFeatureFactory"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/graphics/opengles/OpenGLFeature"
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Event; autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener" unless const_defined?(:ChangedGameFeatureListener, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Feature, "org/allbinary/game/configuration/feature/Feature" unless const_defined?(:Feature, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory" unless const_defined?(:MainFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :OpenGLFeature, "org/allbinary/graphics/opengles/OpenGLFeature" unless const_defined?(:OpenGLFeature, false)
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory" unless const_defined?(:OpenGLFeatureFactory, false)
 
-class OpenGLConfiguration
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    OpenGLConfiguration.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class MainFeatureFactory
     attr_accessor :FULL_SCREEN, :TITLE_BAR, :STATIC, :LOAD_ONDEMAND, :LOAD_ALL
 
-    def initialize_fields
+    def jfields_org_allbinary_game_configuration_feature_MainFeatureFactory
         @FULL_SCREEN = Feature.new("Full Screen")
         @TITLE_BAR = Feature.new("Title Bar")
         @STATIC = Feature.new("Static Dependent Feature")
@@ -27,7 +29,7 @@ class MainFeatureFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_MainFeatureFactory
     end
     
 
@@ -66,11 +68,13 @@ class MainFeatureFactory
     end
 end
 
-autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
+autoload :Feature, "org/allbinary/game/configuration/feature/Feature" unless const_defined?(:Feature, false)
 
 begin
     MainFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

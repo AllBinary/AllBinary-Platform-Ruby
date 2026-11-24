@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.j2me.workarea.tools
 
 
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools
+
 class GraphicItemBuilder
     
 
@@ -33,8 +35,10 @@ class GraphicItemBuilder
     end
 end
 
-require "org/w3c/dom/Node"
-require "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface"
-require "org/allbinary/graphics/j2me/workarea/tools/LinesGraphicItem"
-require "org/allbinary/graphics/j2me/workarea/tools/PointsDomUtil"
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :GraphicItemInterface, "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface" unless const_defined?(:GraphicItemInterface, false)
+autoload :LinesGraphicItem, "org/allbinary/graphics/j2me/workarea/tools/LinesGraphicItem" unless const_defined?(:LinesGraphicItem, false)
+autoload :PointsDomUtil, "org/allbinary/graphics/j2me/workarea/tools/PointsDomUtil" unless const_defined?(:PointsDomUtil, false)
+
+end; end; end; end; end; end
 

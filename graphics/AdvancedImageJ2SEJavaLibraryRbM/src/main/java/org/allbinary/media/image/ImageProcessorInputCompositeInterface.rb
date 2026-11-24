@@ -15,18 +15,24 @@
 # package org.allbinary.media.image
 
 
+module ::Org; module Allbinary; module Media; module Image
+
 module ImageProcessorInputCompositeInterface
     
 
     def getImageProcessorInput()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setImageProcessorInput(imageProcessorInput)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput"
+autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput" unless const_defined?(:ImageProcessorInput, false)
+
+end; end; end; end
 

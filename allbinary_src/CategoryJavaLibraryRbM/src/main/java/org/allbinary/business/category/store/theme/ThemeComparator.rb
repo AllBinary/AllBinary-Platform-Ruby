@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.business.category.store.theme
 
+require "java/lang/JavaOverload"
 # require "java/util/Comparator"
+
+module ::Org; module Allbinary; module Business; module Category; module Store; module Theme
 
 class ThemeComparator
     include Comparator
@@ -29,5 +32,8 @@ class ThemeComparator
         string2 = object2
         return (string <=> string2)
     end
+    java_overload :compare, 2
 end
+
+end; end; end; end; end; end
 

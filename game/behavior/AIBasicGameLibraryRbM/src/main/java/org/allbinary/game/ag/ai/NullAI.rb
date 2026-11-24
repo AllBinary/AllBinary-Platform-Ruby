@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/ai/ArtificialIntelligence"
 
-class NullAI < ArtificialIntelligence
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
+class NullAI < ::Org::Allbinary::Ai::ArtificialIntelligence
     
 
     def initialize()
@@ -27,7 +30,10 @@ class NullAI < ArtificialIntelligence
     # throws Exception
     def processAI(allBinaryLayerManager)
     end
+    java_overload :processAI, 1
 end
 
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end; end; end
 

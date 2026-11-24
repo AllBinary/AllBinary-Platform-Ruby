@@ -14,6 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.robot
 
+require "java/lang/JavaClass"
 # require "java/awt/GraphicsDevice"
 # require "java/awt/GraphicsEnvironment"
 # require "java/util/Collection"
@@ -22,14 +23,16 @@
 # require "javax/help/event/HelpSetEvent"
 # require "javax/help/event/HelpSetListener"
 
+module ::Org; module Allbinary; module Input; module Automation; module Robot
+
 class InputRobotFactory
     attr_accessor :logUtil, :commonStrings, :hashtable, :helpSetListenerInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @hashtable = StdUtil.getInstance().createHashtable()
-        @helpSetListenerInterface = nil
+    def jfields_org_allbinary_input_automation_robot_InputRobotFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
+        @helpSetListenerInterface = nil unless instance_variable_defined?(:@helpSetListenerInterface)
     end
     
 
@@ -40,7 +43,7 @@ class InputRobotFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_automation_robot_InputRobotFactory
         begin
             graphenv = GraphicsEnvironment.getLocalGraphicsEnvironment()
             screens = graphenv.getScreenDevices()
@@ -69,7 +72,7 @@ class InputRobotFactory
         helpSet = inputRobotInterface.getHelpSet()
         if @helpSetListenerInterface != nil
             if helpSet != nil
-                if !JavaHelpSetNotifier.isNotified(helpSet)
+                if !::Org::Allbinary::Logic::Java::Help::JavaHelpSetNotifier.isNotified(helpSet)
                     helpSetEvent = HelpSetEvent.new(self, helpSet, HelpSetEvent::HELPSET_ADDED)
                     @helpSetListenerInterface.helpSetAdded(helpSetEvent)
                 end
@@ -96,9 +99,8 @@ class InputRobotFactory
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def self.loadLibraries(collection)
-        logUtil = LogUtil.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         logUtil.putF("Loading Libraries", "InputRobotFactory", "loadLibraries")
         iterator = collection.iterator()
         while iterator.hasNext()
@@ -109,8 +111,8 @@ class InputRobotFactory
 
     # throws Exception
     def self.loadLibrary(inputRobotInterface)
-        logUtil = LogUtil.getInstance()
-        if InterfaceUtil.isImplemented(SecuredNativeLibraryInterface, inputRobotInterface)
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        if ::Org::Allbinary::Logic::Java::AnyType::InterfaceUtil.isImplemented(::Org::Allbinary::Logic::System::Loader::SecuredNativeLibraryInterface, inputRobotInterface)
             logUtil.putF("Loading Library: " + inputRobotInterface.getName(), "InputRobotFactory", "loadLibraries")
             securedNativeLibraryInterface = inputRobotInterface
             securedNativeLibraryInterface.load()
@@ -127,7 +129,7 @@ class InputRobotFactory
         size = inputRobotArray.length
         (0...size).each do |index|
             inputRobotInterface = self.get(inputRobotArray[index])
-            if InterfaceUtil.isImplemented(SecuredNativeLibraryInterface, inputRobotInterface)
+            if ::Org::Allbinary::Logic::Java::AnyType::InterfaceUtil.isImplemented(::Org::Allbinary::Logic::System::Loader::SecuredNativeLibraryInterface, inputRobotInterface)
                 @logUtil.putF("Unloading Library: " + inputRobotInterface.getName(), self, "unloadLibraries")
                 securedNativeLibraryInterface = inputRobotInterface
                 securedNativeLibraryInterface.unload()
@@ -137,15 +139,20 @@ class InputRobotFactory
     
 
     # throws Exception
-    def get()
+    def get_j0()
         return @hashtable
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def get(name)
+    def get_j1(name)
         @logUtil.putF("Getting Robot: " + name, self, "getRobots")
         return @hashtable.get(name)
+    end
+
+    def get(*java_overload_args)
+        return get_j0(*java_overload_args) if java_overload_args.length == 0
+        return get_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method get takes #{java_overload_args.length} arguments"
     end
 
     def self.inputRobotFactory()
@@ -179,20 +186,22 @@ class InputRobotFactory
     end
 end
 
-autoload :Iterator, "java/util/Iterator"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :JavaHelpSetNotifier, "org/allbinary/logic/java/help/JavaHelpSetNotifier"
-autoload :InterfaceUtil, "org/allbinary/logic/java/anyType/InterfaceUtil"
-autoload :SecuredNativeLibraryInterface, "org/allbinary/logic/system/loader/SecuredNativeLibraryInterface"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :InputRobot, "org/allbinary/input/automation/robot/InputRobot"
-autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
+module ::Java; module Util; autoload :Iterator, "java/util/Iterator" unless const_defined?(:Iterator, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Help; autoload :JavaHelpSetNotifier, "org/allbinary/logic/java/help/JavaHelpSetNotifier" unless const_defined?(:JavaHelpSetNotifier, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module AnyType; autoload :InterfaceUtil, "org/allbinary/logic/java/anyType/InterfaceUtil" unless const_defined?(:InterfaceUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Loader; autoload :SecuredNativeLibraryInterface, "org/allbinary/logic/system/loader/SecuredNativeLibraryInterface" unless const_defined?(:SecuredNativeLibraryInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :InputRobot, "org/allbinary/input/automation/robot/InputRobot" unless const_defined?(:InputRobot, false)
+autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface" unless const_defined?(:InputRobotInterface, false)
 
 begin
     InputRobotFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

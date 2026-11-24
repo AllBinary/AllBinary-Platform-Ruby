@@ -16,6 +16,8 @@
 
 # require "java/io/FileFilter"
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Filter
+
 class BasicFileFilterUtil
     
 
@@ -24,15 +26,17 @@ class BasicFileFilterUtil
     
 
     def self.getInstance(extension)
-        vector = BasicArrayListD.new()
+        vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         vector.add(extension)
-        includeFileExtensionsBooleanFileVisitor = IncludeFileExtensionsBooleanFileVisitor.new(vector)
+        includeFileExtensionsBooleanFileVisitor = ::Org::Allbinary::Logic::Io::FilePackage::Visitor::IncludeFileExtensionsBooleanFileVisitor.new(vector)
         return VisitorFileFilter.new(includeFileExtensionsBooleanFileVisitor)
     end
 end
 
-require "org/allbinary/logic/io/file/visitor/IncludeFileExtensionsBooleanFileVisitor"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/io/file/filter/VisitorFileFilter"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Visitor; autoload :IncludeFileExtensionsBooleanFileVisitor, "org/allbinary/logic/io/file/visitor/IncludeFileExtensionsBooleanFileVisitor" unless const_defined?(:IncludeFileExtensionsBooleanFileVisitor, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :VisitorFileFilter, "org/allbinary/logic/io/file/filter/VisitorFileFilter" unless const_defined?(:VisitorFileFilter, false)
+
+end; end; end; end; end; end
 

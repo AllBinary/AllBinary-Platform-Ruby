@@ -15,6 +15,8 @@
 # package org.allbinary.game.input.event
 
 
+module ::Org; module Allbinary; module Game; module Input; module Event
+
 class GameKeyEventUtil
     
 
@@ -28,5 +30,7 @@ class GameKeyEventUtil
     end
 end
 
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false)
+
+end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.life
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Life
+
 module LifeInterface
     
 
@@ -59,4 +61,6 @@ module LifeInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

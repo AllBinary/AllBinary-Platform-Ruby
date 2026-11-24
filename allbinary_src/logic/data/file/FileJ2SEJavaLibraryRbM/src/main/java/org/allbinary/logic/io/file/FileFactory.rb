@@ -15,6 +15,8 @@
 # package org.allbinary.logic.io.file
 
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 class FileFactory
     
 
@@ -24,16 +26,20 @@ class FileFactory
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def getInstance(filePath)
+    def getInstance_j1(filePath)
         return AbFile.createAbFileFromRawPath(filePath)
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def getInstance(file, childFilePath)
+    def getInstance_j2(file, childFilePath)
         return AbFile.createAbFileWithChild(file, childFilePath)
+    end
+
+    def getInstance(*java_overload_args)
+        return getInstance_j1(*java_overload_args) if java_overload_args.length == 1
+        return getInstance_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method getInstance takes #{java_overload_args.length} arguments"
     end
     
 
@@ -78,11 +84,13 @@ class FileFactory
     end
 end
 
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false)
 
 begin
     FileFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

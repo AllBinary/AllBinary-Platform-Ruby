@@ -14,15 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.game
 
+require "java/lang/JavaOverload"
 # require "java/awt/image/BufferedImage"
 require "org/allbinary/input/automation/module/game/HitPointGameObjectInterface"
 require "org/allbinary/input/automation/module/game/MeteredGameObject"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game
 
 class HitPointGameObject < MeteredGameObject
     include HitPointGameObjectInterface
     attr_accessor :damaged, :closeDeath, :HP_LABEL, :IS_DAMAGED_LABEL, :IS_CLOSE_DEATH_LABEL
 
-    def initialize_fields
+    def jfields_org_allbinary_input_automation_module_game_HitPointGameObject
         @damaged = false
         @closeDeath = false
         @HP_LABEL = "HP: "
@@ -33,7 +36,7 @@ class HitPointGameObject < MeteredGameObject
 
     def initialize(bufferedImage, minX, maxX, y)
         super(bufferedImage, minX, maxX, y)
-        initialize_fields
+        jfields_org_allbinary_input_automation_module_game_HitPointGameObject
         if self.getRatios()[bufferedImage.length - 1].to_f < 1.0
             self.setDamaged(true)
         else
@@ -54,31 +57,36 @@ class HitPointGameObject < MeteredGameObject
             return false
         end
     end
+    java_overload :isMoreThan, 1
     
 
     def isCloseDeath()
         return @closeDeath
     end
+    java_overload :isCloseDeath, 0
     
 
     def setCloseDeath(closeDeath)
         @closeDeath = closeDeath
     end
+    java_overload :setCloseDeath, 1
     
 
     def isDamaged()
         return @damaged
     end
+    java_overload :isDamaged, 0
     
 
     def setDamaged(damaged)
         @damaged = damaged
     end
+    java_overload :setDamaged, 1
     
 
     def toString()
-        commonSeps = CommonSeps.getInstance()
-        stringBuffer = StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@HP_LABEL)
         stringBuffer.append(super.to_s)
         stringBuffer.append(commonSeps.NEW_LINE)
@@ -89,9 +97,12 @@ class HitPointGameObject < MeteredGameObject
         stringBuffer.appendboolean(self.isCloseDeath())
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+
+end; end; end; end; end; end
 

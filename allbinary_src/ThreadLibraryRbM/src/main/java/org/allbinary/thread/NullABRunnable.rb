@@ -15,7 +15,10 @@
 # package org.allbinary.thread
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/thread/ABRunnable"
+
+module ::Org; module Allbinary; module ThreadPackage
 
 class NullABRunnable < ABRunnable
     
@@ -30,6 +33,7 @@ class NullABRunnable < ABRunnable
         return false
         end
     end
+    java_overload :isRunning, 0
 
     def self.instance()
         NullABRunnable.java_static_fields unless @java_static_fields_started
@@ -67,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

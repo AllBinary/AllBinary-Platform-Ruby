@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.tick
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerProcessor"
 
-class TickableLayerProcessor < LayerProcessor
+module ::Org; module Allbinary; module Game; module Tick
+
+class TickableLayerProcessor < ::Org::Allbinary::Layer::LayerProcessor
     
 
     def initialize()
@@ -29,6 +32,7 @@ class TickableLayerProcessor < LayerProcessor
         tickableInterface = layerInterface
         tickableInterface.processTick(allBinaryLayerManager)
     end
+    java_overload :processAt, 3
     
 
     def isProcessorLayer(layerInterface)
@@ -38,10 +42,13 @@ class TickableLayerProcessor < LayerProcessor
             return false
         end
     end
+    java_overload :isProcessorLayer, 1
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :TickableInterface, "org/allbinary/game/tick/TickableInterface"
-autoload :TickableLayerManager, "org/allbinary/game/tick/TickableLayerManager"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+autoload :TickableInterface, "org/allbinary/game/tick/TickableInterface" unless const_defined?(:TickableInterface, false)
+autoload :TickableLayerManager, "org/allbinary/game/tick/TickableLayerManager" unless const_defined?(:TickableLayerManager, false)
+
+end; end; end; end
 

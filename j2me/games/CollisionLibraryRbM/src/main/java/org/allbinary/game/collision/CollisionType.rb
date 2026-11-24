@@ -15,16 +15,18 @@
 # package org.allbinary.game.collision
 
 
+module ::Org; module Allbinary; module Game; module Collision
+
 class CollisionType
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_game_collision_CollisionType
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_game_collision_CollisionType
         @name = name
     end
     
@@ -34,4 +36,6 @@ class CollisionType
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end
 

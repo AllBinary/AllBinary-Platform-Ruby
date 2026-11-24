@@ -14,7 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation
 
-# require "java/awt"
+# require "java/awt/Point"
+
+module ::Org; module Allbinary; module Input; module Automation
 
 class PointFactory
     
@@ -68,4 +70,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

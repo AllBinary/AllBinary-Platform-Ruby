@@ -15,6 +15,8 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 module IntermissionEnableListenerInterface
     
 
@@ -23,4 +25,6 @@ module IntermissionEnableListenerInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

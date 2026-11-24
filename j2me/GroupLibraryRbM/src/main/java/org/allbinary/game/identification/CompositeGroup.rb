@@ -15,18 +15,20 @@
 # package org.allbinary.game.identification
 
 
+module ::Org; module Allbinary; module Game; module Identification
+
 class CompositeGroup
     attr_accessor :logUtil, :groupInterface, :list
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @groupInterface = nil
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_game_identification_CompositeGroup
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @groupInterface = nil unless instance_variable_defined?(:@groupInterface)
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def initialize(groupInterface)
-        initialize_fields
+        jfields_org_allbinary_game_identification_CompositeGroup
         @groupInterface = groupInterface
     end
     
@@ -37,13 +39,13 @@ class CompositeGroup
     
 
     def add(groupInterface)
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         groupCommonFactory = GroupCommonFactory.getInstance()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(groupCommonFactory.ADDING_LABEL)
         stringBuffer.append(groupInterface.to_s)
         stringBuffer.append(groupCommonFactory.TO_LABEL)
-        stringBuffer.append(StringUtil.getInstance().toString(@groupInterface))
+        stringBuffer.append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(@groupInterface))
         @logUtil.putF(stringBuffer.to_s, self, commonStrings.ADD)
         @list.add(groupInterface)
     end
@@ -63,12 +65,14 @@ class CompositeGroup
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :Group, "org/allbinary/game/identification/Group"
-autoload :GroupCommonFactory, "org/allbinary/game/identification/GroupCommonFactory"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :Group, "org/allbinary/game/identification/Group" unless const_defined?(:Group, false)
+autoload :GroupCommonFactory, "org/allbinary/game/identification/GroupCommonFactory" unless const_defined?(:GroupCommonFactory, false)
+
+end; end; end; end
 

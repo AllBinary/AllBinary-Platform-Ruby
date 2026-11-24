@@ -14,9 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.j2me.workarea.tools.event
 
+require "java/lang/JavaOverload"
 # require "javax/swing/tree/MutableTreeNode"
+require "java/util/EventObject"
 
-class MyGraphicItemEvent < EventObject
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; module Event
+
+class MyGraphicItemEvent < ::Java::Util::EventObject
     
 
     def initialize(source)
@@ -25,13 +29,15 @@ class MyGraphicItemEvent < EventObject
     
 
     def getSource()
-        return super()
+        return MyGraphicItemEvent.superclass.java_super_method(:getSource, 0).bind(self).call()
     end
+    java_overload :getSource, 0
     
 
     def toString()
         return super.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
     
 
@@ -39,19 +45,24 @@ class MyGraphicItemEvent < EventObject
         myEventSource = self.getSource()
         return myEventSource.getCommand()
     end
+    java_overload :getCommand, 0
     
 
     def getTreeNode()
         myEventSource = self.getSource()
         return myEventSource.getTreeNode()
     end
+    java_overload :getTreeNode, 0
     
 
     def getAngle()
         myEventSource = self.getSource()
         return myEventSource.getAngle()
     end
+    java_overload :getAngle, 0
 end
 
-require "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEventSource"
+autoload :MyGraphicItemEventSource, "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEventSource" unless const_defined?(:MyGraphicItemEventSource, false)
+
+end; end; end; end; end; end; end
 

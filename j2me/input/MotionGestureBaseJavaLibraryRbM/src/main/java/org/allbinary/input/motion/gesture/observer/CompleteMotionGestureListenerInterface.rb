@@ -15,6 +15,8 @@
 # package org.allbinary.input.motion.gesture.observer
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer
+
 module CompleteMotionGestureListenerInterface
     
 
@@ -25,5 +27,7 @@ module CompleteMotionGestureListenerInterface
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end; end; end
 

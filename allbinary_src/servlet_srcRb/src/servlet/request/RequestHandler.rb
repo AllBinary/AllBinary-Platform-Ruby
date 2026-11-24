@@ -14,32 +14,38 @@
 # frozen_string_literal: false
 # package servlet.request
 
-# require "java/io"
+require "java/lang/JavaOverload"
+# require "java/io/PrintWriter"
+# require "java/io/IOException"
 # require "java/net"
 # require "javax/servlet"
 # require "javax/servlet/http"
 
+module ::Servlet; module Request
+
 class RequestHandler < HttpServlet
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_servlet_request_RequestHandler
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_servlet_request_RequestHandler
     end
     
 
     # throws ServletException
     def init(config)
-        super(config)
+        RequestHandler.superclass.java_super_method(:init, 1).bind(self).call(config)
     end
+    java_overload :init, 1
     
 
     def destroy()
     end
+    java_overload :destroy, 0
     
 
     # throws ServletException, IOException
@@ -47,45 +53,53 @@ class RequestHandler < HttpServlet
         begin
             response.setContentType("text/html")
             out = response.getWriter()
-            workflowInterface = RequestWorkFlowFactory.getInstance(request, response, self.getServletConfig(), self.getServletContext())
+            workflowInterface = ::Org::Allbinary::Logic::ControlPackage::Workflow::RequestWorkFlowFactory.getInstance(request, response, self.getServletConfig(), self.getServletContext())
             if workflowInterface != nil
                 out.print(workflowInterface.process())
             end
             out.flush()
             out.close()
-        rescue LicensingException => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SERVLETERROR)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SERVLETERROR)
                 @logUtil.put("Servlet LicensingException", self, "processRequest()", e)
             end
             response.sendRedirect(@abcs.globals.URLGLOBALS.LICENSEERRORPAGE)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SERVLETERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SERVLETERROR)
                 @logUtil.put("Servlet Exception", self, "processRequest()", e)
             end
             response.sendRedirect(@abcs.globals.URLGLOBALS.ERRORPAGE)
         end
     end
+    java_overload :processRequest, 2
     
 
     # throws ServletException, IOException
     def doGet(request, response)
         self.processRequest(request, response)
     end
+    java_overload :doGet, 2
     
 
     # throws ServletException, IOException
     def doPost(request, response)
         self.processRequest(request, response)
     end
+    java_overload :doPost, 2
     
 
     def getServletInfo()
         return "WorkFlow Request Handler"
     end
+    java_overload :getServletInfo, 0
 end
 
-require "org/allbinary/logic/system/security/licensing/LicensingException"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/control/workflow/WorkFlowInterface"
-require "org/allbinary/logic/control/workflow/RequestWorkFlowFactory"
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Workflow; autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface" unless const_defined?(:WorkFlowInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Workflow; autoload :RequestWorkFlowFactory, "org/allbinary/logic/control/workflow/RequestWorkFlowFactory" unless const_defined?(:RequestWorkFlowFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end
 

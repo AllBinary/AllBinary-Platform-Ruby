@@ -15,14 +15,19 @@
 # package org.allbinary.graphics.j2me.workarea.tools
 
 
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools
+
 module GraphicsItemInterfaceFactoryInterface
     
 
     def getInstance(canvasJPanel)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/j2me/workarea/canvas/CanvasJPanel"
-require "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface"
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Canvas; autoload :CanvasJPanel, "org/allbinary/graphics/j2me/workarea/canvas/CanvasJPanel" unless const_defined?(:CanvasJPanel, false); end; end; end; end; end; end
+autoload :GraphicItemInterface, "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface" unless const_defined?(:GraphicItemInterface, false)
+
+end; end; end; end; end; end
 

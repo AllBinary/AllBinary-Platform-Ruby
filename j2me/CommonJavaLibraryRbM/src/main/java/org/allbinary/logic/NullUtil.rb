@@ -16,25 +16,27 @@
 
 # require "jsinterop/annotations/JsType"
 
+module ::Org; module Allbinary; module Logic
+
 #ActualPlatform
 class NullUtil
     attr_accessor :NULL_OBJECT, :NULL_CLASS, :NULL_OBJECT_ARRAY, :NULL_CHAR_ARRAY, :NULL_BYTE_ARRAY, :NULL_SHORT_ARRAY_ARRAY, :NULL_INT_ARRAY, :NULL_INT_ARRAY_ARRAY, :NULL_INT_ARRAY_ARRAY_ARRAY, :NULL_FLOAT_ARRAY
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_NullUtil
         @NULL_OBJECT = Object.new
         @NULL_CLASS = @NULL_OBJECT.class
         @NULL_OBJECT_ARRAY = Array.new(0, nil)
-        @NULL_CHAR_ARRAY = Array.new(0, "\0")
-        @NULL_BYTE_ARRAY = Array.new(0, 0)
+        @NULL_CHAR_ARRAY = (Array.new(0, "\0")).tap { |java_array| java_array.instance_variable_set(:@java_component, :C) }
+        @NULL_BYTE_ARRAY = (Array.new(0, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
         @NULL_SHORT_ARRAY_ARRAY = Array.new(0) { Array.new(0, 0) }
-        @NULL_INT_ARRAY = Array.new(0, 0)
+        @NULL_INT_ARRAY = (Array.new(0, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         @NULL_INT_ARRAY_ARRAY = Array.new(0) { Array.new(0, 0) }
         @NULL_INT_ARRAY_ARRAY_ARRAY = Array.new(0) { Array.new(0) { Array.new(0, 0) } }
-        @NULL_FLOAT_ARRAY = Array.new(0, 0.0)
+        @NULL_FLOAT_ARRAY = (Array.new(0, 0.0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :F) }
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_NullUtil
     end
     
 
@@ -78,4 +80,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

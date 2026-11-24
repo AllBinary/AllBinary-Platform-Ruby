@@ -15,15 +15,17 @@
 # package org.allbinary.image
 
 
+module ::Org; module Allbinary; module Image
+
 class AnimationFactoryImageScaleUtil
     attr_accessor :imageScaleUtil
 
-    def initialize_fields
-        @imageScaleUtil = ImageJ2MEScaleUtil.getInstance()
+    def jfields_org_allbinary_image_AnimationFactoryImageScaleUtil
+        @imageScaleUtil = ::Org::Allbinary::Media::Image::ImageJ2MEScaleUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_image_AnimationFactoryImageScaleUtil
     end
     
 
@@ -61,8 +63,8 @@ class AnimationFactoryImageScaleUtil
             scaleY = ((scaleProperties.scaleHeight).to_f) / ((animationFactoryInitializationVisitor.height).to_f)
             if (scaleX == 1.0 && scaleY == 1.0) || (scaleX == 0.0 || scaleY == 0.0)
             else
-                animationFactoryInitializationVisitor.dx = ((animationFactoryInitializationVisitor.originalDx * scaleX)).to_i
-                animationFactoryInitializationVisitor.dy = ((animationFactoryInitializationVisitor.originalDy * scaleY)).to_i
+                animationFactoryInitializationVisitor.dx = (((animationFactoryInitializationVisitor.originalDx * scaleX)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+                animationFactoryInitializationVisitor.dy = (((animationFactoryInitializationVisitor.originalDy * scaleY)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
             end
         else
         end
@@ -99,19 +101,21 @@ class AnimationFactoryImageScaleUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :AnimationFactoryInitializationVisitor, "org/allbinary/animation/image/AnimationFactoryInitializationVisitor"
-autoload :BaseImageAnimationFactory, "org/allbinary/animation/image/BaseImageAnimationFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :ImageJ2MEScaleUtil, "org/allbinary/media/image/ImageJ2MEScaleUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; module Image; autoload :AnimationFactoryInitializationVisitor, "org/allbinary/animation/image/AnimationFactoryInitializationVisitor" unless const_defined?(:AnimationFactoryInitializationVisitor, false); end; end; end; end
+module ::Org; module Allbinary; module Animation; module Image; autoload :BaseImageAnimationFactory, "org/allbinary/animation/image/BaseImageAnimationFactory" unless const_defined?(:BaseImageAnimationFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImageJ2MEScaleUtil, "org/allbinary/media/image/ImageJ2MEScaleUtil" unless const_defined?(:ImageJ2MEScaleUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     AnimationFactoryImageScaleUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -15,24 +15,31 @@
 # package org.allbinary.business.user.modules.admin.configuration
 
 
+module ::Org; module Allbinary; module Business; module User; module Modules; module Admin; module Configuration
+
 module AdminConfigurationInterface
     
 
     # throws Exception
     def write()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getContextConfigurationInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setContextConfigurationInterface(contextConfigurationInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface"
+module ::Org; module Allbinary; module Business; module Context; module Configuration; autoload :ContextConfigurationInterface, "org/allbinary/business/context/configuration/ContextConfigurationInterface" unless const_defined?(:ContextConfigurationInterface, false); end; end; end; end; end
+
+end; end; end; end; end; end; end
 

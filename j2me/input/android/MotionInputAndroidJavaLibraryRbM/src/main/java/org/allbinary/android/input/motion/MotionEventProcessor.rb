@@ -15,6 +15,8 @@
 # package org.allbinary.android.input.motion
 
 
+module ::Org; module Allbinary; module Android; module Input; module Motion
+
 class MotionEventProcessor
     
 
@@ -27,5 +29,7 @@ class MotionEventProcessor
     end
 end
 
-require "android/view/MotionEvent"
+module ::Android; module View; autoload :MotionEvent, "android/view/MotionEvent" unless const_defined?(:MotionEvent, false); end; end
+
+end; end; end; end; end
 

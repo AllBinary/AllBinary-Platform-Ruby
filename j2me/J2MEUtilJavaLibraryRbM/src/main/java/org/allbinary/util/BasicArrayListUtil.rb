@@ -18,17 +18,19 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Util
+
 class BasicArrayListUtil
     attr_accessor :NULL_ARRAY_OF_ARRAY, :myRandomFactory, :immutableInstance
 
-    def initialize_fields
+    def jfields_org_allbinary_util_BasicArrayListUtil
         @NULL_ARRAY_OF_ARRAY = Array.new(0) { Array.new(0, nil) }
-        @myRandomFactory = MyRandomFactory.getInstance()
+        @myRandomFactory = ::Org::Allbinary::Game::Rand::MyRandomFactory.getInstance()
         @immutableInstance = ImmutableBasicArrayList.new("Immutable", 0)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_util_BasicArrayListUtil
     end
     
 
@@ -65,8 +67,8 @@ class BasicArrayListUtil
     def log(list)
         _S_LABEL = " s: "
         size = list.size()
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(CommonLabels.getInstance().TOTAL_LABEL)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().TOTAL_LABEL)
         stringBuffer.appendint(size)
         (size - 1).step(0, -(1)) do |index|
             usedList = list.objectArray[index]
@@ -83,7 +85,7 @@ class BasicArrayListUtil
     
 
     def self.main(args)
-        commonPhoneStrings = CommonPhoneStrings.getInstance()
+        commonPhoneStrings = ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance()
         list = BasicArrayListD.new()
         list.add(commonPhoneStrings.ONE)
         list.add(commonPhoneStrings.TWO)
@@ -129,13 +131,13 @@ class BasicArrayListUtil
     end
 end
 
-autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ImmutableBasicArrayList, "org/allbinary/util/ImmutableBasicArrayList"
+module ::Org; module Allbinary; module Game; module Rand; autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory" unless const_defined?(:MyRandomFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false)
+autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false)
+autoload :ImmutableBasicArrayList, "org/allbinary/util/ImmutableBasicArrayList" unless const_defined?(:ImmutableBasicArrayList, false)
 require "java/lang/System"
 
 begin
@@ -143,4 +145,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

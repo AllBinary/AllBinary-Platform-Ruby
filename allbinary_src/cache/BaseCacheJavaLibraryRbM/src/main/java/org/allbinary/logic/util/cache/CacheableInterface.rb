@@ -17,6 +17,8 @@
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 module CacheableInterface
     
 
@@ -25,4 +27,6 @@ module CacheableInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

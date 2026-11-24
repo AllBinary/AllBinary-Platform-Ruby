@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Image
 
 class PaintableToImageUtil
     
 
     # throws Exception
     def self.getImage(paintableInterface, width, height)
-        image = GameFeatureImageCacheFactory.getInstance().get(PaintableToImageUtil.instance.class.name, width, height)
+        image = GameFeatureImageCacheFactory.getInstance().get(PaintableToImageUtil.instance.class.java_name, width, height)
         graphics = image.getGraphics()
         paintableInterface.paint(graphics)
         return image
@@ -57,14 +60,16 @@ class PaintableToImageUtil
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
-autoload :GameFeatureImageCacheFactory, "org/allbinary/image/GameFeatureImageCacheFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface" unless const_defined?(:PaintableInterface, false); end; end; end; end
+autoload :GameFeatureImageCacheFactory, "org/allbinary/image/GameFeatureImageCacheFactory" unless const_defined?(:GameFeatureImageCacheFactory, false)
 
 begin
     PaintableToImageUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

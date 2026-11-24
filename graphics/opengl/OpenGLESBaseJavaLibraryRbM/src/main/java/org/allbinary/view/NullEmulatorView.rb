@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.view
 
+require "java/lang/JavaOverload"
 require "org/allbinary/view/EmulatorViewInterface"
+
+module ::Org; module Allbinary; module View
 
 class NullEmulatorView
     include EmulatorViewInterface
@@ -22,14 +25,17 @@ class NullEmulatorView
 
     def setMidlet(midlet)
     end
+    java_overload :setMidlet, 1
     
 
     def onEmulatorInitComplete(midletActivity)
     end
+    java_overload :onEmulatorInitComplete, 1
     
 
     def onSetDisplayable(displayable)
     end
+    java_overload :onSetDisplayable, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -52,12 +58,14 @@ class NullEmulatorView
     end
 end
 
-autoload :Displayable, "javax/microedition/lcdui/Displayable"
-autoload :MIDlet, "javax/microedition/midlet/MIDlet"
+module ::Javax; module Microedition; module Lcdui; autoload :Displayable, "javax/microedition/lcdui/Displayable" unless const_defined?(:Displayable, false); end; end; end
+module ::Javax; module Microedition; module Midlet; autoload :MIDlet, "javax/microedition/midlet/MIDlet" unless const_defined?(:MIDlet, false); end; end; end
 
 begin
     NullEmulatorView.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

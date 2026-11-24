@@ -14,22 +14,27 @@
 # frozen_string_literal: false
 # package tags
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/tagext/TagSupport"
+
+module ::Tags
 
 class CustomTagSupport < TagSupport
     attr_accessor :commonStrings, :tagStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_tags_CustomTagSupport
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @tagStrings = TagStrings.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_tags_CustomTagSupport
     end
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TagStrings, "tags/TagStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :TagStrings, "tags/TagStrings" unless const_defined?(:TagStrings, false)
+
+end
 

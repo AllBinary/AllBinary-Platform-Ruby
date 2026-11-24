@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.transform.info
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
+
 class BasicViewData
     attr_accessor :GENERICDIR, :USERDIR, :ADDRESSDIR, :BILLINGADDRESSDIR, :SHIPPINGADDRESSDIR, :COMMERCEDIR, :INVENTORYDIR, :BASKETDIR, :ITEMDIR, :MONEYDIR, :SHIPPINGDIR, :ORDERDIR, :ORDEREMAILDIR, :ORDERHISTORYDIR, :ORDERREVIEWDIR, :PAYMENTDIR, :GENERATIONDIR, :PRODUCTSDIR, :IGNOREXMLXSL, :REVIEWORDERVIEWXSL, :ORDERVIEWXSL, :INVENTORYXSL, :BASKETXSL, :CHECKOUTBASKETXSL, :MINIBASKETXSL, :BILLINGADDRESSCHANGEFORMXSL, :BILLINGADDRESSINPUTFORMXSL, :BILLINGADDRESSVIEWXSL, :SHIPPINGADDRESSCHANGEFORMXSL, :SHIPPINGADDRESSINPUTFORMXSL, :SHIPPINGADDRESSVIEWXSL, :NEWTAXADDRESSXSL, :EDITTAXADDRESSXSL, :SHIPPINGMETHODSXSL, :ORDERCUSTOMEREMAILVIEWXSL, :ORDERMANAGEREMAILVIEWXSL, :EDITCUSTOMERXSL, :ORDERHISTORYXSL, :PAYMENTVIEWXSL, :SUMMARYXSL, :PAYMENTGATEWAYOPTIONSXSL, :MAKEPAYMENTVIEWXSL
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_transform_info_BasicViewData
         @GENERICDIR = "generic/"
         @USERDIR = @GENERICDIR + "user/"
         @ADDRESSDIR = @USERDIR + "address/"
@@ -70,7 +72,7 @@ class BasicViewData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_info_BasicViewData
     end
 
     def self.instance()
@@ -109,4 +111,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.data.tree.dom
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
+
 class DomData
     
 
@@ -51,4 +53,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

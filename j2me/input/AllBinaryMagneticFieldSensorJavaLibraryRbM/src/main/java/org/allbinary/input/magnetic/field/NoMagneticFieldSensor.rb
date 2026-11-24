@@ -14,22 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.input.magnetic.field
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/AllBinarySensorListener"
 require "org/allbinary/input/magnetic/field/AllBinaryMagneticFieldSensor"
 
+module ::Org; module Allbinary; module Input; module Magnetic; module Field
+
 class NoMagneticFieldSensor < AllBinaryMagneticFieldSensor
-    include AllBinarySensorListener
+    include ::Org::Allbinary::Input::AllBinarySensorListener
     
 
     # throws Exception
     def getOrientation()
-        return Orientation::NONE
+        return ::Org::Allbinary::Logic::MathPackage::Orientation::NONE
     end
+    java_overload :getOrientation, 0
     
 
     def onSensorChange()
     end
+    java_overload :onSensorChange, 0
 end
 
-autoload :Orientation, "org/allbinary/logic/math/Orientation"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :Orientation, "org/allbinary/logic/math/Orientation" unless const_defined?(:Orientation, false); end; end; end; end
+
+end; end; end; end; end
 

@@ -15,13 +15,15 @@
 # package org.allbinary.logic
 
 
+module ::Org; module Allbinary; module Logic
+
 class PropertyInitUtil
     
 
     def self.getInstance(value)
-        commonStrings = CommonStrings.getInstance()
-        logUtil = LogUtil.getInstance()
-        logUtil.putF(StringMaker.new().append("PropertyInitUtil: ").appendint(value).to_s, logUtil, commonStrings.CONSTRUCTOR)
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("PropertyInitUtil: ").appendint(value).to_s, logUtil, commonStrings.CONSTRUCTOR)
         return PropertyInitUtil.instance
     end
 
@@ -56,13 +58,15 @@ class PropertyInitUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     PropertyInitUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

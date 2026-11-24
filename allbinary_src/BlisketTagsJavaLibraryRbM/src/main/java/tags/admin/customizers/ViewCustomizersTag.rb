@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package tags.admin.customizers
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/JspTagException"
 require "tags/StoreValidationTransformTag"
 
-class ViewCustomizersTag < StoreValidationTransformTag
+module ::Tags; module Admin; module Customizers
+
+class ViewCustomizersTag < ::Tags::StoreValidationTransformTag
     
 
     def initialize()
@@ -30,13 +33,16 @@ class ViewCustomizersTag < StoreValidationTransformTag
         begin
             self.setName("Add Validation Customizers View")
             self.setObjectFile("views.admin.customizers.CustomizersValidationView")
-            return super()
+            return ViewCustomizersTag.superclass.java_super_method(:doStartTag, 0).bind(self).call()
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+
+end; end; end
 

@@ -15,10 +15,14 @@
 # package org.allbinary.game.midlet
 
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 class LicenseLoadingType
     
 
     def initialize(name)
     end
 end
+
+end; end; end; end
 

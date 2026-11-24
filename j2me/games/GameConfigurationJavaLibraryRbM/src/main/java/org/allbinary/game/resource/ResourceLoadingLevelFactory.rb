@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.game.resource
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Game; module Resource
 
 class ResourceLoadingLevelFactory
     attr_accessor :LOAD_EARLY, :LOAD_TOUCH, :LOAD_GAME, :LEVEL, :MAX_LEVEL, :LOAD_ALL, :RESOURCE_LOADING_LEVEL_ARRAY
 
-    def initialize_fields
+    def jfields_org_allbinary_game_resource_ResourceLoadingLevelFactory
         @LOAD_EARLY = ResourceLoadingLevel.new("Load Early", 2147483647)
         @LOAD_TOUCH = ResourceLoadingLevel.new("Load Touch", 2147483647 - 1)
         @LOAD_GAME = ResourceLoadingLevel.new("Load Game", 2147483647 - 2)
@@ -29,7 +32,7 @@ class ResourceLoadingLevelFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_resource_ResourceLoadingLevelFactory
     end
     
 
@@ -78,11 +81,13 @@ class ResourceLoadingLevelFactory
     end
 end
 
-autoload :ResourceLoadingLevel, "org/allbinary/game/resource/ResourceLoadingLevel"
+autoload :ResourceLoadingLevel, "org/allbinary/game/resource/ResourceLoadingLevel" unless const_defined?(:ResourceLoadingLevel, false)
 
 begin
     ResourceLoadingLevelFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

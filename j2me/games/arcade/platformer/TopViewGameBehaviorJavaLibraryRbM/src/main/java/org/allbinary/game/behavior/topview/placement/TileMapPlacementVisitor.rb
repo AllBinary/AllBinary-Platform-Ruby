@@ -15,6 +15,8 @@
 # package org.allbinary.game.behavior.topview.placement
 
 
+module ::Org; module Allbinary; module Game; module Behavior; module Topview; module Placement
+
 class TileMapPlacementVisitor
     
 
@@ -22,5 +24,7 @@ class TileMapPlacementVisitor
     end
 end
 
-require "org/mapeditor/core/TiledMap"
+module ::Org; module Mapeditor; module Core; autoload :TiledMap, "org/mapeditor/core/TiledMap" unless const_defined?(:TiledMap, false); end; end; end
+
+end; end; end; end; end; end
 

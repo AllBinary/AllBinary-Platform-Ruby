@@ -14,45 +14,52 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.hud.basic
 
-# require "javax/microedition/lcdui/Graphics"
+require "java/lang/JavaOverload"
 require "org/allbinary/game/graphics/hud/BasicHud"
 
-class LapWidget < BasicHud
+module ::Org; module Allbinary; module Game; module Layer; module Hud; module Basic
+
+class LapWidget < ::Org::Allbinary::Game::Graphics::Hud::BasicHud
     attr_accessor :LAP_STR, :OF_STR, :string
 
-    def initialize_fields
+    def jfields_org_allbinary_game_layer_hud_basic_LapWidget
         @LAP_STR = "Lap "
         @OF_STR = " of "
-        @string = StringUtil.getInstance().EMPTY_STRING
+        @string = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def initialize(location, direction, basicColor)
         super(location, direction, 2, basicColor)
-        initialize_fields
+        jfields_org_allbinary_game_layer_hud_basic_LapWidget
         @updateMaxHeight = 15
         @updateMaxWidth = 40
     end
     
 
     def update(lapInfo)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(@LAP_STR)
-        stringBuffer.appendint((lapInfo.getCurrentLap()).to_i)
+        stringBuffer.appendint(((lapInfo.getCurrentLap()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(@OF_STR)
-        stringBuffer.appendint((lapInfo.getTotalLaps()).to_i)
+        stringBuffer.appendint(((lapInfo.getTotalLaps()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         @string = stringBuffer.to_s
     end
+    java_overload :update, 1
     
 
     def paint(graphics)
-        self.class.superclass.instance_method(:paintString).bind(self).call(graphics, @string)
+        LapWidget.superclass.java_super_method(:paintString, 2).bind(self).call(graphics, @string)
     end
+    java_overload :paint, 1
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/game/layer/hud/LapInfo"
-require "org/allbinary/graphics/color/BasicColor"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Hud; autoload :LapInfo, "org/allbinary/game/layer/hud/LapInfo" unless const_defined?(:LapInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+
+end; end; end; end; end; end
 

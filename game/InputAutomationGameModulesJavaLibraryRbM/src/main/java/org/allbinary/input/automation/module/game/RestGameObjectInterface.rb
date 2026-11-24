@@ -15,16 +15,22 @@
 # package org.allbinary.input.automation.module.game
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game
+
 module RestGameObjectInterface
     
 
     def isRestNeeded()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isAGoodTimeToRest()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end
 

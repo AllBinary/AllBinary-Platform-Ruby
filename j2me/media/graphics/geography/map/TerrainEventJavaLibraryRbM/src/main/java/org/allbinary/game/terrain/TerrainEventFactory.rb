@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.terrain
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObjectFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module Terrain
+
 class TerrainEventFactory
-    include AllBinaryEventObjectFactoryInterface
+    include ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObjectFactoryInterface
     
 
     def initialize()
@@ -25,11 +28,14 @@ class TerrainEventFactory
     
 
     def getInstance()
-        return TerrainEvent.new(NullUtil.getInstance().NULL_OBJECT)
+        return TerrainEvent.new(::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
     end
+    java_overload :getInstance, 0
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent" unless const_defined?(:TerrainEvent, false)
+
+end; end; end; end
 

@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package views.generic.address.billing
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/validate/ValidationComponentInterface"
 require "views/generic/address/billing/BillingAddressView"
 
+module ::Views; module Generic; module Address; module Billing
+
 class AddValidationView < BillingAddressView
-    include ValidationComponentInterface
+    include ::Org::Allbinary::Logic::ControlPackage::Validate::ValidationComponentInterface
     
 
     def initialize(transformInfoInterface)
@@ -28,31 +31,44 @@ class AddValidationView < BillingAddressView
 
     # throws Exception
     def isValid()
-        @streetAddress = StreetAddress.new(self.getRequest())
+        @streetAddress = ::Org::Allbinary::Business::User::Address::StreetAddress.new(self.getRequest())
         if @streetAddress.isValid() == false
             return false
         end
         return true
     end
+    java_overload :isValid, 0
     
 
     def validationInfo()
         return @streetAddress.validationInfo()
     end
+    java_overload :validationInfo, 0
     
 
     def toValidationInfoDoc()
         return nil
     end
+    java_overload :toValidationInfoDoc, 0
     
 
     def toValidationInfoNode(document)
         return nil
     end
+    java_overload :toValidationInfoNode, 1
+    
+
+    # throws Exception
+    def getTransformInfoInterface()
+        return AddValidationView.superclass.java_super_method(:getTransformInfoInterface, 0).bind(self).call()
+    end
+    java_overload :getTransformInfoInterface, 0
 end
 
-autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress" unless const_defined?(:StreetAddress, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.security.licensing
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/security/licensing/AbeClientInformation"
+
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
 
 class TestClientInformation < AbeClientInformation
     
@@ -23,4 +26,6 @@ class TestClientInformation < AbeClientInformation
         super("Test App Name", "0.0.1", "Test App Name 0.0.1", "TA")
     end
 end
+
+end; end; end; end; end; end
 

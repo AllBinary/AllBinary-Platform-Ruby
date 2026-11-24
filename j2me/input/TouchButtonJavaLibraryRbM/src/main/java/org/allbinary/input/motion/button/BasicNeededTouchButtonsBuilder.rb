@@ -14,29 +14,32 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/BaseTouchInput"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class BasicNeededTouchButtonsBuilder < BaseTouchInput
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_input_motion_button_BasicNeededTouchButtonsBuilder
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_BasicNeededTouchButtonsBuilder
     end
     
 
     def getList()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
-            list = BasicArrayListD.new()
+            list = ::Org::Allbinary::Util::BasicArrayListD.new()
             touchButtonLocationHelper = TouchButtonLocationHelper.new()
             basicTouchButtonCellPositionFactory = BasicTouchButtonCellPositionFactory.new()
             commonButtons = CommonButtons.getInstance()
-            animationInterface = NullAnimationFactory.getFactoryInstance().getInstance(0)
+            animationInterface = ::Org::Allbinary::Animation::NullAnimationFactory.getFactoryInstance().getInstance(0)
             _UP = TouchButton.new(BasicTouchInputFactory.getInstance().UP, animationInterface, animationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.SECOND_FROM_BOTTOM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf())
             _DOWN = TouchButton.new(BasicTouchInputFactory.getInstance().DOWN, animationInterface, animationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_LEFT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf())
             _LEFT = TouchButton.new(BasicTouchInputFactory.getInstance().LEFT, animationInterface, animationInterface, commonButtons.NORMAL_BUTTON, basicTouchButtonCellPositionFactory.BOTTOM_SECOND_FROM_RIGHT, touchButtonLocationHelper.getColumnsRemainderHalf(), touchButtonLocationHelper.getRowsRemainderHalf())
@@ -48,20 +51,23 @@ class BasicNeededTouchButtonsBuilder < BaseTouchInput
             return list
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.GET_LIST, e)
-            return BasicArrayListUtil.getInstance().getImmutableInstance()
+            return ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
         end
     end
+    java_overload :getList, 0
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
-autoload :BasicTouchButtonCellPositionFactory, "org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory"
-autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
-autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons"
-autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton"
-autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper"
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :NullAnimationFactory, "org/allbinary/animation/NullAnimationFactory" unless const_defined?(:NullAnimationFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+autoload :BasicTouchButtonCellPositionFactory, "org/allbinary/input/motion/button/BasicTouchButtonCellPositionFactory" unless const_defined?(:BasicTouchButtonCellPositionFactory, false)
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false)
+autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons" unless const_defined?(:CommonButtons, false)
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton" unless const_defined?(:TouchButton, false)
+autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper" unless const_defined?(:TouchButtonLocationHelper, false)
+
+end; end; end; end; end
 

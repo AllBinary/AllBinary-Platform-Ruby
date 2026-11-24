@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.module.actions.script.condition.processors.output
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Actions; module Script; module Condition; module Processors; module Output
+
 class ImageActionScriptOutputData
     
 
@@ -51,4 +53,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end; end; end
 

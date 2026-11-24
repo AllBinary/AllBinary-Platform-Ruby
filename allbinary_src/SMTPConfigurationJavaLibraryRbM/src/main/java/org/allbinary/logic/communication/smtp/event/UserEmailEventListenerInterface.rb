@@ -14,17 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.smtp.event
 
-# require "java/util/EventListener"
+require "java/lang/JavaOverload"
+require "java/util/EventListener"
+
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event
 
 module UserEmailEventListenerInterface
-    include EventListener
+    include ::Java::Util::EventListener
     
 
     # throws Exception
     def onEmailSendRequest(userEmailInfoEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onEmailSendRequest, 1
 end
 
-autoload :EmailEvent, "org/allbinary/logic/communication/smtp/event/EmailEvent"
+autoload :EmailEvent, "org/allbinary/logic/communication/smtp/event/EmailEvent" unless const_defined?(:EmailEvent, false)
+
+end; end; end; end; end; end
 

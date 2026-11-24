@@ -14,36 +14,66 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.security.licensing
 
+require "java/lang/JavaOverload"
+
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
 
 class LicensingException < StandardError
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_org_allbinary_logic_system_security_licensing_LicensingException_0(*args)
+        when 1 then jnew_org_allbinary_logic_system_security_licensing_LicensingException_1(*args)
+        else raise ArgumentError, "No constructor of LicensingException takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        method(:initialize).super_method.call()
+    def jnew_org_allbinary_logic_system_security_licensing_LicensingException_0()
+        LicensingException.superclass.instance_method(:initialize).bind(self).call()
     end
     
 
-    def constructor1(msg)
-        method(:initialize).super_method.call(msg)
+    def jnew_org_allbinary_logic_system_security_licensing_LicensingException_1(msg)
+        LicensingException.superclass.instance_method(:initialize).bind(self).call(msg)
     end
 
     def self.serialVersionUID()
+        LicensingException.java_static_fields unless @java_static_fields_started
         return defined?(@@serialVersionUID) ? @@serialVersionUID : nil
     end
 
     def self.serialVersionUID=(value)
+        LicensingException.java_static_fields unless @java_static_fields_started
         @@serialVersionUID = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        @@serialVersionUID = 1
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LicensingException"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class LicensingException
-    @@serialVersionUID = 1
+begin
+    LicensingException.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

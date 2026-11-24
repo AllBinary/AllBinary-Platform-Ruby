@@ -16,12 +16,14 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Business; module Init
+
 class LicenseInitInfoUtil
     attr_accessor :logUtil, :stringUtil, :INITFILENAME, :ABOUT, :PRIVACY_POLICY, :filePath
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @stringUtil = StringUtil.getInstance()
+    def jfields_org_allbinary_business_init_LicenseInitInfoUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         @INITFILENAME = "licenseinitdata.dat"
         @ABOUT = "about"
         @PRIVACY_POLICY = "privacy_policy"
@@ -29,7 +31,7 @@ class LicenseInitInfoUtil
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_init_LicenseInitInfoUtil
     end
     
 
@@ -49,23 +51,23 @@ class LicenseInitInfoUtil
     def write(initData)
         java_monitor.synchronize do
         if @filePath == @stringUtil.EMPTY_STRING
-            @filePath = URLGLOBALS.getMainPath() + PATH_GLOBALS.getInstance().INIT_PATH
+            @filePath = ::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + ::Org::Allbinary::Globals::PATH_GLOBALS.getInstance().INIT_PATH
         end
         begin
-            tsUtil = TsUtil.getInstance()
-            dataOutputStream = DataOutputStreamFactory.getInstance().getInstance(@filePath, @INITFILENAME)
-            licenseIdCrypted = tsUtil.getByteArray(WeakCrypt.new(1).encrypt(initData.getLicenseId()))
-            dataOutputStream.writeUTF(DatabaseEncoder.encode(licenseIdCrypted))
+            tsUtil = ::Org::Allbinary::TsUtil.getInstance()
+            dataOutputStream = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstance(@filePath, @INITFILENAME)
+            licenseIdCrypted = tsUtil.getByteArray(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(1).encrypt(initData.getLicenseId()))
+            dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(licenseIdCrypted))
             numberOfLicenseServers = initData.getNumberOfServers()
             dataOutputStream.writeInt(numberOfLicenseServers)
             licenseServerCrypted = nil
             (0...numberOfLicenseServers).each do |index|
-                licenseServerCrypted = tsUtil.getByteArray(WeakCrypt.new(3).encrypt(initData.getServer(index)))
-                dataOutputStream.writeUTF(DatabaseEncoder.encode(licenseServerCrypted))
+                licenseServerCrypted = tsUtil.getByteArray(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(3).encrypt(initData.getServer(index)))
+                dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(licenseServerCrypted))
             end
         rescue StandardError => e
             @logUtil.put("Command Failed: " + @INITFILENAME, self, "write", e)
-            FileStreamFactory.getInstance().delete(@filePath, @INITFILENAME)
+            ::Org::Allbinary::Logic::Io::FileStreamFactory.getInstance().delete(@filePath, @INITFILENAME)
             raise e
         end
         end
@@ -85,25 +87,25 @@ class LicenseInitInfoUtil
         java_monitor.synchronize do
         _METHOD_NAME = "readAgain"
         if @filePath == @stringUtil.EMPTY_STRING
-            @filePath = URLGLOBALS.getMainPath() + PATH_GLOBALS.getInstance().INIT_PATH
+            @filePath = ::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + ::Org::Allbinary::Globals::PATH_GLOBALS.getInstance().INIT_PATH
         end
         begin
             @logUtil.putF("LicenseInitInfo File: " + @INITFILENAME, self, _METHOD_NAME)
-            fileStreamFactory = FileStreamFactory.getInstance()
+            fileStreamFactory = ::Org::Allbinary::Logic::Io::FileStreamFactory.getInstance()
             iFile = fileStreamFactory.getFileInputStreamInstance(@filePath, @INITFILENAME)
             if iFile != nil
-                iData = AbDataInputStream.new(iFile)
+                iData = ::Org::Allbinary::Logic::Io::AbDataInputStream.new(iFile)
                 initInfo = LicenseInitInfo.new()
-                decodedByteArray = DatabaseEncoder.decode(iData.readUTF())
+                decodedByteArray = ::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF())
                 licenseIdDecoded = decodedByteArray.pack("c*").force_encoding("UTF-8")
-                initInfo.setLicenseId(WeakCrypt.new(1).decrypt(licenseIdDecoded))
+                initInfo.setLicenseId(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(1).decrypt(licenseIdDecoded))
                 numberOfLicenseServers = iData.readInt()
-                _NEXT_FILE = StringMaker.new().append(CommonLabels.getInstance().NEXT).append(" License Server From File: ").to_s
+                _NEXT_FILE = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().NEXT).append(" License Server From File: ").to_s
                 licenseServerDecoded = nil
                 (0...numberOfLicenseServers).each do |index|
-                    decodedByteArray = DatabaseEncoder.decode(iData.readUTF())
+                    decodedByteArray = ::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF())
                     licenseServerDecoded = decodedByteArray.pack("c*").force_encoding("UTF-8")
-                    initInfo.setServer(WeakCrypt.new(3).decrypt(licenseServerDecoded), index)
+                    initInfo.setServer(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(3).decrypt(licenseServerDecoded), index)
                     @logUtil.putF(_NEXT_FILE + (initInfo.getServer(index)).to_s, self, _METHOD_NAME)
                 end
                 return initInfo
@@ -157,25 +159,27 @@ class LicenseInitInfoUtil
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS"
-autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbDataInputStream, "org/allbinary/logic/io/AbDataInputStream"
-autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream"
-autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream"
-autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory"
-autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :DatabaseEncoder, "org/allbinary/logic/system/security/crypt/DatabaseEncoder"
-autoload :WeakCrypt, "org/allbinary/logic/system/security/crypt/WeakCrypt"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Globals; autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS" unless const_defined?(:PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataInputStream, "org/allbinary/logic/io/AbDataInputStream" unless const_defined?(:AbDataInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory" unless const_defined?(:DataOutputStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory" unless const_defined?(:FileStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; autoload :DatabaseEncoder, "org/allbinary/logic/system/security/crypt/DatabaseEncoder" unless const_defined?(:DatabaseEncoder, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; autoload :WeakCrypt, "org/allbinary/logic/system/security/crypt/WeakCrypt" unless const_defined?(:WeakCrypt, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo" unless const_defined?(:LicenseInitInfo, false)
 
 begin
     LicenseInitInfoUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,28 +14,32 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/graphics/geography/map/GeographicMapCellHistoryProgressBase"
+
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
 
 class GeographicMapCellHistoryProgress < GeographicMapCellHistoryProgressBase
     attr_accessor :totalVisitedArray, :geographicMapCellHistoryArray
 
-    def initialize_fields
-        @totalVisitedArray = NullUtil.getInstance().NULL_INT_ARRAY
+    def jfields_org_allbinary_media_graphics_geography_map_GeographicMapCellHistoryProgress
+        @totalVisitedArray = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY
         @geographicMapCellHistoryArray = GeographicMapCellHistory::NULL_GEOGRPAHIC_MAP_HISTORY_ARRAY
     end
     
 
     def initialize(geographicMapCellHistoryArray)
         super()
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_GeographicMapCellHistoryProgress
         @geographicMapCellHistoryArray = geographicMapCellHistoryArray
         self.init()
     end
     
 
     def init()
-        @totalVisitedArray = Array.new(@geographicMapCellHistoryArray.length, 0)
+        @totalVisitedArray = (Array.new(@geographicMapCellHistoryArray.length, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
     end
+    java_overload :init, 0
     
 
     def isAnyProgress()
@@ -53,8 +57,11 @@ class GeographicMapCellHistoryProgress < GeographicMapCellHistoryProgressBase
         end
         return isProgressing
     end
+    java_overload :isAnyProgress, 0
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellHistory"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :GeographicMapCellHistory, "org/allbinary/media/graphics/geography/map/GeographicMapCellHistory" unless const_defined?(:GeographicMapCellHistory, false)
+
+end; end; end; end; end; end
 

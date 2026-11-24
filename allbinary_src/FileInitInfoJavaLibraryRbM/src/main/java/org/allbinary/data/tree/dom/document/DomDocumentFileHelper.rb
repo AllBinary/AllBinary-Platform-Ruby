@@ -19,6 +19,8 @@
 # require "javax/xml/transform/dom/DOMSource"
 # require "javax/xml/transform/stream/StreamResult"
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document
+
 class DomDocumentFileHelper
     
 
@@ -29,7 +31,7 @@ class DomDocumentFileHelper
     # throws Exception
     def self.createDocument(xmlFile)
         begin
-            return DomDocumentHelper.create(AbFileInputStream.new(xmlFile))
+            return DomDocumentHelper.create(::Org::Allbinary::Logic::Io::AbFileInputStream.createFromAbFile(xmlFile))
         rescue StandardError => e
             raise e
         end
@@ -47,23 +49,25 @@ class DomDocumentFileHelper
                 file.delete()
             end
             file.createNewFile()
-            dataOutputStream = DataOutputStreamFactory.getInstance().getInstanceForAbFile(file)
+            dataOutputStream = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstanceForAbFile(file)
             streamResult = StreamResult.new(dataOutputStream)
             copyTransformer.transform(domSource, streamResult)
             dataOutputStream.flush()
         rescue StandardError => e
             raise e
         ensure
-            StreamUtil.getInstance().close(dataOutputStream)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(dataOutputStream)
         end
     end
 end
 
-require "org/allbinary/logic/io/AbDataOutputStream"
-require "org/allbinary/logic/io/AbFileInputStream"
-require "org/allbinary/logic/io/DataOutputStreamFactory"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/w3c/dom/Document"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory" unless const_defined?(:DataOutputStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil" unless const_defined?(:StreamUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper" unless const_defined?(:DomDocumentHelper, false)
+
+end; end; end; end; end; end
 

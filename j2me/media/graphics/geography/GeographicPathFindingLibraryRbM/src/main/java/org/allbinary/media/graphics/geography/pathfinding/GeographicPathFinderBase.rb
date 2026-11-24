@@ -15,15 +15,17 @@
 # package org.allbinary.media.graphics.geography.pathfinding
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding
+
 class GeographicPathFinderBase
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_media_graphics_geography_pathfinding_GeographicPathFinderBase
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_pathfinding_GeographicPathFinderBase
     end
     
 
@@ -37,13 +39,37 @@ class GeographicPathFinderBase
     def searchTotalPathN(startPathFindingNodeList, endPathFindingNodeList, totalPaths, multipassState)
         raise RuntimeError.new()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_GEOGRAPHIC_PATH_FINDER_BASE, GeographicPathFinderBase.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GeographicPathFinderBase"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_GEOGRAPHIC_PATH_FINDER_BASE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/media/graphics/geography/pathfinding/MultipassState"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :MultipassState, "org/allbinary/media/graphics/geography/pathfinding/MultipassState" unless const_defined?(:MultipassState, false)
 
-class GeographicPathFinderBase
-    NULL_GEOGRAPHIC_PATH_FINDER_BASE = GeographicPathFinderBase.new()
+begin
+    GeographicPathFinderBase.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

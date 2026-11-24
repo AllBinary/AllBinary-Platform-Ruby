@@ -14,20 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.pickup.health
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/health/HealthVisitorInterface"
 require "org/allbinary/layer/AllBinaryLayer"
 
-class HealLayer < AllBinaryLayer
-    include HealthVisitorInterface
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Pickup; module Health
+
+class HealLayer < ::Org::Allbinary::Layer::AllBinaryLayer
+    include ::Org::Allbinary::Game::Health::HealthVisitorInterface
     
 
     def initialize()
-        super(StringUtil.getInstance().EMPTY_STRING, Rectangle.new(PointFactory.getInstance().ZERO_ZERO, 0, 0), ViewPosition.getInstanceD())
+        super(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Graphics::Rectangle.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, 0, 0), ::Org::Allbinary::View::ViewPosition.getInstanceD())
     end
     
 
     def paint(graphics)
     end
+    java_overload :paint, 1
     
 
     def visit(healthInterface)
@@ -37,12 +41,15 @@ class HealLayer < AllBinaryLayer
             @logUtil.putF("Heal attempt on dead: Does not currently occur", self, "visit")
         end
     end
+    java_overload :visit, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :HealthInterface, "org/allbinary/game/health/HealthInterface"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :ViewPosition, "org/allbinary/view/ViewPosition"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Health; autoload :HealthInterface, "org/allbinary/game/health/HealthInterface" unless const_defined?(:HealthInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module View; autoload :ViewPosition, "org/allbinary/view/ViewPosition" unless const_defined?(:ViewPosition, false); end; end; end
+
+end; end; end; end; end; end; end
 

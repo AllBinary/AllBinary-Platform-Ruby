@@ -15,6 +15,8 @@
 # package org.allbinary.data.tables.generator
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables; module Generator
+
 class IdGeneratorEntityFactory
     
 
@@ -26,16 +28,18 @@ class IdGeneratorEntityFactory
         begin
             return IdGeneratorEntity.new()
         rescue StandardError => e
-            logUtil = LogUtil.getInstance()
-            commonStrings = CommonStrings.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             logUtil.put(commonStrings.EXCEPTION, "ServerLicenseRequestEntityFactory", commonStrings.GET_INSTANCE, e)
             return nil
         end
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/data/tables/generator/IdGeneratorEntity"
-require "org/allbinary/data/tables/generator/IdGeneratorEntityInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :IdGeneratorEntity, "org/allbinary/data/tables/generator/IdGeneratorEntity" unless const_defined?(:IdGeneratorEntity, false)
+autoload :IdGeneratorEntityInterface, "org/allbinary/data/tables/generator/IdGeneratorEntityInterface" unless const_defined?(:IdGeneratorEntityInterface, false)
+
+end; end; end; end; end
 

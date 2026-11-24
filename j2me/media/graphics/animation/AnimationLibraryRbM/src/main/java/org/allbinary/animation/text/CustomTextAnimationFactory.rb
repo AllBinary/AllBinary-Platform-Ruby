@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Animation; module Text
+
 class CustomTextAnimationFactory
-    include AnimationInterfaceFactoryInterface
+    include ::Org::Allbinary::Animation::AnimationInterfaceFactoryInterface
     attr_accessor :logUtil, :animationBehaviorFactory, :basicColor, :text, :initScaleHeight, :dx, :dy, :font, :scaleProperties
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @animationBehaviorFactory = nil
-        @basicColor = BasicColorFactory.getInstance().BLACK
-        @text = nil
-        @initScaleHeight = nil
+    def jfields_org_allbinary_animation_text_CustomTextAnimationFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @animationBehaviorFactory = nil unless instance_variable_defined?(:@animationBehaviorFactory)
+        @basicColor = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK
+        @text = nil unless instance_variable_defined?(:@text)
+        @initScaleHeight = nil unless instance_variable_defined?(:@initScaleHeight)
         @dx = 0
         @dy = 0
-        @font = nil
-        @scaleProperties = nil
+        @font = nil unless instance_variable_defined?(:@font)
+        @scaleProperties = nil unless instance_variable_defined?(:@scaleProperties)
     end
     
 
@@ -42,13 +45,13 @@ class CustomTextAnimationFactory
     
 
     def initialize(text, fontSize, animationBehaviorFactory)
-        initialize_fields
-        @scaleProperties = ScaleProperties.new()
+        jfields_org_allbinary_animation_text_CustomTextAnimationFactory
+        @scaleProperties = ::Org::Allbinary::Media::ScaleProperties.new()
         @text = text
         @scaleProperties.scaleHeight = fontSize - (fontSize / 4)
         @initScaleHeight = @scaleProperties.scaleHeight
         @animationBehaviorFactory = animationBehaviorFactory
-        @font = Font.getFont(Font::FACE_SYSTEM, Font::STYLE_PLAIN, @initScaleHeight)
+        @font = ::Javax::Microedition::Lcdui::Font.getFont(::Javax::Microedition::Lcdui::Font::FACE_SYSTEM, ::Javax::Microedition::Lcdui::Font::STYLE_PLAIN, @initScaleHeight)
     end
     
 
@@ -63,29 +66,35 @@ class CustomTextAnimationFactory
         customTextAnimation.setBasicColorP(@basicColor)
         return customTextAnimation
     end
+    java_overload :getInstance, 1
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
     
 
     def getWidth()
         return @font.stringWidth(@text)
     end
+    java_overload :getWidth, 0
     
 
     def getHeight()
         return @font.getHeight()
     end
+    java_overload :getHeight, 0
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :AdjustCustomTextAnimation, "org/allbinary/animation/text/AdjustCustomTextAnimation"
-autoload :CustomTextAnimation, "org/allbinary/animation/text/CustomTextAnimation"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory" unless const_defined?(:AnimationBehaviorFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :AdjustCustomTextAnimation, "org/allbinary/animation/text/AdjustCustomTextAnimation" unless const_defined?(:AdjustCustomTextAnimation, false)
+autoload :CustomTextAnimation, "org/allbinary/animation/text/CustomTextAnimation" unless const_defined?(:CustomTextAnimation, false)
+
+end; end; end; end
 

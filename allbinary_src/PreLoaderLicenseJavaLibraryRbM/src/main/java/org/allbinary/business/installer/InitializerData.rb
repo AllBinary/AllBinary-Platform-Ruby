@@ -15,10 +15,12 @@
 # package org.allbinary.business.installer
 
 
+module ::Org; module Allbinary; module Business; module Installer
+
 class InitializerData
     attr_accessor :DBUSER, :DBPASSWORD, :ADMINJDBCDRIVER, :ADMINSCHEMA, :ADMINSERVER, :ADMINPORT, :CUSTOMERJDBCDRIVER, :CUSTOMERNAME, :CUSTOMERUSERNAME, :CUSTOMERPASSWORD, :CUSTOMERSCHEMA, :CUSTOMERSERVER, :CUSTOMERPORT, :HISTORYJDBCDRIVER, :HISTORYNAME, :HISTORYUSERNAME, :HISTORYPASSWORD, :HISTORYSCHEMA, :HISTORYSERVER, :HISTORYPORT, :LOGJDBCDRIVER, :LOGNAME, :LOGUSERNAME, :LOGPASSWORD, :LOGSCHEMA, :LOGSERVER, :LOGPORT, :INVENTORYJDBCDRIVER, :INVENTORYNAME, :INVENTORYUSERNAME, :INVENTORYPASSWORD, :INVENTORYSCHEMA, :INVENTORYSERVER, :INVENTORYPORT, :STATICPAGESJDBCDRIVER, :STATICPAGESNAME, :STATICPAGESUSERNAME, :STATICPAGESPASSWORD, :STATICPAGESSCHEMA, :STATICPAGESSERVER, :STATICPAGESPORT
 
-    def initialize_fields
+    def jfields_org_allbinary_business_installer_InitializerData
         @DBUSER = "DBUSER"
         @DBPASSWORD = "DBPASSWORD"
         @ADMINJDBCDRIVER = "ADMIN_JDBCDRIVER"
@@ -63,7 +65,7 @@ class InitializerData
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_installer_InitializerData
     end
     
 
@@ -73,7 +75,7 @@ class InitializerData
     
 
     def getJdbcDriverSolutionInfo()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("The following describes the possible problems and solutions regarding the Jdbc Driver error(s):<p/>")
         stringBuffer.append("1. A JDBC driver you specified is not in your classpath.<br/>")
         stringBuffer.append("Solution 1: Move the JDBC driver into any directory specified in the existing classpath. <br/>")
@@ -87,17 +89,43 @@ class InitializerData
     end
 
     def self.instance()
+        InitializerData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        InitializerData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = InitializerData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InitializerData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
-class InitializerData
-    @@instance = InitializerData.new()
+begin
+    InitializerData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

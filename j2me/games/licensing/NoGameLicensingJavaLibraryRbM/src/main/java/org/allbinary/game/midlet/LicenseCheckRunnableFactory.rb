@@ -15,15 +15,19 @@
 # package org.allbinary.game.midlet
 
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 class LicenseCheckRunnableFactory
     
 
     def getInstance(specialDemoGameMidlet)
-        return NullABRunnable.getInstance()
+        return ::Org::Allbinary::ThreadPackage::NullABRunnable.getInstance()
     end
 end
 
-autoload :ABRunnable, "org/allbinary/thread/ABRunnable"
-autoload :NullABRunnable, "org/allbinary/thread/NullABRunnable"
-autoload :SpecialDemoGameMidlet, "org/allbinary/game/midlet/SpecialDemoGameMidlet"
+module ::Org; module Allbinary; module ThreadPackage; autoload :ABRunnable, "org/allbinary/thread/ABRunnable" unless const_defined?(:ABRunnable, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :NullABRunnable, "org/allbinary/thread/NullABRunnable" unless const_defined?(:NullABRunnable, false); end; end; end
+autoload :SpecialDemoGameMidlet, "org/allbinary/game/midlet/SpecialDemoGameMidlet" unless const_defined?(:SpecialDemoGameMidlet, false)
+
+end; end; end; end
 

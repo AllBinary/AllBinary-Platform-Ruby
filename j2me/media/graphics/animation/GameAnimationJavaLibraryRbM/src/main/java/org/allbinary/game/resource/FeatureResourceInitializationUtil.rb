@@ -15,15 +15,17 @@
 # package org.allbinary.game.resource
 
 
+module ::Org; module Allbinary; module Game; module Resource
+
 class FeatureResourceInitializationUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_resource_FeatureResourceInitializationUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_resource_FeatureResourceInitializationUtil
     end
     
 
@@ -34,9 +36,9 @@ class FeatureResourceInitializationUtil
 
     # throws Exception
     def init(level)
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @logUtil.putF(commonStrings.START, self, commonStrings.INIT)
-        featuredResourceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()
+        featuredResourceFactory = ::Org::Allbinary::Animation::FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()
         featuredResourceFactory.init(level)
         FeaturedResourceRelativeRelationshipFactory.getInstance().init(level)
     end
@@ -72,15 +74,17 @@ class FeatureResourceInitializationUtil
     end
 end
 
-autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :FeaturedResourceFactory, "org/allbinary/game/resource/FeaturedResourceFactory"
-autoload :FeaturedResourceRelativeRelationshipFactory, "org/allbinary/game/resource/FeaturedResourceRelativeRelationshipFactory"
+module ::Org; module Allbinary; module Animation; autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory" unless const_defined?(:FeaturedAnimationInterfaceFactoryInterfaceFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :FeaturedResourceFactory, "org/allbinary/game/resource/FeaturedResourceFactory" unless const_defined?(:FeaturedResourceFactory, false)
+autoload :FeaturedResourceRelativeRelationshipFactory, "org/allbinary/game/resource/FeaturedResourceRelativeRelationshipFactory" unless const_defined?(:FeaturedResourceRelativeRelationshipFactory, false)
 
 begin
     FeatureResourceInitializationUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

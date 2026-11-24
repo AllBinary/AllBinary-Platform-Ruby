@@ -15,12 +15,17 @@
 # package org.allbinary.input.automation.actions.script
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script
+
 module ProfileActionScriptItemInterface
     
 
     # throws Exception
     def process(frame)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end
 

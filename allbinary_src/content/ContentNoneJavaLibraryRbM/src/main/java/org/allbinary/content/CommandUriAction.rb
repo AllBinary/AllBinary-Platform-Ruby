@@ -15,15 +15,17 @@
 # package org.allbinary.content
 
 
+module ::Org; module Allbinary; module Content
+
 class CommandUriAction
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_content_CommandUriAction
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_content_CommandUriAction
     end
     
 
@@ -70,12 +72,14 @@ class CommandUriAction
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
 
 begin
     CommandUriAction.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

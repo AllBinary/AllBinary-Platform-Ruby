@@ -14,22 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/GameInputProcessor"
+
+module ::Org; module Allbinary; module Game; module Input
 
 class SelectedRTSLayersPlayerGameInputProcessor < GameInputProcessor
     attr_accessor :selectedRTSLayersPlayerGameInput
 
-    def initialize_fields
-        @selectedRTSLayersPlayerGameInput = nil
+    def jfields_org_allbinary_game_input_SelectedRTSLayersPlayerGameInputProcessor
+        @selectedRTSLayersPlayerGameInput = nil unless instance_variable_defined?(:@selectedRTSLayersPlayerGameInput)
     end
     
 
     def initialize(selectedRTSLayersPlayerGameInput)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_input_SelectedRTSLayersPlayerGameInputProcessor
         @selectedRTSLayersPlayerGameInput = selectedRTSLayersPlayerGameInput
     end
 end
 
-require "org/allbinary/game/input/SelectedRTSLayersPlayerGameInput"
+autoload :SelectedRTSLayersPlayerGameInput, "org/allbinary/game/input/SelectedRTSLayersPlayerGameInput" unless const_defined?(:SelectedRTSLayersPlayerGameInput, false)
+
+end; end; end; end
 

@@ -14,24 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.form
 
-# require "javax/microedition/lcdui/game/SimpleTiledLayer"
-# require "javax/microedition/lcdui/Graphics"
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/building/event/BuildingEventListenerInterface"
 require "org/allbinary/layer/event/ScrollMapEventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Input; module Form
+
 class VisibleCellPositionsSingleton
-    include BuildingEventListenerInterface
-    include ScrollMapEventListenerInterface
+    include ::Org::Allbinary::Game::Layer::Building::Event::BuildingEventListenerInterface
+    include ::Org::Allbinary::Layer::Event::ScrollMapEventListenerInterface
     attr_accessor :stationaryVisibleCellPositions, :visibleCellPositions, :currentlyVisibleCellPositions, :ALL_VISIBLE_TILEDLAYER, :simpleTiledLayer, :paintSimpleTiledLayer, :currentIndex
 
-    def initialize_fields
-        @stationaryVisibleCellPositions = NullUtil.getInstance().NULL_SHORT_ARRAY_ARRAY
-        @visibleCellPositions = NullUtil.getInstance().NULL_SHORT_ARRAY_ARRAY
-        @currentlyVisibleCellPositions = NullUtil.getInstance().NULL_SHORT_ARRAY_ARRAY
-        @ALL_VISIBLE_TILEDLAYER = SimpleTiledLayer.new(0, 0, 0, 0)
+    def jfields_org_allbinary_game_input_form_VisibleCellPositionsSingleton
+        @stationaryVisibleCellPositions = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_SHORT_ARRAY_ARRAY
+        @visibleCellPositions = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_SHORT_ARRAY_ARRAY
+        @currentlyVisibleCellPositions = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_SHORT_ARRAY_ARRAY
+        @ALL_VISIBLE_TILEDLAYER = ::Javax::Microedition::Lcdui::Game::SimpleTiledLayer.new(0, 0, 0, 0)
         @simpleTiledLayer = @ALL_VISIBLE_TILEDLAYER
         @paintSimpleTiledLayer = @ALL_VISIBLE_TILEDLAYER
-        @currentIndex = 0
+        @currentIndex = 0 unless instance_variable_defined?(:@currentIndex)
     end
     
 
@@ -41,9 +42,9 @@ class VisibleCellPositionsSingleton
     
 
     def initialize()
-        initialize_fields
-        LocalPlayerBuildingEventHandler.getInstance().addListenerInterface(self)
-        ScrollMapEventHandler.getInstance().addListenerInterface(self)
+        jfields_org_allbinary_game_input_form_VisibleCellPositionsSingleton
+        ::Org::Allbinary::Game::Layer::Building::Event::LocalPlayerBuildingEventHandler.getInstance().addListenerInterface(self)
+        ::Org::Allbinary::Layer::Event::ScrollMapEventHandler.getInstance().addListenerInterface(self)
     end
     
 
@@ -57,23 +58,27 @@ class VisibleCellPositionsSingleton
         @currentlyVisibleCellPositions = Array.new(rows) { Array.new(columns, 0) }
         self.setSimpleTiledLayer(simpleTiledLayer)
     end
+    java_overload :init, 1
     
 
     def onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
     end
+    java_overload :onEvent, 1
     
 
     # throws Exception
     def onBuildingEvent(event)
         @paintSimpleTiledLayer = @simpleTiledLayer
     end
+    java_overload :onBuildingEvent, 1
     
 
     # throws Exception
     def onMoveEvent(scrollMapEvent)
         self.move(scrollMapEvent.getDx(), scrollMapEvent.getDy())
     end
+    java_overload :onMoveEvent, 1
     
 
     def addStationaryCellPositions(list)
@@ -82,6 +87,7 @@ class VisibleCellPositionsSingleton
             @stationaryVisibleCellPositions[cellPosition.getRow()][cellPosition.getColumn()] += 1
         end
     end
+    java_overload :addStationaryCellPositions, 1
     
 
     def removeStationaryCellPositions(list)
@@ -90,6 +96,7 @@ class VisibleCellPositionsSingleton
             @stationaryVisibleCellPositions[cellPosition.getRow()][cellPosition.getColumn()] -= 1
         end
     end
+    java_overload :removeStationaryCellPositions, 1
     
 
     def update()
@@ -108,6 +115,7 @@ class VisibleCellPositionsSingleton
             @currentIndex = 0
         end
     end
+    java_overload :update, 0
     
 
     def shouldProcess()
@@ -117,6 +125,7 @@ class VisibleCellPositionsSingleton
             return false
         end
     end
+    java_overload :shouldProcess, 0
     
 
     def addCellPositions(list)
@@ -125,6 +134,7 @@ class VisibleCellPositionsSingleton
             @visibleCellPositions[cellPosition.getRow()][cellPosition.getColumn()] += 1
         end
     end
+    java_overload :addCellPositions, 1
     
 
     def isVisible(cellPosition)
@@ -134,48 +144,81 @@ class VisibleCellPositionsSingleton
             return false
         end
     end
+    java_overload :isVisible, 1
     
 
     def move(dx, dy)
         self.getSimpleTiledLayer().moveDXY(dx, dy)
     end
+    java_overload :move, 2
     
 
     def paint(graphics)
         @paintSimpleTiledLayer.paint(graphics, @currentlyVisibleCellPositions)
     end
+    java_overload :paint, 1
     
 
     def setSimpleTiledLayer(simpleTiledLayer)
         @simpleTiledLayer = simpleTiledLayer
     end
+    java_overload :setSimpleTiledLayer, 1
     
 
     def getSimpleTiledLayer()
         return @simpleTiledLayer
     end
+    java_overload :getSimpleTiledLayer, 0
 
     def self.instance()
+        VisibleCellPositionsSingleton.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        VisibleCellPositionsSingleton.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = VisibleCellPositionsSingleton.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "VisibleCellPositionsSingleton"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/RTSLayerEvent"
-require "org/allbinary/game/layer/building/event/LocalPlayerBuildingEventHandler"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/graphics/CellPosition"
-require "org/allbinary/layer/event/ScrollMapEvent"
-require "org/allbinary/layer/event/ScrollMapEventHandler"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventStrings"
+module ::Javax; module Microedition; module Lcdui; module Game; autoload :SimpleTiledLayer, "javax/microedition/lcdui/game/SimpleTiledLayer" unless const_defined?(:SimpleTiledLayer, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayerEvent, "org/allbinary/game/layer/RTSLayerEvent" unless const_defined?(:RTSLayerEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Building; module Event; autoload :LocalPlayerBuildingEventHandler, "org/allbinary/game/layer/building/event/LocalPlayerBuildingEventHandler" unless const_defined?(:LocalPlayerBuildingEventHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CellPosition, "org/allbinary/graphics/CellPosition" unless const_defined?(:CellPosition, false); end; end; end
+module ::Org; module Allbinary; module Layer; module Event; autoload :ScrollMapEvent, "org/allbinary/layer/event/ScrollMapEvent" unless const_defined?(:ScrollMapEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; module Event; autoload :ScrollMapEventHandler, "org/allbinary/layer/event/ScrollMapEventHandler" unless const_defined?(:ScrollMapEventHandler, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
 
-class VisibleCellPositionsSingleton
-    @@instance = VisibleCellPositionsSingleton.new()
+begin
+    VisibleCellPositionsSingleton.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

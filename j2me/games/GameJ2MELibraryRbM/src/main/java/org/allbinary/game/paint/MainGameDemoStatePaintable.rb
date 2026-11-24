@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/Paintable"
 
-class MainGameDemoStatePaintable < Paintable
+module ::Org; module Allbinary; module Game; module Paint
+
+class MainGameDemoStatePaintable < ::Org::Allbinary::Graphics::Paint::Paintable
     attr_accessor :ownershipPaintableInterface, :menuPaintableInterface
 
-    def initialize_fields
-        @ownershipPaintableInterface = nil
-        @menuPaintableInterface = nil
+    def jfields_org_allbinary_game_paint_MainGameDemoStatePaintable
+        @ownershipPaintableInterface = nil unless instance_variable_defined?(:@ownershipPaintableInterface)
+        @menuPaintableInterface = nil unless instance_variable_defined?(:@menuPaintableInterface)
     end
     
 
     def initialize(ownershipPaintableInterface, menuPaintableInterface)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_paint_MainGameDemoStatePaintable
         @ownershipPaintableInterface = ownershipPaintableInterface
         @menuPaintableInterface = menuPaintableInterface
     end
@@ -37,17 +40,22 @@ class MainGameDemoStatePaintable < Paintable
         @menuPaintableInterface.paint(graphics)
         @ownershipPaintableInterface.paint(graphics)
     end
+    java_overload :paint, 1
     
 
     def getOwnershipPaintableInterface()
         return @ownershipPaintableInterface
     end
+    java_overload :getOwnershipPaintableInterface, 0
     
 
     def getMenuPaintableInterface()
         return @menuPaintableInterface
     end
+    java_overload :getMenuPaintableInterface, 0
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+
+end; end; end; end
 

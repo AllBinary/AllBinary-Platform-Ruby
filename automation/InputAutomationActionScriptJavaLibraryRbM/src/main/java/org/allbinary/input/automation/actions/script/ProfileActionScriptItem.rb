@@ -14,42 +14,47 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.actions.script
 
+require "java/lang/JavaOverload"
 # require "java/awt/event/ActionEvent"
 # require "java/awt/event/ActionListener"
-# require "javax/swing"
+# require "javax/swing/JPopupMenu"
+# require "javax/swing/JMenuItem"
 # require "javax/swing/tree/DefaultMutableTreeNode"
 require "org/allbinary/input/automation/actions/script/ProfileActionScriptItemInterface"
+
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script
 
 class ProfileActionScriptItem < DefaultMutableTreeNode
     include ProfileActionScriptItemInterface
     include ActionListener
     attr_accessor :logUtil, :commonStrings, :jPopupMenu
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @jPopupMenu = nil
+    def jfields_org_allbinary_input_automation_actions_script_ProfileActionScriptItem
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @jPopupMenu = nil unless instance_variable_defined?(:@jPopupMenu)
     end
 
     def initialize(*args)
         case args.length
-        when 2 then constructor2(*args)
-        when 1 then constructor1(*args)
+        when 2 then jnew_org_allbinary_input_automation_actions_script_ProfileActionScriptItem_2(*args)
+        when 1 then jnew_org_allbinary_input_automation_actions_script_ProfileActionScriptItem_1(*args)
+        else raise ArgumentError, "No constructor of ProfileActionScriptItem takes #{args.length} arguments"
         end
     end
     
 
-    def constructor2(label, node)
-        method(:initialize).super_method.call(label)
-        initialize_fields
+    def jnew_org_allbinary_input_automation_actions_script_ProfileActionScriptItem_2(label, node)
+        ProfileActionScriptItem.superclass.instance_method(:initialize).bind(self).call(label)
+        jfields_org_allbinary_input_automation_actions_script_ProfileActionScriptItem
         self.init()
         @logUtil.putF("Label: " + label, self, @commonStrings.CONSTRUCTOR)
     end
     
 
-    def constructor1(label)
-        method(:initialize).super_method.call(label)
-        initialize_fields
+    def jnew_org_allbinary_input_automation_actions_script_ProfileActionScriptItem_1(label)
+        ProfileActionScriptItem.superclass.instance_method(:initialize).bind(self).call(label)
+        jfields_org_allbinary_input_automation_actions_script_ProfileActionScriptItem
         self.init()
         @logUtil.putF("Label: " + label, self, @commonStrings.CONSTRUCTOR)
     end
@@ -64,22 +69,26 @@ class ProfileActionScriptItem < DefaultMutableTreeNode
         self.getJPopupMenu().add(jMenuItemEdit)
         self.getJPopupMenu().add(jMenuItemDelete)
     end
+    java_overload :init, 0
     
 
     # throws Exception
     def process(frame)
         raise RuntimeError.new()
     end
+    java_overload :process, 1
     
 
     def getJPopupMenu()
         return @jPopupMenu
     end
+    java_overload :getJPopupMenu, 0
     
 
     def showDialog()
         raise RuntimeError.new()
     end
+    java_overload :showDialog, 0
     
 
     def actionPerformed(actionEvent)
@@ -87,11 +96,13 @@ class ProfileActionScriptItem < DefaultMutableTreeNode
             self.showDialog()
         end
     end
+    java_overload :actionPerformed, 1
     
 
     def setJPopupMenu(jPopupMenu)
         @jPopupMenu = jPopupMenu
     end
+    java_overload :setJPopupMenu, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -125,13 +136,15 @@ class ProfileActionScriptItem < DefaultMutableTreeNode
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
 
 begin
     ProfileActionScriptItem.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

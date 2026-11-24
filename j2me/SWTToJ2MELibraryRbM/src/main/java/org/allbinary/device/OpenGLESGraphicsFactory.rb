@@ -15,6 +15,8 @@
 # package org.allbinary.device
 
 
+module ::Org; module Allbinary; module Device
+
 class OpenGLESGraphicsFactory
     
 
@@ -23,5 +25,7 @@ class OpenGLESGraphicsFactory
     end
 end
 
-require "org/allbinary/device/OpenGLESGraphics"
+autoload :OpenGLESGraphics, "org/allbinary/device/OpenGLESGraphics" unless const_defined?(:OpenGLESGraphics, false)
+
+end; end; end
 

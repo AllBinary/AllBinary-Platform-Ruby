@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ai/BasicAI"
 
-class KeyPressesAI < BasicAI
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
+class KeyPressesAI < ::Org::Allbinary::Game::Ai::BasicAI
     attr_accessor :on, :keys
 
-    def initialize_fields
+    def jfields_org_allbinary_game_ag_ai_KeyPressesAI
         @on = true
-        @keys = nil
+        @keys = nil unless instance_variable_defined?(:@keys)
     end
     
 
     def initialize(hashtable, ownerLayerInterface, gameInput)
         super(ownerLayerInterface, gameInput)
-        initialize_fields
+        jfields_org_allbinary_game_ag_ai_KeyPressesAI
         @keys = Array.new(hashtable.size(), nil)
-        objectArray = HashtableUtil.getInstance().getKeysAsArray(hashtable)
+        objectArray = ::Org::Allbinary::Util::HashtableUtil.getInstance().getKeysAsArray(hashtable)
         size = objectArray.length
         (0...size).each do |index|
             @keys[index] = hashtable.get(objectArray[index])
@@ -41,10 +44,11 @@ class KeyPressesAI < BasicAI
     def processAI(allBinaryLayerManager)
         if @on
             (0...@keys.length).each do |index|
-                KeyPressesAI.superclass.instance_method(:processKeyAI).bind(self).call(@keys[index].to_i)
+                KeyPressesAI.superclass.java_super_method(:processKeyAI, 1).bind(self).call(@keys[index].to_i)
             end
         end
     end
+    java_overload :processAI, 1
     
 
     # throws Exception
@@ -55,33 +59,40 @@ class KeyPressesAI < BasicAI
             self.setOn(true)
         end
     end
+    java_overload :toggle, 0
     
 
     # throws Exception
     def disable()
         self.setOn(false)
     end
+    java_overload :disable, 0
     
 
     # throws Exception
     def enable()
         self.setOn(true)
     end
+    java_overload :enable, 0
     
 
     def setOn(on)
         @on = on
     end
+    java_overload :setOn, 1
     
 
     def isOn()
         return @on
     end
+    java_overload :isOn, 0
 end
 
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :HashtableUtil, "org/allbinary/util/HashtableUtil" unless const_defined?(:HashtableUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+
+end; end; end; end; end
 

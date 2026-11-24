@@ -14,14 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageRotationUtil
     attr_accessor :matrix, :anchor
 
-    def initialize_fields
-        @matrix = Matrix.new()
-        @anchor = Anchor::TOP_LEFT
+    def jfields_org_allbinary_media_image_ImageRotationUtil
+        @matrix = ::Android::Graphics::Matrix.new()
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
     end
     
 
@@ -31,7 +32,7 @@ class ImageRotationUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageRotationUtil
     end
     
 
@@ -53,22 +54,49 @@ class ImageRotationUtil
     end
 
     def self.instance()
+        ImageRotationUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageRotationUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageRotationUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageRotationUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/Anchor"
-require "android/graphics/Bitmap"
-require "android/graphics/Canvas"
-require "android/graphics/Matrix"
-require "org/microemu/android/device/AndroidImageInterface"
-require "org/allbinary/media/image/ImageCreationUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+module ::Android; module Graphics; autoload :Bitmap, "android/graphics/Bitmap" unless const_defined?(:Bitmap, false); end; end
+module ::Android; module Graphics; autoload :Canvas, "android/graphics/Canvas" unless const_defined?(:Canvas, false); end; end
+module ::Android; module Graphics; autoload :Matrix, "android/graphics/Matrix" unless const_defined?(:Matrix, false); end; end
+module ::Org; module Microemu; module Android; module Device; autoload :AndroidImageInterface, "org/microemu/android/device/AndroidImageInterface" unless const_defined?(:AndroidImageInterface, false); end; end; end; end
+autoload :ImageCreationUtil, "org/allbinary/media/image/ImageCreationUtil" unless const_defined?(:ImageCreationUtil, false)
 
-class ImageRotationUtil
-    @@instance = ImageRotationUtil.new()
+begin
+    ImageRotationUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

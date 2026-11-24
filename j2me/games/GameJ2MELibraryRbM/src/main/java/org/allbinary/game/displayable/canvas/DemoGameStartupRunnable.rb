@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/thread/ABRunnable"
 
-class DemoGameStartupRunnable < ABRunnable
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class DemoGameStartupRunnable < ::Org::Allbinary::ThreadPackage::ABRunnable
     attr_accessor :logUtil, :demoCanvas
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @demoCanvas = nil
+    def jfields_org_allbinary_game_displayable_canvas_DemoGameStartupRunnable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @demoCanvas = nil unless instance_variable_defined?(:@demoCanvas)
     end
     
 
     def initialize(demoCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_DemoGameStartupRunnable
         @demoCanvas = demoCanvas
     end
     
@@ -41,15 +44,17 @@ class DemoGameStartupRunnable < ABRunnable
             self.setRunning(false)
         rescue StandardError => e
             self.setRunning(false)
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
         end
     end
+    java_overload :run, 0
     
 
     def getType()
         return DemoGameStartupRunnable::TYPE
     end
+    java_overload :getType, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -72,13 +77,15 @@ class DemoGameStartupRunnable < ABRunnable
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :DemoCanvas, "org/allbinary/game/displayable/canvas/DemoCanvas"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :DemoCanvas, "org/allbinary/game/displayable/canvas/DemoCanvas" unless const_defined?(:DemoCanvas, false)
 
 begin
     DemoGameStartupRunnable.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

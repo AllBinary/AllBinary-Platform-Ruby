@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationBehavior"
+
+module ::Org; module Allbinary; module Animation
 
 class IndexedAnimationBehavior < AnimationBehavior
     attr_accessor :frameDelayTime, :loopTotal, :elapsedTime, :loopIndex
 
-    def initialize_fields
-        @frameDelayTime = nil
-        @loopTotal = nil
-        @elapsedTime = 0
-        @loopIndex = 0
+    def jfields_org_allbinary_animation_IndexedAnimationBehavior
+        @frameDelayTime = nil unless instance_variable_defined?(:@frameDelayTime)
+        @loopTotal = nil unless instance_variable_defined?(:@loopTotal)
+        @elapsedTime = 0 unless instance_variable_defined?(:@elapsedTime)
+        @loopIndex = 0 unless instance_variable_defined?(:@loopIndex)
     end
     
 
     def initialize(loopTotal, frameDelayTime)
         super()
-        initialize_fields
+        jfields_org_allbinary_animation_IndexedAnimationBehavior
         @loopTotal = loopTotal
         @frameDelayTime = frameDelayTime
     end
@@ -38,5 +41,8 @@ class IndexedAnimationBehavior < AnimationBehavior
     def reset()
         @loopIndex = 0
     end
+    java_overload :reset, 0
 end
+
+end; end; end
 

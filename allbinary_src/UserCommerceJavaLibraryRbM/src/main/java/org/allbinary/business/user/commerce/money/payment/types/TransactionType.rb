@@ -15,16 +15,18 @@
 # package org.allbinary.business.user.commerce.money.payment.types
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
+
 class TransactionType
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_TransactionType
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_types_TransactionType
         @name = name
     end
     
@@ -43,4 +45,6 @@ class TransactionType
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end; end; end; end
 

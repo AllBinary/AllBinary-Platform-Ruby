@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item.validation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/visitor/Visitor"
 
-class TextItemUserIdentifierVisitor < Visitor
+module ::Org; module Allbinary; module Graphics; module Form; module Item; module Validation
+
+class TextItemUserIdentifierVisitor < ::Org::Allbinary::Logic::Util::Visitor::Visitor
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_graphics_form_item_validation_TextItemUserIdentifierVisitor
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_form_item_validation_TextItemUserIdentifierVisitor
     end
     
 
@@ -34,35 +37,39 @@ class TextItemUserIdentifierVisitor < Visitor
         value = anyType
         if value.length < 2
             charValue = value[0]
-            stringValidationUtil = StringValidationUtil.getInstance()
+            stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
             if stringValidationUtil.isNumber(value)
-                return BooleanFactory.getInstance().TRUE
+                return ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE
             elsif self.isLetter(charValue)
-                return BooleanFactory.getInstance().TRUE
+                return ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE
             else
                 begin
-                    TextNotificationUtil.getInstance().fireError("Only Letters & Numbers Allowed")
+                    ::Org::Allbinary::Game::Input::TextNotificationUtil.getInstance().fireError("Only Letters & Numbers Allowed")
                 rescue StandardError => e
-                    commonStrings = CommonStrings.getInstance()
+                    commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                     @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.VISIT, e)
                 end
-                return BooleanFactory.getInstance().FALSE
+                return ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().FALSE
             end
         else
-            return BooleanFactory.getInstance().FALSE
+            return ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().FALSE
         end
     end
+    java_overload :visit, 1
     
 
     def isLetter(charValue)
         value = (charValue).ord
         return (value > 64 && value < 91) || (value > 96 && value < 123)
     end
+    java_overload :isLetter, 1
 end
 
-autoload :TextNotificationUtil, "org/allbinary/game/input/TextNotificationUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Game; module Input; autoload :TextNotificationUtil, "org/allbinary/game/input/TextNotificationUtil" unless const_defined?(:TextNotificationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end; end
 

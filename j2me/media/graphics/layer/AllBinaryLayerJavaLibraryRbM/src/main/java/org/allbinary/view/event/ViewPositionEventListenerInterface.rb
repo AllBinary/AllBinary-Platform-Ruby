@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.view.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module View; module Event
+
 module ViewPositionEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module ViewPositionEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onChangeEvent, 1
 end
 
-autoload :ViewPositionEvent, "org/allbinary/view/event/ViewPositionEvent"
+autoload :ViewPositionEvent, "org/allbinary/view/event/ViewPositionEvent" unless const_defined?(:ViewPositionEvent, false)
+
+end; end; end; end
 

@@ -15,15 +15,17 @@
 # package org.allbinary.thread
 
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class ThreadFactoryUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_thread_ThreadFactoryUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_thread_ThreadFactoryUtil
     end
     
 
@@ -43,20 +45,20 @@ class ThreadFactoryUtil
     
 
     def getInstanceType(runnable, type)
-        commonStrings = CommonStrings.getInstance()
-        if J2MEUtil.isHTML()
-            if type == DemoCanvas::TYPE || type == AllBinaryGameCanvas::TYPE
-                demoGameSingleThreadStartRunnable = RunnableCanvasSingleThreadStartRunnable.new(runnable)
-                PreLogUtil.put(StringMaker.new().append("Using Pseudo Thread for DemoCanvas/AllBinaryGameCanvas under PlayN/HTML5: ").append(StringUtil.getInstance().toString(runnable)).to_s, self, commonStrings.CONSTRUCTOR)
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        if ::Org::Allbinary::J2MEUtil.isHTML()
+            if type == ::Org::Allbinary::Game::Displayable::Canvas::DemoCanvas::TYPE || type == ::Org::Allbinary::Game::Displayable::Canvas::AllBinaryGameCanvas::TYPE
+                demoGameSingleThreadStartRunnable = ::Org::Allbinary::Game::Displayable::Canvas::RunnableCanvasSingleThreadStartRunnable.new(runnable)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Using Pseudo Thread for DemoCanvas/AllBinaryGameCanvas under PlayN/HTML5: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(runnable)).to_s, self, commonStrings.CONSTRUCTOR)
                 primaryThreadPool = PrimaryThreadPool.getInstance()
                 primaryThreadPool.runTask(demoGameSingleThreadStartRunnable)
             else
-                PreLogUtil.put(StringMaker.new().append("Using Pseudo Thread for Runnable under PlayN/HTML5: ").append(StringUtil.getInstance().toString(runnable)).to_s, self, commonStrings.CONSTRUCTOR)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Using Pseudo Thread for Runnable under PlayN/HTML5: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(runnable)).to_s, self, commonStrings.CONSTRUCTOR)
                 primaryThreadPool = PrimaryThreadPool.getInstance()
                 primaryThreadPool.runTask(runnable)
             end
         end
-        thread = JavaThread.new(runnable, runnable.to_s)
+        thread = ::Java::Lang::JavaThread.new(runnable, runnable.to_s)
         @logUtil.putF(thread.to_s, self, commonStrings.CONSTRUCTOR)
         return thread
     end
@@ -97,20 +99,20 @@ class ThreadFactoryUtil
     end
 end
 
-autoload :J2MEUtil, "org/allbinary/J2MEUtil"
-autoload :RunnableCanvas, "org/allbinary/canvas/RunnableCanvas"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-autoload :DemoCanvas, "org/allbinary/game/displayable/canvas/DemoCanvas"
-autoload :GameCanvasRunnableInterface, "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface"
-autoload :RunnableCanvasSingleThreadStartRunnable, "org/allbinary/game/displayable/canvas/RunnableCanvasSingleThreadStartRunnable"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ABRunnable, "org/allbinary/thread/ABRunnable"
-autoload :PrimaryThreadPool, "org/allbinary/thread/PrimaryThreadPool"
-autoload :ThreadPool, "org/allbinary/thread/ThreadPool"
+module ::Org; module Allbinary; autoload :J2MEUtil, "org/allbinary/J2MEUtil" unless const_defined?(:J2MEUtil, false); end; end
+module ::Org; module Allbinary; module Canvas; autoload :RunnableCanvas, "org/allbinary/canvas/RunnableCanvas" unless const_defined?(:RunnableCanvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas; autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas; autoload :DemoCanvas, "org/allbinary/game/displayable/canvas/DemoCanvas" unless const_defined?(:DemoCanvas, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas; autoload :GameCanvasRunnableInterface, "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface" unless const_defined?(:GameCanvasRunnableInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas; autoload :RunnableCanvasSingleThreadStartRunnable, "org/allbinary/game/displayable/canvas/RunnableCanvasSingleThreadStartRunnable" unless const_defined?(:RunnableCanvasSingleThreadStartRunnable, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :ABRunnable, "org/allbinary/thread/ABRunnable" unless const_defined?(:ABRunnable, false)
+autoload :PrimaryThreadPool, "org/allbinary/thread/PrimaryThreadPool" unless const_defined?(:PrimaryThreadPool, false)
+autoload :ThreadPool, "org/allbinary/thread/ThreadPool" unless const_defined?(:ThreadPool, false)
 require "java/lang/Runnable"
 require "java/lang/Thread"
 
@@ -119,4 +121,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

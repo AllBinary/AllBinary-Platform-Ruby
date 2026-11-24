@@ -14,33 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
-require "org/allbinary/animation/NullIndexedAnimation"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class NullIndexedAnimationFactory
     include AnimationInterfaceFactoryInterface
     include ProceduralAnimationInterfaceFactoryInterface
     attr_accessor :NULL_ANIMATION
-    class NullIndexedAnimationInner < NullIndexedAnimation
-        
 
-        def initialize()
-            super(IndexedAnimationBehavior.new(1, 250))
-        end
-        
-
-        def paintXY(graphics, x, y)
-        end
-    end
-
-    def initialize_fields
+    def jfields_org_allbinary_animation_NullIndexedAnimationFactory
         @NULL_ANIMATION = NullIndexedAnimationInner.new()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_animation_NullIndexedAnimationFactory
     end
     
 
@@ -53,16 +44,19 @@ class NullIndexedAnimationFactory
     def getInstance(instanceId)
         return @NULL_ANIMATION
     end
+    java_overload :getInstance, 1
     
 
     # throws Exception
     def getInstanceAnimation(animationInterface)
         return @NULL_ANIMATION
     end
+    java_overload :getInstanceAnimation, 1
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -86,15 +80,16 @@ class NullIndexedAnimationFactory
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
-autoload :IndexedAnimationBehavior, "org/allbinary/animation/IndexedAnimationBehavior"
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation" unless const_defined?(:IndexedAnimation, false)
+autoload :NullIndexedAnimationInner, "org/allbinary/animation/NullIndexedAnimationInner" unless const_defined?(:NullIndexedAnimationInner, false)
 
 begin
     NullIndexedAnimationFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

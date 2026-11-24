@@ -14,20 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.math.permutations
 
+require "java/lang/Object"
+require "java/lang/JavaOverload"
+
+module ::Org; module Allbinary; module Logic; module MathPackage; module Permutations
 
 class ComparableObject
     include Comparable
     
 
     def compareTo(anyType)
-        if TsUtil.getInstance().hashCode(self) < TsUtil.getInstance().hashCode(anyType)
+        if ::Org::Allbinary::TsUtil.getInstance().hashCode(self) < ::Org::Allbinary::TsUtil.getInstance().hashCode(anyType)
             return -1
-        elsif TsUtil.getInstance().hashCode(self) > TsUtil.getInstance().hashCode(anyType)
+        elsif ::Org::Allbinary::TsUtil.getInstance().hashCode(self) > ::Org::Allbinary::TsUtil.getInstance().hashCode(anyType)
             return 1
         end
         return 0
     end
+    java_overload :compareTo, 1
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+
+end; end; end; end; end
 

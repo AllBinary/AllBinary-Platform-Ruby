@@ -15,25 +15,27 @@
 # package org.allbinary.time
 
 
+module ::Org; module Allbinary; module TimePackage
+
 class GameTickTimeDelayHelper
     attr_accessor :timeDelta, :startTime, :lastStartTime
 
-    def initialize_fields
-        @timeDelta = 0
-        @startTime = nil
-        @lastStartTime = nil
+    def jfields_org_allbinary_time_GameTickTimeDelayHelper
+        @timeDelta = 0 unless instance_variable_defined?(:@timeDelta)
+        @startTime = nil unless instance_variable_defined?(:@startTime)
+        @lastStartTime = nil unless instance_variable_defined?(:@lastStartTime)
     end
     
 
     def initialize(startTime)
-        initialize_fields
+        jfields_org_allbinary_time_GameTickTimeDelayHelper
         @startTime = startTime
         @lastStartTime = 0
     end
     
 
     def setStartTime()
-        @startTime = (Time.now.to_f * 1000).to_i
+        @startTime = (::Time.now.to_f * 1000).to_i
         return @startTime
     end
     
@@ -42,7 +44,7 @@ class GameTickTimeDelayHelper
         if @lastStartTime == (-9223372036854775808)
             @timeDelta = 0
         else
-            @timeDelta = (Time.now.to_f * 1000).to_i - @lastStartTime
+            @timeDelta = (::Time.now.to_f * 1000).to_i - @lastStartTime
         end
     end
     
@@ -53,4 +55,6 @@ class GameTickTimeDelayHelper
 end
 
 require "java/lang/System"
+
+end; end; end
 

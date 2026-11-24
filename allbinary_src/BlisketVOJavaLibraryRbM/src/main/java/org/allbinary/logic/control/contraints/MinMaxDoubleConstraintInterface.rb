@@ -15,26 +15,34 @@
 # package org.allbinary.logic.control.contraints
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints
+
 module MinMaxDoubleConstraintInterface
     
 
     def getMax()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMin()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setMax(max)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setMin(min)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

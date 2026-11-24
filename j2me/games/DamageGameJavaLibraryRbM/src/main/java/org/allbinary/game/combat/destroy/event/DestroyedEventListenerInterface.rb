@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.destroy.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Combat; module Destroy; module Event
+
 module DestroyedEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module DestroyedEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onDestroyed, 1
 end
 
-autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent" unless const_defined?(:DestroyedEvent, false)
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.health
 
 
+module ::Org; module Allbinary; module Game; module Health
+
 module HealthListenerInterface
     
 
@@ -23,4 +25,6 @@ module HealthListenerInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

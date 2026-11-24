@@ -14,16 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/IndexedAnimation"
 require "org/allbinary/animation/VectorAnimationInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class VectorAnimation < IndexedAnimation
     include VectorAnimationInterface
     attr_accessor :currentPoints, :circularIndexUtil
 
-    def initialize_fields
-        @currentPoints = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
-        @circularIndexUtil = CircularIndexUtil.createInstance(0)
+    def jfields_org_allbinary_animation_VectorAnimation
+        @currentPoints = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(0)
     end
     
 
@@ -40,7 +43,7 @@ class VectorAnimation < IndexedAnimation
 
     def initialize(currentPoints, basicColor, animationBehavior)
         super(animationBehavior)
-        initialize_fields
+        jfields_org_allbinary_animation_VectorAnimation
         self.setPoints(currentPoints)
         self.setBasicColorP(basicColor)
     end
@@ -51,11 +54,12 @@ class VectorAnimation < IndexedAnimation
         if self.getBasicColorP() == nil || self.getBasicColorP().to_i != basicColor.to_i
             changed = true
         end
-        super(basicColor)
+        VectorAnimation.superclass.java_super_method(:setBasicColorP, 1).bind(self).call(basicColor)
         if changed
             self.updateModifiers()
         end
     end
+    java_overload :setBasicColorP, 1
     
 
     def changeBasicColor(basicColor)
@@ -63,11 +67,12 @@ class VectorAnimation < IndexedAnimation
         if self.getChangeBasicColor() == nil || self.getChangeBasicColor().to_i != basicColor.to_i
             changed = true
         end
-        super(basicColor)
+        VectorAnimation.superclass.java_super_method(:changeBasicColor, 1).bind(self).call(basicColor)
         if changed
             self.updateModifiers()
         end
     end
+    java_overload :changeBasicColor, 1
     
 
     def setAlpha(alpha)
@@ -75,53 +80,63 @@ class VectorAnimation < IndexedAnimation
         if @alphaP != alpha
             changed = true
         end
-        super(alpha)
+        VectorAnimation.superclass.java_super_method(:setAlpha, 1).bind(self).call(alpha)
         if changed
             self.updateModifiers()
         end
     end
+    java_overload :setAlpha, 1
     
 
     def setScale(scaleX, scaleY)
     end
+    java_overload :setScale, 2
     
 
     def setMaxScale(maxScaleX, maxScaleY)
     end
+    java_overload :setMaxScale, 2
     
 
     def updateModifiers()
     end
+    java_overload :updateModifiers, 0
     
 
     # throws Exception
     def getAnimationSize()
         return self.getSize()
     end
+    java_overload :getAnimationSize, 0
     
 
     def getSize()
         return @currentPoints.length
     end
+    java_overload :getSize, 0
     
 
     def setSequence(sequence)
     end
+    java_overload :setSequence, 1
     
 
     def getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
+        return ::Org::Allbinary::Logic::MathPackage::PrimitiveIntUtil.getArrayInstance()
     end
+    java_overload :getSequence, 0
     
 
     def nextFrame()
         @circularIndexUtil.next_()
     end
+    java_overload :nextFrame, 0
     
 
     def previousFrame()
         @circularIndexUtil.previous()
     end
+    java_overload :previousFrame, 0
     
 
     def paintVectors(graphics, x, y)
@@ -148,45 +163,54 @@ class VectorAnimation < IndexedAnimation
             @logUtil.put(@commonStrings.EXCEPTION, self, "paintVectors", e)
         end
     end
+    java_overload :paintVectors, 3
     
 
     def paintXY(graphics, x, y)
         @basicSetColorUtil.setBasicColorP(graphics, @basicColor)
         self.paintVectors(graphics, x, y)
     end
+    java_overload :paintXY, 3
     
 
     def getFrame()
         return @circularIndexUtil.getIndex()
     end
+    java_overload :getFrame, 0
     
 
     def setFrame(index)
         @circularIndexUtil.setIndex(index)
     end
+    java_overload :setFrame, 1
     
 
     def getPoints(frame)
         return @currentPoints[frame]
     end
+    java_overload :getPoints, 1
     
 
     def setPoints(currentPoints)
         @currentPoints = currentPoints
-        @circularIndexUtil = CircularIndexUtil.createInstance(currentPoints.length)
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(currentPoints.length)
     end
+    java_overload :setPoints, 1
     
 
     def getBasicColorP()
-        return super()
+        return VectorAnimation.superclass.java_super_method(:getBasicColorP, 0).bind(self).call()
     end
+    java_overload :getBasicColorP, 0
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :NullImage, "javax/microedition/lcdui/NullImage"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil" unless const_defined?(:PrimitiveIntUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false)
+
+end; end; end
 

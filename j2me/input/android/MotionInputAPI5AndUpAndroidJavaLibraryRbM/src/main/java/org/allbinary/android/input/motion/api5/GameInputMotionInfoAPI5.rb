@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.android.input.motion.api5
 
+require "java/lang/JavaOverload"
 require "org/allbinary/android/input/motion/GameInputMotionInfo"
 
-class GameInputMotionInfoAPI5 < GameInputMotionInfo
+module ::Org; module Allbinary; module Android; module Input; module Motion; module Api5
+
+class GameInputMotionInfoAPI5 < ::Org::Allbinary::Android::Input::Motion::GameInputMotionInfo
     
 
     def self.getInstance()
@@ -29,15 +32,41 @@ class GameInputMotionInfoAPI5 < GameInputMotionInfo
     end
 
     def self.instance()
+        GameInputMotionInfoAPI5.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GameInputMotionInfoAPI5.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GameInputMotionInfoAPI5.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GameInputMotionInfoAPI5"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class GameInputMotionInfoAPI5
-    @@instance = GameInputMotionInfoAPI5.new()
+begin
+    GameInputMotionInfoAPI5.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

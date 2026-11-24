@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.actions.script.condition.processors.input
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition; module Processors; module Input
+
 class ProfileActionScriptInputFactory
     
 
@@ -25,9 +27,9 @@ class ProfileActionScriptInputFactory
     # throws Exception
     def self.getInstance(node)
         profileActionScriptInputInterface = nil
-        if DomSearchHelper.getNodeNoThrow(KeyboardActionScriptInputData::NAME, node.getChildNodes()) != nil
+        if ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNodeNoThrow(KeyboardActionScriptInputData::NAME, node.getChildNodes()) != nil
             profileActionScriptInputInterface = KeyboardActionScriptInput.new(node)
-        elsif DomSearchHelper.getNodeNoThrow(MouseActionScriptInputData::NAME, node.getChildNodes()) != nil
+        elsif ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNodeNoThrow(MouseActionScriptInputData::NAME, node.getChildNodes()) != nil
             profileActionScriptInputInterface = MouseActionScriptInput.new(node)
         else
             raise StandardError.new("No Such ActionScript Input")
@@ -36,11 +38,13 @@ class ProfileActionScriptInputFactory
     end
 end
 
-autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
-autoload :Node, "org/w3c/dom/Node"
-autoload :KeyboardActionScriptInput, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInput"
-autoload :KeyboardActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputData"
-autoload :MouseActionScriptInput, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInput"
-autoload :MouseActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputData"
-autoload :ProfileActionScriptInputInterface, "org/allbinary/input/automation/actions/script/condition/processors/input/ProfileActionScriptInputInterface"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper" unless const_defined?(:DomSearchHelper, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :KeyboardActionScriptInput, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInput" unless const_defined?(:KeyboardActionScriptInput, false)
+autoload :KeyboardActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputData" unless const_defined?(:KeyboardActionScriptInputData, false)
+autoload :MouseActionScriptInput, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInput" unless const_defined?(:MouseActionScriptInput, false)
+autoload :MouseActionScriptInputData, "org/allbinary/input/automation/actions/script/condition/processors/input/MouseActionScriptInputData" unless const_defined?(:MouseActionScriptInputData, false)
+autoload :ProfileActionScriptInputInterface, "org/allbinary/input/automation/actions/script/condition/processors/input/ProfileActionScriptInputInterface" unless const_defined?(:ProfileActionScriptInputInterface, false)
+
+end; end; end; end; end; end; end; end; end
 

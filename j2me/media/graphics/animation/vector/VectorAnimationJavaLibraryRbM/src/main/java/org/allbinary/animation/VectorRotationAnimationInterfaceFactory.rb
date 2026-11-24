@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class VectorRotationAnimationInterfaceFactory
     include AnimationInterfaceFactoryInterface
     attr_accessor :currentPoints, :basicColor, :animationBehaviorFactory
 
-    def initialize_fields
-        @currentPoints = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
-        @basicColor = BasicColorFactory.getInstance().WHITE
-        @animationBehaviorFactory = nil
+    def jfields_org_allbinary_animation_VectorRotationAnimationInterfaceFactory
+        @currentPoints = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
+        @basicColor = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE
+        @animationBehaviorFactory = nil unless instance_variable_defined?(:@animationBehaviorFactory)
     end
     
 
     def initialize(currentPoints, basicColor, animationBehaviorFactory)
-        initialize_fields
+        jfields_org_allbinary_animation_VectorRotationAnimationInterfaceFactory
         @currentPoints = currentPoints
         self.setBasicColorP(basicColor)
         @animationBehaviorFactory = animationBehaviorFactory
@@ -39,27 +42,33 @@ class VectorRotationAnimationInterfaceFactory
     def getInstance(instanceId)
         return VectorRotationAnimation.new(@currentPoints, self.getBasicColorP(), @animationBehaviorFactory.getOrCreateInstance())
     end
+    java_overload :getInstance, 1
     
 
     def setBasicColorP(basicColor)
         @basicColor = basicColor
     end
+    java_overload :setBasicColorP, 1
     
 
     def getBasicColorP()
         return @basicColor
     end
+    java_overload :getBasicColorP, 0
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
-autoload :VectorRotationAnimation, "org/allbinary/animation/VectorRotationAnimation"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
+autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory" unless const_defined?(:AnimationBehaviorFactory, false)
+autoload :VectorRotationAnimation, "org/allbinary/animation/VectorRotationAnimation" unless const_defined?(:VectorRotationAnimation, false)
+
+end; end; end
 

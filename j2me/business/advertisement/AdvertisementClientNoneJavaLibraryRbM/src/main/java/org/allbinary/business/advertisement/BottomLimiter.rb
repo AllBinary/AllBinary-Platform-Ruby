@@ -15,14 +15,16 @@
 # package org.allbinary.business.advertisement
 
 
+module ::Org; module Allbinary; module Business; module Advertisement
+
 class BottomLimiter
     attr_accessor :bottom, :deltaY, :lower, :higher
 
-    def initialize_fields
-        @bottom = 0
-        @deltaY = 0
-        @lower = 0
-        @higher = 0
+    def jfields_org_allbinary_business_advertisement_BottomLimiter
+        @bottom = 0 unless instance_variable_defined?(:@bottom)
+        @deltaY = 0 unless instance_variable_defined?(:@deltaY)
+        @lower = 0 unless instance_variable_defined?(:@lower)
+        @higher = 0 unless instance_variable_defined?(:@higher)
     end
     
 
@@ -32,7 +34,7 @@ class BottomLimiter
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_advertisement_BottomLimiter
     end
     
 
@@ -43,7 +45,7 @@ class BottomLimiter
     
 
     def update()
-        displayInfo = DisplayInfoSingleton.getInstance()
+        displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
         gameAdState = GameAdStateFactory.getInstance().getCurrentInstance()
         if gameAdState.isShowingAt()
             @deltaY = @higher
@@ -94,13 +96,15 @@ class BottomLimiter
     end
 end
 
-autoload :GameAdState, "org/allbinary/game/GameAdState"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory"
+module ::Org; module Allbinary; module Game; autoload :GameAdState, "org/allbinary/game/GameAdState" unless const_defined?(:GameAdState, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory" unless const_defined?(:GameAdStateFactory, false)
 
 begin
     BottomLimiter.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

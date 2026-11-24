@@ -15,28 +15,36 @@
 # package org.allbinary.business.advertisement.product
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Product
+
 module AdvertisementProductInterface
     
 
     def getType()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLink()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getNumber()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getTwoDimensionalConstraint()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Size; autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface" unless const_defined?(:TwoDimensionalConstraintInterface, false); end; end; end; end; end; end
+
+end; end; end; end; end
 

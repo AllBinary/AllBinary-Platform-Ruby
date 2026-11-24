@@ -14,11 +14,15 @@
 # frozen_string_literal: false
 # package views.generic.address.shipping
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/logic/control/validate/ValidationComponentInterface"
 require "views/generic/address/shipping/ShippingAddressView"
 
+module ::Views; module Generic; module Address; module Shipping
+
 class UpdateTaxValidationView < ShippingAddressView
-    include ValidationComponentInterface
+    include ::Org::Allbinary::Logic::ControlPackage::Validate::ValidationComponentInterface
     
 
     def initialize(transformInfoInterface)
@@ -28,12 +32,12 @@ class UpdateTaxValidationView < ShippingAddressView
 
     # throws Exception
     def isValid()
-        @streetAddress = StreetAddress.new(self.getRequest())
-        storeFrontInterface = StoreFrontFactory.getInstance(self.getTransformInfoInterface().getStoreName())
-        if TaxFactory.getInstance().getInstance(@abeClientInformation, storeFrontInterface).isValid(@streetAddress, storeFrontInterface) == false
+        @streetAddress = ::Org::Allbinary::Business::User::Address::StreetAddress.new(self.getRequest())
+        storeFrontInterface = ::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontFactory.getInstance(self.getTransformInfoInterface().getStoreName())
+        if ::Org::Allbinary::Business::User::Commerce::Money::Tax::TaxFactory.getInstance().getInstance(@abeClientInformation, storeFrontInterface).isValid(@streetAddress, storeFrontInterface) == false
             return false
         end
-        billingAddressesEntity = ShippingAddressesEntity.new(self.getWeblisketSession().getUserName())
+        billingAddressesEntity = ::Org::Allbinary::DataPackage::Tables::User::Address::Shipping::ShippingAddressesEntity.new(self.getWeblisketSession().getUserName())
         streetAddressList = billingAddressesEntity.get()
         if streetAddressList == nil
             return false
@@ -42,7 +46,7 @@ class UpdateTaxValidationView < ShippingAddressView
         size = streetAddressList.size()
         (0...size).each do |index|
             aStreetAddress = streetAddressList.get(index)
-            if aStreetAddress.getName().compareTo(ShippingAddressData::TAX) == 0
+            if aStreetAddress.getName().compareTo(::Org::Allbinary::Business::User::Address::ShippingAddressData::TAX) == 0
                 count += 1
             end
         end
@@ -51,32 +55,45 @@ class UpdateTaxValidationView < ShippingAddressView
         end
         return true
     end
+    java_overload :isValid, 0
     
 
     def validationInfo()
         return "Unable to update tax location."
     end
+    java_overload :validationInfo, 0
     
 
     def toValidationInfoDoc()
         return nil
     end
+    java_overload :toValidationInfoDoc, 0
     
 
     def toValidationInfoNode(document)
         return nil
     end
+    java_overload :toValidationInfoNode, 1
+    
+
+    # throws Exception
+    def getTransformInfoInterface()
+        return UpdateTaxValidationView.superclass.java_super_method(:getTransformInfoInterface, 0).bind(self).call()
+    end
+    java_overload :getTransformInfoInterface, 0
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-autoload :ShippingAddressData, "org/allbinary/business/user/address/ShippingAddressData"
-autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
-autoload :TaxFactory, "org/allbinary/business/user/commerce/money/tax/TaxFactory"
-autoload :ShippingAddressesEntity, "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntity"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory" unless const_defined?(:StoreFrontFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface" unless const_defined?(:StoreFrontInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :ShippingAddressData, "org/allbinary/business/user/address/ShippingAddressData" unless const_defined?(:ShippingAddressData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress" unless const_defined?(:StreetAddress, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Tax; autoload :TaxFactory, "org/allbinary/business/user/commerce/money/tax/TaxFactory" unless const_defined?(:TaxFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Address; module Shipping; autoload :ShippingAddressesEntity, "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntity" unless const_defined?(:ShippingAddressesEntity, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end; end
 

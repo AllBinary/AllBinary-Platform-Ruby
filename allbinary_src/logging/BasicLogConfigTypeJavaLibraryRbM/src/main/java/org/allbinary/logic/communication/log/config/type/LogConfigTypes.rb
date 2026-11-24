@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.log.config.type
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type
+
 class LogConfigTypes
     
 
@@ -25,7 +27,7 @@ class LogConfigTypes
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:LOGGING, BasicArrayListD.new())
+            const_set(:LOGGING, ::Org::Allbinary::Util::BasicArrayListD.new())
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -42,12 +44,14 @@ class LogConfigTypes
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     LogConfigTypes.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

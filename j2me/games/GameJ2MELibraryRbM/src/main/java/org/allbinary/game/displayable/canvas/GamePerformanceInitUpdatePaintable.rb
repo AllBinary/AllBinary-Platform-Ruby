@@ -14,42 +14,48 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
 
-class GamePerformanceInitUpdatePaintable < InitUpdatePaintable
-    include UpdateMyFontInterface
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class GamePerformanceInitUpdatePaintable < ::Org::Allbinary::Graphics::Paint::InitUpdatePaintable
+    include ::Org::Allbinary::Graphics::Font::UpdateMyFontInterface
     attr_accessor :halfHeight, :yArray, :myFontProcessor, :baseRefreshHelperCharArray, :defaultStringWidth, :RED
 
-    def initialize_fields
-        @halfHeight = DisplayInfoSingleton.getInstance().getLastHalfHeight()
+    def jfields_org_allbinary_game_displayable_canvas_GamePerformanceInitUpdatePaintable
+        @halfHeight = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance().getLastHalfHeight()
         @yArray = [@halfHeight + 30, @halfHeight + 30, @halfHeight + 30 + 15, @halfHeight + 30 + 15, @halfHeight + 30 + 30, @halfHeight + 30 + 30, @halfHeight + 30 + 45, @halfHeight + 30 + 45]
-        @myFontProcessor = UpdateMyFontProcessor.new(self)
+        @myFontProcessor = ::Org::Allbinary::Graphics::Font::UpdateMyFontProcessor.new(self)
         @baseRefreshHelperCharArray = Array.new(0) { Array.new(0, "\0") }
-        @defaultStringWidth = 0
-        @RED = BasicColorFactory.getInstance().RED.to_i
+        @defaultStringWidth = 0 unless instance_variable_defined?(:@defaultStringWidth)
+        @RED = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().RED.to_i
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_GamePerformanceInitUpdatePaintable
     end
     
 
     def updateMeasurement(graphics)
         font = graphics.getFont()
-        @defaultStringWidth = MyFontProcessor.defaultStringWidth(font, 2)
-        @myFontProcessor = MyFontProcessor.getInstance()
+        @defaultStringWidth = ::Org::Allbinary::Graphics::Font::MyFontProcessor.defaultStringWidth(font, 2)
+        @myFontProcessor = ::Org::Allbinary::Graphics::Font::MyFontProcessor.getInstance()
     end
+    java_overload :updateMeasurement, 1
     
 
     def init()
     end
+    java_overload :init, 0
     
 
     def update()
-        @baseRefreshHelperCharArray = GameStatisticsFactory.getInstance().to2DCharArray()
+        @baseRefreshHelperCharArray = ::Org::Allbinary::Canvas::GameStatisticsFactory.getInstance().to2DCharArray()
     end
+    java_overload :update, 0
     
 
     def paint(graphics)
@@ -69,13 +75,16 @@ class GamePerformanceInitUpdatePaintable < InitUpdatePaintable
             graphics.drawChars(charArray2, 0, size3, size2 * @defaultStringWidth, @yArray[index + 1], 0)
         end
     end
+    java_overload :paint, 1
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :GameStatisticsFactory, "org/allbinary/canvas/GameStatisticsFactory"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
-autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Canvas; autoload :GameStatisticsFactory, "org/allbinary/canvas/GameStatisticsFactory" unless const_defined?(:GameStatisticsFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor" unless const_defined?(:MyFontProcessor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor" unless const_defined?(:UpdateMyFontProcessor, false); end; end; end; end
+
+end; end; end; end; end
 

@@ -14,16 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.life
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ag/life/LifeInterface"
+
+module ::Org; module Allbinary; module Game; module Ag; module Life
 
 class Life
     include LifeInterface
     attr_accessor :lives, :startLives, :maxlives
 
-    def initialize_fields
-        @lives = nil
-        @startLives = nil
-        @maxlives = nil
+    def jfields_org_allbinary_game_ag_life_Life
+        @lives = nil unless instance_variable_defined?(:@lives)
+        @startLives = nil unless instance_variable_defined?(:@startLives)
+        @maxlives = nil unless instance_variable_defined?(:@maxlives)
     end
     
 
@@ -37,7 +40,7 @@ class Life
     
 
     def initialize(lives, maxlives)
-        initialize_fields
+        jfields_org_allbinary_game_ag_life_Life
         @maxlives = maxlives
         if lives > @maxlives
             raise StandardError.new("To Many Lives")
@@ -50,16 +53,19 @@ class Life
     def get()
         return @lives
     end
+    java_overload :get, 0
     
 
     def set(lives)
         @lives = lives
     end
+    java_overload :set, 1
     
 
     def reset()
         @lives = @startLives
     end
+    java_overload :reset, 0
     
 
     def add(lives)
@@ -71,6 +77,7 @@ class Life
             end
         end
     end
+    java_overload :add, 1
     
 
     def isAlive()
@@ -80,11 +87,13 @@ class Life
             return true
         end
     end
+    java_overload :isAlive, 0
     
 
     def getMaxlives()
         return @maxlives
     end
+    java_overload :getMaxlives, 0
     
 
     def reachedLimit()
@@ -94,6 +103,7 @@ class Life
             return false
         end
     end
+    java_overload :reachedLimit, 0
     
 
     def deaths(lives)
@@ -105,16 +115,19 @@ class Life
             end
         end
     end
+    java_overload :deaths, 1
     
 
     def getStartLives()
         return @startLives
     end
+    java_overload :getStartLives, 0
     
 
     def setStartLives(startLives)
         @startLives = startLives
     end
+    java_overload :setStartLives, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -142,4 +155,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
 class NullAIFactory
-    include ArtificialIntelligenceInterfaceFactoryInterface
+    include ::Org::Allbinary::Game::Ai::ArtificialIntelligenceInterfaceFactoryInterface
     
 
     def getInstance(hashtable, ownerLayerInterface, gameInput)
         return NullAIFactory::NULL_AI
     end
+    java_overload :getInstance, 3
     
 
-    # Java overloaded method: Ruby keeps the last definition
     def self.getInstance()
         return NullAIFactory::NULL_AI
     end
@@ -51,15 +54,17 @@ class NullAIFactory
     end
 end
 
-autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :NullAI, "org/allbinary/game/ag/ai/NullAI"
+module ::Org; module Allbinary; module Ai; autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface" unless const_defined?(:ArtificialIntelligenceInterface, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :NullAI, "org/allbinary/game/ag/ai/NullAI" unless const_defined?(:NullAI, false)
 
 begin
     NullAIFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

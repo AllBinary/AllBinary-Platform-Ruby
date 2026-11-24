@@ -14,38 +14,44 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/visitor/Visitor"
 
-class LimitCommandsVisitor < Visitor
+module ::Org; module Allbinary; module Graphics; module Form; module Item
+
+class LimitCommandsVisitor < ::Org::Allbinary::Logic::Util::Visitor::Visitor
     attr_accessor :isNotSmallDisplay
 
-    def initialize_fields
-        @isNotSmallDisplay = nil
+    def jfields_org_allbinary_graphics_form_item_LimitCommandsVisitor
+        @isNotSmallDisplay = nil unless instance_variable_defined?(:@isNotSmallDisplay)
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        displayInfo = DisplayInfoSingleton.getInstance()
-        @isNotSmallDisplay = (displayInfo.isPortrait() && displayInfo.getLastHeight() > ScreenInfo.getInstance().SMALL_WIDTH) || (!displayInfo.isPortrait() && displayInfo.getLastHeight() > ScreenInfo.getInstance().SMALL_HEIGHT)
+        jfields_org_allbinary_graphics_form_item_LimitCommandsVisitor
+        displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
+        @isNotSmallDisplay = (displayInfo.isPortrait() && displayInfo.getLastHeight() > ::Org::Allbinary::Graphics::Form::ScreenInfo.getInstance().SMALL_WIDTH) || (!displayInfo.isPortrait() && displayInfo.getLastHeight() > ::Org::Allbinary::Graphics::Form::ScreenInfo.getInstance().SMALL_HEIGHT)
     end
     
 
     def visit(anyType)
         command = anyType
-        booleanFactory = BooleanFactory.getInstance()
-        if @isNotSmallDisplay || command.getPriority() == 1 || command == GameCommandsFactory.getInstance().EXIT_COMMAND || command == GameCommandsFactory.getInstance().EXIT_WITHOUT_PROGRESS_COMMAND
+        booleanFactory = ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance()
+        if @isNotSmallDisplay || command.getPriority() == 1 || command == ::Org::Allbinary::Game::Commands::GameCommandsFactory.getInstance().EXIT_COMMAND || command == ::Org::Allbinary::Game::Commands::GameCommandsFactory.getInstance().EXIT_WITHOUT_PROGRESS_COMMAND
             return booleanFactory.TRUE
         else
             return booleanFactory.FALSE
         end
     end
+    java_overload :visit, 1
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :ScreenInfo, "org/allbinary/graphics/form/ScreenInfo"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Org; module Allbinary; module Game; module Commands; autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory" unless const_defined?(:GameCommandsFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScreenInfo, "org/allbinary/graphics/form/ScreenInfo" unless const_defined?(:ScreenInfo, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+
+end; end; end; end; end
 

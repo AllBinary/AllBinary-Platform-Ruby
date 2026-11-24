@@ -15,12 +15,14 @@
 # package org.allbinary.graphics.pipeline
 
 
+module ::Org; module Allbinary; module Graphics; module Pipeline
+
 class RandomTranslation
     
 
     # throws Exception
     def self.getInstance(vector, howMuch)
-        myRandomFactory = MyRandomFactory.getInstance()
+        myRandomFactory = ::Org::Allbinary::Game::Rand::MyRandomFactory.getInstance()
         x = -myRandomFactory.getNextInt(howMuch)
         y = myRandomFactory.getNextInt(howMuch)
         graphicsPipe = BasicGraphicsPipeline.new(vector)
@@ -30,7 +32,9 @@ class RandomTranslation
     end
 end
 
-autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline"
+module ::Org; module Allbinary; module Game; module Rand; autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory" unless const_defined?(:MyRandomFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline" unless const_defined?(:BasicGraphicsPipeline, false)
+
+end; end; end; end
 

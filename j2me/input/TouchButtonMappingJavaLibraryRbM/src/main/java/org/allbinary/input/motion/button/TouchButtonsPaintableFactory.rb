@@ -15,6 +15,8 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class TouchButtonsPaintableFactory
     
 
@@ -23,7 +25,9 @@ class TouchButtonsPaintableFactory
     end
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
-autoload :TouchButtonsPaintable, "org/allbinary/input/motion/button/TouchButtonsPaintable"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :Paintable, "org/allbinary/graphics/paint/Paintable" unless const_defined?(:Paintable, false); end; end; end; end
+autoload :TouchButtonsPaintable, "org/allbinary/input/motion/button/TouchButtonsPaintable" unless const_defined?(:TouchButtonsPaintable, false)
+
+end; end; end; end; end
 

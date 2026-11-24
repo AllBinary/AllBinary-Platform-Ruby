@@ -15,10 +15,12 @@
 # package org.allbinary.game.configuration.persistance
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance
+
 class GamePersistanceStrings
     attr_accessor :SAVED_GAME_RECORD_ID, :SAVED_GAME_CONFIGURATION_RECORD_ID, :DEFAULT_INPUT_MAPPING_RECORD_ID, :SAVED_INPUT_CONFIGURATION_RECORD_ID
 
-    def initialize_fields
+    def jfields_org_allbinary_game_configuration_persistance_GamePersistanceStrings
         @SAVED_GAME_RECORD_ID = "_SG"
         @SAVED_GAME_CONFIGURATION_RECORD_ID = "_SGC"
         @DEFAULT_INPUT_MAPPING_RECORD_ID = "_DIM"
@@ -26,7 +28,7 @@ class GamePersistanceStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_configuration_persistance_GamePersistanceStrings
     end
     
 
@@ -70,4 +72,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

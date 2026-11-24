@@ -15,18 +15,24 @@
 # package org.allbinary.input.automation.actions.script.condition
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition
+
 module TimeIntervalActionScriptConditionInterface
     
 
     def getTimeDelayHelper()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def log()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+
+end; end; end; end; end; end; end
 

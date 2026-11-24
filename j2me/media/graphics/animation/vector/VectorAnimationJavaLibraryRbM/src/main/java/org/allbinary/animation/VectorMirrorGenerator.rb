@@ -15,11 +15,13 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class VectorMirrorGenerator
     attr_accessor :logUtil, :vectorAnimationUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_animation_VectorMirrorGenerator
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @vectorAnimationUtil = VectorAnimationUtil.getInstance()
     end
     
@@ -30,23 +32,22 @@ class VectorMirrorGenerator
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_animation_VectorMirrorGenerator
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getInstance(points, width)
+    def getInstance_j2_1(points, width)
         begin
-            pointFactory = PointFactory.getInstance()
+            pointFactory = ::Org::Allbinary::Graphics::PointFactory.getInstance()
             pointBasicArrayList = nil
             nextPoints = nil
             size2 = 0
             size = points.length
-            pointsBasicArrayList = BasicArrayListS.new(size)
+            pointsBasicArrayList = ::Org::Allbinary::Util::BasicArrayListS.new(size)
             (0...size).each do |frame|
                 nextPoints = points[frame]
                 size2 = nextPoints.length
-                pointBasicArrayList = BasicArrayListS.new(size2)
+                pointBasicArrayList = ::Org::Allbinary::Util::BasicArrayListS.new(size2)
                 (0...size2).each do |index|
                     pointBasicArrayList.add(pointFactory.createXY(nextPoints[index][0], nextPoints[index][1]))
                 end
@@ -58,20 +59,29 @@ class VectorMirrorGenerator
             newPoints = @vectorAnimationUtil.toAnimationArrayFromListOfPointList(pointsBasicArrayList)
             return newPoints
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
-            return NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
+            return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
         end
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def getInstance(pointBasicArrayList, width)
-        graphicsPipe = BasicGraphicsPipeline.new(pointBasicArrayList)
+    def getInstance_j2_2(pointBasicArrayList, width)
+        graphicsPipe = ::Org::Allbinary::Graphics::Pipeline::BasicGraphicsPipeline.new(pointBasicArrayList)
         graphicsPipe.createMatrix()
         graphicsPipe.mirror(width)
         return graphicsPipe.getMatrix()
+    end
+
+    def getInstance(*java_overload_args)
+        return getInstance_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method getInstance takes #{java_overload_args.length} arguments"
+    end
+
+    def getInstance_j2(*java_overload_args)
+        return getInstance_j2_1(*java_overload_args) if true && (java_overload_args[0].nil? || (java_overload_args[0].is_a?(::Array) && (java_overload_args[0].empty? || (java_overload_args[0][0].nil? || java_overload_args[0][0].is_a?(::Array))))) && java_overload_args[1].is_a?(::Integer)
+        return getInstance_j2_2(*java_overload_args)
     end
 
     def self.instance()
@@ -105,18 +115,20 @@ class VectorMirrorGenerator
     end
 end
 
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS"
-autoload :VectorAnimationUtil, "org/allbinary/animation/VectorAnimationUtil"
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Pipeline; autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline" unless const_defined?(:BasicGraphicsPipeline, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS" unless const_defined?(:BasicArrayListS, false); end; end; end
+autoload :VectorAnimationUtil, "org/allbinary/animation/VectorAnimationUtil" unless const_defined?(:VectorAnimationUtil, false)
 
 begin
     VectorMirrorGenerator.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

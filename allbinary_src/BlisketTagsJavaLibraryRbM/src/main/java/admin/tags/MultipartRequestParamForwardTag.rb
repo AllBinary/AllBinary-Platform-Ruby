@@ -14,38 +14,44 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/JspTagException"
 # require "javax/servlet/jsp/tagext/Tag"
 require "tags/CustomTagSupport"
 
-class MultipartRequestParamForwardTag < CustomTagSupport
+module ::Admin; module Tags
+
+class MultipartRequestParamForwardTag < ::Tags::CustomTagSupport
     attr_accessor :page, :command, :paramVector
 
-    def initialize_fields
-        @page = nil
-        @command = nil
-        @paramVector = nil
+    def jfields_admin_tags_MultipartRequestParamForwardTag
+        @page = nil unless instance_variable_defined?(:@page)
+        @command = nil unless instance_variable_defined?(:@command)
+        @paramVector = nil unless instance_variable_defined?(:@paramVector)
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_admin_tags_MultipartRequestParamForwardTag
     end
     
 
     def setPage(page)
         @page = page
     end
+    java_overload :setPage, 1
     
 
     def setCommand(command)
         @command = command
     end
+    java_overload :setCommand, 1
     
 
     def setParamVector(paramVector)
         @paramVector = paramVector
     end
+    java_overload :setParamVector, 1
     
 
     # throws JspTagException
@@ -53,29 +59,32 @@ class MultipartRequestParamForwardTag < CustomTagSupport
         begin
             parentTag = self.getParent()
             ParentInventoryTagHelper.getInstance().isValid(self, parentTag)
-            hashMap = StdUtil.getInstance().createHashMap()
+            hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
             hashMap.put(AbTagData::PARENT, parentTag)
-            multipartRequestParamForwardHelper = MultipartRequestParamForwardHelper.new(parentTag, @page, @command, @paramVector, @pageContext)
+            multipartRequestParamForwardHelper = ::Admin::Taghelpers::MultipartRequestParamForwardHelper.new(parentTag, @page, @command, @paramVector, @pageContext)
             multipartRequestParamForwardHelper.forward()
             return Tag::SKIP_BODY
-        rescue LicensingException => e
-            AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
             return Tag::SKIP_BODY
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return Tag::SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :MultipartRequestParamForwardHelper, "admin/taghelpers/MultipartRequestParamForwardHelper"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
-autoload :HelperTag, "tags/HelperTag"
-autoload :AbTagData, "admin/tags/AbTagData"
-autoload :ParentInventoryTagHelper, "admin/tags/ParentInventoryTagHelper"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Admin; module Taghelpers; autoload :MultipartRequestParamForwardHelper, "admin/taghelpers/MultipartRequestParamForwardHelper" unless const_defined?(:MultipartRequestParamForwardHelper, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Tags; autoload :HelperTag, "tags/HelperTag" unless const_defined?(:HelperTag, false); end
+autoload :AbTagData, "admin/tags/AbTagData" unless const_defined?(:AbTagData, false)
+autoload :ParentInventoryTagHelper, "admin/tags/ParentInventoryTagHelper" unless const_defined?(:ParentInventoryTagHelper, false)
+
+end; end
 

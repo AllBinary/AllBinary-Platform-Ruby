@@ -15,22 +15,26 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 class LogData
     attr_accessor :MAX, :extension, :backupFileExt, :ALLBINARY, :NAME, :DESCRIPTION
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_log_LogData
         @MAX = 5000000
         @extension = "log"
-        @backupFileExt = (AbPathData.getInstance().EXTENSION_SEP).to_s + "bak" + (AbPathData.getInstance().EXTENSION_SEP).to_s + "txt"
+        @backupFileExt = (::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP).to_s + "bak" + (::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP).to_s + "txt"
         @ALLBINARY = "allbinary"
         @NAME = "LOG_NAME"
         @DESCRIPTION = "LOG_DESCRIPTION"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_LogData
     end
 end
 
-require "org/allbinary/logic/io/path/AbPathData"
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+
+end; end; end; end; end
 

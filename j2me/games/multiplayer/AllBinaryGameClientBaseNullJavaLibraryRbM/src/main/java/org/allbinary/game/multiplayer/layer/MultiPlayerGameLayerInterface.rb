@@ -15,6 +15,8 @@
 # package org.allbinary.game.multiplayer.layer
 
 
+module ::Org; module Allbinary; module Game; module Multiplayer; module Layer
+
 module MultiPlayerGameLayerInterface
     
 
@@ -24,5 +26,7 @@ module MultiPlayerGameLayerInterface
     end
 end
 
-autoload :MultiplayerBehavior, "org/allbinary/game/multiplayer/layer/MultiplayerBehavior"
+autoload :MultiplayerBehavior, "org/allbinary/game/multiplayer/layer/MultiplayerBehavior" unless const_defined?(:MultiplayerBehavior, false)
+
+end; end; end; end; end
 

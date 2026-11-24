@@ -15,6 +15,8 @@
 # package org.allbinary.physics.movement
 
 
+module ::Org; module Allbinary; module Physics; module Movement
+
 module MovementCompositeInterface
     
 
@@ -24,5 +26,7 @@ module MovementCompositeInterface
     end
 end
 
-autoload :Movement, "org/allbinary/physics/movement/Movement"
+autoload :Movement, "org/allbinary/physics/movement/Movement" unless const_defined?(:Movement, false)
+
+end; end; end; end
 

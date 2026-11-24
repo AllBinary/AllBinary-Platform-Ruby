@@ -7,19 +7,23 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class TouchButtonResource
     attr_accessor :RESOURCE, :HINT
 
-    def initialize_fields
-        @RESOURCE = nil
-        @HINT = nil
+    def jfields_org_allbinary_input_motion_button_TouchButtonResource
+        @RESOURCE = nil unless instance_variable_defined?(:@RESOURCE)
+        @HINT = nil unless instance_variable_defined?(:@HINT)
     end
     
 
     def initialize(resource, hint)
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchButtonResource
         @RESOURCE = resource
         @HINT = hint
     end
 end
+
+end; end; end; end; end
 

@@ -15,28 +15,36 @@
 # package org.allbinary.android.activity
 
 
+module ::Org; module Allbinary; module Android; module Activity
+
 module ProgressActivityInterface
     
 
     def runOnUiThread(action)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDismissTitleProgressBar()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onShowTitleProgressBar(value, indeterminate)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onTitleProgressBarSetProgress(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
 require "java/lang/Runnable"
+
+end; end; end; end
 

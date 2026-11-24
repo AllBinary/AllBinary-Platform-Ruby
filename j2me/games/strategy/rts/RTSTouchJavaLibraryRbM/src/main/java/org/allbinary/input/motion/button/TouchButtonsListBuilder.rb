@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/BaseTouchInput"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class TouchButtonsListBuilder < BaseTouchInput
     attr_accessor :baseTouchInputList
 
-    def initialize_fields
-        @baseTouchInputList = BasicArrayListD.new()
+    def jfields_org_allbinary_input_motion_button_TouchButtonsListBuilder
+        @baseTouchInputList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchButtonsListBuilder
     end
     
 
@@ -37,13 +40,17 @@ class TouchButtonsListBuilder < BaseTouchInput
             list.addAllList(baseTouchInput.getList())
         end
     end
+    java_overload :addList, 1
     
 
     def add(baseTouchInput)
         @baseTouchInputList.add(baseTouchInput)
     end
+    java_overload :add, 1
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end; end
 

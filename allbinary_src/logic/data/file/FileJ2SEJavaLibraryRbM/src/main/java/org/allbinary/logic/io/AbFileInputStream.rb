@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
+require "java/lang/JavaOverload"
 # require "java/io/File"
 require "java/io/FileInputStream"
 # require "java/io/FileNotFoundException"
 
-class AbFileInputStream < FileInputStream
+module ::Org; module Allbinary; module Logic; module Io
+
+class AbFileInputStream < ::Java::Io::FileInputStream
     
 
     def initialize(name)
@@ -28,7 +31,7 @@ class AbFileInputStream < FileInputStream
 
     # throws FileNotFoundException
     def self.createFromAbFile(file)
-        return AbFileInputStream.new(AbFileNativeUtil.get(file).getPath())
+        return AbFileInputStream.new(::Org::Allbinary::Logic::Io::FilePackage::AbFileNativeUtil.get(file).getPath())
     end
     
 
@@ -38,6 +41,8 @@ class AbFileInputStream < FileInputStream
     end
 end
 
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil" unless const_defined?(:AbFileNativeUtil, false); end; end; end; end; end
+
+end; end; end; end
 

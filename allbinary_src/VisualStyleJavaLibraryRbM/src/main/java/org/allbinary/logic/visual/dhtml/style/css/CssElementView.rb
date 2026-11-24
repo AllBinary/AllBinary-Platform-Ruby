@@ -14,73 +14,77 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.style.css
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Style; module Css
+
 class CssElementView
-    include DomNodeInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     attr_accessor :logUtil, :commonStrings, :TITLE, :DESCRIPTION, :value, :title, :description, :cssElementVector, :cssPropertyVector
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_logic_visual_dhtml_style_css_CssElementView
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @TITLE = "title"
         @DESCRIPTION = "description"
-        @value = nil
-        @title = nil
-        @description = nil
-        @cssElementVector = nil
-        @cssPropertyVector = nil
+        @value = nil unless instance_variable_defined?(:@value)
+        @title = nil unless instance_variable_defined?(:@title)
+        @description = nil unless instance_variable_defined?(:@description)
+        @cssElementVector = nil unless instance_variable_defined?(:@cssElementVector)
+        @cssPropertyVector = nil unless instance_variable_defined?(:@cssPropertyVector)
     end
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_org_allbinary_logic_visual_dhtml_style_css_CssElementView_0(*args)
+        when 1 then jnew_org_allbinary_logic_visual_dhtml_style_css_CssElementView_1(*args)
+        else raise ArgumentError, "No constructor of CssElementView takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        initialize_fields
-        @cssPropertyVector = BasicArrayListD.new()
-        stringUtil = StringUtil.getInstance()
+    def jnew_org_allbinary_logic_visual_dhtml_style_css_CssElementView_0()
+        jfields_org_allbinary_logic_visual_dhtml_style_css_CssElementView
+        @cssPropertyVector = ::Org::Allbinary::Util::BasicArrayListD.new()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         @title = stringUtil.EMPTY_STRING
         @description = stringUtil.EMPTY_STRING
         @value = stringUtil.EMPTY_STRING
     end
     
 
-    def constructor1(node)
-        initialize_fields
+    def jnew_org_allbinary_logic_visual_dhtml_style_css_CssElementView_1(node)
+        jfields_org_allbinary_logic_visual_dhtml_style_css_CssElementView
         begin
-            valueNode = DomSearchHelper.getNode(DomData::VALUE, node.getChildNodes())
-            @value = DomNodeHelper.getTextNodeValue(valueNode)
-            titleValueNode = DomSearchHelper.getNodeNoThrow(@TITLE, node.getChildNodes())
+            valueNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(::Org::Allbinary::DataPackage::Tree::Dom::DomData::VALUE, node.getChildNodes())
+            @value = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(valueNode)
+            titleValueNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNodeNoThrow(@TITLE, node.getChildNodes())
             if titleValueNode != nil
-                @title = DomNodeHelper.getTextNodeValue(titleValueNode)
+                @title = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(titleValueNode)
             else
-                stringUtil = StringUtil.getInstance()
+                stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
                 @title = stringUtil.EMPTY_STRING
             end
-            descriptionValueNode = DomSearchHelper.getNodeNoThrow(@DESCRIPTION, node.getChildNodes())
+            descriptionValueNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNodeNoThrow(@DESCRIPTION, node.getChildNodes())
             if descriptionValueNode != nil
-                @description = DomNodeHelper.getTextNodeValue(descriptionValueNode)
+                @description = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(descriptionValueNode)
             else
-                @description = StringUtil.getInstance().EMPTY_STRING
+                @description = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
-                @logUtil.putF(StringMaker.new().append("Value: ").append(@value).append("\nTitle: ").append(@title).append("\nDescription: ").append(@description).to_s, self, @commonStrings.CONSTRUCTOR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
+                @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Value: ").append(@value).append("\nTitle: ").append(@title).append("\nDescription: ").append(@description).to_s, self, @commonStrings.CONSTRUCTOR)
             end
-            cssElementStyleNodeVector = DomSearchHelper.getAllNodes(CssElementData.getInstance().NAME, node.getChildNodes())
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+            cssElementStyleNodeVector = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getAllNodes(CssElementData.getInstance().NAME, node.getChildNodes())
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
                 @logUtil.putF("Child Css Elements: " + (cssElementStyleNodeVector.size()).to_s, self, "CssElementView()")
             end
             @cssElementVector = CssElementsValidationFactory.getInstance(cssElementStyleNodeVector)
             nodeList = node.getChildNodes()
-            @cssPropertyVector = CssPropertiesValidationFactory.getInstance(nodeList)
+            @cssPropertyVector = ::Org::Allbinary::Logic::Visual::Dhtml::Style::Css::Property::CssPropertiesValidationFactory.getInstance(nodeList)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEWERROR)
-                @logUtil.put(StringMaker.new().append("Value: ").append(@value).append("\nTitle: ").append(@title).append("\nDescription: ").append(@description).to_s, self, @commonStrings.CONSTRUCTOR, e)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEWERROR)
+                @logUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Value: ").append(@value).append("\nTitle: ").append(@title).append("\nDescription: ").append(@description).to_s, self, @commonStrings.CONSTRUCTOR, e)
             end
             raise StandardError.new("CssElementView")
         end
@@ -90,24 +94,26 @@ class CssElementView
     def getValue()
         return @value
     end
+    java_overload :getValue, 0
     
 
     def toHashMap()
-        hashMap = StdUtil.getInstance().createHashMap()
-        hashMap.put(DomData::VALUE, @value)
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
+        hashMap.put(::Org::Allbinary::DataPackage::Tree::Dom::DomData::VALUE, @value)
         hashMap.put(@TITLE, @title)
         hashMap.put(@DESCRIPTION, @description)
         return hashMap
     end
+    java_overload :toHashMap, 0
     
 
     # throws Exception
     def toXmlNode(document)
         hashMap = self.toHashMap()
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
             @logUtil.putF("CssView HashMap: " + hashMap.to_s, self, "toXmlNode")
         end
-        node = ModDomHelper.createNodeWithValueNodes(document, CssElementData.getInstance().NAME, hashMap)
+        node = ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNodeWithValueNodes(document, CssElementData.getInstance().NAME, hashMap)
         size = @cssPropertyVector.size()
         (0...size).each do |index|
             cssPropertyDomNodeInterface = @cssPropertyVector.get(index)
@@ -120,24 +126,29 @@ class CssElementView
         end
         return node
     end
+    java_overload :toXmlNode, 1
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :DomData, "org/allbinary/data/tree/dom/DomData"
-autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
-autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
-autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CssPropertiesValidationFactory, "org/allbinary/logic/visual/dhtml/style/css/property/CssPropertiesValidationFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :NodeList, "org/w3c/dom/NodeList"
-autoload :CssElementData, "org/allbinary/logic/visual/dhtml/style/css/CssElementData"
-autoload :CssElementsValidationFactory, "org/allbinary/logic/visual/dhtml/style/css/CssElementsValidationFactory"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomData, "org/allbinary/data/tree/dom/DomData" unless const_defined?(:DomData, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper" unless const_defined?(:DomNodeHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper" unless const_defined?(:DomSearchHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper" unless const_defined?(:ModDomHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Style; module Css; module Property; autoload :CssPropertiesValidationFactory, "org/allbinary/logic/visual/dhtml/style/css/property/CssPropertiesValidationFactory" unless const_defined?(:CssPropertiesValidationFactory, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :NodeList, "org/w3c/dom/NodeList" unless const_defined?(:NodeList, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :CssElementData, "org/allbinary/logic/visual/dhtml/style/css/CssElementData" unless const_defined?(:CssElementData, false)
+autoload :CssElementsValidationFactory, "org/allbinary/logic/visual/dhtml/style/css/CssElementsValidationFactory" unless const_defined?(:CssElementsValidationFactory, false)
+
+end; end; end; end; end; end; end
 

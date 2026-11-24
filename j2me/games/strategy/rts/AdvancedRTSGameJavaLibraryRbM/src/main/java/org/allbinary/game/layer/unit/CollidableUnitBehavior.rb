@@ -14,17 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.unit
 
-# require "javax/microedition/lcdui/Canvas"
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/SteeringVisitor"
 require "org/allbinary/game/layer/CollidableRTSBehavior"
 
-class CollidableUnitBehavior < CollidableRTSBehavior
+module ::Org; module Allbinary; module Game; module Layer; module Unit
+
+class CollidableUnitBehavior < ::Org::Allbinary::Game::Layer::CollidableRTSBehavior
     attr_accessor :layerPartialCellPositionsUtil, :simpleSteeringVisitor
-    class SimpleSteeringVisitor < SteeringVisitor
+    class SimpleSteeringVisitor < ::Org::Allbinary::Game::Layer::SteeringVisitor
         
 
         def visit(anyType)
-            logUtil = LogUtil.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
             begin
                 ownerLayer = anyType
                 if self.getList().size() > 0
@@ -32,28 +34,29 @@ class CollidableUnitBehavior < CollidableRTSBehavior
                     clear = self.steer(ownerLayer, allbinaryLayer)
                     if clear
                         self.getList().clear()
-                        return NullUtil.getInstance().NULL_OBJECT
+                        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
                     end
-                    return BooleanFactory.getInstance().TRUE
+                    return ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE
                 end
-                return NullUtil.getInstance().NULL_OBJECT
+                return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             rescue StandardError => e
-                commonStrings = CommonStrings.getInstance()
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 logUtil.put(commonStrings.EXCEPTION, self, "visit", e)
-                return NullUtil.getInstance().NULL_OBJECT
+                return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             end
         end
+        java_overload :visit, 1
     end
 
-    def initialize_fields
-        @layerPartialCellPositionsUtil = LayerPartialCellPositionsUtil.getInstance()
+    def jfields_org_allbinary_game_layer_unit_CollidableUnitBehavior
+        @layerPartialCellPositionsUtil = ::Org::Allbinary::Game::Layer::Geographic::Map::LayerPartialCellPositionsUtil.getInstance()
         @simpleSteeringVisitor = SimpleSteeringVisitor.new()
     end
     
 
     def initialize(collidable)
         super(collidable)
-        initialize_fields
+        jfields_org_allbinary_game_layer_unit_CollidableUnitBehavior
     end
     
 
@@ -65,6 +68,7 @@ class CollidableUnitBehavior < CollidableRTSBehavior
             self.collideUnit(ownerLayer, rtsLayer)
         end
     end
+    java_overload :collideNone, 2
     
 
     # throws Exception
@@ -77,11 +81,12 @@ class CollidableUnitBehavior < CollidableRTSBehavior
         if angle < 90 || angle > 270
             return true
         elsif angle >= 90 || angle <= 270
-            ownerUnitLayer.getGameKeyEventList().add(GameKeyEventFactory.getInstance().getInstanceForKey(ownerUnitLayer, Canvas::RIGHT))
+            ownerUnitLayer.getGameKeyEventList().add(::Org::Allbinary::Game::Input::Event::GameKeyEventFactory.getInstance().getInstanceForKey(ownerUnitLayer, ::Javax::Microedition::Lcdui::Canvas::RIGHT))
             return false
         end
         raise StandardError.new("Error")
     end
+    java_overload :steer, 2
     
 
     # throws Exception
@@ -98,6 +103,7 @@ class CollidableUnitBehavior < CollidableRTSBehavior
             end
         end
     end
+    java_overload :chase, 2
     
 
     # throws Exception
@@ -107,8 +113,8 @@ class CollidableUnitBehavior < CollidableRTSBehavior
         geographicMapCompositeInterface = ownerUnitLayer.allBinaryGameLayerManagerP
         geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0]
         basicGeographicMap = geographicMapInterface
-        dropCellPositionHistory = DropCellPositionHistory.getInstance()
-        tiledLayerUtil = TiledLayerUtil.getInstance()
+        dropCellPositionHistory = ::Org::Allbinary::Media::Graphics::Geography::Map::Drop::DropCellPositionHistory.getInstance()
+        tiledLayerUtil = ::Org::Allbinary::Game::Layer::TiledLayerUtil.getInstance()
         tiledLayer = basicGeographicMap.getAllBinaryTiledLayer()
         if ownerLayer.getXP() < unitLayer.getXP() && ownerLayer.getX2() > unitLayer.getXP()
             diff = ownerLayer.getWidth() + 1
@@ -149,22 +155,26 @@ class CollidableUnitBehavior < CollidableRTSBehavior
             end
         end
     end
+    java_overload :collideUnit, 2
 end
 
-require "org/allbinary/game/layer/AdvancedRTSGameLayer"
-require "org/allbinary/game/layer/CollidableCompositeLayer"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/input/event/GameKeyEventFactory"
-require "org/allbinary/game/layer/AllBinaryTiledLayer"
-require "org/allbinary/game/layer/TiledLayerUtil"
-require "org/allbinary/game/layer/geographic/map/LayerPartialCellPositionsUtil"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCompositeInterface"
-require "org/allbinary/media/graphics/geography/map/drop/DropCellPositionHistory"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/game/layer/unit/UnitLayer"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AdvancedRTSGameLayer, "org/allbinary/game/layer/AdvancedRTSGameLayer" unless const_defined?(:AdvancedRTSGameLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory" unless const_defined?(:GameKeyEventFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryTiledLayer, "org/allbinary/game/layer/AllBinaryTiledLayer" unless const_defined?(:AllBinaryTiledLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :TiledLayerUtil, "org/allbinary/game/layer/TiledLayerUtil" unless const_defined?(:TiledLayerUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Geographic; module Map; autoload :LayerPartialCellPositionsUtil, "org/allbinary/game/layer/geographic/map/LayerPartialCellPositionsUtil" unless const_defined?(:LayerPartialCellPositionsUtil, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCompositeInterface, "org/allbinary/media/graphics/geography/map/GeographicMapCompositeInterface" unless const_defined?(:GeographicMapCompositeInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Drop; autoload :DropCellPositionHistory, "org/allbinary/media/graphics/geography/map/drop/DropCellPositionHistory" unless const_defined?(:DropCellPositionHistory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :UnitLayer, "org/allbinary/game/layer/unit/UnitLayer" unless const_defined?(:UnitLayer, false)
+
+end; end; end; end; end
 

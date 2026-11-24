@@ -15,11 +15,16 @@
 # package org.allbinary.gui.dialog
 
 
+module ::Org; module Allbinary; module Gui; module Dialog
+
 module CloseJDialogListenerInterface
     
 
     def onClose()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

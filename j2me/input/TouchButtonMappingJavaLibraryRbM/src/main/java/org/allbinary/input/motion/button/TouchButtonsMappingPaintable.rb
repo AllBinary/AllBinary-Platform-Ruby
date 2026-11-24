@@ -14,14 +14,17 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/Paintable"
 
-class TouchButtonsMappingPaintable < Paintable
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
+class TouchButtonsMappingPaintable < ::Org::Allbinary::Graphics::Paint::Paintable
     attr_accessor :logUtil, :foregroundColor, :paintableTable, :touchButtonLocationHelper
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @foregroundColor = nil
+    def jfields_org_allbinary_input_motion_button_TouchButtonsMappingPaintable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @foregroundColor = nil unless instance_variable_defined?(:@foregroundColor)
         @paintableTable = Array.new(0) { Array.new(0, nil) }
         @touchButtonLocationHelper = TouchButtonLocationHelper.new()
     end
@@ -29,7 +32,7 @@ class TouchButtonsMappingPaintable < Paintable
 
     def initialize(basicColor)
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchButtonsMappingPaintable
         @foregroundColor = basicColor.to_i
         self.init()
     end
@@ -39,10 +42,11 @@ class TouchButtonsMappingPaintable < Paintable
         begin
             @paintableTable = self.createPaintableTable()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, "updateRectangle", e)
         end
     end
+    java_overload :init, 0
     
 
     # throws Exception
@@ -50,7 +54,7 @@ class TouchButtonsMappingPaintable < Paintable
         totalColumns = @touchButtonLocationHelper.getTotalColumns()
         totalRows = @touchButtonLocationHelper.getTotalRows()
         paintableTable = Array.new(totalColumns) { Array.new(totalRows, nil) }
-        cellPositionFactory = CellPositionFactory.getInstance()
+        cellPositionFactory = ::Org::Allbinary::Graphics::CellPositionFactory.getInstance()
         commonButtons = CommonButtons.getInstance()
         (totalColumns - 1).step(0, -(1)) do |index|
             (totalRows - 1).step(0, -(1)) do |rowIndex|
@@ -59,6 +63,7 @@ class TouchButtonsMappingPaintable < Paintable
         end
         return paintableTable
     end
+    java_overload :createPaintableTable, 0
     
 
     def paint(graphics)
@@ -70,16 +75,19 @@ class TouchButtonsMappingPaintable < Paintable
             end
         end
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :CellPositionFactory, "org/allbinary/graphics/CellPositionFactory"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
-autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons"
-autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton"
-autoload :TouchButtonBlankResource, "org/allbinary/input/motion/button/TouchButtonBlankResource"
-autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CellPositionFactory, "org/allbinary/graphics/CellPositionFactory" unless const_defined?(:CellPositionFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false)
+autoload :CommonButtons, "org/allbinary/input/motion/button/CommonButtons" unless const_defined?(:CommonButtons, false)
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton" unless const_defined?(:TouchButton, false)
+autoload :TouchButtonBlankResource, "org/allbinary/input/motion/button/TouchButtonBlankResource" unless const_defined?(:TouchButtonBlankResource, false)
+autoload :TouchButtonLocationHelper, "org/allbinary/input/motion/button/TouchButtonLocationHelper" unless const_defined?(:TouchButtonLocationHelper, false)
+
+end; end; end; end; end
 

@@ -15,19 +15,25 @@
 # package org.allbinary.logic.control.workflow
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Workflow
+
 #extends ValidationComponentInterface, ValidationInterface, ComponentInterface, DomNodeInterface, DataMappingInterface
 module WorkFlowInterface
     
 
     # throws Exception
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def process()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

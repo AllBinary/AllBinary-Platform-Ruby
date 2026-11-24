@@ -16,6 +16,8 @@
 
 # require "jsinterop/annotations/JsType"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 class ExceptionFactory
     
 
@@ -23,4 +25,6 @@ class ExceptionFactory
         return StandardError.new(message)
     end
 end
+
+end; end; end; end; end
 

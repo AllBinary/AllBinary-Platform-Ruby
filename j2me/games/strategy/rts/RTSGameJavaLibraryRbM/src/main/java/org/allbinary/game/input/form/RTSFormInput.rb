@@ -15,30 +15,32 @@
 # package org.allbinary.game.input.form
 
 
+module ::Org; module Allbinary; module Game; module Input; module Form
+
 class RTSFormInput
     attr_accessor :logUtil, :groupCommonFactory, :hashtable, :newUnconstructedRTSLayerInterfaceArray, :groupInterfaceArray, :selectedGeographicCellPosition, :stickyItemSelected, :selectedStickyItemIndex, :selectedStickyItem
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @groupCommonFactory = GroupCommonFactory.getInstance()
-        @hashtable = StdUtil.getInstance().createHashtable()
+    def jfields_org_allbinary_game_input_form_RTSFormInput
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @groupCommonFactory = ::Org::Allbinary::Game::Identification::GroupCommonFactory.getInstance()
+        @hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
         @newUnconstructedRTSLayerInterfaceArray = Array.new(7, nil)
-        @groupInterfaceArray = nil
-        @selectedGeographicCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
-        @stickyItemSelected = false
-        @selectedStickyItemIndex = 0
-        @selectedStickyItem = ABCustomItem.getNullInstance()
+        @groupInterfaceArray = nil unless instance_variable_defined?(:@groupInterfaceArray)
+        @selectedGeographicCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+        @stickyItemSelected = false unless instance_variable_defined?(:@stickyItemSelected)
+        @selectedStickyItemIndex = 0 unless instance_variable_defined?(:@selectedStickyItemIndex)
+        @selectedStickyItem = ::Org::Allbinary::Graphics::Form::Item::ABCustomItem.getNullInstance()
     end
     
 
     def initialize(groupInterfaceArray)
-        initialize_fields
+        jfields_org_allbinary_game_input_form_RTSFormInput
         size = @newUnconstructedRTSLayerInterfaceArray.length
         (0...size).each do |index|
-            @newUnconstructedRTSLayerInterfaceArray[index] = CollidableDestroyableDamageableLayer.getNullInstance()
+            @newUnconstructedRTSLayerInterfaceArray[index] = ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
         end
         @groupInterfaceArray = groupInterfaceArray
-        @hashtable.put(DirectionFactory.getInstance().NAME, DirectionFactory.getInstance().DOWN)
+        @hashtable.put(::Org::Allbinary::Direction::DirectionFactory.getInstance().NAME, ::Org::Allbinary::Direction::DirectionFactory.getInstance().DOWN)
         if groupInterfaceArray != nil
             @hashtable.put(@groupCommonFactory.ID, groupInterfaceArray)
         end
@@ -99,7 +101,7 @@ class RTSFormInput
 
     # throws Exception
     def getItemAt(rtsPlayerLayerInterface, point)
-        @logUtil.putF(StringMaker.new().append("Point: ").append(StringUtil.getInstance().toString(point)).to_s, self, "getItemAt")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Point: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(point)).to_s, self, "getItemAt")
         scrollSelectionForm = rtsPlayerLayerInterface.getCurrentScrollSelectionForm()
         return scrollSelectionForm.getSelectedItem(point)
     end
@@ -107,7 +109,7 @@ class RTSFormInput
 
     # throws Exception
     def getIndexAt(rtsPlayerLayerInterface, point)
-        @logUtil.putF(StringMaker.new().append("Point: ").append(StringUtil.getInstance().toString(point)).to_s, self, "getItemAt")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Point: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(point)).to_s, self, "getItemAt")
         scrollSelectionForm = rtsPlayerLayerInterface.getCurrentScrollSelectionForm()
         return scrollSelectionForm.getSelectedIndexForPoint(point)
     end
@@ -119,10 +121,10 @@ class RTSFormInput
         layerInterfaceFactoryInterface = item.getLayerInterfaceFactoryInterface()
         cellPoint = geographicMapCellPosition.getPoint()
         if layerInterfaceFactoryInterface != nil
-            @hashtable.put(AllBinaryGameLayerManager::ID, layerManager)
+            @hashtable.put(::Org::Allbinary::Game::Layer::AllBinaryGameLayerManager::ID, layerManager)
             return layerInterfaceFactoryInterface.getNextInstance(self.getHashtable(), cellPoint.getX(), cellPoint.getY(), cellPoint.getZ())
         end
-        return CollidableDestroyableDamageableLayer.getNullInstance()
+        return ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
     end
     
 
@@ -132,7 +134,7 @@ class RTSFormInput
     
 
     def setSelectedGeographicCellPosition(selectedGeographicCellPosition)
-        @logUtil.putF(StringMaker.new().append("Selected GeographicMapCellPosition: ").append(selectedGeographicCellPosition.to_s).to_s, self, "setSelectedGeographicCellPosition")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Selected GeographicMapCellPosition: ").append(selectedGeographicCellPosition.to_s).to_s, self, "setSelectedGeographicCellPosition")
         @selectedGeographicCellPosition = selectedGeographicCellPosition
     end
     
@@ -172,24 +174,26 @@ class RTSFormInput
     end
 end
 
-require "org/allbinary/game/identification/GroupCommonFactory"
-require "org/allbinary/game/layer/RTSLayer"
-require "org/allbinary/game/layer/RTSPlayerLayerInterface"
-require "org/allbinary/game/layer/item/LayerInterfaceFactoryImageItem"
-require "org/allbinary/graphics/form/item/ABCustomItem"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/direction/DirectionFactory"
-require "org/allbinary/game/identification/Group"
-require "org/allbinary/game/layer/AllBinaryGameLayerManager"
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/layer/LayerInterfaceFactoryInterface"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory"
-require "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Game; module Identification; autoload :GroupCommonFactory, "org/allbinary/game/identification/GroupCommonFactory" unless const_defined?(:GroupCommonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSPlayerLayerInterface, "org/allbinary/game/layer/RTSPlayerLayerInterface" unless const_defined?(:RTSPlayerLayerInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Item; autoload :LayerInterfaceFactoryImageItem, "org/allbinary/game/layer/item/LayerInterfaceFactoryImageItem" unless const_defined?(:LayerInterfaceFactoryImageItem, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Direction; autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory" unless const_defined?(:DirectionFactory, false); end; end; end
+module ::Org; module Allbinary; module Game; module Identification; autoload :Group, "org/allbinary/game/identification/Group" unless const_defined?(:Group, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager" unless const_defined?(:AllBinaryGameLayerManager, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Special; autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm" unless const_defined?(:ScrollSelectionForm, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :LayerInterfaceFactoryInterface, "org/allbinary/layer/LayerInterfaceFactoryInterface" unless const_defined?(:LayerInterfaceFactoryInterface, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :SimpleGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory" unless const_defined?(:SimpleGeographicMapCellPositionFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+
+end; end; end; end; end
 

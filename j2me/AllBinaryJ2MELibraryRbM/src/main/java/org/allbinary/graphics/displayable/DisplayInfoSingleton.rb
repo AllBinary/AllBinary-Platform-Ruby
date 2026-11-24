@@ -15,31 +15,33 @@
 # package org.allbinary.graphics.displayable
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable
+
 class DisplayInfoSingleton
     attr_accessor :logUtil, :commonLabels, :commonSeps, :commonStrings, :ORIENTATION, :ADJUSTING_FOR_SCALING_IN_PORTRAIT, :ADJUSTING_FOR_SCALING_IN_LANDSCAPE, :last, :lastHalf, :full, :top, :left, :xOffset, :yOffset, :scaleLargestTo, :WIDTH, :HEIGHT, :CUSTOM_WIDTH, :CUSTOM_HEIGHT, :scalableListener, :displayRatio, :ratio, :SET_LAST_SIZE_METHOD_NAME, :FULL_WIDTH, :FULL_HEIGHT, :LAST_WIDTH, :LAST_HEIGHT, :PORTRAIT, :LANDSCAPE, :displayChangeEvent, :FIRE_METHOD_NAME, :REASON, :UPDATE_FROM_ORIENTATION_CHANGE, :list, :DISPLAY_INFO, :FULL, :LAST, :LAST_HALF
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonLabels = CommonLabels.getInstance()
-        @commonSeps = CommonSeps.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_graphics_displayable_DisplayInfoSingleton
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonLabels = ::Org::Allbinary::StringPackage::CommonLabels.getInstance()
+        @commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @ORIENTATION = "ORIENTATION"
         @ADJUSTING_FOR_SCALING_IN_PORTRAIT = "Adjusting for Scaling in portrait display ratio: "
         @ADJUSTING_FOR_SCALING_IN_LANDSCAPE = "Adjusting for Scaling in landscape display ratio: "
-        @last = Array.new(4, 0)
-        @lastHalf = Array.new(4, 0)
-        @full = Array.new(4, 0)
-        @top = 0
-        @left = 0
-        @xOffset = 0
-        @yOffset = 0
-        @scaleLargestTo = 0.0
+        @last = (Array.new(4, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        @lastHalf = (Array.new(4, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        @full = (Array.new(4, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        @top = 0 unless instance_variable_defined?(:@top)
+        @left = 0 unless instance_variable_defined?(:@left)
+        @xOffset = 0 unless instance_variable_defined?(:@xOffset)
+        @yOffset = 0 unless instance_variable_defined?(:@yOffset)
+        @scaleLargestTo = 0.0 unless instance_variable_defined?(:@scaleLargestTo)
         @WIDTH = 0
         @HEIGHT = 1
         @CUSTOM_WIDTH = 2
         @CUSTOM_HEIGHT = 3
         @scalableListener = BaseScalable.new()
-        @displayRatio = 0.0
+        @displayRatio = 0.0 unless instance_variable_defined?(:@displayRatio)
         @ratio = 1.0
         @SET_LAST_SIZE_METHOD_NAME = "setLastSize"
         @FULL_WIDTH = " FullWidth: "
@@ -48,11 +50,11 @@ class DisplayInfoSingleton
         @LAST_HEIGHT = " LastHeight: "
         @PORTRAIT = "Portrait"
         @LANDSCAPE = "Landscape"
-        @displayChangeEvent = DisplayChangeEvent.new(self)
+        @displayChangeEvent = ::Org::Allbinary::Graphics::Displayable::Event::DisplayChangeEvent.new(self)
         @FIRE_METHOD_NAME = "fire"
         @REASON = "reason: "
         @UPDATE_FROM_ORIENTATION_CHANGE = "Updating from Orientation Change "
-        @list = BasicArrayListD.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
         @DISPLAY_INFO = "Display Info: "
         @FULL = "full"
         @LAST = "last"
@@ -66,14 +68,14 @@ class DisplayInfoSingleton
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_displayable_DisplayInfoSingleton
         size = @last.length
         (0...size).each do |index|
             @last[index] = 0
             @lastHalf[index] = 0
             @full[index] = 0
         end
-        if AndroidUtil.isAndroid()
+        if ::Org::Allbinary::AndroidUtil.isAndroid()
             @scaleLargestTo = 640.0
         else
             @scaleLargestTo = 1080.0
@@ -114,13 +116,13 @@ class DisplayInfoSingleton
     
 
     def setLastSizeForce(aLastWidth, aLastHeight, reason)
-        stringMaker = StringMaker.new()
-        @logUtil.putF(stringMaker.append(CommonLabels.getInstance().START_LABEL).append(reason).to_s, self, @SET_LAST_SIZE_METHOD_NAME)
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        @logUtil.putF(stringMaker.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).append(reason).to_s, self, @SET_LAST_SIZE_METHOD_NAME)
         aFullWidth = aLastWidth
         aFullHeight = aLastHeight
         stringMaker.delete(0, stringMaker.length())
         @logUtil.putF(stringMaker.append(@FULL_WIDTH).appendint(aFullWidth).append(@FULL_HEIGHT).appendint(aFullHeight).append(self.to_s).to_s, self, @SET_LAST_SIZE_METHOD_NAME)
-        operatingSystemInterface = OperatingSystemFactory.getInstance().getOperatingSystemInstance()
+        operatingSystemInterface = ::Org::Allbinary::Logic::System::Os::OperatingSystemFactory.getInstance().getOperatingSystemInstance()
         if operatingSystemInterface.isOverScan()
             aLastWidth = aLastWidth * operatingSystemInterface.getOverScanXPercent() / 100
             aLastHeight = aLastHeight * operatingSystemInterface.getOverScanYPercent() / 100
@@ -166,7 +168,7 @@ class DisplayInfoSingleton
         @lastHalf[@WIDTH] = (@last[@WIDTH] >> 1)
         @last[@HEIGHT] = aLastHeight
         @lastHalf[@HEIGHT] = (@last[@HEIGHT] >> 1)
-        SWTJOGLProcessor.getInstance().setCustom(aLastWidth, aLastHeight, @ratio)
+        ::Org::Allbinary::Graphics::Threed::SWTJOGLProcessor.getInstance().setCustom(aLastWidth, aLastHeight, @ratio)
         self.add(@SET_LAST_SIZE_METHOD_NAME)
     end
     
@@ -186,7 +188,7 @@ class DisplayInfoSingleton
     
 
     def add(reason)
-        stringMaker = StringMaker.new()
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         @logUtil.putF(stringMaker.append(@REASON).append(reason).to_s, self, @FIRE_METHOD_NAME)
         stringMaker.delete(0, stringMaker.length())
         @logUtil.putF(self.toStringAppend(stringMaker), self, @FIRE_METHOD_NAME)
@@ -201,20 +203,20 @@ class DisplayInfoSingleton
             end
             @list.clear()
         rescue StandardError => e
-            PreLogUtil.putOE(@commonStrings.EXCEPTION, self, @FIRE_METHOD_NAME, e)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(@commonStrings.EXCEPTION, self, @FIRE_METHOD_NAME, e)
         end
     end
     
 
     def processForced()
         begin
-            swtJOGLProcessor = SWTJOGLProcessor.getInstance()
+            swtJOGLProcessor = ::Org::Allbinary::Graphics::Threed::SWTJOGLProcessor.getInstance()
             swtJOGLProcessor.clear()
-            DisplayChangeEventHandler.getInstance().fireEvent(@displayChangeEvent)
-            LastDisplayChangeEventHandler.getInstance().fireEvent(@displayChangeEvent)
+            ::Org::Allbinary::Graphics::Displayable::Event::DisplayChangeEventHandler.getInstance().fireEvent(@displayChangeEvent)
+            ::Org::Allbinary::Graphics::Displayable::Event::LastDisplayChangeEventHandler.getInstance().fireEvent(@displayChangeEvent)
             swtJOGLProcessor.onSurfaceChanged()
         rescue StandardError => e
-            PreLogUtil.putOE(@commonStrings.EXCEPTION, self, @FIRE_METHOD_NAME, e)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(@commonStrings.EXCEPTION, self, @FIRE_METHOD_NAME, e)
         end
     end
     
@@ -224,15 +226,15 @@ class DisplayInfoSingleton
         aLastHeight = displayable.getHeight()
         aFullWidth = aLastWidth
         aFullHeight = aLastHeight
-        stringMaker = StringMaker.new()
-        @logUtil.putF(stringMaker.append(CommonLabels.getInstance().START_LABEL).append(reason).append(@LAST_WIDTH).appendint(aLastWidth).append(@LAST_HEIGHT).appendint(aLastHeight).append(@commonSeps.SPACE).append(self.to_s).to_s, self, @commonStrings.UPDATE)
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        @logUtil.putF(stringMaker.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).append(reason).append(@LAST_WIDTH).appendint(aLastWidth).append(@LAST_HEIGHT).appendint(aLastHeight).append(@commonSeps.SPACE).append(self.to_s).to_s, self, @commonStrings.UPDATE)
         if aLastWidth > 0 && aLastHeight > 0
-            features = Features.getInstance()
-            openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
+            features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+            openGLFeatureFactory = ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance()
             if !features.isDefault(openGLFeatureFactory.OPENGL) || @last[@WIDTH] != aLastWidth || @last[@HEIGHT] != aLastHeight
                 stringMaker.delete(0, stringMaker.length())
                 @logUtil.putF(stringMaker.append(@UPDATE_FROM_ORIENTATION_CHANGE).to_s, self, @commonStrings.UPDATE)
-                operatingSystemInterface = OperatingSystemFactory.getInstance().getOperatingSystemInstance()
+                operatingSystemInterface = ::Org::Allbinary::Logic::System::Os::OperatingSystemFactory.getInstance().getOperatingSystemInstance()
                 if operatingSystemInterface.isOverScan()
                     aLastWidth = aLastWidth * operatingSystemInterface.getOverScanXPercent() / 100
                     aLastHeight = aLastHeight * operatingSystemInterface.getOverScanYPercent() / 100
@@ -278,7 +280,7 @@ class DisplayInfoSingleton
                 @lastHalf[@WIDTH] = (@last[@WIDTH] >> 1)
                 @last[@HEIGHT] = aLastHeight
                 @lastHalf[@HEIGHT] = (@last[@HEIGHT] >> 1)
-                SWTJOGLProcessor.getInstance().setCustom(aLastWidth, aLastHeight, @ratio)
+                ::Org::Allbinary::Graphics::Threed::SWTJOGLProcessor.getInstance().setCustom(aLastWidth, aLastHeight, @ratio)
                 self.add(@commonStrings.UPDATE)
             end
         end
@@ -286,7 +288,7 @@ class DisplayInfoSingleton
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         return self.toStringAppend(stringBuffer)
     end
     alias_method :to_s, :toString
@@ -436,30 +438,32 @@ class DisplayInfoSingleton
     end
 end
 
-autoload :Displayable, "javax/microedition/lcdui/Displayable"
-autoload :AndroidUtil, "org/allbinary/AndroidUtil"
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
-autoload :DisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/DisplayChangeEventHandler"
-autoload :LastDisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/LastDisplayChangeEventHandler"
-autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-autoload :SWTJOGLProcessor, "org/allbinary/graphics/threed/SWTJOGLProcessor"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
-autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BaseScalable, "org/allbinary/graphics/displayable/BaseScalable"
-autoload :ScalableListener, "org/allbinary/graphics/displayable/ScalableListener"
+module ::Javax; module Microedition; module Lcdui; autoload :Displayable, "javax/microedition/lcdui/Displayable" unless const_defined?(:Displayable, false); end; end; end
+module ::Org; module Allbinary; autoload :AndroidUtil, "org/allbinary/AndroidUtil" unless const_defined?(:AndroidUtil, false); end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event; autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent" unless const_defined?(:DisplayChangeEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event; autoload :DisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/DisplayChangeEventHandler" unless const_defined?(:DisplayChangeEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event; autoload :LastDisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/LastDisplayChangeEventHandler" unless const_defined?(:LastDisplayChangeEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory" unless const_defined?(:OpenGLFeatureFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Threed; autoload :SWTJOGLProcessor, "org/allbinary/graphics/threed/SWTJOGLProcessor" unless const_defined?(:SWTJOGLProcessor, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Os; autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem" unless const_defined?(:GenericOperatingSystem, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Os; autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory" unless const_defined?(:OperatingSystemFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :BaseScalable, "org/allbinary/graphics/displayable/BaseScalable" unless const_defined?(:BaseScalable, false)
+autoload :ScalableListener, "org/allbinary/graphics/displayable/ScalableListener" unless const_defined?(:ScalableListener, false)
 
 begin
     DisplayInfoSingleton.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

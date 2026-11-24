@@ -15,13 +15,15 @@
 # package org.allbinary.input.accelerometer
 
 
+module ::Org; module Allbinary; module Input; module Accelerometer
+
 class AccelerometerSensorFactory
     
 
     # throws Exception
     def self.init()
-        features = Features.getInstance()
-        sensorFeatureFactory = SensorFeatureFactory.getInstance()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        sensorFeatureFactory = ::Org::Allbinary::Game::Configuration::Feature::SensorFeatureFactory.getInstance()
         if features.isFeature(sensorFeatureFactory.ORIENTATION_SENSORS)
             raise StandardError.new("No Orientation Sensors")
         elsif features.isFeature(sensorFeatureFactory.SIMULATED_ORIENTATION_SENSORS)
@@ -69,14 +71,16 @@ class AccelerometerSensorFactory
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory"
-autoload :AllBinaryOrientationSensor, "org/allbinary/input/gyro/AllBinaryOrientationSensor"
-autoload :NoAccelerometerSensor, "org/allbinary/input/accelerometer/NoAccelerometerSensor"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :SensorFeatureFactory, "org/allbinary/game/configuration/feature/SensorFeatureFactory" unless const_defined?(:SensorFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Gyro; autoload :AllBinaryOrientationSensor, "org/allbinary/input/gyro/AllBinaryOrientationSensor" unless const_defined?(:AllBinaryOrientationSensor, false); end; end; end; end
+autoload :NoAccelerometerSensor, "org/allbinary/input/accelerometer/NoAccelerometerSensor" unless const_defined?(:NoAccelerometerSensor, false)
 
 begin
     AccelerometerSensorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

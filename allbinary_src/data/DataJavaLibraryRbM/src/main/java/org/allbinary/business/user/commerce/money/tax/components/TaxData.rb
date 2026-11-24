@@ -15,15 +15,41 @@
 # package org.allbinary.business.user.commerce.money.tax.components
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Tax; module Components
+
 class TaxData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "TAX_NAME")
+        const_set(:RATE, "TAX_RATE")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TaxData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME, :RATE].include?(name)
+        end
+        super
+    end
 end
 
-class TaxData
-    NAME = "TAX_NAME"
-    RATE = "TAX_RATE"
+begin
+    TaxData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

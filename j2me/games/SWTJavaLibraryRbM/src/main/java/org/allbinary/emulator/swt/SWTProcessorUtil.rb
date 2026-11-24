@@ -15,15 +15,17 @@
 # package org.allbinary.emulator.swt
 
 
+module ::Org; module Allbinary; module Emulator; module Swt
+
 class SWTProcessorUtil
     attr_accessor :swtProcessor
 
-    def initialize_fields
+    def jfields_org_allbinary_emulator_swt_SWTProcessorUtil
         @swtProcessor = SWTProcessor.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_emulator_swt_SWTProcessorUtil
     end
     
 
@@ -62,11 +64,13 @@ class SWTProcessorUtil
     end
 end
 
-autoload :SWTProcessor, "org/allbinary/emulator/swt/SWTProcessor"
+autoload :SWTProcessor, "org/allbinary/emulator/swt/SWTProcessor" unless const_defined?(:SWTProcessor, false)
 
 begin
     SWTProcessorUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.resource
 
 
+module ::Org; module Allbinary; module Game; module Resource
+
 module RectangleResourceFactoryInterface
     
 
@@ -32,5 +34,7 @@ module RectangleResourceFactoryInterface
     end
 end
 
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+
+end; end; end; end
 

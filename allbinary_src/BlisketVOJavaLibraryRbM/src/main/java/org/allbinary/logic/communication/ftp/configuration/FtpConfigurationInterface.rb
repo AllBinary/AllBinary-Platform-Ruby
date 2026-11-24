@@ -15,46 +15,58 @@
 # package org.allbinary.logic.communication.ftp.configuration
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Ftp; module Configuration
+
 module FtpConfigurationInterface
     
 
     def getServer()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getPath()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getUserName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getPassword()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setServer(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setPath(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setUserName(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setPassword(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end
 

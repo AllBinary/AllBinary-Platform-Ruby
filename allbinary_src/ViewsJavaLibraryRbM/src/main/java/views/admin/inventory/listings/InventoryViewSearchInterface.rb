@@ -15,30 +15,38 @@
 # package views.admin.inventory.listings
 
 
+module ::Views; module Admin; module Inventory; module Listings
+
 module InventoryViewSearchInterface
     
 
     # throws Exception
     def searchSingleStaticPage()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def searchSingleDynamicPage()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def search()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getProduct(product)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

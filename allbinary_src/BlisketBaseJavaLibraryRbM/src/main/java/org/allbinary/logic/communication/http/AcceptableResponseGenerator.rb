@@ -16,11 +16,13 @@
 
 # require "javax/servlet/http/HttpServletRequest"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http
+
 class AcceptableResponseGenerator
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_communication_http_AcceptableResponseGenerator
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -30,18 +32,18 @@ class AcceptableResponseGenerator
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_http_AcceptableResponseGenerator
     end
     
 
     # throws Exception
     def get(httpServletRequest)
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         begin
             acceptableResponseUtil = AcceptableResponseUtil.getInstance()
             acceptable = httpServletRequest.getHeader("accept")
             result = acceptableResponseUtil.getTagName(0)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTP)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTP)
                 @logUtil.putF("Request Type: " + acceptable, self, commonStrings.GET)
             end
             if acceptable != nil
@@ -52,12 +54,12 @@ class AcceptableResponseGenerator
                     end
                 end
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTP)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTP)
                 @logUtil.putF("Response Type: " + result, self, commonStrings.GET)
             end
             return result
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPERROR)
                 @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET, e)
             end
             raise e
@@ -95,13 +97,17 @@ class AcceptableResponseGenerator
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AcceptableResponseUtil, "org/allbinary/logic/communication/http/AcceptableResponseUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :AcceptableResponseUtil, "org/allbinary/logic/communication/http/AcceptableResponseUtil" unless const_defined?(:AcceptableResponseUtil, false)
 
 begin
     AcceptableResponseGenerator.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

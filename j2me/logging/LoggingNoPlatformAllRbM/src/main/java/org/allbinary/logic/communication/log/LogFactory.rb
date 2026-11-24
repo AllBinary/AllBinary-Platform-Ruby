@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 #NoPlatform
 class LogFactory
     
@@ -34,5 +36,7 @@ class LogFactory
     end
 end
 
-require "org/allbinary/logic/communication/log/Log"
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
+
+end; end; end; end; end
 

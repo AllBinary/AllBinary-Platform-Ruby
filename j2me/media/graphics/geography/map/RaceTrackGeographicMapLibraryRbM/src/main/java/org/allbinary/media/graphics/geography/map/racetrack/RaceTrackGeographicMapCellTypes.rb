@@ -15,18 +15,20 @@
 # package org.allbinary.media.graphics.geography.map.racetrack
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
+
 class RaceTrackGeographicMapCellTypes
     attr_accessor :BOTTOM_LEFT_TURN_ROAD_CELL_TYPE, :BOTTOM_RIGHT_TURN_ROAD_CELL_TYPE, :TOP_LEFT_TURN_ROAD_CELL_TYPE, :TOP_RIGHT_TURN_ROAD_CELL_TYPE, :HORIZONTAL_STRAIGHT_ROAD_CELL_TYPE, :VERTICAL_STRAIGHT_ROAD_CELL_TYPE, :START_LINE_ROAD_CELL_TYPE, :DEFAULT_FINISH_LINE_ROAD_CELL_TYPE
 
-    def initialize_fields
-        @BOTTOM_LEFT_TURN_ROAD_CELL_TYPE = nil
-        @BOTTOM_RIGHT_TURN_ROAD_CELL_TYPE = nil
-        @TOP_LEFT_TURN_ROAD_CELL_TYPE = nil
-        @TOP_RIGHT_TURN_ROAD_CELL_TYPE = nil
-        @HORIZONTAL_STRAIGHT_ROAD_CELL_TYPE = nil
-        @VERTICAL_STRAIGHT_ROAD_CELL_TYPE = nil
-        @START_LINE_ROAD_CELL_TYPE = nil
-        @DEFAULT_FINISH_LINE_ROAD_CELL_TYPE = nil
+    def jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackGeographicMapCellTypes
+        @BOTTOM_LEFT_TURN_ROAD_CELL_TYPE = nil unless instance_variable_defined?(:@BOTTOM_LEFT_TURN_ROAD_CELL_TYPE)
+        @BOTTOM_RIGHT_TURN_ROAD_CELL_TYPE = nil unless instance_variable_defined?(:@BOTTOM_RIGHT_TURN_ROAD_CELL_TYPE)
+        @TOP_LEFT_TURN_ROAD_CELL_TYPE = nil unless instance_variable_defined?(:@TOP_LEFT_TURN_ROAD_CELL_TYPE)
+        @TOP_RIGHT_TURN_ROAD_CELL_TYPE = nil unless instance_variable_defined?(:@TOP_RIGHT_TURN_ROAD_CELL_TYPE)
+        @HORIZONTAL_STRAIGHT_ROAD_CELL_TYPE = nil unless instance_variable_defined?(:@HORIZONTAL_STRAIGHT_ROAD_CELL_TYPE)
+        @VERTICAL_STRAIGHT_ROAD_CELL_TYPE = nil unless instance_variable_defined?(:@VERTICAL_STRAIGHT_ROAD_CELL_TYPE)
+        @START_LINE_ROAD_CELL_TYPE = nil unless instance_variable_defined?(:@START_LINE_ROAD_CELL_TYPE)
+        @DEFAULT_FINISH_LINE_ROAD_CELL_TYPE = nil unless instance_variable_defined?(:@DEFAULT_FINISH_LINE_ROAD_CELL_TYPE)
     end
     
 
@@ -36,7 +38,7 @@ class RaceTrackGeographicMapCellTypes
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackGeographicMapCellTypes
         @BOTTOM_LEFT_TURN_ROAD_CELL_TYPE = RaceTrackGeographicMapCellType.new("Bottom Left Turn", 1, 1, 0)
         @BOTTOM_RIGHT_TURN_ROAD_CELL_TYPE = RaceTrackGeographicMapCellType.new("Bottom Right Turn", 2, 1, 0)
         @TOP_LEFT_TURN_ROAD_CELL_TYPE = RaceTrackGeographicMapCellType.new("Top Left Turn", 3, 1, 0)
@@ -48,17 +50,43 @@ class RaceTrackGeographicMapCellTypes
     end
 
     def self.instance()
+        RaceTrackGeographicMapCellTypes.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        RaceTrackGeographicMapCellTypes.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = RaceTrackGeographicMapCellTypes.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RaceTrackGeographicMapCellTypes"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMapCellType"
+autoload :RaceTrackGeographicMapCellType, "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMapCellType" unless const_defined?(:RaceTrackGeographicMapCellType, false)
 
-class RaceTrackGeographicMapCellTypes
-    @@instance = RaceTrackGeographicMapCellTypes.new()
+begin
+    RaceTrackGeographicMapCellTypes.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

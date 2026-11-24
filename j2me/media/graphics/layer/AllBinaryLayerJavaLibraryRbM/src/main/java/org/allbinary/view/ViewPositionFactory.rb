@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.view
 
+require "java/lang/JavaOverload"
 require "org/allbinary/view/ViewPositionFactoryInterface"
+
+module ::Org; module Allbinary; module View
 
 class ViewPositionFactory
     include ViewPositionFactoryInterface
@@ -23,8 +26,11 @@ class ViewPositionFactory
     def getInstance()
         return ViewPosition.getInstanceD()
     end
+    java_overload :getInstance, 0
 end
 
-autoload :ViewPosition, "org/allbinary/view/ViewPosition"
-autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+autoload :ViewPosition, "org/allbinary/view/ViewPosition" unless const_defined?(:ViewPosition, false)
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false)
+
+end; end; end
 

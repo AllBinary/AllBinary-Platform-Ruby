@@ -14,7 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.help
 
-# require "java/awt"
+# require "java/awt/Point"
+# require "java/awt/Dimension"
 # require "java/awt/event/ActionEvent"
 # require "java/io/File"
 # require "java/net/URI"
@@ -22,17 +23,19 @@
 # require "javax/help/CSH"
 # require "javax/help/HelpBroker"
 # require "javax/help/HelpSet"
-# require "javax/swing"
+# require "javax/swing/JLabel"
+
+module ::Org; module Allbinary; module Logic; module Java; module Help
 
 class JavaHelpUtil
     attr_accessor :logUtil, :point, :dimension, :contextSensitiveHelpActionEvent, :commonStrings
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_java_help_JavaHelpUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @point = Point.new(0, 0)
         @dimension = Dimension.new(640, 480)
         @contextSensitiveHelpActionEvent = ActionEvent.new(JLabel.new(), ActionEvent::ACTION_FIRST, nil)
-        @commonStrings = CommonStrings.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
     
 
@@ -42,11 +45,11 @@ class JavaHelpUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_java_help_JavaHelpUtil
     end
     
 
-    def getHelpSet(filePath)
+    def getHelpSet_j1_1(filePath)
         begin
             helpSetURI = File.new(filePath).toURI()
             helpSetURL = helpSetURI.toURL()
@@ -58,14 +61,23 @@ class JavaHelpUtil
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getHelpSet(url)
+    def getHelpSet_j1_2(url)
         begin
             return HelpSet.new(nil, url)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, JavaHelpUtil.getInstance(), "set", e)
             return nil
         end
+    end
+
+    def getHelpSet(*java_overload_args)
+        return getHelpSet_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method getHelpSet takes #{java_overload_args.length} arguments"
+    end
+
+    def getHelpSet_j1(*java_overload_args)
+        return getHelpSet_j1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::String))
+        return getHelpSet_j1_2(*java_overload_args)
     end
     
 
@@ -74,7 +86,7 @@ class JavaHelpUtil
             helpBroker = helpSet.createHelpBroker()
             helpBroker.setLocation(@point)
             helpBroker.setSize(@dimension)
-            DisplayHelpFromSource.new(helpBroker).actionPerformed(@contextSensitiveHelpActionEvent)
+            CSH::DisplayHelpFromSource.new(helpBroker).actionPerformed(@contextSensitiveHelpActionEvent)
             @logUtil.putF("CSH Action", JavaHelpUtil.getInstance(), "show")
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, JavaHelpUtil.getInstance(), "show", e)
@@ -121,12 +133,14 @@ class JavaHelpUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     JavaHelpUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

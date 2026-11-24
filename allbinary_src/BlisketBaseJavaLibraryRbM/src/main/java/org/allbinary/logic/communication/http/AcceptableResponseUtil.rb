@@ -14,17 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.http
 
+require "java/lang/Object"
+
+module ::Org; module Allbinary; module Logic; module Communication; module Http
 
 class AcceptableResponseUtil
     attr_accessor :candidateVector, :tagNameVector
 
-    def initialize_fields
-        @candidateVector = BasicArrayListD.new()
-        @tagNameVector = BasicArrayListD.new()
+    def jfields_org_allbinary_logic_communication_http_AcceptableResponseUtil
+        @candidateVector = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @tagNameVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_communication_http_AcceptableResponseUtil
     end
     
 
@@ -34,7 +37,7 @@ class AcceptableResponseUtil
     
 
     def self.static_init
-        TsUtil.getInstance().hashCode(AcceptableResponseFactory.getInstance().HTML)
+        ::Org::Allbinary::TsUtil.getInstance().hashCode(AcceptableResponseFactory.getInstance().HTML)
     end
     
 
@@ -84,15 +87,17 @@ class AcceptableResponseUtil
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :AcceptableResponseFactory, "org/allbinary/logic/communication/http/AcceptableResponseFactory"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+autoload :AcceptableResponseFactory, "org/allbinary/logic/communication/http/AcceptableResponseFactory" unless const_defined?(:AcceptableResponseFactory, false)
 
 begin
     AcceptableResponseUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

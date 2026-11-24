@@ -15,30 +15,38 @@
 # package admin.taghelpers
 
 
+module ::Admin; module Taghelpers
+
 module BasicTableInterface
     
 
     # throws Exception
     def drop()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def create()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def restore()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def backup()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end
 

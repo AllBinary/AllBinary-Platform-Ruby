@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.hardware
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware
+
 module HardwareInterface
     
 
@@ -43,6 +45,8 @@ module HardwareInterface
     end
 end
 
-autoload :HardwareComponentInterface, "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Interfaces; autoload :HardwareComponentInterface, "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface" unless const_defined?(:HardwareComponentInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+
+end; end; end; end; end
 

@@ -14,84 +14,93 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/mapping/InputMappingInterface"
 require "org/allbinary/game/displayable/canvas/GameCommandCanvas"
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 class GameInputMappingCanvas < GameCommandCanvas
-    include InputMappingInterface
+    include ::Org::Allbinary::Game::Input::Mapping::InputMappingInterface
     attr_accessor :paintable, :helpPaintable, :colorFillPaintable, :inputMapping, :NONE, :abeClientInformation, :selectedGameKey, :selectedInput, :inputFactory
 
-    def initialize_fields
-        @paintable = nil
-        @helpPaintable = nil
-        @colorFillPaintable = nil
-        @inputMapping = nil
-        @NONE = GameKeyFactory.getInstance().NONE
-        @abeClientInformation = nil
+    def jfields_org_allbinary_game_displayable_canvas_GameInputMappingCanvas
+        @paintable = nil unless instance_variable_defined?(:@paintable)
+        @helpPaintable = nil unless instance_variable_defined?(:@helpPaintable)
+        @colorFillPaintable = nil unless instance_variable_defined?(:@colorFillPaintable)
+        @inputMapping = nil unless instance_variable_defined?(:@inputMapping)
+        @NONE = ::Org::Allbinary::Game::Input::GameKeyFactory.getInstance().NONE
+        @abeClientInformation = nil unless instance_variable_defined?(:@abeClientInformation)
         @selectedGameKey = @NONE
         @selectedInput = @NONE
-        @inputFactory = InputFactory.getInstance()
+        @inputFactory = ::Org::Allbinary::Game::Input::InputFactory.getInstance()
     end
     
 
     def initialize(abeClientInformation, commandListener, allBinaryGameLayerManager, helpPaintable)
         super(commandListener, GameInputMappingCanvas::NAME, allBinaryGameLayerManager.getBackgroundBasicColor(), allBinaryGameLayerManager.getForegroundBasicColor())
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_GameInputMappingCanvas
         @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         if helpPaintable == nil
             raise StandardError.new("Help Paintable Exception")
         end
         @abeClientInformation = abeClientInformation
         @helpPaintable = helpPaintable
-        @inputMapping = PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance()
-        @paintable = ProcessPaintable.new()
-        @colorFillPaintable = ColorFillPaintableFactory.getInstance().getInstance(allBinaryGameLayerManager.getBackgroundBasicColor(), false)
+        @inputMapping = ::Org::Allbinary::Game::Input::PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance()
+        @paintable = ::Org::Allbinary::Graphics::Paint::ProcessPaintable.new()
+        @colorFillPaintable = ::Org::Allbinary::Game::Paint::ColorFillPaintableFactory.getInstance().getInstance(allBinaryGameLayerManager.getBackgroundBasicColor(), false)
     end
     
 
     # throws Exception
     def close()
-        super()
+        GameInputMappingCanvas.superclass.java_super_method(:close, 0).bind(self).call()
         @paintable.process()
         @selectedGameKey = @NONE
         @selectedInput = @NONE
         self.update()
     end
+    java_overload :close, 0
     
 
     def initCommands(cmdListener)
         self.removeAllCommands()
-        self.addCommand(GameCommandsFactory.getInstance().CLOSE_AND_SHOW_GAME_CANVAS)
+        self.addCommand(::Org::Allbinary::Game::Commands::GameCommandsFactory.getInstance().CLOSE_AND_SHOW_GAME_CANVAS)
         self.addCommand(GameInputMappingCanvas::DEFAULT)
         self.addCommand(GameInputMappingInstructionsCanvas::DISPLAY)
         self.setCommandListener(cmdListener)
     end
+    java_overload :initCommands, 1
     
 
     def keyPressed(keyCode)
         self.keyPressedByDevice(keyCode, 0)
     end
+    java_overload :keyPressed, 1
     
 
     def keyReleased(keyCode)
         self.keyReleasedByDevice(keyCode, 0)
     end
+    java_overload :keyReleased, 1
     
 
     def keyRepeated(keyCode)
         self.keyRepeatedByDevice(keyCode, 0)
     end
+    java_overload :keyRepeated, 1
     
 
     def keyPressedByDevice(keyCode, deviceId)
         self.addGameKey(keyCode, false)
-        super(keyCode, 0)
+        GameInputMappingCanvas.superclass.java_super_method(:keyPressedByDevice, 2).bind(self).call(keyCode, 0)
     end
+    java_overload :keyPressedByDevice, 2
     
 
     def addGameKey(keyCode, repeated)
         begin
-            @logUtil.putF(StringMaker.new().append("Raw Device Key Code: ").append((keyCode).to_s(16)).to_s, self, @gameInputStrings.ADD_KEY_EVENT)
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Raw Device Key Code: ").append((keyCode).to_s(16)).to_s, self, @gameInputStrings.ADD_KEY_EVENT)
             gameKey = @inputToGameKeyMapping.getInstanceForCanvas(self, keyCode)
             input = @inputFactory.getInstanceById(keyCode)
             self.processInputMapping(gameKey, input)
@@ -99,11 +108,12 @@ class GameInputMappingCanvas < GameCommandCanvas
             @logUtil.put("Key Event Error", self, @gameInputStrings.ADD_KEY_EVENT, e)
         end
     end
+    java_overload :addGameKey, 2
     
 
     # throws Exception
     def processInputMapping(gameKey, input)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Start Passed GameKey: ")
         stringBuffer.append(@stringUtil.toString(gameKey))
         stringBuffer.append(" Input: ")
@@ -115,20 +125,22 @@ class GameInputMappingCanvas < GameCommandCanvas
             self.setSelectedAction(gameKey)
         end
     end
+    java_overload :processInputMapping, 2
     
 
     def setSelectedAction(gameKey)
-        @logUtil.putF(StringMaker.new().append("Selected GameKey: ").append(@stringUtil.toString(gameKey)).to_s, self, "setSelectedAction")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Selected GameKey: ").append(@stringUtil.toString(gameKey)).to_s, self, "setSelectedAction")
         @selectedGameKey = gameKey
         @selectedInput = @NONE
         @helpPaintable.update(@selectedGameKey, @selectedInput)
         @repaintBehavior.onChangeRepaint(self)
     end
+    java_overload :setSelectedAction, 1
     
 
     # throws Exception
     def gameActionCrud(gameKey, input)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Start GameKey: ")
         stringBuffer.append(@stringUtil.toString(@selectedGameKey))
         stringBuffer.append(" Input: ")
@@ -138,7 +150,7 @@ class GameInputMappingCanvas < GameCommandCanvas
             list = @inputMapping.getInputMapping().getMappedInput(@selectedGameKey)
             isInputAlreadyMappedToSelectedAction = list.contains(input)
             if isInputAlreadyMappedToSelectedAction
-                @logUtil.putF(StringMaker.new().append("Already Mapped Input: ").append(@stringUtil.toString(input)).to_s, self, "gameActionCrud")
+                @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Already Mapped Input: ").append(@stringUtil.toString(input)).to_s, self, "gameActionCrud")
                 @selectedInput = input
                 @helpPaintable.update(@selectedGameKey, @selectedInput)
                 @repaintBehavior.onChangeRepaint(self)
@@ -151,6 +163,7 @@ class GameInputMappingCanvas < GameCommandCanvas
             self.setSelectedAction(gameKey)
         end
     end
+    java_overload :gameActionCrud, 2
     
 
     # throws Exception
@@ -159,7 +172,7 @@ class GameInputMappingCanvas < GameCommandCanvas
         @logUtil.putF(@commonStrings.START, self, _METHOD_NAME)
         isInputAlreadyMapped = @inputMapping.getInputMapping().isMapped(input)
         if !isInputAlreadyMapped && !@inputMapping.isSystemInput(input)
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Add Key Mapping : GameKey: ")
             stringBuffer.append(@stringUtil.toString(@selectedGameKey))
             stringBuffer.append(" Input: ")
@@ -173,6 +186,7 @@ class GameInputMappingCanvas < GameCommandCanvas
             self.setSelectedAction(gameKey)
         end
     end
+    java_overload :addNewMapping, 2
     
 
     # throws Exception
@@ -180,7 +194,7 @@ class GameInputMappingCanvas < GameCommandCanvas
         _METHOD_NAME = "deleteCurrentMapping"
         list = @inputMapping.getInputMapping().getMappedInput(@selectedGameKey)
         if list.size() > 1
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Start GameKey: ")
             stringBuffer.append("Remove Key Mapping: GameKey: ")
             stringBuffer.append(@stringUtil.toString(@selectedGameKey))
@@ -194,6 +208,7 @@ class GameInputMappingCanvas < GameCommandCanvas
             @logUtil.putF("Can't Remove Last Key Mapping", self, _METHOD_NAME)
         end
     end
+    java_overload :deleteCurrentMapping, 0
     
 
     # throws Exception
@@ -202,6 +217,7 @@ class GameInputMappingCanvas < GameCommandCanvas
         @helpPaintable.update(@NONE, @NONE)
         @repaintBehavior.onChangeRepaint(self)
     end
+    java_overload :setDefault, 0
     
 
     # throws Exception
@@ -210,22 +226,24 @@ class GameInputMappingCanvas < GameCommandCanvas
         @helpPaintable.update(@selectedGameKey, @selectedInput)
         @repaintBehavior.onChangeRepaint(self)
     end
+    java_overload :update, 0
     
 
     def paint(graphics)
         @colorFillPaintable.paint(graphics)
         @helpPaintable.paint(graphics)
         @paintable.paint(graphics)
-        super(graphics)
+        GameInputMappingCanvas.superclass.java_super_method(:paint, 1).bind(self).call(graphics)
     end
+    java_overload :paint, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         const_set(:NAME, "GameInputMappingCanvas")
         begin
-            const_set(:DISPLAY, Command.new("Controls", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 2))
-            const_set(:DEFAULT, Command.new("Default", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 2))
+            const_set(:DISPLAY, ::Javax::Microedition::Lcdui::Command.new("Controls", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::SCREEN, 2))
+            const_set(:DEFAULT, ::Javax::Microedition::Lcdui::Command.new("Default", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::SCREEN, 2))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -242,31 +260,33 @@ class GameInputMappingCanvas < GameCommandCanvas
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
-autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping"
-autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
-autoload :ColorFillBasePaintable, "org/allbinary/game/paint/ColorFillBasePaintable"
-autoload :ColorFillPaintableFactory, "org/allbinary/game/paint/ColorFillPaintableFactory"
-autoload :HelpPaintable, "org/allbinary/game/paint/help/HelpPaintable"
-autoload :InputMappingHelpPaintable, "org/allbinary/game/paint/help/InputMappingHelpPaintable"
-autoload :ProcessPaintable, "org/allbinary/graphics/paint/ProcessPaintable"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :GameInputMappingInstructionsCanvas, "org/allbinary/game/displayable/canvas/GameInputMappingInstructionsCanvas"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Commands; autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory" unless const_defined?(:GameCommandsFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory" unless const_defined?(:PlatformInputMappingFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping" unless const_defined?(:PersistentInputMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager" unless const_defined?(:AllBinaryGameLayerManager, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Paint; autoload :ColorFillBasePaintable, "org/allbinary/game/paint/ColorFillBasePaintable" unless const_defined?(:ColorFillBasePaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Paint; autoload :ColorFillPaintableFactory, "org/allbinary/game/paint/ColorFillPaintableFactory" unless const_defined?(:ColorFillPaintableFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Paint; module Help; autoload :HelpPaintable, "org/allbinary/game/paint/help/HelpPaintable" unless const_defined?(:HelpPaintable, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Paint; module Help; autoload :InputMappingHelpPaintable, "org/allbinary/game/paint/help/InputMappingHelpPaintable" unless const_defined?(:InputMappingHelpPaintable, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :ProcessPaintable, "org/allbinary/graphics/paint/ProcessPaintable" unless const_defined?(:ProcessPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :GameInputMappingInstructionsCanvas, "org/allbinary/game/displayable/canvas/GameInputMappingInstructionsCanvas" unless const_defined?(:GameInputMappingInstructionsCanvas, false)
 
 begin
     GameInputMappingCanvas.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

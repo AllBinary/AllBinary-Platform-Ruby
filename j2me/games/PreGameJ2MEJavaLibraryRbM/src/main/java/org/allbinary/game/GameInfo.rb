@@ -15,17 +15,19 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 class GameInfo
     attr_accessor :logUtil, :gameInfoData, :gameType, :gameMode, :playerType, :highestLevel, :currentLevel, :NEW_LEVEL, :SET_CURRENT_LEVEL, :NEXT_GAME_LEVEL
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_GameInfo
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @gameInfoData = GameInfoData.getInstance()
-        @gameType = nil
-        @gameMode = nil
-        @playerType = nil
-        @highestLevel = 0
-        @currentLevel = nil
+        @gameType = nil unless instance_variable_defined?(:@gameType)
+        @gameMode = nil unless instance_variable_defined?(:@gameMode)
+        @playerType = nil unless instance_variable_defined?(:@playerType)
+        @highestLevel = 0 unless instance_variable_defined?(:@highestLevel)
+        @currentLevel = nil unless instance_variable_defined?(:@currentLevel)
         @NEW_LEVEL = "New Level: "
         @SET_CURRENT_LEVEL = "setCurrentLevel"
         @NEXT_GAME_LEVEL = "nextGameLevel"
@@ -33,7 +35,7 @@ class GameInfo
     
 
     def initialize(gameType, gameMode, playerType, highestLevel, currentLevel)
-        initialize_fields
+        jfields_org_allbinary_game_GameInfo
         @gameType = gameType
         @gameMode = gameMode
         self.setHighestLevel(highestLevel)
@@ -74,7 +76,7 @@ class GameInfo
 
     def setCurrentLevel(currentLevel)
         @currentLevel = currentLevel
-        @logUtil.putF(StringMaker.new().append(@NEW_LEVEL).appendint(self.getCurrentLevel()).to_s, self, @SET_CURRENT_LEVEL)
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@NEW_LEVEL).appendint(self.getCurrentLevel()).to_s, self, @SET_CURRENT_LEVEL)
     end
     
 
@@ -82,7 +84,7 @@ class GameInfo
         if self.getCurrentLevel() < self.getHighestLevel()
             @currentLevel += 1
         end
-        @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().NEXT).append(CommonSeps.getInstance().SPACE).append(@NEW_LEVEL).appendint(self.getCurrentLevel()).to_s, self, @NEXT_GAME_LEVEL)
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().NEXT).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(@NEW_LEVEL).appendint(self.getCurrentLevel()).to_s, self, @NEXT_GAME_LEVEL)
     end
     
 
@@ -103,7 +105,7 @@ class GameInfo
     
 
     def toHashtable()
-        hashtable = StdUtil.getInstance().createHashtable()
+        hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
         hashtable.put(@gameInfoData.GAME_TYPE, self.getGameType().to_s)
         hashtable.put(@gameInfoData.GAME_MODE, @gameMode.to_s)
         hashtable.put(@gameInfoData.PLAYER_TYPE, @playerType.to_s)
@@ -114,8 +116,8 @@ class GameInfo
     
 
     def toString()
-        stringBuffer = StringMaker.new()
-        commonSeps = CommonSeps.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         stringBuffer.append(@gameInfoData.GAME_TYPE)
         stringBuffer.append(commonSeps.EQUALS)
         stringBuffer.append(self.getGameType().to_s)
@@ -126,7 +128,7 @@ class GameInfo
         stringBuffer.append(commonSeps.COMMA_SEP)
         stringBuffer.append(@gameInfoData.PLAYER_TYPE)
         stringBuffer.append(commonSeps.EQUALS)
-        stringBuffer.append(StringUtil.getInstance().toString(@playerType))
+        stringBuffer.append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(@playerType))
         stringBuffer.append(commonSeps.COMMA_SEP)
         stringBuffer.append(@gameInfoData.HIGHEST_LEVEL)
         stringBuffer.append(commonSeps.EQUALS)
@@ -161,23 +163,25 @@ class GameInfo
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :GameInfoData, "org/allbinary/game/GameInfoData"
-autoload :GameMode, "org/allbinary/game/GameMode"
-autoload :GameType, "org/allbinary/game/GameType"
-autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory"
-autoload :PlayerType, "org/allbinary/game/PlayerType"
-autoload :PlayerTypesFactory, "org/allbinary/game/PlayerTypesFactory"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :GameInfoData, "org/allbinary/game/GameInfoData" unless const_defined?(:GameInfoData, false)
+autoload :GameMode, "org/allbinary/game/GameMode" unless const_defined?(:GameMode, false)
+autoload :GameType, "org/allbinary/game/GameType" unless const_defined?(:GameType, false)
+autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory" unless const_defined?(:GameTypeFactory, false)
+autoload :PlayerType, "org/allbinary/game/PlayerType" unless const_defined?(:PlayerType, false)
+autoload :PlayerTypesFactory, "org/allbinary/game/PlayerTypesFactory" unless const_defined?(:PlayerTypesFactory, false)
 
 begin
     GameInfo.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

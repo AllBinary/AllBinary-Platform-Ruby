@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Game
 
 class PlayerType
     attr_accessor :id, :name
 
-    def initialize_fields
-        @id = nil
-        @name = StringUtil.getInstance().EMPTY_STRING
+    def jfields_org_allbinary_game_PlayerType
+        @id = nil unless instance_variable_defined?(:@id)
+        @name = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def initialize(name, value)
-        initialize_fields
+        jfields_org_allbinary_game_PlayerType
         @name = name
         @id = value
     end
@@ -47,5 +50,7 @@ class PlayerType
     alias_method :to_s, :toString
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end
 

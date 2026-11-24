@@ -14,8 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterface"
 require "org/allbinary/animation/SequenceInterface"
+
+module ::Org; module Allbinary; module Animation
 
 module SequentialAnimationInterface
     include AnimationInterface
@@ -26,11 +29,15 @@ module SequentialAnimationInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getSize, 0
     
 
     def previousFrame()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :previousFrame, 0
 end
+
+end; end; end
 

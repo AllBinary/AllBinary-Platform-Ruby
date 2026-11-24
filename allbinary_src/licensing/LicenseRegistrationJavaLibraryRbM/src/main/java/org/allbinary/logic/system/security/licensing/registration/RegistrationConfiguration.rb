@@ -14,15 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.security.licensing.registration
 
-# require "java/io/DataInputStream"
-# require "java/io/InputStream"
-# require "java/io/OutputStream"
+
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; module Registration
 
 class RegistrationConfiguration
     attr_accessor :logUtil, :registrationCode, :NAME, :FILE
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_system_security_licensing_registration_RegistrationConfiguration
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @registrationCode = "No Registration Code"
         @NAME = "registrationid"
         @FILE = "Registration.dat"
@@ -30,15 +29,15 @@ class RegistrationConfiguration
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_registration_RegistrationConfiguration
         begin
-            if FileFactory.getInstance().isFile(@FILE)
+            if ::Org::Allbinary::Logic::Io::FilePackage::FileFactory.getInstance().isFile(@FILE)
                 self.read()
             else
                 self.write()
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
         end
     end
@@ -51,11 +50,11 @@ class RegistrationConfiguration
 
     # throws Exception
     def read()
-        fileInputStreamFactory = FileStreamFactory.getInstance()
-        fileInputStream = fileInputStreamFactory.getFileInputStreamInstance(StringUtil.getInstance().EMPTY_STRING, @FILE)
-        dataInputStream = DataInputStream.new(fileInputStream)
+        fileInputStreamFactory = ::Org::Allbinary::Logic::Io::FileStreamFactory.getInstance()
+        fileInputStream = fileInputStreamFactory.getFileInputStreamInstance(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, @FILE)
+        dataInputStream = ::Java::Io::DataInputStream.new(fileInputStream)
         self.setRegistrationCode(dataInputStream.readUTF())
-        PreLogUtil.put(StringMaker.new().append("Read Configuration: ").append(self.to_s).to_s, self, "read")
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Read Configuration: ").append(self.to_s).to_s, self, "read")
     end
     
 
@@ -63,20 +62,20 @@ class RegistrationConfiguration
     def write()
         dataOutputStream = nil
         begin
-            @logUtil.putF(StringMaker.new().append("Write Configuration: ").append(self.to_s).to_s, self, "write")
-            fileInputStreamFactory = FileStreamFactory.getInstance()
-            fileOutputStream = fileInputStreamFactory.getFileOutputStreamInstance(StringUtil.getInstance().EMPTY_STRING, @FILE)
-            dataOutputStream = AbDataOutputStream.new(fileOutputStream)
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Write Configuration: ").append(self.to_s).to_s, self, "write")
+            fileInputStreamFactory = ::Org::Allbinary::Logic::Io::FileStreamFactory.getInstance()
+            fileOutputStream = fileInputStreamFactory.getFileOutputStreamInstance(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, @FILE)
+            dataOutputStream = ::Org::Allbinary::Logic::Io::AbDataOutputStream.new(fileOutputStream)
             dataOutputStream.writeUTF(self.getRegistrationCode())
             dataOutputStream.flush()
         ensure
-            StreamUtil.getInstance().close(dataOutputStream)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(dataOutputStream)
         end
     end
     
 
     def toString()
-        return StringMaker.new().append("Registration Code: ").append(self.getRegistrationCode()).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Registration Code: ").append(self.getRegistrationCode()).to_s
     end
     alias_method :to_s, :toString
     
@@ -89,19 +88,46 @@ class RegistrationConfiguration
     def getRegistrationCode()
         return @registrationCode
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, RegistrationConfiguration.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RegistrationConfiguration"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/io/AbDataOutputStream"
-require "org/allbinary/logic/io/FileStreamFactory"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/io/file/FileFactory"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
+module ::Java; module Io; autoload :DataInputStream, "java/io/DataInputStream" unless const_defined?(:DataInputStream, false); end; end
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Java; module Io; autoload :OutputStream, "java/io/OutputStream" unless const_defined?(:OutputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory" unless const_defined?(:FileStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil" unless const_defined?(:StreamUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FileFactory, "org/allbinary/logic/io/file/FileFactory" unless const_defined?(:FileFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
 
-class RegistrationConfiguration
-    SINGLETON = RegistrationConfiguration.new()
+begin
+    RegistrationConfiguration.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

@@ -16,11 +16,13 @@
 
 # require "javax/servlet/jsp/PageContext"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Template
+
 class TransformTemplateFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_visual_transform_template_TransformTemplateFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -30,20 +32,19 @@ class TransformTemplateFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_template_TransformTemplateFactory
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(abeClientInformation, templateName, propertiesHashMap, pageContext)
         begin
-            transformInfoEntity = TransformInfoEntityBuilder.getInstance()
+            transformInfoEntity = ::Org::Allbinary::DataPackage::Tables::Transform::Info::TransformInfoEntityBuilder.getInstance()
             transformInfoInterface = transformInfoEntity.get(templateName, propertiesHashMap, pageContext)
-            return TransformInfoObjectFactory.getInstance().getInstance(abeClientInformation, transformInfoInterface)
+            return ::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoObjectFactory.getInstance().getInstance(abeClientInformation, transformInfoInterface)
         rescue StandardError => e
             error = "Failed To Get Instance"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
                 @logUtil.put(error + templateName + "->TemplateFactory", self, "getInstance(viewName, HashMap, PageContext)", e)
             end
             raise e
@@ -81,18 +82,22 @@ class TransformTemplateFactory
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :TransformInfoEntity, "org/allbinary/data/tables/transform/info/TransformInfoEntity"
-autoload :TransformInfoEntityBuilder, "org/allbinary/data/tables/transform/info/TransformInfoEntityBuilder"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :TransformInfoObjectFactory, "org/allbinary/logic/visual/transform/info/TransformInfoObjectFactory"
-autoload :TransformTemplateInterface, "org/allbinary/logic/visual/transform/template/TransformTemplateInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module Transform; module Info; autoload :TransformInfoEntity, "org/allbinary/data/tables/transform/info/TransformInfoEntity" unless const_defined?(:TransformInfoEntity, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module Transform; module Info; autoload :TransformInfoEntityBuilder, "org/allbinary/data/tables/transform/info/TransformInfoEntityBuilder" unless const_defined?(:TransformInfoEntityBuilder, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoObjectFactory, "org/allbinary/logic/visual/transform/info/TransformInfoObjectFactory" unless const_defined?(:TransformInfoObjectFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :TransformTemplateInterface, "org/allbinary/logic/visual/transform/template/TransformTemplateInterface" unless const_defined?(:TransformTemplateInterface, false)
 
 begin
     TransformTemplateFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

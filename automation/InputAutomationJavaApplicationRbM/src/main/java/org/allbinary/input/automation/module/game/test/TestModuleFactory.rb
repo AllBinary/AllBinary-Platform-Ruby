@@ -15,31 +15,36 @@
 # package org.allbinary.input.automation.module.game.test
 
 require "java/lang/Object"
-# require "javax/swing"
+require "java/lang/JavaOverload"
+# require "javax/swing/JPanel"
 require "org/allbinary/input/automation/module/AbstractInputAutomationFactory"
 
-class TestModuleFactory < AbstractInputAutomationFactory
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game; module Test
+
+class TestModuleFactory < ::Org::Allbinary::Input::Automation::ModulePackage::AbstractInputAutomationFactory
     attr_accessor :blankModuleConfigurationJPanel
 
-    def initialize_fields
-        @blankModuleConfigurationJPanel = nil
+    def jfields_org_allbinary_input_automation_module_game_test_TestModuleFactory
+        @blankModuleConfigurationJPanel = nil unless instance_variable_defined?(:@blankModuleConfigurationJPanel)
     end
     
 
     def initialize()
-        super(NAME, BlankModuleConfigurationJPanel.new())
-        initialize_fields
+        super(NAME, ::Org::Allbinary::Input::Automation::ModulePackage::Configuration::BlankModuleConfigurationJPanel.new())
+        jfields_org_allbinary_input_automation_module_game_test_TestModuleFactory
     end
     
 
     def getName()
         return TestModuleFactory::NAME
     end
+    java_overload :getName, 0
     
 
     def getConfigurationJPanel()
         return @blankModuleConfigurationJPanel
     end
+    java_overload :getConfigurationJPanel, 0
     
 
     # throws Exception
@@ -48,12 +53,13 @@ class TestModuleFactory < AbstractInputAutomationFactory
         return nil
         end
     end
+    java_overload :getInstance, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NAME, "Test New Game" + (InputAutomationModuleData::MODULE_NAME_END).to_s)
+            const_set(:NAME, "Test New Game" + (::Org::Allbinary::Input::Automation::ModulePackage::InputAutomationModuleData::MODULE_NAME_END).to_s)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -70,13 +76,15 @@ class TestModuleFactory < AbstractInputAutomationFactory
     end
 end
 
-autoload :InputAutomationModuleData, "org/allbinary/input/automation/module/InputAutomationModuleData"
-autoload :BlankModuleConfigurationJPanel, "org/allbinary/input/automation/module/configuration/BlankModuleConfigurationJPanel"
-autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface"
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; autoload :InputAutomationModuleData, "org/allbinary/input/automation/module/InputAutomationModuleData" unless const_defined?(:InputAutomationModuleData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Configuration; autoload :BlankModuleConfigurationJPanel, "org/allbinary/input/automation/module/configuration/BlankModuleConfigurationJPanel" unless const_defined?(:BlankModuleConfigurationJPanel, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface" unless const_defined?(:RunnableInterface, false); end; end; end
 
 begin
     TestModuleFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

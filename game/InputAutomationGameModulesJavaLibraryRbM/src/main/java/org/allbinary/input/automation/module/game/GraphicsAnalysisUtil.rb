@@ -14,8 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.game
 
-# require "java/awt"
+# require "java/awt/Color"
 # require "java/awt/image/BufferedImage"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game
 
 class GraphicsAnalysisUtil
     
@@ -28,7 +30,7 @@ class GraphicsAnalysisUtil
     def self.getNominator(bufferedImage, min_x, max_x, y)
         (max_x.to_i).step(min_x.to_i + 1, -(1)) do |index|
             colorInteger = (bufferedImage.getRGB(index, y.to_i)).to_s
-            automaticCacheInterface = ColorCacheFactory.getInstance()
+            automaticCacheInterface = ::Org::Allbinary::Graphics::Color::ColorCacheFactory.getInstance()
             colorCacheable = automaticCacheInterface.get(colorInteger)
             color = colorCacheable.getColor()
             if color.getRed() < GraphicsAnalysisUtil::MAX && color.getGreen() < GraphicsAnalysisUtil::MAX && color.getBlue() < GraphicsAnalysisUtil::MAX
@@ -60,13 +62,15 @@ class GraphicsAnalysisUtil
     end
 end
 
-autoload :ColorCacheFactory, "org/allbinary/graphics/color/ColorCacheFactory"
-autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable"
-autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :ColorCacheFactory, "org/allbinary/graphics/color/ColorCacheFactory" unless const_defined?(:ColorCacheFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable" unless const_defined?(:ColorCacheable, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface" unless const_defined?(:AutomaticCacheInterface, false); end; end; end; end; end
 
 begin
     GraphicsAnalysisUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

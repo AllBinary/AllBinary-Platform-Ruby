@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/LocationPaintableInterface"
 
+module ::Org; module Allbinary; module Animation
+
 module AnimationInterface
-    include LocationPaintableInterface
+    include ::Org::Allbinary::Graphics::Paint::LocationPaintableInterface
     
 
     # throws Exception
@@ -25,13 +28,17 @@ module AnimationInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :nextFrame, 0
     
 
     def paintThreedXYZ(graphics, x, y, z)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :paintThreedXYZ, 4
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+
+end; end; end
 

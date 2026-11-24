@@ -14,11 +14,16 @@
 # frozen_string_literal: false
 # package admin.taghelpers
 
+require "java/lang/JavaOverload"
 require "admin/taghelpers/BasicTableInterface"
 require "admin/taghelpers/ModifyTableInterface"
+
+module ::Admin; module Taghelpers
 
 module TableInterface
     include BasicTableInterface
     include ModifyTableInterface
 end
+
+end; end
 

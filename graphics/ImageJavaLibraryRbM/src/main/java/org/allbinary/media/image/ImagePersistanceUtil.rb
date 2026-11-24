@@ -15,16 +15,18 @@
 # require "javax/imageio/ImageWriter"
 # require "javax/imageio/stream/ImageOutputStream"
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImagePersistanceUtil
     attr_accessor :logUtil, :commonStrings
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_media_image_ImagePersistanceUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_ImagePersistanceUtil
     end
     
 
@@ -35,25 +37,24 @@ class ImagePersistanceUtil
 
     # throws Exception
     def saveWithBatik(file, bufferedImage)
-        batikPNGImageWriter = PNGImageWriter.new()
-        fileOutputStream = AbFileOutputStream.createFromAbFile(file)
+        batikPNGImageWriter = ::Org::Apache::Batik::Ext::Awt::Image::Codec::Png::PNGImageWriter.new()
+        fileOutputStream = ::Org::Allbinary::Logic::Io::AbFileOutputStream.createFromAbFile(file)
         begin
             batikPNGImageWriter.writeImage(bufferedImage, fileOutputStream)
         ensure
             fileOutputStream.flush()
-            StreamUtil.getInstance().close(fileOutputStream)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(fileOutputStream)
         end
         @logUtil.putF("Wrote Image: " + (file.getAbsolutePath()).to_s, self, @commonStrings.SAVE)
     end
     
 
-    def saveWithImageIO(filePath, bufferedImage)
+    def saveWithImageIO_j2_1(filePath, bufferedImage)
         self.saveWithImageIO(File.new(filePath), bufferedImage)
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def saveWithImageIO(file, bufferedImage)
+    def saveWithImageIO_j2_2(file, bufferedImage)
         writer = nil
         ios = nil
         begin
@@ -94,6 +95,16 @@ class ImagePersistanceUtil
         end
     end
 
+    def saveWithImageIO(*java_overload_args)
+        return saveWithImageIO_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method saveWithImageIO takes #{java_overload_args.length} arguments"
+    end
+
+    def saveWithImageIO_j2(*java_overload_args)
+        return saveWithImageIO_j2_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::String)) && !(java_overload_args[1].is_a?(::Numeric) || java_overload_args[1] == true || java_overload_args[1] == false || java_overload_args[1].is_a?(::Array))
+        return saveWithImageIO_j2_2(*java_overload_args)
+    end
+
     def self.instance()
         ImagePersistanceUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
@@ -125,17 +136,19 @@ class ImagePersistanceUtil
     end
 end
 
-autoload :Iterator, "java/util/Iterator"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream"
-autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :PNGImageWriter, "org/apache/batik/ext/awt/image/codec/png/PNGImageWriter"
+module ::Java; module Util; autoload :Iterator, "java/util/Iterator" unless const_defined?(:Iterator, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream" unless const_defined?(:AbFileOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil" unless const_defined?(:StreamUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Apache; module Batik; module Ext; module Awt; module Image; module Codec; module Png; autoload :PNGImageWriter, "org/apache/batik/ext/awt/image/codec/png/PNGImageWriter" unless const_defined?(:PNGImageWriter, false); end; end; end; end; end; end; end; end
 
 begin
     ImagePersistanceUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

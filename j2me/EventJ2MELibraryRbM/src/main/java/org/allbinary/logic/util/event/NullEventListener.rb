@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Event
 
 class NullEventListener
     include EventListenerInterface
@@ -22,6 +25,7 @@ class NullEventListener
 
     def onEvent(eventObject)
     end
+    java_overload :onEvent, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -44,11 +48,13 @@ class NullEventListener
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false)
 
 begin
     NullEventListener.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

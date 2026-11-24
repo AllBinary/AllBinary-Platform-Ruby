@@ -14,41 +14,47 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/BaseTouchInput"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class RTSTouchButtonsBuilder < BaseTouchInput
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_input_motion_button_RTSTouchButtonsBuilder
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_RTSTouchButtonsBuilder
     end
     
 
     def getList()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
-            list = BasicArrayListD.new()
+            list = ::Org::Allbinary::Util::BasicArrayListD.new()
             list.addAllList(BasicTouchButtonsBuilder.new().getList())
             list.addAllList(BuildingScrollTouchButtonsBuilder.new().getList())
             list.addAllList(UpgradeDowngradeTouchButtonsBuilder.new().getList())
             return list
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.CONSTRUCTOR, e)
-            return BasicArrayListUtil.getInstance().getImmutableInstance()
+            return ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
         end
     end
+    java_overload :getList, 0
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/input/motion/button/BasicTouchButtonsBuilder"
-require "org/allbinary/input/motion/button/BuildingScrollTouchButtonsBuilder"
-require "org/allbinary/input/motion/button/UpgradeDowngradeTouchButtonsBuilder"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :BasicTouchButtonsBuilder, "org/allbinary/input/motion/button/BasicTouchButtonsBuilder" unless const_defined?(:BasicTouchButtonsBuilder, false)
+autoload :BuildingScrollTouchButtonsBuilder, "org/allbinary/input/motion/button/BuildingScrollTouchButtonsBuilder" unless const_defined?(:BuildingScrollTouchButtonsBuilder, false)
+autoload :UpgradeDowngradeTouchButtonsBuilder, "org/allbinary/input/motion/button/UpgradeDowngradeTouchButtonsBuilder" unless const_defined?(:UpgradeDowngradeTouchButtonsBuilder, false)
+
+end; end; end; end; end
 

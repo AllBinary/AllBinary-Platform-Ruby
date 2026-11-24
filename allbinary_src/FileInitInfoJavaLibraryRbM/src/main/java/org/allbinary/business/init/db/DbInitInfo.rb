@@ -14,25 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.business.init.db
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/business/init/db/DbConnectionInfo"
+
+module ::Org; module Allbinary; module Business; module Init; module Db
 
 class DbInitInfo < DbConnectionInfo
     attr_accessor :commonStrings, :directory, :httpData, :GET_URL, :PACKAGE, :initFileName, :hasRead
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @directory = Directory.getInstance()
-        @httpData = HttpData.getInstance()
+    def jfields_org_allbinary_business_init_db_DbInitInfo
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @directory = ::Org::Allbinary::Logic::Io::FilePackage::Directory::Directory.getInstance()
+        @httpData = ::Org::Allbinary::Logic::Communication::Http::HttpData.getInstance()
         @GET_URL = "getUrl"
-        @PACKAGE = FREEBLISKET_PATH_GLOBALS.getInstance().DBINITPATH
-        @initFileName = nil
+        @PACKAGE = ::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().DBINITPATH
+        @initFileName = nil unless instance_variable_defined?(:@initFileName)
         @hasRead = false
     end
     
 
     def initialize(initFileName, read)
         super()
-        initialize_fields
+        jfields_org_allbinary_business_init_db_DbInitInfo
         @initFileName = initFileName
         if read
             self.updateIfNeeded()
@@ -43,94 +47,98 @@ class DbInitInfo < DbConnectionInfo
     
 
     def getUrl()
-        url = super()
-        if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().PRELOADER)
-            PreLogUtil.put((@httpData.URL_LABEL).to_s + url, self, @GET_URL)
+        url = DbInitInfo.superclass.java_super_method(:getUrl, 0).bind(self).call()
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADER)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put((@httpData.URL_LABEL).to_s + url, self, @GET_URL)
         end
         return url
     end
+    java_overload :getUrl, 0
     
 
     # throws Exception
     def write()
-        _PATH = AbPath.new((URLGLOBALS.getWebappPath()).to_s + @PACKAGE, StringUtil.getInstance().EMPTY_STRING)
+        _PATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new((::Org::Allbinary::Globals::URLGLOBALS.getWebappPath()).to_s + @PACKAGE, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         @directory.create(_PATH)
-        _FILEABPATH = AbPath.new((URLGLOBALS.getWebappPath()).to_s + @PACKAGE, @initFileName)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new((::Org::Allbinary::Globals::URLGLOBALS.getWebappPath()).to_s + @PACKAGE, @initFileName)
         begin
-            newFile = AbFile.createAbFileFromAbPath(_FILEABPATH)
+            newFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
             newFile.createNewFile()
-            dataOutputStream = DataOutputStreamFactory.getInstance().getInstanceForAbFile(newFile)
+            dataOutputStream = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstanceForAbFile(newFile)
             begin
-                cryptedJdbcDriver = WeakCrypt.new(1).encrypt(self.getJdbcDriver()).getBytes()
-                cryptedName = WeakCrypt.new(2).encrypt(self.getName()).getBytes()
-                cryptedUserName = WeakCrypt.new(3).encrypt(self.getUserName()).getBytes()
-                cryptedPassword = WeakCrypt.new(4).encrypt(self.getPassword()).getBytes()
-                cryptedSchema = WeakCrypt.new(5).encrypt(self.getSchema()).getBytes()
-                cryptedServer = WeakCrypt.new(6).encrypt(self.getServer()).getBytes()
-                cryptedPort = WeakCrypt.new(7).encrypt(self.getPort()).getBytes()
-                dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedJdbcDriver))
-                dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedName))
-                dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedUserName))
-                dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedPassword))
-                dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedSchema))
-                dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedServer))
-                dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedPort))
+                cryptedJdbcDriver = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(1).encrypt(self.getJdbcDriver()).getBytes()
+                cryptedName = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(2).encrypt(self.getName()).getBytes()
+                cryptedUserName = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(3).encrypt(self.getUserName()).getBytes()
+                cryptedPassword = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(4).encrypt(self.getPassword()).getBytes()
+                cryptedSchema = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(5).encrypt(self.getSchema()).getBytes()
+                cryptedServer = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(6).encrypt(self.getServer()).getBytes()
+                cryptedPort = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(7).encrypt(self.getPort()).getBytes()
+                dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedJdbcDriver))
+                dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedName))
+                dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedUserName))
+                dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedPassword))
+                dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedSchema))
+                dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedServer))
+                dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedPort))
                 @hasRead = false
             ensure
-                StreamUtil.getInstance().close(dataOutputStream)
+                ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(dataOutputStream)
             end
         rescue StandardError => e
-            if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().PRELOADERERROR)
-                PreLogUtil.putOE("Failed Write: " + _FILEABPATH.to_s, self, "write", e)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADERERROR)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE("Failed Write: " + _FILEABPATH.to_s, self, "write", e)
             end
         end
     end
+    java_overload :write, 0
     
 
     # throws Exception
     def load()
-        _FILEABPATH = AbPath.new((URLGLOBALS.getWebappPath()).to_s + @PACKAGE, @initFileName)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new((::Org::Allbinary::Globals::URLGLOBALS.getWebappPath()).to_s + @PACKAGE, @initFileName)
         begin
-            file = AbFile.createAbFileFromAbPath(_FILEABPATH)
+            file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
             if file.isFile()
-                iFile = AbFileInputStream.new(file)
-                iData = AbDataInputStream.new(iFile)
+                iFile = ::Org::Allbinary::Logic::Io::AbFileInputStream.createFromAbFile(file)
+                iData = ::Org::Allbinary::Logic::Io::AbDataInputStream.new(iFile)
                 begin
-                    decryptedJdbcDriver = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                    decryptedName = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                    decryptedUserName = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                    decryptedPassword = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                    decryptedSchema = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                    decryptedServer = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                    decryptedPort = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                    self.setJdbcDriver(WeakCrypt.new(1).decrypt(decryptedJdbcDriver))
-                    self.setName(WeakCrypt.new(2).decrypt(decryptedName))
-                    self.setUserName(WeakCrypt.new(3).decrypt(decryptedUserName))
-                    self.setPassword(WeakCrypt.new(4).decrypt(decryptedPassword))
-                    self.setSchema(WeakCrypt.new(5).decrypt(decryptedSchema))
-                    self.setServer(WeakCrypt.new(6).decrypt(decryptedServer))
-                    self.setPort(WeakCrypt.new(7).decrypt(decryptedPort))
-                    stringUtil = StringUtil.getInstance()
+                    decryptedJdbcDriver = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                    decryptedName = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                    decryptedUserName = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                    decryptedPassword = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                    decryptedSchema = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                    decryptedServer = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                    decryptedPort = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                    self.setJdbcDriver(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(1).decrypt(decryptedJdbcDriver))
+                    self.setName(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(2).decrypt(decryptedName))
+                    self.setUserName(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(3).decrypt(decryptedUserName))
+                    self.setPassword(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(4).decrypt(decryptedPassword))
+                    self.setSchema(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(5).decrypt(decryptedSchema))
+                    self.setServer(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(6).decrypt(decryptedServer))
+                    self.setPort(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(7).decrypt(decryptedPort))
+                    stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
                 ensure
-                    StreamUtil.getInstance().close(iData)
+                    ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(iData)
                 end
             else
                 @hasRead = false
-                if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().PRELOADER)
-                    PreLogUtil.put("Not a File - Failed Loading: " + _FILEABPATH.to_s, self, @commonStrings.LOAD)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADER)
+                    ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Not a File - Failed Loading: " + _FILEABPATH.to_s, self, @commonStrings.LOAD)
                 end
             end
         rescue StandardError => e
-            if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().PRELOADERERROR)
-                PreLogUtil.putOE("Failed Loading: " + _FILEABPATH.to_s, self, @commonStrings.LOAD, e)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADERERROR)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE("Failed Loading: " + _FILEABPATH.to_s, self, @commonStrings.LOAD, e)
             end
         end
     end
+    java_overload :load, 0
     
 
     def setHasRead(value)
         @hasRead = value
     end
+    java_overload :setHasRead, 1
     
 
     def updateIfNeeded()
@@ -140,71 +148,80 @@ class DbInitInfo < DbConnectionInfo
                 self.load()
             end
         rescue StandardError => e
-            if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().PRELOADERERROR)
-                PreLogUtil.putOE(@commonStrings.EXCEPTION, self, "updateIfNeeded", e)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADERERROR)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(@commonStrings.EXCEPTION, self, "updateIfNeeded", e)
             end
         end
     end
+    java_overload :updateIfNeeded, 0
     
 
     def getName()
         self.updateIfNeeded()
-        if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().PRELOADER)
-            PreLogUtil.put("Name: " + super(), self, "getName")
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADER)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Name: " + DbInitInfo.superclass.java_super_method(:getName, 0).bind(self).call(), self, "getName")
         end
-        return super()
+        return DbInitInfo.superclass.java_super_method(:getName, 0).bind(self).call()
     end
+    java_overload :getName, 0
     
 
     def getUserName()
         self.updateIfNeeded()
-        if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().PRELOADER)
-            PreLogUtil.put("Name: " + (super()).to_s, self, "getUserName")
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADER)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Name: " + (DbInitInfo.superclass.java_super_method(:getUserName, 0).bind(self).call()).to_s, self, "getUserName")
         end
-        return super()
+        return DbInitInfo.superclass.java_super_method(:getUserName, 0).bind(self).call()
     end
+    java_overload :getUserName, 0
     
 
     def getPassword()
         self.updateIfNeeded()
-        return super()
+        return DbInitInfo.superclass.java_super_method(:getPassword, 0).bind(self).call()
     end
+    java_overload :getPassword, 0
     
 
     def getSchema()
         self.updateIfNeeded()
-        return super()
+        return DbInitInfo.superclass.java_super_method(:getSchema, 0).bind(self).call()
     end
+    java_overload :getSchema, 0
     
 
     def getServer()
         self.updateIfNeeded()
-        return super()
+        return DbInitInfo.superclass.java_super_method(:getServer, 0).bind(self).call()
     end
+    java_overload :getServer, 0
     
 
     def getPort()
         self.updateIfNeeded()
-        return super()
+        return DbInitInfo.superclass.java_super_method(:getPort, 0).bind(self).call()
     end
+    java_overload :getPort, 0
 end
 
-require "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/http/HttpData"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
-require "org/allbinary/logic/io/AbDataInputStream"
-require "org/allbinary/logic/io/AbDataOutputStream"
-require "org/allbinary/logic/io/AbFileInputStream"
-require "org/allbinary/logic/io/DataOutputStreamFactory"
-require "org/allbinary/logic/io/StreamUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/file/directory/Directory"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/crypt/DatabaseEncoder"
-require "org/allbinary/logic/system/security/crypt/WeakCrypt"
-require "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Globals; autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS" unless const_defined?(:FREEBLISKET_PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; autoload :HttpData, "org/allbinary/logic/communication/http/HttpData" unless const_defined?(:HttpData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataInputStream, "org/allbinary/logic/io/AbDataInputStream" unless const_defined?(:AbDataInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory" unless const_defined?(:DataOutputStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil" unless const_defined?(:StreamUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :Directory, "org/allbinary/logic/io/file/directory/Directory" unless const_defined?(:Directory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; autoload :DatabaseEncoder, "org/allbinary/logic/system/security/crypt/DatabaseEncoder" unless const_defined?(:DatabaseEncoder, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; autoload :WeakCrypt, "org/allbinary/logic/system/security/crypt/WeakCrypt" unless const_defined?(:WeakCrypt, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end
 

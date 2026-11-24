@@ -15,15 +15,17 @@
 # package org.allbinary.logic.io.file
 
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 class FileListFetcher
     attr_accessor :subDirectory
 
-    def initialize_fields
-        @subDirectory = SubDirectory.getInstance()
+    def jfields_org_allbinary_logic_io_file_FileListFetcher
+        @subDirectory = ::Org::Allbinary::Logic::Io::FilePackage::Directory::SubDirectory.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_io_file_FileListFetcher
     end
     
 
@@ -32,7 +34,7 @@ class FileListFetcher
     end
     
 
-    def getFiles(path)
+    def getFiles_j1(path)
         begin
             files = @subDirectory.search(AbFile.createAbFile(path))
             return files
@@ -44,15 +46,14 @@ class FileListFetcher
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getFiles(path, includeExtensions)
+    def getFiles_j2_1(path, includeExtensions)
         begin
-            includeExtensionBasicArrayList = BasicArrayListD.new()
+            includeExtensionBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
             size = includeExtensions.length
             (0...size).each do |index|
                 includeExtensionBasicArrayList.add(includeExtensions[index])
             end
-            visitorFileFilter = VisitorFileFilter.new(DirectoryOrIncludeFileExtensionBooleanFileVisitor.new(includeExtensionBasicArrayList))
+            visitorFileFilter = ::Org::Allbinary::Logic::Io::FilePackage::Filter::VisitorFileFilter.new(::Org::Allbinary::Logic::Io::FilePackage::Directory::DirectoryOrIncludeFileExtensionBooleanFileVisitor.new(includeExtensionBasicArrayList))
             files = @subDirectory.search(visitorFileFilter, AbFile.createAbFile(path))
             return files
         rescue StandardError => e
@@ -63,12 +64,11 @@ class FileListFetcher
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getFiles(path, includeExtension)
+    def getFiles_j2_2(path, includeExtension)
         begin
-            includeExtensionBasicArrayList = BasicArrayListD.new()
+            includeExtensionBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
             includeExtensionBasicArrayList.add(includeExtension)
-            visitorFileFilter = VisitorFileFilter.new(DirectoryOrIncludeFileExtensionBooleanFileVisitor.new(includeExtensionBasicArrayList))
+            visitorFileFilter = ::Org::Allbinary::Logic::Io::FilePackage::Filter::VisitorFileFilter.new(::Org::Allbinary::Logic::Io::FilePackage::Directory::DirectoryOrIncludeFileExtensionBooleanFileVisitor.new(includeExtensionBasicArrayList))
             files = @subDirectory.search(visitorFileFilter, AbFile.createAbFile(path))
             return files
         rescue StandardError => e
@@ -79,12 +79,11 @@ class FileListFetcher
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getFiles(path, pathIncludes, includeExtension)
+    def getFiles_j3(path, pathIncludes, includeExtension)
         begin
-            includeExtensionBasicArrayList = BasicArrayListD.new()
+            includeExtensionBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
             includeExtensionBasicArrayList.add(includeExtension)
-            visitorFileFilter = VisitorFileFilter.new(DirectoryOrIncludeFileExtensionBooleanFileVisitor.new(includeExtensionBasicArrayList, pathIncludes))
+            visitorFileFilter = ::Org::Allbinary::Logic::Io::FilePackage::Filter::VisitorFileFilter.new(::Org::Allbinary::Logic::Io::FilePackage::Directory::DirectoryOrIncludeFileExtensionBooleanFileVisitor.new(includeExtensionBasicArrayList, pathIncludes))
             files = @subDirectory.search(visitorFileFilter, AbFile.createAbFile(path))
             return files
         rescue StandardError => e
@@ -93,16 +92,28 @@ class FileListFetcher
         end
         return nil
     end
+
+    def getFiles(*java_overload_args)
+        return getFiles_j1(*java_overload_args) if java_overload_args.length == 1
+        return getFiles_j2(*java_overload_args) if java_overload_args.length == 2
+        return getFiles_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method getFiles takes #{java_overload_args.length} arguments"
+    end
+
+    def getFiles_j2(*java_overload_args)
+        return getFiles_j2_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::String)) && (java_overload_args[1].nil? || (java_overload_args[1].is_a?(::Array) && (java_overload_args[1].empty? || (java_overload_args[1][0].nil? || java_overload_args[1][0].is_a?(::String)))))
+        return getFiles_j2_2(*java_overload_args)
+    end
     
 
-    def getTrackedFiles(path, includeExtensions)
+    def getTrackedFiles_j2_1(path, includeExtensions)
         begin
-            includeExtensionBasicArrayList = BasicArrayListD.new()
+            includeExtensionBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
             size = includeExtensions.length
             (0...size).each do |index|
                 includeExtensionBasicArrayList.add(includeExtensions[index])
             end
-            visitorFileFilter = VisitorFileFilter.new(DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor.new(includeExtensionBasicArrayList))
+            visitorFileFilter = ::Org::Allbinary::Logic::Io::FilePackage::Filter::VisitorFileFilter.new(::Org::Allbinary::Logic::Io::FilePackage::Directory::DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor.new(includeExtensionBasicArrayList))
             files = @subDirectory.search(visitorFileFilter, AbFile.createAbFile(path))
             return files
         rescue StandardError => e
@@ -113,12 +124,11 @@ class FileListFetcher
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getTrackedFiles(path, includeExtension)
+    def getTrackedFiles_j2_2(path, includeExtension)
         begin
-            includeExtensionBasicArrayList = BasicArrayListD.new()
+            includeExtensionBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
             includeExtensionBasicArrayList.add(includeExtension)
-            visitorFileFilter = VisitorFileFilter.new(DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor.new(includeExtensionBasicArrayList))
+            visitorFileFilter = ::Org::Allbinary::Logic::Io::FilePackage::Filter::VisitorFileFilter.new(::Org::Allbinary::Logic::Io::FilePackage::Directory::DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor.new(includeExtensionBasicArrayList))
             files = @subDirectory.search(visitorFileFilter, AbFile.createAbFile(path))
             return files
         rescue StandardError => e
@@ -126,12 +136,22 @@ class FileListFetcher
             puts("Error: " + (e).to_s + "\nMsg: " + e.message)
         end
         return nil
+    end
+
+    def getTrackedFiles(*java_overload_args)
+        return getTrackedFiles_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method getTrackedFiles takes #{java_overload_args.length} arguments"
+    end
+
+    def getTrackedFiles_j2(*java_overload_args)
+        return getTrackedFiles_j2_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::String)) && (java_overload_args[1].nil? || (java_overload_args[1].is_a?(::Array) && (java_overload_args[1].empty? || (java_overload_args[1][0].nil? || java_overload_args[1][0].is_a?(::String)))))
+        return getTrackedFiles_j2_2(*java_overload_args)
     end
     
 
     def getDirectories(path)
         begin
-            visitorFileFilter = VisitorFileFilter.new(DirectoryBooleanFileVisitor.new())
+            visitorFileFilter = ::Org::Allbinary::Logic::Io::FilePackage::Filter::VisitorFileFilter.new(::Org::Allbinary::Logic::Io::FilePackage::Directory::DirectoryBooleanFileVisitor.new())
             files = @subDirectory.search(visitorFileFilter, AbFile.createAbFile(path))
             return files
         rescue StandardError => e
@@ -142,25 +162,51 @@ class FileListFetcher
     end
 
     def self.instance()
+        FileListFetcher.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        FileListFetcher.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = FileListFetcher.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FileListFetcher"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/io/file/directory/DirectoryBooleanFileVisitor"
-require "org/allbinary/logic/io/file/directory/DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor"
-require "org/allbinary/logic/io/file/directory/DirectoryOrIncludeFileExtensionBooleanFileVisitor"
-require "org/allbinary/logic/io/file/directory/SubDirectory"
-require "org/allbinary/logic/io/file/filter/VisitorFileFilter"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/logic/io/file/AbFile"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :DirectoryBooleanFileVisitor, "org/allbinary/logic/io/file/directory/DirectoryBooleanFileVisitor" unless const_defined?(:DirectoryBooleanFileVisitor, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor, "org/allbinary/logic/io/file/directory/DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor" unless const_defined?(:DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :DirectoryOrIncludeFileExtensionBooleanFileVisitor, "org/allbinary/logic/io/file/directory/DirectoryOrIncludeFileExtensionBooleanFileVisitor" unless const_defined?(:DirectoryOrIncludeFileExtensionBooleanFileVisitor, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :SubDirectory, "org/allbinary/logic/io/file/directory/SubDirectory" unless const_defined?(:SubDirectory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Filter; autoload :VisitorFileFilter, "org/allbinary/logic/io/file/filter/VisitorFileFilter" unless const_defined?(:VisitorFileFilter, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false)
 require "java/lang/System"
 
-class FileListFetcher
-    @@instance = FileListFetcher.new()
+begin
+    FileListFetcher.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

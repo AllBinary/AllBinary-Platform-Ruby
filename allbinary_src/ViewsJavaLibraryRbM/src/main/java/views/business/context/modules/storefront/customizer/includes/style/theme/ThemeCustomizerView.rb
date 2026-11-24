@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package views.business.context.modules.storefront.customizer.includes.style.theme
 
+require "java/lang/JavaOverload"
 require "views/business/context/modules/storefront/HttpStoreComponentView"
 
-class ThemeCustomizerView < HttpStoreComponentView
+module ::Views; module Business; module Context; module Modules; module Storefront; module Customizer; module Includes; module Style; module Theme
+
+class ThemeCustomizerView < ::Views::Business::Context::Modules::Storefront::HttpStoreComponentView
     attr_accessor :logUtil, :validationInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @validationInterface = nil
+    def jfields_views_business_context_modules_storefront_customizer_includes_style_theme_ThemeCustomizerView
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @validationInterface = nil unless instance_variable_defined?(:@validationInterface)
     end
     
 
     def initialize(transformInfoInterface)
         super(transformInfoInterface)
-        initialize_fields
+        jfields_views_business_context_modules_storefront_customizer_includes_style_theme_ThemeCustomizerView
     end
     
 
@@ -35,24 +38,30 @@ class ThemeCustomizerView < HttpStoreComponentView
     def addDomNodeInterfaces()
         self.addDomNodeInterface(@validationInterface)
     end
+    java_overload :addDomNodeInterfaces, 0
     
 
     # throws Exception
     def view()
         begin
             self.addDomNodeInterfaces()
-            return super()
+            return ThemeCustomizerView.superclass.java_super_method(:view, 0).bind(self).call()
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "view()", e)
             end
             raise e
         end
     end
+    java_overload :view, 0
 end
 
-autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface" unless const_defined?(:DomNodeInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate; autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface" unless const_defined?(:ValidationInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end; end; end; end
 

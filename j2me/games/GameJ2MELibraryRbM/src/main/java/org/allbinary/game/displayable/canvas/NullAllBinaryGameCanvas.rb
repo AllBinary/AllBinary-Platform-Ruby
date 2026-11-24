@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvasInterface"
+
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
 
 class NullAllBinaryGameCanvas
     include AllBinaryGameCanvasInterface
@@ -23,31 +26,37 @@ class NullAllBinaryGameCanvas
     def getLayerManager()
         raise RuntimeError.new()
     end
+    java_overload :getLayerManager, 0
     
 
     def addCommand(cmd)
         raise RuntimeError.new()
     end
+    java_overload :addCommand, 1
     
 
     def getHeight()
         raise RuntimeError.new()
     end
+    java_overload :getHeight, 0
     
 
     def getWidth()
         raise RuntimeError.new()
     end
+    java_overload :getWidth, 0
     
 
     def removeCommand(cmd)
         raise RuntimeError.new()
     end
+    java_overload :removeCommand, 1
     
 
     def setCommandListener(l)
         raise RuntimeError.new()
     end
+    java_overload :setCommandListener, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -70,13 +79,15 @@ class NullAllBinaryGameCanvas
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
-autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager" unless const_defined?(:AllBinaryGameLayerManager, false); end; end; end; end
 
 begin
     NullAllBinaryGameCanvas.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/form/item/ABTextItem"
+
+module ::Org; module Allbinary; module Graphics; module Form; module Item
 
 class SelectableTextItem < ABTextItem
     
@@ -27,6 +30,7 @@ class SelectableTextItem < ABTextItem
     def isFocusable()
         return true
     end
+    java_overload :isFocusable, 0
     
 
     def paintXY(graphics, x, y)
@@ -37,9 +41,12 @@ class SelectableTextItem < ABTextItem
         end
         graphics.drawString(self.getLabel(), x + 2, y, 0)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :ABStringComponent, "org/allbinary/graphics/form/item/ABStringComponent"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+autoload :ABStringComponent, "org/allbinary/graphics/form/item/ABStringComponent" unless const_defined?(:ABStringComponent, false)
+
+end; end; end; end; end
 

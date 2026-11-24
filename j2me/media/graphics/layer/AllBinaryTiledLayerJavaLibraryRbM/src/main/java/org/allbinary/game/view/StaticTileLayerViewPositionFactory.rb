@@ -14,18 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.game.view
 
+require "java/lang/JavaOverload"
 require "org/allbinary/view/ViewPositionFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module View
+
 class StaticTileLayerViewPositionFactory
-    include ViewPositionFactoryInterface
+    include ::Org::Allbinary::View::ViewPositionFactoryInterface
     
 
     # throws Exception
     def getInstance()
         return StaticTileLayerIntoPositionViewPosition.new()
     end
+    java_overload :getInstance, 0
 end
 
-require "org/allbinary/view/ViewPositionBase"
-require "org/allbinary/game/view/StaticTileLayerIntoPositionViewPosition"
+module ::Org; module Allbinary; module View; autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false); end; end; end
+autoload :StaticTileLayerIntoPositionViewPosition, "org/allbinary/game/view/StaticTileLayerIntoPositionViewPosition" unless const_defined?(:StaticTileLayerIntoPositionViewPosition, false)
+
+end; end; end; end
 

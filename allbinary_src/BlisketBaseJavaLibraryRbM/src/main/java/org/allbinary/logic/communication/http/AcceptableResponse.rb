@@ -15,17 +15,19 @@
 # package org.allbinary.logic.communication.http
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http
+
 class AcceptableResponse
     attr_accessor :logUtil, :commonStrings
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_logic_communication_http_AcceptableResponse
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
     
 
     def initialize(candidate, tagName, index)
-        initialize_fields
+        jfields_org_allbinary_logic_communication_http_AcceptableResponse
         @logUtil.putF(tagName, self, @commonStrings.CONSTRUCTOR)
         acceptableResponseUtil = AcceptableResponseUtil.getInstance()
         acceptableResponseUtil.candidateVector.addAt(index, candidate)
@@ -33,7 +35,9 @@ class AcceptableResponse
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AcceptableResponseUtil, "org/allbinary/logic/communication/http/AcceptableResponseUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AcceptableResponseUtil, "org/allbinary/logic/communication/http/AcceptableResponseUtil" unless const_defined?(:AcceptableResponseUtil, false)
+
+end; end; end; end; end
 

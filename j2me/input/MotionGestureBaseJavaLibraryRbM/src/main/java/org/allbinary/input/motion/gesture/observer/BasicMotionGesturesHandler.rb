@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.gesture.observer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class BasicMotionGesturesHandler < BasicEventHandler
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer
+
+class BasicMotionGesturesHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def self.getInstance()
@@ -34,6 +37,7 @@ class BasicMotionGesturesHandler < BasicEventHandler
         baseMotionGestureEventListener = eventListenerInterface
         baseMotionGestureEventListener.onMotionGestureEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -56,14 +60,16 @@ class BasicMotionGesturesHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :BaseMotionGestureEventListener, "org/allbinary/input/motion/gesture/observer/BaseMotionGestureEventListener"
-autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :BaseMotionGestureEventListener, "org/allbinary/input/motion/gesture/observer/BaseMotionGestureEventListener" unless const_defined?(:BaseMotionGestureEventListener, false)
+autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent" unless const_defined?(:MotionGestureEvent, false)
 
 begin
     BasicMotionGesturesHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

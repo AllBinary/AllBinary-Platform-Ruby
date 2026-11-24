@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.anyType
 
+require "java/lang/JavaClass"
 # require "java/lang/reflect/Method"
+
+module ::Org; module Allbinary; module Logic; module Java; module AnyType
 
 class MethodUtil
     
@@ -24,7 +27,7 @@ class MethodUtil
     
 
     def self.viewAll(myClass, lineBreak)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         method = myClass.getMethods()
         stringBuffer.append("Methods: ")
         stringBuffer.append(lineBreak)
@@ -41,6 +44,8 @@ class MethodUtil
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :ParamsUtil, "org/allbinary/logic/java/anyType/ParamsUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+autoload :ParamsUtil, "org/allbinary/logic/java/anyType/ParamsUtil" unless const_defined?(:ParamsUtil, false)
+
+end; end; end; end; end
 

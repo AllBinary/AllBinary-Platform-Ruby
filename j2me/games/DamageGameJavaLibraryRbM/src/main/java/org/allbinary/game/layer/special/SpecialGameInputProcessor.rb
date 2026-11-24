@@ -14,22 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.special
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/GameInputProcessor"
 
-class SpecialGameInputProcessor < GameInputProcessor
+module ::Org; module Allbinary; module Game; module Layer; module Special
+
+class SpecialGameInputProcessor < ::Org::Allbinary::Game::Input::GameInputProcessor
     attr_accessor :collidableDestroyableDamageableLayer
 
-    def initialize_fields
-        @collidableDestroyableDamageableLayer = nil
+    def jfields_org_allbinary_game_layer_special_SpecialGameInputProcessor
+        @collidableDestroyableDamageableLayer = nil unless instance_variable_defined?(:@collidableDestroyableDamageableLayer)
     end
     
 
     def initialize(collidableDestroyableDamageableLayer)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_layer_special_SpecialGameInputProcessor
         @collidableDestroyableDamageableLayer = collidableDestroyableDamageableLayer
     end
 end
 
-autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false)
+
+end; end; end; end; end
 

@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/MotionRecognizer"
+
+module ::Org; module Allbinary; module Input; module Motion
 
 class OnlyTouchButtonRecognizer < MotionRecognizer
     attr_accessor :touchButtonRecognizer, :touchButtonProcessing
 
-    def initialize_fields
-        @touchButtonRecognizer = nil
+    def jfields_org_allbinary_input_motion_OnlyTouchButtonRecognizer
+        @touchButtonRecognizer = nil unless instance_variable_defined?(:@touchButtonRecognizer)
         @touchButtonProcessing = false
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        @touchButtonRecognizer = TouchButtonRecognizer.new()
+        jfields_org_allbinary_input_motion_OnlyTouchButtonRecognizer
+        @touchButtonRecognizer = ::Org::Allbinary::Input::Motion::Button::TouchButtonRecognizer.new()
     end
     
 
@@ -38,6 +41,7 @@ class OnlyTouchButtonRecognizer < MotionRecognizer
             @touchButtonProcessing = true
         end
     end
+    java_overload :processStartMotionEvent, 4
     
 
     # throws Exception
@@ -49,6 +53,7 @@ class OnlyTouchButtonRecognizer < MotionRecognizer
             return
         end
     end
+    java_overload :processEndMotionEvent, 4
     
 
     # throws Exception
@@ -57,7 +62,10 @@ class OnlyTouchButtonRecognizer < MotionRecognizer
             @touchButtonRecognizer.pressTouchButtonInput(x, y, deviceId)
         end
     end
+    java_overload :processDraggedMotionEvent, 4
 end
 
-autoload :TouchButtonRecognizer, "org/allbinary/input/motion/button/TouchButtonRecognizer"
+module ::Org; module Allbinary; module Input; module Motion; module Button; autoload :TouchButtonRecognizer, "org/allbinary/input/motion/button/TouchButtonRecognizer" unless const_defined?(:TouchButtonRecognizer, false); end; end; end; end; end
+
+end; end; end; end
 

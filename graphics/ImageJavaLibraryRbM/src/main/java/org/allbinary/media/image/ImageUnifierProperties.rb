@@ -15,18 +15,20 @@
 # package org.allbinary.media.image
 
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageUnifierProperties
     attr_accessor :rows, :columns, :imageUnifierCell
 
-    def initialize_fields
-        @rows = nil
-        @columns = nil
-        @imageUnifierCell = nil
+    def jfields_org_allbinary_media_image_ImageUnifierProperties
+        @rows = nil unless instance_variable_defined?(:@rows)
+        @columns = nil unless instance_variable_defined?(:@columns)
+        @imageUnifierCell = nil unless instance_variable_defined?(:@imageUnifierCell)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageUnifierProperties
     end
     
 
@@ -70,5 +72,7 @@ class ImageUnifierProperties
     end
 end
 
-autoload :ImageUnifierCell, "org/allbinary/media/image/ImageUnifierCell"
+autoload :ImageUnifierCell, "org/allbinary/media/image/ImageUnifierCell" unless const_defined?(:ImageUnifierCell, false)
+
+end; end; end; end
 

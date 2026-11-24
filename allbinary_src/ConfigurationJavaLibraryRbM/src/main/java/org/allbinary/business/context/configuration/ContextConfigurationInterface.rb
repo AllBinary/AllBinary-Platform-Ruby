@@ -15,18 +15,24 @@
 # package org.allbinary.business.context.configuration
 
 
+module ::Org; module Allbinary; module Business; module Context; module Configuration
+
 module ContextConfigurationInterface
     
 
     def getEmailServerConfigurationInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setEmailServerConfigurationInterface(emailServerConfigurationInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module Server; autoload :EmailServerConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/server/EmailServerConfigurationInterface" unless const_defined?(:EmailServerConfigurationInterface, false); end; end; end; end; end; end; end
+
+end; end; end; end; end
 

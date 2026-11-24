@@ -15,13 +15,18 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 module CurrentGeographicMapCellPositionInterface
     
 
     def getCurrentGeographicMapCellPosition()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
+autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false)
+
+end; end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.sql
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/communication/sql/AbSqlBasic"
+
+module ::Org; module Allbinary; module Logic; module Communication; module Sql
 
 class AbSqlTablePresentation < AbSqlBasic
     
@@ -24,5 +27,7 @@ class AbSqlTablePresentation < AbSqlBasic
     end
 end
 
-autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo"
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo" unless const_defined?(:DbConnectionInfo, false); end; end; end; end; end
+
+end; end; end; end; end
 

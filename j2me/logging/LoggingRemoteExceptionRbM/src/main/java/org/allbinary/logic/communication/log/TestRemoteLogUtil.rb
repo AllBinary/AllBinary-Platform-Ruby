@@ -15,13 +15,15 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 class TestRemoteLogUtil
     
 
     def initialize()
-        Globals.getInstance().init(self.class.getClassLoader(), TestRemoteLogUtil::PATH)
+        ::Org::Allbinary::Globals::Globals.getInstance().init(self.class.getClassLoader(), TestRemoteLogUtil::PATH)
         logUtil = LogUtil.getInstance()
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil.put(commonStrings.EXCEPTION, "Test", "TestClass", StandardError.new("Pretend Exception"))
     end
     
@@ -30,13 +32,37 @@ class TestRemoteLogUtil
     def self.main(args)
         TestRemoteLogUtil.new()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:PATH, "G:\\mnt\\bc\\mydev\\work\\allbinary_src\\licensing\\data\\")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TestRemoteLogUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:PATH].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/globals/Globals"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
+module ::Org; module Allbinary; module Globals; autoload :Globals, "org/allbinary/globals/Globals" unless const_defined?(:Globals, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false)
 
-class TestRemoteLogUtil
-    PATH = "G:\\mnt\\bc\\mydev\\work\\allbinary_src\\licensing\\data\\"
+begin
+    TestRemoteLogUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

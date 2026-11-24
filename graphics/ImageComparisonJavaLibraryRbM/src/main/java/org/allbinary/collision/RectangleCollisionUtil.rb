@@ -14,7 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.collision
 
-# require "java/awt"
+# require "java/awt/Rectangle"
+
+module ::Org; module Allbinary; module Collision
 
 class RectangleCollisionUtil
     
@@ -23,8 +25,8 @@ class RectangleCollisionUtil
     end
     
 
-    def self.isCollision(rectangle, point)
-        if point.getX() > ((rectangle.x).to_i + rectangle.getWidth()) || point.getY() > ((rectangle.y).to_i + rectangle.getHeight()) || point.getX() < rectangle.x || point.getY() < rectangle.y
+    def self.isCollision_j2_1(rectangle, point)
+        if point.getX() > (((rectangle.x).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + rectangle.getWidth()) || point.getY() > (((rectangle.y).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + rectangle.getHeight()) || point.getX() < rectangle.x || point.getY() < rectangle.y
             return false
         else
             return true
@@ -32,21 +34,32 @@ class RectangleCollisionUtil
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def self.isCollision(rectangle1, rectangle2)
+    def self.isCollision_j2_2(rectangle1, rectangle2)
         return RectangleCollisionUtil.isCollision(rectangle1.x, rectangle1.y, rectangle1.x + rectangle1.width, rectangle1.y + rectangle1.height, rectangle2.x, rectangle2.y, rectangle2.x + rectangle2.width, rectangle2.y + rectangle2.height)
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def self.isCollision(rectX1, rectY1, rectX2, rectY2, rect2X1, rect2Y1, rect2X2, rect2Y2)
+    def self.isCollision_j8(rectX1, rectY1, rectX2, rectY2, rect2X1, rect2Y1, rect2X2, rect2Y2)
         if rect2X1 >= rectX2 || rect2Y1 >= rectY2 || rect2X2 <= rectX1 || rect2Y2 <= rectY1
             return false
         else
             return true
         end
     end
+
+    def self.isCollision(*java_overload_args)
+        return isCollision_j2(*java_overload_args) if java_overload_args.length == 2
+        return isCollision_j8(*java_overload_args) if java_overload_args.length == 8
+        raise ArgumentError, "No method isCollision takes #{java_overload_args.length} arguments"
+    end
+
+    def self.isCollision_j2(*java_overload_args)
+        return isCollision_j2_1(*java_overload_args) if true && !(java_overload_args[0].is_a?(::Numeric) || java_overload_args[0] == true || java_overload_args[0] == false || java_overload_args[0].is_a?(::Array)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::Org::Allbinary::Graphics::GPoint))
+        return isCollision_j2_2(*java_overload_args)
+    end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+
+end; end; end
 

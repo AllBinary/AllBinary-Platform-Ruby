@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
+require "java/lang/JavaOverload"
 # require "java/io/FileNotFoundException"
 require "java/io/FileOutputStream"
 
-class AbFileOutputStream < FileOutputStream
+module ::Org; module Allbinary; module Logic; module Io
+
+class AbFileOutputStream < ::Java::Io::FileOutputStream
     
 
     # throws FileNotFoundException
@@ -49,6 +52,8 @@ class AbFileOutputStream < FileOutputStream
     end
 end
 
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil" unless const_defined?(:AbFileNativeUtil, false); end; end; end; end; end
+
+end; end; end; end
 

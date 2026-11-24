@@ -14,17 +14,22 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/JavaOverload"
 require "admin/tags/TableTag"
+
+module ::Admin; module Tags
 
 class InitTag < TableTag
     
 
     def initialize()
         super()
-        self.setTagHelperFactory(InitHelperFactory.new())
-        self.setTagRequestHelperFactory(InitHelperFactory.new())
+        self.setTagHelperFactory(::Admin::Taghelpers::InitHelperFactory.new())
+        self.setTagRequestHelperFactory(::Admin::Taghelpers::InitHelperFactory.new())
     end
 end
 
-autoload :InitHelperFactory, "admin/taghelpers/InitHelperFactory"
+module ::Admin; module Taghelpers; autoload :InitHelperFactory, "admin/taghelpers/InitHelperFactory" unless const_defined?(:InitHelperFactory, false); end; end
+
+end; end
 

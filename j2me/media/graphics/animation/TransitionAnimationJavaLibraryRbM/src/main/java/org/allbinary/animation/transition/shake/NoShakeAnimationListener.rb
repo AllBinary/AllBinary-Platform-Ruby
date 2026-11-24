@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.transition.shake
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/transition/shake/ShakeAnimationListener"
+
+module ::Org; module Allbinary; module Animation; module Transition; module Shake
 
 class NoShakeAnimationListener < ShakeAnimationListener
 
@@ -44,4 +47,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

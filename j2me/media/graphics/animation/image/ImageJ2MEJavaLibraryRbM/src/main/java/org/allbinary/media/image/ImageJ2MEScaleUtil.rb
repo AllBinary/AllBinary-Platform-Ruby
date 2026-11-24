@@ -15,6 +15,8 @@
 # package org.allbinary.media.image
 
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageJ2MEScaleUtil
     
 
@@ -42,9 +44,9 @@ class ImageJ2MEScaleUtil
     def scale(image, width, height)
         sourceWidth = image.getWidth()
         sourceHeight = image.getHeight()
-        originalData = Array.new(image.getWidth() * image.getHeight(), 0)
+        originalData = (Array.new(image.getWidth() * image.getHeight(), 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         image.getRGB(originalData, 0, image.getWidth(), 0, 0, image.getWidth(), image.getHeight())
-        scaledData = Array.new(width * height, 0)
+        scaledData = (Array.new(width * height, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         heightRatioFactor = (8 * sourceHeight) / height
         widthRatioFactor = (8 * sourceWidth) / width
         scaledIndex = scaledData.length - 1
@@ -59,7 +61,7 @@ class ImageJ2MEScaleUtil
                 scaledData[((scaledIndex -= 1) + 1)] = originalData[(sourceWidth * dy) + dx]
             end
         end
-        scaledImage = Image.createRGBImage(scaledData, width, height, true)
+        scaledImage = ::Javax::Microedition::Lcdui::Image.createRGBImage(scaledData, width, height, true)
         return scaledImage
     end
 
@@ -94,11 +96,13 @@ class ImageJ2MEScaleUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
 
 begin
     ImageJ2MEScaleUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

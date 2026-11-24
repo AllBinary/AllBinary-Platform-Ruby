@@ -15,10 +15,12 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class GameFeatureFactory
     attr_accessor :SOUND, :MUSIC, :SCREEN_SHAKE, :POST_IMAGE_LOADING_MODIFICATION, :HEALTH_BARS, :DAMAGE_FLOATERS, :GAME_INPUT_LAYER_PROCESSOR, :ARTIFICIAL_INTELLEGENCE_PROCESSOR, :COLLIDABLE_INTERFACE_LAYER_PROCESSOR, :TICKABLE_LAYER_PROCESSOR, :CHEATING, :DROPPED_ITEMS, :DROPPED_ITEMS_FROM_DEATH, :TEST_DESTROYED_LAYER_PROCESSOR, :COLLISIONS_WITH_SOURCE, :COLLISIONS_FORCED_TWO_DIMENSIONAL
 
-    def initialize_fields
+    def jfields_org_allbinary_game_configuration_feature_GameFeatureFactory
         @SOUND = GameFeature.new("Sound")
         @MUSIC = GameFeature.new("Music")
         @SCREEN_SHAKE = Feature.new("Screen Shake")
@@ -44,7 +46,7 @@ class GameFeatureFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_GameFeatureFactory
     end
 
     def self.instance()
@@ -78,12 +80,14 @@ class GameFeatureFactory
     end
 end
 
-autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
-autoload :GameFeature, "org/allbinary/game/configuration/feature/GameFeature"
+autoload :Feature, "org/allbinary/game/configuration/feature/Feature" unless const_defined?(:Feature, false)
+autoload :GameFeature, "org/allbinary/game/configuration/feature/GameFeature" unless const_defined?(:GameFeature, false)
 
 begin
     GameFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

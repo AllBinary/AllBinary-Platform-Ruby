@@ -15,6 +15,10 @@
 # package org.allbinary.game.layer.behavior
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Behavior
+
 class GameLayerBehavior
 end
+
+end; end; end; end; end
 

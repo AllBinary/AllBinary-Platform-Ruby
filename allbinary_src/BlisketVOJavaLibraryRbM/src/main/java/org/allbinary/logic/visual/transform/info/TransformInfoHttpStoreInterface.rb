@@ -14,19 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.info
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
 
 module TransformInfoHttpStoreInterface
     include TransformInfoHttpInterface
     
 
     def setStoreName(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setStoreName, 1
     
 
     def getStoreName()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getStoreName, 0
 end
+
+end; end; end; end; end; end
 

@@ -14,32 +14,39 @@
 # frozen_string_literal: false
 # package tags
 
+require "java/lang/JavaOverload"
 require "tags/CustomTagSupport"
+
+module ::Tags
 
 class CommandTag < CustomTagSupport
     attr_accessor :tagStrings, :command
 
-    def initialize_fields
+    def jfields_tags_CommandTag
         @tagStrings = TagStrings.getInstance()
-        @command = nil
+        @command = nil unless instance_variable_defined?(:@command)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_tags_CommandTag
     end
     
 
     def setCommand(command)
         @command = command
     end
+    java_overload :setCommand, 1
     
 
     def getCommand()
         return @command
     end
+    java_overload :getCommand, 0
 end
 
-autoload :TagStrings, "tags/TagStrings"
+autoload :TagStrings, "tags/TagStrings" unless const_defined?(:TagStrings, false)
+
+end
 

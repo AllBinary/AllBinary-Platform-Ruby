@@ -18,10 +18,12 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module StringPackage
+
 class CommonLabels
     attr_accessor :WIDTH_LABEL, :HEIGHT_LABEL, :END_LABEL, :TOTAL_LABEL, :INDEX_LABEL, :START_LABEL, :COMMAND_LABEL, :NAME_LABEL, :START, :ELAPSED, :CURRENT, :NEXT, :ITEM_LABEL, :RESULT_, :COLON_SEP
 
-    def initialize_fields
+    def jfields_org_allbinary_string_CommonLabels
         @WIDTH_LABEL = " Width: "
         @HEIGHT_LABEL = " Height: "
         @END_LABEL = "End: "
@@ -40,7 +42,7 @@ class CommonLabels
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_string_CommonLabels
     end
     
 
@@ -84,4 +86,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -16,11 +16,13 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class TouchButtonFactory
     attr_accessor :LIST, :list, :savedList, :saved
 
-    def initialize_fields
-        @LIST = BasicArrayListUtil.getInstance().getImmutableInstance()
+    def jfields_org_allbinary_input_motion_button_TouchButtonFactory
+        @LIST = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
         @list = @LIST
         @savedList = @LIST
         @saved = false
@@ -33,7 +35,7 @@ class TouchButtonFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchButtonFactory
     end
     
 
@@ -45,7 +47,7 @@ class TouchButtonFactory
 
     def toggle(save, list)
         java_monitor.synchronize do
-        if list != BasicArrayListUtil.getInstance().getImmutableInstance()
+        if list != ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
             @savedList = list
             if !@saved
                 @list = @savedList
@@ -101,12 +103,14 @@ class TouchButtonFactory
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
 
 begin
     TouchButtonFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

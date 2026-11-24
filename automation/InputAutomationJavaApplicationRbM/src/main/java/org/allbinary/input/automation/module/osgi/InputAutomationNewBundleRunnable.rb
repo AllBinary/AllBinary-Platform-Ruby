@@ -15,38 +15,40 @@
 # package org.allbinary.input.automation.module.osgi
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 # require "java/io/File"
 # require "java/io/FileFilter"
-# require "java/io/FileInputStream"
 # require "java/net/URL"
 # require "java/util/Set"
 # require "java/util/jar/JarInputStream"
-# require "java/util/jar/Manifest"
 require "org/allbinary/thread/RunnableInterface"
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Osgi
+
 class InputAutomationNewBundleRunnable
-    include RunnableInterface
+    include ::Org::Allbinary::ThreadPackage::RunnableInterface
     attr_accessor :logUtil, :commonStrings, :inputAutomationBundleActivator, :running, :fileBasicArrayList
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @inputAutomationBundleActivator = nil
-        @running = false
-        @fileBasicArrayList = nil
+    def jfields_org_allbinary_input_automation_module_osgi_InputAutomationNewBundleRunnable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @inputAutomationBundleActivator = nil unless instance_variable_defined?(:@inputAutomationBundleActivator)
+        @running = false unless instance_variable_defined?(:@running)
+        @fileBasicArrayList = nil unless instance_variable_defined?(:@fileBasicArrayList)
     end
     
 
     def initialize(inputAutomationBundleActivator)
-        initialize_fields
+        jfields_org_allbinary_input_automation_module_osgi_InputAutomationNewBundleRunnable
         @inputAutomationBundleActivator = inputAutomationBundleActivator
-        @fileBasicArrayList = BasicArrayListD.new()
+        @fileBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     # throws Exception
     def setThread(thread)
     end
+    java_overload :setThread, 1
     
 
     def isRunning()
@@ -54,6 +56,7 @@ class InputAutomationNewBundleRunnable
         return @running
         end
     end
+    java_overload :isRunning, 0
     
 
     def setRunning(running)
@@ -61,6 +64,7 @@ class InputAutomationNewBundleRunnable
         @running = running
         end
     end
+    java_overload :setRunning, 1
     
 
     # throws Exception
@@ -76,12 +80,13 @@ class InputAutomationNewBundleRunnable
             end
         end
     end
+    java_overload :updateModules, 0
     
 
     # throws Exception
     def getAllJarSymbolicNameHashMap()
         @logUtil.putF(@commonStrings.START, self, "getAllJarSymbolicNameHashMap")
-        hashMap = StdUtil.getInstance().createHashMap()
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         jarFileBasicArrayList = self.getJarModuleFileBasicArrayList()
         @logUtil.putF("Jar Module Files: " + (jarFileBasicArrayList).to_s, self, "getAllJarSymbolicNameHashMap")
         size = jarFileBasicArrayList.size()
@@ -89,12 +94,12 @@ class InputAutomationNewBundleRunnable
         (0...size).each do |index|
             file = jarFileBasicArrayList.get(index)
             if !file.isDirectory()
-                fileInputStream = FileInputStream.new(file)
+                fileInputStream = ::Java::Io::FileInputStream.new(file)
                 jarInputStream = JarInputStream.new(fileInputStream)
                 manifest = jarInputStream.getManifest()
                 if manifest == nil
                 else
-                    symbolicName = manifest.getMainAttributes().getValue(Constants::BUNDLE_SYMBOLICNAME)
+                    symbolicName = manifest.getMainAttributes().getValue(::Org::Osgi::Framework::Constants::BUNDLE_SYMBOLICNAME)
                     if symbolicName != nil
                         hashMap.put(symbolicName, URL.new(InputAutomationNewBundleRunnable::FILE + file.getAbsolutePath()))
                     end
@@ -103,28 +108,30 @@ class InputAutomationNewBundleRunnable
         end
         return hashMap
     end
+    java_overload :getAllJarSymbolicNameHashMap, 0
     
 
     def getJarModuleFileBasicArrayList()
         @logUtil.putF(@commonStrings.START, self, "getJarModuleFileBasicArrayList")
-        baseJarPath = System.getProperty(JAR_DIR_PROP)
+        baseJarPath = ::Java::Lang::System.getProperty(JAR_DIR_PROP)
         if baseJarPath.start_with?(InputAutomationNewBundleRunnable::FILE)
             baseJarPath = baseJarPath[InputAutomationNewBundleRunnable::FILE.length()..]
         end
-        jarFileFilter = BasicFileFilterUtil.getInstance(".jar")
+        jarFileFilter = ::Org::Allbinary::Logic::Io::FilePackage::Filter::BasicFileFilterUtil.getInstance(".jar")
         path = baseJarPath + (InputAutomationNewBundleRunnable::INPUT_AUTMATION_MODULE_BUNDLE_JAR_PATH).to_s
         @logUtil.putF("Path: " + path, self, "getJarModuleFileBasicArrayList")
         file = File.new(path)
         @logUtil.putF("File: " + (file.getAbsolutePath()).to_s + " isDirectory: " + (file.isDirectory()).to_s, self, "getJarModuleFileBasicArrayList")
-        return SubDirectory.getInstance().search(jarFileFilter, FileWrapperUtil.wrapFile(file))
+        return ::Org::Allbinary::Logic::Io::FilePackage::Directory::SubDirectory.getInstance().search(jarFileFilter, ::Org::Allbinary::Logic::Io::FilePackage::FileWrapperUtil.wrapFile(file))
     end
+    java_overload :getJarModuleFileBasicArrayList, 0
     
 
     # throws Exception
     def getInstalledJarSymbolicNameBasicArrayList()
         @logUtil.putF(@commonStrings.START, self, "getInstalledJarSymbolicNameBasicArrayList")
-        vector = BasicArrayListD.new()
-        bundleContext = InputAutomationBundleActivator.getBundleContext()
+        vector = ::Org::Allbinary::Util::BasicArrayListD.new()
+        bundleContext = ::Bundle::Input::Automation::InputAutomationBundleActivator.getBundleContext()
         bundleArray = bundleContext.getBundles()
         if bundleArray != nil
             @logUtil.putF("bundleArray: " + (bundleArray.length).to_s, self, "getInputAutomationModuleServices")
@@ -135,11 +142,12 @@ class InputAutomationNewBundleRunnable
         end
         return vector
     end
+    java_overload :getInstalledJarSymbolicNameBasicArrayList, 0
     
 
     # throws Exception
     def isInstalled(symbolicName)
-        @logUtil.putF((CommonLabels.getInstance().START).to_s + symbolicName, self, "isInstalled")
+        @logUtil.putF((::Org::Allbinary::StringPackage::CommonLabels.getInstance().START).to_s + symbolicName, self, "isInstalled")
         list = self.getInstalledJarSymbolicNameBasicArrayList()
         size = list.size()
         nextSymbolicName = nil
@@ -151,12 +159,13 @@ class InputAutomationNewBundleRunnable
         end
         return false
     end
+    java_overload :isInstalled, 1
     
 
     # throws Exception
     def findNewModules()
         @logUtil.putF(@commonStrings.START, self, "findNewModules")
-        vector = BasicArrayListD.new()
+        vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         hashMap = self.getAllJarSymbolicNameHashMap()
         @logUtil.putF("All: " + (hashMap).to_s, self, "findNewModules")
         set = hashMap.keySet()
@@ -170,24 +179,26 @@ class InputAutomationNewBundleRunnable
         end
         return vector
     end
+    java_overload :findNewModules, 0
     
 
     # throws Exception
     def install(url)
-        @logUtil.putF(CommonLabels.getInstance().START + url, self, "install")
-        bundleContext = InputAutomationBundleActivator.getBundleContext()
+        @logUtil.putF(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START + url, self, "install")
+        bundleContext = ::Bundle::Input::Automation::InputAutomationBundleActivator.getBundleContext()
         return bundleContext.installBundle(url.to_s)
     end
+    java_overload :install, 1
     
 
     def run()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.RUN)
             self.setRunning(true)
-            timeHelper = TimeDelayHelper.new(1000)
+            timeHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(1000)
             while self.isRunning()
                 timeHelper.setStartTimeTNT()
-                @logUtil.putF(CommonLabels.getInstance().ELAPSED + timeHelper.getElapsedTNT(), self, @commonStrings.RUN)
+                @logUtil.putF(::Org::Allbinary::StringPackage::CommonLabels.getInstance().ELAPSED + timeHelper.getElapsedTNT(), self, @commonStrings.RUN)
                 self.updateModules()
                 break
             end
@@ -196,6 +207,7 @@ class InputAutomationNewBundleRunnable
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.RUN, e)
         end
     end
+    java_overload :run, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -221,21 +233,23 @@ class InputAutomationNewBundleRunnable
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :Bundle, "org/osgi/framework/Bundle"
-autoload :BundleContext, "org/osgi/framework/BundleContext"
-autoload :Constants, "org/osgi/framework/Constants"
-autoload :InputAutomationBundleActivator, "bundle/input/automation/InputAutomationBundleActivator"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :FileWrapperUtil, "org/allbinary/logic/io/file/FileWrapperUtil"
-autoload :SubDirectory, "org/allbinary/logic/io/file/directory/SubDirectory"
-autoload :BasicFileFilterUtil, "org/allbinary/logic/io/file/filter/BasicFileFilterUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Java; module Io; autoload :FileInputStream, "java/io/FileInputStream" unless const_defined?(:FileInputStream, false); end; end
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Java; module Util; module Jar; autoload :Manifest, "java/util/jar/Manifest" unless const_defined?(:Manifest, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :Bundle, "org/osgi/framework/Bundle" unless const_defined?(:Bundle, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :BundleContext, "org/osgi/framework/BundleContext" unless const_defined?(:BundleContext, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :Constants, "org/osgi/framework/Constants" unless const_defined?(:Constants, false); end; end; end
+module ::Bundle; module Input; module Automation; autoload :InputAutomationBundleActivator, "bundle/input/automation/InputAutomationBundleActivator" unless const_defined?(:InputAutomationBundleActivator, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FileWrapperUtil, "org/allbinary/logic/io/file/FileWrapperUtil" unless const_defined?(:FileWrapperUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory; autoload :SubDirectory, "org/allbinary/logic/io/file/directory/SubDirectory" unless const_defined?(:SubDirectory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Filter; autoload :BasicFileFilterUtil, "org/allbinary/logic/io/file/filter/BasicFileFilterUtil" unless const_defined?(:BasicFileFilterUtil, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 require "java/lang/Thread"
 require "java/lang/System"
 
@@ -244,4 +258,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

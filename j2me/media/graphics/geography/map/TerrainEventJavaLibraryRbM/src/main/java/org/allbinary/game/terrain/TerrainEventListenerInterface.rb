@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.terrain
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Terrain
+
 module TerrainEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module TerrainEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onTerrainEvent, 1
 end
 
-autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent"
+autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent" unless const_defined?(:TerrainEvent, false)
+
+end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer.pickup
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 module PickupBehaviorInterface
     
 
@@ -31,6 +33,8 @@ module PickupBehaviorInterface
     end
 end
 
-autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
-autoload :PickupProcessorInterface, "org/allbinary/game/layer/pickup/PickupProcessorInterface"
+autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface" unless const_defined?(:PickedUpLayerInterface, false)
+autoload :PickupProcessorInterface, "org/allbinary/game/layer/pickup/PickupProcessorInterface" unless const_defined?(:PickupProcessorInterface, false)
+
+end; end; end; end; end
 

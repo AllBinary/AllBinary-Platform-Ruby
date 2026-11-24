@@ -14,44 +14,51 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.info.objectConfig
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/transform/info/objectConfig/GenericStoreTransformInfoObjectConfig"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module ObjectConfig
 
 class OverrideStoreTransformInfoObjectConfig < GenericStoreTransformInfoObjectConfig
 
     def initialize(*args)
         case args.length
-        when 2 then constructor2(*args)
-        when 3 then constructor3(*args)
-        when 4 then constructor4(*args)
+        when 2 then jnew_org_allbinary_logic_visual_transform_info_objectConfig_OverrideStoreTransformInfoObjectConfig_2(*args)
+        when 3 then jnew_org_allbinary_logic_visual_transform_info_objectConfig_OverrideStoreTransformInfoObjectConfig_3(*args)
+        when 4 then jnew_org_allbinary_logic_visual_transform_info_objectConfig_OverrideStoreTransformInfoObjectConfig_4(*args)
+        else raise ArgumentError, "No constructor of OverrideStoreTransformInfoObjectConfig takes #{args.length} arguments"
         end
     end
     
 
-    def constructor2(abeClientInformation, transformInfoInterface)
-        method(:initialize).super_method.call(abeClientInformation, transformInfoInterface)
+    def jnew_org_allbinary_logic_visual_transform_info_objectConfig_OverrideStoreTransformInfoObjectConfig_2(abeClientInformation, transformInfoInterface)
+        OverrideStoreTransformInfoObjectConfig.superclass.instance_method(:initialize).bind(self).call(abeClientInformation, transformInfoInterface)
     end
     
 
-    def constructor3(abeClientInformation, transformInfoInterface, document)
-        method(:initialize).super_method.call(abeClientInformation, transformInfoInterface, document)
+    def jnew_org_allbinary_logic_visual_transform_info_objectConfig_OverrideStoreTransformInfoObjectConfig_3(abeClientInformation, transformInfoInterface, document)
+        OverrideStoreTransformInfoObjectConfig.superclass.instance_method(:initialize).bind(self).call(abeClientInformation, transformInfoInterface, document)
         self.setDocument(self.generate(self.toXmlDoc()))
     end
     
 
-    def constructor4(abeClientInformation, transformInfoInterface, name, type)
-        method(:initialize).super_method.call(abeClientInformation, transformInfoInterface, name, type)
+    def jnew_org_allbinary_logic_visual_transform_info_objectConfig_OverrideStoreTransformInfoObjectConfig_4(abeClientInformation, transformInfoInterface, name, type)
+        OverrideStoreTransformInfoObjectConfig.superclass.instance_method(:initialize).bind(self).call(abeClientInformation, transformInfoInterface, name, type)
         self.setDocument(self.generate(self.toXmlDoc()))
     end
     
 
     # throws Exception
     def generate(objectConfigDocument)
-        newObjectConfigDocument = super(objectConfigDocument)
+        newObjectConfigDocument = OverrideStoreTransformInfoObjectConfig.superclass.java_super_method(:generate, 1).bind(self).call(objectConfigDocument)
         return newObjectConfigDocument
     end
+    java_overload :generate, 1
 end
 
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+
+end; end; end; end; end; end; end
 

@@ -14,22 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
 class SpinnerAIFactory
-    include ArtificialIntelligenceInterfaceFactoryInterface
+    include ::Org::Allbinary::Game::Ai::ArtificialIntelligenceInterfaceFactoryInterface
     
 
     def getInstance(hashtable, ownerLayerInterface, gameInput)
-        direction = [Canvas::LEFT]
+        direction = [::Javax::Microedition::Lcdui::Canvas::LEFT]
         return SpinnerAI.new(direction, ownerLayerInterface, gameInput)
     end
+    java_overload :getInstance, 3
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :SpinnerAI, "org/allbinary/game/ag/ai/SpinnerAI"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Ai; autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface" unless const_defined?(:ArtificialIntelligenceInterface, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :SpinnerAI, "org/allbinary/game/ag/ai/SpinnerAI" unless const_defined?(:SpinnerAI, false)
+
+end; end; end; end; end
 

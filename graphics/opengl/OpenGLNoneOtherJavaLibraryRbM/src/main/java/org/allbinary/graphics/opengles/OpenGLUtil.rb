@@ -3,6 +3,8 @@
 # package org.allbinary.graphics.opengles
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles
+
 class OpenGLUtil
     
 
@@ -54,7 +56,7 @@ class OpenGLUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
 require "java/lang/Runnable"
 
 begin
@@ -62,4 +64,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

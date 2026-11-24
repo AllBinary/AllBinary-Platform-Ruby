@@ -15,20 +15,26 @@
 # package org.allbinary.graphics.opengles.shader
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
+
 class Shader
     attr_accessor :shaderName, :shaderStringList, :shaderAsString, :shaderHandle
 
-    def initialize_fields
-        @shaderName = nil
-        @shaderStringList = nil
-        @shaderAsString = nil
-        @shaderHandle = 0
+    def jfields_org_allbinary_graphics_opengles_shader_Shader
+        @shaderName = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @shaderStringList = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
+        @shaderAsString = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @shaderHandle = 0 unless instance_variable_defined?(:@shaderHandle)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_shader_Shader
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+
+end; end; end; end; end
 

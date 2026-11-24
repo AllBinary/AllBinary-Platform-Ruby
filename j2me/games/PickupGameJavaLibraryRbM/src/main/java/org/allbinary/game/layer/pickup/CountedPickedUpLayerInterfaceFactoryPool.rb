@@ -15,17 +15,19 @@
 # package org.allbinary.game.layer.pickup
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 class CountedPickedUpLayerInterfaceFactoryPool
     attr_accessor :list
 
-    def initialize_fields
-        @list = nil
+    def jfields_org_allbinary_game_layer_pickup_CountedPickedUpLayerInterfaceFactoryPool
+        @list = nil unless instance_variable_defined?(:@list)
     end
     
 
     def initialize()
-        initialize_fields
-        @list = BasicArrayListD.new()
+        jfields_org_allbinary_game_layer_pickup_CountedPickedUpLayerInterfaceFactoryPool
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -40,7 +42,7 @@ class CountedPickedUpLayerInterfaceFactoryPool
     
 
     def self.init()
-        (CountedPickedUpLayerInterfaceFactoryPool.send(:remove_const, :SINGLETON) if CountedPickedUpLayerInterfaceFactoryPool.const_defined?(:SINGLETON, false); CountedPickedUpLayerInterfaceFactoryPool.const_set(:SINGLETON, CountedPickedUpLayerInterfaceFactoryPool.new()))
+        (CountedPickedUpLayerInterfaceFactoryPool.instance_exec(CountedPickedUpLayerInterfaceFactoryPool.new()) { |java_value| remove_const(:SINGLETON) if const_defined?(:SINGLETON, false); const_set(:SINGLETON, java_value) })
     end
 
     def self.java_static_fields
@@ -64,12 +66,14 @@ class CountedPickedUpLayerInterfaceFactoryPool
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     CountedPickedUpLayerInterfaceFactoryPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

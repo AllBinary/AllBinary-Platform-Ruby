@@ -15,6 +15,8 @@
 # package org.allbinary
 
 
+module ::Org; module Allbinary
+
 class J2MEUtil
     
 
@@ -36,4 +38,6 @@ class J2MEUtil
         return true
     end
 end
+
+end; end
 

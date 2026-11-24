@@ -15,17 +15,19 @@
 # package org.allbinary.logic.visual.dhtml.html
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html
+
 class HtmlTag
     attr_accessor :otherAttributes
 
-    def initialize_fields
-        @otherAttributes = nil
+    def jfields_org_allbinary_logic_visual_dhtml_html_HtmlTag
+        @otherAttributes = nil unless instance_variable_defined?(:@otherAttributes)
     end
     
 
     def initialize()
-        initialize_fields
-        @otherAttributes = StdUtil.getInstance().createHashMap()
+        jfields_org_allbinary_logic_visual_dhtml_html_HtmlTag
+        @otherAttributes = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
     end
     
 
@@ -34,6 +36,8 @@ class HtmlTag
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.view
 
 
+module ::Org; module Allbinary; module Game; module View
+
 class TileLayerPositionIntoViewPositionUtil
     
 
@@ -26,9 +28,11 @@ class TileLayerPositionIntoViewPositionUtil
     end
 end
 
-require "org/allbinary/game/view/TileLayerPositionIntoViewPosition"
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-require "org/allbinary/game/layer/AllBinaryTiledLayer"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCompositeInterface"
+module ::Org; module Allbinary; module Game; module View; autoload :TileLayerPositionIntoViewPosition, "org/allbinary/game/view/TileLayerPositionIntoViewPosition" unless const_defined?(:TileLayerPositionIntoViewPosition, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas; autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryTiledLayer, "org/allbinary/game/layer/AllBinaryTiledLayer" unless const_defined?(:AllBinaryTiledLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCompositeInterface, "org/allbinary/media/graphics/geography/map/GeographicMapCompositeInterface" unless const_defined?(:GeographicMapCompositeInterface, false); end; end; end; end; end; end
+
+end; end; end; end
 

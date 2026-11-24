@@ -15,13 +15,15 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 class AllBinaryMediaManagerShutdown
     
 
     # throws Exception
     def self.shutdown(soundsFactoryInterface)
-        logUtil = LogUtil.getInstance()
-        commonStrings = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil.putF(commonStrings.START, @@instance, "shutdown")
         AllBinaryMediaManager.shutdown(soundsFactoryInterface)
     end
@@ -57,14 +59,16 @@ class AllBinaryMediaManagerShutdown
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AllBinaryMediaManager, "org/allbinary/media/audio/AllBinaryMediaManager"
-autoload :SoundsFactoryInterface, "org/allbinary/media/audio/SoundsFactoryInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AllBinaryMediaManager, "org/allbinary/media/audio/AllBinaryMediaManager" unless const_defined?(:AllBinaryMediaManager, false)
+autoload :SoundsFactoryInterface, "org/allbinary/media/audio/SoundsFactoryInterface" unless const_defined?(:SoundsFactoryInterface, false)
 
 begin
     AllBinaryMediaManagerShutdown.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

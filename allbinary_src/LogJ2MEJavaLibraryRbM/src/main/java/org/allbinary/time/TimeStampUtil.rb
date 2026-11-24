@@ -15,6 +15,8 @@
 # package org.allbinary.time
 
 
+module ::Org; module Allbinary; module TimePackage
+
 #ActualPlatform
 class TimeStampUtil
     
@@ -29,7 +31,7 @@ class TimeStampUtil
     
 
     def getAsString()
-        calendar = Calendar.getInstance()
+        calendar = ::Java::Util::Calendar.getInstance()
         date = calendar.getTime()
         return date.to_s
     end
@@ -65,12 +67,14 @@ class TimeStampUtil
     end
 end
 
-autoload :Calendar, "java/util/Calendar"
-autoload :Date, "java/util/Date"
+module ::Java; module Util; autoload :Calendar, "java/util/Calendar" unless const_defined?(:Calendar, false); end; end
+module ::Java; module Util; autoload :Date, "java/util/Date" unless const_defined?(:Date, false); end; end
 
 begin
     TimeStampUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

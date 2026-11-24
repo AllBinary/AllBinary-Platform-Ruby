@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.money.payment.types
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
 
 class BasicPaymentTypeUtil
     attr_accessor :paymentTypeVector
 
-    def initialize_fields
-        @paymentTypeVector = BasicArrayListD.new()
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_BasicPaymentTypeUtil
+        @paymentTypeVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -33,7 +36,7 @@ class BasicPaymentTypeUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_types_BasicPaymentTypeUtil
     end
     
 
@@ -61,7 +64,7 @@ class BasicPaymentTypeUtil
     
 
     def difference(a_PaymentTypeVector)
-        diff = BasicArrayListD.new()
+        diff = ::Org::Allbinary::Util::BasicArrayListD.new()
         size = @paymentTypeVector.size()
         (0...size).each do |i|
             paymentType = @paymentTypeVector.get(i)
@@ -104,14 +107,16 @@ class BasicPaymentTypeUtil
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :BasicPaymentType, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+autoload :BasicPaymentType, "org/allbinary/business/user/commerce/money/payment/types/BasicPaymentType" unless const_defined?(:BasicPaymentType, false)
 
 begin
     BasicPaymentTypeUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

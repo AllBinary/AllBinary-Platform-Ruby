@@ -15,6 +15,8 @@
 # package org.allbinary.media.graphics.geography.pathfinding
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding
+
 class PathFinderGraphVisitorFactoryBase
     
 
@@ -23,6 +25,8 @@ class PathFinderGraphVisitorFactoryBase
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/pathfinding/PathFinderGraphVisitorBase"
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+autoload :PathFinderGraphVisitorBase, "org/allbinary/media/graphics/geography/pathfinding/PathFinderGraphVisitorBase" unless const_defined?(:PathFinderGraphVisitorBase, false)
+
+end; end; end; end; end; end
 

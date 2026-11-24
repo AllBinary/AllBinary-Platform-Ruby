@@ -15,6 +15,9 @@
 # package org.allbinary.graphics.j2me.workarea.canvas.event
 
 require "java/lang/Object"
+# require "javax/swing/event/EventListenerList"
+
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Canvas; module Event
 
 class MyCanvasEventService
     
@@ -25,14 +28,14 @@ class MyCanvasEventService
 
     def self.addListener(listener)
         java_monitor.synchronize do
-        MyCanvasEventService.listenerList.add(listener.class, listener)
+        MyCanvasEventService.listenerList.add((listener.class), listener)
         end
     end
     
 
     def self.removeListener(listener)
         java_monitor.synchronize do
-        MyCanvasEventService.listenerList.remove(listener.class, listener)
+        MyCanvasEventService.listenerList.remove((listener.class), listener)
         end
     end
     
@@ -64,25 +67,52 @@ class MyCanvasEventService
     end
 
     def self.listenerList()
+        MyCanvasEventService.java_static_fields unless @java_static_fields_started
         return defined?(@@listenerList) ? @@listenerList : nil
     end
 
     def self.listenerList=(value)
+        MyCanvasEventService.java_static_fields unless @java_static_fields_started
         @@listenerList = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:DELETE, "delete")
+        const_set(:DUPLICATE, "duplicate")
+        const_set(:SELECT, "select")
+        const_set(:ROTATE, "rotate")
+        const_set(:EXPLODE, "explode")
+        const_set(:AUTOEXPLODE, "autoExplode")
+        const_set(:CENTER, "center")
+        begin
+            @@listenerList = EventListenerList.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MyCanvasEventService"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DELETE, :DUPLICATE, :SELECT, :ROTATE, :EXPLODE, :AUTOEXPLODE, :CENTER].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/j2me/workarea/canvas/event/MyCanvasEvent"
-require "org/allbinary/graphics/j2me/workarea/canvas/event/MyCanvasEventListener"
+module ::Java; module Util; autoload :EventListener, "java/util/EventListener" unless const_defined?(:EventListener, false); end; end
+autoload :MyCanvasEvent, "org/allbinary/graphics/j2me/workarea/canvas/event/MyCanvasEvent" unless const_defined?(:MyCanvasEvent, false)
+autoload :MyCanvasEventListener, "org/allbinary/graphics/j2me/workarea/canvas/event/MyCanvasEventListener" unless const_defined?(:MyCanvasEventListener, false)
 
-class MyCanvasEventService
-    @@listenerList = EventListenerList.new()
-    DELETE = "delete"
-    DUPLICATE = "duplicate"
-    SELECT = "select"
-    ROTATE = "rotate"
-    EXPLODE = "explode"
-    AUTOEXPLODE = "autoExplode"
-    CENTER = "center"
+begin
+    MyCanvasEventService.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

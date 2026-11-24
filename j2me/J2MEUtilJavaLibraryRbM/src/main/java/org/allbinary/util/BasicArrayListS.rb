@@ -14,22 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsConstructor"
 require "org/allbinary/util/BasicArrayList"
+
+module ::Org; module Allbinary; module Util
 
 class BasicArrayListS < BasicArrayList
     
 
     def initialize(size)
-        super(NullUtil.getInstance().NULL_OBJECT_ARRAY)
+        super(::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT_ARRAY)
         if size < 0
-            raise ArgumentError.new(StringMaker.new().append("Init Size Exception: ").appendint(size).to_s)
+            raise ArgumentError.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Init Size Exception: ").appendint(size).to_s)
         end
         @objectArray = Array.new(size, nil)
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end
 

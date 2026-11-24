@@ -15,35 +15,37 @@
 # package org.allbinary.input.motion.gesture
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture
+
 class MotionGestureRecognizer
     attr_accessor :logUtil, :j2seMath, :origin, :previous, :intermediate, :line, :motionGesturesHandler, :movedMotionGesturesHandler, :scrolledMotionGesturesHandler, :motionEventCircularPool
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @j2seMath = J2SEMath.getInstance()
-        @origin = PointFactory.getInstance().ZERO_ZERO
+    def jfields_org_allbinary_input_motion_gesture_MotionGestureRecognizer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @j2seMath = ::Org::Allbinary::Logic::MathPackage::J2SEMath.getInstance()
+        @origin = ::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO
         @previous = @origin
         @intermediate = @origin
-        @line = Line.new(@origin, @origin)
-        @motionGesturesHandler = nil
-        @movedMotionGesturesHandler = nil
-        @scrolledMotionGesturesHandler = nil
-        @motionEventCircularPool = nil
+        @line = ::Org::Allbinary::Graphics::Line.new(@origin, @origin)
+        @motionGesturesHandler = nil unless instance_variable_defined?(:@motionGesturesHandler)
+        @movedMotionGesturesHandler = nil unless instance_variable_defined?(:@movedMotionGesturesHandler)
+        @scrolledMotionGesturesHandler = nil unless instance_variable_defined?(:@scrolledMotionGesturesHandler)
+        @motionEventCircularPool = nil unless instance_variable_defined?(:@motionEventCircularPool)
     end
     
 
     def initialize(id)
-        initialize_fields
-        @motionEventCircularPool = MotionEventCircularPool.createPool(id)
-        motionGesturesHandler = BasicEventHandler.new()
+        jfields_org_allbinary_input_motion_gesture_MotionGestureRecognizer
+        @motionEventCircularPool = ::Org::Allbinary::Input::Motion::Gesture::Observer::MotionEventCircularPool.createPool(id)
+        motionGesturesHandler = ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler.new()
         movedMotionGesturesHandler = motionGesturesHandler
         scrolledMotionGesturesHandler = motionGesturesHandler
         begin
-            motionGesturesHandler = BasicMotionGesturesHandler.getInstance()
-            movedMotionGesturesHandler = MovedMotionGesturesHandler.getInstance()
-            scrolledMotionGesturesHandler = ScrolledMotionGesturesHandler.getInstance()
+            motionGesturesHandler = ::Org::Allbinary::Input::Motion::Gesture::Observer::BasicMotionGesturesHandler.getInstance()
+            movedMotionGesturesHandler = ::Org::Allbinary::Input::Motion::Gesture::Observer::MovedMotionGesturesHandler.getInstance()
+            scrolledMotionGesturesHandler = ::Org::Allbinary::Input::Motion::Gesture::Observer::ScrolledMotionGesturesHandler.getInstance()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
         end
         @motionGesturesHandler = motionGesturesHandler
@@ -83,14 +85,14 @@ class MotionGestureRecognizer
         end
         @line.setP1(@previous)
         @line.setP2(current)
-        minimumMotionGesture = MotionGestureConfigurationFactory.getInstance().getMinimumMotionGesture()
+        minimumMotionGesture = ::Org::Allbinary::Input::Motion::Gesture::Configuration::MotionGestureConfigurationFactory.getInstance().getMinimumMotionGesture()
         if @j2seMath.abs((@line.getDeltaX()).to_f) < minimumMotionGesture && @j2seMath.abs((@line.getDeltaY()).to_f) < minimumMotionGesture
             @intermediate = current
             return
         end
         gradient = @line.getGradient()
         absGradient = (@j2seMath.abs(gradient)).to_f
-        conf = MotionGestureConfigurationFactory.getInstance()
+        conf = ::Org::Allbinary::Input::Motion::Gesture::Configuration::MotionGestureConfigurationFactory.getInstance()
         touchMotionGestureFactory = TouchMotionGestureFactory.getInstance()
         newMotionGesture = touchMotionGestureFactory.NO_MOTION
         diagonalToleranceHigher = 12.0
@@ -170,20 +172,22 @@ class MotionGestureRecognizer
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :Line, "org/allbinary/graphics/Line"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
-autoload :MotionGestureConfigurationFactory, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory"
-autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler"
-autoload :MotionEventCircularPool, "org/allbinary/input/motion/gesture/observer/MotionEventCircularPool"
-autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
-autoload :MovedMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/MovedMotionGesturesHandler"
-autoload :ScrolledMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/ScrolledMotionGesturesHandler"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :J2SEMath, "org/allbinary/logic/math/J2SEMath"
-autoload :BasicEventHandler, "org/allbinary/logic/util/event/handler/BasicEventHandler"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
-autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Line, "org/allbinary/graphics/Line" unless const_defined?(:Line, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Configuration; autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration" unless const_defined?(:MotionGestureConfiguration, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Configuration; autoload :MotionGestureConfigurationFactory, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory" unless const_defined?(:MotionGestureConfigurationFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler" unless const_defined?(:BasicMotionGesturesHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :MotionEventCircularPool, "org/allbinary/input/motion/gesture/observer/MotionEventCircularPool" unless const_defined?(:MotionEventCircularPool, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent" unless const_defined?(:MotionGestureEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :MovedMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/MovedMotionGesturesHandler" unless const_defined?(:MovedMotionGesturesHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :ScrolledMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/ScrolledMotionGesturesHandler" unless const_defined?(:ScrolledMotionGesturesHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :J2SEMath, "org/allbinary/logic/math/J2SEMath" unless const_defined?(:J2SEMath, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; module Handler; autoload :BasicEventHandler, "org/allbinary/logic/util/event/handler/BasicEventHandler" unless const_defined?(:BasicEventHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput" unless const_defined?(:MotionGestureInput, false)
+autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory" unless const_defined?(:TouchMotionGestureFactory, false)
+
+end; end; end; end; end
 

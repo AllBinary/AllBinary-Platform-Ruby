@@ -15,6 +15,8 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 module IntermissionCompositeInterface
     
 
@@ -30,5 +32,7 @@ module IntermissionCompositeInterface
     end
 end
 
-autoload :IntermissionInterface, "org/allbinary/game/IntermissionInterface"
+autoload :IntermissionInterface, "org/allbinary/game/IntermissionInterface" unless const_defined?(:IntermissionInterface, false)
+
+end; end; end
 

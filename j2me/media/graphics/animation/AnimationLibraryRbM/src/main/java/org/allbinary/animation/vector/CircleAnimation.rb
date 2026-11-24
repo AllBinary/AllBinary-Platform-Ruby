@@ -14,23 +14,26 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.vector
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/Animation"
 require "org/allbinary/graphics/color/ColorCompositeInterface"
 
-class CircleAnimation < Animation
-    include ColorCompositeInterface
+module ::Org; module Allbinary; module Animation; module Vector
+
+class CircleAnimation < ::Org::Allbinary::Animation::Animation
+    include ::Org::Allbinary::Graphics::Color::ColorCompositeInterface
     attr_accessor :TOTAL_ANGLE, :width, :height
 
-    def initialize_fields
-        @TOTAL_ANGLE = (AngleFactory.getInstance().TOTAL_ANGLE).to_i
-        @width = nil
-        @height = nil
+    def jfields_org_allbinary_animation_vector_CircleAnimation
+        @TOTAL_ANGLE = ((::Org::Allbinary::MathPackage::AngleFactory.getInstance().TOTAL_ANGLE).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+        @width = nil unless instance_variable_defined?(:@width)
+        @height = nil unless instance_variable_defined?(:@height)
     end
     
 
     def initialize(width, height, basicColor)
         super()
-        initialize_fields
+        jfields_org_allbinary_animation_vector_CircleAnimation
         @width = width
         @height = height
         self.setBasicColorP(basicColor)
@@ -39,25 +42,31 @@ class CircleAnimation < Animation
 
     def nextFrame()
     end
+    java_overload :nextFrame, 0
     
 
     def paintXY(graphics, x, y)
         @basicSetColorUtil.setBasicColorP3(graphics, self.getBasicColorP(), self.getColor())
         graphics.drawArc(x, y, @width, @height, 0, @TOTAL_ANGLE)
     end
+    java_overload :paintXY, 3
     
 
     def getBasicColorP()
-        return super()
+        return CircleAnimation.superclass.java_super_method(:getBasicColorP, 0).bind(self).call()
     end
+    java_overload :getBasicColorP, 0
     
 
     def setBasicColorP(basicColor)
-        super(basicColor)
+        CircleAnimation.superclass.java_super_method(:setBasicColorP, 1).bind(self).call(basicColor)
     end
+    java_overload :setBasicColorP, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false); end; end; end
+
+end; end; end; end
 

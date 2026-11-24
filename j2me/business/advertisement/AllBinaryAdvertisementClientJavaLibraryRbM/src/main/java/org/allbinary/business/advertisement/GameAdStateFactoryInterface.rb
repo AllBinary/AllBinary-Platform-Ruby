@@ -15,6 +15,8 @@
 # package org.allbinary.business.advertisement
 
 
+module ::Org; module Allbinary; module Business; module Advertisement
+
 module GameAdStateFactoryInterface
     
 
@@ -25,6 +27,8 @@ module GameAdStateFactoryInterface
     end
 end
 
-autoload :SoftwareInformation, "org/allbinary/logic/system/SoftwareInformation"
-autoload :GameAdStateBase, "org/allbinary/business/advertisement/GameAdStateBase"
+module ::Org; module Allbinary; module Logic; module System; autoload :SoftwareInformation, "org/allbinary/logic/system/SoftwareInformation" unless const_defined?(:SoftwareInformation, false); end; end; end; end
+autoload :GameAdStateBase, "org/allbinary/business/advertisement/GameAdStateBase" unless const_defined?(:GameAdStateBase, false)
+
+end; end; end; end
 

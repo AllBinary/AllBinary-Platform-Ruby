@@ -15,11 +15,13 @@
 # package org.allbinary.logic.communication.smtp.event.handler
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; module Handler
+
 class EmailEventHandlerUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_communication_smtp_event_handler_EmailEventHandlerUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -29,21 +31,21 @@ class EmailEventHandlerUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_smtp_event_handler_EmailEventHandlerUtil
     end
     
 
     # throws Exception
     def getEventHandler(abeClientInformation, userEmailEventNameData, userVector)
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
-            stringBuffer = StringMaker.new()
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Returning UserEmailEventHandler for ")
             stringBuffer.appendint(userVector.size())
             stringBuffer.append(" users.")
             @logUtil.putF(stringBuffer.to_s, self, "getEventHandler")
         end
         userEmailEventHandler = UserEmailEventHandler.new()
-        userEmailEventHandler.addListener(LogUserEmailEventListenerModule.new())
+        userEmailEventHandler.addListener(::Org::Allbinary::Logic::Communication::Smtp::Event::Modules::Log::LogUserEmailEventListenerModule.new())
         size = userVector.size()
         (0...size).each do |index|
             userInterface = userVector.get(index)
@@ -60,7 +62,7 @@ class EmailEventHandlerUtil
         userEmailConfigurationInterface = userConfigurationInterface.getUserEmailConfigurationInterface()
         userEmailEventsConfigurationInterface = userEmailConfigurationInterface.getUserEmailEventsConfigurationInterface()
         userEmailEventListenerInterface = userEmailEventsConfigurationInterface.getEventListener(abeClientInformation, userEmailEventNameData, userInterface)
-        vector = BasicArrayListD.new()
+        vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         vector.add(userEmailEventListenerInterface)
         return vector
     end
@@ -96,24 +98,28 @@ class EmailEventHandlerUtil
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :UserInterface, "org/allbinary/business/user/UserInterface"
-autoload :UserConfigurationInterface, "org/allbinary/business/user/modules/configuration/UserConfigurationInterface"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :UserEmailConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfigurationInterface"
-autoload :UserEmailEventsConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfigurationInterface"
-autoload :UserEmailEventListenerInterface, "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface"
-autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
-autoload :LogUserEmailEventListenerModule, "org/allbinary/logic/communication/smtp/event/modules/log/LogUserEmailEventListenerModule"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :UserEmailEventHandler, "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module User; autoload :UserInterface, "org/allbinary/business/user/UserInterface" unless const_defined?(:UserInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Modules; module Configuration; autoload :UserConfigurationInterface, "org/allbinary/business/user/modules/configuration/UserConfigurationInterface" unless const_defined?(:UserConfigurationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module User; autoload :UserEmailConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/UserEmailConfigurationInterface" unless const_defined?(:UserEmailConfigurationInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module User; module Event; autoload :UserEmailEventsConfigurationInterface, "org/allbinary/logic/communication/smtp/configuration/user/event/UserEmailEventsConfigurationInterface" unless const_defined?(:UserEmailEventsConfigurationInterface, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; autoload :UserEmailEventListenerInterface, "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface" unless const_defined?(:UserEmailEventListenerInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData" unless const_defined?(:UserEmailEventNameData, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; module Modules; module Log; autoload :LogUserEmailEventListenerModule, "org/allbinary/logic/communication/smtp/event/modules/log/LogUserEmailEventListenerModule" unless const_defined?(:LogUserEmailEventListenerModule, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :UserEmailEventHandler, "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler" unless const_defined?(:UserEmailEventHandler, false)
 
 begin
     EmailEventHandlerUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

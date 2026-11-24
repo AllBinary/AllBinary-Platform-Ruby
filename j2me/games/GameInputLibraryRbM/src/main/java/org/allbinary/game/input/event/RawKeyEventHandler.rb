@@ -15,12 +15,14 @@
 # package org.allbinary.game.input.event
 
 
+module ::Org; module Allbinary; module Game; module Input; module Event
+
 class RawKeyEventHandler
     attr_accessor :logUtil, :eventListenerInterfaceList
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @eventListenerInterfaceList = nil
+    def jfields_org_allbinary_game_input_event_RawKeyEventHandler
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @eventListenerInterfaceList = nil unless instance_variable_defined?(:@eventListenerInterfaceList)
     end
     
 
@@ -30,13 +32,13 @@ class RawKeyEventHandler
     
 
     def initialize()
-        initialize_fields
-        @eventListenerInterfaceList = BasicArrayListD.new()
+        jfields_org_allbinary_game_input_event_RawKeyEventHandler
+        @eventListenerInterfaceList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def removeAllListeners()
-        @eventListenerInterfaceList = BasicArrayListD.new()
+        @eventListenerInterfaceList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -83,8 +85,8 @@ class RawKeyEventHandler
                 eventListenerInterface = @eventListenerInterfaceList.get(index)
                 self.process(keyCode, deviceId, repeated, eventListenerInterface)
             rescue StandardError => e
-                commonStrings = CommonStrings.getInstance()
-                @logUtil.put(commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+                @logUtil.put(commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
             index += 1
         end
@@ -103,7 +105,7 @@ class RawKeyEventHandler
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(RawKeyEventHandler::TOTAL_LISTENERS)
         stringBuffer.appendint(@eventListenerInterfaceList.size())
         eventListenerInterface = nil
@@ -114,7 +116,7 @@ class RawKeyEventHandler
                 stringBuffer.append(RawKeyEventHandler::LISTENER_LABEL)
                 stringBuffer.append(eventListenerInterface.to_s)
             rescue StandardError => e
-                commonStrings = CommonStrings.getInstance()
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.TOSTRING, e)
             end
             index += 1
@@ -156,17 +158,19 @@ class RawKeyEventHandler
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :RawKeyEventListener, "org/allbinary/game/input/event/RawKeyEventListener"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :RawKeyEventListener, "org/allbinary/game/input/event/RawKeyEventListener" unless const_defined?(:RawKeyEventListener, false)
 
 begin
     RawKeyEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

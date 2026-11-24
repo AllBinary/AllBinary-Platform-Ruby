@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.ai
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
 class LastKeyAIVisitorFactory
     
 
@@ -53,11 +55,13 @@ class LastKeyAIVisitorFactory
     end
 end
 
-autoload :LastKeyAIVisitor, "org/allbinary/game/ag/ai/LastKeyAIVisitor"
+autoload :LastKeyAIVisitor, "org/allbinary/game/ag/ai/LastKeyAIVisitor" unless const_defined?(:LastKeyAIVisitor, false)
 
 begin
     LastKeyAIVisitorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

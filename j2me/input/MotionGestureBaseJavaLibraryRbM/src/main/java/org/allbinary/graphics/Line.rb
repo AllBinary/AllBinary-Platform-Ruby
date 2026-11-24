@@ -15,19 +15,21 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class Line
     attr_accessor :p1, :p2, :deltaX, :deltaY
 
-    def initialize_fields
-        @p1 = nil
-        @p2 = nil
-        @deltaX = 0.0
-        @deltaY = 0.0
+    def jfields_org_allbinary_graphics_Line
+        @p1 = nil unless instance_variable_defined?(:@p1)
+        @p2 = nil unless instance_variable_defined?(:@p2)
+        @deltaX = 0.0 unless instance_variable_defined?(:@deltaX)
+        @deltaY = 0.0 unless instance_variable_defined?(:@deltaY)
     end
     
 
     def initialize(p1, p2)
-        initialize_fields
+        jfields_org_allbinary_graphics_Line
         @p1 = PointFactory.getInstance().ZERO_ZERO
         @p2 = @p1
         self.setP1(p1)
@@ -78,6 +80,8 @@ class Line
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false)
+autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false)
+
+end; end; end
 

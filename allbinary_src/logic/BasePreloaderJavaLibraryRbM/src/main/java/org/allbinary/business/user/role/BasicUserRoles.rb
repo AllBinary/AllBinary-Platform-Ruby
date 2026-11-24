@@ -15,15 +15,17 @@
 # package org.allbinary.business.user.role
 
 
+module ::Org; module Allbinary; module Business; module User; module Role
+
 class BasicUserRoles
     attr_accessor :roleVector
 
-    def initialize_fields
-        @roleVector = BasicArrayListD.new()
+    def jfields_org_allbinary_business_user_role_BasicUserRoles
+        @roleVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_user_role_BasicUserRoles
     end
     
 
@@ -81,13 +83,15 @@ class BasicUserRoles
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole" unless const_defined?(:BasicUserRole, false)
 
 begin
     BasicUserRoles.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

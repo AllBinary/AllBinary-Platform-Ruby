@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Game; module Configuration
 
 class GameConfigurationUtil
     attr_accessor :logUtil, :commonStrings, :GAUGE_UPDATE, :FROM, :TO, :COMPETITION_VALUE
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_game_configuration_GameConfigurationUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @GAUGE_UPDATE = "Gauge Update: "
         @FROM = " from: "
         @TO = " to: "
@@ -28,7 +31,7 @@ class GameConfigurationUtil
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_configuration_GameConfigurationUtil
     end
     
 
@@ -50,15 +53,15 @@ class GameConfigurationUtil
     def update(gauge)
         gameConfigurationSingleton = GameConfigurationSingleton.getInstance()
         gameConfiguration = gameConfigurationSingleton.getInstanceByName(gauge.getLabel())
-        smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
+        smallIntegerSingletonFactory = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance()
         value = smallIntegerSingletonFactory.getAt(gauge.getValue() + gameConfiguration.getMinValue().to_i)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@GAUGE_UPDATE)
         stringBuffer.append(gameConfiguration.getName())
         stringBuffer.append(@FROM)
-        stringBuffer.appendint((gameConfiguration.getValue().to_i).to_i)
+        stringBuffer.appendint(((gameConfiguration.getValue().to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(@TO)
-        stringBuffer.appendint((value.to_i).to_i)
+        stringBuffer.appendint(((value.to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         @logUtil.putF(stringBuffer.to_s, self, @commonStrings.UPDATE)
         gameConfiguration.setValue(value)
     end
@@ -68,11 +71,11 @@ class GameConfigurationUtil
     def setDefault(gauge)
         gameConfigurationSingleton = GameConfigurationSingleton.getInstance()
         gameConfiguration = gameConfigurationSingleton.getInstanceByName(gauge.getLabel())
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Gauge Default: ")
         stringBuffer.append(gameConfiguration.getName())
         stringBuffer.append(@TO)
-        stringBuffer.appendint((gameConfiguration.getDefaultValue().to_i).to_i)
+        stringBuffer.appendint(((gameConfiguration.getDefaultValue().to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         @logUtil.putF(stringBuffer.to_s, self, "setDefault")
         gauge.setValue(gameConfiguration.getDefaultValue().to_i - gameConfiguration.getMinValue().to_i)
         gameConfiguration.setValue(gameConfiguration.getDefaultValue())
@@ -154,20 +157,22 @@ class GameConfigurationUtil
     end
 end
 
-autoload :Item, "javax/microedition/lcdui/Item"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
-autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
-autoload :GameConfigurationGauge, "org/allbinary/game/configuration/GameConfigurationGauge"
-autoload :GameConfigurationSingleton, "org/allbinary/game/configuration/GameConfigurationSingleton"
-autoload :GameOptionsForm, "org/allbinary/game/configuration/GameOptionsForm"
+module ::Javax; module Microedition; module Lcdui; autoload :Item, "javax/microedition/lcdui/Item" unless const_defined?(:Item, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration" unless const_defined?(:GameConfiguration, false)
+autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral" unless const_defined?(:GameConfigurationCentral, false)
+autoload :GameConfigurationGauge, "org/allbinary/game/configuration/GameConfigurationGauge" unless const_defined?(:GameConfigurationGauge, false)
+autoload :GameConfigurationSingleton, "org/allbinary/game/configuration/GameConfigurationSingleton" unless const_defined?(:GameConfigurationSingleton, false)
+autoload :GameOptionsForm, "org/allbinary/game/configuration/GameOptionsForm" unless const_defined?(:GameOptionsForm, false)
 
 begin
     GameConfigurationUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

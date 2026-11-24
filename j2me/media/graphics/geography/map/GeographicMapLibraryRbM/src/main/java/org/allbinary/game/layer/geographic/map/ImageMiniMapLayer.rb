@@ -14,23 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.geographic.map
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/geographic/map/MiniMapLayer"
+
+module ::Org; module Allbinary; module Game; module Layer; module Geographic; module Map
 
 class ImageMiniMapLayer < MiniMapLayer
     attr_accessor :image, :anchor
 
-    def initialize_fields
-        @image = NullImage::NULL_IMAGE
-        @anchor = Anchor::TOP_LEFT
+    def jfields_org_allbinary_game_layer_geographic_map_ImageMiniMapLayer
+        @image = ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
     end
     
 
     def initialize(geographicMapInterface, viewPosition)
         super(geographicMapInterface, viewPosition)
-        initialize_fields
+        jfields_org_allbinary_game_layer_geographic_map_ImageMiniMapLayer
     end
     
 
@@ -38,18 +38,25 @@ class ImageMiniMapLayer < MiniMapLayer
     def init()
         aWidth = @allBinaryTiledLayer.getWidth()
         aHeight = @allBinaryTiledLayer.getHeight()
-        @image = PaintableToImageUtil.getImage(@allBinaryTiledLayer, aWidth, aHeight)
+        @image = ::Org::Allbinary::Image::PaintableToImageUtil.getImage(@allBinaryTiledLayer, aWidth, aHeight)
     end
+    java_overload :init, 0
     
 
     def paint(graphics)
         graphics.drawImage(@image, @x, @y, @anchor)
         self.paintDots(graphics)
     end
+    java_overload :paint, 1
 end
 
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/image/PaintableToImageUtil"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/view/ViewPositionBase"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :PaintableToImageUtil, "org/allbinary/image/PaintableToImageUtil" unless const_defined?(:PaintableToImageUtil, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module View; autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false); end; end; end
+
+end; end; end; end; end; end
 

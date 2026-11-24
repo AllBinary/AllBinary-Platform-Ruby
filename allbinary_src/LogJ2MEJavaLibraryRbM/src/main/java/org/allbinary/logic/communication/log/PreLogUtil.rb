@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.log
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module Communication; module Log
 
 #ActualPlatform
 class PreLogUtil
@@ -24,14 +27,14 @@ class PreLogUtil
     
 
     def self.put(specialMessage, anyType, functionName)
-        PreLogUtil.putOE(specialMessage, anyType, functionName, NullUtil.getInstance().NULL_OBJECT)
+        PreLogUtil.putOE(specialMessage, anyType, functionName, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
     end
     
 
     def self.putOE(specialMessage, anyType, functionName, exception)
-        className = CommonStrings.getInstance().EMPTY
-        if anyType.class.name != nil
-            className = String.new(anyType.class.name)
+        className = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY
+        if anyType.class.java_name != nil
+            className = String.new(anyType.class.java_name)
         end
         message = LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
         print(PreLogUtil::LOG_SUCCESS)
@@ -40,7 +43,7 @@ class PreLogUtil
     
 
     def self.putS(specialMessage, className, functionName)
-        PreLogUtil.putSE(specialMessage, className, functionName, NullUtil.getInstance().NULL_OBJECT)
+        PreLogUtil.putSE(specialMessage, className, functionName, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
     end
     
 
@@ -52,7 +55,7 @@ class PreLogUtil
     
 
     def self.getClassName(anyType)
-        return anyType.class.name
+        return anyType.class.java_name
     end
 
     def self.java_static_fields
@@ -76,10 +79,10 @@ class PreLogUtil
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil" unless const_defined?(:LogFormatUtil, false)
 require "java/lang/System"
 
 begin
@@ -87,4 +90,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

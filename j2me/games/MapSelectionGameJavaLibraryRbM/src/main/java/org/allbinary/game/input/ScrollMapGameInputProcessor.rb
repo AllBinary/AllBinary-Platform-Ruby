@@ -14,22 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/GameInputProcessor"
+
+module ::Org; module Allbinary; module Game; module Input
 
 class ScrollMapGameInputProcessor < GameInputProcessor
     attr_accessor :scrollMapPlayerGameInput
 
-    def initialize_fields
-        @scrollMapPlayerGameInput = nil
+    def jfields_org_allbinary_game_input_ScrollMapGameInputProcessor
+        @scrollMapPlayerGameInput = nil unless instance_variable_defined?(:@scrollMapPlayerGameInput)
     end
     
 
     def initialize(scrollMapPlayerGameInput)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_input_ScrollMapGameInputProcessor
         @scrollMapPlayerGameInput = scrollMapPlayerGameInput
     end
 end
 
-require "org/allbinary/game/input/ScrollMapPlayerGameInput"
+autoload :ScrollMapPlayerGameInput, "org/allbinary/game/input/ScrollMapPlayerGameInput" unless const_defined?(:ScrollMapPlayerGameInput, false)
+
+end; end; end; end
 

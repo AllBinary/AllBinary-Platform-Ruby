@@ -15,6 +15,8 @@
 # package org.allbinary.debug
 
 
+module ::Org; module Allbinary; module Debug
+
 module DebugInterface
     
 
@@ -47,4 +49,6 @@ module DebugInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

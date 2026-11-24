@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/form/ItemPaintable"
+
+module ::Org; module Allbinary; module Graphics; module Form
 
 class ItemPaintableFactory < ItemPaintable
     
@@ -28,6 +31,7 @@ class ItemPaintableFactory < ItemPaintable
     def getInstanceItemPaintable(paintableForm)
         return ItemPaintableFactory.instance
     end
+    java_overload :getInstanceItemPaintable, 1
 
     def self.instance()
         ItemPaintableFactory.java_static_fields unless @java_static_fields_started
@@ -60,11 +64,13 @@ class ItemPaintableFactory < ItemPaintable
     end
 end
 
-autoload :PaintableForm, "org/allbinary/graphics/form/PaintableForm"
+autoload :PaintableForm, "org/allbinary/graphics/form/PaintableForm" unless const_defined?(:PaintableForm, false)
 
 begin
     ItemPaintableFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

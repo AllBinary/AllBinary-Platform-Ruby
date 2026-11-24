@@ -15,15 +15,17 @@
 # package org.allbinary.graphics.displayable.screen
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen
+
 class FullScreenPaintableFactory
     attr_accessor :paintable
 
-    def initialize_fields
-        @paintable = NullPaintable.getInstance()
+    def jfields_org_allbinary_graphics_displayable_screen_FullScreenPaintableFactory
+        @paintable = ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_displayable_screen_FullScreenPaintableFactory
     end
     
 
@@ -62,12 +64,14 @@ class FullScreenPaintableFactory
     end
 end
 
-autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
-autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :Paintable, "org/allbinary/graphics/paint/Paintable" unless const_defined?(:Paintable, false); end; end; end; end
 
 begin
     FullScreenPaintableFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

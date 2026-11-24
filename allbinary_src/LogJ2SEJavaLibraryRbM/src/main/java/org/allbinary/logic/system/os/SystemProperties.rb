@@ -15,11 +15,13 @@
 # package org.allbinary.logic.system.os
 
 
+module ::Org; module Allbinary; module Logic; module System; module Os
+
 #ActualPlatform
 class SystemProperties
     attr_accessor :OS_NAME, :OS_ARCH, :OS_VERSION, :USER_HOME
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_os_SystemProperties
         @OS_NAME = "os.name"
         @OS_ARCH = "os.arch"
         @OS_VERSION = "os.version"
@@ -33,27 +35,27 @@ class SystemProperties
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_os_SystemProperties
     end
     
 
     def getName()
-        return System.getProperty(@OS_NAME)
+        return ::Java::Lang::System.getProperty(@OS_NAME)
     end
     
 
     def getArch()
-        return System.getProperty(@OS_ARCH)
+        return ::Java::Lang::System.getProperty(@OS_ARCH)
     end
     
 
     def getVersion()
-        return System.getProperty(@OS_VERSION)
+        return ::Java::Lang::System.getProperty(@OS_VERSION)
     end
     
 
     def getUserHomePath()
-        return System.getProperty(@USER_HOME)
+        return ::Java::Lang::System.getProperty(@USER_HOME)
     end
 
     def self.instance()
@@ -94,4 +96,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

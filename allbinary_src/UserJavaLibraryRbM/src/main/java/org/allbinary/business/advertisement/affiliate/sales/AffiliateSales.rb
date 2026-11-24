@@ -15,6 +15,8 @@
 # package org.allbinary.business.advertisement.affiliate.sales
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Affiliate; module Sales
+
 class AffiliateSales
     
 
@@ -26,4 +28,6 @@ class AffiliateSales
         return true
     end
 end
+
+end; end; end; end; end; end
 

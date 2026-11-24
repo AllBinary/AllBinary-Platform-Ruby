@@ -15,15 +15,17 @@
 # package org.allbinary.graphics.opengles.shader
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
+
 class ShaderInitializer
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_graphics_opengles_shader_ShaderInitializer
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_shader_ShaderInitializer
     end
     
 
@@ -67,13 +69,15 @@ class ShaderInitializer
     end
 end
 
-autoload :GL10, "javax/microedition/khronos/opengles/GL10"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Shader, "org/allbinary/graphics/opengles/shader/Shader"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :Shader, "org/allbinary/graphics/opengles/shader/Shader" unless const_defined?(:Shader, false)
 
 begin
     ShaderInitializer.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

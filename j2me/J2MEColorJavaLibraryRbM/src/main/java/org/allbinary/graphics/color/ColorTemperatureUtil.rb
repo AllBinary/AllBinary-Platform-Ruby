@@ -15,15 +15,17 @@
 # package org.allbinary.graphics.color
 
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class ColorTemperatureUtil
     attr_accessor :basicColorFactory
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_color_ColorTemperatureUtil
         @basicColorFactory = BasicColorFactory.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_color_ColorTemperatureUtil
     end
     
 
@@ -83,12 +85,14 @@ class ColorTemperatureUtil
     end
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false)
 
 begin
     ColorTemperatureUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

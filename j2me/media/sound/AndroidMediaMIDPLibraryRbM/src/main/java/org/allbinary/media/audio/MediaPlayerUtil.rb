@@ -15,15 +15,17 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 class MediaPlayerUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_audio_MediaPlayerUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_audio_MediaPlayerUtil
     end
     
 
@@ -45,19 +47,45 @@ class MediaPlayerUtil
     end
 
     def self.instance()
+        MediaPlayerUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        MediaPlayerUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = MediaPlayerUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MediaPlayerUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "android/media/MediaPlayer"
-require "org/allbinary/logic/communication/log/LogUtil"
+module ::Android; module Media; autoload :MediaPlayer, "android/media/MediaPlayer" unless const_defined?(:MediaPlayer, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
 require "java/lang/Thread"
 
-class MediaPlayerUtil
-    @@instance = MediaPlayerUtil.new()
+begin
+    MediaPlayerUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

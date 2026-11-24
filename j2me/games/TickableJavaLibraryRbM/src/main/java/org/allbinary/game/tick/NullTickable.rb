@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.tick
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/tick/TickableInterface"
+
+module ::Org; module Allbinary; module Game; module Tick
 
 class NullTickable
     include TickableInterface
     attr_accessor :NAME
 
-    def initialize_fields
+    def jfields_org_allbinary_game_tick_NullTickable
         @NAME = "NulLTickable"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_tick_NullTickable
     end
     
 
@@ -37,11 +40,13 @@ class NullTickable
     # throws Exception
     def processTick(allBinaryLayerManager)
     end
+    java_overload :processTick, 1
     
 
     def getName()
         return @NAME
     end
+    java_overload :getName, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -64,11 +69,13 @@ class NullTickable
     end
 end
 
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
 
 begin
     NullTickable.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

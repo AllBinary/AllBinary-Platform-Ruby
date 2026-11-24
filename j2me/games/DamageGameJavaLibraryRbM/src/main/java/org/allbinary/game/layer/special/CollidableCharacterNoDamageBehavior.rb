@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.special
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/special/CollidableDestroyableDamageableBehavior"
+
+module ::Org; module Allbinary; module Game; module Layer; module Special
 
 class CollidableCharacterNoDamageBehavior < CollidableDestroyableDamageableBehavior
     
@@ -26,7 +29,7 @@ class CollidableCharacterNoDamageBehavior < CollidableDestroyableDamageableBehav
 
     # throws Exception
     def collide(ownerLayer, collidableInterfaceCompositeInterface)
-        collisionTypeFactory = CollisionTypeFactory.getInstance()
+        collisionTypeFactory = ::Org::Allbinary::Game::Collision::CollisionTypeFactory.getInstance()
         collisionType = collidableInterfaceCompositeInterface.getCollidableInferface().getCollisionTypeWith(ownerLayer)
         if collisionType == collisionTypeFactory.PICKUP
             collidableDestroyableDamageableLayer = ownerLayer
@@ -34,19 +37,23 @@ class CollidableCharacterNoDamageBehavior < CollidableDestroyableDamageableBehav
         else
         end
     end
+    java_overload :collide, 2
     
 
     # throws Exception
     def collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        ForcedLogUtil.log(@commonStrings.NOT_IMPLEMENTED, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(@commonStrings.NOT_IMPLEMENTED, self)
     end
+    java_overload :collideInterface, 2
 end
 
-autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
-autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface" unless const_defined?(:CollidableInterfaceCompositeInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollisionType, "org/allbinary/game/collision/CollisionType" unless const_defined?(:CollisionType, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory" unless const_defined?(:CollisionTypeFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Pickup; autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface" unless const_defined?(:PickedUpLayerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false)
+
+end; end; end; end; end
 

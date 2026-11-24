@@ -15,16 +15,18 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 class CellPositionsUtil
     attr_accessor :reusableSingleThreadedSurroundingList, :surroundArray
 
-    def initialize_fields
-        @reusableSingleThreadedSurroundingList = BasicArrayListS.new(8)
+    def jfields_org_allbinary_media_graphics_geography_map_CellPositionsUtil
+        @reusableSingleThreadedSurroundingList = ::Org::Allbinary::Util::BasicArrayListS.new(8)
         @surroundArray = [[-1, -1], [0, -1], [1, -1], [-1, 1], [0, 1], [1, 1], [1, 0], [-1, 0]]
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_CellPositionsUtil
     end
     
 
@@ -88,22 +90,48 @@ class CellPositionsUtil
     end
 
     def self.instance()
+        CellPositionsUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        CellPositionsUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = CellPositionsUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CellPositionsUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/layer/AllBinaryTiledLayer"
-require "org/allbinary/util/BasicArrayListS"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryTiledLayer, "org/allbinary/game/layer/AllBinaryTiledLayer" unless const_defined?(:AllBinaryTiledLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS" unless const_defined?(:BasicArrayListS, false); end; end; end
+autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false)
+autoload :BasicGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory" unless const_defined?(:BasicGeographicMapCellPositionFactory, false)
+autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false)
 
-class CellPositionsUtil
-    @@instance = CellPositionsUtil.new()
+begin
+    CellPositionsUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

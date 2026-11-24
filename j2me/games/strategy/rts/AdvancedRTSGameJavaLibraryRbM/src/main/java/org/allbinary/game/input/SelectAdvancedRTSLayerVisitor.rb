@@ -14,51 +14,57 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/visitor/Visitor"
 
-class SelectAdvancedRTSLayerVisitor < Visitor
+module ::Org; module Allbinary; module Game; module Input
+
+class SelectAdvancedRTSLayerVisitor < ::Org::Allbinary::Logic::Util::Visitor::Visitor
     attr_accessor :selectedRTSLayersPlayerGameInput
 
-    def initialize_fields
-        @selectedRTSLayersPlayerGameInput = nil
+    def jfields_org_allbinary_game_input_SelectAdvancedRTSLayerVisitor
+        @selectedRTSLayersPlayerGameInput = nil unless instance_variable_defined?(:@selectedRTSLayersPlayerGameInput)
     end
     
 
     def initialize(selectedRTSLayersPlayerGameInput)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_input_SelectAdvancedRTSLayerVisitor
         @selectedRTSLayersPlayerGameInput = selectedRTSLayersPlayerGameInput
     end
     
 
     def visit(anyType)
         selectedLayer = anyType
-        if selectedLayer != CollidableDestroyableDamageableLayer.getNullInstance() && selectedLayer.getType() == BuildingLayer.getStaticType()
+        if selectedLayer != ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance() && selectedLayer.getType() == ::Org::Allbinary::Game::Layer::Building::BuildingLayer.getStaticType()
             rtsGameLayer = selectedLayer
-            assignWaypointsUtil = AssignWaypointsUtil.getInstance()
+            assignWaypointsUtil = ::Org::Allbinary::Game::Input::Form::AssignWaypointsUtil.getInstance()
             list = @selectedRTSLayersPlayerGameInput.getSelectedBasicArrayList()
             currentRTSLayer = nil
             unitLayer = nil
             (list.size() - 1).step(0, -(1)) do |index|
                 currentRTSLayer = list.get(index)
-                if currentRTSLayer.getType() == UnitLayer.getStaticType()
+                if currentRTSLayer.getType() == ::Org::Allbinary::Game::Layer::Unit::UnitLayer.getStaticType()
                     unitLayer = currentRTSLayer
                     unitLayer.setParentLayer(rtsGameLayer)
                     assignWaypointsUtil.set(unitLayer, rtsGameLayer)
                 end
             end
         end
-        return NullUtil.getInstance().NULL_OBJECT
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
     end
+    java_overload :visit, 1
 end
 
-require "org/allbinary/game/input/form/AssignWaypointsUtil"
-require "org/allbinary/game/layer/AdvancedRTSGameLayer"
-require "org/allbinary/game/layer/RTSLayer"
-require "org/allbinary/game/layer/building/BuildingLayer"
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-require "org/allbinary/game/layer/unit/UnitLayer"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/game/input/SelectedRTSLayersPlayerGameInput"
+module ::Org; module Allbinary; module Game; module Input; module Form; autoload :AssignWaypointsUtil, "org/allbinary/game/input/form/AssignWaypointsUtil" unless const_defined?(:AssignWaypointsUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AdvancedRTSGameLayer, "org/allbinary/game/layer/AdvancedRTSGameLayer" unless const_defined?(:AdvancedRTSGameLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Building; autoload :BuildingLayer, "org/allbinary/game/layer/building/BuildingLayer" unless const_defined?(:BuildingLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Special; autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Unit; autoload :UnitLayer, "org/allbinary/game/layer/unit/UnitLayer" unless const_defined?(:UnitLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :SelectedRTSLayersPlayerGameInput, "org/allbinary/game/input/SelectedRTSLayersPlayerGameInput" unless const_defined?(:SelectedRTSLayersPlayerGameInput, false)
+
+end; end; end; end
 

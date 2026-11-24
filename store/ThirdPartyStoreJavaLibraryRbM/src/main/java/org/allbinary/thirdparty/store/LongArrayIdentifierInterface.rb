@@ -15,6 +15,8 @@
 # package org.allbinary.thirdparty.store
 
 
+module ::Org; module Allbinary; module Thirdparty; module Store
+
 module LongArrayIdentifierInterface
     
 
@@ -23,4 +25,6 @@ module LongArrayIdentifierInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

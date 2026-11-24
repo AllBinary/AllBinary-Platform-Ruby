@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.tracking
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class TrackingEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Game; module Tracking
+
+class TrackingEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     attr_accessor :layerInterface
 
-    def initialize_fields
-        @layerInterface = AllBinaryLayer::NULL_ALLBINARY_LAYER
+    def jfields_org_allbinary_game_tracking_TrackingEvent
+        @layerInterface = ::Org::Allbinary::Layer::AllBinaryLayer::NULL_ALLBINARY_LAYER
     end
     
 
     def initialize(allBinaryLayerInterface)
         super(allBinaryLayerInterface)
-        initialize_fields
+        jfields_org_allbinary_game_tracking_TrackingEvent
         if allBinaryLayerInterface != TrackingEventHandler.getInstance()
             self.setLayerInterface(allBinaryLayerInterface)
         end
@@ -36,34 +39,41 @@ class TrackingEvent < AllBinaryEventObject
     def init(anyType)
         self.setSource(anyType)
     end
+    java_overload :init, 1
     
 
     def getLayerInterface()
         return @layerInterface
     end
+    java_overload :getLayerInterface, 0
     
 
     def setLayerInterface(layerInterface)
         @layerInterface = layerInterface
     end
+    java_overload :setLayerInterface, 1
     
 
     def setLayerInterfaceForCircularStaticPool(layerInterface)
         @layerInterface = layerInterface
     end
+    java_overload :setLayerInterfaceForCircularStaticPool, 1
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("TrackingEvent: \n")
         stringBuffer.append("LayerInterface: ")
         stringBuffer.append(@layerInterface.to_s)
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler" unless const_defined?(:TrackingEventHandler, false)
+
+end; end; end; end
 

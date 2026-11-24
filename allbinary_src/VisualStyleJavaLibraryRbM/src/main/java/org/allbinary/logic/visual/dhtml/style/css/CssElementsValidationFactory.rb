@@ -15,6 +15,8 @@
 # package org.allbinary.logic.visual.dhtml.style.css
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Style; module Css
+
 class CssElementsValidationFactory
     
 
@@ -23,8 +25,8 @@ class CssElementsValidationFactory
     
 
     # throws Exception
-    def self.getInstance(cssElementStyleNodeList)
-        styles = BasicArrayListD.new()
+    def self.getInstance_j1_1(cssElementStyleNodeList)
+        styles = ::Org::Allbinary::Util::BasicArrayListD.new()
         size = cssElementStyleNodeList.size()
         cssElementStyleNode = nil
         cssValidationInterface = nil
@@ -37,18 +39,29 @@ class CssElementsValidationFactory
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def self.getInstance(hashMap)
-        styles = BasicArrayListD.new()
+    def self.getInstance_j1_2(hashMap)
+        styles = ::Org::Allbinary::Util::BasicArrayListD.new()
         return styles
+    end
+
+    def self.getInstance(*java_overload_args)
+        return getInstance_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method getInstance takes #{java_overload_args.length} arguments"
+    end
+
+    def self.getInstance_j1(*java_overload_args)
+        return getInstance_j1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::Allbinary::Util::BasicArrayList))
+        return getInstance_j1_2(*java_overload_args)
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
-autoload :Node, "org/w3c/dom/Node"
-autoload :CssElementValidationFactory, "org/allbinary/logic/visual/dhtml/style/css/CssElementValidationFactory"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate; autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface" unless const_defined?(:ValidationInterface, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :CssElementValidationFactory, "org/allbinary/logic/visual/dhtml/style/css/CssElementValidationFactory" unless const_defined?(:CssElementValidationFactory, false)
+
+end; end; end; end; end; end; end
 

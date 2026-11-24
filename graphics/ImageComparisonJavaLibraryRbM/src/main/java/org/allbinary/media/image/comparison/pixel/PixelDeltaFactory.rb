@@ -15,22 +15,24 @@
 # package org.allbinary.media.image.comparison.pixel
 
 
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Pixel
+
 class PixelDeltaFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_image_comparison_pixel_PixelDeltaFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def self.static_init
-        logUtil = LogUtil.getInstance()
-        commonStrings = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         _STATIC_BLOCK = "Static Block"
         instance = "PixelDeltaFactory"
         begin
             logUtil.putF(commonStrings.START, instance, _STATIC_BLOCK)
-            PixelDeltaFactory.cacheInterface = CacheInterfaceFactory.getInstance(CacheTypeFactory.getInstance().CACHE, CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
+            PixelDeltaFactory.cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance(::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
             logUtil.putF(commonStrings.END_, instance, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, instance, _STATIC_BLOCK, e)
@@ -39,14 +41,14 @@ class PixelDeltaFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_pixel_PixelDeltaFactory
     end
     
 
     # throws Exception
     def self.getInstance(x, y, rgb1, rgb2)
-        point = PointFactory.getInstance().createXY(x, y)
-        colorDelta = ColorDeltaFactory.getInstance(rgb1, rgb2)
+        point = ::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(x, y)
+        colorDelta = ::Org::Allbinary::Media::Image::Comparison::Color::ColorDeltaFactory.getInstance(rgb1, rgb2)
         pixelDelta = PixelDeltaFactory.cacheInterface.get(PixelDelta.getKey(point, colorDelta))
         if pixelDelta == nil
             pixelDelta = PixelDelta.new(point, colorDelta)
@@ -86,21 +88,23 @@ class PixelDeltaFactory
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
-autoload :CacheInterfaceFactory, "org/allbinary/logic/util/cache/CacheInterfaceFactory"
-autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory"
-autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory"
-autoload :ColorDelta, "org/allbinary/media/image/comparison/color/ColorDelta"
-autoload :ColorDeltaFactory, "org/allbinary/media/image/comparison/color/ColorDeltaFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface" unless const_defined?(:AutomaticCacheInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheInterfaceFactory, "org/allbinary/logic/util/cache/CacheInterfaceFactory" unless const_defined?(:CacheInterfaceFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory" unless const_defined?(:CachePolicyFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory" unless const_defined?(:CacheTypeFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Color; autoload :ColorDelta, "org/allbinary/media/image/comparison/color/ColorDelta" unless const_defined?(:ColorDelta, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Color; autoload :ColorDeltaFactory, "org/allbinary/media/image/comparison/color/ColorDeltaFactory" unless const_defined?(:ColorDeltaFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta" unless const_defined?(:PixelDelta, false)
 
 begin
     PixelDeltaFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -16,19 +16,21 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Sql
+
 class AbSqlTableUtil
     attr_accessor :TABLE_LABEL, :stringUtil, :commonStrings, :commonSeps, :sqlStrings
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_sql_AbSqlTableUtil
         @TABLE_LABEL = "Table: "
-        @stringUtil = StringUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @commonSeps = CommonSeps.getInstance()
+        @stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         @sqlStrings = SqlStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_communication_sql_AbSqlTableUtil
     end
     
 
@@ -48,7 +50,7 @@ class AbSqlTableUtil
     def restoreTable(abSqlTable, portion)
         java_monitor.synchronize do
         tableName = abSqlTable.getTableName()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@TABLE_LABEL)
         stringBuffer.append(tableName)
         stringBuffer.append(" Restoration Failed")
@@ -87,17 +89,19 @@ class AbSqlTableUtil
     end
 end
 
-autoload :Portion, "org/allbinary/business/installer/Portion"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AbSqlTable, "org/allbinary/logic/communication/sql/AbSqlTable"
-autoload :SqlStrings, "org/allbinary/logic/communication/sql/SqlStrings"
+module ::Org; module Allbinary; module Business; module Installer; autoload :Portion, "org/allbinary/business/installer/Portion" unless const_defined?(:Portion, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AbSqlTable, "org/allbinary/logic/communication/sql/AbSqlTable" unless const_defined?(:AbSqlTable, false)
+autoload :SqlStrings, "org/allbinary/logic/communication/sql/SqlStrings" unless const_defined?(:SqlStrings, false)
 
 begin
     AbSqlTableUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,21 +15,23 @@
 # package org.allbinary.logic.visual.transform.info
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
+
 class TransformInfoProperties
     attr_accessor :name, :label, :description, :objectFileName, :objectConfigFileName, :templateFileName
 
-    def initialize_fields
-        @name = nil
-        @label = nil
-        @description = nil
-        @objectFileName = nil
-        @objectConfigFileName = nil
-        @templateFileName = nil
+    def jfields_org_allbinary_logic_visual_transform_info_TransformInfoProperties
+        @name = nil unless instance_variable_defined?(:@name)
+        @label = nil unless instance_variable_defined?(:@label)
+        @description = nil unless instance_variable_defined?(:@description)
+        @objectFileName = nil unless instance_variable_defined?(:@objectFileName)
+        @objectConfigFileName = nil unless instance_variable_defined?(:@objectConfigFileName)
+        @templateFileName = nil unless instance_variable_defined?(:@templateFileName)
     end
     
 
     def initialize(name, label, description, objectFileName, objectConfigFileName, templateFileName)
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_info_TransformInfoProperties
         @name = name
         @label = label
         @description = description
@@ -93,4 +95,6 @@ class TransformInfoProperties
         return @objectConfigFileName
     end
 end
+
+end; end; end; end; end; end
 

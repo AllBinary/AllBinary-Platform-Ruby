@@ -17,6 +17,8 @@
 # require "java/util/Map"
 # require "java/util/Set"
 
+module ::Org; module Allbinary
+
 #J2SEForJ2ME
 class J2SEUtil
     
@@ -74,11 +76,13 @@ class J2SEUtil
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
 
 begin
     J2SEUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end
 

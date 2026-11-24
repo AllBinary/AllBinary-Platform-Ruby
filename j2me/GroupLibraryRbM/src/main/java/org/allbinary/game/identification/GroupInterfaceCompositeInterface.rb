@@ -15,6 +15,8 @@
 # package org.allbinary.game.identification
 
 
+module ::Org; module Allbinary; module Game; module Identification
+
 module GroupInterfaceCompositeInterface
     
 
@@ -24,5 +26,7 @@ module GroupInterfaceCompositeInterface
     end
 end
 
-autoload :Group, "org/allbinary/game/identification/Group"
+autoload :Group, "org/allbinary/game/identification/Group" unless const_defined?(:Group, false)
+
+end; end; end; end
 

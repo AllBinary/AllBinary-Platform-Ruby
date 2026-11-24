@@ -14,17 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class TouchScreenType
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_input_motion_button_TouchScreenType
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchScreenType
         @name = name
     end
     
@@ -39,4 +42,6 @@ class TouchScreenType
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end
 

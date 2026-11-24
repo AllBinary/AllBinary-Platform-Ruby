@@ -15,16 +15,18 @@
 # package org.allbinary.business.user.commerce.money.payment.gateway
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway
+
 class PaymentGatewayData
     attr_accessor :key
 
-    def initialize_fields
-        @key = nil
+    def jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayData
+        @key = nil unless instance_variable_defined?(:@key)
     end
     
 
     def initialize(value)
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayData
         @key = value
     end
     
@@ -33,40 +35,64 @@ class PaymentGatewayData
         return @key
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:CRYPTNUM, 5)
+        begin
+            const_set(:ID, PaymentGatewayData.new("PAYMENTGATEWAY_ID"))
+            const_set(:NAME, PaymentGatewayData.new("PAYMENTGATEWAY_NAME"))
+            const_set(:VALUE, PaymentGatewayData.new("PAYMENTGATEWAY_VALUE"))
+            const_set(:PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE, PaymentGatewayData.new("PAYMENTGATEWAY_PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE"))
+            const_set(:PAYMENTPROCESSORINTERFACEFACTORYINTERFACE, PaymentGatewayData.new("PAYMENTGATEWAY_PAYMENTPROCESSORINTERFACEFACTORYINTERFACE"))
+            const_set(:MODE, PaymentGatewayData.new("MODE"))
+            const_set(:SERVERPROTOCOL, PaymentGatewayData.new("SERVERPROTOCOL"))
+            const_set(:SERVER, PaymentGatewayData.new("SERVER"))
+            const_set(:SERVERPORT, PaymentGatewayData.new("SERVERPORT"))
+            const_set(:SERVERPATH, PaymentGatewayData.new("SERVERPATH"))
+            const_set(:TESTPROTOCOL, PaymentGatewayData.new("TESTSERVERPROTOCOL"))
+            const_set(:TESTSERVER, PaymentGatewayData.new("TESTSERVER"))
+            const_set(:TESTPORT, PaymentGatewayData.new("TESTPORT"))
+            const_set(:TESTPATH, PaymentGatewayData.new("TESTSERVERPATH"))
+            const_set(:TIMEOUT, PaymentGatewayData.new("TIMEOUT"))
+            const_set(:PROXYPROTOCOL, PaymentGatewayData.new("PROXYPROTOCOL"))
+            const_set(:PROXYSERVER, PaymentGatewayData.new("PROXYSERVER"))
+            const_set(:PROXYPATH, PaymentGatewayData.new("PROXYPATH"))
+            const_set(:PROXYUSERNAME, PaymentGatewayData.new("PROXYUSERNAME"))
+            const_set(:PROXYPASSWORD, PaymentGatewayData.new("PROXYPASSWORD"))
+            const_set(:PROXYPORT, PaymentGatewayData.new("PROXYPORT"))
+            const_set(:PROXYTIMEOUT, PaymentGatewayData.new("PROXYTIMEOUT"))
+            const_set(:SPECIAL1, PaymentGatewayData.new("SPECIAL1"))
+            const_set(:SPECIAL2, PaymentGatewayData.new("SPECIAL2"))
+            const_set(:SPECIAL3, PaymentGatewayData.new("SPECIAL3"))
+            const_set(:SPECIAL4, PaymentGatewayData.new("SPECIAL4"))
+            const_set(:SPECIAL5, PaymentGatewayData.new("SPECIAL5"))
+            const_set(:SPECIAL6, PaymentGatewayData.new("SPECIAL6"))
+            const_set(:SPECIAL7, PaymentGatewayData.new("SPECIAL7"))
+            const_set(:SPECIAL8, PaymentGatewayData.new("SPECIAL8"))
+            const_set(:SPECIAL9, PaymentGatewayData.new("SPECIAL9"))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PaymentGatewayData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:CRYPTNUM, :ID, :NAME, :VALUE, :PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE, :PAYMENTPROCESSORINTERFACEFACTORYINTERFACE, :MODE, :SERVERPROTOCOL, :SERVER, :SERVERPORT, :SERVERPATH, :TESTPROTOCOL, :TESTSERVER, :TESTPORT, :TESTPATH, :TIMEOUT, :PROXYPROTOCOL, :PROXYSERVER, :PROXYPATH, :PROXYUSERNAME, :PROXYPASSWORD, :PROXYPORT, :PROXYTIMEOUT, :SPECIAL1, :SPECIAL2, :SPECIAL3, :SPECIAL4, :SPECIAL5, :SPECIAL6, :SPECIAL7, :SPECIAL8, :SPECIAL9].include?(name)
+        end
+        super
+    end
 end
 
-class PaymentGatewayData
-    CRYPTNUM = 5
-    ID = PaymentGatewayData.new("PAYMENTGATEWAY_ID")
-    NAME = PaymentGatewayData.new("PAYMENTGATEWAY_NAME")
-    VALUE = PaymentGatewayData.new("PAYMENTGATEWAY_VALUE")
-    PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE = PaymentGatewayData.new("PAYMENTGATEWAY_PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE")
-    PAYMENTPROCESSORINTERFACEFACTORYINTERFACE = PaymentGatewayData.new("PAYMENTGATEWAY_PAYMENTPROCESSORINTERFACEFACTORYINTERFACE")
-    MODE = PaymentGatewayData.new("MODE")
-    SERVERPROTOCOL = PaymentGatewayData.new("SERVERPROTOCOL")
-    SERVER = PaymentGatewayData.new("SERVER")
-    SERVERPORT = PaymentGatewayData.new("SERVERPORT")
-    SERVERPATH = PaymentGatewayData.new("SERVERPATH")
-    TESTPROTOCOL = PaymentGatewayData.new("TESTSERVERPROTOCOL")
-    TESTSERVER = PaymentGatewayData.new("TESTSERVER")
-    TESTPORT = PaymentGatewayData.new("TESTPORT")
-    TESTPATH = PaymentGatewayData.new("TESTSERVERPATH")
-    TIMEOUT = PaymentGatewayData.new("TIMEOUT")
-    PROXYPROTOCOL = PaymentGatewayData.new("PROXYPROTOCOL")
-    PROXYSERVER = PaymentGatewayData.new("PROXYSERVER")
-    PROXYPATH = PaymentGatewayData.new("PROXYPATH")
-    PROXYUSERNAME = PaymentGatewayData.new("PROXYUSERNAME")
-    PROXYPASSWORD = PaymentGatewayData.new("PROXYPASSWORD")
-    PROXYPORT = PaymentGatewayData.new("PROXYPORT")
-    PROXYTIMEOUT = PaymentGatewayData.new("PROXYTIMEOUT")
-    SPECIAL1 = PaymentGatewayData.new("SPECIAL1")
-    SPECIAL2 = PaymentGatewayData.new("SPECIAL2")
-    SPECIAL3 = PaymentGatewayData.new("SPECIAL3")
-    SPECIAL4 = PaymentGatewayData.new("SPECIAL4")
-    SPECIAL5 = PaymentGatewayData.new("SPECIAL5")
-    SPECIAL6 = PaymentGatewayData.new("SPECIAL6")
-    SPECIAL7 = PaymentGatewayData.new("SPECIAL7")
-    SPECIAL8 = PaymentGatewayData.new("SPECIAL8")
-    SPECIAL9 = PaymentGatewayData.new("SPECIAL9")
+begin
+    PaymentGatewayData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

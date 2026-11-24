@@ -15,15 +15,17 @@
 # package org.allbinary.input.motion
 
 
+module ::Org; module Allbinary; module Input; module Motion
+
 class CompleteMotionGestureInputToGameMotionGestureInput
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_input_motion_CompleteMotionGestureInputToGameMotionGestureInput
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_input_motion_CompleteMotionGestureInputToGameMotionGestureInput
     end
     
 
@@ -33,7 +35,7 @@ class CompleteMotionGestureInputToGameMotionGestureInput
     
 
     def init()
-        PreLogUtil.put("No Touch Button = No Compound Motion Gestures", self, @commonStrings.INIT)
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("No Touch Button = No Compound Motion Gestures", self, @commonStrings.INIT)
     end
 
     def self.instance()
@@ -67,12 +69,14 @@ class CompleteMotionGestureInputToGameMotionGestureInput
     end
 end
 
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     CompleteMotionGestureInputToGameMotionGestureInput.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

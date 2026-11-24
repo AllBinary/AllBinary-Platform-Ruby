@@ -15,6 +15,8 @@
 # package org.allbinary.emulator.device
 
 
+module ::Org; module Allbinary; module Emulator; module Device
+
 class TrueTypeFontUtilBase
     
 
@@ -31,4 +33,6 @@ class TrueTypeFontUtilBase
         return -1
     end
 end
+
+end; end; end; end
 

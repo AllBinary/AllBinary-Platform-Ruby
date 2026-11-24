@@ -15,13 +15,16 @@
 # package org.allbinary.layer.event
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class LayerManagerEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Layer; module Event
+
+class LayerManagerEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :list, :CREATE, :DELETE
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_layer_event_LayerManagerEventHandler
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
         @CREATE = "Create"
         @DELETE = "Delete"
     end
@@ -34,7 +37,7 @@ class LayerManagerEventHandler < BasicEventHandler
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_layer_event_LayerManagerEventHandler
     end
     
 
@@ -43,18 +46,21 @@ class LayerManagerEventHandler < BasicEventHandler
             @list.add(layerManagerEventListener)
         end
     end
+    java_overload :addListener, 1
     
 
     def removeAllListeners()
         @list.clear()
-        super()
+        LayerManagerEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListener(eventListenerInterface)
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        LayerManagerEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -65,11 +71,12 @@ class LayerManagerEventHandler < BasicEventHandler
                 layerManagerEventListener = @list.objectArray[index]
                 layerManagerEventListener.onCreateLayerManagerEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
-        super(eventObject)
+        LayerManagerEventHandler.superclass.java_super_method(:fireEvent, 1).bind(self).call(eventObject)
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
@@ -81,7 +88,7 @@ class LayerManagerEventHandler < BasicEventHandler
                 layerManagerEventListener = @list.objectArray[index]
                 layerManagerEventListener.onDeleteLayerManagerEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
         eventListenerInterfaceList = @eventListenerInterfaceList
@@ -94,12 +101,13 @@ class LayerManagerEventHandler < BasicEventHandler
                 layerManagerEventListenerInterface = (eventListenerInterface)
                 layerManagerEventListenerInterface.onDeleteLayerManagerEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
             listenerIndex += 1
         end
         end
     end
+    java_overload :fireDeleteEvent, 1
     
 
     # throws Exception
@@ -107,6 +115,7 @@ class LayerManagerEventHandler < BasicEventHandler
         layerManagerEventListenerInterface = (eventListenerInterface)
         layerManagerEventListenerInterface.onCreateLayerManagerEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.instance()
         LayerManagerEventHandler.java_static_fields unless @java_static_fields_started
@@ -139,18 +148,20 @@ class LayerManagerEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent"
-autoload :LayerManagerEventListener, "org/allbinary/layer/event/LayerManagerEventListener"
-autoload :LayerManagerEventListenerInterface, "org/allbinary/layer/event/LayerManagerEventListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent" unless const_defined?(:LayerManagerEvent, false)
+autoload :LayerManagerEventListener, "org/allbinary/layer/event/LayerManagerEventListener" unless const_defined?(:LayerManagerEventListener, false)
+autoload :LayerManagerEventListenerInterface, "org/allbinary/layer/event/LayerManagerEventListenerInterface" unless const_defined?(:LayerManagerEventListenerInterface, false)
 
 begin
     LayerManagerEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

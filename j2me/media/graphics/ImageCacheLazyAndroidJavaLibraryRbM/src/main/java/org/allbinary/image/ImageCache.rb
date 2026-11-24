@@ -14,33 +14,33 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
-# require "java/io/InputStream"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
+require "java/lang/JavaOverload"
 require "org/allbinary/image/ImageCacheBase"
+
+module ::Org; module Allbinary; module Image
 
 class ImageCache < ImageCacheBase
     attr_accessor :logUtil, :commonStrings, :systemWrapper, :tsUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @systemWrapper = ABSystemWrapper.getInstance()
-        @tsUtil = TsUtil.getInstance()
+    def jfields_org_allbinary_image_ImageCache
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @systemWrapper = ::Org::Allbinary::Logic::ABSystemWrapper.getInstance()
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_image_ImageCache
     end
     
 
     # throws Exception
-    def get(caller, width, height)
+    def get_j3(caller, width, height)
         foundIndex = self.getIndexWH(width, height)
         image = self.getFromAvailable(foundIndex, width, height)
-        if image == NullImage::NULL_IMAGE
+        if image == ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
             @volume += width * height
             if @volume > 32000
                 @tsUtil.gc()
@@ -60,22 +60,21 @@ class ImageCache < ImageCacheBase
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def get(key)
-        resourceUtil = ResourceUtil.getInstance()
+    def get_j1(key)
+        resourceUtil = ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance()
         resourceId = resourceUtil.getResourceId(key)
         image = self.getImage(resourceId)
-        if image == NullImage::NULL_IMAGE
+        if image == ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
             inputStream = nil
             begin
-                @logUtil.putF(Memory.getInfo(), self, @commonStrings.GET)
+                @logUtil.putF(::Org::Allbinary::System::Memory.getInfo(), self, @commonStrings.GET)
                 image = self.createImage(key, inputStream)
             rescue StandardError => e
                 @logUtil.put("Exception: Trying Again After GC", self, @commonStrings.GET, e)
-                @logUtil.putF(StringMaker.new().append("InputStream: ").append(inputStream.to_s).to_s, self, @commonStrings.GET)
+                @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("InputStream: ").append(inputStream.to_s).to_s, self, @commonStrings.GET)
                 @tsUtil.gc()
                 @tsUtil.gc()
-                @logUtil.putF(Memory.getInfo(), self, @commonStrings.GET)
+                @logUtil.putF(::Org::Allbinary::System::Memory.getInfo(), self, @commonStrings.GET)
                 sleep((100) / 1000.0)
                 image = self.createImage(key, inputStream)
             end
@@ -83,10 +82,16 @@ class ImageCache < ImageCacheBase
         end
         return image
     end
+
+    def get(*java_overload_args)
+        return get_j3(*java_overload_args) if java_overload_args.length == 3
+        return get_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method get takes #{java_overload_args.length} arguments"
+    end
     
 
     def getIndex(key)
-        gdResources = GDResources.getInstance()
+        gdResources = ::Org::Allbinary::Game::Gd::Resource::GDResources.getInstance()
         resourceStringArray = gdResources.resourceStringArray
         size = resourceStringArray.length
         (0...size).each do |index|
@@ -94,34 +99,64 @@ class ImageCache < ImageCacheBase
                 return index
             end
         end
-        @logUtil.putF(StringMaker.new().append("unable to find key: ").append(StringUtil.getInstance().toString(key)).to_s, self, @commonStrings.RUN)
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("unable to find key: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(key)).to_s, self, @commonStrings.RUN)
         raise RuntimeError.new()
     end
+    java_overload :getIndex, 1
     
 
     # throws Exception
     def createImage(key, inputStream)
-        return Image.createImageLater(key, -1, -1)
+        return ::Javax::Microedition::Lcdui::Image.createImageLater(key, -1, -1)
     end
+    java_overload :createImage, 2
     
 
     def isLazy()
         raise RuntimeError.new()
     end
+    java_overload :isLazy, 0
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_IMAGE_CACHE, ImageCache.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageCache"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_IMAGE_CACHE].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/game/gd/resource/GDResources"
-require "org/allbinary/logic/ABSystemWrapper"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/system/Memory"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Gd; module Resource; autoload :GDResources, "org/allbinary/game/gd/resource/GDResources" unless const_defined?(:GDResources, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper" unless const_defined?(:ABSystemWrapper, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module System; autoload :Memory, "org/allbinary/system/Memory" unless const_defined?(:Memory, false); end; end; end
 require "java/lang/Thread"
 
-class ImageCache
-    NULL_IMAGE_CACHE = ImageCache.new()
+begin
+    ImageCache.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

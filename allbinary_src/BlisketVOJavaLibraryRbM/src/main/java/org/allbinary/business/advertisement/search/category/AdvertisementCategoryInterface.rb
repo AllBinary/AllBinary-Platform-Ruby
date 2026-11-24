@@ -15,12 +15,17 @@
 # package org.allbinary.business.advertisement.search.category
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Search; module Category
+
 module AdvertisementCategoryInterface
     
 
     def toString()
+        return super if defined?(super)
         raise NotImplementedError
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end; end
 

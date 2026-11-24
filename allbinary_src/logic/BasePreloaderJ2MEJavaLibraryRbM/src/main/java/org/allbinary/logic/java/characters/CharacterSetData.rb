@@ -15,10 +15,12 @@
 # package org.allbinary.logic.java.characters
 
 
+module ::Org; module Allbinary; module Logic; module Java; module Characters
+
 class CharacterSetData
     attr_accessor :US_ASCII, :ISO_8859_1, :UTF_8, :UTF_16, :UTF_16BE, :UTF_16LE
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_java_characters_CharacterSetData
         @US_ASCII = "US-ASCII"
         @ISO_8859_1 = "ISO-8859-1"
         @UTF_8 = "UTF-8"
@@ -34,7 +36,7 @@ class CharacterSetData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_java_characters_CharacterSetData
     end
 
     def self.instance()
@@ -73,4 +75,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

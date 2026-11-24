@@ -15,6 +15,8 @@
 # package org.allbinary.game.displayable.canvas
 
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 module DemoPaintableInterface
     
 
@@ -23,4 +25,6 @@ module DemoPaintableInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

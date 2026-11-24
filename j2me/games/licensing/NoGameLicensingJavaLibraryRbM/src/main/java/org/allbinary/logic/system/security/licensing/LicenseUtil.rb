@@ -16,6 +16,8 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class LicenseUtil
     
 
@@ -76,11 +78,13 @@ class LicenseUtil
     end
 end
 
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
 
 begin
     LicenseUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

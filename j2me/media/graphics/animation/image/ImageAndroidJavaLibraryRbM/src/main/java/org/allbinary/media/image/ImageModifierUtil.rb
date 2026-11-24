@@ -14,17 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageModifierUtil
     attr_accessor :paint
 
-    def initialize_fields
-        @paint = Paint.new(Paint::ANTI_ALIAS_FLAG)
+    def jfields_org_allbinary_media_image_ImageModifierUtil
+        @paint = ::Android::Graphics::Paint.new(::Android::Graphics::Paint::ANTI_ALIAS_FLAG)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageModifierUtil
     end
     
 
@@ -34,12 +35,12 @@ class ImageModifierUtil
     
 
     def setColor(unusedOriginalImage, image, imageIndex, basicColor)
-        @paint.setColorFilter(PorterDuffColorFilter.new(basicColor.to_i, PorterDuff::Mode.SRC_IN))
+        @paint.setColorFilter(::Android::Graphics::PorterDuffColorFilter.new(basicColor.to_i, ::Android::Graphics::PorterDuff::Mode.SRC_IN))
     end
     
 
     def changeColor(unusedOriginalImage, image, imageIndex, basicColor)
-        @paint.setColorFilter(PorterDuffColorFilter.new(basicColor.to_i, PorterDuff::Mode.SRC_IN))
+        @paint.setColorFilter(::Android::Graphics::PorterDuffColorFilter.new(basicColor.to_i, ::Android::Graphics::PorterDuff::Mode.SRC_IN))
     end
     
 
@@ -63,8 +64,11 @@ class ImageModifierUtil
     end
 end
 
-require "android/graphics/Paint"
-require "android/graphics/PorterDuff"
-require "android/graphics/PorterDuffColorFilter"
-require "org/allbinary/graphics/color/BasicColor"
+module ::Android; module Graphics; autoload :Paint, "android/graphics/Paint" unless const_defined?(:Paint, false); end; end
+module ::Android; module Graphics; autoload :PorterDuff, "android/graphics/PorterDuff" unless const_defined?(:PorterDuff, false); end; end
+module ::Android; module Graphics; autoload :PorterDuffColorFilter, "android/graphics/PorterDuffColorFilter" unless const_defined?(:PorterDuffColorFilter, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+
+end; end; end; end
 

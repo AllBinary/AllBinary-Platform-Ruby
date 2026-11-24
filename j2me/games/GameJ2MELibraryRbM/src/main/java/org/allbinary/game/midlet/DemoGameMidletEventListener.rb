@@ -14,29 +14,37 @@
 # frozen_string_literal: false
 # package org.allbinary.game.midlet
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 module DemoGameMidletEventListener
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     def onDemoStart()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onDemoStart, 0
     
 
     def onGameStart()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onGameStart, 0
     
 
     def onDemoGameMidletEvent(demoGameMidletEvent)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onDemoGameMidletEvent, 1
 end
 
-autoload :DemoGameMidletEvent, "org/allbinary/game/midlet/DemoGameMidletEvent"
+autoload :DemoGameMidletEvent, "org/allbinary/game/midlet/DemoGameMidletEvent" unless const_defined?(:DemoGameMidletEvent, false)
+
+end; end; end; end
 

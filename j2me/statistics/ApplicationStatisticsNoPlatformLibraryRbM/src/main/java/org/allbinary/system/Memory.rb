@@ -15,6 +15,8 @@
 # package org.allbinary.system
 
 
+module ::Org; module Allbinary; module System
+
 #NoPlatform
 class Memory
     
@@ -24,5 +26,7 @@ class Memory
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end
 

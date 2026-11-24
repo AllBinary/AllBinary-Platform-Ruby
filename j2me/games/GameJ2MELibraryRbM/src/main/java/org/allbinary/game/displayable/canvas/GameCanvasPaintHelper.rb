@@ -14,32 +14,39 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/ProcessPaintable"
 
-class GameCanvasPaintHelper < ProcessPaintable
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class GameCanvasPaintHelper < ::Org::Allbinary::Graphics::Paint::ProcessPaintable
     attr_accessor :gameCanvas
 
-    def initialize_fields
-        @gameCanvas = nil
+    def jfields_org_allbinary_game_displayable_canvas_GameCanvasPaintHelper
+        @gameCanvas = nil unless instance_variable_defined?(:@gameCanvas)
     end
     
 
     def initialize(gameCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_GameCanvasPaintHelper
         @gameCanvas = gameCanvas
     end
     
 
     def process()
     end
+    java_overload :process, 0
     
 
     def paint(graphics)
         @gameCanvas.draw(graphics)
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
+
+end; end; end; end; end
 

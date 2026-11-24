@@ -15,10 +15,14 @@
 # package org.eclipse.swt.widgets
 
 
+module ::Org; module Eclipse; module Swt; module Widgets
+
 class Display
     
 
     def sleep()
     end
 end
+
+end; end; end; end
 

@@ -4,15 +4,17 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class ThreadObjectUtil
     attr_accessor :NULL_PRIORITY_RUNNABLE
 
-    def initialize_fields
+    def jfields_org_allbinary_thread_ThreadObjectUtil
         @NULL_PRIORITY_RUNNABLE = NullPriorityRunnable.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_thread_ThreadObjectUtil
     end
     
 
@@ -34,12 +36,12 @@ class ThreadObjectUtil
 
     # throws Exception
     def waitObjectFor(anyType, delay)
-        TsUtil.getInstance().waitFor(anyType, delay)
+        ::Org::Allbinary::TsUtil.getInstance().waitFor(anyType, delay)
     end
     
 
     def processThread(runnable)
-        thread = JavaThread.new(runnable)
+        thread = ::Java::Lang::JavaThread.new(runnable)
         thread.start()
     end
 
@@ -74,9 +76,9 @@ class ThreadObjectUtil
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :NullPriorityRunnable, "org/allbinary/thread/NullPriorityRunnable"
-autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+autoload :NullPriorityRunnable, "org/allbinary/thread/NullPriorityRunnable" unless const_defined?(:NullPriorityRunnable, false)
+autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable" unless const_defined?(:PriorityRunnable, false)
 require "java/lang/Runnable"
 require "java/lang/Thread"
 
@@ -85,4 +87,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

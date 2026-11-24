@@ -7,15 +7,17 @@
 # package org.allbinary.input.automation.actions.script
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script
+
 class JTreeInterfaceFactory
     attr_accessor :jTreeInterface
 
-    def initialize_fields
-        @jTreeInterface = nil
+    def jfields_org_allbinary_input_automation_actions_script_JTreeInterfaceFactory
+        @jTreeInterface = nil unless instance_variable_defined?(:@jTreeInterface)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_input_automation_actions_script_JTreeInterfaceFactory
     end
     
 
@@ -64,11 +66,13 @@ class JTreeInterfaceFactory
     end
 end
 
-autoload :JTreeInterface, "org/allbinary/input/automation/actions/script/JTreeInterface"
+autoload :JTreeInterface, "org/allbinary/input/automation/actions/script/JTreeInterface" unless const_defined?(:JTreeInterface, false)
 
 begin
     JTreeInterfaceFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

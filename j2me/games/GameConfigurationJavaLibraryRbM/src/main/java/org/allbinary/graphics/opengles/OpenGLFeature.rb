@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/configuration/feature/Feature"
 
-class OpenGLFeature < Feature
+module ::Org; module Allbinary; module Graphics; module Opengles
+
+class OpenGLFeature < ::Org::Allbinary::Game::Configuration::Feature::Feature
     
 
     def initialize(name)
         super(name)
     end
 end
+
+end; end; end; end
 

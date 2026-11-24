@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/RTSLayerFormFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Input
 
 class RTSLayerFormFactory
     include RTSLayerFormFactoryInterface
@@ -23,8 +26,11 @@ class RTSLayerFormFactory
     def getInstance(rtsLayer)
         raise RuntimeError.new()
     end
+    java_overload :getInstance, 1
 end
 
-require "org/allbinary/game/layer/RTSLayer"
-require "org/allbinary/graphics/form/ScrollSelectionForm"
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm" unless const_defined?(:ScrollSelectionForm, false); end; end; end; end
+
+end; end; end; end
 

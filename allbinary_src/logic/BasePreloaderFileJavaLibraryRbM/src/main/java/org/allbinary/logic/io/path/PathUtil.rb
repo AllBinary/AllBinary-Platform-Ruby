@@ -15,13 +15,15 @@
 # package org.allbinary.logic.io.path
 
 
+module ::Org; module Allbinary; module Logic; module Io; module Path
+
 #Used to correct user input for paths
 class PathUtil
     attr_accessor :abPathData, :filePathData
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_io_path_PathUtil
         @abPathData = AbPathData.getInstance()
-        @filePathData = FilePathData.getInstance()
+        @filePathData = ::Org::Allbinary::Logic::Io::FilePackage::FilePathData.getInstance()
     end
     
 
@@ -31,7 +33,7 @@ class PathUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_io_path_PathUtil
     end
     
 
@@ -88,7 +90,7 @@ class PathUtil
     
 
     def isValidEnd(path)
-        stringValidationUtil = StringValidationUtil.getInstance()
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
         if stringValidationUtil.isEmpty(path)
             return false
         end
@@ -117,7 +119,7 @@ class PathUtil
     
 
     def adjust(path)
-        stringValidationUtil = StringValidationUtil.getInstance()
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
         if stringValidationUtil.isEmpty(path)
             return @abPathData.SEPARATOR
         end
@@ -141,7 +143,7 @@ class PathUtil
             return self.removeNameFromPath(path[0...endIndex - 1])
         else
             pathWithoutName = path[0...endIndex]
-            return AbPath.new(pathWithoutName, StringUtil.getInstance().EMPTY_STRING)
+            return AbPath.new(pathWithoutName, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         end
     end
 
@@ -176,16 +178,18 @@ class PathUtil
     end
 end
 
-autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :AbFilePath, "org/allbinary/logic/io/path/AbFilePath"
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData" unless const_defined?(:FilePathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+autoload :AbFilePath, "org/allbinary/logic/io/path/AbFilePath" unless const_defined?(:AbFilePath, false)
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false)
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false)
 
 begin
     PathUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

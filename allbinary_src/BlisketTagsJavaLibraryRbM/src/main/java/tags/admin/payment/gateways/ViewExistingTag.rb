@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package tags.admin.payment.gateways
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/JspTagException"
 require "tags/StoreValidationTransformTag"
 
-class ViewExistingTag < StoreValidationTransformTag
+module ::Tags; module Admin; module Payment; module Gateways
+
+class ViewExistingTag < ::Tags::StoreValidationTransformTag
     
 
     def initialize()
@@ -29,21 +32,25 @@ class ViewExistingTag < StoreValidationTransformTag
     def doStartTag()
         begin
             if self.getCommand() != nil
-                if self.getCommand().compareTo(org.allbinary.globals.GLOBALS2.VIEW) == 0
+                if self.getCommand().compareTo(::Org::Allbinary::Globals::GLOBALS2::VIEW) == 0
                     self.setName("Validation User View")
                     self.setObjectFile("views.admin.payment.gateways.SelectExistingValidationView")
                 else
                     raise StandardError.new("No Such View Command: " + (self.getCommand()).to_s)
                 end
-                return super()
+                return ViewExistingTag.superclass.java_super_method(:doStartTag, 0).bind(self).call()
             end
             raise StandardError.new("Command Null")
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2" unless const_defined?(:GLOBALS2, false); end; end; end
+
+end; end; end; end
 

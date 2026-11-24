@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison.motion
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class MotionRectanglesResultsEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
+
+class MotionRectanglesResultsEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     attr_accessor :frame, :motionRectangles
 
-    def initialize_fields
-        @frame = nil
-        @motionRectangles = nil
+    def jfields_org_allbinary_media_image_comparison_motion_MotionRectanglesResultsEvent
+        @frame = nil unless instance_variable_defined?(:@frame)
+        @motionRectangles = nil unless instance_variable_defined?(:@motionRectangles)
     end
     
 
     def initialize(anyType, frame, motionRectangles)
         super(anyType)
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_motion_MotionRectanglesResultsEvent
         @frame = frame
         self.setMotionRectangles(motionRectangles)
     end
@@ -36,17 +39,22 @@ class MotionRectanglesResultsEvent < AllBinaryEventObject
     def getMotionRectangles()
         return @motionRectangles
     end
+    java_overload :getMotionRectangles, 0
     
 
     def setMotionRectangles(motionRectangles)
         @motionRectangles = motionRectangles
     end
+    java_overload :setMotionRectangles, 1
     
 
     def getFrame()
         return @frame
     end
+    java_overload :getFrame, 0
 end
 
-autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles"
+autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles" unless const_defined?(:MotionRectangles, false)
+
+end; end; end; end; end; end
 

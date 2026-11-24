@@ -15,6 +15,10 @@
 # package org.allbinary.thread
 
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class SynchObject
 end
+
+end; end; end
 

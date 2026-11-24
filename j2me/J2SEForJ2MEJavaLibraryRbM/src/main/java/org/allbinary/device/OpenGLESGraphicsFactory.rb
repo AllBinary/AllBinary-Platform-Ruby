@@ -3,6 +3,8 @@
 # package org.allbinary.device
 
 
+module ::Org; module Allbinary; module Device
+
 class OpenGLESGraphicsFactory
     
 
@@ -11,6 +13,8 @@ class OpenGLESGraphicsFactory
     end
 end
 
-autoload :OpenGLESGraphics, "org/allbinary/device/OpenGLESGraphics"
-autoload :OpenGLESNullGraphicsFactory, "org/allbinary/device/OpenGLESNullGraphicsFactory"
+autoload :OpenGLESGraphics, "org/allbinary/device/OpenGLESGraphics" unless const_defined?(:OpenGLESGraphics, false)
+autoload :OpenGLESNullGraphicsFactory, "org/allbinary/device/OpenGLESNullGraphicsFactory" unless const_defined?(:OpenGLESNullGraphicsFactory, false)
+
+end; end; end
 

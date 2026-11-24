@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.resource
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/resource/ResourceRelativeRelationshipFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Resource
 
 class ResourceRelativeRelationshipFactory
     include ResourceRelativeRelationshipFactoryInterface
     attr_accessor :basicArrayListUtil, :hashtable, :initialized
 
-    def initialize_fields
-        @basicArrayListUtil = BasicArrayListUtil.getInstance()
-        @hashtable = StdUtil.getInstance().createHashtable()
-        @initialized = false
+    def jfields_org_allbinary_game_resource_ResourceRelativeRelationshipFactory
+        @basicArrayListUtil = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance()
+        @hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
+        @initialized = false unless instance_variable_defined?(:@initialized)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_resource_ResourceRelativeRelationshipFactory
     end
     
 
@@ -35,6 +38,7 @@ class ResourceRelativeRelationshipFactory
     def init(level)
         self.setInitialized(true)
     end
+    java_overload :init, 1
     
 
     # throws Exception
@@ -45,43 +49,51 @@ class ResourceRelativeRelationshipFactory
         end
         return listCanBeNull
     end
+    java_overload :getResourceRelativeRelationshipList, 1
     
 
     # throws Exception
     def addResourceRelativeRelationship(resource, hardPoint)
         list = self.getResourceRelativeRelationshipList(resource)
         if list == @basicArrayListUtil.getImmutableInstance()
-            list = BasicArrayListD.new()
+            list = ::Org::Allbinary::Util::BasicArrayListD.new()
         end
         list.add(hardPoint)
         @hashtable.put(resource, list)
     end
+    java_overload :addResourceRelativeRelationship, 2
     
 
     def isLoadingLevel(level)
         return false
     end
+    java_overload :isLoadingLevel, 1
     
 
     def isFeature()
         return false
     end
+    java_overload :isFeature, 0
     
 
     def setInitialized(initialized)
         @initialized = initialized
     end
+    java_overload :setInitialized, 1
     
 
     def isInitialized()
         return @initialized
     end
+    java_overload :isInitialized, 0
 end
 
-autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+module ::Org; module Allbinary; module Graphics; autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship" unless const_defined?(:RelativeRelationship, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+
+end; end; end; end
 

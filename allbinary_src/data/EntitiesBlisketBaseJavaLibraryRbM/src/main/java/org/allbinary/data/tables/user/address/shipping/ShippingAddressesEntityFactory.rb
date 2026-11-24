@@ -15,11 +15,13 @@
 # package org.allbinary.data.tables.user.address.shipping
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Address; module Shipping
+
 class ShippingAddressesEntityFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_data_tables_user_address_shipping_ShippingAddressesEntityFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -29,17 +31,16 @@ class ShippingAddressesEntityFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_data_tables_user_address_shipping_ShippingAddressesEntityFactory
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(userName)
         begin
             return ShippingAddressesEntity.new(userName)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
                 @logUtil.put(commonStrings.EXCEPTION, self, "getShippingAddressesEntityInstance()", e)
             end
             return nil
@@ -77,14 +78,18 @@ class ShippingAddressesEntityFactory
     end
 end
 
-autoload :StreetAddressesEntity, "org/allbinary/data/tables/user/address/StreetAddressesEntity"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ShippingAddressesEntity, "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntity"
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Address; autoload :StreetAddressesEntity, "org/allbinary/data/tables/user/address/StreetAddressesEntity" unless const_defined?(:StreetAddressesEntity, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :ShippingAddressesEntity, "org/allbinary/data/tables/user/address/shipping/ShippingAddressesEntity" unless const_defined?(:ShippingAddressesEntity, false)
 
 begin
     ShippingAddressesEntityFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

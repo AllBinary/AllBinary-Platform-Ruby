@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerProcessor"
+
+module ::Org; module Allbinary; module Layer
 
 class SingleLayerLayerProcessor < LayerProcessor
     
@@ -29,10 +32,13 @@ class SingleLayerLayerProcessor < LayerProcessor
         layerManager = self.getLayerManager()
         self.processAt(allBinaryLayerManager, layerManager.getLayerAt(0), 0)
     end
+    java_overload :process, 1
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :LayerManager, "org/allbinary/layer/LayerManager"
-autoload :SingleLayerLayerManager, "org/allbinary/layer/SingleLayerLayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false)
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false)
+autoload :LayerManager, "org/allbinary/layer/LayerManager" unless const_defined?(:LayerManager, false)
+autoload :SingleLayerLayerManager, "org/allbinary/layer/SingleLayerLayerManager" unless const_defined?(:SingleLayerLayerManager, false)
+
+end; end; end
 

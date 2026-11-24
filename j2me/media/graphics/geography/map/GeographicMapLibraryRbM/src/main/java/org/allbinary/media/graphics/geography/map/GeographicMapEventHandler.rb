@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class GeographicMapEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
+class GeographicMapEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_media_graphics_geography_map_GeographicMapEventHandler
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -31,7 +34,7 @@ class GeographicMapEventHandler < BasicEventHandler
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_GeographicMapEventHandler
     end
     
 
@@ -40,18 +43,21 @@ class GeographicMapEventHandler < BasicEventHandler
             @list.add(gameLayer)
         end
     end
+    java_overload :addListener, 1
     
 
     def removeAllListeners()
         @list.clear()
-        super()
+        GeographicMapEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListener(eventListenerInterface)
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        GeographicMapEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
     end
+    java_overload :removeListener, 1
     
 
     def fireEvent()
@@ -61,27 +67,54 @@ class GeographicMapEventHandler < BasicEventHandler
                 gameLayer = @list.get(index)
                 gameLayer.move()
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
     end
+    java_overload :fireEvent, 0
 
     def self.instance()
+        GeographicMapEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GeographicMapEventHandler.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GeographicMapEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GeographicMapEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer" unless const_defined?(:AllBinaryGameLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
-class GeographicMapEventHandler
-    @@instance = GeographicMapEventHandler.new()
+begin
+    GeographicMapEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

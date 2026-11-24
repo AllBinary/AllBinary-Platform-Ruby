@@ -15,27 +15,30 @@
 # package org.allbinary.logic.communication.log.config
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config
+
 class LogConfig
     attr_accessor :isEnabled, :name, :description, :path, :fileName
 
-    def initialize_fields
-        @isEnabled = nil
-        @name = nil
-        @description = nil
-        @path = nil
-        @fileName = nil
+    def jfields_org_allbinary_logic_communication_log_config_LogConfig
+        @isEnabled = nil unless instance_variable_defined?(:@isEnabled)
+        @name = nil unless instance_variable_defined?(:@name)
+        @description = nil unless instance_variable_defined?(:@description)
+        @path = nil unless instance_variable_defined?(:@path)
+        @fileName = nil unless instance_variable_defined?(:@fileName)
     end
 
     def initialize(*args)
         case args.length
-        when 4 then constructor4(*args)
-        when 1 then constructor1(*args)
+        when 4 then jnew_org_allbinary_logic_communication_log_config_LogConfig_4(*args)
+        when 1 then jnew_org_allbinary_logic_communication_log_config_LogConfig_1(*args)
+        else raise ArgumentError, "No constructor of LogConfig takes #{args.length} arguments"
         end
     end
     
 
-    def constructor4(aName, aDescription, aPath, aFileName)
-        initialize_fields
+    def jnew_org_allbinary_logic_communication_log_config_LogConfig_4(aName, aDescription, aPath, aFileName)
+        jfields_org_allbinary_logic_communication_log_config_LogConfig
         @isEnabled = false
         @name = aName
         @description = aDescription
@@ -44,18 +47,18 @@ class LogConfig
     end
     
 
-    def constructor1(node)
-        initialize_fields
-        enabledValueNode = DomSearchHelper.getNode(EntryData.getInstance().ENABLE, node.getChildNodes())
-        isEnabledString = DomNodeHelper.getTextNodeValue(enabledValueNode)
-        @isEnabled = BooleanUtil.getInstance().getFromString(isEnabledString)
+    def jnew_org_allbinary_logic_communication_log_config_LogConfig_1(node)
+        jfields_org_allbinary_logic_communication_log_config_LogConfig
+        enabledValueNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(::Org::Allbinary::Business::Entry::EntryData.getInstance().ENABLE, node.getChildNodes())
+        isEnabledString = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(enabledValueNode)
+        @isEnabled = ::Org::Allbinary::Logic::Java::Bool::BooleanUtil.getInstance().getFromString(isEnabledString)
         logConfigData = LogConfigData.getInstance()
-        nameValueNode = DomSearchHelper.getNode(logConfigData.NAME, node.getChildNodes())
-        @name = DomNodeHelper.getTextNodeValue(nameValueNode)
-        descriptionValueNode = DomSearchHelper.getNode(logConfigData.DESCRIPTION, node.getChildNodes())
-        @description = DomNodeHelper.getTextNodeValue(descriptionValueNode)
-        fileValueNode = DomSearchHelper.getNode(logConfigData.FILE, node.getChildNodes())
-        @fileName = DomNodeHelper.getTextNodeValue(fileValueNode)
+        nameValueNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(logConfigData.NAME, node.getChildNodes())
+        @name = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(nameValueNode)
+        descriptionValueNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(logConfigData.DESCRIPTION, node.getChildNodes())
+        @description = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(descriptionValueNode)
+        fileValueNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(logConfigData.FILE, node.getChildNodes())
+        @fileName = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(fileValueNode)
     end
     
 
@@ -111,51 +114,53 @@ class LogConfig
 
     # throws Exception
     def getDoc()
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(URLGLOBALS.getWebappPath())
-        stringBuffer.append(PATH_GLOBALS.getInstance().INIT_PATH)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(::Org::Allbinary::Globals::URLGLOBALS.getWebappPath())
+        stringBuffer.append(::Org::Allbinary::Globals::PATH_GLOBALS.getInstance().INIT_PATH)
         stringBuffer.append(self.getFileName())
-        file = AbFile.createAbFile(stringBuffer.to_s)
-        document = DomDocumentHelper.create(AbFileLocalInputStream.new(file))
+        file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(stringBuffer.to_s)
+        document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create(::Org::Allbinary::Logic::Io::AbFileLocalInputStream.new(file))
         return document
     end
     
 
     # throws Exception
     def getTypeVector()
-        logKeyVector = BasicArrayListD.new()
+        logKeyVector = ::Org::Allbinary::Util::BasicArrayListD.new()
         document = self.getDoc()
-        logConfigTypesNodeList = document.getElementsByTagName(LogConfigTypesData.getInstance().NAME)
+        logConfigTypesNodeList = document.getElementsByTagName(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypesData.getInstance().NAME)
         logConfigTypesNode = logConfigTypesNodeList.item(0)
-        logConfigTypeNodeVector = DomSearchHelper.getAllNodes(LogConfigTypeData.getInstance().NAME, logConfigTypesNode.getChildNodes())
+        logConfigTypeNodeVector = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getAllNodes(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeData.getInstance().NAME, logConfigTypesNode.getChildNodes())
         size = logConfigTypeNodeVector.size()
         (0...size).each do |i|
             node = logConfigTypeNodeVector.get(i)
-            logType = LogConfigTypes.getInstance(node)
+            logType = ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes.getInstance(node)
             logKeyVector.add(logType)
         end
         return logKeyVector
     end
 end
 
-require "org/allbinary/business/entry/EntryData"
-require "org/allbinary/data/tree/dom/DomNodeHelper"
-require "org/allbinary/data/tree/dom/DomSearchHelper"
-require "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-require "org/allbinary/globals/PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/config/type/LogConfigType"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeData"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypesData"
-require "org/allbinary/logic/io/AbFileLocalInputStream"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/java/bool/BooleanUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/w3c/dom/Document"
-require "org/w3c/dom/Node"
-require "org/w3c/dom/NodeList"
-require "org/allbinary/logic/communication/log/config/LogConfigData"
+module ::Org; module Allbinary; module Business; module Entry; autoload :EntryData, "org/allbinary/business/entry/EntryData" unless const_defined?(:EntryData, false); end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper" unless const_defined?(:DomNodeHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper" unless const_defined?(:DomSearchHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper" unless const_defined?(:DomDocumentHelper, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS" unless const_defined?(:PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigType, "org/allbinary/logic/communication/log/config/type/LogConfigType" unless const_defined?(:LogConfigType, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeData, "org/allbinary/logic/communication/log/config/type/LogConfigTypeData" unless const_defined?(:LogConfigTypeData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypesData, "org/allbinary/logic/communication/log/config/type/LogConfigTypesData" unless const_defined?(:LogConfigTypesData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileLocalInputStream, "org/allbinary/logic/io/AbFileLocalInputStream" unless const_defined?(:AbFileLocalInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanUtil, "org/allbinary/logic/java/bool/BooleanUtil" unless const_defined?(:BooleanUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :NodeList, "org/w3c/dom/NodeList" unless const_defined?(:NodeList, false); end; end; end
+autoload :LogConfigData, "org/allbinary/logic/communication/log/config/LogConfigData" unless const_defined?(:LogConfigData, false)
+
+end; end; end; end; end; end
 

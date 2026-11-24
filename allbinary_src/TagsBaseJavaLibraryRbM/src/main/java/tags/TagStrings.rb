@@ -15,15 +15,17 @@
 # package tags
 
 
+module ::Tags
+
 class TagStrings
     attr_accessor :DO_START_TAG
 
-    def initialize_fields
+    def jfields_tags_TagStrings
         @DO_START_TAG = "doStartTag"
     end
 
     def initialize
-        initialize_fields
+        jfields_tags_TagStrings
     end
     
 
@@ -66,5 +68,7 @@ begin
     TagStrings.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
+end
+
 end
 

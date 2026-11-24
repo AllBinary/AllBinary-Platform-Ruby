@@ -15,20 +15,25 @@
 # package org.allbinary.input.automation.module.generic.configuration.profile
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile
+
 module GenericProfileDataWorkerTypeInterface
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setName(name)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def toString()
+        return super if defined?(super)
         raise NotImplementedError
     end
     alias_method :to_s, :toString
@@ -36,10 +41,13 @@ module GenericProfileDataWorkerTypeInterface
 
     # throws Exception
     def toXmlNode(document)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end; end; end; end; end; end
 

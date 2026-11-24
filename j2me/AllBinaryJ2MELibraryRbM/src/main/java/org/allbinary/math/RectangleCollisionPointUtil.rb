@@ -15,6 +15,8 @@
 # package org.allbinary.math
 
 
+module ::Org; module Allbinary; module MathPackage
+
 class RectangleCollisionPointUtil
     
 
@@ -50,7 +52,9 @@ class RectangleCollisionPointUtil
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :RectangleCollisionUtil, "org/allbinary/math/RectangleCollisionUtil"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :RectangleCollisionUtil, "org/allbinary/math/RectangleCollisionUtil" unless const_defined?(:RectangleCollisionUtil, false)
+
+end; end; end
 

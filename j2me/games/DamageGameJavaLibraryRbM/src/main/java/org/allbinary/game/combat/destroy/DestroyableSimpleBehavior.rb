@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.destroy
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/combat/destroy/DestroyableBaseBehavior"
+
+module ::Org; module Allbinary; module Game; module Combat; module Destroy
 
 class DestroyableSimpleBehavior < DestroyableBaseBehavior
     attr_accessor :ownerLayer, :destroyed
 
-    def initialize_fields
-        @ownerLayer = nil
+    def jfields_org_allbinary_game_combat_destroy_DestroyableSimpleBehavior
+        @ownerLayer = nil unless instance_variable_defined?(:@ownerLayer)
         @destroyed = false
     end
     
 
     def initialize(ownerLayer)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_combat_destroy_DestroyableSimpleBehavior
         @ownerLayer = ownerLayer
     end
     
@@ -35,6 +38,7 @@ class DestroyableSimpleBehavior < DestroyableBaseBehavior
     def isDestroyed()
         return @destroyed
     end
+    java_overload :isDestroyed, 0
     
 
     def setDestroyed(destroyed)
@@ -43,8 +47,11 @@ class DestroyableSimpleBehavior < DestroyableBaseBehavior
             DestroyedLayerProcessor.getInstance().add(@ownerLayer)
         end
     end
+    java_overload :setDestroyed, 1
 end
 
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :DestroyedLayerProcessor, "org/allbinary/game/combat/destroy/DestroyedLayerProcessor"
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+autoload :DestroyedLayerProcessor, "org/allbinary/game/combat/destroy/DestroyedLayerProcessor" unless const_defined?(:DestroyedLayerProcessor, false)
+
+end; end; end; end; end
 

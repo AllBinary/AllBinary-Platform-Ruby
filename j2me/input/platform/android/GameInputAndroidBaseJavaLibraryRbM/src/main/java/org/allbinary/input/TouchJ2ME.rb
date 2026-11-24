@@ -15,6 +15,8 @@
 # package org.allbinary.input
 
 
+module ::Org; module Allbinary; module Input
+
 #TouchAndroid
 class TouchJ2ME
     
@@ -34,4 +36,6 @@ class TouchJ2ME
     def pointerReleased(x, y)
     end
 end
+
+end; end; end
 

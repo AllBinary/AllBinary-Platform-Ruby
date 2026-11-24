@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.os.android
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/os/GenericOperatingSystem"
 
-class AndroidOS < GenericOperatingSystem
+module ::Org; module Allbinary; module Logic; module System; module Os; module Android
+
+class AndroidOS < ::Org::Allbinary::Logic::System::Os::GenericOperatingSystem
     attr_accessor :stringBuffer, :DEVICE_ID, :DEVICE_SOFTWARE_VERSION, :LINE_1_NUMBER, :OUYA
 
-    def initialize_fields
-        @stringBuffer = StringMaker.new()
+    def jfields_org_allbinary_logic_system_os_android_AndroidOS
+        @stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         @DEVICE_ID = "DeviceId"
         @DEVICE_SOFTWARE_VERSION = "DeviceSoftwareVersion"
         @LINE_1_NUMBER = "Line1Number"
@@ -30,13 +33,13 @@ class AndroidOS < GenericOperatingSystem
 
     def initialize()
         super()
-        initialize_fields
-        _SDK_VERSION = AndroidInfoFactory.getInstance().getVersion()
+        jfields_org_allbinary_logic_system_os_android_AndroidOS
+        _SDK_VERSION = ::Org::Allbinary::Android::AndroidInfoFactory.getInstance().getVersion()
         if _SDK_VERSION > 10
             @scalable = true
         end
         properties = AndroidSystemProperties.getInstance()
-        commonStrings = CommonSeps.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         @stringBuffer.append(@DEVICE_ID)
         @stringBuffer.append(commonStrings.EQUALS)
         @stringBuffer.append(properties.getDeviceId())
@@ -63,11 +66,11 @@ class AndroidOS < GenericOperatingSystem
         @stringBuffer.append(commonStrings.SPACE)
         @stringBuffer.append("NetworkType")
         @stringBuffer.append(commonStrings.EQUALS)
-        @stringBuffer.appendint((properties.getNetworkType()).to_i)
+        @stringBuffer.appendint(((properties.getNetworkType()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         @stringBuffer.append(commonStrings.SPACE)
         @stringBuffer.append("PhoneType")
         @stringBuffer.append(commonStrings.EQUALS)
-        @stringBuffer.appendint((properties.getPhoneType()).to_i)
+        @stringBuffer.appendint(((properties.getPhoneType()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         @stringBuffer.append(commonStrings.SPACE)
         @stringBuffer.append("SimCountryIso")
         @stringBuffer.append(commonStrings.EQUALS)
@@ -107,31 +110,37 @@ class AndroidOS < GenericOperatingSystem
         end
         return false
     end
+    java_overload :isOverScan, 0
     
 
     def getOverScanXPercent()
         return 90
     end
+    java_overload :getOverScanXPercent, 0
     
 
     def getOverScanYPercent()
         return 90
     end
+    java_overload :getOverScanYPercent, 0
     
 
     def toString()
-        osBuffer = StringMaker.new()
+        osBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         osBuffer.append(super.to_s)
-        osBuffer.append(CommonSeps.getInstance().SPACE)
+        osBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         osBuffer.append("Other System Info: \n")
         osBuffer.append(@stringBuffer.to_s)
         return osBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/android/AndroidInfoFactory"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/logic/system/os/android/AndroidSystemProperties"
+module ::Org; module Allbinary; module Android; autoload :AndroidInfoFactory, "org/allbinary/android/AndroidInfoFactory" unless const_defined?(:AndroidInfoFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :AndroidSystemProperties, "org/allbinary/logic/system/os/android/AndroidSystemProperties" unless const_defined?(:AndroidSystemProperties, false)
+
+end; end; end; end; end; end
 

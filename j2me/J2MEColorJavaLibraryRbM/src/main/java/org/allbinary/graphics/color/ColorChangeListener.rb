@@ -14,10 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.color
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 module ColorChangeListener
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
 end
+
+end; end; end; end
 

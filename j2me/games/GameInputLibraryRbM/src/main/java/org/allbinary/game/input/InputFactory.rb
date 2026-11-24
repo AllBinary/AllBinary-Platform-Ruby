@@ -15,22 +15,24 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class InputFactory
     attr_accessor :logUtil, :commonStrings, :KEY_CODE_LABEL, :DEVICE_ID_LABEL, :MAX, :inputIntegerArray, :NO_INPUT
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_game_input_InputFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @KEY_CODE_LABEL = "KeyCode: "
         @DEVICE_ID_LABEL = "DeviceId: "
-        @MAX = SmallIntegerSingletonFactory.getInstance().getMin()
+        @MAX = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getMin()
         @inputIntegerArray = Array.new(@MAX, nil)
         @NO_INPUT = Input.new(0, @commonStrings.UNKNOWN)
     end
     
 
     def self.getInstance()
-        if InputFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if InputFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             InputFactory.instance = InputFactory.new()
         end
         return InputFactory.instance
@@ -38,7 +40,7 @@ class InputFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_input_InputFactory
         size = @inputIntegerArray.length
         (0...size).each do |index|
             @inputIntegerArray[index] = @NO_INPUT
@@ -56,7 +58,7 @@ class InputFactory
             id = -id
         end
         if id > @inputIntegerArray.length
-            @logUtil.putF(StringMaker.new().append("Warning id: ").appendint(id).to_s, self, @commonStrings.GET_INSTANCE)
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Warning id: ").appendint(id).to_s, self, @commonStrings.GET_INSTANCE)
             return @NO_INPUT
         end
         return @inputIntegerArray[id]
@@ -76,7 +78,7 @@ class InputFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -93,16 +95,18 @@ class InputFactory
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Input, "org/allbinary/game/input/Input"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false)
 
 begin
     InputFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

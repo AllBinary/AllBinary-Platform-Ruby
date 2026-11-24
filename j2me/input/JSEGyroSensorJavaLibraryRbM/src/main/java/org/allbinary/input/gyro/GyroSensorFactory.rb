@@ -15,6 +15,8 @@
 # package org.allbinary.input.gyro
 
 
+module ::Org; module Allbinary; module Input; module Gyro
+
 class GyroSensorFactory
     
 
@@ -59,12 +61,14 @@ class GyroSensorFactory
     end
 end
 
-autoload :AllBinaryOrientationSensor, "org/allbinary/input/gyro/AllBinaryOrientationSensor"
-autoload :NoGyroSensor, "org/allbinary/input/gyro/NoGyroSensor"
+autoload :AllBinaryOrientationSensor, "org/allbinary/input/gyro/AllBinaryOrientationSensor" unless const_defined?(:AllBinaryOrientationSensor, false)
+autoload :NoGyroSensor, "org/allbinary/input/gyro/NoGyroSensor" unless const_defined?(:NoGyroSensor, false)
 
 begin
     GyroSensorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

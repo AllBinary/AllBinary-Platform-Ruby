@@ -15,16 +15,18 @@
 # package org.allbinary.platform.graphics
 
 
+module ::Org; module Allbinary; module Platform; module Graphics
+
 class PlatformBitmapBase
     attr_accessor :alpha, :basicColor
 
-    def initialize_fields
+    def jfields_org_allbinary_platform_graphics_PlatformBitmapBase
         @alpha = 255
-        @basicColor = BasicColorFactory.getInstance().NULL_COLOR
+        @basicColor = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().NULL_COLOR
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_platform_graphics_PlatformBitmapBase
     end
     
 
@@ -39,7 +41,7 @@ class PlatformBitmapBase
     
 
     def getImage()
-        return NullImage::NULL_IMAGE
+        return ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
     end
 
     def self.java_static_fields
@@ -63,14 +65,16 @@ class PlatformBitmapBase
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :NullImage, "javax/microedition/lcdui/NullImage"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
 
 begin
     PlatformBitmapBase.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

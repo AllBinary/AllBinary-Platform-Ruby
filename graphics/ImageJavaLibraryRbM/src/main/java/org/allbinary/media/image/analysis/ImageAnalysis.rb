@@ -14,14 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.analysis
 
-# require "java/awt"
+# require "java/awt/Color"
 # require "java/awt/image/BufferedImage"
+
+module ::Org; module Allbinary; module Media; module Image; module Analysis
 
 class ImageAnalysis
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_image_analysis_ImageAnalysis
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -31,14 +33,14 @@ class ImageAnalysis
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_analysis_ImageAnalysis
     end
     
 
     # throws Exception
     def process(bufferedImageArray, colorRangeInterface)
-        commonStrings = CommonStrings.getInstance()
-        @logUtil.putF((CommonLabels.getInstance().START).to_s + colorRangeInterface.to_s, self, commonStrings.PROCESS)
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @logUtil.putF((::Org::Allbinary::StringPackage::CommonLabels.getInstance().START).to_s + colorRangeInterface.to_s, self, commonStrings.PROCESS)
         imageAnalysisResultsArray = Array.new(bufferedImageArray.length, nil)
         (0...bufferedImageArray.length).each do |index|
             imageAnalysisResultsArray[index] = ImageAnalysis.process(bufferedImageArray[index], colorRangeInterface)
@@ -48,7 +50,6 @@ class ImageAnalysis
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def self.process(bufferedImage, colorRangeInterface)
         imageAnalysisResults = ImageAnalysisResults.new()
         redTotal = 0
@@ -57,7 +58,7 @@ class ImageAnalysis
         (0...bufferedImage.getHeight()).each do |indexY|
             (0...bufferedImage.getWidth()).each do |indexX|
                 keyInteger = (bufferedImage.getRGB(indexX, indexY)).to_s
-                colorCacheable = ColorCacheFactory.getInstance().get(keyInteger)
+                colorCacheable = ::Org::Allbinary::Graphics::Color::ColorCacheFactory.getInstance().get(keyInteger)
                 color = colorCacheable.getColor()
                 ImageAnalysis.processColorRangeResults(imageAnalysisResults, colorRangeInterface, color)
                 ImageAnalysis.processImageColorResults(imageAnalysisResults.getImageColorResults(), colorRangeInterface, color)
@@ -136,19 +137,21 @@ class ImageAnalysis
     end
 end
 
-autoload :ColorCacheFactory, "org/allbinary/graphics/color/ColorCacheFactory"
-autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ColorAverage, "org/allbinary/media/image/analysis/ColorAverage"
-autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface"
-autoload :ImageAnalysisResults, "org/allbinary/media/image/analysis/ImageAnalysisResults"
-autoload :ImageColorResults, "org/allbinary/media/image/analysis/ImageColorResults"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :ColorCacheFactory, "org/allbinary/graphics/color/ColorCacheFactory" unless const_defined?(:ColorCacheFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable" unless const_defined?(:ColorCacheable, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :ColorAverage, "org/allbinary/media/image/analysis/ColorAverage" unless const_defined?(:ColorAverage, false)
+autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface" unless const_defined?(:ColorRangeInterface, false)
+autoload :ImageAnalysisResults, "org/allbinary/media/image/analysis/ImageAnalysisResults" unless const_defined?(:ImageAnalysisResults, false)
+autoload :ImageColorResults, "org/allbinary/media/image/analysis/ImageColorResults" unless const_defined?(:ImageColorResults, false)
 
 begin
     ImageAnalysis.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

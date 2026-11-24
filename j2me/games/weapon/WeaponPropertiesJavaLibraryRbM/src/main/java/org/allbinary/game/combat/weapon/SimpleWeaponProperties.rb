@@ -15,17 +15,19 @@
 # package org.allbinary.game.combat.weapon
 
 
+module ::Org; module Allbinary; module Game; module Combat; module Weapon
+
 class SimpleWeaponProperties
     attr_accessor :damage, :dissipation, :range
 
-    def initialize_fields
-        @damage = 0
-        @dissipation = 0
-        @range = 0
+    def jfields_org_allbinary_game_combat_weapon_SimpleWeaponProperties
+        @damage = 0 unless instance_variable_defined?(:@damage)
+        @dissipation = 0 unless instance_variable_defined?(:@dissipation)
+        @range = 0 unless instance_variable_defined?(:@range)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_combat_weapon_SimpleWeaponProperties
     end
     
 
@@ -65,4 +67,6 @@ class SimpleWeaponProperties
         @range = range
     end
 end
+
+end; end; end; end; end
 

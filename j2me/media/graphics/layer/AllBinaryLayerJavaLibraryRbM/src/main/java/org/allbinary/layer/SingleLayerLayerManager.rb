@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerManager"
+
+module ::Org; module Allbinary; module Layer
 
 class SingleLayerLayerManager < LayerManager
     
@@ -24,5 +27,7 @@ class SingleLayerLayerManager < LayerManager
     end
 end
 
-autoload :LayerManagerNoDebug, "org/allbinary/layer/LayerManagerNoDebug"
+autoload :LayerManagerNoDebug, "org/allbinary/layer/LayerManagerNoDebug" unless const_defined?(:LayerManagerNoDebug, false)
+
+end; end; end
 

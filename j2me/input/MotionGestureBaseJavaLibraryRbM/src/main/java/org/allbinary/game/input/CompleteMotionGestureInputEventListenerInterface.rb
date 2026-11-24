@@ -14,17 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Input
+
 module CompleteMotionGestureInputEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     def onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onCompleteMotionGestureInputEvent, 1
 end
 
-autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
+autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent" unless const_defined?(:CompleteMotionGestureInputEvent, false)
+
+end; end; end; end
 

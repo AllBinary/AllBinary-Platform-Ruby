@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.media
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Media
+
 class MediaDataFactory
     attr_accessor :AVI, :BMP, :CEL, :FITS, :FLI, :GBR, :GIF, :GIH, :JPG, :PIX, :PNG, :PNM, :PSD, :PSP, :PS, :SGI, :SWF, :TGA, :TIFF, :WMF
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_media_MediaDataFactory
         @AVI = MediaData.new("avi")
         @BMP = MediaData.new("bmp")
         @CEL = MediaData.new("cel")
@@ -42,7 +44,7 @@ class MediaDataFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_visual_media_MediaDataFactory
     end
     
 
@@ -51,17 +53,43 @@ class MediaDataFactory
     end
 
     def self.instance()
+        MediaDataFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        MediaDataFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = MediaDataFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MediaDataFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/visual/media/MediaData"
+autoload :MediaData, "org/allbinary/logic/visual/media/MediaData" unless const_defined?(:MediaData, false)
 
-class MediaDataFactory
-    @@instance = MediaDataFactory.new()
+begin
+    MediaDataFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

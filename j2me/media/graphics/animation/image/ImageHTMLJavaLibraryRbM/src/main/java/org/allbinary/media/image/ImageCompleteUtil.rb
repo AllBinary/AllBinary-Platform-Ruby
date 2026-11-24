@@ -14,18 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageCompleteUtil
     attr_accessor :timeDelayHelper, :allTimeDelayHelper
 
-    def initialize_fields
-        @timeDelayHelper = TimeDelayHelper.new(18000)
-        @allTimeDelayHelper = TimeDelayHelper.new(120000)
+    def jfields_org_allbinary_media_image_ImageCompleteUtil
+        @timeDelayHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(18000)
+        @allTimeDelayHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(120000)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageCompleteUtil
     end
     
 
@@ -68,31 +69,58 @@ class ImageCompleteUtil
     # throws Exception
     def waitForAll()
         @allTimeDelayHelper.setStartTime()
-        hashtable = GameFeatureImageCacheFactory.getInstance().getHashtable()
-        objectArray = HashtableUtil.getInstance().getKeysAsArray(hashtable)
+        hashtable = ::Org::Allbinary::Image::GameFeatureImageCacheFactory.getInstance().getHashtable()
+        objectArray = ::Org::Allbinary::Util::HashtableUtil.getInstance().getKeysAsArray(hashtable)
         size = objectArray.length
-        PreLogUtil.put("Total: " + (size).to_s, self, "waitForAll")
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Total: " + (size).to_s, self, "waitForAll")
         (0...size).each do |index|
             self.waitForATime(hashtable.get(objectArray[index]), objectArray[index], @allTimeDelayHelper)
         end
     end
 
     def self.instance()
+        ImageCompleteUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageCompleteUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageCompleteUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageCompleteUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/image/GameFeatureImageCacheFactory"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/util/HashtableUtil"
-require "org/microemu/device/playn/PlaynImage"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :GameFeatureImageCacheFactory, "org/allbinary/image/GameFeatureImageCacheFactory" unless const_defined?(:GameFeatureImageCacheFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :HashtableUtil, "org/allbinary/util/HashtableUtil" unless const_defined?(:HashtableUtil, false); end; end; end
+module ::Org; module Microemu; module Device; module Playn; autoload :PlaynImage, "org/microemu/device/playn/PlaynImage" unless const_defined?(:PlaynImage, false); end; end; end; end
 
-class ImageCompleteUtil
-    @@instance = ImageCompleteUtil.new()
+begin
+    ImageCompleteUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.osgi.framework
 
+require "java/lang/JavaOverload"
 require "org/osgi/framework/ServiceReference"
+
+module ::Org; module Osgi; module Framework
 
 class BaseServiceReference
     include ServiceReference
@@ -23,15 +26,20 @@ class BaseServiceReference
     def getProperty(key)
         raise RuntimeError.new()
     end
+    java_overload :getProperty, 1
     
 
     def getPropertyKeys()
         raise RuntimeError.new()
     end
+    java_overload :getPropertyKeys, 0
     
 
     def compareTo(o)
         raise RuntimeError.new()
     end
+    java_overload :compareTo, 1
 end
+
+end; end; end
 

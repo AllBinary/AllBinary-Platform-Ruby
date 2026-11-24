@@ -15,6 +15,8 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 module GameFeatureControlledInterface
     
 
@@ -36,4 +38,6 @@ module GameFeatureControlledInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

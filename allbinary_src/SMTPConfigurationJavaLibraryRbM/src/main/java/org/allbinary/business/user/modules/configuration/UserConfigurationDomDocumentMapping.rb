@@ -14,42 +14,49 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.modules.configuration
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tree/dom/document/mapping/DomDocumentMappingInterface"
 
+module ::Org; module Allbinary; module Business; module User; module Modules; module Configuration
+
 class UserConfigurationDomDocumentMapping
-    include DomDocumentMappingInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::Document::Mapping::DomDocumentMappingInterface
     attr_accessor :userConfigurationInterface
 
-    def initialize_fields
-        @userConfigurationInterface = nil
+    def jfields_org_allbinary_business_user_modules_configuration_UserConfigurationDomDocumentMapping
+        @userConfigurationInterface = nil unless instance_variable_defined?(:@userConfigurationInterface)
     end
     
 
     def initialize(userConfigurationInterface)
-        initialize_fields
+        jfields_org_allbinary_business_user_modules_configuration_UserConfigurationDomDocumentMapping
         @userConfigurationInterface = userConfigurationInterface
     end
     
 
     # throws Exception
     def toXmlDoc()
-        document = DomDocumentHelper.create()
+        document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create()
         node = UserConfigurationView.new(@userConfigurationInterface).toXmlNode(document)
         document.appendChild(node)
         return document
     end
+    java_overload :toXmlDoc, 0
     
 
     # throws Exception
     def toDomDocumentString()
-        return XmlDocumentHelper.toString(self.toXmlDoc())
+        return ::Org::Allbinary::DataPackage::Tree::Dom::Document::XmlDocumentHelper.toString(self.toXmlDoc())
     end
+    java_overload :toDomDocumentString, 0
 end
 
-autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :UserConfigurationInterface, "org/allbinary/business/user/modules/configuration/UserConfigurationInterface"
-autoload :UserConfigurationView, "org/allbinary/business/user/modules/configuration/UserConfigurationView"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper" unless const_defined?(:DomDocumentHelper, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper" unless const_defined?(:XmlDocumentHelper, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :UserConfigurationInterface, "org/allbinary/business/user/modules/configuration/UserConfigurationInterface" unless const_defined?(:UserConfigurationInterface, false)
+autoload :UserConfigurationView, "org/allbinary/business/user/modules/configuration/UserConfigurationView" unless const_defined?(:UserConfigurationView, false)
+
+end; end; end; end; end; end
 

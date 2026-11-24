@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class InApplicationPurchaseFactory
     
 
@@ -69,7 +71,7 @@ class InApplicationPurchaseFactory
     
 
     def getUserName()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
@@ -108,12 +110,14 @@ class InApplicationPurchaseFactory
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature" unless const_defined?(:LockableFeature, false)
 
 begin
     InApplicationPurchaseFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 module HighScoresFactoryInterface
     
 
@@ -36,7 +38,9 @@ module HighScoresFactoryInterface
     end
 end
 
-autoload :GameInfo, "org/allbinary/game/GameInfo"
-autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
-autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener"
+module ::Org; module Allbinary; module Game; autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false); end; end; end
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface" unless const_defined?(:HighScoresHelperBaseInterface, false)
+autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener" unless const_defined?(:HighScoresResultsListener, false)
+
+end; end; end; end
 

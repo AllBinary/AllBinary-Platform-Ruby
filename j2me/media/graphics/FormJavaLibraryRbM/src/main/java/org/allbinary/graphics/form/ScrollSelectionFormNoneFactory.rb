@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.form
 
 
+module ::Org; module Allbinary; module Graphics; module Form
+
 class ScrollSelectionFormNoneFactory
     
 
@@ -23,5 +25,7 @@ class ScrollSelectionFormNoneFactory
     end
 end
 
-autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm" unless const_defined?(:ScrollSelectionForm, false)
+
+end; end; end; end
 

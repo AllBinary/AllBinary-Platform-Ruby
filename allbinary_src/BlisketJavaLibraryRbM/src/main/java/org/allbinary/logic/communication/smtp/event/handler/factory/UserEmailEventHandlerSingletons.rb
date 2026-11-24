@@ -15,13 +15,15 @@
 # package org.allbinary.logic.communication.smtp.event.handler.factory
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; module Handler; module Factory
+
 class UserEmailEventHandlerSingletons
     attr_accessor :logUtil, :commonStrings, :userEmailEventHandlerHashMap
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @userEmailEventHandlerHashMap = StdUtil.getInstance().createHashMap()
+    def jfields_org_allbinary_logic_communication_smtp_event_handler_factory_UserEmailEventHandlerSingletons
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @userEmailEventHandlerHashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
     end
     
 
@@ -31,32 +33,31 @@ class UserEmailEventHandlerSingletons
     
 
     def initialize()
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
+        jfields_org_allbinary_logic_communication_smtp_event_handler_factory_UserEmailEventHandlerSingletons
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         end
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(abeClientInformation, userEmailEventNameData, userInterface)
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
             @logUtil.putF(@commonStrings.START, self, @commonStrings.GET_INSTANCE)
         end
         userEmailEventHandler = @userEmailEventHandlerHashMap.get(userEmailEventNameData)
         if userEmailEventHandler == nil
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
                 @logUtil.putF("Creating New Named UserEmailEventHandler", self, @commonStrings.GET_INSTANCE)
             end
-            newUserEmailEventHandler = UserEmailEventHandler.new()
-            vector = EmailEventHandlerUtil.getUserEmailEventListenerVector(abeClientInformation, userEmailEventNameData, userInterface)
+            newUserEmailEventHandler = ::Org::Allbinary::Logic::Communication::Smtp::Event::Handler::UserEmailEventHandler.new()
+            vector = ::Org::Allbinary::Logic::Communication::Smtp::Event::Handler::EmailEventHandlerUtil.getUserEmailEventListenerVector(abeClientInformation, userEmailEventNameData, userInterface)
             newUserEmailEventHandler.addListener(vector)
-            newUserEmailEventHandler.addListener(LogUserEmailEventListenerModule.new())
+            newUserEmailEventHandler.addListener(::Org::Allbinary::Logic::Communication::Smtp::Event::Modules::Log::LogUserEmailEventListenerModule.new())
             @userEmailEventHandlerHashMap.put(userEmailEventNameData, newUserEmailEventHandler)
             return newUserEmailEventHandler
         else
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
                 @logUtil.putF("Returning existing UserEmailEventHandler", self, @commonStrings.GET_INSTANCE)
             end
             return userEmailEventHandler
@@ -94,22 +95,26 @@ class UserEmailEventHandlerSingletons
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :UserInterface, "org/allbinary/business/user/UserInterface"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData"
-autoload :EmailEventHandlerUtil, "org/allbinary/logic/communication/smtp/event/handler/EmailEventHandlerUtil"
-autoload :UserEmailEventHandler, "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler"
-autoload :LogUserEmailEventListenerModule, "org/allbinary/logic/communication/smtp/event/modules/log/LogUserEmailEventListenerModule"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module User; autoload :UserInterface, "org/allbinary/business/user/UserInterface" unless const_defined?(:UserInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; autoload :UserEmailEventNameData, "org/allbinary/logic/communication/smtp/event/UserEmailEventNameData" unless const_defined?(:UserEmailEventNameData, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; module Handler; autoload :EmailEventHandlerUtil, "org/allbinary/logic/communication/smtp/event/handler/EmailEventHandlerUtil" unless const_defined?(:EmailEventHandlerUtil, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; module Handler; autoload :UserEmailEventHandler, "org/allbinary/logic/communication/smtp/event/handler/UserEmailEventHandler" unless const_defined?(:UserEmailEventHandler, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; module Modules; module Log; autoload :LogUserEmailEventListenerModule, "org/allbinary/logic/communication/smtp/event/modules/log/LogUserEmailEventListenerModule" unless const_defined?(:LogUserEmailEventListenerModule, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
 begin
     UserEmailEventHandlerSingletons.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

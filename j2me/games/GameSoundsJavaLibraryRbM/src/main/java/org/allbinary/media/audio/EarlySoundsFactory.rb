@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/audio/BaseSoundsFactory"
+
+module ::Org; module Allbinary; module Media; module Audio
 
 class EarlySoundsFactory < BaseSoundsFactory
     
@@ -27,6 +30,7 @@ class EarlySoundsFactory < BaseSoundsFactory
         soundInterfaceArray[((index += 1) - 1)] = ErrorSound.getInstance()
         return soundInterfaceArray
     end
+    java_overload :getSoundInterfaceArray, 0
     
 
     def self.getInstance()
@@ -64,13 +68,15 @@ class EarlySoundsFactory < BaseSoundsFactory
     end
 end
 
-autoload :ErrorSound, "org/allbinary/media/audio/ErrorSound"
-autoload :SelectSound, "org/allbinary/media/audio/SelectSound"
-autoload :Sound, "org/allbinary/media/audio/Sound"
+autoload :ErrorSound, "org/allbinary/media/audio/ErrorSound" unless const_defined?(:ErrorSound, false)
+autoload :SelectSound, "org/allbinary/media/audio/SelectSound" unless const_defined?(:SelectSound, false)
+autoload :Sound, "org/allbinary/media/audio/Sound" unless const_defined?(:Sound, false)
 
 begin
     EarlySoundsFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

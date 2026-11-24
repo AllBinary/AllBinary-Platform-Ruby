@@ -15,22 +15,24 @@
 # package org.allbinary.globals
 
 
+module ::Org; module Allbinary; module Globals
+
 class UrlGlobalsInterface
     
 
     # throws Exception
     def getMainPath()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def getTestHtmlPath()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def getWebappPath()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
@@ -39,5 +41,7 @@ class UrlGlobalsInterface
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end
 

@@ -16,15 +16,20 @@
 
 # require "javax/servlet/jsp/PageContext"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
+
 module TransformInfoFactoryInterface
     
 
     # throws Exception
     def getInstance(databaseHashMap, propertiesHashMap, pageContext)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false)
+
+end; end; end; end; end; end
 

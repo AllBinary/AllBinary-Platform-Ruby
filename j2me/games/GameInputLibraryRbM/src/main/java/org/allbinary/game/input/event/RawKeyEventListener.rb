@@ -15,6 +15,8 @@
 # package org.allbinary.game.input.event
 
 
+module ::Org; module Allbinary; module Game; module Input; module Event
+
 module RawKeyEventListener
     
 
@@ -23,4 +25,6 @@ module RawKeyEventListener
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

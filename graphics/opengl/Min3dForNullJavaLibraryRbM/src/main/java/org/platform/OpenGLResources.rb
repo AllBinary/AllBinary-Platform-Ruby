@@ -2,7 +2,8 @@
 # frozen_string_literal: false
 # package org.platform
 
-# require "java/io/InputStream"
+
+module ::Org; module Platform
 
 class OpenGLResources
     
@@ -49,15 +50,43 @@ class OpenGLResources
     end
 
     def self.instance()
+        OpenGLResources.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OpenGLResources.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = OpenGLResources.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OpenGLResources"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class OpenGLResources
-    @@instance = OpenGLResources.new()
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+
+begin
+    OpenGLResources.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end
 

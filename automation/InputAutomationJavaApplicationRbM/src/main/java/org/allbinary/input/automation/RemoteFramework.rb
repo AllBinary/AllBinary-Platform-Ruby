@@ -16,23 +16,30 @@
 
 # require "java/util/Map"
 
+module ::Org; module Allbinary; module Input; module Automation
+
 module RemoteFramework
     
 
     def connect(host)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def disconnect(bc)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getSystemProperties(bc)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :BundleContext, "org/osgi/framework/BundleContext"
+module ::Org; module Osgi; module Framework; autoload :BundleContext, "org/osgi/framework/BundleContext" unless const_defined?(:BundleContext, false); end; end; end
+
+end; end; end; end
 

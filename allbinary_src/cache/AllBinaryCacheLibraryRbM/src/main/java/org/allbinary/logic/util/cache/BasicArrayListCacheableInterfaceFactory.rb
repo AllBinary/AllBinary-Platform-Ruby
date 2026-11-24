@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Cache
 
 class BasicArrayListCacheableInterfaceFactory
     include CacheableInterfaceFactoryInterface
@@ -24,8 +27,11 @@ class BasicArrayListCacheableInterfaceFactory
     def getInstance(key)
         return BasicArrayListCacheable.new()
     end
+    java_overload :getInstance, 1
 end
 
-autoload :BasicArrayListCacheable, "org/allbinary/logic/util/cache/BasicArrayListCacheable"
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :BasicArrayListCacheable, "org/allbinary/logic/util/cache/BasicArrayListCacheable" unless const_defined?(:BasicArrayListCacheable, false)
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false)
+
+end; end; end; end; end
 

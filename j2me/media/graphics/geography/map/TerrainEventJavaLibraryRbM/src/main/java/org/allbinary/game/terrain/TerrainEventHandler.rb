@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.terrain
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class TerrainEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Terrain
+
+class TerrainEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_game_terrain_TerrainEventHandler
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def self.init()
-        TerrainEventHandler.hashtable = StdUtil.getInstance().createHashtable()
+        TerrainEventHandler.hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
     end
     
 
@@ -41,7 +44,7 @@ class TerrainEventHandler < BasicEventHandler
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_terrain_TerrainEventHandler
     end
     
 
@@ -50,18 +53,21 @@ class TerrainEventHandler < BasicEventHandler
             @list.add(terrainEventListener)
         end
     end
+    java_overload :addListener, 1
     
 
     def removeAllListeners()
         @list.clear()
-        super()
+        TerrainEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListener(eventListenerInterface)
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        TerrainEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -72,11 +78,12 @@ class TerrainEventHandler < BasicEventHandler
                 terrainEventListener = @list.get(index)
                 terrainEventListener.onTerrainEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
-        super(eventObject)
+        TerrainEventHandler.superclass.java_super_method(:fireEvent, 1).bind(self).call(eventObject)
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
@@ -84,6 +91,7 @@ class TerrainEventHandler < BasicEventHandler
         terrainEventListenerInterface = eventListenerInterface
         terrainEventListenerInterface.onTerrainEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.hashtable()
         TerrainEventHandler.java_static_fields unless @java_static_fields_started
@@ -99,7 +107,7 @@ class TerrainEventHandler < BasicEventHandler
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@hashtable = StdUtil.getInstance().NULL_TABLE
+            @@hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().NULL_TABLE
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -116,20 +124,22 @@ class TerrainEventHandler < BasicEventHandler
     end
 end
 
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent"
-autoload :TerrainEventListener, "org/allbinary/game/terrain/TerrainEventListener"
-autoload :TerrainEventListenerInterface, "org/allbinary/game/terrain/TerrainEventListenerInterface"
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :TerrainEvent, "org/allbinary/game/terrain/TerrainEvent" unless const_defined?(:TerrainEvent, false)
+autoload :TerrainEventListener, "org/allbinary/game/terrain/TerrainEventListener" unless const_defined?(:TerrainEventListener, false)
+autoload :TerrainEventListenerInterface, "org/allbinary/game/terrain/TerrainEventListenerInterface" unless const_defined?(:TerrainEventListenerInterface, false)
 
 begin
     TerrainEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

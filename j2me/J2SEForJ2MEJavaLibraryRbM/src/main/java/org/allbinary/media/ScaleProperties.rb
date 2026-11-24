@@ -15,24 +15,26 @@
 # package org.allbinary.media
 
 
+module ::Org; module Allbinary; module Media
+
 class ScaleProperties
     attr_accessor :scaleX, :scaleY, :scaleWidth, :scaleHeight, :shouldScale
 
-    def initialize_fields
-        @scaleX = 0.0
-        @scaleY = 0.0
-        @scaleWidth = 0
-        @scaleHeight = 0
-        @shouldScale = false
+    def jfields_org_allbinary_media_ScaleProperties
+        @scaleX = 0.0 unless instance_variable_defined?(:@scaleX)
+        @scaleY = 0.0 unless instance_variable_defined?(:@scaleY)
+        @scaleWidth = 0 unless instance_variable_defined?(:@scaleWidth)
+        @scaleHeight = 0 unless instance_variable_defined?(:@scaleHeight)
+        @shouldScale = false unless instance_variable_defined?(:@shouldScale)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_ScaleProperties
     end
     
 
     def toString()
-        return StringMaker.new().append(CommonLabels.getInstance().COLON_SEP).appendboolean(@shouldScale).append("scaleX: ").appendfloat(@scaleX).append("scaleY: ").appendfloat(@scaleY).append("scaleWidth: ").appendint(@scaleWidth).append("scaleHeight: ").appendint(@scaleHeight).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().COLON_SEP).appendboolean(@shouldScale).append("scaleX: ").appendfloat(@scaleX).append("scaleY: ").appendfloat(@scaleY).append("scaleWidth: ").appendint(@scaleWidth).append("scaleHeight: ").appendint(@scaleHeight).to_s
     end
     alias_method :to_s, :toString
 
@@ -67,12 +69,14 @@ class ScaleProperties
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
 
 begin
     ScaleProperties.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

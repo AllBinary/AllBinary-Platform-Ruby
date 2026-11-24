@@ -15,6 +15,8 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class AnimationBehavior
     
 
@@ -62,4 +64,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

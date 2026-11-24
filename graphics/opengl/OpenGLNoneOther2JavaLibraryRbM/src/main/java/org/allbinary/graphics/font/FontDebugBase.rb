@@ -3,16 +3,18 @@
 # package org.allbinary.graphics.font
 
 
+module ::Org; module Allbinary; module Graphics; module Font
+
 #OpenGLNoneOther2JavaLibrary
 class FontDebugBase
     attr_accessor :SET_FONT
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_font_FontDebugBase
         @SET_FONT = "setFont"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_font_FontDebugBase
     end
     
 
@@ -63,12 +65,14 @@ class FontDebugBase
     end
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
 begin
     FontDebugBase.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

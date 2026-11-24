@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.displayable.screen
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen
+
 class AboutCommandProcessor
     
 
@@ -58,13 +60,15 @@ class AboutCommandProcessor
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
 
 begin
     AboutCommandProcessor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

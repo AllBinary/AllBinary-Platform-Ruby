@@ -15,16 +15,18 @@
 # package org.allbinary.logic.communication.java.vm.stats
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Java; module Vm; module Stats
+
 class JvmStatistics
     attr_accessor :runtime
 
-    def initialize_fields
-        @runtime = nil
+    def jfields_org_allbinary_logic_communication_java_vm_stats_JvmStatistics
+        @runtime = nil unless instance_variable_defined?(:@runtime)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_java_vm_stats_JvmStatistics
         @runtime = Runtime.getRuntime()
     end
     
@@ -165,7 +167,7 @@ class JvmStatistics
     
 
     def getNumberOfThreads()
-        return JavaThread.activeCount()
+        return ::Java::Lang::JavaThread.activeCount()
     end
     
 
@@ -185,4 +187,6 @@ class JvmStatistics
 end
 
 require "java/lang/Thread"
+
+end; end; end; end; end; end; end
 

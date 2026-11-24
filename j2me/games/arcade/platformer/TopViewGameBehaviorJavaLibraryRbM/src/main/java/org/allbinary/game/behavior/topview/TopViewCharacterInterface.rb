@@ -15,47 +15,58 @@
 # package org.allbinary.game.behavior.topview
 
 
+module ::Org; module Allbinary; module Game; module Behavior; module Topview
+
 module TopViewCharacterInterface
     
 
     def terrainMove(geographicMapInterfaceArray, geographicMapCellTypeArray, x, y)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def terrainEvent(x, y, geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def move()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def upp()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def leftp()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def rightp()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def reset()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellType, "org/allbinary/media/graphics/geography/map/GeographicMapCellType" unless const_defined?(:GeographicMapCellType, false); end; end; end; end; end; end
+
+end; end; end; end; end
 

@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.tracking
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Tracking
+
 module TrackingEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module TrackingEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onMovement, 1
 end
 
-autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent"
+autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent" unless const_defined?(:TrackingEvent, false)
+
+end; end; end; end
 

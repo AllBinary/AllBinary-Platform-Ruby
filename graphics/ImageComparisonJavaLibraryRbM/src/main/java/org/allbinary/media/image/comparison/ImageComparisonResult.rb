@@ -16,32 +16,34 @@
 
 # require "java/awt/image/BufferedImage"
 
+module ::Org; module Allbinary; module Media; module Image; module Comparison
+
 class ImageComparisonResult
     attr_accessor :logUtil, :commonStrings, :bufferedImages, :name, :isSameHeight, :isSameWidth, :imageHeight, :imageWidth, :nonMatchingPixelVector, :frameOne, :frameTwo, :pixelsThatMatch, :pixelsIgnored, :tolerance, :matchingPercent
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_media_image_comparison_ImageComparisonResult
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @bufferedImages = Array.new(2, nil)
-        @name = nil
-        @isSameHeight = false
-        @isSameWidth = false
-        @imageHeight = nil
-        @imageWidth = nil
-        @nonMatchingPixelVector = nil
-        @frameOne = nil
-        @frameTwo = nil
-        @pixelsThatMatch = 0
-        @pixelsIgnored = 0
-        @tolerance = 0
+        @name = nil unless instance_variable_defined?(:@name)
+        @isSameHeight = false unless instance_variable_defined?(:@isSameHeight)
+        @isSameWidth = false unless instance_variable_defined?(:@isSameWidth)
+        @imageHeight = nil unless instance_variable_defined?(:@imageHeight)
+        @imageWidth = nil unless instance_variable_defined?(:@imageWidth)
+        @nonMatchingPixelVector = nil unless instance_variable_defined?(:@nonMatchingPixelVector)
+        @frameOne = nil unless instance_variable_defined?(:@frameOne)
+        @frameTwo = nil unless instance_variable_defined?(:@frameTwo)
+        @pixelsThatMatch = 0 unless instance_variable_defined?(:@pixelsThatMatch)
+        @pixelsIgnored = 0 unless instance_variable_defined?(:@pixelsIgnored)
+        @tolerance = 0 unless instance_variable_defined?(:@tolerance)
         @matchingPercent = (-1).to_f
     end
     
 
     def initialize(name, bufferedImage, bufferedImage2, frameOne, frameTwo, tolerance)
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_ImageComparisonResult
         @name = name
-        @nonMatchingPixelVector = BasicArrayListD.new()
+        @nonMatchingPixelVector = ::Org::Allbinary::Util::BasicArrayListD.new()
         @bufferedImages[0] = bufferedImage
         @bufferedImages[1] = bufferedImage2
         @frameOne = frameOne
@@ -68,7 +70,7 @@ class ImageComparisonResult
         @imageWidth = imageWidth
         @imageHeight = imageHeight
         if !@isSameWidth || !@isSameHeight
-            imageUtil = ImageUtil.getInstance()
+            imageUtil = ::Org::Allbinary::Media::Image::ImageUtil.getInstance()
             @logUtil.putF("Images were not the same size? Most likely a resolution change.", self, @commonStrings.CONSTRUCTOR)
             @logUtil.putF("1: " + imageUtil.toString(bufferedImage), self, @commonStrings.CONSTRUCTOR)
             @logUtil.putF("2: " + imageUtil.toString(bufferedImage2), self, @commonStrings.CONSTRUCTOR)
@@ -95,7 +97,7 @@ class ImageComparisonResult
     
 
     def toString()
-        return StringMaker.new().append("ImageComparisonInfo: ").append(@name).append(" Number Of Matching Pixels: ").appendint(@pixelsThatMatch).append("\nNumber Of Non-Matching Pixels: ").appendint(self.getNonMatchingPixelVector().size()).append("\nNumber Of Pixels Ignored: ").appendint(@pixelsIgnored).append("\nMatching Percentage: ").appendfloat(self.getMatchingPercent()).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("ImageComparisonInfo: ").append(@name).append(" Number Of Matching Pixels: ").appendint(@pixelsThatMatch).append("\nNumber Of Non-Matching Pixels: ").appendint(self.getNonMatchingPixelVector().size()).append("\nNumber Of Pixels Ignored: ").appendint(@pixelsIgnored).append("\nMatching Percentage: ").appendfloat(self.getMatchingPercent()).to_s
     end
     alias_method :to_s, :toString
     
@@ -125,12 +127,14 @@ class ImageComparisonResult
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
-autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Pixel; autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta" unless const_defined?(:PixelDelta, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/Scoreable"
+
+module ::Org; module Allbinary; module Game; module Score
 
 class NoScoreable < Scoreable
     
@@ -31,10 +34,12 @@ class NoScoreable < Scoreable
 
     def addPoints(points)
     end
+    java_overload :addPoints, 1
     
 
     def removePoints(points)
     end
+    java_overload :removePoints, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -62,4 +67,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

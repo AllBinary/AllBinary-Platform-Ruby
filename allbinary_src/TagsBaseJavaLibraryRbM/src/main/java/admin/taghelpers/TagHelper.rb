@@ -14,20 +14,25 @@
 # frozen_string_literal: false
 # package admin.taghelpers
 
+require "java/lang/JavaOverload"
 require "admin/taghelpers/TagHelperInterface"
+
+module ::Admin; module Taghelpers
 
 class TagHelper
     include TagHelperInterface
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_admin_taghelpers_TagHelper
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_admin_taghelpers_TagHelper
     end
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end
 

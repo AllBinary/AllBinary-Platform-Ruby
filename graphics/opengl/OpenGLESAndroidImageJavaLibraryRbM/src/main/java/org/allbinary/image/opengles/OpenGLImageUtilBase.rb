@@ -15,19 +15,25 @@
 # package org.allbinary.image.opengles
 
 # require "java/io/IOException"
-# require "java/io/InputStream"
+
+module ::Org; module Allbinary; module Image; module Opengles
 
 class OpenGLImageUtilBase
     
 
-    def paint(alphaBitmap, originalBitmap, index)
+    def paint_j3(alphaBitmap, originalBitmap, index)
         raise RuntimeError.new()
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def paint(colorBitmap, originalBitmap, alpha, basicColor)
+    def paint_j4(colorBitmap, originalBitmap, alpha, basicColor)
         raise RuntimeError.new()
+    end
+
+    def paint(*java_overload_args)
+        return paint_j3(*java_overload_args) if java_overload_args.length == 3
+        return paint_j4(*java_overload_args) if java_overload_args.length == 4
+        raise ArgumentError, "No method paint takes #{java_overload_args.length} arguments"
     end
     
 
@@ -43,6 +49,9 @@ class OpenGLImageUtilBase
     end
 end
 
-require "org/allbinary/graphics/OpenGLBitmap"
-require "org/allbinary/graphics/color/BasicColor"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module Graphics; autoload :OpenGLBitmap, "org/allbinary/graphics/OpenGLBitmap" unless const_defined?(:OpenGLBitmap, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+
+end; end; end; end
 

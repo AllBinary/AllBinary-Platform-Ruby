@@ -15,6 +15,8 @@
 # package org.allbinary.vector
 
 
+module ::Org; module Allbinary; module Vector
+
 class PointsUtil
     
 
@@ -43,13 +45,12 @@ class PointsUtil
     end
     
 
-    def adjust(points, both)
+    def adjust_j2(points, both)
         return self.adjust(points, both, both)
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def adjust(points, x, y)
+    def adjust_j3(points, x, y)
         newPoints = Array.new(points.length) { Array.new(2, 0) }
         (0...points.length).each do |index2|
             if points[index2][0] != 1000
@@ -61,6 +62,12 @@ class PointsUtil
             end
         end
         return newPoints
+    end
+
+    def adjust(*java_overload_args)
+        return adjust_j2(*java_overload_args) if java_overload_args.length == 2
+        return adjust_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method adjust takes #{java_overload_args.length} arguments"
     end
 
     def self.instance()
@@ -99,4 +106,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

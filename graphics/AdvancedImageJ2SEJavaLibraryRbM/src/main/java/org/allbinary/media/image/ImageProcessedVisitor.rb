@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
+require "java/lang/JavaOverload"
 # require "java/awt/image/BufferedImage"
 # require "java/io/IOException"
 require "org/allbinary/media/image/ImageProcessorInputCompositeInterface"
+
+module ::Org; module Allbinary; module Media; module Image
 
 module ImageProcessedVisitor
     include ImageProcessorInputCompositeInterface
@@ -24,7 +27,11 @@ module ImageProcessedVisitor
 
     # throws IOException
     def visit(generatedBufferedImage, nameEnding, index)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :visit, 3
 end
+
+end; end; end; end
 

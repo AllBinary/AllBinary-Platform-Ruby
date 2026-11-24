@@ -14,61 +14,72 @@
 # frozen_string_literal: false
 # package org.allbinary.business.category
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/transform/TransformInterface"
 require "org/allbinary/business/category/CategoryView"
 
+module ::Org; module Allbinary; module Business; module Category
+
 class CategoryComponent < CategoryView
-    include TransformInterface
+    include ::Org::Allbinary::Logic::Visual::Transform::TransformInterface
     attr_accessor :NO_TYPE
 
-    def initialize_fields
+    def jfields_org_allbinary_business_category_CategoryComponent
         @NO_TYPE = 0
     end
     
 
     def initialize(categoryInterface)
         super(categoryInterface)
-        initialize_fields
+        jfields_org_allbinary_business_category_CategoryComponent
     end
     
 
     def getTypeId()
         return @NO_TYPE
     end
+    java_overload :getTypeId, 0
     
 
     def getTransformDocumentInterface()
         return nil
     end
+    java_overload :getTransformDocumentInterface, 0
     
 
     # throws Exception
     def getTransformInfoInterface()
         return nil
     end
+    java_overload :getTransformInfoInterface, 0
     
 
     def setTransformDocumentInterface(viewDocumentInterface)
     end
+    java_overload :setTransformDocumentInterface, 1
     
 
     # throws Exception
     def toXmlDoc()
-        document = DomDocumentHelper.create()
+        document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create()
         document.appendChild(CategoryView.new(self.getCategoryInterface()).toXmlNode(document))
         return document
     end
+    java_overload :toXmlDoc, 0
     
 
     # throws Exception
     def view()
         return nil
     end
+    java_overload :view, 0
 end
 
-autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper" unless const_defined?(:DomDocumentHelper, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module DataPackage; autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface" unless const_defined?(:TransformDocumentInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface" unless const_defined?(:CategoryInterface, false)
+
+end; end; end; end
 

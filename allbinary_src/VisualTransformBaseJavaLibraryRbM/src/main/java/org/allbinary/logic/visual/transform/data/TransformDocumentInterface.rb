@@ -15,19 +15,25 @@
 # package org.allbinary.logic.visual.transform.data
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module DataPackage
+
 module TransformDocumentInterface
     
 
     def getBaseNode()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getDoc()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end; end; end; end
 

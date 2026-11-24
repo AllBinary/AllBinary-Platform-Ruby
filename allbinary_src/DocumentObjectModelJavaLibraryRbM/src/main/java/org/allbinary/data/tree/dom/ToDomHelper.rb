@@ -15,6 +15,8 @@
 # package org.allbinary.data.tree.dom
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
+
 class ToDomHelper
     
 
@@ -24,11 +26,13 @@ class ToDomHelper
 
     def self.convertNull(value)
         if value == nil
-            value = StringUtil.getInstance().NULL_STRING
+            value = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING
         end
         return value
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end
 

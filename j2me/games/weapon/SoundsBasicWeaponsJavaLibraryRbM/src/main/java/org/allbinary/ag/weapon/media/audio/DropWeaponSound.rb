@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.ag.weapon.media.audio
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/audio/CompositeSound"
 
-class DropWeaponSound < CompositeSound
+module ::Org; module Allbinary; module Ag; module Weapon; module Media; module Audio
+
+class DropWeaponSound < ::Org::Allbinary::Media::Audio::CompositeSound
     
 
     def initialize()
@@ -59,11 +62,13 @@ class DropWeaponSound < CompositeSound
     end
 end
 
-autoload :Sound, "org/allbinary/media/audio/Sound"
+module ::Org; module Allbinary; module Media; module Audio; autoload :Sound, "org/allbinary/media/audio/Sound" unless const_defined?(:Sound, false); end; end; end; end
 
 begin
     DropWeaponSound.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

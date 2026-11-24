@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Input; module Event
+
 module UpGameKeyEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module UpGameKeyEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onUpGameKeyEvent, 1
 end
 
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false)
+
+end; end; end; end; end
 

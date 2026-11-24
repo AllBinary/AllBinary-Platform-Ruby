@@ -15,17 +15,19 @@
 # package org.allbinary.logic.system.security.licensing.registration
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; module Registration
+
 class RegistrationConfiguration
     attr_accessor :registrationCode, :NAME
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_security_licensing_registration_RegistrationConfiguration
         @registrationCode = "No Registration Code"
         @NAME = "registrationid"
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_registration_RegistrationConfiguration
     end
     
 
@@ -45,7 +47,7 @@ class RegistrationConfiguration
     
 
     def toString()
-        return StringMaker.new().append("Registration Code: ").append(self.getRegistrationCode()).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Registration Code: ").append(self.getRegistrationCode()).to_s
     end
     alias_method :to_s, :toString
     
@@ -80,11 +82,13 @@ class RegistrationConfiguration
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
 begin
     RegistrationConfiguration.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

@@ -16,11 +16,16 @@
 
 # require "java/io/File"
 
+module ::Org; module Allbinary; module Gui; module Dialog
+
 module FileJDialogListenerInterface
     
 
     def onFiles(files)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

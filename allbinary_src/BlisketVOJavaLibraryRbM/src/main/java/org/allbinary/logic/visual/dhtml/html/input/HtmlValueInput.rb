@@ -14,25 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/input/HtmlInput"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Input
 
 class HtmlValueInput < HtmlInput
     attr_accessor :value, :VALUE
 
-    def initialize_fields
-        @value = nil
+    def jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlValueInput
+        @value = nil unless instance_variable_defined?(:@value)
         @VALUE = "VALUE"
     end
     
 
     def initialize(before, type, name, value, after)
         super(before, type, name, after)
-        initialize_fields
-        stringUtil = StringUtil.getInstance()
+        jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlValueInput
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         @value = stringUtil.EMPTY_STRING
         addAttribute(@VALUE, value)
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end; end; end
 

@@ -3,6 +3,10 @@
 # package org.allbinary.graphics.form.item
 
 
+module ::Org; module Allbinary; module Graphics; module Form; module Item
+
 module ABChoiceItemInterface
 end
+
+end; end; end; end; end
 

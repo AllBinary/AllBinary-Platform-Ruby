@@ -3,6 +3,8 @@
 # package org.allbinary.device
 
 
+module ::Org; module Allbinary; module Device
+
 class OpenGLESNullGraphicsFactory
     
 
@@ -41,11 +43,13 @@ class OpenGLESNullGraphicsFactory
     end
 end
 
-autoload :OpenGLESGraphics, "org/allbinary/device/OpenGLESGraphics"
+autoload :OpenGLESGraphics, "org/allbinary/device/OpenGLESGraphics" unless const_defined?(:OpenGLESGraphics, false)
 
 begin
     OpenGLESNullGraphicsFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

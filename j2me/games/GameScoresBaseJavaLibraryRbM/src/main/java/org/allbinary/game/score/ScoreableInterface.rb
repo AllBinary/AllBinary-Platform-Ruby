@@ -15,6 +15,8 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 module ScoreableInterface
     
 
@@ -35,4 +37,6 @@ module ScoreableInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

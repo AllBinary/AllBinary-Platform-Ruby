@@ -15,9 +15,8 @@
 # package org.allbinary.media.audio
 
 require "java/lang/Object"
-# require "javax/microedition/media/Manager"
-# require "javax/microedition/media/MediaException"
-# require "javax/microedition/media/Player"
+
+module ::Org; module Allbinary; module Media; module Audio
 
 #MediaMIDP2ForHTMLJavaLibrary
 class AllBinaryMediaManager
@@ -43,10 +42,10 @@ class AllBinaryMediaManager
 
     # throws Exception
     def self.init(soundsFactoryInterface)
-        logUtil = LogUtil.getInstance()
-        commonString = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, commonString.INIT)
-        ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
+        ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
         Sounds.new(soundsFactoryInterface).init()
     end
     
@@ -55,17 +54,17 @@ class AllBinaryMediaManager
     def self.shutdown(soundsFactoryInterface)
         Sounds.new(soundsFactoryInterface).stopAll()
         Sounds.new(soundsFactoryInterface).closeAll()
-        TsUtil.getInstance().gc()
+        ::Org::Allbinary::TsUtil.getInstance().gc()
     end
     
 
     # throws Exception
     def self.createPlayer(resource)
-        if Features.getInstance().isFeature(GameFeatureFactory.getInstance().SOUND)
-            if TsUtil.getInstance().compareTo(resource, Manager::TONE_DEVICE_LOCATOR) == 0
-                return Manager.createPlayer(resource)
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::GameFeatureFactory.getInstance().SOUND)
+            if ::Org::Allbinary::TsUtil.getInstance().compareTo(resource, ::Javax::Microedition::Media::Manager::TONE_DEVICE_LOCATOR) == 0
+                return ::Javax::Microedition::Media::Manager.createPlayer(resource)
             else
-                return Manager.createPlayer(resource[0...resource.length - 4])
+                return ::Javax::Microedition::Media::Manager.createPlayer(resource[0...resource.length - 4])
             end
         else
             return NoPlayer::NO_PLAYER
@@ -76,24 +75,51 @@ class AllBinaryMediaManager
     # throws MediaException
     def self.playTone(frequency, time, volume)
         java_monitor.synchronize do
-        if Features.getInstance().isFeature(GameFeatureFactory.getInstance().SOUND)
-            Manager.playTone(frequency, time, volume)
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::GameFeatureFactory.getInstance().SOUND)
+            ::Javax::Microedition::Media::Manager.playTone(frequency, time, volume)
         end
         end
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:THIS, "AllBinaryMediaManagerHTML5")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryMediaManager"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:THIS].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureFactory"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/audio/NoPlayer"
-require "org/allbinary/media/audio/Sounds"
-require "org/allbinary/media/audio/SoundsFactoryInterface"
+module ::Javax; module Microedition; module Media; autoload :Manager, "javax/microedition/media/Manager" unless const_defined?(:Manager, false); end; end; end
+module ::Javax; module Microedition; module Media; autoload :MediaException, "javax/microedition/media/MediaException" unless const_defined?(:MediaException, false); end; end; end
+module ::Javax; module Microedition; module Media; autoload :Player, "javax/microedition/media/Player" unless const_defined?(:Player, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory" unless const_defined?(:GameFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" unless const_defined?(:ProgressCanvasFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :NoPlayer, "org/allbinary/media/audio/NoPlayer" unless const_defined?(:NoPlayer, false)
+autoload :Sounds, "org/allbinary/media/audio/Sounds" unless const_defined?(:Sounds, false)
+autoload :SoundsFactoryInterface, "org/allbinary/media/audio/SoundsFactoryInterface" unless const_defined?(:SoundsFactoryInterface, false)
 
-class AllBinaryMediaManager
-    THIS = "AllBinaryMediaManagerHTML5"
+begin
+    AllBinaryMediaManager.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

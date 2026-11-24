@@ -14,7 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.destroy
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/game/combat/destroy/DestroyableInterface"
+
+module ::Org; module Allbinary; module Game; module Combat; module Destroy
 
 class DestroyableBaseBehavior
     include DestroyableInterface
@@ -26,18 +30,21 @@ class DestroyableBaseBehavior
     
 
     def getName()
-        return self.class.name
+        return self.class.java_name
     end
+    java_overload :getName, 0
     
 
     # throws Exception
     def isDestroyed()
-        raise StandardError.new(CommonStrings.getInstance().NOT_IMPLEMENTED)
+        raise StandardError.new(::Org::Allbinary::StringPackage::CommonStrings.getInstance().NOT_IMPLEMENTED)
     end
+    java_overload :isDestroyed, 0
     
 
     def setDestroyed(destroyed)
     end
+    java_overload :setDestroyed, 1
 
     def self.instance()
         DestroyableBaseBehavior.java_static_fields unless @java_static_fields_started
@@ -70,11 +77,13 @@ class DestroyableBaseBehavior
     end
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     DestroyableBaseBehavior.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

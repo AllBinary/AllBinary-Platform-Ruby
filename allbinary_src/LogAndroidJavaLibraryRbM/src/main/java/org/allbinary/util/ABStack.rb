@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 require "java/util/Stack"
 
-class ABStack < Stack
+module ::Org; module Allbinary; module Util
+
+class ABStack < ::Java::Util::Stack
 end
+
+end; end; end
 

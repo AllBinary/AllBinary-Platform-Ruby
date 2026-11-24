@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/HighScoresCanvasInputProcessorFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Score
 
 class HighScoresCanvasChangeLevelInputProcessorFactory
     include HighScoresCanvasInputProcessorFactoryInterface
@@ -23,9 +26,12 @@ class HighScoresCanvasChangeLevelInputProcessorFactory
     def getInstance(highScoresCanvas)
         return HighScoresCanvasLevelChangeInputProcessor.new(highScoresCanvas)
     end
+    java_overload :getInstance, 1
 end
 
-autoload :HighScoresCanvas, "org/allbinary/game/score/displayable/HighScoresCanvas"
-autoload :HighScoresCanvasInputProcessor, "org/allbinary/game/score/HighScoresCanvasInputProcessor"
-autoload :HighScoresCanvasLevelChangeInputProcessor, "org/allbinary/game/score/HighScoresCanvasLevelChangeInputProcessor"
+module ::Org; module Allbinary; module Game; module Score; module Displayable; autoload :HighScoresCanvas, "org/allbinary/game/score/displayable/HighScoresCanvas" unless const_defined?(:HighScoresCanvas, false); end; end; end; end; end
+autoload :HighScoresCanvasInputProcessor, "org/allbinary/game/score/HighScoresCanvasInputProcessor" unless const_defined?(:HighScoresCanvasInputProcessor, false)
+autoload :HighScoresCanvasLevelChangeInputProcessor, "org/allbinary/game/score/HighScoresCanvasLevelChangeInputProcessor" unless const_defined?(:HighScoresCanvasLevelChangeInputProcessor, false)
+
+end; end; end; end
 

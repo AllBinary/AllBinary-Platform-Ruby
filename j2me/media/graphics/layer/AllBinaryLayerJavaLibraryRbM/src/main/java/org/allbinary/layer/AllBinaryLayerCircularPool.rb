@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/BaseCircularPool"
 
-class AllBinaryLayerCircularPool < BaseCircularPool
+module ::Org; module Allbinary; module Layer
+
+class AllBinaryLayerCircularPool < ::Org::Allbinary::Logic::Util::Cache::BaseCircularPool
     
 
     def initialize()
@@ -26,14 +29,17 @@ class AllBinaryLayerCircularPool < BaseCircularPool
 
     # throws Exception
     def initAllBinaryLayerCircularPool(allbinaryLayerFactoryInterface, total)
-        @circularIndexUtil = CircularIndexUtil.createInstance(total)
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(total)
         @OBJECT_ARRAY = Array.new(total, nil)
         (0...total).each do |localIndex|
             @OBJECT_ARRAY[localIndex] = allbinaryLayerFactoryInterface.getInstance()
         end
     end
+    java_overload :initAllBinaryLayerCircularPool, 2
 end
 
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :AllBinaryLayerFactoryInterface, "org/allbinary/layer/AllBinaryLayerFactoryInterface"
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :AllBinaryLayerFactoryInterface, "org/allbinary/layer/AllBinaryLayerFactoryInterface" unless const_defined?(:AllBinaryLayerFactoryInterface, false)
+
+end; end; end
 

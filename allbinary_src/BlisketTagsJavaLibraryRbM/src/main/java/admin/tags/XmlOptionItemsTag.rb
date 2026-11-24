@@ -14,18 +14,23 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/JavaOverload"
 require "admin/tags/TableTag"
+
+module ::Admin; module Tags
 
 class XmlOptionItemsTag < TableTag
     
 
     def initialize()
         super()
-        self.setTagHelperFactory(XmlOptionItemsHelperFactory.new())
-        self.setTagRequestHelperFactory(XmlOptionItemsRequestHelperFactory.new())
+        self.setTagHelperFactory(::Admin::Taghelpers::XmlOptionItemsHelperFactory.new())
+        self.setTagRequestHelperFactory(::Admin::Taghelpers::XmlOptionItemsRequestHelperFactory.new())
     end
 end
 
-autoload :XmlOptionItemsHelperFactory, "admin/taghelpers/XmlOptionItemsHelperFactory"
-autoload :XmlOptionItemsRequestHelperFactory, "admin/taghelpers/XmlOptionItemsRequestHelperFactory"
+module ::Admin; module Taghelpers; autoload :XmlOptionItemsHelperFactory, "admin/taghelpers/XmlOptionItemsHelperFactory" unless const_defined?(:XmlOptionItemsHelperFactory, false); end; end
+module ::Admin; module Taghelpers; autoload :XmlOptionItemsRequestHelperFactory, "admin/taghelpers/XmlOptionItemsRequestHelperFactory" unless const_defined?(:XmlOptionItemsRequestHelperFactory, false); end; end
+
+end; end
 

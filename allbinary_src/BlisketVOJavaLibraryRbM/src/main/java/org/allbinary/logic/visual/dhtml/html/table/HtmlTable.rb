@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html.table
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/HtmlTag"
 
-class HtmlTable < HtmlTag
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Table
+
+class HtmlTable < ::Org::Allbinary::Logic::Visual::Dhtml::Html::HtmlTag
     attr_accessor :END, :START, :ENDTAG, :CLASS, :DIRECTION, :ID, :LANG, :UNITS, :BORDER, :CELLPADDING, :CELLSPACING, :COLS, :FLOAT, :FRAME, :RULES, :STYLE, :BORDERCOLLAPSE, :numberOfColumns, :before, :border, :cellpadding, :cellspacing, :style, :name, :after, :htmlRowsVector
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_table_HtmlTable
         @END = ">"
         @START = "<table "
         @ENDTAG = "</table>"
@@ -38,26 +41,26 @@ class HtmlTable < HtmlTag
         @STYLE = "style"
         @BORDERCOLLAPSE = "border-collapse: collapse"
         @numberOfColumns = 0
-        @before = nil
-        @border = nil
-        @cellpadding = nil
-        @cellspacing = nil
-        @style = nil
-        @name = nil
-        @after = nil
-        @htmlRowsVector = nil
+        @before = nil unless instance_variable_defined?(:@before)
+        @border = nil unless instance_variable_defined?(:@border)
+        @cellpadding = nil unless instance_variable_defined?(:@cellpadding)
+        @cellspacing = nil unless instance_variable_defined?(:@cellspacing)
+        @style = nil unless instance_variable_defined?(:@style)
+        @name = nil unless instance_variable_defined?(:@name)
+        @after = nil unless instance_variable_defined?(:@after)
+        @htmlRowsVector = nil unless instance_variable_defined?(:@htmlRowsVector)
     end
     
 
     def initialize(before, cellpadding, cellspacing, after)
         super()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_table_HtmlTable
         @before = before
         @cellpadding = cellpadding
         @cellspacing = cellspacing
         @after = after
-        @htmlRowsVector = BasicArrayListD.new()
-        addAttribute(@BORDER, CommonPhoneStrings.getInstance().ZERO)
+        @htmlRowsVector = ::Org::Allbinary::Util::BasicArrayListD.new()
+        addAttribute(@BORDER, ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().ZERO)
         addAttribute(@CELLPADDING, @cellpadding)
         addAttribute(@CELLSPACING, @cellspacing)
         addAttribute(@STYLE, @BORDERCOLLAPSE)
@@ -70,10 +73,11 @@ class HtmlTable < HtmlTag
         end
         @htmlRowsVector.add(htmlRow)
     end
+    java_overload :addRow, 1
     
 
     def toString()
-        stringUtil = StringUtil.getInstance()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         result = stringUtil.EMPTY_STRING
         attributeKeys = @otherAttributes.keySet().toArray()
         result = @before
@@ -99,13 +103,16 @@ class HtmlTable < HtmlTag
         result += (@after).to_s
         return result
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
-autoload :HtmlRow, "org/allbinary/logic/visual/dhtml/html/table/HtmlRow"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+autoload :HtmlRow, "org/allbinary/logic/visual/dhtml/html/table/HtmlRow" unless const_defined?(:HtmlRow, false)
+
+end; end; end; end; end; end; end
 

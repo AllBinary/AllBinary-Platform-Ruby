@@ -3,10 +3,12 @@
 # package org.allbinary.logic.communication.sql
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Sql
+
 class SqlStrings
     attr_accessor :CREATE_DATABASE, :DROP_TABLE, :CREATE_TABLE, :START, :SELECT, :FROM, :SELECT_ALL, :WHERE, :AND, :UPDATE, :SET, :SELECT_ALL_FROM, :DELETE, :LIKE_QUOTE, :INSERT_INTO, :VALUES, :ORDER_BY, :COUNT, :ASC, :DESC, :PRIMARY_KEY, :END, :EQUAL_QUOTE, :CLOSE_QUOTE, :EQUAL_QUOTE_NO_SPACE, :ESCAPE, :DOUBLE_ESCAPE, :MORE_THAN_QUOTE, :LESS_THAN_QUOTE, :SINGLE_QUOTE_COMMA_SEP, :ID, :SQL_STATEMENT_LABEL, :COLUMN_VALUE, :CREATE_RETURN, :FIELD_VALUE
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_sql_SqlStrings
         @CREATE_DATABASE = "CREATE DATABASE "
         @DROP_TABLE = "DROP TABLE "
         @CREATE_TABLE = "CREATE TABLE "
@@ -30,7 +32,7 @@ class SqlStrings
         @PRIMARY_KEY = "PRIMARY KEY("
         @END = ") )"
         @EQUAL_QUOTE = " = \""
-        @CLOSE_QUOTE = CommonSeps.getInstance().QUOTE
+        @CLOSE_QUOTE = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().QUOTE
         @EQUAL_QUOTE_NO_SPACE = "=\""
         @ESCAPE = "\\"
         @DOUBLE_ESCAPE = "\\\\"
@@ -45,7 +47,7 @@ class SqlStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_communication_sql_SqlStrings
     end
     
 
@@ -84,11 +86,13 @@ class SqlStrings
     end
 end
 
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 
 begin
     SqlStrings.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

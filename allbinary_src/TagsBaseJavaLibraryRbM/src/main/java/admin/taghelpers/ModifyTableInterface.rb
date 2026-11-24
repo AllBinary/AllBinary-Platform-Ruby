@@ -15,24 +15,31 @@
 # package admin.taghelpers
 
 
+module ::Admin; module Taghelpers
+
 module ModifyTableInterface
     
 
     # throws Exception
     def insert()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def delete()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def update()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end
 

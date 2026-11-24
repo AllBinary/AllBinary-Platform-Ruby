@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package workflows.template.data
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/PageContext"
 require "org/allbinary/logic/control/workflow/StoreWorkFlowInterface"
 require "workflows/template/data/BasicWorkFlow"
 
+module ::Workflows; module Template; module DataPackage
+
 class BasicStoreWorkFlow < BasicWorkFlow
-    include StoreWorkFlowInterface
+    include ::Org::Allbinary::Logic::ControlPackage::Workflow::StoreWorkFlowInterface
     
 
     def initialize(propertiesHashMap, pageContext)
@@ -29,10 +32,13 @@ class BasicStoreWorkFlow < BasicWorkFlow
 
     # throws Exception
     def getStoreName()
-        return self.getPropertiesHashMap().get(StoreFrontData.getInstance().NAME)
+        return self.getPropertiesHashMap().get(::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontData.getInstance().NAME)
     end
+    java_overload :getStoreName, 0
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData" unless const_defined?(:StoreFrontData, false); end; end; end; end; end; end
+
+end; end; end
 

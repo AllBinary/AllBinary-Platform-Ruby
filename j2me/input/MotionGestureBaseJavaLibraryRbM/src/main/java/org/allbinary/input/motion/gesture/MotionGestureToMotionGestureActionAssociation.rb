@@ -15,17 +15,19 @@
 # package org.allbinary.input.motion.gesture
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture
+
 class MotionGestureToMotionGestureActionAssociation
     attr_accessor :list, :motionGestureAction
 
-    def initialize_fields
-        @list = nil
-        @motionGestureAction = nil
+    def jfields_org_allbinary_input_motion_gesture_MotionGestureToMotionGestureActionAssociation
+        @list = nil unless instance_variable_defined?(:@list)
+        @motionGestureAction = nil unless instance_variable_defined?(:@motionGestureAction)
     end
     
 
     def initialize(list, commandAction)
-        initialize_fields
+        jfields_org_allbinary_input_motion_gesture_MotionGestureToMotionGestureActionAssociation
         @list = list
         @motionGestureAction = commandAction
     end
@@ -65,6 +67,8 @@ class MotionGestureToMotionGestureActionAssociation
     end
 end
 
-autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Game; module Input; autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent" unless const_defined?(:CompleteMotionGestureInputEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end; end
 

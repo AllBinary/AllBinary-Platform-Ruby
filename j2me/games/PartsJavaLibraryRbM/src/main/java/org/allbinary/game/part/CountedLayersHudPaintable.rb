@@ -14,28 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.game.part
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/PaintableInterface"
 
+module ::Org; module Allbinary; module Game; module Part
+
 class CountedLayersHudPaintable
-    include PaintableInterface
-    include UpdateMyFontInterface
+    include ::Org::Allbinary::Graphics::Paint::PaintableInterface
+    include ::Org::Allbinary::Graphics::Font::UpdateMyFontInterface
     attr_accessor :displayInfoSingleton, :partInterfaceArray, :countedTotalStringColor, :countedPartsBorder, :startIndex, :dropSize, :myFontProcessor, :height
 
-    def initialize_fields
-        @displayInfoSingleton = DisplayInfoSingleton.getInstance()
-        @partInterfaceArray = nil
-        @countedTotalStringColor = nil
-        @countedPartsBorder = nil
-        @startIndex = nil
-        @dropSize = nil
-        @myFontProcessor = UpdateMyFontProcessor.new(self)
-        @height = 0
+    def jfields_org_allbinary_game_part_CountedLayersHudPaintable
+        @displayInfoSingleton = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
+        @partInterfaceArray = nil unless instance_variable_defined?(:@partInterfaceArray)
+        @countedTotalStringColor = nil unless instance_variable_defined?(:@countedTotalStringColor)
+        @countedPartsBorder = nil unless instance_variable_defined?(:@countedPartsBorder)
+        @startIndex = nil unless instance_variable_defined?(:@startIndex)
+        @dropSize = nil unless instance_variable_defined?(:@dropSize)
+        @myFontProcessor = ::Org::Allbinary::Graphics::Font::UpdateMyFontProcessor.new(self)
+        @height = 0 unless instance_variable_defined?(:@height)
     end
     
 
     def initialize(partInterfaceArray, dropSize, startIndex, countedTotalStringColor, countedPartsBorder)
-        initialize_fields
+        jfields_org_allbinary_game_part_CountedLayersHudPaintable
         @partInterfaceArray = partInterfaceArray
         @startIndex = startIndex
         @countedTotalStringColor = countedTotalStringColor
@@ -52,10 +55,11 @@ class CountedLayersHudPaintable
         end
         if CountedLayersHudPaintable::XXStringWidth == 0
             _XXString = "XX"
-            (CountedLayersHudPaintable.send(:remove_const, :XXStringWidth) if CountedLayersHudPaintable.const_defined?(:XXStringWidth, false); CountedLayersHudPaintable.const_set(:XXStringWidth, font.stringWidth(_XXString)))
+            (CountedLayersHudPaintable.instance_exec(font.stringWidth(_XXString)) { |java_value| remove_const(:XXStringWidth) if const_defined?(:XXStringWidth, false); const_set(:XXStringWidth, java_value) })
         end
-        @myFontProcessor = MyFontProcessor.getInstance()
+        @myFontProcessor = ::Org::Allbinary::Graphics::Font::MyFontProcessor.getInstance()
     end
+    java_overload :updateMeasurement, 1
     
 
     def paint(graphics)
@@ -89,10 +93,12 @@ class CountedLayersHudPaintable
             graphics.drawRect(lastWidth - (CountedLayersHudPaintable::XXStringWidth + @dropSize), 40, CountedLayersHudPaintable::XXStringWidth + @dropSize, (count * @height) + 3)
         end
     end
+    java_overload :paint, 1
     
 
     def paintThreed(graphics)
     end
+    java_overload :paintThreed, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -115,19 +121,21 @@ class CountedLayersHudPaintable
     end
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
-autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :CountedLayerInterfaceFactoryPart, "org/allbinary/game/part/CountedLayerInterfaceFactoryPart"
-autoload :PartInterface, "org/allbinary/game/part/PartInterface"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Pickup; autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface" unless const_defined?(:PickedUpLayerInterfaceFactoryInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor" unless const_defined?(:MyFontProcessor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor" unless const_defined?(:UpdateMyFontProcessor, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :CountedLayerInterfaceFactoryPart, "org/allbinary/game/part/CountedLayerInterfaceFactoryPart" unless const_defined?(:CountedLayerInterfaceFactoryPart, false)
+autoload :PartInterface, "org/allbinary/game/part/PartInterface" unless const_defined?(:PartInterface, false)
 
 begin
     CountedLayersHudPaintable.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

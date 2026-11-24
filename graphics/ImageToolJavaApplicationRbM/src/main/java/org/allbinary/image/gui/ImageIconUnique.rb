@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.image.gui
 
+require "java/lang/JavaOverload"
 # require "java/awt/image/BufferedImage"
-# require "javax/swing"
+# require "javax/swing/ImageIcon"
+
+module ::Org; module Allbinary; module Image; module Gui
 
 class ImageIconUnique < ImageIcon
     attr_accessor :id
 
-    def initialize_fields
-        @id = 0
+    def jfields_org_allbinary_image_gui_ImageIconUnique
+        @id = 0 unless instance_variable_defined?(:@id)
     end
     
 
     def initialize(bufferedImage, index)
         super(bufferedImage)
-        initialize_fields
+        jfields_org_allbinary_image_gui_ImageIconUnique
         self.setId(index)
     end
     
@@ -35,10 +38,14 @@ class ImageIconUnique < ImageIcon
     def getId()
         return @id
     end
+    java_overload :getId, 0
     
 
     def setId(id)
         @id = id
     end
+    java_overload :setId, 1
 end
+
+end; end; end; end
 

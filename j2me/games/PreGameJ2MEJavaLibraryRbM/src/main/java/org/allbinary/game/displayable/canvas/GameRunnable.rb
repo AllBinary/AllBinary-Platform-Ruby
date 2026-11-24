@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "java/lang/Runnable"
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 class GameRunnable
-    include Runnable
+    include ::Java::Lang::Runnable
     attr_accessor :WAIT, :FAST, :waitInMillis
 
-    def initialize_fields
+    def jfields_org_allbinary_game_displayable_canvas_GameRunnable
         @WAIT = 240
         @FAST = 60
         @waitInMillis = @WAIT
@@ -28,21 +31,25 @@ class GameRunnable
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_GameRunnable
     end
     
 
     def run()
-        DisplayInfoSingleton.getInstance().process()
+        ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance().process()
     end
+    java_overload :run, 0
     
 
     # throws Exception
     def processLoopSleep()
         sleep((@waitInMillis) / 1000.0)
     end
+    java_overload :processLoopSleep, 0
 end
 
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
 require "java/lang/Thread"
+
+end; end; end; end; end
 

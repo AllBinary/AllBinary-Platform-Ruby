@@ -15,17 +15,19 @@
 # package org.allbinary.game.layer.geological.resources
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Geological; module Resources
+
 class GeologicalResource
     attr_accessor :total, :initTotal
 
-    def initialize_fields
-        @total = 0
-        @initTotal = nil
+    def jfields_org_allbinary_game_layer_geological_resources_GeologicalResource
+        @total = 0 unless instance_variable_defined?(:@total)
+        @initTotal = nil unless instance_variable_defined?(:@initTotal)
     end
     
 
     def initialize(initTotal)
-        initialize_fields
+        jfields_org_allbinary_game_layer_geological_resources_GeologicalResource
         @initTotal = initTotal
         self.init()
     end
@@ -64,4 +66,6 @@ class GeologicalResource
         @total = total
     end
 end
+
+end; end; end; end; end; end
 

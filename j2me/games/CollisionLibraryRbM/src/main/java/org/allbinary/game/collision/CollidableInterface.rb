@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/NamedInterface"
 
+module ::Org; module Allbinary; module Game; module Collision
+
 module CollidableInterface
-    include NamedInterface
+    include ::Org::Allbinary::Layer::NamedInterface
     
 
     # throws Exception
@@ -25,6 +28,7 @@ module CollidableInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isCollidable, 1
     
 
     # throws Exception
@@ -32,6 +36,7 @@ module CollidableInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isCollision, 2
     
 
     # throws Exception
@@ -39,15 +44,19 @@ module CollidableInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :collide, 2
     
 
     def getCollisionTypeWith(layerInterface)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getCollisionTypeWith, 1
 end
 
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType" unless const_defined?(:CollisionType, false)
+
+end; end; end; end
 

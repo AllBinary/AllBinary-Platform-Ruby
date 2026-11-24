@@ -16,74 +16,24 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class TouchButtonRecognizer
     attr_accessor :logUtil, :rectangleCollisionUtil, :upGameKeyEventHandler, :downGameKeyEventHandler, :lastPressedTouchButtonInput, :currentlyPressedTouchButtonSingleton, :releaseHelper
-    #CurrentlyPressedTouchButtonSingletonDebug.getInstance();
-    class ReleaseHelper
-        attr_accessor :touchButtonRecognizer
 
-        def initialize_fields
-            @touchButtonRecognizer = nil
-        end
-        
-
-        def initialize(touchButtonRecognizer)
-            initialize_fields
-            @touchButtonRecognizer = touchButtonRecognizer
-        end
-        
-
-        # throws Exception
-        def release(touchButtonInput, deviceId)
-            nextTouchButtonInput = nil
-            gameKeyEvent = nil
-            (@touchButtonRecognizer.currentlyPressedTouchButtonSingleton.size() - 1).step(0, -(1)) do |index|
-                nextTouchButtonInput = @touchButtonRecognizer.currentlyPressedTouchButtonSingleton.get(index)
-                gameKeyEvent = nextTouchButtonInput.getGameKeyEvent()
-                @touchButtonRecognizer.upGameKeyEventHandler.fireEvent(gameKeyEvent)
-                @touchButtonRecognizer.upGameKeyEventHandler.getInstanceForDevice(deviceId).fireEvent(gameKeyEvent)
-                @touchButtonRecognizer.currentlyPressedTouchButtonSingleton.removeAt(index)
-            end
-        end
-    end
-    class MultitouchReleaseHelper < ReleaseHelper
-        
-
-        def initialize(touchButtonRecognizer)
-            super(touchButtonRecognizer)
-        end
-        
-
-        # throws Exception
-        def release(touchButtonInput, deviceId)
-            cancelTouchButtonInput = CancelTouchButtonInputFactory.getInstance().getCancel(touchButtonInput)
-            nextTouchButtonInput = nil
-            gameKeyEvent = nil
-            (@touchButtonRecognizer.currentlyPressedTouchButtonSingleton.size() - 1).step(0, -(1)) do |index|
-                nextTouchButtonInput = @touchButtonRecognizer.currentlyPressedTouchButtonSingleton.get(index)
-                if cancelTouchButtonInput == nextTouchButtonInput
-                    gameKeyEvent = nextTouchButtonInput.getGameKeyEvent()
-                    @touchButtonRecognizer.upGameKeyEventHandler.fireEvent(gameKeyEvent)
-                    @touchButtonRecognizer.upGameKeyEventHandler.getInstanceForDevice(deviceId).fireEvent(gameKeyEvent)
-                    @touchButtonRecognizer.currentlyPressedTouchButtonSingleton.removeAt(index)
-                end
-            end
-        end
-    end
-
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @rectangleCollisionUtil = RectangleCollisionUtil.getInstance()
-        @upGameKeyEventHandler = UpGameKeyEventHandler.getInstance()
-        @downGameKeyEventHandler = DownGameKeyEventHandler.getInstance()
+    def jfields_org_allbinary_input_motion_button_TouchButtonRecognizer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @rectangleCollisionUtil = ::Org::Allbinary::MathPackage::RectangleCollisionUtil.getInstance()
+        @upGameKeyEventHandler = ::Org::Allbinary::Game::Input::Event::UpGameKeyEventHandler.getInstance()
+        @downGameKeyEventHandler = ::Org::Allbinary::Game::Input::Event::DownGameKeyEventHandler.getInstance()
         @lastPressedTouchButtonInput = BasicTouchInputFactory.getInstance().NONE
         @currentlyPressedTouchButtonSingleton = CurrentlyPressedTouchButtonSingleton.getInstance()
-        @releaseHelper = nil
+        @releaseHelper = nil unless instance_variable_defined?(:@releaseHelper)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchButtonRecognizer
         if TouchScreenFactory.getInstance().isMultiTouch()
             @releaseHelper = MultitouchReleaseHelper.new(self)
         else
@@ -162,19 +112,22 @@ class TouchButtonRecognizer
     end
 end
 
-autoload :DownGameKeyEventHandler, "org/allbinary/game/input/event/DownGameKeyEventHandler"
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :UpGameKeyEventHandler, "org/allbinary/game/input/event/UpGameKeyEventHandler"
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :RectangleCollisionUtil, "org/allbinary/math/RectangleCollisionUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
-autoload :CancelTouchButtonInputFactory, "org/allbinary/input/motion/button/CancelTouchButtonInputFactory"
-autoload :CurrentlyPressedTouchButtonSingleton, "org/allbinary/input/motion/button/CurrentlyPressedTouchButtonSingleton"
-autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton"
-autoload :TouchButtonFactory, "org/allbinary/input/motion/button/TouchButtonFactory"
-autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput"
-autoload :TouchScreenFactory, "org/allbinary/input/motion/button/TouchScreenFactory"
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :DownGameKeyEventHandler, "org/allbinary/game/input/event/DownGameKeyEventHandler" unless const_defined?(:DownGameKeyEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :UpGameKeyEventHandler, "org/allbinary/game/input/event/UpGameKeyEventHandler" unless const_defined?(:UpGameKeyEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :RectangleCollisionUtil, "org/allbinary/math/RectangleCollisionUtil" unless const_defined?(:RectangleCollisionUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false)
+autoload :CurrentlyPressedTouchButtonSingleton, "org/allbinary/input/motion/button/CurrentlyPressedTouchButtonSingleton" unless const_defined?(:CurrentlyPressedTouchButtonSingleton, false)
+autoload :MultitouchReleaseHelper, "org/allbinary/input/motion/button/MultitouchReleaseHelper" unless const_defined?(:MultitouchReleaseHelper, false)
+autoload :ReleaseHelper, "org/allbinary/input/motion/button/ReleaseHelper" unless const_defined?(:ReleaseHelper, false)
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton" unless const_defined?(:TouchButton, false)
+autoload :TouchButtonFactory, "org/allbinary/input/motion/button/TouchButtonFactory" unless const_defined?(:TouchButtonFactory, false)
+autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput" unless const_defined?(:TouchButtonInput, false)
+autoload :TouchScreenFactory, "org/allbinary/input/motion/button/TouchScreenFactory" unless const_defined?(:TouchScreenFactory, false)
+
+end; end; end; end; end
 

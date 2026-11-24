@@ -14,26 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.unit
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/game/layer/SteeringVisitor"
 require "org/allbinary/game/layer/unit/UnitWaypointBehavior"
 
+module ::Org; module Allbinary; module Game; module Layer; module Unit
+
 class UnitWaypointBehavior2 < UnitWaypointBehavior
     attr_accessor :logUtil, :unitWaypointStrings, :basicColorFactory, :layerDistanceUtil, :pathFindingThreadPool, :progressTimeDelayHelper, :wanderPathsList, :waypointPathRunnable, :sensorRange, :closeRange, :nextUnvisitedPathGeographicMapCellPosition, :afterNextUnvisitedPathGeographicMapCellPosition, :waitingOnTargetPath, :waitingOnWaypointPath, :targetWithoutCachedPathLayerInterface, :buildingSteeringVisitor
-    class BuildingSteeringVisitor < SteeringVisitor
+    class BuildingSteeringVisitor < ::Org::Allbinary::Game::Layer::SteeringVisitor
         attr_accessor :positionList
 
-        def initialize_fields
-            @positionList = BasicArrayListD.new()
+        def jfields_org_allbinary_game_layer_unit_UnitWaypointBehavior2_BuildingSteeringVisitor
+            @positionList = ::Org::Allbinary::Util::BasicArrayListD.new()
         end
 
         def initialize
             super()
-            initialize_fields
+            jfields_org_allbinary_game_layer_unit_UnitWaypointBehavior2_BuildingSteeringVisitor
         end
         
 
         def visit(anyType)
-            logUtil = LogUtil.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
             begin
                 if self.getList().size() > 0
                     allbinaryLayer = self.getList().get(0)
@@ -42,65 +46,69 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
                     if clear
                         self.getList().clear()
                         @positionList.clear()
-                        return NullUtil.getInstance().NULL_OBJECT
+                        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
                     end
-                    return BooleanFactory.getInstance().FALSE
+                    return ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().FALSE
                 end
-                return NullUtil.getInstance().NULL_OBJECT
+                return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             rescue StandardError => e
-                commonStrings = CommonStrings.getInstance()
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 logUtil.put(commonStrings.EXCEPTION, self, "visit", e)
-                return NullUtil.getInstance().NULL_OBJECT
+                return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             end
         end
+        java_overload :visit, 1
         
 
         def getPositionList()
             return @positionList
         end
+        java_overload :getPositionList, 0
     end
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_layer_unit_UnitWaypointBehavior2
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @unitWaypointStrings = UnitWaypointStrings.getInstance()
-        @basicColorFactory = BasicColorFactory.getInstance()
-        @layerDistanceUtil = LayerDistanceUtil.getInstance()
-        @pathFindingThreadPool = PathFindingThreadPool.getInstance()
-        @progressTimeDelayHelper = nil
-        @wanderPathsList = nil
-        @waypointPathRunnable = nil
+        @basicColorFactory = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance()
+        @layerDistanceUtil = ::Org::Allbinary::MathPackage::LayerDistanceUtil.getInstance()
+        @pathFindingThreadPool = ::Org::Allbinary::ThreadPackage::PathFindingThreadPool.getInstance()
+        @progressTimeDelayHelper = nil unless instance_variable_defined?(:@progressTimeDelayHelper)
+        @wanderPathsList = nil unless instance_variable_defined?(:@wanderPathsList)
+        @waypointPathRunnable = nil unless instance_variable_defined?(:@waypointPathRunnable)
         @sensorRange = 0
         @closeRange = 0
-        @nextUnvisitedPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
-        @afterNextUnvisitedPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
-        @waitingOnTargetPath = false
-        @waitingOnWaypointPath = false
-        @targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance()
+        @nextUnvisitedPathGeographicMapCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+        @afterNextUnvisitedPathGeographicMapCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+        @waitingOnTargetPath = false unless instance_variable_defined?(:@waitingOnTargetPath)
+        @waitingOnWaypointPath = false unless instance_variable_defined?(:@waitingOnWaypointPath)
+        @targetWithoutCachedPathLayerInterface = ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
         @buildingSteeringVisitor = BuildingSteeringVisitor.new()
     end
     
 
     def initialize(ownerAdvancedRTSGameLayer, fakeWaypoint)
         super(ownerAdvancedRTSGameLayer, fakeWaypoint)
-        initialize_fields
-        @progressTimeDelayHelper = TimeDelayHelper.new(5000)
-        @wanderPathsList = BasicArrayListD.new()
-        features = Features.getInstance()
-        @waypointPathRunnable = (J2MEUtil.isHTML() ? MultipassWaypointPathRunnable.new() : WaypointPathRunnable.new())
+        jfields_org_allbinary_game_layer_unit_UnitWaypointBehavior2
+        @progressTimeDelayHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(5000)
+        @wanderPathsList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        @waypointPathRunnable = (::Org::Allbinary::J2MEUtil.isHTML() ? ::Org::Allbinary::Game::Layer::MultipassWaypointPathRunnable.new() : ::Org::Allbinary::Game::Layer::WaypointPathRunnable.new())
     end
     
 
     def initRange(weaponRange)
-        super(weaponRange)
+        UnitWaypointBehavior2.superclass.java_super_method(:initRange, 1).bind(self).call(weaponRange)
         @closeRange = weaponRange
         @sensorRange = weaponRange * 4
         @associatedAdvancedRTSGameLayer.waypoint2LogHelperP.initRange(@associatedAdvancedRTSGameLayer, @closeRange, @sensorRange)
     end
+    java_overload :initRange, 1
     
 
     def getNextUnvisitedPathGeographicMapCellPosition()
         return @nextUnvisitedPathGeographicMapCellPosition
     end
+    java_overload :getNextUnvisitedPathGeographicMapCellPosition, 0
     
 
     def isRunning()
@@ -110,6 +118,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             return false
         end
     end
+    java_overload :isRunning, 0
     
 
     # throws Exception
@@ -145,6 +154,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             return
         end
     end
+    java_overload :processTick, 1
     
 
     # throws Exception
@@ -156,12 +166,13 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             self.processPossibleTarget(layerInterface, anotherTargetDistance)
         end
     end
+    java_overload :onEnemyMovement, 1
     
 
     # throws Exception
     def processPossibleTarget(layerInterface, anotherTargetDistance)
         isShorterThanCurrentTargetDistance = self.getCurrentTargetDistance() > anotherTargetDistance
-        isCurrentTargetDestroyed = @currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance() && @currentTargetLayerInterfaceP.isDestroyed()
+        isCurrentTargetDestroyed = @currentTargetLayerInterfaceP != ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance() && @currentTargetLayerInterfaceP.isDestroyed()
         @associatedAdvancedRTSGameLayer.waypoint2LogHelperP.processPossibleTarget(@associatedAdvancedRTSGameLayer, self, layerInterface, anotherTargetDistance, isShorterThanCurrentTargetDistance, isCurrentTargetDestroyed)
         if self.isWaypointListEmptyOrOnlyTargets() && self.isInSensorRange(layerInterface, anotherTargetDistance) && (isShorterThanCurrentTargetDistance || isCurrentTargetDestroyed)
             @associatedAdvancedRTSGameLayer.waypoint2LogHelperP.processSetTarget(@associatedAdvancedRTSGameLayer, self, layerInterface, anotherTargetDistance)
@@ -171,12 +182,13 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             self.setTarget(layerInterface, anotherTargetDistance)
         end
     end
+    java_overload :processPossibleTarget, 2
     
 
     # throws Exception
     def teleportIfNoProgress()
         if self.isTrackingWaypoint() || @associatedAdvancedRTSGameLayer.getParentLayer().isDestroyed()
-            if @progressTimeDelayHelper.isTimeTNT() && @nextUnvisitedPathGeographicMapCellPosition != SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+            if @progressTimeDelayHelper.isTimeTNT() && @nextUnvisitedPathGeographicMapCellPosition != ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
                 @associatedAdvancedRTSGameLayer.teleportTo(@nextUnvisitedPathGeographicMapCellPosition)
             end
             if self.getCompleteTimeDelayHelper().isTimeTNT()
@@ -185,12 +197,13 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             end
         end
     end
+    java_overload :teleportIfNoProgress, 0
     
 
     # throws Exception
     def setTarget(layerInterface, anotherTargetDistance)
         @associatedAdvancedRTSGameLayer.waypoint2LogHelperP.setTarget(@associatedAdvancedRTSGameLayer, self, layerInterface, anotherTargetDistance)
-        @associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(@unitWaypointStrings.TARGET, BasicColorFactory.getInstance().GREEN)
+        @associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(@unitWaypointStrings.TARGET, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().GREEN)
         @associatedAdvancedRTSGameLayer.setLoad(0)
         self.setCurrentTargetDistance(anotherTargetDistance)
         self.setCurrentTargetLayerInterface(layerInterface)
@@ -209,11 +222,12 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             end
         end
     end
+    java_overload :setTarget, 2
     
 
     # throws Exception
     def setTargetPath()
-        if @currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()
+        if @currentTargetLayerInterfaceP != ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
             if @currentTargetLayerInterfaceP.isDestroyed()
                 @associatedAdvancedRTSGameLayer.waypoint2LogHelperP.setTargetPath(@associatedAdvancedRTSGameLayer)
                 @associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(@unitWaypointStrings.KILL, @basicColorFactory.ORANGE)
@@ -227,14 +241,16 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             end
         end
     end
+    java_overload :setTargetPath, 0
     
 
     # throws Exception
     def setGeographicMapCellHistoryPath(geographicMapCellPositionBasicArrayList)
-        self.setCurrentPathGeographicMapCellPosition(SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION)
-        @nextUnvisitedPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
-        super(geographicMapCellPositionBasicArrayList)
+        self.setCurrentPathGeographicMapCellPosition(::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION)
+        @nextUnvisitedPathGeographicMapCellPosition = ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+        UnitWaypointBehavior2.superclass.java_super_method(:setGeographicMapCellHistoryPath, 1).bind(self).call(geographicMapCellPositionBasicArrayList)
     end
+    java_overload :setGeographicMapCellHistoryPath, 1
     
 
     # throws Exception
@@ -253,7 +269,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
                     if self.visitIfAtMidPoint(geographicMapCellPosition)
                         @associatedAdvancedRTSGameLayer.waypoint2LogHelperP.processWaypointTrackedVisit(@associatedAdvancedRTSGameLayer, geographicMapCellPosition)
                     end
-                    if @currentGeographicMapCellHistoryP.isAllVisited2() && @currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()
+                    if @currentGeographicMapCellHistoryP.isAllVisited2() && @currentTargetLayerInterfaceP != ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
                         oldWaypointLayer = @currentTargetLayerInterfaceP
                         oldWaypointLayer.getWaypointBehavior().getWaypoint().visit(@associatedAdvancedRTSGameLayer)
                         @associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(@unitWaypointStrings.ALL_VISITED_SHORT, @basicColorFactory.GREEN)
@@ -273,6 +289,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             end
         end
     end
+    java_overload :processWaypoint, 0
     
 
     # throws Exception
@@ -288,11 +305,12 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
         self.updateCurrentPathGeographicMapCellPosition()
         @associatedAdvancedRTSGameLayer.trackTo(@unitWaypointStrings.NEXT_PATH_NODE)
     end
+    java_overload :wander, 0
     
 
     def visitIfAtMidPoint(geographicMapCellPosition)
         unitLayer = @associatedAdvancedRTSGameLayer
-        if geographicMapCellPosition != SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION && @nextUnvisitedPathGeographicMapCellPosition == geographicMapCellPosition
+        if geographicMapCellPosition != ::Org::Allbinary::Media::Graphics::Geography::Map::SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION && @nextUnvisitedPathGeographicMapCellPosition == geographicMapCellPosition
             point = geographicMapCellPosition.getMidPoint()
             afterNextPoint = @afterNextUnvisitedPathGeographicMapCellPosition.getMidPoint()
             beyondMidPoint = true
@@ -322,11 +340,12 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
         end
         return false
     end
+    java_overload :visitIfAtMidPoint, 1
     
 
     # throws Exception
     def processTargetList()
-        @targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.getNullInstance()
+        @targetWithoutCachedPathLayerInterface = ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
         (self.getPossibleTargetList().size() - 1).step(0, -(1)) do |index|
             layerInterface = self.getPossibleTargetList().get(index)
             if layerInterface.isDestroyed()
@@ -335,18 +354,19 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
                 self.onEnemyMovement(layerInterface)
             end
         end
-        if @targetWithoutCachedPathLayerInterface != CollidableDestroyableDamageableLayer.getNullInstance()
+        if @targetWithoutCachedPathLayerInterface != ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
             @waitingOnTargetPath = true
             @associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(@unitWaypointStrings.THINKING_ABOUT_TARGET, @basicColorFactory.GREEN)
             self.runWaypointPathTask(@currentTargetLayerInterfaceP)
         end
         self.getPossibleTargetList().clear()
     end
+    java_overload :processTargetList, 0
     
 
     # throws Exception
     def processTargeting()
-        if @currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance() && (self.isInSensorRange(@currentTargetLayerInterfaceP, self.getCurrentTargetDistance()) || self.isTrackingWaypoint())
+        if @currentTargetLayerInterfaceP != ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance() && (self.isInSensorRange(@currentTargetLayerInterfaceP, self.getCurrentTargetDistance()) || self.isTrackingWaypoint())
             if @currentTargetLayerInterfaceP.isDestroyed()
                 @associatedAdvancedRTSGameLayer.waypoint2LogHelperP.targetDestroyed(@associatedAdvancedRTSGameLayer)
                 @associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(@unitWaypointStrings.KILL, @basicColorFactory.ORANGE)
@@ -378,6 +398,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             end
         end
     end
+    java_overload :processTargeting, 0
     
 
     def updateCurrentPathGeographicMapCellPosition()
@@ -389,6 +410,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             @progressTimeDelayHelper.setStartTimeTNT()
         end
     end
+    java_overload :updateCurrentPathGeographicMapCellPosition, 0
     
 
     # throws Exception
@@ -404,6 +426,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             self.removeWaypoint(waypointLayer, @unitWaypointStrings.ALREADY_THERE)
         end
     end
+    java_overload :setWaypointPath, 1
     
 
     # throws Exception
@@ -417,6 +440,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
         @waypointPathRunnable.setTargetLayer(waypointLayer)
         @pathFindingThreadPool.runTask(@waypointPathRunnable)
     end
+    java_overload :runWaypointPathTask, 1
     
 
     # throws Exception
@@ -429,17 +453,19 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             self.clearTarget()
         end
     end
+    java_overload :removeWaypoint, 2
     
 
     # throws Exception
     def clearTarget()
         @associatedAdvancedRTSGameLayer.waypoint2LogHelperP.clearTarget(@associatedAdvancedRTSGameLayer)
-        self.setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer.getNullInstance())
+        self.setCurrentTargetLayerInterface(::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance())
         self.setTrackingWaypoint(false)
         _MAX = 2147483647
         self.setCurrentTargetDistance(_MAX)
-        TrackingEventHandler.getInstance().fireEvent(@associatedAdvancedRTSGameLayer.getTrackingEvent())
+        ::Org::Allbinary::Game::Tracking::TrackingEventHandler.getInstance().fireEvent(@associatedAdvancedRTSGameLayer.getTrackingEvent())
     end
+    java_overload :clearTarget, 0
     
 
     def isWaypointListEmptyOrOnlyTargets()
@@ -455,31 +481,35 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
         end
         return true
     end
+    java_overload :isWaypointListEmptyOrOnlyTargets, 0
     
 
     def isCloseRange(layerInterface, targetDistance)
         return targetDistance < @closeRange + layerInterface.getHalfHeight()
     end
+    java_overload :isCloseRange, 2
     
 
     def isInSensorRange(layerInterface, targetDistance)
         return targetDistance < @sensorRange + layerInterface.getHalfHeight()
     end
+    java_overload :isInSensorRange, 2
     
 
     def getCurrentTargetingStateString()
-        stringBuffer = StringMaker.new()
-        if @currentTargetLayerInterfaceP != CollidableDestroyableDamageableLayer.getNullInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        if @currentTargetLayerInterfaceP != ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
             stringBuffer.append(UnitWaypointBehavior2::TARGET_LAYER)
             stringBuffer.append(@commonSeps.SPACE)
             stringBuffer.append(@currentTargetLayerInterfaceP.getName())
             stringBuffer.append(" with ")
             stringBuffer.append(UnitWaypointBehavior2::TARGET_DISTANCE)
             stringBuffer.append(@commonSeps.SPACE)
-            stringBuffer.appendint((self.getCurrentTargetDistance()).to_i)
+            stringBuffer.appendint(((self.getCurrentTargetDistance()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         end
         return stringBuffer.to_s
     end
+    java_overload :getCurrentTargetingStateString, 0
     
 
     # throws Exception
@@ -492,6 +522,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
         @targetList.add(advancedRTSGameLayer)
         self.clearTarget()
     end
+    java_overload :addWaypointFromUser, 1
     
 
     # throws Exception
@@ -504,56 +535,84 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
             self.getSteeringVisitorList().add(@buildingSteeringVisitor)
         end
     end
+    java_overload :addBuildingChase, 2
     
 
     # throws Exception
     def buildingChase(allbinaryLayer, cellPosition)
         return @associatedAdvancedRTSGameLayer.buildingChase(allbinaryLayer, cellPosition)
     end
+    java_overload :buildingChase, 2
 
     def self.runningWaypointPathList()
+        UnitWaypointBehavior2.java_static_fields unless @java_static_fields_started
         return defined?(@@runningWaypointPathList) ? @@runningWaypointPathList : nil
     end
 
     def self.runningWaypointPathList=(value)
+        UnitWaypointBehavior2.java_static_fields unless @java_static_fields_started
         @@runningWaypointPathList = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:TARGET_DISTANCE, "Target Distance")
+        const_set(:TARGET_LAYER, "Target Layer")
+        begin
+            @@runningWaypointPathList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UnitWaypointBehavior2"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:TARGET_DISTANCE, :TARGET_LAYER].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/J2MEUtil"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/layer/AdvancedRTSGameLayer"
-require "org/allbinary/game/layer/MultipassWaypointPathRunnable"
-require "org/allbinary/game/layer/RTSLayer"
-require "org/allbinary/game/layer/WaypointPathRunnable"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/game/layer/PathFindingLayerInterface"
-require "org/allbinary/game/layer/WaypointPathRunnableBase"
-require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-require "org/allbinary/game/layer/waypoint/WaypointBase"
-require "org/allbinary/game/tracking/TrackingEventHandler"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/java/bool/BooleanFactory"
-require "org/allbinary/math/LayerDistanceUtil"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory"
-require "org/allbinary/thread/PathFindingThreadPool"
-require "org/allbinary/thread/ThreadPool"
-require "org/allbinary/time/TimeDelayHelper"
-require "org/allbinary/game/layer/unit/UnitLayer"
-require "org/allbinary/game/layer/unit/UnitWaypointStrings"
+module ::Org; module Allbinary; autoload :J2MEUtil, "org/allbinary/J2MEUtil" unless const_defined?(:J2MEUtil, false); end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AdvancedRTSGameLayer, "org/allbinary/game/layer/AdvancedRTSGameLayer" unless const_defined?(:AdvancedRTSGameLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :MultipassWaypointPathRunnable, "org/allbinary/game/layer/MultipassWaypointPathRunnable" unless const_defined?(:MultipassWaypointPathRunnable, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :WaypointPathRunnable, "org/allbinary/game/layer/WaypointPathRunnable" unless const_defined?(:WaypointPathRunnable, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :PathFindingLayerInterface, "org/allbinary/game/layer/PathFindingLayerInterface" unless const_defined?(:PathFindingLayerInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :WaypointPathRunnableBase, "org/allbinary/game/layer/WaypointPathRunnableBase" unless const_defined?(:WaypointPathRunnableBase, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Special; autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Waypoint; autoload :WaypointBase, "org/allbinary/game/layer/waypoint/WaypointBase" unless const_defined?(:WaypointBase, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Tracking; autoload :TrackingEventHandler, "org/allbinary/game/tracking/TrackingEventHandler" unless const_defined?(:TrackingEventHandler, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :LayerDistanceUtil, "org/allbinary/math/LayerDistanceUtil" unless const_defined?(:LayerDistanceUtil, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :SimpleGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory" unless const_defined?(:SimpleGeographicMapCellPositionFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :PathFindingThreadPool, "org/allbinary/thread/PathFindingThreadPool" unless const_defined?(:PathFindingThreadPool, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :ThreadPool, "org/allbinary/thread/ThreadPool" unless const_defined?(:ThreadPool, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+autoload :UnitLayer, "org/allbinary/game/layer/unit/UnitLayer" unless const_defined?(:UnitLayer, false)
+autoload :UnitWaypointStrings, "org/allbinary/game/layer/unit/UnitWaypointStrings" unless const_defined?(:UnitWaypointStrings, false)
 
-class UnitWaypointBehavior2
-    @@runningWaypointPathList = BasicArrayListD.new()
-    TARGET_DISTANCE = "Target Distance"
-    TARGET_LAYER = "Target Layer"
+begin
+    UnitWaypointBehavior2.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

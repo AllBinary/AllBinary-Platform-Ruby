@@ -15,6 +15,8 @@
 # package org.allbinary.media.image
 
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageModifierUtil
     
 
@@ -78,12 +80,14 @@ class ImageModifierUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
 
 begin
     ImageModifierUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

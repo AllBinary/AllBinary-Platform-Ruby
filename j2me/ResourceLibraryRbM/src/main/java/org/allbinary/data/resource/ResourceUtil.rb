@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.data.resource
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module DataPackage; module Resource
 
 #J2SE - J2ME
 class ResourceUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_data_resource_ResourceUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -30,17 +33,17 @@ class ResourceUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_data_resource_ResourceUtil
     end
     
 
     def setLoadingPaths(path, ext)
-        @logUtil.putF(CommonStrings.getInstance().NOT_IMPLEMENTED, self, "setLoadingPaths")
+        @logUtil.putF(::Org::Allbinary::StringPackage::CommonStrings.getInstance().NOT_IMPLEMENTED, self, "setLoadingPaths")
     end
     
 
     def setClassLoader(classLoader)
-        @logUtil.putF(StringMaker.new().append("Resource Loader: ").append(classLoader.class.name).to_s, self, "setClassLoader")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Resource Loader: ").append(classLoader.class.java_name).to_s, self, "setClassLoader")
         ResourceUtil.classLoader = classLoader
     end
     
@@ -51,7 +54,7 @@ class ResourceUtil
         if inputStream == nil
             inputStream = self.getResourceAsStreamAtStart(resource, 1)
             if inputStream == nil
-                raise StandardError.new(StringMaker.new().append("Unable to obtain: ").append(resource).to_s)
+                raise StandardError.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Unable to obtain: ").append(resource).to_s)
             end
         end
         return inputStream
@@ -60,7 +63,7 @@ class ResourceUtil
 
     # throws Exception
     def getResourceAsStreamAtStart(resource, startIndex)
-        commonSeps = CommonSeps.getInstance()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         index = (resource.index(commonSeps.COLON) || -1)
         resourcePath = resource[index + startIndex..]
         inputStream = resource.class.getResourceAsStream(resourcePath)
@@ -72,7 +75,7 @@ class ResourceUtil
         if inputStream != nil
             return inputStream
         end
-        inputStream = JavaThread.currentThread().getContextClassLoader().getResourceAsStream(resourcePath)
+        inputStream = ::Java::Lang::JavaThread.currentThread().getContextClassLoader().getResourceAsStream(resourcePath)
         if inputStream != nil
             return inputStream
         end
@@ -107,7 +110,7 @@ class ResourceUtil
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@classLoader = NullUtil.getInstance().NULL_OBJECT
+            @@classLoader = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             @@instance = ResourceUtil.new()
         rescue StandardError
             @java_static_fields_started = false
@@ -125,17 +128,20 @@ class ResourceUtil
     end
 end
 
-autoload :InputStream, "java/io/InputStream"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 require "java/lang/Thread"
+require "java/lang/ClassLoader"
 
 begin
     ResourceUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

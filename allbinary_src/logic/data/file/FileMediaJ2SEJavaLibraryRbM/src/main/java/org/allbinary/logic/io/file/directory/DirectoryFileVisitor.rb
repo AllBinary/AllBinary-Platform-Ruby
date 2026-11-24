@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io.file.directory
 
+require "java/lang/JavaOverload"
 # require "java/io/File"
 # require "java/io/FileFilter"
 require "org/allbinary/logic/util/visitor/VisitorInterface"
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Directory
+
 class DirectoryFileVisitor
-    include VisitorInterface
+    include ::Org::Allbinary::Logic::Util::Visitor::VisitorInterface
     include FileFilter
     
 
@@ -30,6 +33,7 @@ class DirectoryFileVisitor
     def accept(arg0)
         return (self.visit(arg0))
     end
+    java_overload :accept, 1
     
 
     def visit(anyType)
@@ -44,5 +48,8 @@ class DirectoryFileVisitor
         end
         return false
     end
+    java_overload :visit, 1
 end
+
+end; end; end; end; end; end
 

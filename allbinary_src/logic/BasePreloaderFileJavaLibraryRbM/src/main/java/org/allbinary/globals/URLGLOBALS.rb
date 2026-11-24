@@ -15,6 +15,8 @@
 # package org.allbinary.globals
 
 
+module ::Org; module Allbinary; module Globals
+
 class URLGLOBALS
     
 
@@ -74,12 +76,14 @@ class URLGLOBALS
     end
 end
 
-autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals"
-autoload :UrlGlobalsInterface, "org/allbinary/globals/UrlGlobalsInterface"
+autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals" unless const_defined?(:AppUrlGlobals, false)
+autoload :UrlGlobalsInterface, "org/allbinary/globals/UrlGlobalsInterface" unless const_defined?(:UrlGlobalsInterface, false)
 
 begin
     URLGLOBALS.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

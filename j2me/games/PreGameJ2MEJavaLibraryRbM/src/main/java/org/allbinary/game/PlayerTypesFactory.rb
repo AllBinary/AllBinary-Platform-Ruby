@@ -15,17 +15,19 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 class PlayerTypesFactory
     attr_accessor :PLAYER_TYPE_ONE, :PLAYER_TYPE_TWO, :PLAYER_TYPE_THREE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_PlayerTypesFactory
         @PLAYER_TYPE_ONE = PlayerType.new("Player Type One", 0)
         @PLAYER_TYPE_TWO = PlayerType.new("Player Type Two", 1)
         @PLAYER_TYPE_THREE = PlayerType.new("Player Type Three", 2)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_PlayerTypesFactory
     end
     
 
@@ -54,11 +56,13 @@ class PlayerTypesFactory
     end
 end
 
-autoload :PlayerType, "org/allbinary/game/PlayerType"
+autoload :PlayerType, "org/allbinary/game/PlayerType" unless const_defined?(:PlayerType, false)
 
 begin
     PlayerTypesFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

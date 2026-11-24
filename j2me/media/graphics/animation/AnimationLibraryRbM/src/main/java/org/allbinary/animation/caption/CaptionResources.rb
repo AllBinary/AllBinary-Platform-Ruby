@@ -15,6 +15,8 @@
 # package org.allbinary.animation.caption
 
 
+module ::Org; module Allbinary; module Animation; module Caption
+
 class CaptionResources
 
     def self.java_static_fields
@@ -43,4 +45,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

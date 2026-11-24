@@ -15,6 +15,8 @@
 # package org.allbinary.animation.resource
 
 
+module ::Org; module Allbinary; module Animation; module Resource
+
 module ResourceAnimationInterfaceFactoryInterface
     
 
@@ -25,5 +27,7 @@ module ResourceAnimationInterfaceFactoryInterface
     end
 end
 
-autoload :BasicAnimationInterfaceFactoryInterface, "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
+module ::Org; module Allbinary; module Animation; autoload :BasicAnimationInterfaceFactoryInterface, "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface" unless const_defined?(:BasicAnimationInterfaceFactoryInterface, false); end; end; end
+
+end; end; end; end
 

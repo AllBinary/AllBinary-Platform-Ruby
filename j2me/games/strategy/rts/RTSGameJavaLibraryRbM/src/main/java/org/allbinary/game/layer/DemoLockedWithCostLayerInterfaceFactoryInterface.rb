@@ -14,14 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/CostLayerInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Layer
 
 module DemoLockedWithCostLayerInterfaceFactoryInterface
     include CostLayerInterfaceFactoryInterface
     
 
     def isDemoLocked()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isDemoLocked, 0
 end
+
+end; end; end; end
 

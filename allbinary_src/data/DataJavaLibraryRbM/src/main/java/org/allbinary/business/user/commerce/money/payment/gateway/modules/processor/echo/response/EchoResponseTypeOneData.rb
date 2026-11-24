@@ -15,14 +15,40 @@
 # package org.allbinary.business.user.commerce.money.payment.gateway.modules.processor.echo.response
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Modules; module Processor; module Echo; module Response
+
 class EchoResponseTypeOneData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "ECHOTYPE1")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "EchoResponseTypeOneData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME].include?(name)
+        end
+        super
+    end
 end
 
-class EchoResponseTypeOneData
-    NAME = "ECHOTYPE1"
+begin
+    EchoResponseTypeOneData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end; end; end; end; end
 

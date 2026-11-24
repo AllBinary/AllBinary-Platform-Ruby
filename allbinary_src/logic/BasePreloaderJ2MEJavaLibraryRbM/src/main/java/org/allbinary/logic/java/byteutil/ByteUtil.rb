@@ -15,6 +15,8 @@
 # package org.allbinary.logic.java.byteutil
 
 
+module ::Org; module Allbinary; module Logic; module Java; module Byteutil
+
 class ByteUtil
     
 
@@ -28,7 +30,7 @@ class ByteUtil
     
 
     def xor(array, mask)
-        bytes = Array.new(array.length, 0)
+        bytes = (Array.new(array.length, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
         size = array.length
         index = 0
         currentByte = 0
@@ -42,7 +44,7 @@ class ByteUtil
     
 
     def not_(array)
-        bytes = Array.new(array.length, 0)
+        bytes = (Array.new(array.length, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
         size = array.length
         index = 0
         while index < size
@@ -154,4 +156,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

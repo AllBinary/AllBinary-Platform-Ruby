@@ -15,22 +15,24 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class PrintLicenseInitInfo
     
 
     def initialize(options)
-        LicenseInitInfoUtil.getInstance().setFilePath(PrintLicenseInitInfo::PATH + PATH_GLOBALS.getInstance().INIT_PATH)
+        ::Org::Allbinary::Business::Init::LicenseInitInfoUtil.getInstance().setFilePath(PrintLicenseInitInfo::PATH + ::Org::Allbinary::Globals::PATH_GLOBALS.getInstance().INIT_PATH)
     end
     
 
     # throws Exception
     def getLicenseInitInfo()
-        licenseInitInfoUtil = LicenseInitInfoUtil.getInstance()
-        if FileFactory.getInstance().isFile(licenseInitInfoUtil.getFilePath())
+        licenseInitInfoUtil = ::Org::Allbinary::Business::Init::LicenseInitInfoUtil.getInstance()
+        if ::Org::Allbinary::Logic::Io::FilePackage::FileFactory.getInstance().isFile(licenseInitInfoUtil.getFilePath())
             return licenseInitInfoUtil.read()
         else
             puts("No Licence File at: " + (licenseInitInfoUtil.getFilePath()).to_s)
-            return LicenseInitInfo.new()
+            return ::Org::Allbinary::Business::Init::LicenseInitInfo.new()
         end
     end
     
@@ -56,16 +58,40 @@ class PrintLicenseInitInfo
         initInfo = PrintLicenseInitInfo.new(args)
         initInfo.printInitInfo()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:PATH, "G:\\mnt\\bc\\mydev\\work\\allbinary_src\\licensing\\data\\")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PrintLicenseInitInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:PATH].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/business/init/LicenseInitInfo"
-require "org/allbinary/business/init/LicenseInitInfoUtil"
-require "org/allbinary/logic/io/file/FileFactory"
-require "org/allbinary/globals/PATH_GLOBALS"
-require "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Business; module Init; autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo" unless const_defined?(:LicenseInitInfo, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; autoload :LicenseInitInfoUtil, "org/allbinary/business/init/LicenseInitInfoUtil" unless const_defined?(:LicenseInitInfoUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FileFactory, "org/allbinary/logic/io/file/FileFactory" unless const_defined?(:FileFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS" unless const_defined?(:PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
 require "java/lang/System"
 
-class PrintLicenseInitInfo
-    PATH = "G:\\mnt\\bc\\mydev\\work\\allbinary_src\\licensing\\data\\"
+begin
+    PrintLicenseInitInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -15,7 +15,10 @@
 # package org.allbinary.business.user.role
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/business/user/role/UserRole"
+
+module ::Org; module Allbinary; module Business; module User; module Role
 
 class UserRoleB < UserRole
     
@@ -30,7 +33,7 @@ class UserRoleB < UserRole
     def self.getRole(role)
         java_monitor.synchronize do
         UserRoleFactory.getInstance()
-        if !StringValidationUtil.getInstance().isEmpty(role)
+        if !::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(role)
             roleVector = UserRoleB.getAll()
             size = roleVector.size()
             (0...size).each do |index|
@@ -64,7 +67,7 @@ class UserRoleB < UserRole
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@roleVector = BasicArrayListD.new()
+            @@roleVector = ::Org::Allbinary::Util::BasicArrayListD.new()
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -81,17 +84,19 @@ class UserRoleB < UserRole
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :UserFactoryInterface, "org/allbinary/business/user/UserFactoryInterface"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
-autoload :UserRoleFactory, "org/allbinary/business/user/role/UserRoleFactory"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module User; autoload :UserFactoryInterface, "org/allbinary/business/user/UserFactoryInterface" unless const_defined?(:UserFactoryInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole" unless const_defined?(:BasicUserRole, false)
+autoload :UserRoleFactory, "org/allbinary/business/user/role/UserRoleFactory" unless const_defined?(:UserRoleFactory, false)
 
 begin
     UserRoleB.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

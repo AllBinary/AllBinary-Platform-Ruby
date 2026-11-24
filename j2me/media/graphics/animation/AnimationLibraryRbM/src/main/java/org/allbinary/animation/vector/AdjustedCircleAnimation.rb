@@ -14,14 +14,17 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.vector
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/vector/CircleAnimation"
+
+module ::Org; module Allbinary; module Animation; module Vector
 
 class AdjustedCircleAnimation < CircleAnimation
     attr_accessor :xAdjustment, :yAdjustment
 
-    def initialize_fields
-        @xAdjustment = 0
-        @yAdjustment = 0
+    def jfields_org_allbinary_animation_vector_AdjustedCircleAnimation
+        @xAdjustment = 0 unless instance_variable_defined?(:@xAdjustment)
+        @yAdjustment = 0 unless instance_variable_defined?(:@yAdjustment)
     end
     
 
@@ -41,7 +44,7 @@ class AdjustedCircleAnimation < CircleAnimation
 
     def initialize(width, height, basicColor)
         super(width, height, basicColor)
-        initialize_fields
+        jfields_org_allbinary_animation_vector_AdjustedCircleAnimation
     end
     
 
@@ -49,27 +52,32 @@ class AdjustedCircleAnimation < CircleAnimation
         @xAdjustment = xAdjustment
         @yAdjustment = yAdjustment
     end
+    java_overload :initXY, 2
     
 
     def init(innerWidth)
-        if AndroidUtil.isAndroid()
+        if ::Org::Allbinary::AndroidUtil.isAndroid()
             widthPortion = (((innerWidth / 3) * 10) / 7)
-            @xAdjustment = -((@width >> 1) - widthPortion)
+            @xAdjustment = -(@width >> 1) - widthPortion
             @yAdjustment = @xAdjustment
         else
-            @xAdjustment = -((@width >> 1) - innerWidth)
+            @xAdjustment = -(@width >> 1) - innerWidth
             @yAdjustment = @xAdjustment
         end
     end
+    java_overload :init, 1
     
 
     def paintXY(graphics, x, y)
         @basicSetColorUtil.setBasicColorP3(graphics, self.getBasicColorP(), self.getColor())
         graphics.drawArc(x + @xAdjustment, y + @yAdjustment, @width, @height, 0, @TOTAL_ANGLE)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :AndroidUtil, "org/allbinary/AndroidUtil"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; autoload :AndroidUtil, "org/allbinary/AndroidUtil" unless const_defined?(:AndroidUtil, false); end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+
+end; end; end; end
 

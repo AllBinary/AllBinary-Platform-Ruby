@@ -14,29 +14,32 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.pickup
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/pickup/PickupBehaviorInterface"
+
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
 
 class PickupBehavior
     include PickupBehaviorInterface
     attr_accessor :logUtil, :countedIndex, :ownerLayerInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @countedIndex = nil
-        @ownerLayerInterface = nil
+    def jfields_org_allbinary_game_layer_pickup_PickupBehavior
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @countedIndex = nil unless instance_variable_defined?(:@countedIndex)
+        @ownerLayerInterface = nil unless instance_variable_defined?(:@ownerLayerInterface)
     end
     
 
     def self.getNullInstance()
-        if PickupBehavior::NULL_PICKUP_BEHAVIOR == NullUtil.getInstance().NULL_OBJECT
-            (PickupBehavior.send(:remove_const, :NULL_PICKUP_BEHAVIOR) if PickupBehavior.const_defined?(:NULL_PICKUP_BEHAVIOR, false); PickupBehavior.const_set(:NULL_PICKUP_BEHAVIOR, PickupBehavior.new(CollidableCompositeLayer.getNullInstance(), 0)))
+        if PickupBehavior::NULL_PICKUP_BEHAVIOR == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            (PickupBehavior.instance_exec(PickupBehavior.new(::Org::Allbinary::Game::Layer::CollidableCompositeLayer.getNullInstance(), 0)) { |java_value| remove_const(:NULL_PICKUP_BEHAVIOR) if const_defined?(:NULL_PICKUP_BEHAVIOR, false); const_set(:NULL_PICKUP_BEHAVIOR, java_value) })
         end
         return PickupBehavior::NULL_PICKUP_BEHAVIOR
     end
     
 
     def initialize(ownerLayerInterface, countedIndex)
-        initialize_fields
+        jfields_org_allbinary_game_layer_pickup_PickupBehavior
         @ownerLayerInterface = ownerLayerInterface
         @countedIndex = countedIndex
     end
@@ -49,10 +52,11 @@ class PickupBehavior
                 pickupProcessorInterface.process(@ownerLayerInterface)
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, "doPickup", e)
         end
     end
+    java_overload :doPickup, 1
     
 
     def doPickupLayer(pickupLayerInterface)
@@ -72,16 +76,18 @@ class PickupBehavior
             end
             pickupLayerInterface.setPickedUp()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putOE(commonStrings.EXCEPTION, self, "doPickup", e)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(commonStrings.EXCEPTION, self, "doPickup", e)
         end
     end
+    java_overload :doPickupLayer, 1
     
 
     def add(countedPickedUpLayerInterfaceFactoryInterface)
         partIndex = countedPickedUpLayerInterfaceFactoryInterface.getId() + @countedIndex
         self.addAt(countedPickedUpLayerInterfaceFactoryInterface, partIndex)
     end
+    java_overload :add, 1
     
 
     def addAt(countedPickedUpLayerInterfaceFactoryInterface, partIndex)
@@ -89,6 +95,7 @@ class PickupBehavior
         countedLayerInterfaceFactory = collidableDestroyableDamageableLayer.getPartInterfaceArray()[partIndex]
         countedLayerInterfaceFactory.setTotal(countedLayerInterfaceFactory.getTotal() + countedPickedUpLayerInterfaceFactoryInterface.getTotal())
     end
+    java_overload :addAt, 2
     
 
     def getFirstAvailableCountedLayerInterfaceFactory(pickedUpLayerTypeArray)
@@ -109,8 +116,9 @@ class PickupBehavior
                 end
             end
         end
-        return CountedLayerInterfaceFactoryPart::NULL_COUNTED_LAYER_INTERFACE_FACTORY
+        return ::Org::Allbinary::Game::Part::CountedLayerInterfaceFactoryPart::NULL_COUNTED_LAYER_INTERFACE_FACTORY
     end
+    java_overload :getFirstAvailableCountedLayerInterfaceFactory, 1
     
 
     # throws Exception
@@ -130,19 +138,21 @@ class PickupBehavior
                 end
             end
         end
-        return CountedLayerInterfaceFactoryPart::NULL_COUNTED_LAYER_INTERFACE_FACTORY
+        return ::Org::Allbinary::Game::Part::CountedLayerInterfaceFactoryPart::NULL_COUNTED_LAYER_INTERFACE_FACTORY
     end
+    java_overload :getCountedLayerInterfaceFactoryForSlot, 1
     
 
     def getCountedIndex()
         return @countedIndex
     end
+    java_overload :getCountedIndex, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_PICKUP_BEHAVIOR, NullUtil.getInstance().NULL_OBJECT)
+            const_set(:NULL_PICKUP_BEHAVIOR, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -159,26 +169,28 @@ class PickupBehavior
     end
 end
 
-autoload :HealthInterfaceCompositeInterface, "org/allbinary/game/health/HealthInterfaceCompositeInterface"
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-autoload :CountedLayerInterfaceFactoryPart, "org/allbinary/game/part/CountedLayerInterfaceFactoryPart"
-autoload :PartInterface, "org/allbinary/game/part/PartInterface"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :CountedPickedUpLayerInterfaceFactory, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory"
-autoload :CountedPickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactoryInterface"
-autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
-autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType"
-autoload :PickedUpLayerTypeFactory, "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory"
-autoload :PickupProcessorInterface, "org/allbinary/game/layer/pickup/PickupProcessorInterface"
+module ::Org; module Allbinary; module Game; module Health; autoload :HealthInterfaceCompositeInterface, "org/allbinary/game/health/HealthInterfaceCompositeInterface" unless const_defined?(:HealthInterfaceCompositeInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Special; autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Part; autoload :CountedLayerInterfaceFactoryPart, "org/allbinary/game/part/CountedLayerInterfaceFactoryPart" unless const_defined?(:CountedLayerInterfaceFactoryPart, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Part; autoload :PartInterface, "org/allbinary/game/part/PartInterface" unless const_defined?(:PartInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :CountedPickedUpLayerInterfaceFactory, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory" unless const_defined?(:CountedPickedUpLayerInterfaceFactory, false)
+autoload :CountedPickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactoryInterface" unless const_defined?(:CountedPickedUpLayerInterfaceFactoryInterface, false)
+autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface" unless const_defined?(:PickedUpLayerInterface, false)
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface" unless const_defined?(:PickedUpLayerInterfaceFactoryInterface, false)
+autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType" unless const_defined?(:PickedUpLayerType, false)
+autoload :PickedUpLayerTypeFactory, "org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory" unless const_defined?(:PickedUpLayerTypeFactory, false)
+autoload :PickupProcessorInterface, "org/allbinary/game/layer/pickup/PickupProcessorInterface" unless const_defined?(:PickupProcessorInterface, false)
 
 begin
     PickupBehavior.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

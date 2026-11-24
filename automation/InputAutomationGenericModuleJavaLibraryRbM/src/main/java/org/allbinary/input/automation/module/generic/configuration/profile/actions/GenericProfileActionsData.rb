@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.module.generic.configuration.profile.actions
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile; module Actions
+
 class GenericProfileActionsData
     
 
@@ -47,4 +49,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end; end
 

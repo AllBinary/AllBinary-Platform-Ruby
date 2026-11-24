@@ -14,15 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/GPoint"
+
+module ::Org; module Allbinary; module Graphics
 
 class CustomGPoint < GPoint
     attr_accessor :cx, :cy, :cz
 
-    def initialize_fields
-        @cx = 0
-        @cy = 0
-        @cz = 0
+    def jfields_org_allbinary_graphics_CustomGPoint
+        @cx = 0 unless instance_variable_defined?(:@cx)
+        @cy = 0 unless instance_variable_defined?(:@cy)
+        @cz = 0 unless instance_variable_defined?(:@cz)
     end
     
 
@@ -38,38 +41,44 @@ class CustomGPoint < GPoint
 
     def initialize(x, y, z)
         super(x, y, z)
-        initialize_fields
+        jfields_org_allbinary_graphics_CustomGPoint
     end
     
 
     def setX(x)
         @cx = x
     end
+    java_overload :setX, 1
     
 
     def getX()
         return @cx
     end
+    java_overload :getX, 0
     
 
     def setY(y)
         @cy = y
     end
+    java_overload :setY, 1
     
 
     def getY()
         return @cy
     end
+    java_overload :getY, 0
     
 
     def setZ(z)
         @cz = z
     end
+    java_overload :setZ, 1
     
 
     def getZ()
         return @cz
     end
+    java_overload :getZ, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -97,4 +106,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

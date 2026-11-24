@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.opengles.shader
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
+
 class ModelViewProjection
     
 
@@ -24,7 +26,7 @@ class ModelViewProjection
     
 
     def get()
-        return NullUtil.getInstance().NULL_FLOAT_ARRAY
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_FLOAT_ARRAY
     end
 
     def self.instance()
@@ -58,11 +60,13 @@ class ModelViewProjection
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
 
 begin
     ModelViewProjection.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

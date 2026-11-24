@@ -19,16 +19,18 @@
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Logic; module Util; module Event
+
 class AllBinaryEventObject
     attr_accessor :source
 
-    def initialize_fields
-        @source = nil
+    def jfields_org_allbinary_logic_util_event_AllBinaryEventObject
+        @source = nil unless instance_variable_defined?(:@source)
     end
     
 
     def initialize(anyType)
-        initialize_fields
+        jfields_org_allbinary_logic_util_event_AllBinaryEventObject
         @source = anyType
     end
     
@@ -46,7 +48,7 @@ class AllBinaryEventObject
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_EVENT, AllBinaryEventObject.new(NullUtil.getInstance().NULL_OBJECT))
+            const_set(:NULL_EVENT, AllBinaryEventObject.new(::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -63,11 +65,13 @@ class AllBinaryEventObject
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
 
 begin
     AllBinaryEventObject.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

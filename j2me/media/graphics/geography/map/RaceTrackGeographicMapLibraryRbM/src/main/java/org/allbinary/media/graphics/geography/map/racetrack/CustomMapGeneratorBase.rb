@@ -15,6 +15,8 @@
 # package org.allbinary.media.graphics.geography.map.racetrack
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
+
 class CustomMapGeneratorBase
     
 
@@ -24,7 +26,7 @@ class CustomMapGeneratorBase
     
 
     def getCustomMapArray()
-        return NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
     end
     
 
@@ -34,5 +36,7 @@ class CustomMapGeneratorBase
     end
 end
 
-require "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+
+end; end; end; end; end; end; end
 

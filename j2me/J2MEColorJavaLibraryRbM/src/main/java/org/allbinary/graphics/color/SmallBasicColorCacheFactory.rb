@@ -15,12 +15,14 @@
 # package org.allbinary.graphics.color
 
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class SmallBasicColorCacheFactory
     attr_accessor :SIZE, :INDEX_TO_COLOR, :BASIC_COLOR_ARRAY, :colorIndex
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_color_SmallBasicColorCacheFactory
         @SIZE = 255
-        @INDEX_TO_COLOR = Array.new(@SIZE, 0)
+        @INDEX_TO_COLOR = (Array.new(@SIZE, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         @BASIC_COLOR_ARRAY = Array.new(@SIZE, nil)
         @colorIndex = 0
     end
@@ -32,7 +34,7 @@ class SmallBasicColorCacheFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_color_SmallBasicColorCacheFactory
     end
     
 
@@ -50,8 +52,8 @@ class SmallBasicColorCacheFactory
                 return @BASIC_COLOR_ARRAY[index]
             end
         end
-        _ALPHA_MASK = 0xFF000000
-        basicColor = BasicColorFactory.getInstance().createInstanceAN(colorAsInt & _ALPHA_MASK, colorAsInt & 0x00FFFFFF, StringUtil.getInstance().EMPTY_STRING)
+        _ALPHA_MASK = (0xFF000000 - 0x100000000)
+        basicColor = BasicColorFactory.getInstance().createInstanceAN(colorAsInt & _ALPHA_MASK, colorAsInt & 0x00FFFFFF, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         self.add(basicColor)
         return basicColor
     end
@@ -87,13 +89,15 @@ class SmallBasicColorCacheFactory
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
+autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false)
 
 begin
     SmallBasicColorCacheFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

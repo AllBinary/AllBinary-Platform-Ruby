@@ -2,18 +2,20 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "java/awt"
+# require "java/awt/Graphics2D"
 # require "java/awt/image/BufferedImage"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class BufferedImageUtil2
     attr_accessor :imageUtil
 
-    def initialize_fields
+    def jfields_org_allbinary_media_image_BufferedImageUtil2
         @imageUtil = ImageUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_BufferedImageUtil2
     end
     
 
@@ -80,11 +82,13 @@ class BufferedImageUtil2
     end
 end
 
-autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false)
 
 begin
     BufferedImageUtil2.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

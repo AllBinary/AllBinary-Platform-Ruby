@@ -15,6 +15,8 @@
 # package org.allbinary.bounds
 
 
+module ::Org; module Allbinary; module Bounds
+
 module BoundsVisitorInterface
     
 
@@ -53,4 +55,6 @@ module BoundsVisitorInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

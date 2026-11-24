@@ -16,16 +16,18 @@
 
 # require "javax/servlet/jsp/PageContext"
 
+module ::Taghelpers
+
 class OrderHistoryHelperFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_taghelpers_OrderHistoryHelperFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_taghelpers_OrderHistoryHelperFactory
     end
     
 
@@ -34,8 +36,8 @@ class OrderHistoryHelperFactory
         begin
             return OrderHistoryHelper.new(hashMap, pageContext)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
             end
             return nil
@@ -43,9 +45,13 @@ class OrderHistoryHelperFactory
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :OrderHistoryHelper, "taghelpers/OrderHistoryHelper"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :OrderHistoryHelper, "taghelpers/OrderHistoryHelper" unless const_defined?(:OrderHistoryHelper, false)
+
+end
 

@@ -16,15 +16,20 @@
 
 # require "javax/servlet/jsp/PageContext"
 
+module ::Admin; module Taghelpers
+
 module TagHelperFactoryInterface
     
 
     # throws Exception, LicensingException
     def getInstance(hashMap, pageContext)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+
+end; end
 

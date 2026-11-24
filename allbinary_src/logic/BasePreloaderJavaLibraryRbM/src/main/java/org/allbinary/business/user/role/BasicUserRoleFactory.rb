@@ -15,10 +15,12 @@
 # package org.allbinary.business.user.role
 
 
+module ::Org; module Allbinary; module Business; module User; module Role
+
 class BasicUserRoleFactory
     attr_accessor :INACTIVITYTIMEOUT, :CUSTOMERTIMEOUT, :CUSTOMERMAXSESSIONTIME, :MAXSESSIONTIME, :INSTALLER, :ADMINISTRATOR, :CUSTOMER, :SUBSCRIBERCUSTOMER, :WHOLESALECUSTOMER, :STOREMANAGER, :PRODUCTMANAGER, :CUSTOMERMANAGER, :PAYMENTMANAGER, :ORDERMANAGER, :WEBMANAGER, :REVIEWER, :SHIPPING, :ADJUSTER, :WORKFLOWEDITOR, :WIZARD, :VIEWEDITOR
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_role_BasicUserRoleFactory
         @INACTIVITYTIMEOUT = 360000000
         @CUSTOMERTIMEOUT = 360000000
         @CUSTOMERMAXSESSIONTIME = 360000000
@@ -43,7 +45,7 @@ class BasicUserRoleFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_user_role_BasicUserRoleFactory
     end
     
 
@@ -82,11 +84,13 @@ class BasicUserRoleFactory
     end
 end
 
-autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
+autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole" unless const_defined?(:BasicUserRole, false)
 
 begin
     BasicUserRoleFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

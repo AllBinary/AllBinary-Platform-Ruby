@@ -15,6 +15,8 @@
 # package org.allbinary.ag.game.vector
 
 
+module ::Org; module Allbinary; module Ag; module Game; module Vector
+
 class HealthVectorData
 
     def self.points()
@@ -53,4 +55,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

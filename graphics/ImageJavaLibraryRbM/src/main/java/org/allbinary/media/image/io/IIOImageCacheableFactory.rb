@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.io
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Media; module Image; module Io
+
 class IIOImageCacheableFactory
-    include CacheableInterfaceFactoryInterface
+    include ::Org::Allbinary::Logic::Util::Cache::CacheableInterfaceFactoryInterface
     
 
     def initialize()
@@ -27,8 +30,11 @@ class IIOImageCacheableFactory
     def getInstance(key)
         return IIOImageCacheable.new(key)
     end
+    java_overload :getInstance, 1
 end
 
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
-autoload :IIOImageCacheable, "org/allbinary/media/image/io/IIOImageCacheable"
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false); end; end; end; end; end
+autoload :IIOImageCacheable, "org/allbinary/media/image/io/IIOImageCacheable" unless const_defined?(:IIOImageCacheable, false)
+
+end; end; end; end; end
 

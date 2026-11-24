@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.ai
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
 class ThrustAIVisitorFactory
     
 
@@ -53,11 +55,13 @@ class ThrustAIVisitorFactory
     end
 end
 
-autoload :ThrustAIVisitor, "org/allbinary/game/ag/ai/ThrustAIVisitor"
+autoload :ThrustAIVisitor, "org/allbinary/game/ag/ai/ThrustAIVisitor" unless const_defined?(:ThrustAIVisitor, false)
 
 begin
     ThrustAIVisitorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

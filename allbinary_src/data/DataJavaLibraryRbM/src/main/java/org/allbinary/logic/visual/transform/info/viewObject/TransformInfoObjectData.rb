@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.transform.info.viewObject
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module ViewObject
+
 class TransformInfoObjectData
     attr_accessor :UNCRYPTED_EXTENSION, :ENCRYPTED_EXTENSION
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_transform_info_viewObject_TransformInfoObjectData
         @UNCRYPTED_EXTENSION = "class"
         @ENCRYPTED_EXTENSION = "abw"
     end
@@ -30,19 +32,45 @@ class TransformInfoObjectData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_info_viewObject_TransformInfoObjectData
     end
 
     def self.instance()
+        TransformInfoObjectData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformInfoObjectData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformInfoObjectData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformInfoObjectData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class TransformInfoObjectData
-    @@instance = TransformInfoObjectData.new()
+begin
+    TransformInfoObjectData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

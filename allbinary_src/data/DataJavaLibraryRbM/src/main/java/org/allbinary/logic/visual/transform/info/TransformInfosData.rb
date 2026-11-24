@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.transform.info
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
+
 class TransformInfosData
     attr_accessor :NAME, :GROUP, :ALL, :PREVIEW, :SMALL_PREVIEW
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_transform_info_TransformInfosData
         @NAME = "TRANSFORM_INFOS_NAME"
         @GROUP = "TRANSFORM_INFOS_GROUP"
         @ALL = "TRANSFORM_INFOS_ALL"
@@ -28,7 +30,7 @@ class TransformInfosData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_info_TransformInfosData
     end
     
 
@@ -37,15 +39,41 @@ class TransformInfosData
     end
 
     def self.instance()
+        TransformInfosData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TransformInfosData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TransformInfosData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TransformInfosData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class TransformInfosData
-    @@instance = TransformInfosData.new()
+begin
+    TransformInfosData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

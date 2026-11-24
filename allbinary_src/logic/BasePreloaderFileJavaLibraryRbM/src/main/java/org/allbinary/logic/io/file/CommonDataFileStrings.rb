@@ -15,10 +15,12 @@
 # package org.allbinary.logic.io.file
 
 
-class CommonDataFileStrings
-    attr_accessor :XML, :_XML, :JSON, :_JSON, :XSL, :_XSL, :JAVA, :_JAVA, :KT, :_KT, :TS, :_TS, :JS, :_JS, :CPP, :_CPP, :H, :_H, :PY, :_PY, :GO, :_GO, :CS, :_CS, :ADB, :_ADB, :ADS, :_ADS, :ADA, :_ADA, :RUST, :_RUST, :C, :_C, :CSHARP, :_CSHARP, :ERL, :_ERL, :HS, :_HS, :HX, :_HX, :LUA, :_LUA, :PAS, :_PAS, :ML, :_ML, :PL, :_PL, :RB, :_RB, :ZIG, :_ZIG, :PM, :_PM, :KTS, :_KTS, :CBL, :_CBL, :COB, :_COB, :F90, :_F90, :F, :_F, :DART, :_DART, :EX, :_EX, :EXS, :_EXS, :KOTLIN, :TYPESCRIPT, :JAVASCRIPT, :C_PLUS_PLUS, :PYTHON, :C_SHARP, :RUST_NAME, :RUBY, :PERL, :OBJECT_PASCAL, :OCAML, :HASKELL, :HAXE, :ERLANG, :COBOL, :FORTRAN, :ELIXIR, :CPLUSPLUS, :GOLANG, :CSHARP_ALIAS, :C23, :PASCAL, :OBJECT_PASCAL_ALIAS, :KT_SHORT_NAME, :TS_SHORT_NAME, :JS_SHORT_NAME, :CPP_SHORT_NAME, :PY_SHORT_NAME, :GO_SHORT_NAME, :CS_SHORT_NAME, :ADA_SHORT_NAME, :RUST_SHORT_NAME, :LUA_SHORT_NAME, :C_SHORT_NAME, :ZIG_SHORT_NAME, :RB_SHORT_NAME, :PL_SHORT_NAME, :PAS_SHORT_NAME, :ML_SHORT_NAME, :HS_SHORT_NAME, :HX_SHORT_NAME, :ERL_SHORT_NAME, :CBL_SHORT_NAME, :F90_SHORT_NAME, :DART_SHORT_NAME, :EX_SHORT_NAME, :UNCRYPTED_EXTENSION, :ENCRYPTED_EXTENSION
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
 
-    def initialize_fields
+class CommonDataFileStrings
+    attr_accessor :XML, :_XML, :JSON, :_JSON, :XSL, :_XSL, :JAVA, :_JAVA, :KT, :_KT, :TS, :_TS, :JS, :_JS, :CPP, :_CPP, :H, :_H, :PY, :_PY, :GO, :_GO, :CS, :_CS, :ADB, :_ADB, :ADS, :_ADS, :ADA, :_ADA, :RUST, :_RUST, :C, :_C, :CSHARP, :_CSHARP, :ERL, :_ERL, :HS, :_HS, :HX, :_HX, :LUA, :_LUA, :PAS, :_PAS, :ML, :_ML, :PL, :_PL, :RB, :_RB, :ZIG, :_ZIG, :PM, :_PM, :KTS, :_KTS, :CBL, :_CBL, :COB, :_COB, :F90, :_F90, :F, :_F, :DART, :_DART, :EX, :_EX, :EXS, :_EXS, :M, :_M, :SWIFT, :_SWIFT, :ASM, :_ASM, :S, :_S, :NIM, :_NIM, :VALA, :_VALA, :LISP, :_LISP, :RKT, :_RKT, :SCM, :_SCM, :AS, :_AS, :OBX, :_OBX, :SCALA, :_SCALA, :GROOVY, :_GROOVY, :JL, :_JL, :TCL, :_TCL, :WREN, :_WREN, :JANET, :_JANET, :GR, :_GR, :ELM, :_ELM, :KOTLIN, :TYPESCRIPT, :JAVASCRIPT, :C_PLUS_PLUS, :PYTHON, :C_SHARP, :RUST_NAME, :RUBY, :PERL, :OBJECT_PASCAL, :OCAML, :HASKELL, :HAXE, :ERLANG, :COBOL, :FORTRAN, :ELIXIR, :OBJECTIVE_C, :RACKET, :SCHEME, :ACTIONSCRIPT, :OBERON_PLUS, :JULIA, :GRAIN, :CPLUSPLUS, :GOLANG, :CSHARP_ALIAS, :C23, :PASCAL, :OBJECT_PASCAL_ALIAS, :OBJC, :OBJECTIVE_C_ALIAS, :ASSEMBLY, :COMMON_LISP, :OBERON, :OBERON_PLUS_ALIAS, :KT_SHORT_NAME, :TS_SHORT_NAME, :JS_SHORT_NAME, :CPP_SHORT_NAME, :PY_SHORT_NAME, :GO_SHORT_NAME, :CS_SHORT_NAME, :ADA_SHORT_NAME, :RUST_SHORT_NAME, :LUA_SHORT_NAME, :C_SHORT_NAME, :ZIG_SHORT_NAME, :RB_SHORT_NAME, :PL_SHORT_NAME, :PAS_SHORT_NAME, :ML_SHORT_NAME, :HS_SHORT_NAME, :HX_SHORT_NAME, :ERL_SHORT_NAME, :CBL_SHORT_NAME, :F90_SHORT_NAME, :DART_SHORT_NAME, :EX_SHORT_NAME, :OBJC_SHORT_NAME, :SWIFT_SHORT_NAME, :ASM_SHORT_NAME, :NIM_SHORT_NAME, :VALA_SHORT_NAME, :LISP_SHORT_NAME, :RKT_SHORT_NAME, :SCM_SHORT_NAME, :AS_SHORT_NAME, :OBX_SHORT_NAME, :SCALA_SHORT_NAME, :GROOVY_SHORT_NAME, :JL_SHORT_NAME, :TCL_SHORT_NAME, :WREN_SHORT_NAME, :JANET_SHORT_NAME, :GR_SHORT_NAME, :ELM_SHORT_NAME, :UNCRYPTED_EXTENSION, :ENCRYPTED_EXTENSION
+
+    def jfields_org_allbinary_logic_io_file_CommonDataFileStrings
         @XML = "xml"
         @_XML = ".xml"
         @JSON = "json"
@@ -91,6 +93,44 @@ class CommonDataFileStrings
         @_EX = ".ex"
         @EXS = "exs"
         @_EXS = ".exs"
+        @M = "m"
+        @_M = ".m"
+        @SWIFT = "swift"
+        @_SWIFT = ".swift"
+        @ASM = "asm"
+        @_ASM = ".asm"
+        @S = "s"
+        @_S = ".s"
+        @NIM = "nim"
+        @_NIM = ".nim"
+        @VALA = "vala"
+        @_VALA = ".vala"
+        @LISP = "lisp"
+        @_LISP = ".lisp"
+        @RKT = "rkt"
+        @_RKT = ".rkt"
+        @SCM = "scm"
+        @_SCM = ".scm"
+        @AS = "as"
+        @_AS = ".as"
+        @OBX = "obx"
+        @_OBX = ".obx"
+        @SCALA = "scala"
+        @_SCALA = ".scala"
+        @GROOVY = "groovy"
+        @_GROOVY = ".groovy"
+        @JL = "jl"
+        @_JL = ".jl"
+        @TCL = "tcl"
+        @_TCL = ".tcl"
+        @WREN = "wren"
+        @_WREN = ".wren"
+        @JANET = "janet"
+        @_JANET = ".janet"
+        @GR = "gr"
+        @_GR = ".gr"
+        @ELM = "elm"
+        @_ELM = ".elm"
         @KOTLIN = "kotlin"
         @TYPESCRIPT = "typescript"
         @JAVASCRIPT = "javascript"
@@ -108,12 +148,25 @@ class CommonDataFileStrings
         @COBOL = "cobol"
         @FORTRAN = "fortran"
         @ELIXIR = "elixir"
+        @OBJECTIVE_C = "objective-c"
+        @RACKET = "racket"
+        @SCHEME = "scheme"
+        @ACTIONSCRIPT = "actionscript"
+        @OBERON_PLUS = "oberon+"
+        @JULIA = "julia"
+        @GRAIN = "grain"
         @CPLUSPLUS = "cplusplus"
         @GOLANG = "golang"
         @CSHARP_ALIAS = "csharp"
         @C23 = "c23"
         @PASCAL = "pascal"
         @OBJECT_PASCAL_ALIAS = "object pascal"
+        @OBJC = "objc"
+        @OBJECTIVE_C_ALIAS = "objectivec"
+        @ASSEMBLY = "assembly"
+        @COMMON_LISP = "common lisp"
+        @OBERON = "oberon"
+        @OBERON_PLUS_ALIAS = "oberonplus"
         @KT_SHORT_NAME = "Kt"
         @TS_SHORT_NAME = "Ts"
         @JS_SHORT_NAME = "Js"
@@ -137,12 +190,30 @@ class CommonDataFileStrings
         @F90_SHORT_NAME = "F90"
         @DART_SHORT_NAME = "Dart"
         @EX_SHORT_NAME = "Ex"
+        @OBJC_SHORT_NAME = "ObjC"
+        @SWIFT_SHORT_NAME = "Swift"
+        @ASM_SHORT_NAME = "Asm"
+        @NIM_SHORT_NAME = "Nim"
+        @VALA_SHORT_NAME = "Vala"
+        @LISP_SHORT_NAME = "Lisp"
+        @RKT_SHORT_NAME = "Rkt"
+        @SCM_SHORT_NAME = "Scm"
+        @AS_SHORT_NAME = "As"
+        @OBX_SHORT_NAME = "Obx"
+        @SCALA_SHORT_NAME = "Scala"
+        @GROOVY_SHORT_NAME = "Groovy"
+        @JL_SHORT_NAME = "Jl"
+        @TCL_SHORT_NAME = "Tcl"
+        @WREN_SHORT_NAME = "Wren"
+        @JANET_SHORT_NAME = "Janet"
+        @GR_SHORT_NAME = "Gr"
+        @ELM_SHORT_NAME = "Elm"
         @UNCRYPTED_EXTENSION = @XML
         @ENCRYPTED_EXTENSION = "abd"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_io_file_CommonDataFileStrings
     end
     
 
@@ -186,4 +257,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

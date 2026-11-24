@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.actions.script.condition.processors.input
 
-# require "javax/swing"
+# require "javax/swing/DefaultComboBoxModel"
+# require "javax/swing/KeyStroke"
+
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition; module Processors; module Input
 
 class KeyCharDefaultComboBoxModelFactory
     
@@ -25,17 +28,19 @@ class KeyCharDefaultComboBoxModelFactory
 
     def self.getInstance()
         defaultComboBoxModel = DefaultComboBoxModel.new()
-        keyArray = KeySingletonFactory.getArray()
+        keyArray = ::Org::Allbinary::Input::KeySingletonFactory.getArray()
         (0...keyArray.length).each do |index|
             nextKey = keyArray[index]
             keyStroke = KeyStroke.getKeyStroke(nextKey.to_i, 0)
-            keyChar = KeyStrokeMap.getChar(keyStroke)
+            keyChar = ::Abbot::Tester::KeyStrokeMap.getChar(keyStroke)
             defaultComboBoxModel.addElement((keyChar).to_s)
         end
         return defaultComboBoxModel
     end
 end
 
-autoload :KeyStrokeMap, "abbot/tester/KeyStrokeMap"
-autoload :KeySingletonFactory, "org/allbinary/input/KeySingletonFactory"
+module ::Abbot; module Tester; autoload :KeyStrokeMap, "abbot/tester/KeyStrokeMap" unless const_defined?(:KeyStrokeMap, false); end; end
+module ::Org; module Allbinary; module Input; autoload :KeySingletonFactory, "org/allbinary/input/KeySingletonFactory" unless const_defined?(:KeySingletonFactory, false); end; end; end
+
+end; end; end; end; end; end; end; end; end
 

@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.resource
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/TouchButtonResource"
 
-class TouchButtonDowngradeResource < TouchButtonResource
+module ::Org; module Allbinary; module Game; module Input; module Resource
+
+class TouchButtonDowngradeResource < ::Org::Allbinary::Input::Motion::Button::TouchButtonResource
     
 
     def self.getInstance()
@@ -29,17 +32,43 @@ class TouchButtonDowngradeResource < TouchButtonResource
     end
 
     def self.instance()
+        TouchButtonDowngradeResource.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TouchButtonDowngradeResource.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TouchButtonDowngradeResource.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TouchButtonDowngradeResource"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/input/motion/button/TouchButtonBlankResource"
+module ::Org; module Allbinary; module Input; module Motion; module Button; autoload :TouchButtonBlankResource, "org/allbinary/input/motion/button/TouchButtonBlankResource" unless const_defined?(:TouchButtonBlankResource, false); end; end; end; end; end
 
-class TouchButtonDowngradeResource
-    @@instance = TouchButtonDowngradeResource.new()
+begin
+    TouchButtonDowngradeResource.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

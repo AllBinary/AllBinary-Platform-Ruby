@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.dhtml.style
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Style
+
 class StyleData
     attr_accessor :NAME, :NAMEMAXLEN
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_style_StyleData
         @NAME = "STYLE_NAME"
         @NAMEMAXLEN = 255
     end
@@ -30,19 +32,45 @@ class StyleData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_style_StyleData
     end
 
     def self.instance()
+        StyleData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        StyleData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = StyleData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StyleData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class StyleData
-    @@instance = StyleData.new()
+begin
+    StyleData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

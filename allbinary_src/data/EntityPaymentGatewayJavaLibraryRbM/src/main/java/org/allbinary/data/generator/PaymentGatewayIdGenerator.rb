@@ -14,29 +14,34 @@
 # frozen_string_literal: false
 # package org.allbinary.data.generator
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/generator/UniqueIdGenerator"
+
+module ::Org; module Allbinary; module DataPackage; module Generator
 
 class PaymentGatewayIdGenerator < UniqueIdGenerator
     attr_accessor :IDFILE
 
-    def initialize_fields
+    def jfields_org_allbinary_data_generator_PaymentGatewayIdGenerator
         @IDFILE = "paymentgatewayId"
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(URLGLOBALS.getMainPath())
-        stringBuffer.append(PATH_GLOBALS.getInstance().INIT_PATH)
+        jfields_org_allbinary_data_generator_PaymentGatewayIdGenerator
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(::Org::Allbinary::Globals::URLGLOBALS.getMainPath())
+        stringBuffer.append(::Org::Allbinary::Globals::PATH_GLOBALS.getInstance().INIT_PATH)
         stringBuffer.append(@IDFILE)
         stringBuffer.append(UniqueIdGenerator::EXT)
-        self.class.superclass.instance_method(:setFile).bind(self).call(stringBuffer.to_s, @IDFILE)
+        PaymentGatewayIdGenerator.superclass.java_super_method(:setFile, 2).bind(self).call(stringBuffer.to_s, @IDFILE)
     end
 end
 
-autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS"
-autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Globals; autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS" unless const_defined?(:PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end; end
 

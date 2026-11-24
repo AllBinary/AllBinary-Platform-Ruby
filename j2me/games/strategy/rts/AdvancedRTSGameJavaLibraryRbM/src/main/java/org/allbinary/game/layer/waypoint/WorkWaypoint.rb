@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.waypoint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/waypoint/Waypoint"
+
+module ::Org; module Allbinary; module Game; module Layer; module Waypoint
 
 class WorkWaypoint < Waypoint
     
 
     def initialize(ownerLayer)
-        super(ownerLayer, WorkSound.getInstance())
+        super(ownerLayer, ::Org::Allbinary::Media::Audio::WorkSound.getInstance())
     end
     
 
@@ -41,7 +44,7 @@ class WorkWaypoint < Waypoint
                 geologicalResource = geologicalGeographicMapCellPosition.getGeologicalResource()
                 if geologicalResource.getTotal() >= 1
                     outOfResources = false
-                    maxResourceLoad = (unitLayer.getMaxResourceLoad()).to_i
+                    maxResourceLoad = ((unitLayer.getMaxResourceLoad()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
                     geologicalResource.remove(maxResourceLoad)
                     unitLayer.setLoad(maxResourceLoad)
                 end
@@ -65,25 +68,51 @@ class WorkWaypoint < Waypoint
             end
         end
     end
+    java_overload :visit, 1
     
 
     def getType()
         return 2
     end
+    java_overload :getType, 0
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:ID, ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(25))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "WorkWaypoint"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:ID].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/layer/PathFindingLayerInterface"
-require "org/allbinary/game/layer/RTSLayer"
-require "org/allbinary/game/layer/geological/resources/GeologicalGeographicMapCellPosition"
-require "org/allbinary/game/layer/geological/resources/GeologicalResource"
-require "org/allbinary/game/layer/unit/UnitLayer"
-require "org/allbinary/game/layer/unit/UnitWaypointBehavior"
-require "org/allbinary/media/audio/WorkSound"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-require "org/allbinary/game/layer/waypoint/WaypointInfoHudPaintable"
+module ::Org; module Allbinary; module Game; module Layer; autoload :PathFindingLayerInterface, "org/allbinary/game/layer/PathFindingLayerInterface" unless const_defined?(:PathFindingLayerInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Geological; module Resources; autoload :GeologicalGeographicMapCellPosition, "org/allbinary/game/layer/geological/resources/GeologicalGeographicMapCellPosition" unless const_defined?(:GeologicalGeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Geological; module Resources; autoload :GeologicalResource, "org/allbinary/game/layer/geological/resources/GeologicalResource" unless const_defined?(:GeologicalResource, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Unit; autoload :UnitLayer, "org/allbinary/game/layer/unit/UnitLayer" unless const_defined?(:UnitLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Unit; autoload :UnitWaypointBehavior, "org/allbinary/game/layer/unit/UnitWaypointBehavior" unless const_defined?(:UnitWaypointBehavior, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Audio; autoload :WorkSound, "org/allbinary/media/audio/WorkSound" unless const_defined?(:WorkSound, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+autoload :WaypointInfoHudPaintable, "org/allbinary/game/layer/waypoint/WaypointInfoHudPaintable" unless const_defined?(:WaypointInfoHudPaintable, false)
 
-class WorkWaypoint
-    ID = SmallIntegerSingletonFactory.getInstance().getAt(25)
+begin
+    WorkWaypoint.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,16 +15,18 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 class BasicHighScoresGameInfoFactory
     attr_accessor :MULTI_PLAYER_SERVER, :SINGLE_PLAYER_SERVER
 
-    def initialize_fields
+    def jfields_org_allbinary_game_BasicHighScoresGameInfoFactory
         @MULTI_PLAYER_SERVER = GameInfo.new(GameTypeFactory.getInstance().MULTI_PLAYER, GameMode::SERVER, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, 0, 0)
         @SINGLE_PLAYER_SERVER = GameInfo.new(GameTypeFactory.getInstance().SINGLE_PLAYER, GameMode::SERVER, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, 0, 0)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_BasicHighScoresGameInfoFactory
     end
     
 
@@ -53,14 +55,16 @@ class BasicHighScoresGameInfoFactory
     end
 end
 
-autoload :GameInfo, "org/allbinary/game/GameInfo"
-autoload :GameMode, "org/allbinary/game/GameMode"
-autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory"
-autoload :PlayerTypesFactory, "org/allbinary/game/PlayerTypesFactory"
+autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false)
+autoload :GameMode, "org/allbinary/game/GameMode" unless const_defined?(:GameMode, false)
+autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory" unless const_defined?(:GameTypeFactory, false)
+autoload :PlayerTypesFactory, "org/allbinary/game/PlayerTypesFactory" unless const_defined?(:PlayerTypesFactory, false)
 
 begin
     BasicHighScoresGameInfoFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

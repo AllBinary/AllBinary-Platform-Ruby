@@ -15,13 +15,16 @@
 # package org.allbinary.game.combat.destroy.event
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class DestroyedEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Combat; module Destroy; module Event
+
+class DestroyedEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_game_combat_destroy_event_DestroyedEventHandler
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -34,7 +37,7 @@ class DestroyedEventHandler < BasicEventHandler
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_combat_destroy_event_DestroyedEventHandler
     end
     
 
@@ -43,22 +46,25 @@ class DestroyedEventHandler < BasicEventHandler
             @list.add(collidableDestroyableDamageableLayer)
         end
     end
+    java_overload :addListener, 1
     
 
     def removeAllListeners()
         java_monitor.synchronize do
         @list.clear()
-        super()
+        DestroyedEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
         end
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListener(eventListenerInterface)
         java_monitor.synchronize do
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        DestroyedEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
         end
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -69,11 +75,12 @@ class DestroyedEventHandler < BasicEventHandler
                 collidableDestroyableDamageableLayer = @list.objectArray[index]
                 collidableDestroyableDamageableLayer.onDestroyed(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
-        super(eventObject)
+        DestroyedEventHandler.superclass.java_super_method(:fireEvent, 1).bind(self).call(eventObject)
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
@@ -81,6 +88,7 @@ class DestroyedEventHandler < BasicEventHandler
         destroyedEventListenerInterface = eventListenerInterface
         destroyedEventListenerInterface.onDestroyed(eventObject)
     end
+    java_overload :process, 2
 
     def self.instance()
         DestroyedEventHandler.java_static_fields unless @java_static_fields_started
@@ -113,18 +121,20 @@ class DestroyedEventHandler < BasicEventHandler
     end
 end
 
-autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
-autoload :DestroyedEventListenerInterface, "org/allbinary/game/combat/destroy/event/DestroyedEventListenerInterface"
+module ::Org; module Allbinary; module Game; module Layer; module Special; autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent" unless const_defined?(:DestroyedEvent, false)
+autoload :DestroyedEventListenerInterface, "org/allbinary/game/combat/destroy/event/DestroyedEventListenerInterface" unless const_defined?(:DestroyedEventListenerInterface, false)
 
 begin
     DestroyedEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

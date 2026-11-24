@@ -15,10 +15,12 @@
 # package org.allbinary.audio
 
 
+module ::Org; module Allbinary; module Audio
+
 class AudioContentTypeDataFactory
     attr_accessor :MIME_AUDIO_TONE, :MIME_AUDIO_AMR, :MIME_AUDIO_AMR_WB, :MIME_AUDIO_WAV, :MIME_AUDIO_MIDI, :MIME_AUDIO_SP_MIDI
 
-    def initialize_fields
+    def jfields_org_allbinary_audio_AudioContentTypeDataFactory
         @MIME_AUDIO_TONE = AudioContentTypeData.new("audio/x-tone-seq")
         @MIME_AUDIO_AMR = AudioContentTypeData.new("audio/amr")
         @MIME_AUDIO_AMR_WB = AudioContentTypeData.new("audio/amr-wb")
@@ -34,7 +36,7 @@ class AudioContentTypeDataFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_audio_AudioContentTypeDataFactory
     end
 
     def self.instance()
@@ -68,11 +70,13 @@ class AudioContentTypeDataFactory
     end
 end
 
-autoload :AudioContentTypeData, "org/allbinary/audio/AudioContentTypeData"
+autoload :AudioContentTypeData, "org/allbinary/audio/AudioContentTypeData" unless const_defined?(:AudioContentTypeData, false)
 
 begin
     AudioContentTypeDataFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

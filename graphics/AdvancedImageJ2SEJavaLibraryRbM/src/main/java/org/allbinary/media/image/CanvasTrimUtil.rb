@@ -17,16 +17,18 @@
 # require "java/awt/image/BufferedImage"
 # require "java/io/IOException"
 
+module ::Org; module Allbinary; module Media; module Image
+
 class CanvasTrimUtil
     attr_accessor :logUtil, :stringUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @stringUtil = StringUtil.getInstance()
+    def jfields_org_allbinary_media_image_CanvasTrimUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_CanvasTrimUtil
     end
     
 
@@ -79,14 +81,16 @@ class CanvasTrimUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :ImageProcessedVisitor, "org/allbinary/media/image/ImageProcessedVisitor"
-autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :ImageProcessedVisitor, "org/allbinary/media/image/ImageProcessedVisitor" unless const_defined?(:ImageProcessedVisitor, false)
+autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput" unless const_defined?(:ImageProcessorInput, false)
 
 begin
     CanvasTrimUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

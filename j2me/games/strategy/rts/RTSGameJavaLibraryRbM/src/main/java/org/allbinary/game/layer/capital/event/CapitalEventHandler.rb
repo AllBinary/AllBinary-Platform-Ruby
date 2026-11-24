@@ -13,9 +13,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.capital.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class CapitalEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Layer; module Capital; module Event
+
+class CapitalEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def initialize()
@@ -28,10 +31,13 @@ class CapitalEventHandler < BasicEventHandler
         capitalEventListenerInterface = (eventListenerInterface)
         capitalEventListenerInterface.onCapitalChangeEvent(eventObject)
     end
+    java_overload :process, 2
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/game/layer/capital/event/CapitalEvent"
-require "org/allbinary/game/layer/capital/event/CapitalEventListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :CapitalEvent, "org/allbinary/game/layer/capital/event/CapitalEvent" unless const_defined?(:CapitalEvent, false)
+autoload :CapitalEventListenerInterface, "org/allbinary/game/layer/capital/event/CapitalEventListenerInterface" unless const_defined?(:CapitalEventListenerInterface, false)
+
+end; end; end; end; end; end
 

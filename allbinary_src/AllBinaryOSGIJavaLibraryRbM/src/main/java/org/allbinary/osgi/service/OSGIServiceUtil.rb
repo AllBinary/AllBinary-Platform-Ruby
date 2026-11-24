@@ -15,11 +15,13 @@
 # package org.allbinary.osgi.service
 
 
+module ::Org; module Allbinary; module Osgi; module Service
+
 class OSGIServiceUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_osgi_service_OSGIServiceUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -29,13 +31,13 @@ class OSGIServiceUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_osgi_service_OSGIServiceUtil
     end
     
 
     # throws Exception
     def getServicesObjectVector(bundleContext, serviceReferences)
-        vector = BasicArrayListD.new()
+        vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         if serviceReferences != nil
             size = serviceReferences.length
             @logUtil.putF("Service References: " + (size).to_s, self, "getServicesObjectVector")
@@ -84,17 +86,19 @@ class OSGIServiceUtil
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :BundleContext, "org/osgi/framework/BundleContext"
-autoload :ServiceReference, "org/osgi/framework/ServiceReference"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :OSGIServiceInterface, "org/allbinary/osgi/OSGIServiceInterface"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :BundleContext, "org/osgi/framework/BundleContext" unless const_defined?(:BundleContext, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :ServiceReference, "org/osgi/framework/ServiceReference" unless const_defined?(:ServiceReference, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Osgi; autoload :OSGIServiceInterface, "org/allbinary/osgi/OSGIServiceInterface" unless const_defined?(:OSGIServiceInterface, false); end; end; end
 
 begin
     OSGIServiceUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

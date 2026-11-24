@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package views
 
+require "java/lang/JavaClass"
+
+module ::Views
 
 #Replace when validation node is added
 class ValidationOnlyTempUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_views_ValidationOnlyTempUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -30,20 +33,20 @@ class ValidationOnlyTempUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_views_ValidationOnlyTempUtil
     end
     
 
     # throws Exception
     def view(validationComponentInterface)
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
                 @logUtil.putF("View Name: " + validationComponentInterface.getTransformInfoInterface().getName(), self, "view()")
             end
-            return StringUtil.getInstance().EMPTY_STRING
+            return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEWERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEWERROR)
                 @logUtil.put(commonStrings.EXCEPTION, self, "view()", e)
             end
             raise e
@@ -81,14 +84,18 @@ class ValidationOnlyTempUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :ValidationComponentInterface, "org/allbinary/logic/control/validate/ValidationComponentInterface"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate; autoload :ValidationComponentInterface, "org/allbinary/logic/control/validate/ValidationComponentInterface" unless const_defined?(:ValidationComponentInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
 begin
     ValidationOnlyTempUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
+end
+
 end
 

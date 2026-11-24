@@ -15,17 +15,19 @@
 # package org.allbinary.init.crypt.jcehelper
 
 
+module ::Org; module Allbinary; module Init; module Crypt; module Jcehelper
+
 class BasicCryptUtil
     attr_accessor :logUtil, :tsUtil, :XML_START
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @tsUtil = TsUtil.getInstance()
+    def jfields_org_allbinary_init_crypt_jcehelper_BasicCryptUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
         @XML_START = "<?xml"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_init_crypt_jcehelper_BasicCryptUtil
     end
     
 
@@ -36,7 +38,7 @@ class BasicCryptUtil
 
     # throws Exception
     def getDecryptedInputStream(inputStream, cryptInterface)
-        buffer = ByteArrayOutputStream.new()
+        buffer = ::Java::Io::ByteArrayOutputStream.new()
         ch = 0
         while true
             ch = inputStream.read()
@@ -51,7 +53,7 @@ class BasicCryptUtil
         if index > 0
             decryptedString = decryptedString[index..]
         end
-        return ByteArrayInputStream.new(@tsUtil.getByteArray(decryptedString))
+        return ::Java::Io::ByteArrayInputStream.new(@tsUtil.getByteArray(decryptedString))
     end
 
     def self.instance()
@@ -85,16 +87,18 @@ class BasicCryptUtil
     end
 end
 
-autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
-autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
-autoload :InputStream, "java/io/InputStream"
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CryptInterface, "org/allbinary/init/crypt/jcehelper/CryptInterface"
+module ::Java; module Io; autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream" unless const_defined?(:ByteArrayInputStream, false); end; end
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :CryptInterface, "org/allbinary/init/crypt/jcehelper/CryptInterface" unless const_defined?(:CryptInterface, false)
 
 begin
     BasicCryptUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

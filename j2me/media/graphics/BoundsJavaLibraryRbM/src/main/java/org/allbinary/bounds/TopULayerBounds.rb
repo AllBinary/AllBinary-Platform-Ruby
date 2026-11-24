@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.bounds
 
+require "java/lang/JavaOverload"
 require "org/allbinary/bounds/LayerBounds"
+
+module ::Org; module Allbinary; module Bounds
 
 class TopULayerBounds < LayerBounds
     
@@ -35,8 +38,11 @@ class TopULayerBounds < LayerBounds
             boundsVisitorInterface.minY()
         end
     end
+    java_overload :visit, 1
 end
 
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :BoundsVisitorInterface, "org/allbinary/bounds/BoundsVisitorInterface"
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+autoload :BoundsVisitorInterface, "org/allbinary/bounds/BoundsVisitorInterface" unless const_defined?(:BoundsVisitorInterface, false)
+
+end; end; end
 

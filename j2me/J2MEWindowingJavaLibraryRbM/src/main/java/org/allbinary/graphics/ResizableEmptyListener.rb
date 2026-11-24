@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/ResizableListenerInterface"
+
+module ::Org; module Allbinary; module Graphics
 
 class ResizableEmptyListener
     include ResizableListenerInterface
@@ -22,5 +25,8 @@ class ResizableEmptyListener
 
     def onResizable(isResizable)
     end
+    java_overload :onResizable, 1
 end
+
+end; end; end
 

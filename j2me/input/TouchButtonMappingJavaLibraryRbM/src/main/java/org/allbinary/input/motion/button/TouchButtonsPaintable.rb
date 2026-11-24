@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/Paintable"
 
-class TouchButtonsPaintable < Paintable
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
+class TouchButtonsPaintable < ::Org::Allbinary::Graphics::Paint::Paintable
     attr_accessor :foregroundBasicColor, :foregroundColor, :basicSetColorUtil, :touchButtonFactory
 
-    def initialize_fields
-        @foregroundBasicColor = nil
-        @foregroundColor = nil
-        @basicSetColorUtil = BasicColorSetUtil.getInstance()
+    def jfields_org_allbinary_input_motion_button_TouchButtonsPaintable
+        @foregroundBasicColor = nil unless instance_variable_defined?(:@foregroundBasicColor)
+        @foregroundColor = nil unless instance_variable_defined?(:@foregroundColor)
+        @basicSetColorUtil = ::Org::Allbinary::Graphics::Color::BasicColorSetUtil.getInstance()
         @touchButtonFactory = TouchButtonFactory.getInstance()
     end
     
 
     def initialize(basicColor)
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchButtonsPaintable
         @foregroundBasicColor = basicColor
         @foregroundColor = basicColor.to_i
     end
@@ -50,12 +53,15 @@ class TouchButtonsPaintable < Paintable
             touchButton.paintHint(graphics)
         end
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton"
-autoload :TouchButtonFactory, "org/allbinary/input/motion/button/TouchButtonFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil" unless const_defined?(:BasicColorSetUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :TouchButton, "org/allbinary/input/motion/button/TouchButton" unless const_defined?(:TouchButton, false)
+autoload :TouchButtonFactory, "org/allbinary/input/motion/button/TouchButtonFactory" unless const_defined?(:TouchButtonFactory, false)
+
+end; end; end; end; end
 

@@ -15,15 +15,17 @@
 # package org.allbinary.graphics.displayable.command
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable; module Command
+
 class MyCommandsFactory
     attr_accessor :NO_COMMAND, :GAUGE_CHANGE, :SET_DISPLAYABLE, :PAUSE_COMMAND, :RESUME_COMMAND
 
-    def initialize_fields
-        @NO_COMMAND = Command.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING, -1, -1)
-        @GAUGE_CHANGE = Command.new("GAUGE_CHANGE", StringUtil.getInstance().EMPTY_STRING, Command::ITEM, 1)
-        @SET_DISPLAYABLE = Command.new("Display", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 2)
-        @PAUSE_COMMAND = Command.new("Pause", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 0)
-        @RESUME_COMMAND = Command.new("Resume", StringUtil.getInstance().EMPTY_STRING, Command::SCREEN, 0)
+    def jfields_org_allbinary_graphics_displayable_command_MyCommandsFactory
+        @NO_COMMAND = ::Javax::Microedition::Lcdui::Command.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, -1, -1)
+        @GAUGE_CHANGE = ::Javax::Microedition::Lcdui::Command.new("GAUGE_CHANGE", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::ITEM, 1)
+        @SET_DISPLAYABLE = ::Javax::Microedition::Lcdui::Command.new("Display", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::SCREEN, 2)
+        @PAUSE_COMMAND = ::Javax::Microedition::Lcdui::Command.new("Pause", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::SCREEN, 0)
+        @RESUME_COMMAND = ::Javax::Microedition::Lcdui::Command.new("Resume", ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Javax::Microedition::Lcdui::Command::SCREEN, 0)
     end
     
 
@@ -33,7 +35,7 @@ class MyCommandsFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_displayable_command_MyCommandsFactory
     end
 
     def self.instance()
@@ -67,12 +69,14 @@ class MyCommandsFactory
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     MyCommandsFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

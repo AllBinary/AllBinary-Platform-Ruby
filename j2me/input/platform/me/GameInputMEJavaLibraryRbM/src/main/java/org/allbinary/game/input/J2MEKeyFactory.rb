@@ -15,10 +15,12 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class J2MEKeyFactory
     attr_accessor :gameKeyFactory
 
-    def initialize_fields
+    def jfields_org_allbinary_game_input_J2MEKeyFactory
         @gameKeyFactory = GameKeyFactory.getInstance()
     end
     
@@ -29,7 +31,7 @@ class J2MEKeyFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_input_J2MEKeyFactory
     end
     
 
@@ -134,14 +136,16 @@ class J2MEKeyFactory
     end
 end
 
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false)
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false)
+autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false)
+autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false)
 
 begin
     J2MEKeyFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

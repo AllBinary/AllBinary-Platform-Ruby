@@ -15,6 +15,8 @@
 # package org.allbinary.logic.io
 
 
+module ::Org; module Allbinary; module Logic; module Io
+
 class DataOutputStreamFactory
     
 
@@ -32,7 +34,6 @@ class DataOutputStreamFactory
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(filePath, fileName)
         fileStreamFactory = FileStreamFactory.getInstance()
         fileOutputStream = fileStreamFactory.getFileOutputStreamInstance(filePath, fileName)
@@ -41,20 +42,46 @@ class DataOutputStreamFactory
     end
 
     def self.instance()
+        DataOutputStreamFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        DataOutputStreamFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = DataOutputStreamFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "DataOutputStreamFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/AbDataOutputStream"
-require "org/allbinary/logic/io/AbFileOutputStream"
-require "org/allbinary/logic/io/FileStreamFactory"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false)
+autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream" unless const_defined?(:AbFileOutputStream, false)
+autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory" unless const_defined?(:FileStreamFactory, false)
 
-class DataOutputStreamFactory
-    @@instance = DataOutputStreamFactory.new()
+begin
+    DataOutputStreamFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

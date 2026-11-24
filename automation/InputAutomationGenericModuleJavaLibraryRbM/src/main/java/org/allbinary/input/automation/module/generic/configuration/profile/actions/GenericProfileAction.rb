@@ -14,91 +14,103 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.generic.configuration.profile.actions
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile; module Actions
+
 class GenericProfileAction
-    include DomNodeInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     attr_accessor :logUtil, :name, :genericProfileActionScript, :genericProfileActionJPanel
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @name = nil
-        @genericProfileActionScript = nil
-        @genericProfileActionJPanel = nil
+    def jfields_org_allbinary_input_automation_module_generic_configuration_profile_actions_GenericProfileAction
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @name = nil unless instance_variable_defined?(:@name)
+        @genericProfileActionScript = nil unless instance_variable_defined?(:@genericProfileActionScript)
+        @genericProfileActionJPanel = nil unless instance_variable_defined?(:@genericProfileActionJPanel)
     end
 
     def initialize(*args)
         case args.length
-        when 2 then constructor2(*args)
-        when 1 then constructor1(*args)
+        when 2 then jnew_org_allbinary_input_automation_module_generic_configuration_profile_actions_GenericProfileAction_2(*args)
+        when 1 then jnew_org_allbinary_input_automation_module_generic_configuration_profile_actions_GenericProfileAction_1(*args)
+        else raise ArgumentError, "No constructor of GenericProfileAction takes #{args.length} arguments"
         end
     end
     
 
-    def constructor2(genericProfileActionJPanel, node)
-        initialize_fields
-        actionNameNode = DomSearchHelper.getNode(GenericProfileActionData::NAME, node.getChildNodes())
+    def jnew_org_allbinary_input_automation_module_generic_configuration_profile_actions_GenericProfileAction_2(genericProfileActionJPanel, node)
+        jfields_org_allbinary_input_automation_module_generic_configuration_profile_actions_GenericProfileAction
+        actionNameNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(GenericProfileActionData::NAME, node.getChildNodes())
         if actionNameNode != nil
-            @name = DomNodeHelper.getTextNodeValue(actionNameNode)
+            @name = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(actionNameNode)
         else
             raise StandardError.new("Profile Action Name Node Null")
         end
-        self.setGenericProfileActionScript(GenericProfileActionScript.new(@genericProfileActionJPanel, node))
+        self.setGenericProfileActionScript(::Org::Allbinary::Input::Automation::ModulePackage::Generic::Configuration::Profile::Actions::Script::GenericProfileActionScript.new(@genericProfileActionJPanel, node))
     end
     
 
-    def constructor1(name)
-        initialize_fields
+    def jnew_org_allbinary_input_automation_module_generic_configuration_profile_actions_GenericProfileAction_1(name)
+        jfields_org_allbinary_input_automation_module_generic_configuration_profile_actions_GenericProfileAction
         @name = name
-        self.setGenericProfileActionScript(GenericProfileActionScript.new(@genericProfileActionJPanel))
+        self.setGenericProfileActionScript(::Org::Allbinary::Input::Automation::ModulePackage::Generic::Configuration::Profile::Actions::Script::GenericProfileActionScript.new(@genericProfileActionJPanel))
     end
     
 
     def getName()
         return @name
     end
+    java_overload :getName, 0
     
 
     def setName(name)
         @name = name
     end
+    java_overload :setName, 1
     
 
     def toHashMap()
-        hashMap = StdUtil.getInstance().createHashMap()
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         hashMap.put(GenericProfileActionData::NAME, @name)
         @logUtil.putF("HashMap: " + hashMap.to_s, self, "toHashMap()")
         return hashMap
     end
+    java_overload :toHashMap, 0
     
 
     # throws Exception
     def toXmlNode(document)
-        node = ModDomHelper.createNodeWithValueNodes(document, GenericProfileActionData::NAME, self.toHashMap())
+        node = ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNodeWithValueNodes(document, GenericProfileActionData::NAME, self.toHashMap())
         node.appendChild(getGenericProfileActionScript().toXmlNode(document))
         return node
     end
+    java_overload :toXmlNode, 1
     
 
     def getGenericProfileActionScript()
         return @genericProfileActionScript
     end
+    java_overload :getGenericProfileActionScript, 0
     
 
     def setGenericProfileActionScript(genericProfileActionScript)
         @genericProfileActionScript = genericProfileActionScript
     end
+    java_overload :setGenericProfileActionScript, 1
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper"
-autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
-autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
-autoload :GenericProfileActionScript, "org/allbinary/input/automation/module/generic/configuration/profile/actions/script/GenericProfileActionScript"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :GenericProfileActionData, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionData"
-autoload :GenericProfileActionJPanel, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionJPanel"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomNodeHelper, "org/allbinary/data/tree/dom/DomNodeHelper" unless const_defined?(:DomNodeHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper" unless const_defined?(:DomSearchHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper" unless const_defined?(:ModDomHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile; module Actions; module Script; autoload :GenericProfileActionScript, "org/allbinary/input/automation/module/generic/configuration/profile/actions/script/GenericProfileActionScript" unless const_defined?(:GenericProfileActionScript, false); end; end; end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :GenericProfileActionData, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionData" unless const_defined?(:GenericProfileActionData, false)
+autoload :GenericProfileActionJPanel, "org/allbinary/input/automation/module/generic/configuration/profile/actions/GenericProfileActionJPanel" unless const_defined?(:GenericProfileActionJPanel, false)
+
+end; end; end; end; end; end; end; end; end
 

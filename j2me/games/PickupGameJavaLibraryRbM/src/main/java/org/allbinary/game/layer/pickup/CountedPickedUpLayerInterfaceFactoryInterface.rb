@@ -14,23 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.pickup
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerInterfaceFactoryInterface"
 require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 module CountedPickedUpLayerInterfaceFactoryInterface
     include PickedUpLayerInterfaceFactoryInterface
-    include LayerInterfaceFactoryInterface
+    include ::Org::Allbinary::Layer::LayerInterfaceFactoryInterface
     
 
     def getId()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getId, 0
     
 
     def getTotal()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getTotal, 0
 end
+
+end; end; end; end; end
 

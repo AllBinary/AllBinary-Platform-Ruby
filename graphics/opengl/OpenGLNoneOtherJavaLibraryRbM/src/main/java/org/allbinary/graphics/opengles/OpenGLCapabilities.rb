@@ -15,10 +15,12 @@
 # package org.allbinary.graphics.opengles
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles
+
 class OpenGLCapabilities
     attr_accessor :CUSTOM_GL_SURFACE_VIEW, :VERSION_1_0, :VERSION_1_1, :VERSION_2_0, :VERSION_3_0, :VERSION_3_1, :VERSION_3_2, :VERSION_HIGHER_THAN_EXISTS, :glVersion, :shaderVersion, :glInstanceVersion, :maxTextureSize
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_opengles_OpenGLCapabilities
         @CUSTOM_GL_SURFACE_VIEW = true
         @VERSION_1_0 = "1.0"
         @VERSION_1_1 = "1.1"
@@ -27,9 +29,9 @@ class OpenGLCapabilities
         @VERSION_3_1 = "3.1"
         @VERSION_3_2 = "3.2"
         @VERSION_HIGHER_THAN_EXISTS = "999.999"
-        @glVersion = StringUtil.getInstance().EMPTY_STRING
+        @glVersion = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         @shaderVersion = 0
-        @glInstanceVersion = StringUtil.getInstance().EMPTY_STRING
+        @glInstanceVersion = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         @maxTextureSize = 64
     end
     
@@ -40,7 +42,7 @@ class OpenGLCapabilities
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_OpenGLCapabilities
     end
     
 
@@ -103,11 +105,13 @@ class OpenGLCapabilities
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     OpenGLCapabilities.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

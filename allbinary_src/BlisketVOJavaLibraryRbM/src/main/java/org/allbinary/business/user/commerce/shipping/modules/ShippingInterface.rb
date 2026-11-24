@@ -15,24 +15,31 @@
 # package org.allbinary.business.user.commerce.shipping.modules
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Shipping; module Modules
+
 module ShippingInterface
     
 
     def getCost(order)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getDescription()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
-autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Order; autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface" unless const_defined?(:OrderInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; autoload :Money, "org/allbinary/business/user/commerce/money/Money" unless const_defined?(:Money, false); end; end; end; end; end; end
+
+end; end; end; end; end; end; end
 

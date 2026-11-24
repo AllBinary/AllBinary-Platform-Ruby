@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.color
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 require "org/allbinary/graphics/color/BasicColorCompositeSetterInterface"
+
+module ::Org; module Allbinary; module Graphics; module Color
 
 module ColorCompositeInterface
     include BasicColorCompositeSetterInterface
@@ -26,7 +29,10 @@ module ColorCompositeInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getBasicColorP, 0
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
+
+end; end; end; end
 

@@ -15,10 +15,14 @@
 # package org.allbinary.logic.visual.dhtml.html.input
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Input
+
 class HtmlHiddenInput
     
 
     def initialize()
     end
 end
+
+end; end; end; end; end; end; end
 

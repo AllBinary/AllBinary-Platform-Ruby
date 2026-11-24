@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 module ThirdPartyInApplicationPurchaseInterface
     
 
@@ -90,5 +92,7 @@ module ThirdPartyInApplicationPurchaseInterface
     end
 end
 
-autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature"
+autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature" unless const_defined?(:LockableFeature, false)
+
+end; end; end; end; end; end
 

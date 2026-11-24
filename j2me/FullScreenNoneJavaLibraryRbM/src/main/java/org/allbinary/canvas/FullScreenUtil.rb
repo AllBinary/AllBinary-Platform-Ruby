@@ -15,6 +15,8 @@
 # package org.allbinary.canvas
 
 
+module ::Org; module Allbinary; module Canvas
+
 class FullScreenUtil
     
 
@@ -36,8 +38,8 @@ class FullScreenUtil
     
 
     def isScreenChange(isFullScreen)
-        mainFeatureFactory = MainFeatureFactory.getInstance()
-        features = Features.getInstance()
+        mainFeatureFactory = ::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
         if features.isFeature(mainFeatureFactory.FULL_SCREEN) != isFullScreen
             return true
         end
@@ -80,14 +82,16 @@ class FullScreenUtil
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory" unless const_defined?(:MainFeatureFactory, false); end; end; end; end; end
 
 begin
     FullScreenUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

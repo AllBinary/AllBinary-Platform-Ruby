@@ -3,6 +3,8 @@
 # package org.allbinary.graphics.opengles
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles
+
 class OpenGLThreadUtil
     
 
@@ -58,4 +60,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

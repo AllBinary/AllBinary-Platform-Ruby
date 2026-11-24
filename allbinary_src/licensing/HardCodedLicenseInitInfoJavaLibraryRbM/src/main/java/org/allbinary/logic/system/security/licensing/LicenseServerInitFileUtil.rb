@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class LicenseServerInitFileUtil
     
 
@@ -25,4 +27,6 @@ class LicenseServerInitFileUtil
     def write()
     end
 end
+
+end; end; end; end; end; end
 

@@ -15,15 +15,17 @@
 # package org.allbinary.android
 
 
+module ::Org; module Allbinary; module Android
+
 class AndroidInfoFactory
     attr_accessor :version
 
-    def initialize_fields
+    def jfields_org_allbinary_android_AndroidInfoFactory
         @version = 8
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_android_AndroidInfoFactory
     end
     
 
@@ -72,4 +74,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

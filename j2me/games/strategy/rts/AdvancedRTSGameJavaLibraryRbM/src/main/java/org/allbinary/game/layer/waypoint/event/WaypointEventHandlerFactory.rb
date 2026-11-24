@@ -15,11 +15,14 @@
 # package org.allbinary.game.layer.waypoint.event
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Waypoint; module Event
+
 class WaypointEventHandlerFactory
     
 
     def self.getInstance(groupInterface)
-        return WaypointEventHandlerFactory.eventHandlerArray[(groupInterface.getGroupId()).to_i]
+        groupId = ((groupInterface.getGroupId()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+        return WaypointEventHandlerFactory.eventHandlerArray[groupId]
     end
     
 
@@ -30,18 +33,44 @@ class WaypointEventHandlerFactory
     end
 
     def self.eventHandlerArray()
+        WaypointEventHandlerFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@eventHandlerArray) ? @@eventHandlerArray : nil
     end
 
     def self.eventHandlerArray=(value)
+        WaypointEventHandlerFactory.java_static_fields unless @java_static_fields_started
         @@eventHandlerArray = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@eventHandlerArray = [WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new()]
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "WaypointEventHandlerFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/identification/Group"
-require "org/allbinary/game/layer/waypoint/event/WaypointEventHandler"
+module ::Org; module Allbinary; module Game; module Identification; autoload :Group, "org/allbinary/game/identification/Group" unless const_defined?(:Group, false); end; end; end; end
+autoload :WaypointEventHandler, "org/allbinary/game/layer/waypoint/event/WaypointEventHandler" unless const_defined?(:WaypointEventHandler, false)
 
-class WaypointEventHandlerFactory
-    @@eventHandlerArray = [WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new(), WaypointEventHandler.new()]
+begin
+    WaypointEventHandlerFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

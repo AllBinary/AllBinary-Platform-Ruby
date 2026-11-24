@@ -15,6 +15,8 @@
 # package org.allbinary.layer
 
 
+module ::Org; module Allbinary; module Layer
+
 module LayerInterfaceVisitor
     
 
@@ -25,5 +27,7 @@ module LayerInterfaceVisitor
     end
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false)
+
+end; end; end
 

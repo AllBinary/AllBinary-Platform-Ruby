@@ -15,16 +15,18 @@
 # package org.allbinary.logic.system.hardware.components
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components
+
 class Component
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_logic_system_hardware_components_Component
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(componentName)
-        initialize_fields
+        jfields_org_allbinary_logic_system_hardware_components_Component
         @name = componentName
     end
     
@@ -34,4 +36,6 @@ class Component
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end; end
 

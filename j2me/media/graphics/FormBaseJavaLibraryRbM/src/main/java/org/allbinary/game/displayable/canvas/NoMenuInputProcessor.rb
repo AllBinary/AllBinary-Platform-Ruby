@@ -15,7 +15,10 @@
 # package org.allbinary.game.displayable.canvas
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor"
+
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
 
 class NoMenuInputProcessor < BasicMenuInputProcessor
     
@@ -26,7 +29,7 @@ class NoMenuInputProcessor < BasicMenuInputProcessor
     
 
     def initialize()
-        super(BasicArrayListUtil.getInstance().getImmutableInstance(), -1, NullCanvas::NULL_CANVAS)
+        super(::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance(), -1, ::Javax::Microedition::Lcdui::NullCanvas::NULL_CANVAS)
     end
     
 
@@ -34,16 +37,19 @@ class NoMenuInputProcessor < BasicMenuInputProcessor
         java_monitor.synchronize do
         end
     end
+    java_overload :onDownGameKeyEvent, 1
     
 
     def onUpGameKeyEvent(gameKeyEvent)
         java_monitor.synchronize do
         end
     end
+    java_overload :onUpGameKeyEvent, 1
     
 
     def onMotionGestureEvent(motionGestureEvent)
     end
+    java_overload :onMotionGestureEvent, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -66,14 +72,16 @@ class NoMenuInputProcessor < BasicMenuInputProcessor
     end
 end
 
-autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas" unless const_defined?(:NullCanvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent" unless const_defined?(:MotionGestureEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
 
 begin
     NoMenuInputProcessor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

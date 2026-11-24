@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.vector
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Animation; module Vector
+
 class LineAnimationFactory
-    include AnimationInterfaceFactoryInterface
+    include ::Org::Allbinary::Animation::AnimationInterfaceFactoryInterface
     attr_accessor :basicColor
 
-    def initialize_fields
-        @basicColor = nil
+    def jfields_org_allbinary_animation_vector_LineAnimationFactory
+        @basicColor = nil unless instance_variable_defined?(:@basicColor)
     end
     
 
     def initialize(basicColor)
-        initialize_fields
+        jfields_org_allbinary_animation_vector_LineAnimationFactory
         @basicColor = basicColor
     end
     
@@ -35,14 +38,18 @@ class LineAnimationFactory
     def getInstance(instanceId)
         return LineAnimation.new(@basicColor)
     end
+    java_overload :getInstance, 1
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :LineAnimation, "org/allbinary/animation/vector/LineAnimation"
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :LineAnimation, "org/allbinary/animation/vector/LineAnimation" unless const_defined?(:LineAnimation, false)
+
+end; end; end; end
 

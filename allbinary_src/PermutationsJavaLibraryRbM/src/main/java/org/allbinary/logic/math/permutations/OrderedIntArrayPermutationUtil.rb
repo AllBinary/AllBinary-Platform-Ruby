@@ -15,10 +15,12 @@
 # package org.allbinary.logic.math.permutations
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage; module Permutations
+
 class OrderedIntArrayPermutationUtil
     attr_accessor :TOTAL_ITERATIONS_TABLE, :FINISHED
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_math_permutations_OrderedIntArrayPermutationUtil
         @TOTAL_ITERATIONS_TABLE = "Total Iterations: "
         @FINISHED = "\nFINISHED"
     end
@@ -30,7 +32,7 @@ class OrderedIntArrayPermutationUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_math_permutations_OrderedIntArrayPermutationUtil
     end
     
 
@@ -87,14 +89,14 @@ class OrderedIntArrayPermutationUtil
 
     def self.main(args)
         _TOTAL = 3
-        data = Array.new(_TOTAL, 0)
+        data = (Array.new(_TOTAL, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         (0..._TOTAL).each do |i|
             data[i] = i
         end
         permutationVisitor = IntPermutationVisitor.new(data)
         _ORIGINAL_DATA_LABEL = "Original Data: "
         print(_ORIGINAL_DATA_LABEL)
-        permutationVisitor.print(data, StringMaker.new())
+        permutationVisitor.print(data, ::Org::Allbinary::Logic::StringPackage::StringMaker.new())
         OrderedIntArrayPermutationUtil.getInstance().generate(data, permutationVisitor)
     end
 
@@ -129,9 +131,9 @@ class OrderedIntArrayPermutationUtil
     end
 end
 
-autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :IntPermutationVisitor, "org/allbinary/logic/math/permutations/IntPermutationVisitor"
+module ::Org; module Allbinary; module Logic; module Util; module Visitor; autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor" unless const_defined?(:Visitor, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+autoload :IntPermutationVisitor, "org/allbinary/logic/math/permutations/IntPermutationVisitor" unless const_defined?(:IntPermutationVisitor, false)
 require "java/lang/System"
 
 begin
@@ -139,4 +141,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

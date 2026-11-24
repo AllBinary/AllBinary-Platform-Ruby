@@ -15,17 +15,19 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class VehicleProperties
     attr_accessor :velocityProperties, :vehicleFrictionProperties
 
-    def initialize_fields
-        @velocityProperties = nil
-        @vehicleFrictionProperties = nil
+    def jfields_org_allbinary_game_layer_VehicleProperties
+        @velocityProperties = nil unless instance_variable_defined?(:@velocityProperties)
+        @vehicleFrictionProperties = nil unless instance_variable_defined?(:@vehicleFrictionProperties)
     end
     
 
     def initialize(velocityProperties, vehicleFrictionProperties)
-        initialize_fields
+        jfields_org_allbinary_game_layer_VehicleProperties
         @velocityProperties = velocityProperties
         @vehicleFrictionProperties = vehicleFrictionProperties
     end
@@ -46,6 +48,8 @@ class VehicleProperties
     end
 end
 
-require "org/allbinary/game/physics/velocity/VelocityProperties"
-require "org/allbinary/game/layer/VehicleFrictionProperties"
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :VelocityProperties, "org/allbinary/game/physics/velocity/VelocityProperties" unless const_defined?(:VelocityProperties, false); end; end; end; end; end
+autoload :VehicleFrictionProperties, "org/allbinary/game/layer/VehicleFrictionProperties" unless const_defined?(:VehicleFrictionProperties, false)
+
+end; end; end; end
 

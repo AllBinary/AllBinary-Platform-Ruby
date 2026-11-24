@@ -14,9 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "javax/microedition/lcdui/Gauge"
 
-class GameConfigurationGauge < Gauge
+module ::Org; module Allbinary; module Game; module Configuration
+
+class GameConfigurationGauge < ::Javax::Microedition::Lcdui::Gauge
     
 
     def initialize(gameConfiguration)
@@ -24,5 +28,7 @@ class GameConfigurationGauge < Gauge
     end
 end
 
-autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
+autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration" unless const_defined?(:GameConfiguration, false)
+
+end; end; end; end
 

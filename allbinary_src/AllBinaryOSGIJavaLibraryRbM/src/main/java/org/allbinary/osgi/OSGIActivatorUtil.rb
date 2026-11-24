@@ -15,6 +15,8 @@
 # package org.allbinary.osgi
 
 
+module ::Org; module Allbinary; module Osgi
+
 class OSGIActivatorUtil
     
 
@@ -23,27 +25,34 @@ class OSGIActivatorUtil
     
 
     # throws Exception
-    def self.registerAsService(bundleContext, anyType, serviceName)
-        OSGIActivatorUtil.registerAsService(bundleContext, anyType, serviceName, StdUtil.getInstance().createHashtable())
+    def self.registerAsService_j3(bundleContext, anyType, serviceName)
+        OSGIActivatorUtil.registerAsService(bundleContext, anyType, serviceName, ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable())
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.registerAsService(bundleContext, anyType, serviceName, properties)
+    def self.registerAsService_j4(bundleContext, anyType, serviceName, properties)
         serviceRegistration = bundleContext.registerService(serviceName, anyType, properties)
         serviceReference = serviceRegistration.getReference()
         serviceReference = bundleContext.getServiceReference(serviceName)
-        if serviceReference == NullServiceReferenceFactory.getInstance().NULL_SERVICE_REFERENCE
+        if serviceReference == ::Org::Osgi::Framework::NullServiceReferenceFactory.getInstance().NULL_SERVICE_REFERENCE
             raise StandardError.new("No Such Service Reference")
         end
     end
+
+    def self.registerAsService(*java_overload_args)
+        return registerAsService_j3(*java_overload_args) if java_overload_args.length == 3
+        return registerAsService_j4(*java_overload_args) if java_overload_args.length == 4
+        raise ArgumentError, "No method registerAsService takes #{java_overload_args.length} arguments"
+    end
 end
 
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BundleContext, "org/osgi/framework/BundleContext"
-autoload :NullServiceReferenceFactory, "org/osgi/framework/NullServiceReferenceFactory"
-autoload :ServiceReference, "org/osgi/framework/ServiceReference"
-autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration"
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :BundleContext, "org/osgi/framework/BundleContext" unless const_defined?(:BundleContext, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :NullServiceReferenceFactory, "org/osgi/framework/NullServiceReferenceFactory" unless const_defined?(:NullServiceReferenceFactory, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :ServiceReference, "org/osgi/framework/ServiceReference" unless const_defined?(:ServiceReference, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :ServiceRegistration, "org/osgi/framework/ServiceRegistration" unless const_defined?(:ServiceRegistration, false); end; end; end
+
+end; end; end
 

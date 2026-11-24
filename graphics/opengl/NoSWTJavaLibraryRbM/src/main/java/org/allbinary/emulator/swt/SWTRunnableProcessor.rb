@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.emulator.swt
 
+require "java/lang/JavaOverload"
 require "org/allbinary/emulator/swt/SWTProcessor"
+
+module ::Org; module Allbinary; module Emulator; module Swt
 
 class SWTRunnableProcessor < SWTProcessor
     
@@ -26,6 +29,7 @@ class SWTRunnableProcessor < SWTProcessor
 
     def process(display)
     end
+    java_overload :process, 1
 
     def self.instanceR()
         SWTRunnableProcessor.java_static_fields unless @java_static_fields_started
@@ -58,11 +62,13 @@ class SWTRunnableProcessor < SWTProcessor
     end
 end
 
-autoload :Display, "org/eclipse/swt/widgets/Display"
+module ::Org; module Eclipse; module Swt; module Widgets; autoload :Display, "org/eclipse/swt/widgets/Display" unless const_defined?(:Display, false); end; end; end; end
 
 begin
     SWTRunnableProcessor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

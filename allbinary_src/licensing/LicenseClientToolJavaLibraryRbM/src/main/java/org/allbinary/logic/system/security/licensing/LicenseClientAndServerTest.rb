@@ -19,18 +19,20 @@ require "java/lang/Object"
 # require "java/io/FileReader"
 # require "java/io/LineNumberReader"
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class LicenseClientAndServerTest
     attr_accessor :logUtil, :vector
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_system_security_licensing_LicenseClientAndServerTest
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @vector = BasicArrayListD.new()
     end
     
 
     def initialize(options)
-        initialize_fields
-        LicenseInitInfoUtil.getInstance().setFilePath(PrintLicenseInitInfo::PATH + PATH_GLOBALS.getInstance().INIT_PATH)
+        jfields_org_allbinary_logic_system_security_licensing_LicenseClientAndServerTest
+        ::Org::Allbinary::Business::Init::LicenseInitInfoUtil.getInstance().setFilePath(PrintLicenseInitInfo::PATH + ::Org::Allbinary::Globals::PATH_GLOBALS.getInstance().INIT_PATH)
         (1...options.length).each do |index|
             @vector.add(options[index])
         end
@@ -38,13 +40,8 @@ class LicenseClientAndServerTest
             file = File.new((PrintLicenseInitInfo::PATH).to_s + "testlicenseservers.txt")
             reader = FileReader.new(file)
             lineNumberReader = LineNumberReader.new(reader)
-            while true
-                line = lineNumberReader.readLine()
-                if line != nil
-                    @vector.add(line)
-                else
-                    break
-                end
+            while lineNumberReader.ready()
+                @vector.add(lineNumberReader.readLine())
             end
         end
     end
@@ -52,7 +49,7 @@ class LicenseClientAndServerTest
 
     def test()
         java_monitor.synchronize do
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         begin
             list = BasicArrayListD.new()
             _TESTING = "Testing with new licence:<br/>"
@@ -64,11 +61,11 @@ class LicenseClientAndServerTest
                 stringBuffer.append(_TESTING)
                 serverName = @vector.get(index)
                 begin
-                    licenseInitInfo = LicenseInitInfo.new()
+                    licenseInitInfo = ::Org::Allbinary::Business::Init::LicenseInitInfo.new()
                     licenseInitInfo.addServer(serverName)
-                    LicenseInitInfoUtil.getInstance().write(licenseInitInfo)
+                    ::Org::Allbinary::Business::Init::LicenseInitInfoUtil.getInstance().write(licenseInitInfo)
                     abeClientInformation = AbeClientInformationInterfaceFactory.getInstance()
-                    xmlRpcAbeLicenseClient = XmlRpcAbeLicenseRetrievalClient.new(abeClientInformation)
+                    xmlRpcAbeLicenseClient = ::Org::Allbinary::Logic::System::Security::Licensing::Client::XmlRpcAbeLicenseRetrievalClient.new(abeClientInformation)
                     abeLicenseInterface = xmlRpcAbeLicenseClient.get(nil)
                     if abeLicenseInterface != nil
                         stringBuffer.append(_PROCESSING)
@@ -95,20 +92,23 @@ class LicenseClientAndServerTest
             licensingTest = LicenseClientAndServerTest.new(args)
             licensingTest.test()
         rescue StandardError => e
-            logUtil = LogUtil.getInstance()
-            @logUtil.put(@commonStrings.EXCEPTION, "main()", "main()", e)
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+            logUtil.put(::Org::Allbinary::StringPackage::CommonStrings.getInstance().EXCEPTION, "main()", "main()", e)
         end
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/business/init/LicenseInitInfo"
-require "org/allbinary/business/init/LicenseInitInfoUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/system/security/licensing/client/XmlRpcAbeLicenseRetrievalClient"
-require "org/allbinary/globals/PATH_GLOBALS"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/AbeLicenseInterface"
-require "org/allbinary/logic/system/security/licensing/PrintLicenseInitInfo"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo" unless const_defined?(:LicenseInitInfo, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; autoload :LicenseInitInfoUtil, "org/allbinary/business/init/LicenseInitInfoUtil" unless const_defined?(:LicenseInitInfoUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; module Client; autoload :XmlRpcAbeLicenseRetrievalClient, "org/allbinary/logic/system/security/licensing/client/XmlRpcAbeLicenseRetrievalClient" unless const_defined?(:XmlRpcAbeLicenseRetrievalClient, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS" unless const_defined?(:PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false)
+autoload :AbeLicenseInterface, "org/allbinary/logic/system/security/licensing/AbeLicenseInterface" unless const_defined?(:AbeLicenseInterface, false)
+autoload :PrintLicenseInitInfo, "org/allbinary/logic/system/security/licensing/PrintLicenseInitInfo" unless const_defined?(:PrintLicenseInitInfo, false)
+
+end; end; end; end; end; end
 

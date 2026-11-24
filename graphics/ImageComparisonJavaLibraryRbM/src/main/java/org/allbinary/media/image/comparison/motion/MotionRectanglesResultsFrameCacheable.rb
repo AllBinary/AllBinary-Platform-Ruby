@@ -14,20 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison.motion
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/logic/util/cache/CacheableInterface"
 
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
+
 class MotionRectanglesResultsFrameCacheable
-    include CacheableInterface
+    include ::Org::Allbinary::Logic::Util::Cache::CacheableInterface
     attr_accessor :motionRectangles, :frame
 
-    def initialize_fields
-        @motionRectangles = nil
-        @frame = nil
+    def jfields_org_allbinary_media_image_comparison_motion_MotionRectanglesResultsFrameCacheable
+        @motionRectangles = nil unless instance_variable_defined?(:@motionRectangles)
+        @frame = nil unless instance_variable_defined?(:@frame)
     end
     
 
     def initialize(motionRectangles, frame)
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_motion_MotionRectanglesResultsFrameCacheable
         @frame = frame
         self.setMotionRectangles(motionRectangles)
     end
@@ -36,28 +40,34 @@ class MotionRectanglesResultsFrameCacheable
     def getKey()
         return @frame
     end
+    java_overload :getKey, 0
     
 
     def getMotionRectangles()
         return @motionRectangles
     end
+    java_overload :getMotionRectangles, 0
     
 
     def setMotionRectangles(motionRectangles)
         @motionRectangles = motionRectangles
     end
+    java_overload :setMotionRectangles, 1
     
 
     def toString()
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(self.class.name)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(self.class.java_name)
         stringBuffer.append(" Frame: ")
         stringBuffer.append(self.getKey().to_s)
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles" unless const_defined?(:MotionRectangles, false)
+
+end; end; end; end; end; end
 

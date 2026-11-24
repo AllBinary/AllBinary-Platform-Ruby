@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.life
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Life
+
 module LifeVisitorInterface
     
 
@@ -24,5 +26,7 @@ module LifeVisitorInterface
     end
 end
 
-autoload :Life, "org/allbinary/game/ag/life/Life"
+autoload :Life, "org/allbinary/game/ag/life/Life" unless const_defined?(:Life, false)
+
+end; end; end; end; end
 

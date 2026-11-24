@@ -15,18 +15,20 @@
 # package org.allbinary.business.advertisement
 
 
+module ::Org; module Allbinary; module Business; module Advertisement
+
 class AdConfiguration
     attr_accessor :INNERACTIVE, :LEADBOLT, :ADMOB
 
-    def initialize_fields
-        @INNERACTIVE = nil
-        @LEADBOLT = nil
-        @ADMOB = nil
+    def jfields_org_allbinary_business_advertisement_AdConfiguration
+        @INNERACTIVE = nil unless instance_variable_defined?(:@INNERACTIVE)
+        @LEADBOLT = nil unless instance_variable_defined?(:@LEADBOLT)
+        @ADMOB = nil unless instance_variable_defined?(:@ADMOB)
     end
     
 
     def initialize(advertIdArray)
-        initialize_fields
+        jfields_org_allbinary_business_advertisement_AdConfiguration
         @INNERACTIVE = advertIdArray[0]
         @ADMOB = advertIdArray[1]
         @LEADBOLT = advertIdArray[2]
@@ -59,6 +61,8 @@ class AdConfiguration
     end
 end
 
-autoload :Direction, "org/allbinary/direction/Direction"
-autoload :GameState, "org/allbinary/game/state/GameState"
+module ::Org; module Allbinary; module Direction; autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false); end; end; end
+module ::Org; module Allbinary; module Game; module State; autoload :GameState, "org/allbinary/game/state/GameState" unless const_defined?(:GameState, false); end; end; end; end
+
+end; end; end; end
 

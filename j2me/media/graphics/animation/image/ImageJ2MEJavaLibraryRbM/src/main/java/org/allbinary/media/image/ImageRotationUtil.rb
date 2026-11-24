@@ -15,11 +15,13 @@
 # package org.allbinary.media.image
 
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageRotationUtil
     attr_accessor :anchor
 
-    def initialize_fields
-        @anchor = Anchor::TOP_LEFT
+    def jfields_org_allbinary_media_image_ImageRotationUtil
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
     end
     
 
@@ -29,7 +31,7 @@ class ImageRotationUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageRotationUtil
     end
     
 
@@ -69,12 +71,14 @@ class ImageRotationUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Anchor, "org/allbinary/graphics/Anchor"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
 
 begin
     ImageRotationUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

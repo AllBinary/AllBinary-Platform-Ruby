@@ -15,18 +15,44 @@
 # package org.allbinary.business.user.commerce.shipping
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Shipping
+
 class ShippingMethodData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:DESCRIPTION, "SHIPPINGMETHOD_DESCRIPTION")
+        const_set(:DEFAULT, "SHIPPINGMETHOD_DEFAULT")
+        const_set(:NAME, "SHIPPINGMETHOD_NAME")
+        const_set(:GROUP, "SHIPPINGMETHOD_GROUP")
+        const_set(:COST, "SHIPPINGMETHOD_COST")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ShippingMethodData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DESCRIPTION, :DEFAULT, :NAME, :GROUP, :COST].include?(name)
+        end
+        super
+    end
 end
 
-class ShippingMethodData
-    DESCRIPTION = "SHIPPINGMETHOD_DESCRIPTION"
-    DEFAULT = "SHIPPINGMETHOD_DEFAULT"
-    NAME = "SHIPPINGMETHOD_NAME"
-    GROUP = "SHIPPINGMETHOD_GROUP"
-    COST = "SHIPPINGMETHOD_COST"
+begin
+    ShippingMethodData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

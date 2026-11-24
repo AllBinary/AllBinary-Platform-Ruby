@@ -14,15 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.persistance
 
+require "java/lang/JavaOverload"
 require "javax/microedition/rms/RecordComparator"
 
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance
+
 class NullRecordComparator
-    include RecordComparator
+    include ::Javax::Microedition::Rms::RecordComparator
     
 
     def compare(rec1, rec2)
         return 0
     end
+    java_overload :compare, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -50,4 +54,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

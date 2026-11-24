@@ -15,10 +15,14 @@
 # package org.allbinary.media.image.search
 
 
+module ::Org; module Allbinary; module Media; module Image; module Search
+
 class StatisticalMatchConstraints
     
 
     def initialize()
     end
 end
+
+end; end; end; end; end
 

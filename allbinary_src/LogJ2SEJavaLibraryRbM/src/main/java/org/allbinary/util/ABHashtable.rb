@@ -14,25 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 require "java/util/Hashtable"
 
-class ABHashtable < Hashtable
+module ::Org; module Allbinary; module Util
+
+class ABHashtable < ::Java::Util::Hashtable
 
     def initialize(*args)
         case args.length
-        when 1 then constructor1(*args)
-        when 0 then constructor0(*args)
+        when 1 then jnew_org_allbinary_util_ABHashtable_1(*args)
+        when 0 then jnew_org_allbinary_util_ABHashtable_0(*args)
+        else raise ArgumentError, "No constructor of ABHashtable takes #{args.length} arguments"
         end
     end
     
 
-    def constructor1(initialCapacity)
+    def jnew_org_allbinary_util_ABHashtable_1(initialCapacity)
         ABHashtable.superclass.instance_method(:initialize).bind(self).call(initialCapacity)
     end
     
 
-    def constructor0()
+    def jnew_org_allbinary_util_ABHashtable_0()
         ABHashtable.superclass.instance_method(:initialize).bind(self).call()
     end
 end
+
+end; end; end
 

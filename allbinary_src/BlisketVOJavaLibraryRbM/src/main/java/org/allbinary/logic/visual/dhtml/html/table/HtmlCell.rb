@@ -14,28 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html.table
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/HtmlTag"
 
-class HtmlCell < HtmlTag
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Table
+
+class HtmlCell < ::Org::Allbinary::Logic::Visual::Dhtml::Html::HtmlTag
     attr_accessor :END, :START, :ENDTAG, :HEIGHT, :WIDTH, :height, :width, :before, :body, :after
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_table_HtmlCell
         @END = ">"
         @START = "<td "
         @ENDTAG = "</td>"
         @HEIGHT = "height"
         @WIDTH = "width"
-        @height = nil
-        @width = nil
-        @before = nil
-        @body = nil
-        @after = nil
+        @height = nil unless instance_variable_defined?(:@height)
+        @width = nil unless instance_variable_defined?(:@width)
+        @before = nil unless instance_variable_defined?(:@before)
+        @body = nil unless instance_variable_defined?(:@body)
+        @after = nil unless instance_variable_defined?(:@after)
     end
     
 
     def initialize(before, width, height, after)
         super()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_table_HtmlCell
         @before = String.new(before)
         @after = String.new(after)
         @height = String.new(height)
@@ -48,10 +51,11 @@ class HtmlCell < HtmlTag
     def addText(body)
         @body = body
     end
+    java_overload :addText, 1
     
 
     def toString()
-        stringUtil = StringUtil.getInstance()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         result = stringUtil.EMPTY_STRING
         attributeKeys = @otherAttributes.keySet().toArray()
         attributeSize = attributeKeys.length
@@ -74,8 +78,11 @@ class HtmlCell < HtmlTag
         result += (@after).to_s
         return result
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end; end; end
 

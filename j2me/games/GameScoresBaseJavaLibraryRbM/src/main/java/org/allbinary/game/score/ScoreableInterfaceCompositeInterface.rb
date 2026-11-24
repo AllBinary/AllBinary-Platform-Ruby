@@ -15,6 +15,8 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 module ScoreableInterfaceCompositeInterface
     
 
@@ -24,5 +26,7 @@ module ScoreableInterfaceCompositeInterface
     end
 end
 
-autoload :Scoreable, "org/allbinary/game/score/Scoreable"
+autoload :Scoreable, "org/allbinary/game/score/Scoreable" unless const_defined?(:Scoreable, false)
+
+end; end; end; end
 

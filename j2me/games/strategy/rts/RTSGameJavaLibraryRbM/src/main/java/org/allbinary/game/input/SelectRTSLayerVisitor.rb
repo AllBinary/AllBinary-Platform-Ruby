@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/visitor/Visitor"
 
-class SelectRTSLayerVisitor < Visitor
+module ::Org; module Allbinary; module Game; module Input
+
+class SelectRTSLayerVisitor < ::Org::Allbinary::Logic::Util::Visitor::Visitor
     
 
     def initialize()
         super()
     end
 end
+
+end; end; end; end
 

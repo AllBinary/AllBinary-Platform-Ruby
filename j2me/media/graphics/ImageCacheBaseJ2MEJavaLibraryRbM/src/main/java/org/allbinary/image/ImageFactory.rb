@@ -15,6 +15,8 @@
 # package org.allbinary.image
 
 
+module ::Org; module Allbinary; module Image
+
 #ImageCacheBaseJavaLibrary - J2ME
 class ImageFactory
     
@@ -26,27 +28,32 @@ class ImageFactory
 
     # throws Exception
     def createImageUrl(url)
-        return Image.createImage(url)
+        return ::Javax::Microedition::Lcdui::Image.createImage(url)
     end
     
 
     # throws Exception
     def createImage(caller, width, height)
-        return MIDPUtil.getInstance().createImageWH(width, height)
+        return ::Org::Allbinary::MIDPUtil.getInstance().createImageWH(width, height)
     end
     
 
     # throws Exception
-    def createImageFromInputStream(key, inputStream)
-        image = MIDPUtil.getInstance().createImageFromInputStream(inputStream)
+    def createImageFromInputStream_j2(key, inputStream)
+        image = ::Org::Allbinary::MIDPUtil.getInstance().createImageFromInputStream(inputStream)
         return image
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def createImageFromInputStream(inputStream)
-        return MIDPUtil.getInstance().createImageFromInputStream(inputStream)
+    def createImageFromInputStream_j1(inputStream)
+        return ::Org::Allbinary::MIDPUtil.getInstance().createImageFromInputStream(inputStream)
+    end
+
+    def createImageFromInputStream(*java_overload_args)
+        return createImageFromInputStream_j2(*java_overload_args) if java_overload_args.length == 2
+        return createImageFromInputStream_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method createImageFromInputStream takes #{java_overload_args.length} arguments"
     end
 
     def self.instance()
@@ -80,13 +87,15 @@ class ImageFactory
     end
 end
 
-autoload :InputStream, "java/io/InputStream"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :MIDPUtil, "org/allbinary/MIDPUtil"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; autoload :MIDPUtil, "org/allbinary/MIDPUtil" unless const_defined?(:MIDPUtil, false); end; end
 
 begin
     ImageFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

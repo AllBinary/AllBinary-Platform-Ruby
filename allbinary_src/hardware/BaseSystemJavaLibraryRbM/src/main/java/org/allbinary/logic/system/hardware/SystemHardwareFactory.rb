@@ -15,12 +15,14 @@
 # package org.allbinary.logic.system.hardware
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware
+
 class SystemHardwareFactory
     attr_accessor :logUtil, :commonStrings, :hardwareInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_logic_system_hardware_SystemHardwareFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @hardwareInterface = NoHardware.getInstance()
     end
     
@@ -31,11 +33,10 @@ class SystemHardwareFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_hardware_SystemHardwareFactory
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(operatingSystemInterface)
         begin
             if @hardwareInterface == NoHardware.getInstance()
@@ -51,12 +52,12 @@ class SystemHardwareFactory
 
     def self.static_toString()
         systemHardwareFactory = SystemHardwareFactory.getInstance()
-        osBuffer = StringMaker.new()
+        osBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         osBuffer.append("Hardware Info: \n")
         if systemHardwareFactory.hardwareInterface != nil
             osBuffer.append(systemHardwareFactory.hardwareInterface.to_s)
         else
-            osBuffer.append(StringUtil.getInstance().NULL_STRING)
+            osBuffer.append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING)
         end
         return osBuffer.to_s
     end
@@ -92,18 +93,20 @@ class SystemHardwareFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :HardwareFactory, "org/allbinary/logic/system/hardware/HardwareFactory"
-autoload :HardwareInterface, "org/allbinary/logic/system/hardware/HardwareInterface"
-autoload :NoHardware, "org/allbinary/logic/system/hardware/NoHardware"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Os; autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem" unless const_defined?(:GenericOperatingSystem, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :HardwareFactory, "org/allbinary/logic/system/hardware/HardwareFactory" unless const_defined?(:HardwareFactory, false)
+autoload :HardwareInterface, "org/allbinary/logic/system/hardware/HardwareInterface" unless const_defined?(:HardwareInterface, false)
+autoload :NoHardware, "org/allbinary/logic/system/hardware/NoHardware" unless const_defined?(:NoHardware, false)
 
 begin
     SystemHardwareFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

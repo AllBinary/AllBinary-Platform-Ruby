@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/input/HtmlValueInput"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Input
 
 class HtmlLengthInput < HtmlValueInput
     attr_accessor :MAXLENGTH, :SIZE, :length, :size
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlLengthInput
         @MAXLENGTH = "MAXLENGTH"
         @SIZE = "SIZE"
-        @length = nil
-        @size = nil
+        @length = nil unless instance_variable_defined?(:@length)
+        @size = nil unless instance_variable_defined?(:@size)
     end
     
 
     def initialize(before, type, name, value, after)
         super(before, type, name, value, after)
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlLengthInput
     end
     
 
@@ -37,11 +40,15 @@ class HtmlLengthInput < HtmlValueInput
         self.length = String.new(length)
         addAttribute(@MAXLENGTH, self.length)
     end
+    java_overload :setMaxLength, 1
     
 
     def setSize(size)
         @size = String.new(size)
         addAttribute(@MAXLENGTH, @size)
     end
+    java_overload :setSize, 1
 end
+
+end; end; end; end; end; end; end
 

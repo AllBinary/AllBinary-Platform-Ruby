@@ -15,6 +15,8 @@
 # package org.allbinary.logic.visual.transform.data
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module DataPackage
+
 class TransformDocumentFactory
     
 
@@ -28,6 +30,8 @@ class TransformDocumentFactory
     end
 end
 
-autoload :TransformDocument, "org/allbinary/logic/visual/transform/data/TransformDocument"
-autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+autoload :TransformDocument, "org/allbinary/logic/visual/transform/data/TransformDocument" unless const_defined?(:TransformDocument, false)
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface" unless const_defined?(:TransformDocumentInterface, false)
+
+end; end; end; end; end; end
 

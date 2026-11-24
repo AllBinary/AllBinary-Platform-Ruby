@@ -15,10 +15,12 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 class GeographicMapDirectionUtil
     attr_accessor :MESSAGE, :ERROR, :EQUAL
 
-    def initialize_fields
+    def jfields_org_allbinary_media_graphics_geography_map_GeographicMapDirectionUtil
         @MESSAGE = "Cell Position should have been cached!!!"
         @ERROR = "Error: "
         @EQUAL = " == "
@@ -31,7 +33,7 @@ class GeographicMapDirectionUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_GeographicMapDirectionUtil
     end
     
 
@@ -41,7 +43,7 @@ class GeographicMapDirectionUtil
         fromRow = fromGeographicMapCellPosition.getRow()
         goColumn = toGeographicMapCellPosition.getColumn()
         goRow = toGeographicMapCellPosition.getRow()
-        directionFactory = DirectionFactory.getInstance()
+        directionFactory = ::Org::Allbinary::Direction::DirectionFactory.getInstance()
         if fromColumn - 1 == goColumn
             return directionFactory.LEFT
         elsif fromColumn + 1 == goColumn
@@ -65,7 +67,7 @@ class GeographicMapDirectionUtil
         fromRow = fromGeographicMapCellPosition.getRow()
         goColumn = toGeographicMapCellPosition.getColumn()
         goRow = toGeographicMapCellPosition.getRow()
-        directionFactory = DirectionFactory.getInstance()
+        directionFactory = ::Org::Allbinary::Direction::DirectionFactory.getInstance()
         if fromRow == goRow
             if fromColumn - 1 == goColumn
                 return directionFactory.LEFT
@@ -105,7 +107,7 @@ class GeographicMapDirectionUtil
         fromRow = fromGeographicMapCellPosition.getRow()
         goColumn = toGeographicMapCellPosition.getColumn()
         goRow = toGeographicMapCellPosition.getRow()
-        directionFactory = DirectionFactory.getInstance()
+        directionFactory = ::Org::Allbinary::Direction::DirectionFactory.getInstance()
         if fromColumn > goColumn
             return directionFactory.LEFT
         elsif fromColumn < goColumn
@@ -115,8 +117,8 @@ class GeographicMapDirectionUtil
         elsif fromRow < goRow
             return directionFactory.DOWN
         end
-        stringMaker = StringMaker.new()
-        string = stringMaker.append(CellPosition.toStringCellPosition(fromGeographicMapCellPosition)).append(" == ").append(CellPosition.toStringCellPosition(toGeographicMapCellPosition)).to_s
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        string = stringMaker.append(::Org::Allbinary::Graphics::CellPosition.toStringCellPosition(fromGeographicMapCellPosition)).append(" == ").append(::Org::Allbinary::Graphics::CellPosition.toStringCellPosition(toGeographicMapCellPosition)).to_s
         stringMaker.delete(0, stringMaker.length())
         raise StandardError.new(stringMaker.append("Error: ").append(string).to_s)
     end
@@ -128,7 +130,7 @@ class GeographicMapDirectionUtil
         fromRow = fromGeographicMapCellPosition.getRow()
         goColumn = toGeographicMapCellPosition.getColumn()
         goRow = toGeographicMapCellPosition.getRow()
-        directionFactory = DirectionFactory.getInstance()
+        directionFactory = ::Org::Allbinary::Direction::DirectionFactory.getInstance()
         if fromGeographicMapCellPosition == toGeographicMapCellPosition
             return directionFactory.NO_DIRECTION
         elsif fromRow == goRow
@@ -154,30 +156,56 @@ class GeographicMapDirectionUtil
                 return directionFactory.DOWN
             end
         end
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@ERROR)
-        stringBuffer.append(CellPosition.toStringCellPosition(fromGeographicMapCellPosition))
+        stringBuffer.append(::Org::Allbinary::Graphics::CellPosition.toStringCellPosition(fromGeographicMapCellPosition))
         stringBuffer.append(@EQUAL)
-        stringBuffer.append(CellPosition.toStringCellPosition(toGeographicMapCellPosition))
+        stringBuffer.append(::Org::Allbinary::Graphics::CellPosition.toStringCellPosition(toGeographicMapCellPosition))
         raise StandardError.new(stringBuffer.to_s)
     end
 
     def self.instance()
+        GeographicMapDirectionUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GeographicMapDirectionUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GeographicMapDirectionUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GeographicMapDirectionUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/direction/Direction"
-require "org/allbinary/direction/DirectionFactory"
-require "org/allbinary/graphics/CellPosition"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Direction; autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false); end; end; end
+module ::Org; module Allbinary; module Direction; autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory" unless const_defined?(:DirectionFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CellPosition, "org/allbinary/graphics/CellPosition" unless const_defined?(:CellPosition, false); end; end; end
+autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false)
 
-class GeographicMapDirectionUtil
-    @@instance = GeographicMapDirectionUtil.new()
+begin
+    GeographicMapDirectionUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

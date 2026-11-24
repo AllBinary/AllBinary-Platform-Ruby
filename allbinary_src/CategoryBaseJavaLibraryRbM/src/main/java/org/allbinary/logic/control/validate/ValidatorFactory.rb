@@ -15,10 +15,14 @@
 # package org.allbinary.logic.control.validate
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate
+
 class ValidatorFactory
     
 
     def initialize()
     end
 end
+
+end; end; end; end; end
 

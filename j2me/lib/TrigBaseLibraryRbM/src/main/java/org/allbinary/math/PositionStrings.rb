@@ -18,10 +18,12 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module MathPackage
+
 class PositionStrings
     attr_accessor :X, :Y, :X_LABEL, :Y_LABEL, :Z_LABEL, :DX_LABEL, :DY_LABEL, :DZ_LABEL
 
-    def initialize_fields
+    def jfields_org_allbinary_math_PositionStrings
         @X = "x"
         @Y = "y"
         @X_LABEL = "x: "
@@ -33,7 +35,7 @@ class PositionStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_math_PositionStrings
     end
     
 
@@ -77,4 +79,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -14,24 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
-# require "javax/microedition/lcdui/Font"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/game/TiledLayer"
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/AllBinaryTiledLayer"
+
+module ::Org; module Allbinary; module Game; module Layer
 
 class AllBinaryJ2METiledLayer < AllBinaryTiledLayer
     attr_accessor :tiledLayerP, :debugColor, :font2
 
-    def initialize_fields
-        @tiledLayerP = nil
-        @debugColor = nil
-        @font2 = Font.getFont(Font::FACE_SYSTEM, Font::STYLE_PLAIN, 4)
+    def jfields_org_allbinary_game_layer_AllBinaryJ2METiledLayer
+        @tiledLayerP = nil unless instance_variable_defined?(:@tiledLayerP)
+        @debugColor = nil unless instance_variable_defined?(:@debugColor)
+        @font2 = ::Javax::Microedition::Lcdui::Font.getFont(::Javax::Microedition::Lcdui::Font::FACE_SYSTEM, ::Javax::Microedition::Lcdui::Font::STYLE_PLAIN, 4)
     end
     
 
     def initialize(dataId, tiledLayer, mapTwoDArray, debugColor)
         super(dataId, tiledLayer.getWidth(), tiledLayer.getHeight(), tiledLayer.getCellWidth(), tiledLayer.getCellHeight())
-        initialize_fields
+        jfields_org_allbinary_game_layer_AllBinaryJ2METiledLayer
         @tiledLayerP = tiledLayer
         @debugColor = debugColor
         self.setCells(mapTwoDArray)
@@ -41,6 +41,7 @@ class AllBinaryJ2METiledLayer < AllBinaryTiledLayer
     def paint(graphics)
         @tiledLayerP.paint(graphics)
     end
+    java_overload :paint, 1
     
 
     def paintDebug(graphics)
@@ -57,8 +58,8 @@ class AllBinaryJ2METiledLayer < AllBinaryTiledLayer
         tile = 0
         tileHeight = @tiledLayerP.getCellHeight()
         tileWidth = @tiledLayerP.getCellWidth()
-        commonSeps = CommonSeps.getInstance()
-        stringMaker = StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         rowIndex = firstRow
         while rowIndex < totalRows
             # next skips the update below
@@ -84,60 +85,76 @@ class AllBinaryJ2METiledLayer < AllBinaryTiledLayer
         end
         graphics.setFont(font)
     end
+    java_overload :paintDebug, 1
     
 
     def moveDXY(dx, dy)
         @tiledLayerP.move(dx, dy)
-        super(-dx, -dy)
+        AllBinaryJ2METiledLayer.superclass.java_super_method(:moveDXY, 2).bind(self).call(-dx, -dy)
     end
+    java_overload :moveDXY, 2
     
 
     def setPosition(x, y, z)
         @tiledLayerP.setPosition(x, y)
-        super(-x, -y, z)
+        AllBinaryJ2METiledLayer.superclass.java_super_method(:setPosition, 3).bind(self).call(-x, -y, z)
     end
+    java_overload :setPosition, 3
     
 
     def getTiledLayer()
         return @tiledLayerP
     end
+    java_overload :getTiledLayer, 0
     
 
     def getCellWidth()
         return @tiledLayerP.getCellWidth()
     end
+    java_overload :getCellWidth, 0
     
 
     def getCellHeight()
         return @tiledLayerP.getCellHeight()
     end
+    java_overload :getCellHeight, 0
     
 
     def getCell(col, row)
         return @tiledLayerP.getCell(col, row)
     end
+    java_overload :getCell, 2
     
 
     def getColumns()
         return @tiledLayerP.getColumns()
     end
+    java_overload :getColumns, 0
     
 
     def getRows()
         return @tiledLayerP.getRows()
     end
+    java_overload :getRows, 0
     
 
     def setCell(col, row, index)
         @tiledLayerP.setCell(col, row, index)
     end
+    java_overload :setCell, 3
     
 
     def getAnimatedTile(animationTileIndex)
         return @tiledLayerP.getAnimatedTile(animationTileIndex)
     end
+    java_overload :getAnimatedTile, 1
 end
 
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/logic/string/StringMaker"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; module Game; autoload :TiledLayer, "javax/microedition/lcdui/game/TiledLayer" unless const_defined?(:TiledLayer, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end; end
 

@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.business.category.store.theme
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/validate/ValidationInterface"
 require "org/allbinary/business/category/store/theme/StoreThemeCategoryPathView"
 
+module ::Org; module Allbinary; module Business; module Category; module Store; module Theme
+
 class StoreThemeCategoryPathValidationView < StoreThemeCategoryPathView
-    include ValidationInterface
+    include ::Org::Allbinary::Logic::ControlPackage::Validate::ValidationInterface
     
 
     def initialize(categoryInterface)
@@ -30,27 +33,33 @@ class StoreThemeCategoryPathValidationView < StoreThemeCategoryPathView
     def isValid()
         return true
     end
+    java_overload :isValid, 0
     
 
     # throws Exception
     def toValidationInfoDoc()
         return nil
     end
+    java_overload :toValidationInfoDoc, 0
     
 
     # throws Exception
     def toValidationInfoNode(document)
         return nil
     end
+    java_overload :toValidationInfoNode, 1
     
 
     # throws Exception
     def validationInfo()
         return "Error"
     end
+    java_overload :validationInfo, 0
 end
 
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :StoreThemeCategoryInterface, "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface"
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :StoreThemeCategoryInterface, "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface" unless const_defined?(:StoreThemeCategoryInterface, false)
+
+end; end; end; end; end; end
 

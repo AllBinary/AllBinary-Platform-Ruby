@@ -14,17 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 require "org/allbinary/util/BasicArrayListD"
 require "org/allbinary/logic/util/cache/CacheableInterface"
 
-class BasicArrayListCacheable < BasicArrayListD
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
+class BasicArrayListCacheable < ::Org::Allbinary::Util::BasicArrayListD
     include CacheableInterface
     
 
     def getKey()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
+    java_overload :getKey, 0
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end
 

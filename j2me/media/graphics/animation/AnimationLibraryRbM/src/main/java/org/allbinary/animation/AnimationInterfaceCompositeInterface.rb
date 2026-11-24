@@ -15,6 +15,8 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 module AnimationInterfaceCompositeInterface
     
 
@@ -24,5 +26,7 @@ module AnimationInterfaceCompositeInterface
     end
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
+
+end; end; end
 

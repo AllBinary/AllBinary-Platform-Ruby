@@ -15,6 +15,8 @@
 # package org.allbinary.game.init
 
 
+module ::Org; module Allbinary; module Game; module Init
+
 module GameInitializationInterfaceFactoryInterface
     
 
@@ -24,5 +26,7 @@ module GameInitializationInterfaceFactoryInterface
     end
 end
 
-autoload :GameInitializationInterface, "org/allbinary/game/init/GameInitializationInterface"
+autoload :GameInitializationInterface, "org/allbinary/game/init/GameInitializationInterface" unless const_defined?(:GameInitializationInterface, false)
+
+end; end; end; end
 

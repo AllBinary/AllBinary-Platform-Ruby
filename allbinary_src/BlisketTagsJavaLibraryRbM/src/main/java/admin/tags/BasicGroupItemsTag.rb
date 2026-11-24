@@ -14,25 +14,30 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/JavaOverload"
 require "admin/tags/TableTag"
+
+module ::Admin; module Tags
 
 class BasicGroupItemsTag < TableTag
     attr_accessor :propertiesHashMap
 
-    def initialize_fields
-        @propertiesHashMap = nil
+    def jfields_admin_tags_BasicGroupItemsTag
+        @propertiesHashMap = nil unless instance_variable_defined?(:@propertiesHashMap)
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        self.setTagHelperFactory(BasicGroupItemsHelperFactory.new())
-        self.setTagRequestHelperFactory(BasicGroupItemsRequestHelperFactory.new())
+        jfields_admin_tags_BasicGroupItemsTag
+        self.setTagHelperFactory(::Admin::Taghelpers::BasicGroupItemsHelperFactory.new())
+        self.setTagRequestHelperFactory(::Admin::Taghelpers::BasicGroupItemsRequestHelperFactory.new())
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicGroupItemsHelperFactory, "admin/taghelpers/BasicGroupItemsHelperFactory"
-autoload :BasicGroupItemsRequestHelperFactory, "admin/taghelpers/BasicGroupItemsRequestHelperFactory"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Admin; module Taghelpers; autoload :BasicGroupItemsHelperFactory, "admin/taghelpers/BasicGroupItemsHelperFactory" unless const_defined?(:BasicGroupItemsHelperFactory, false); end; end
+module ::Admin; module Taghelpers; autoload :BasicGroupItemsRequestHelperFactory, "admin/taghelpers/BasicGroupItemsRequestHelperFactory" unless const_defined?(:BasicGroupItemsRequestHelperFactory, false); end; end
+
+end; end
 

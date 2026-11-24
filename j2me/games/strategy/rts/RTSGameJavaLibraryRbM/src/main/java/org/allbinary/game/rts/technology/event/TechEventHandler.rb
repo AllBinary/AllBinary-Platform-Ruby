@@ -13,9 +13,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.rts.technology.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class TechEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Rts; module Technology; module Event
+
+class TechEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def initialize()
@@ -33,21 +36,48 @@ class TechEventHandler < BasicEventHandler
         techEventListenerInterface = (eventListenerInterface)
         techEventListenerInterface.onTechEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.eventHandler()
+        TechEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@eventHandler) ? @@eventHandler : nil
     end
 
     def self.eventHandler=(value)
+        TechEventHandler.java_static_fields unless @java_static_fields_started
         @@eventHandler = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@eventHandler = TechEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TechEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/game/rts/technology/event/TechEventListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :TechEventListenerInterface, "org/allbinary/game/rts/technology/event/TechEventListenerInterface" unless const_defined?(:TechEventListenerInterface, false)
 
-class TechEventHandler
-    @@eventHandler = TechEventHandler.new()
+begin
+    TechEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

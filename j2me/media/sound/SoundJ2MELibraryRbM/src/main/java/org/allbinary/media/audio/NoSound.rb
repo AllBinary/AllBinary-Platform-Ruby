@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/audio/Sound"
+
+module ::Org; module Allbinary; module Media; module Audio
 
 class NoSound < Sound
     
@@ -25,7 +28,7 @@ class NoSound < Sound
     
 
     def initialize()
-        super(StringUtil.getInstance().EMPTY_STRING)
+        super(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         self.setPlayerP(NoPlayer::NO_PLAYER)
     end
 
@@ -60,12 +63,14 @@ class NoSound < Sound
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :NoPlayer, "org/allbinary/media/audio/NoPlayer"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :NoPlayer, "org/allbinary/media/audio/NoPlayer" unless const_defined?(:NoPlayer, false)
 
 begin
     NoSound.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

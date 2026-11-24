@@ -15,11 +15,13 @@
 # package org.allbinary.input.motion.gesture.observer
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer
+
 class MotionGestureReceiveInterfaceFactory
     
 
     def self.getInstance()
-        configuration = MotionGestureConfigurationFactory.getInstance()
+        configuration = ::Org::Allbinary::Input::Motion::Gesture::Configuration::MotionGestureConfigurationFactory.getInstance()
         if !configuration.isExecutingActionsAllowed()
             return NullCompleteMotionGestureReceiver.new()
         else
@@ -28,9 +30,11 @@ class MotionGestureReceiveInterfaceFactory
     end
 end
 
-autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
-autoload :MotionGestureConfigurationFactory, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory"
-autoload :CompleteMotionGestureListenerInterface, "org/allbinary/input/motion/gesture/observer/CompleteMotionGestureListenerInterface"
-autoload :NullCompleteMotionGestureReceiver, "org/allbinary/input/motion/gesture/observer/NullCompleteMotionGestureReceiver"
-autoload :ResolveCompleteMotionGestureListener, "org/allbinary/input/motion/gesture/observer/ResolveCompleteMotionGestureListener"
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Configuration; autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration" unless const_defined?(:MotionGestureConfiguration, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Configuration; autoload :MotionGestureConfigurationFactory, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory" unless const_defined?(:MotionGestureConfigurationFactory, false); end; end; end; end; end; end
+autoload :CompleteMotionGestureListenerInterface, "org/allbinary/input/motion/gesture/observer/CompleteMotionGestureListenerInterface" unless const_defined?(:CompleteMotionGestureListenerInterface, false)
+autoload :NullCompleteMotionGestureReceiver, "org/allbinary/input/motion/gesture/observer/NullCompleteMotionGestureReceiver" unless const_defined?(:NullCompleteMotionGestureReceiver, false)
+autoload :ResolveCompleteMotionGestureListener, "org/allbinary/input/motion/gesture/observer/ResolveCompleteMotionGestureListener" unless const_defined?(:ResolveCompleteMotionGestureListener, false)
+
+end; end; end; end; end; end
 

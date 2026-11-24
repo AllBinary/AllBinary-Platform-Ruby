@@ -15,16 +15,18 @@
 # package org.allbinary.graphics.form
 
 
+module ::Org; module Allbinary; module Graphics; module Form
+
 class FormType
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_graphics_form_FormType
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_graphics_form_FormType
         @name = name
     end
     
@@ -34,4 +36,6 @@ class FormType
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end
 

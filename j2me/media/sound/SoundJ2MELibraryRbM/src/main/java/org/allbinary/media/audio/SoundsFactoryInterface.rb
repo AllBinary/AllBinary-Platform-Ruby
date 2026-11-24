@@ -15,6 +15,8 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 module SoundsFactoryInterface
     
 
@@ -43,5 +45,7 @@ module SoundsFactoryInterface
     end
 end
 
-autoload :Sound, "org/allbinary/media/audio/Sound"
+autoload :Sound, "org/allbinary/media/audio/Sound" unless const_defined?(:Sound, false)
+
+end; end; end; end
 

@@ -15,13 +15,15 @@
 # package org.allbinary.thread
 
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class NullThread
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_THREAD, JavaThread.new(NullRunnable.getInstance(), StringUtil.getInstance().EMPTY_STRING))
+            const_set(:NULL_THREAD, ::Java::Lang::JavaThread.new(NullRunnable.getInstance(), ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -38,8 +40,8 @@ class NullThread
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :NullRunnable, "org/allbinary/thread/NullRunnable"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :NullRunnable, "org/allbinary/thread/NullRunnable" unless const_defined?(:NullRunnable, false)
 require "java/lang/Thread"
 
 begin
@@ -47,4 +49,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

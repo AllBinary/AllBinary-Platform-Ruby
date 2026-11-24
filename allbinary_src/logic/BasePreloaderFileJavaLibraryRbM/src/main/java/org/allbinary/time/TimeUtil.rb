@@ -15,6 +15,8 @@
 # package org.allbinary.time
 
 
+module ::Org; module Allbinary; module TimePackage
+
 class TimeUtil
     
 
@@ -44,12 +46,12 @@ class TimeUtil
     
 
     def setExpirationCalendar(calendar, yearsString, monthsString, daysString, hoursString, minutesString, secondsString)
-        year = calendar.get(Calendar::YEAR) + yearsString.to_i
-        month = calendar.get(Calendar::MONTH) + monthsString.to_i
-        day = calendar.get(Calendar::DAY_OF_MONTH) + daysString.to_i
-        hour = calendar.get(Calendar::HOUR) + hoursString.to_i
-        minute = calendar.get(Calendar::MINUTE) + minutesString.to_i
-        second = calendar.get(Calendar::SECOND) + secondsString.to_i
+        year = calendar.get(::Java::Util::Calendar::YEAR) + yearsString.to_i
+        month = calendar.get(::Java::Util::Calendar::MONTH) + monthsString.to_i
+        day = calendar.get(::Java::Util::Calendar::DAY_OF_MONTH) + daysString.to_i
+        hour = calendar.get(::Java::Util::Calendar::HOUR) + hoursString.to_i
+        minute = calendar.get(::Java::Util::Calendar::MINUTE) + minutesString.to_i
+        second = calendar.get(::Java::Util::Calendar::SECOND) + secondsString.to_i
         calendar.set(year, month, day, hour, minute, second)
     end
     
@@ -86,7 +88,7 @@ class TimeUtil
         @java_static_fields_started = true
         begin
             @@instance = TimeUtil.new()
-            @@calendar = Calendar.getInstance()
+            @@calendar = ::Java::Util::Calendar.getInstance()
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -103,11 +105,13 @@ class TimeUtil
     end
 end
 
-autoload :Calendar, "java/util/Calendar"
+module ::Java; module Util; autoload :Calendar, "java/util/Calendar" unless const_defined?(:Calendar, false); end; end
 
 begin
     TimeUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

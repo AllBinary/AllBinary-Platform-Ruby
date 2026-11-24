@@ -15,23 +15,30 @@
 # package org.allbinary.logic.math.vector
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage; module Vector
+
 module MathVectorInterface
     
 
     def getDirection()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMagnitude()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getResult()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/math/BasicDecimal"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false); end; end; end; end
+
+end; end; end; end; end
 

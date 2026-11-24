@@ -15,13 +15,16 @@
 # package org.allbinary.logic.system.os
 
 require "java/lang/Object"
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module System; module Os
 
 class OperatingSystemFactory
     attr_accessor :logUtil, :commonStrings, :genericOperatingSystem, :hasDetected
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_logic_system_os_OperatingSystemFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @genericOperatingSystem = NoOperatingSystem::NO_OPERATING_SYSTEM
         @hasDetected = false
     end
@@ -33,7 +36,7 @@ class OperatingSystemFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_os_OperatingSystemFactory
     end
     
 
@@ -49,30 +52,30 @@ class OperatingSystemFactory
                 @logUtil.putF("osName: " + osName, self, @commonStrings.GET_INSTANCE)
                 @hasDetected = true
                 if (osName.index(operatingSystems.LINUX) || -1) >= 0
-                    if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().FACTORYERROR)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().FACTORYERROR)
                         @logUtil.putF("Found a Linux OS", self, @commonStrings.GET_INSTANCE)
                     end
-                    @genericOperatingSystem = LinuxOperatingSystemFactory.getInstance().getOperatingSystemInstance()
+                    @genericOperatingSystem = ::Org::Allbinary::Logic::System::Os::Linux::LinuxOperatingSystemFactory.getInstance().getOperatingSystemInstance()
                 elsif (osName.index(operatingSystems.WINDOWS) || -1) >= 0
-                    if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().FACTORYERROR)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().FACTORYERROR)
                         @logUtil.putF("Found a Windows OS", self, @commonStrings.GET_INSTANCE)
                     end
-                    @genericOperatingSystem = WindowsOperatingSystemFactory.getInstance().getOperatingSystemInstance()
+                    @genericOperatingSystem = ::Org::Allbinary::Logic::System::Os::Windows::WindowsOperatingSystemFactory.getInstance().getOperatingSystemInstance()
                 elsif (osName.index(operatingSystems.SOLARIS) || -1) >= 0
-                    if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().FACTORYERROR)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().FACTORYERROR)
                         @logUtil.putF("Found a Solaris OS", self, @commonStrings.GET_INSTANCE)
                     end
-                    @genericOperatingSystem = SolarisOperatingSystemFactory.getInstance().getOperatingSystemInstance()
+                    @genericOperatingSystem = ::Org::Allbinary::Logic::System::Os::Solaris::SolarisOperatingSystemFactory.getInstance().getOperatingSystemInstance()
                 else
-                    raise StandardError.new(StringMaker.new().append("OS Not Supported: ").append(osName).to_s)
+                    raise StandardError.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("OS Not Supported: ").append(osName).to_s)
                 end
-                log = LogFactory.getInstanceF(StringMaker.new().append("OperatingSystem Info: ").append(StringUtil.getInstance().toString(@genericOperatingSystem)).to_s, self, @commonStrings.GET_INSTANCE)
+                log = ::Org::Allbinary::Logic::Communication::Log::LogFactory.getInstanceF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("OperatingSystem Info: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(@genericOperatingSystem)).to_s, self, @commonStrings.GET_INSTANCE)
                 puts(log.to_s)
                 @logUtil.putL(log)
             end
             return @genericOperatingSystem
         rescue StandardError => e
-            if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().FACTORYERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().FACTORYERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.GET_INSTANCE, e)
             end
             return NoOperatingSystem::NO_OPERATING_SYSTEM
@@ -111,21 +114,21 @@ class OperatingSystemFactory
     end
 end
 
-autoload :Log, "org/allbinary/logic/communication/log/Log"
-autoload :LogFactory, "org/allbinary/logic/communication/log/LogFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :LinuxOperatingSystemFactory, "org/allbinary/logic/system/os/linux/LinuxOperatingSystemFactory"
-autoload :SolarisOperatingSystemFactory, "org/allbinary/logic/system/os/solaris/SolarisOperatingSystemFactory"
-autoload :WindowsOperatingSystemFactory, "org/allbinary/logic/system/os/windows/WindowsOperatingSystemFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
-autoload :NoOperatingSystem, "org/allbinary/logic/system/os/NoOperatingSystem"
-autoload :OperatingSystems, "org/allbinary/logic/system/os/OperatingSystems"
-autoload :SystemProperties, "org/allbinary/logic/system/os/SystemProperties"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogFactory, "org/allbinary/logic/communication/log/LogFactory" unless const_defined?(:LogFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Os; module Linux; autoload :LinuxOperatingSystemFactory, "org/allbinary/logic/system/os/linux/LinuxOperatingSystemFactory" unless const_defined?(:LinuxOperatingSystemFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Os; module Solaris; autoload :SolarisOperatingSystemFactory, "org/allbinary/logic/system/os/solaris/SolarisOperatingSystemFactory" unless const_defined?(:SolarisOperatingSystemFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Os; module Windows; autoload :WindowsOperatingSystemFactory, "org/allbinary/logic/system/os/windows/WindowsOperatingSystemFactory" unless const_defined?(:WindowsOperatingSystemFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem" unless const_defined?(:GenericOperatingSystem, false)
+autoload :NoOperatingSystem, "org/allbinary/logic/system/os/NoOperatingSystem" unless const_defined?(:NoOperatingSystem, false)
+autoload :OperatingSystems, "org/allbinary/logic/system/os/OperatingSystems" unless const_defined?(:OperatingSystems, false)
+autoload :SystemProperties, "org/allbinary/logic/system/os/SystemProperties" unless const_defined?(:SystemProperties, false)
 require "java/lang/System"
 
 begin
@@ -133,4 +136,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

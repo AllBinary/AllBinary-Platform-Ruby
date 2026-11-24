@@ -15,13 +15,15 @@
 # package org.allbinary.business.user.role
 
 
+module ::Org; module Allbinary; module Business; module User; module Role
+
 class StoreRoleFactory
     attr_accessor :roles, :subscriberRoles, :wholesaleRoles
 
-    def initialize_fields
-        @roles = BasicArrayListD.new()
-        @subscriberRoles = BasicArrayListD.new()
-        @wholesaleRoles = BasicArrayListD.new()
+    def jfields_org_allbinary_business_user_role_StoreRoleFactory
+        @roles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @subscriberRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @wholesaleRoles = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -31,7 +33,7 @@ class StoreRoleFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_role_StoreRoleFactory
         basicUserRoleFactory = BasicUserRoleFactory.getInstance()
         @roles.add(basicUserRoleFactory.CUSTOMER)
         @roles.add(basicUserRoleFactory.SUBSCRIBERCUSTOMER)
@@ -86,13 +88,15 @@ class StoreRoleFactory
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory" unless const_defined?(:BasicUserRoleFactory, false)
 
 begin
     StoreRoleFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

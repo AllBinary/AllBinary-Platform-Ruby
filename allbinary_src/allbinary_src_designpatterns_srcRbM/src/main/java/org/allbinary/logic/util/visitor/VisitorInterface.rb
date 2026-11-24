@@ -15,6 +15,8 @@
 # package org.allbinary.logic.util.visitor
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Visitor
+
 module VisitorInterface
     
 
@@ -23,4 +25,6 @@ module VisitorInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

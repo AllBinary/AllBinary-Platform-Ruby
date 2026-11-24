@@ -14,17 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.robot.osgi
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/osgi/service/InputAutomationServiceConsumer"
 
-class InputAutomationRobotServiceConsumer < InputAutomationServiceConsumer
+module ::Org; module Allbinary; module Input; module Automation; module Robot; module Osgi
+
+class InputAutomationRobotServiceConsumer < ::Org::Allbinary::Osgi::Service::InputAutomationServiceConsumer
     
 
     def initialize(bundleContext)
-        super(InputAutomationRobotServiceInterface.getName(), bundleContext, InputAutomationRobotOSGIServiceVisitor.new())
+        super(::Bundle::Input::Automation::Robot::InputAutomationRobotServiceInterface.java_name, bundleContext, InputAutomationRobotOSGIServiceVisitor.new())
     end
 end
 
-autoload :BundleContext, "org/osgi/framework/BundleContext"
-autoload :InputAutomationRobotServiceInterface, "bundle/input/automation/robot/InputAutomationRobotServiceInterface"
-autoload :InputAutomationRobotOSGIServiceVisitor, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotOSGIServiceVisitor"
+module ::Org; module Osgi; module Framework; autoload :BundleContext, "org/osgi/framework/BundleContext" unless const_defined?(:BundleContext, false); end; end; end
+module ::Bundle; module Input; module Automation; module Robot; autoload :InputAutomationRobotServiceInterface, "bundle/input/automation/robot/InputAutomationRobotServiceInterface" unless const_defined?(:InputAutomationRobotServiceInterface, false); end; end; end; end
+autoload :InputAutomationRobotOSGIServiceVisitor, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotOSGIServiceVisitor" unless const_defined?(:InputAutomationRobotOSGIServiceVisitor, false)
+
+end; end; end; end; end; end
 

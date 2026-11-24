@@ -3,6 +3,8 @@
 # package org.eclipse.swt.graphics
 
 
+module ::Org; module Eclipse; module Swt; module Graphics
+
 class Resource
     
 
@@ -14,4 +16,6 @@ class Resource
         return false
     end
 end
+
+end; end; end; end
 

@@ -15,15 +15,17 @@
 # package org.allbinary.game.configuration.persistance
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance
+
 class GameDifficultyFactory
     attr_accessor :level
 
-    def initialize_fields
+    def jfields_org_allbinary_game_configuration_persistance_GameDifficultyFactory
         @level = 0
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_configuration_persistance_GameDifficultyFactory
     end
     
 
@@ -77,4 +79,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

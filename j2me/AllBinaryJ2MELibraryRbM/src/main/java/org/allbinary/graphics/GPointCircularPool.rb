@@ -14,14 +14,17 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/BaseCircularPool"
 
-class GPointCircularPool < BaseCircularPool
+module ::Org; module Allbinary; module Graphics
+
+class GPointCircularPool < ::Org::Allbinary::Logic::Util::Cache::BaseCircularPool
     
 
     def initialize(size)
         super()
-        @circularIndexUtil = CircularIndexUtil.createInstance(size)
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(size)
         @OBJECT_ARRAY = Array.new(size, nil)
         (size - 1).step(0, -(1)) do |index|
             @OBJECT_ARRAY[index] = CustomGPoint.getInstance3(0, 0)
@@ -29,6 +32,8 @@ class GPointCircularPool < BaseCircularPool
     end
 end
 
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint" unless const_defined?(:CustomGPoint, false)
+
+end; end; end
 

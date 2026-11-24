@@ -15,22 +15,24 @@
 # package org.allbinary.media.image.comparison.motion
 
 
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
+
 class AllMotionRectanglesResultsCacheSingleton
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_image_comparison_motion_AllMotionRectanglesResultsCacheSingleton
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def self.static_init
-        logUtil = LogUtil.getInstance()
-        commonStrings = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         _STATIC_BLOCK = "Static Block"
         instance = "MotionRectanglesResultsCacheSingleton"
         begin
             logUtil.putF(commonStrings.START, instance, _STATIC_BLOCK)
-            AllMotionRectanglesResultsCacheSingleton.cacheInterface = CacheInterfaceFactory.getInstance(CacheTypeFactory.getInstance().CACHE, CachePolicyFactory.getInstance().ONE_MINUTE_FIVE_MAX)
+            AllMotionRectanglesResultsCacheSingleton.cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance(::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().ONE_MINUTE_FIVE_MAX)
             logUtil.putF(commonStrings.END_, instance, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, instance, _STATIC_BLOCK, e)
@@ -39,7 +41,7 @@ class AllMotionRectanglesResultsCacheSingleton
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_motion_AllMotionRectanglesResultsCacheSingleton
     end
     
 
@@ -79,16 +81,18 @@ class AllMotionRectanglesResultsCacheSingleton
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CacheInterface, "org/allbinary/logic/util/cache/CacheInterface"
-autoload :CacheInterfaceFactory, "org/allbinary/logic/util/cache/CacheInterfaceFactory"
-autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory"
-autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheInterface, "org/allbinary/logic/util/cache/CacheInterface" unless const_defined?(:CacheInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheInterfaceFactory, "org/allbinary/logic/util/cache/CacheInterfaceFactory" unless const_defined?(:CacheInterfaceFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory" unless const_defined?(:CachePolicyFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory" unless const_defined?(:CacheTypeFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     AllMotionRectanglesResultsCacheSingleton.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

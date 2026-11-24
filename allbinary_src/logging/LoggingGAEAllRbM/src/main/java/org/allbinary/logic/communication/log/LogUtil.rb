@@ -14,15 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.log
 
+require "java/lang/JavaClass"
 # require "java/util/logging/Level"
 # require "java/util/logging/Logger"
+
+module ::Org; module Allbinary; module Logic; module Communication; module Log
 
 #ActualPlatform
 class LogUtil
     attr_accessor :logger, :logFormatUtil
 
-    def initialize_fields
-        @logger = Logger.getLogger(LogUtil.getName())
+    def jfields_org_allbinary_logic_communication_log_LogUtil
+        @logger = Logger.getLogger(LogUtil.java_name)
         @logFormatUtil = LogFormatUtil.getInstance()
     end
     
@@ -33,7 +36,7 @@ class LogUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_LogUtil
     end
     
 
@@ -47,21 +50,21 @@ class LogUtil
     
 
     def putF(specialMessage, anyType, functionName)
-        self.put(specialMessage, anyType, functionName, NullUtil.getInstance().NULL_OBJECT)
+        self.put(specialMessage, anyType, functionName, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
     end
     
 
     def putFS(specialMessage, className, functionName)
-        self.putS(specialMessage, className, functionName, NullUtil.getInstance().NULL_OBJECT)
+        self.putS(specialMessage, className, functionName, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
     end
     
 
     def put(specialMessage, anyType, functionName, exception)
         begin
-            className = CommonStrings.getInstance().EMPTY
+            className = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY
             clazz = anyType.class
-            if clazz.getName() != nil
-                className = clazz.getName()
+            if clazz.java_name != nil
+                className = clazz.java_name
             end
             message = @logFormatUtil.getS(className, functionName, specialMessage)
             if exception != nil
@@ -117,14 +120,16 @@ class LogUtil
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Log, "org/allbinary/logic/communication/log/Log"
-autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
+autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil" unless const_defined?(:LogFormatUtil, false)
 
 begin
     LogUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

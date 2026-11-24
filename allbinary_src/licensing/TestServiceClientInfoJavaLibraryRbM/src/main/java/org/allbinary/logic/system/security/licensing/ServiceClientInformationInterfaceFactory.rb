@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class ServiceClientInformationInterfaceFactory
     
 
@@ -53,12 +55,14 @@ class ServiceClientInformationInterfaceFactory
     end
 end
 
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :TestClientInformation, "org/allbinary/logic/system/security/licensing/TestClientInformation"
+autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false)
+autoload :TestClientInformation, "org/allbinary/logic/system/security/licensing/TestClientInformation" unless const_defined?(:TestClientInformation, false)
 
 begin
     ServiceClientInformationInterfaceFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -15,42 +15,44 @@
 # package org.allbinary.logic.communication.http.request
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request
+
 class NameSpaceRequestParam
     attr_accessor :logUtil, :nameSpaceVector, :nameSpacePropertiesHashMap, :value
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @nameSpaceVector = nil
-        @nameSpacePropertiesHashMap = nil
-        @value = nil
+    def jfields_org_allbinary_logic_communication_http_request_NameSpaceRequestParam
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @nameSpaceVector = nil unless instance_variable_defined?(:@nameSpaceVector)
+        @nameSpacePropertiesHashMap = nil unless instance_variable_defined?(:@nameSpacePropertiesHashMap)
+        @value = nil unless instance_variable_defined?(:@value)
     end
     
 
     def initialize(nameSpace, value)
-        initialize_fields
-        @nameSpaceVector = BasicArrayListD.new()
-        @nameSpacePropertiesHashMap = StdUtil.getInstance().createHashMap()
+        jfields_org_allbinary_logic_communication_http_request_NameSpaceRequestParam
+        @nameSpaceVector = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @nameSpacePropertiesHashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         @value = value
         beginIndex = (nameSpace.index(NameSpaceRequestParamData::NAME) || -1)
         if beginIndex < 0
             raise StandardError.new("Not a NameSpaceRequest")
         end
         packages = nameSpace[beginIndex + NameSpaceRequestParamData::NAME.length() + NameSpaceRequestParamData::SEP.length()..]
-        sepTokenizer = Tokenizer.new(NameSpaceRequestParamData::SEP)
-        nameSpaceWithPropertiesVector = sepTokenizer.getTokensFromString(packages, BasicArrayListD.new())
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+        sepTokenizer = ::Org::Allbinary::Logic::StringPackage::Tokens::Tokenizer.new(NameSpaceRequestParamData::SEP)
+        nameSpaceWithPropertiesVector = sepTokenizer.getTokensFromString(packages, ::Org::Allbinary::Util::BasicArrayListD.new())
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
             @logUtil.putF("\nSep Tokens: " + nameSpaceWithPropertiesVector.to_s, self, "NameSpaceRequestParam()")
         end
-        nameSpaceAndPropertiesTokenizer = Tokenizer.new(NameSpaceRequestParamData::PROPERTIES)
+        nameSpaceAndPropertiesTokenizer = ::Org::Allbinary::Logic::StringPackage::Tokens::Tokenizer.new(NameSpaceRequestParamData::PROPERTIES)
         packageIndex = 0
-        list = BasicArrayListD.new()
+        list = ::Org::Allbinary::Util::BasicArrayListD.new()
         index = 0
         size = nameSpaceWithPropertiesVector.size()
         while index < size
             nameSpaceWithProperties = nameSpaceWithPropertiesVector.get(((index += 1) - 1))
             list.clear()
             nameSpaceAndPropertiesVector = nameSpaceAndPropertiesTokenizer.getTokensFromString(nameSpaceWithProperties, list)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
                 @logUtil.putF("\nPackageName and PackageName Properties Tokens: " + nameSpaceAndPropertiesVector.to_s, self, "NameSpaceRequestParam()")
             end
             if nameSpaceAndPropertiesVector.size() > 0
@@ -67,14 +69,14 @@ class NameSpaceRequestParam
                 packageIndex += 1
             end
         end
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
             @logUtil.putF("NameSpace: " + @nameSpaceVector.to_s, self, "NameSpaceRequestParam()")
         end
     end
     
 
     def getPackages()
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
             @logUtil.putF("NameSpace: " + @nameSpaceVector.to_s, self, "getPackages()")
         end
         return @nameSpaceVector
@@ -84,9 +86,9 @@ class NameSpaceRequestParam
     def getPackageProperties(packageIndex)
         packagePropertiesHashMap = @nameSpacePropertiesHashMap.get((packageIndex).to_s)
         if packagePropertiesHashMap == nil
-            packagePropertiesHashMap = StdUtil.getInstance().createHashMap()
+            packagePropertiesHashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         end
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
             @logUtil.putF("Package Properties: " + packagePropertiesHashMap.to_s, self, "getPackagesProperties()")
         end
         return packagePropertiesHashMap
@@ -94,7 +96,7 @@ class NameSpaceRequestParam
     
 
     def getValue()
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
             @logUtil.putF("\nValue: " + @value, self, "getValue()")
         end
         return @value
@@ -103,11 +105,11 @@ class NameSpaceRequestParam
 
     # throws Exception
     def generatePackagePropertiesHashMap(properties)
-        propertiesTokenizer = Tokenizer.new(NameSpaceRequestParamData::PROPERTIESSEPARATOR)
-        packagePropertiesHashMap = StdUtil.getInstance().createHashMap()
-        propertyVector = propertiesTokenizer.getTokensFromString(properties, BasicArrayListD.new())
-        list = BasicArrayListD.new()
-        propertyTokenizer = Tokenizer.new(HtmlNameMathData.getInstance().EQUALS)
+        propertiesTokenizer = ::Org::Allbinary::Logic::StringPackage::Tokens::Tokenizer.new(NameSpaceRequestParamData::PROPERTIESSEPARATOR)
+        packagePropertiesHashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
+        propertyVector = propertiesTokenizer.getTokensFromString(properties, ::Org::Allbinary::Util::BasicArrayListD.new())
+        list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        propertyTokenizer = ::Org::Allbinary::Logic::StringPackage::Tokens::Tokenizer.new(::Org::Allbinary::Logic::Visual::Dhtml::Html::Name::HtmlNameMathData.getInstance().EQUALS)
         index = 0
         size = propertyVector.size()
         while index < size
@@ -119,12 +121,12 @@ class NameSpaceRequestParam
                 propertyName = propertyNameValueVector.get(((index2 += 1) - 1))
                 if propertyNameValueVector.size() > 1
                     propertyValue = propertyNameValueVector.get(((index2 += 1) - 1))
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
                         @logUtil.putF("\nProperty Name: " + propertyName + "\nProperty Value: " + propertyValue, self, "generatePackagePropertiesHashMap()")
                     end
                     packagePropertiesHashMap.put(propertyName, propertyValue)
                 else
-                    packagePropertiesHashMap.put(propertyName, StringUtil.getInstance().EMPTY_STRING)
+                    packagePropertiesHashMap.put(propertyName, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
                 end
             end
         end
@@ -132,13 +134,17 @@ class NameSpaceRequestParam
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :Tokenizer, "org/allbinary/logic/string/tokens/Tokenizer"
-autoload :HtmlNameMathData, "org/allbinary/logic/visual/dhtml/html/name/HtmlNameMathData"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :NameSpaceRequestParamData, "org/allbinary/logic/communication/http/request/NameSpaceRequestParamData"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; module Tokens; autoload :Tokenizer, "org/allbinary/logic/string/tokens/Tokenizer" unless const_defined?(:Tokenizer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Name; autoload :HtmlNameMathData, "org/allbinary/logic/visual/dhtml/html/name/HtmlNameMathData" unless const_defined?(:HtmlNameMathData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :NameSpaceRequestParamData, "org/allbinary/logic/communication/http/request/NameSpaceRequestParamData" unless const_defined?(:NameSpaceRequestParamData, false)
+
+end; end; end; end; end; end
 

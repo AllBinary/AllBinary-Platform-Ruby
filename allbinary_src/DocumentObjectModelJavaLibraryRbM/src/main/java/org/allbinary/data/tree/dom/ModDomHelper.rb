@@ -16,6 +16,8 @@
 
 # require "java/util/Set"
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
+
 class ModDomHelper
     
 
@@ -51,7 +53,7 @@ class ModDomHelper
     
 
     # throws Exception
-    def self.createNameValueNodes(document, elementName, nameText, valueText)
+    def self.createNameValueNodes_j4_1(document, elementName, nameText, valueText)
         newNode = document.createElement(elementName)
         newNode.appendChild(ModDomHelper.createNameNode(document, nameText))
         newNode.appendChild(ModDomHelper.createValueNode(document, valueText))
@@ -60,15 +62,14 @@ class ModDomHelper
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.createNameValueNodes(document, elementNameAndNameText, valueText)
+    def self.createNameValueNodes_j3_1(document, elementNameAndNameText, valueText)
         newNode = ModDomHelper.createNameValueNodes(document, elementNameAndNameText, elementNameAndNameText, valueText)
         return newNode
     end
     
 
     # throws Exception
-    def self.createNameValueIndexNodes(document, elementNameAndNameText, index, valueText)
+    def self.createNameValueIndexNodes_j4_1(document, elementNameAndNameText, index, valueText)
         newNode = ModDomHelper.createNameValueNodes(document, elementNameAndNameText, valueText)
         newNode.appendChild(ModDomHelper.createIndexNode(document, index))
         return newNode
@@ -76,17 +77,15 @@ class ModDomHelper
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.createNameValueNodes(document, rootNode, hashMap)
+    def self.createNameValueNodes_j3_2(document, rootNode, hashMap)
         node = document.createElement(rootNode)
         return ModDomHelper.createNameValueNodes(document, node, hashMap)
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.createNameValueNodes(document, node, hashMap)
-        stringUtil = StringUtil.getInstance()
+    def self.createNameValueNodes_j3_3(document, node, hashMap)
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         keySet = hashMap.keySet()
         keyArray = keySet.toArray()
         size = keyArray.length
@@ -100,10 +99,10 @@ class ModDomHelper
             elsif anyType.is_a?(String)
                 value = stringUtil.getNonNull(anyType)
                 node.appendChild(ModDomHelper.createNameValueNodes(document, name, value))
-            elsif anyType.is_a?(HashMap)
+            elsif anyType.is_a?(::Java::Util::HashMap)
                 node.appendChild(ModDomHelper.createNameValueNodes(document, name, hashMap))
             else
-                raise StandardError.new("HashMap value is the wrong instance and is: " + (ClassUtil.viewAll(anyType, CommonSeps.getInstance().NEW_LINE)).to_s)
+                raise StandardError.new("HashMap value is the wrong instance and is: " + (::Org::Allbinary::Logic::Java::AnyType::Clazz::ClassUtil.viewAll(anyType, ::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE)).to_s)
             end
         end
         return node
@@ -111,9 +110,8 @@ class ModDomHelper
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.createNameValueNodes(document, rootNodeName, duplicateNodeName, valueVector)
-        stringUtil = StringUtil.getInstance()
+    def self.createNameValueNodes_j4_2(document, rootNodeName, duplicateNodeName, valueVector)
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         node = document.createElement(rootNodeName)
         size = valueVector.size()
         (0...size).each do |i|
@@ -122,12 +120,28 @@ class ModDomHelper
         end
         return node
     end
+
+    def self.createNameValueNodes(*java_overload_args)
+        return createNameValueNodes_j4(*java_overload_args) if java_overload_args.length == 4
+        return createNameValueNodes_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method createNameValueNodes takes #{java_overload_args.length} arguments"
+    end
+
+    def self.createNameValueNodes_j4(*java_overload_args)
+        return createNameValueNodes_j4_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::W3c::Dom::Document)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::String)) && (java_overload_args[2].nil? || java_overload_args[2].is_a?(::String)) && (java_overload_args[3].nil? || java_overload_args[3].is_a?(::String))
+        return createNameValueNodes_j4_2(*java_overload_args)
+    end
+
+    def self.createNameValueNodes_j3(*java_overload_args)
+        return createNameValueNodes_j3_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::W3c::Dom::Document)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::String)) && (java_overload_args[2].nil? || java_overload_args[2].is_a?(::String))
+        return createNameValueNodes_j3_2(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::W3c::Dom::Document)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::String)) && (java_overload_args[2].nil? || java_overload_args[2].is_a?(::Java::Util::HashMap))
+        return createNameValueNodes_j3_3(*java_overload_args)
+    end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.createNameValueIndexNodes(document, rootNodeName, duplicateNodeName, valueVector)
-        stringUtil = StringUtil.getInstance()
+    def self.createNameValueIndexNodes_j4_2(document, rootNodeName, duplicateNodeName, valueVector)
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         node = document.createElement(rootNodeName)
         size = valueVector.size()
         (0...size).each do |index|
@@ -136,19 +150,28 @@ class ModDomHelper
         end
         return node
     end
+
+    def self.createNameValueIndexNodes(*java_overload_args)
+        return createNameValueIndexNodes_j4(*java_overload_args) if java_overload_args.length == 4
+        raise ArgumentError, "No method createNameValueIndexNodes takes #{java_overload_args.length} arguments"
+    end
+
+    def self.createNameValueIndexNodes_j4(*java_overload_args)
+        return createNameValueIndexNodes_j4_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::W3c::Dom::Document)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::String)) && java_overload_args[2].is_a?(::Integer) && (java_overload_args[3].nil? || java_overload_args[3].is_a?(::String))
+        return createNameValueIndexNodes_j4_2(*java_overload_args)
+    end
     
 
     # throws Exception
-    def self.createNodeWithValueNodes(document, rootNode, hashMap)
+    def self.createNodeWithValueNodes_j3_1(document, rootNode, hashMap)
         node = document.createElement(rootNode)
         return ModDomHelper.createNodeWithValueNodes(document, node, hashMap)
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def self.createNodeWithValueNodes(document, node, hashMap)
-        stringUtil = StringUtil.getInstance()
+    def self.createNodeWithValueNodes_j3_2(document, node, hashMap)
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         keySet = hashMap.keySet()
         keyArray = keySet.toArray()
         size = keyArray.length
@@ -160,15 +183,27 @@ class ModDomHelper
         end
         return node
     end
+
+    def self.createNodeWithValueNodes(*java_overload_args)
+        return createNodeWithValueNodes_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method createNodeWithValueNodes takes #{java_overload_args.length} arguments"
+    end
+
+    def self.createNodeWithValueNodes_j3(*java_overload_args)
+        return createNodeWithValueNodes_j3_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::W3c::Dom::Document)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::String)) && (java_overload_args[2].nil? || java_overload_args[2].is_a?(::Java::Util::HashMap))
+        return createNodeWithValueNodes_j3_2(*java_overload_args)
+    end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ClassUtil, "org/allbinary/logic/java/anyType/clazz/ClassUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :DomData, "org/allbinary/data/tree/dom/DomData"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module AnyType; module Clazz; autoload :ClassUtil, "org/allbinary/logic/java/anyType/clazz/ClassUtil" unless const_defined?(:ClassUtil, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :DomData, "org/allbinary/data/tree/dom/DomData" unless const_defined?(:DomData, false)
+
+end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.paint
 
 
+module ::Org; module Allbinary; module Graphics; module Paint
+
 class ProcessPaintableSingletonFactory
     
 
@@ -47,11 +49,13 @@ class ProcessPaintableSingletonFactory
     end
 end
 
-autoload :ProcessPaintable, "org/allbinary/graphics/paint/ProcessPaintable"
+autoload :ProcessPaintable, "org/allbinary/graphics/paint/ProcessPaintable" unless const_defined?(:ProcessPaintable, false)
 
 begin
     ProcessPaintableSingletonFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

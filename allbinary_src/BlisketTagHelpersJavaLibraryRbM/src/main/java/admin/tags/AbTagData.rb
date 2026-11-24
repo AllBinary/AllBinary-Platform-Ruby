@@ -15,6 +15,8 @@
 # package admin.tags
 
 
+module ::Admin; module Tags
+
 class AbTagData
     
 
@@ -47,4 +49,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end
 

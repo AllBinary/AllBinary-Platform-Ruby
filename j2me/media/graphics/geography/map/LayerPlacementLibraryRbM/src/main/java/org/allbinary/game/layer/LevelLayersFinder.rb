@@ -15,15 +15,17 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class LevelLayersFinder
     attr_accessor :enumerationUtil
 
-    def initialize_fields
-        @enumerationUtil = EnumerationUtil.getInstance()
+    def jfields_org_allbinary_game_layer_LevelLayersFinder
+        @enumerationUtil = ::Org::Allbinary::Util::EnumerationUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_LevelLayersFinder
     end
     
 
@@ -33,15 +35,15 @@ class LevelLayersFinder
     
 
     def get(hashtable)
-        smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-        list = BasicArrayListD.new()
+        smallIntegerSingletonFactory = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance()
+        list = ::Org::Allbinary::Util::BasicArrayListD.new()
         enumeration = hashtable.keys()
         layerHashtableCanBeNull = nil
         integerCanBeNull = nil
         cachedIntegerCanBeNull = nil
         while @enumerationUtil.hasMoreElements(enumeration)
             layerHashtableCanBeNull = hashtable.get(@enumerationUtil.nextElement(enumeration))
-            integerCanBeNull = layerHashtableCanBeNull.get(Layer::ID)
+            integerCanBeNull = layerHashtableCanBeNull.get(::Org::Allbinary::Layer::Layer::ID)
             cachedIntegerCanBeNull = smallIntegerSingletonFactory.getAt(integerCanBeNull.to_i)
             if !list.contains(cachedIntegerCanBeNull)
                 list.add(cachedIntegerCanBeNull)
@@ -81,17 +83,19 @@ class LevelLayersFinder
     end
 end
 
-autoload :Enumeration, "java/util/Enumeration"
-autoload :Layer, "org/allbinary/layer/Layer"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil"
+module ::Java; module Util; autoload :Enumeration, "java/util/Enumeration" unless const_defined?(:Enumeration, false); end; end
+module ::Org; module Allbinary; module Layer; autoload :Layer, "org/allbinary/layer/Layer" unless const_defined?(:Layer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil" unless const_defined?(:EnumerationUtil, false); end; end; end
 
 begin
     LevelLayersFinder.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

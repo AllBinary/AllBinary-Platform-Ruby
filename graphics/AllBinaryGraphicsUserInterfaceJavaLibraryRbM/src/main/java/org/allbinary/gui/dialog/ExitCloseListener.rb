@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.gui.dialog
 
+require "java/lang/JavaOverload"
 require "org/allbinary/gui/dialog/CloseJDialogListenerInterface"
+
+module ::Org; module Allbinary; module Gui; module Dialog
 
 class ExitCloseListener
     include CloseJDialogListenerInterface
@@ -27,7 +30,10 @@ class ExitCloseListener
     def onClose()
         exit(-1)
     end
+    java_overload :onClose, 0
 end
 
 require "java/lang/System"
+
+end; end; end; end
 

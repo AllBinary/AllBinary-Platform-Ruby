@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.business.advertisement.search.website
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/advertisement/search/website/AdvertisementWebsiteInterface"
+
+module ::Org; module Allbinary; module Business; module Advertisement; module Search; module Website
 
 class BasicAdvertisementWebsite
     include AdvertisementWebsiteInterface
     attr_accessor :websiteId
 
-    def initialize_fields
-        @websiteId = nil
+    def jfields_org_allbinary_business_advertisement_search_website_BasicAdvertisementWebsite
+        @websiteId = nil unless instance_variable_defined?(:@websiteId)
     end
     
 
     def initialize(websiteId)
-        initialize_fields
+        jfields_org_allbinary_business_advertisement_search_website_BasicAdvertisementWebsite
         @websiteId = websiteId
     end
     
@@ -34,6 +37,9 @@ class BasicAdvertisementWebsite
     def toString()
         return @websiteId
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end; end
 

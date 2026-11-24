@@ -3,6 +3,8 @@
 # package java.lang.annotation
 
 
+module ::Java; module Lang; module Annotation
+
 module Annotation
     
 
@@ -11,4 +13,6 @@ module Annotation
         raise NotImplementedError
     end
 end
+
+end; end; end
 

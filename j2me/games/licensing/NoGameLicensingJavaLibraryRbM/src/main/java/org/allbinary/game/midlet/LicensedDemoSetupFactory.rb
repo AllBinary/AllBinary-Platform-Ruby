@@ -15,6 +15,8 @@
 # package org.allbinary.game.midlet
 
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 class LicensedDemoSetupFactory
     
 
@@ -23,5 +25,7 @@ class LicensedDemoSetupFactory
     end
 end
 
-autoload :DemoSetup, "org/allbinary/game/midlet/DemoSetup"
+autoload :DemoSetup, "org/allbinary/game/midlet/DemoSetup" unless const_defined?(:DemoSetup, false)
+
+end; end; end; end
 

@@ -15,17 +15,19 @@
 # package org.allbinary.graphics.pipeline
 
 
+module ::Org; module Allbinary; module Graphics; module Pipeline
+
 class BasicGraphicsPipeline
     attr_accessor :pointBasicArrayList, :noDecimalTrigTable
 
-    def initialize_fields
-        @pointBasicArrayList = nil
-        @noDecimalTrigTable = NoDecimalTrigTable.getInstance()
+    def jfields_org_allbinary_graphics_pipeline_BasicGraphicsPipeline
+        @pointBasicArrayList = nil unless instance_variable_defined?(:@pointBasicArrayList)
+        @noDecimalTrigTable = ::Org::Allbinary::MathPackage::NoDecimalTrigTable.getInstance()
     end
     
 
     def initialize(points)
-        initialize_fields
+        jfields_org_allbinary_graphics_pipeline_BasicGraphicsPipeline
         @pointBasicArrayList = points
     end
     
@@ -41,9 +43,9 @@ class BasicGraphicsPipeline
 
     # throws Exception
     def translate(x, y)
-        newBasicArrayList = BasicArrayListD.new()
+        newBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
         size = @pointBasicArrayList.size()
-        pointFactory = PointFactory.getInstance()
+        pointFactory = ::Org::Allbinary::Graphics::PointFactory.getInstance()
         secondPoint = nil
         (0...size).each do |index|
             secondPoint = @pointBasicArrayList.objectArray[index]
@@ -59,19 +61,19 @@ class BasicGraphicsPipeline
 
     # throws Exception
     def rotateToAngle(angle)
-        self.rotate((angle.getValue()).to_i)
+        self.rotate(((angle.getValue()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
     end
     
 
     # throws Exception
     def rotate(angle)
-        newBasicArrayList = BasicArrayListD.new()
+        newBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
         secondPoint = nil
         y = 0
         secondX = 0
         secondY = 0
         point = nil
-        pointFactory = PointFactory.getInstance()
+        pointFactory = ::Org::Allbinary::Graphics::PointFactory.getInstance()
         size = @pointBasicArrayList.size()
         sin = 0
         cos = 0
@@ -95,9 +97,9 @@ class BasicGraphicsPipeline
 
     # throws Exception
     def mirror(width)
-        pointFactory = PointFactory.getInstance()
+        pointFactory = ::Org::Allbinary::Graphics::PointFactory.getInstance()
         halfWidth = (width >> 1)
-        newBasicArrayList = BasicArrayListD.new()
+        newBasicArrayList = ::Org::Allbinary::Util::BasicArrayListD.new()
         secondPoint = nil
         newX = 0
         point = nil
@@ -126,10 +128,12 @@ class BasicGraphicsPipeline
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :Angle, "org/allbinary/math/Angle"
-autoload :NoDecimalTrigTable, "org/allbinary/math/NoDecimalTrigTable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :Angle, "org/allbinary/math/Angle" unless const_defined?(:Angle, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :NoDecimalTrigTable, "org/allbinary/math/NoDecimalTrigTable" unless const_defined?(:NoDecimalTrigTable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end
 

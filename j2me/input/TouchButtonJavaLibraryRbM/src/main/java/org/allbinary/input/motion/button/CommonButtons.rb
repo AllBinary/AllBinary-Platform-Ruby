@@ -15,13 +15,15 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class CommonButtons
     attr_accessor :STANDARD_BUTTON_SIZE, :NORMAL_BUTTON, :LARGE_BUTTON
 
-    def initialize_fields
-        @STANDARD_BUTTON_SIZE = nil
-        @NORMAL_BUTTON = nil
-        @LARGE_BUTTON = nil
+    def jfields_org_allbinary_input_motion_button_CommonButtons
+        @STANDARD_BUTTON_SIZE = nil unless instance_variable_defined?(:@STANDARD_BUTTON_SIZE)
+        @NORMAL_BUTTON = nil unless instance_variable_defined?(:@NORMAL_BUTTON)
+        @LARGE_BUTTON = nil unless instance_variable_defined?(:@LARGE_BUTTON)
     end
     
 
@@ -31,8 +33,8 @@ class CommonButtons
     
 
     def initialize()
-        initialize_fields
-        displayInfo = DisplayInfoSingleton.getInstance()
+        jfields_org_allbinary_input_motion_button_CommonButtons
+        displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
         commonButtonSize = 128
         while commonButtonSize > 64
             totalColumns = displayInfo.getLastWidth() / commonButtonSize
@@ -47,8 +49,8 @@ class CommonButtons
             commonButtonSize = commonButtonSize >> 1
         end
         @STANDARD_BUTTON_SIZE = commonButtonSize
-        @NORMAL_BUTTON = Rectangle.new(PointFactory.getInstance().ZERO_ZERO, @STANDARD_BUTTON_SIZE, @STANDARD_BUTTON_SIZE)
-        @LARGE_BUTTON = Rectangle.new(PointFactory.getInstance().ZERO_ZERO, @STANDARD_BUTTON_SIZE << 1, @STANDARD_BUTTON_SIZE << 1)
+        @NORMAL_BUTTON = ::Org::Allbinary::Graphics::Rectangle.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, @STANDARD_BUTTON_SIZE, @STANDARD_BUTTON_SIZE)
+        @LARGE_BUTTON = ::Org::Allbinary::Graphics::Rectangle.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, @STANDARD_BUTTON_SIZE << 1, @STANDARD_BUTTON_SIZE << 1)
     end
 
     def self.instance()
@@ -82,13 +84,15 @@ class CommonButtons
     end
 end
 
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
 
 begin
     CommonButtons.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

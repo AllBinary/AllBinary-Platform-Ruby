@@ -15,35 +15,35 @@
 # package org.allbinary.image.opengles
 
 require "java/lang/Object"
-# require "java/io/InputStream"
-# require "javax/microedition/khronos/opengles/GL10"
-# require "javax/microedition/lcdui/Image"
-# require "javax/microedition/lcdui/NullImage"
+require "java/lang/JavaOverload"
 require "org/allbinary/image/ImageCache"
 
+module ::Org; module Allbinary; module Image; module Opengles
+
 #ImageCacheOpenGLESJavaLibrary
-class OpenGLImageCache < ImageCache
+class OpenGLImageCache < ::Org::Allbinary::Image::ImageCache
     attr_accessor :imageCache, :preResourceImageUtil, :gl, :lock, :list, :renderer
 
-    def initialize_fields
-        @imageCache = ImageCacheFactory.getInstance()
-        @preResourceImageUtil = PreResourceImageUtil.getInstance()
-        @gl = NullGL10::NULL_GL10
-        @lock = SynchObject.new()
-        @list = BasicArrayListD.new()
-        @renderer = AllBinaryRendererBase3.new()
+    def jfields_org_allbinary_image_opengles_OpenGLImageCache
+        @imageCache = ::Org::Allbinary::Image::ImageCacheFactory.getInstance()
+        @preResourceImageUtil = ::Org::Allbinary::Image::PreResourceImageUtil.getInstance()
+        @gl = ::Org::Allbinary::Device::NullGL10::NULL_GL10
+        @lock = ::Org::Allbinary::ThreadPackage::SynchObject.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @renderer = ::Org::Allbinary::Graphics::Opengles::Renderer::AllBinaryRendererBase3.new()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_image_opengles_OpenGLImageCache
     end
     
 
     def addListener(renderer)
         @renderer = renderer
     end
+    java_overload :addListener, 1
     
 
     # throws Exception
@@ -58,6 +58,7 @@ class OpenGLImageCache < ImageCache
             end
         end
     end
+    java_overload :update, 1
     
 
     # throws Exception
@@ -74,12 +75,13 @@ class OpenGLImageCache < ImageCache
         image2 = @imageCache.get(caller, width, height)
         image = @preResourceImageUtil.encapsulate(image2)
         (@lock).java_monitor.synchronize do
-            if image != NullImage::NULL_IMAGE
+            if image != ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
                 @list.add(image)
             end
         end
         return image
     end
+    java_overload :createImage, 3
     
 
     # throws Exception
@@ -87,17 +89,19 @@ class OpenGLImageCache < ImageCache
         cachedImage = @imageCache.getWithKey(key)
         image = @preResourceImageUtil.encapsulate(cachedImage)
         (@lock).java_monitor.synchronize do
-            if image != NullImage::NULL_IMAGE
+            if image != ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
                 @list.add(image)
             end
         end
         return image
     end
+    java_overload :createImageFromInputStream, 2
     
 
     def getGlP()
         return @gl
     end
+    java_overload :getGlP, 0
     
 
     def init(image)
@@ -113,14 +117,21 @@ class OpenGLImageCache < ImageCache
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.INIT, e)
         end
     end
+    java_overload :init, 1
 end
 
-require "org/allbinary/device/NullGL10"
-require "org/allbinary/graphics/opengles/renderer/AllBinaryRendererBase3"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/image/ImageCacheFactory"
-require "org/allbinary/image/PreResourceImageUtil"
-require "org/allbinary/thread/SynchObject"
-require "org/allbinary/image/opengles/OpenGLESImage"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; module Device; autoload :NullGL10, "org/allbinary/device/NullGL10" unless const_defined?(:NullGL10, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; module Renderer; autoload :AllBinaryRendererBase3, "org/allbinary/graphics/opengles/renderer/AllBinaryRendererBase3" unless const_defined?(:AllBinaryRendererBase3, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory" unless const_defined?(:ImageCacheFactory, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :PreResourceImageUtil, "org/allbinary/image/PreResourceImageUtil" unless const_defined?(:PreResourceImageUtil, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :SynchObject, "org/allbinary/thread/SynchObject" unless const_defined?(:SynchObject, false); end; end; end
+autoload :OpenGLESImage, "org/allbinary/image/opengles/OpenGLESImage" unless const_defined?(:OpenGLESImage, false)
+
+end; end; end; end
 

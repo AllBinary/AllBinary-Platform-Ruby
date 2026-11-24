@@ -13,17 +13,24 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.capital.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Layer; module Capital; module Event
+
 module CapitalEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
     def onCapitalChangeEvent(event)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onCapitalChangeEvent, 1
 end
 
-require "org/allbinary/game/layer/capital/event/CapitalEvent"
+autoload :CapitalEvent, "org/allbinary/game/layer/capital/event/CapitalEvent" unless const_defined?(:CapitalEvent, false)
+
+end; end; end; end; end; end
 

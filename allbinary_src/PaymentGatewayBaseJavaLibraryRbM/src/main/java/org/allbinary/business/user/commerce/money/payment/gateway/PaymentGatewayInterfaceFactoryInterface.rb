@@ -15,15 +15,20 @@
 # package org.allbinary.business.user.commerce.money.payment.gateway
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway
+
 module PaymentGatewayInterfaceFactoryInterface
     
 
     # throws Exception
     def getInstance(hashMap)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface" unless const_defined?(:PaymentGatewayInterface, false)
+
+end; end; end; end; end; end; end; end
 

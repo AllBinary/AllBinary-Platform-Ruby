@@ -15,17 +15,19 @@
 # package org.allbinary.input.motion.gesture
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture
+
 class MirrorMotionGestureEventUtil
     attr_accessor :motionEventCircularPool
 
-    def initialize_fields
-        @motionEventCircularPool = nil
+    def jfields_org_allbinary_input_motion_gesture_MirrorMotionGestureEventUtil
+        @motionEventCircularPool = nil unless instance_variable_defined?(:@motionEventCircularPool)
     end
     
 
     def initialize()
-        initialize_fields
-        @motionEventCircularPool = MotionEventCircularPool.createPool(2147483647)
+        jfields_org_allbinary_input_motion_gesture_MirrorMotionGestureEventUtil
+        @motionEventCircularPool = ::Org::Allbinary::Input::Motion::Gesture::Observer::MotionEventCircularPool.createPool(2147483647)
     end
     
 
@@ -34,7 +36,7 @@ class MirrorMotionGestureEventUtil
         event = @motionEventCircularPool.getInstance(motionGestureEvent.getMotionGesture())
         previousNewX = self.getNewX(motionGestureEvent.getPreviousPoint().getX(), halfWidth)
         currentNewX = self.getNewX(motionGestureEvent.getCurrentPoint().getX(), halfWidth)
-        pointFactory = PointFactory.getInstance()
+        pointFactory = ::Org::Allbinary::Graphics::PointFactory.getInstance()
         mirroredPreviousPoint = pointFactory.createXY(previousNewX, motionGestureEvent.getPreviousPoint().getY())
         mirroredCurrentPoint = pointFactory.createXY(currentNewX, motionGestureEvent.getCurrentPoint().getY())
         event.setPreviousPoint(mirroredPreviousPoint)
@@ -89,14 +91,16 @@ class MirrorMotionGestureEventUtil
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :MotionEventCircularPool, "org/allbinary/input/motion/gesture/observer/MotionEventCircularPool"
-autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :MotionEventCircularPool, "org/allbinary/input/motion/gesture/observer/MotionEventCircularPool" unless const_defined?(:MotionEventCircularPool, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :MotionGestureEvent, "org/allbinary/input/motion/gesture/observer/MotionGestureEvent" unless const_defined?(:MotionGestureEvent, false); end; end; end; end; end; end
 
 begin
     MirrorMotionGestureEventUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

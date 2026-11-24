@@ -14,15 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Animation
+
 module AnimationListener
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     def onEnd()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onEnd, 0
 end
+
+end; end; end
 

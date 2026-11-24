@@ -14,8 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/InitUpdatePaintableInterface"
 require "org/allbinary/graphics/paint/Paintable"
+
+module ::Org; module Allbinary; module Graphics; module Paint
 
 class InitUpdatePaintable < Paintable
     include InitUpdatePaintableInterface
@@ -29,9 +32,13 @@ class InitUpdatePaintable < Paintable
     # throws Exception
     def init()
     end
+    java_overload :init, 0
     
 
     def update()
     end
+    java_overload :update, 0
 end
+
+end; end; end; end
 

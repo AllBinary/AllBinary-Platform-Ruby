@@ -15,19 +15,22 @@
 # package org.allbinary.game.input.event
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class DownGameKeyEventHandlerBase < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Input; module Event
+
+class DownGameKeyEventHandlerBase < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_game_input_event_DownGameKeyEventHandlerBase
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_input_event_DownGameKeyEventHandlerBase
     end
     
 
@@ -36,26 +39,30 @@ class DownGameKeyEventHandlerBase < BasicEventHandler
             @list.add(playerGameInput)
         end
     end
+    java_overload :addListener, 1
     
 
     def removeAllListeners()
         @list.clear()
-        super()
+        DownGameKeyEventHandlerBase.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListenerSingleThreaded(eventListenerInterface)
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        DownGameKeyEventHandlerBase.superclass.java_super_method(:removeListenerSingleThreaded, 1).bind(self).call(eventListenerInterface)
     end
+    java_overload :removeListenerSingleThreaded, 1
     
 
     def removeListener(eventListenerInterface)
         java_monitor.synchronize do
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        DownGameKeyEventHandlerBase.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
         end
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -66,11 +73,12 @@ class DownGameKeyEventHandlerBase < BasicEventHandler
                 playerGameInput = @list.objectArray[index]
                 playerGameInput.onDownGameKeyEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
-        super(eventObject)
+        DownGameKeyEventHandlerBase.superclass.java_super_method(:fireEvent, 1).bind(self).call(eventObject)
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
@@ -78,10 +86,11 @@ class DownGameKeyEventHandlerBase < BasicEventHandler
         downGameKeyEventListenerInterface = eventListenerInterface
         downGameKeyEventListenerInterface.onDownGameKeyEvent(eventObject)
     end
+    java_overload :process, 2
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(super.to_s)
         stringBuffer.append(DownGameKeyEventHandlerBase::TOTAL_LISTENERS)
         stringBuffer.appendint(@list.size())
@@ -100,6 +109,7 @@ class DownGameKeyEventHandlerBase < BasicEventHandler
         end
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 
     def self.java_static_fields
@@ -124,19 +134,21 @@ class DownGameKeyEventHandlerBase < BasicEventHandler
     end
 end
 
-autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :DownGameKeyEventListenerInterface, "org/allbinary/game/input/event/DownGameKeyEventListenerInterface"
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+module ::Org; module Allbinary; module Game; module Input; autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput" unless const_defined?(:PlayerGameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :DownGameKeyEventListenerInterface, "org/allbinary/game/input/event/DownGameKeyEventListenerInterface" unless const_defined?(:DownGameKeyEventListenerInterface, false)
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false)
 
 begin
     DownGameKeyEventHandlerBase.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

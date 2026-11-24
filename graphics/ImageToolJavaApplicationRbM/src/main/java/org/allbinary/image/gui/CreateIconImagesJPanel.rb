@@ -14,26 +14,34 @@
 # frozen_string_literal: false
 # package org.allbinary.image.gui
 
+require "java/lang/JavaOverload"
 # require "java/awt/image/BufferedImage"
 # require "java/awt/image/Raster"
 # require "java/io/File"
 require "org/allbinary/media/image/ImageProcessorInputCompositeInterface"
+# require "java/awt/event/ActionEvent"
+# require "java/awt/event/ActionListener"
+# require "javax/swing/GroupLayout"
+# require "javax/swing/JButton"
+# require "javax/swing/JPanel"
+
+module ::Org; module Allbinary; module Image; module Gui
 
 class CreateIconImagesJPanel < JPanel
-    include ImageProcessorInputCompositeInterface
+    include ::Org::Allbinary::Media::Image::ImageProcessorInputCompositeInterface
     attr_accessor :logUtil, :commonStrings, :imageProcessorInput, :aboveJButton
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @imageProcessorInput = nil
-        @aboveJButton = nil
+    def jfields_org_allbinary_image_gui_CreateIconImagesJPanel
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @imageProcessorInput = nil unless instance_variable_defined?(:@imageProcessorInput)
+        @aboveJButton = nil unless instance_variable_defined?(:@aboveJButton)
     end
     
 
     def initialize(imageProcessorInput)
         super()
-        initialize_fields
+        jfields_org_allbinary_image_gui_CreateIconImagesJPanel
         initComponents()
         @imageProcessorInput = imageProcessorInput
         numberStringArray = Array.new(101, nil)
@@ -51,19 +59,19 @@ class CreateIconImagesJPanel < JPanel
     
 
     def process()
-        Class.new(JavaThread.is_a?(Class) ? JavaThread : Object) do
-            include(JavaThread) unless JavaThread.is_a?(Class)
+        Class.new(::Java::Lang::JavaThread.is_a?(Class) ? ::Java::Lang::JavaThread : Object) do
+            include(::Java::Lang::JavaThread) unless ::Java::Lang::JavaThread.is_a?(Class)
             
 
             def run()
-                logUtil = LogUtil.getInstance()
+                logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
                 begin
-                    imageUtil = ImageUtil.getInstance()
-                    stringMaker = StringMaker.new()
+                    imageUtil = ::Org::Allbinary::Media::Image::ImageUtil.getInstance()
+                    stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     imageProcessorInput = self.getImageProcessorInput()
                     files = imageProcessorInput.getFiles()
-                    iconWidthList = BasicArrayListD.new()
-                    iconHeightList = BasicArrayListD.new()
+                    iconWidthList = ::Org::Allbinary::Util::BasicArrayListD.new()
+                    iconHeightList = ::Org::Allbinary::Util::BasicArrayListD.new()
                     iconWidthList.add(864)
                     iconHeightList.add(864)
                     _ANDROID = "android-icon-"
@@ -75,19 +83,19 @@ class CreateIconImagesJPanel < JPanel
                         width = (iconWidthList.get(index2)).to_i
                         height = (iconHeightList.get(index2)).to_i
                         generatedBufferedImageArray = imageUtil.createBufferedImage3(imageProcessorInput.getBufferedImageArray(), width, height, true)
-                        imagePersistanceUtil = ImagePersistanceUtil.getInstance()
+                        imagePersistanceUtil = ::Org::Allbinary::Media::Image::ImagePersistanceUtil.getInstance()
                         (0...generatedBufferedImageArray.length).each do |index|
                             filePath = files[index].getAbsolutePath()
                             endIndex = (filePath.rindex("\\") || -1)
                             path = filePath[0...endIndex + 1]
                             stringMaker.delete(0, stringMaker.length())
-                            stringMaker.append(path).append(_ANDROID).appendint(width).append(CanvasStrings.getInstance()._PNG)
+                            stringMaker.append(path).append(_ANDROID).appendint(width).append(::Org::Allbinary::Graphics::Displayable::CanvasStrings.getInstance()._PNG)
                             newFilePath = stringMaker.to_s
-                            imagePersistanceUtil.saveWithBatik(AbFile.createAbFile(newFilePath), generatedBufferedImageArray[index])
+                            imagePersistanceUtil.saveWithBatik(::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(newFilePath), generatedBufferedImageArray[index])
                             stringMaker.delete(0, stringMaker.length())
-                            stringMaker.append(path).append(_IOS).appendint(width).append(CanvasStrings.getInstance()._PNG)
+                            stringMaker.append(path).append(_IOS).appendint(width).append(::Org::Allbinary::Graphics::Displayable::CanvasStrings.getInstance()._PNG)
                             newFilePath = stringMaker.to_s
-                            imagePersistanceUtil.saveWithBatik(AbFile.createAbFile(newFilePath), generatedBufferedImageArray[index])
+                            imagePersistanceUtil.saveWithBatik(::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(newFilePath), generatedBufferedImageArray[index])
                         end
                     end
                     self.getParent().repaint()
@@ -95,18 +103,22 @@ class CreateIconImagesJPanel < JPanel
                     logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.RUN, e)
                 end
             end
+            java_overload :run, 0
         end.new().start()
     end
+    java_overload :process, 0
     
 
     def getImageProcessorInput()
         return @imageProcessorInput
     end
+    java_overload :getImageProcessorInput, 0
     
 
     def setImageProcessorInput(imageProcessorInput)
         @imageProcessorInput = imageProcessorInput
     end
+    java_overload :setImageProcessorInput, 1
     
 
     def initComponents()
@@ -119,29 +131,34 @@ class CreateIconImagesJPanel < JPanel
             def actionPerformed(evt)
                 aboveJButtonActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         layout = GroupLayout.new(self)
         self.setLayout(layout)
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(@aboveJButton).addGap(0, 335, 32767)))
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addComponent(@aboveJButton).addContainerGap(286, 32767)))
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(@aboveJButton).addGap(0, 335, 32767)))
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addComponent(@aboveJButton).addContainerGap(286, 32767)))
     end
+    java_overload :initComponents, 0
     
 
     def aboveJButtonActionPerformed(evt)
         self.process()
     end
+    java_overload :aboveJButtonActionPerformed, 1
 end
 
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/media/image/ImagePersistanceUtil"
-require "org/allbinary/media/image/ImageProcessorInput"
-require "org/allbinary/media/image/ImageUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings" unless const_defined?(:CanvasStrings, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImagePersistanceUtil, "org/allbinary/media/image/ImagePersistanceUtil" unless const_defined?(:ImagePersistanceUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput" unless const_defined?(:ImageProcessorInput, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 require "java/lang/Thread"
 require "java/lang/System"
+
+end; end; end; end
 

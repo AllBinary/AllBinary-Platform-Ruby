@@ -16,56 +16,69 @@
 
 # require "java/util/Set"
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Basket
+
 module BasketInterface
     
 
     def addItem(id, num)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def removeItem(id)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def adjustItem(id, num)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getTotalWeight()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getNumberOfItems()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getIds()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getItems()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getNumberOf(product)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws MoneyException
     def getSubTotal()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :Money, "org/allbinary/business/user/commerce/money/Money"
-autoload :MoneyException, "org/allbinary/business/user/commerce/money/MoneyException"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; autoload :Money, "org/allbinary/business/user/commerce/money/Money" unless const_defined?(:Money, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; autoload :MoneyException, "org/allbinary/business/user/commerce/money/MoneyException" unless const_defined?(:MoneyException, false); end; end; end; end; end; end
+
+end; end; end; end; end; end; end
 

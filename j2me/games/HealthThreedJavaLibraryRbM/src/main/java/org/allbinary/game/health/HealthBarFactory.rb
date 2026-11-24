@@ -15,13 +15,15 @@
 # package org.allbinary.game.health
 
 
+module ::Org; module Allbinary; module Game; module Health
+
 class HealthBarFactory
     
 
     # throws Exception
     def getInstance(layerInterface, healthInterface, location, direction)
-        if OpenGLFeatureUtil.getInstance().isAnyThreed()
-            featuredAnimationInterfaceFactoryInterfaceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()
+        if ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureUtil.getInstance().isAnyThreed()
+            featuredAnimationInterfaceFactoryInterfaceFactory = ::Org::Allbinary::Animation::FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()
             healthBarAnimationInterfaceFactory = featuredAnimationInterfaceFactoryInterfaceFactory.get(Health::NAME)
             return HealthBar.new(layerInterface, healthInterface, healthBarAnimationInterfaceFactory.getInstanceByLocation(layerInterface, location), direction)
         else
@@ -30,11 +32,13 @@ class HealthBarFactory
     end
 end
 
-require "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
-require "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/game/health/Health"
-require "org/allbinary/game/health/HealthBar"
-require "org/allbinary/game/health/HealthBarAnimationInterfaceFactory"
-require "org/allbinary/game/health/HealthBarTwodAnimation"
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil" unless const_defined?(:OpenGLFeatureUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Animation; autoload :FeaturedAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory" unless const_defined?(:FeaturedAnimationInterfaceFactoryInterfaceFactory, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :Health, "org/allbinary/game/health/Health" unless const_defined?(:Health, false)
+autoload :HealthBar, "org/allbinary/game/health/HealthBar" unless const_defined?(:HealthBar, false)
+autoload :HealthBarAnimationInterfaceFactory, "org/allbinary/game/health/HealthBarAnimationInterfaceFactory" unless const_defined?(:HealthBarAnimationInterfaceFactory, false)
+autoload :HealthBarTwodAnimation, "org/allbinary/game/health/HealthBarTwodAnimation" unless const_defined?(:HealthBarTwodAnimation, false)
+
+end; end; end; end
 

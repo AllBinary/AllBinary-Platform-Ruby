@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.pickup
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/AllBinaryLayerCircularPool"
 
-class PickupLayerCircularStaticPool < AllBinaryLayerCircularPool
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
+class PickupLayerCircularStaticPool < ::Org::Allbinary::Layer::AllBinaryLayerCircularPool
     
 
     def initialize()
@@ -36,6 +39,7 @@ class PickupLayerCircularStaticPool < AllBinaryLayerCircularPool
         pickupLayer.init(pickedUpLayerInterfaceFactoryInterface, pickedUpLayerInterfaceFactoryInterface.getAnimationInterface())
         return pickupLayer
     end
+    java_overload :getInstanceXYZ, 4
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -58,13 +62,15 @@ class PickupLayerCircularStaticPool < AllBinaryLayerCircularPool
     end
 end
 
-autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
-autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-autoload :PickupLayer, "org/allbinary/game/layer/pickup/PickupLayer"
+autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface" unless const_defined?(:PickedUpLayerInterface, false)
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface" unless const_defined?(:PickedUpLayerInterfaceFactoryInterface, false)
+autoload :PickupLayer, "org/allbinary/game/layer/pickup/PickupLayer" unless const_defined?(:PickupLayer, false)
 
 begin
     PickupLayerCircularStaticPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,11 +15,13 @@
 # package org.allbinary.logic.io
 
 
+module ::Org; module Allbinary; module Logic; module Io
+
 class StreamUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_io_StreamUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -29,7 +31,7 @@ class StreamUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_io_StreamUtil
     end
     
 
@@ -69,7 +71,7 @@ class StreamUtil
             end
             return true
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.CLOSE, e)
             return false
         end
@@ -106,16 +108,18 @@ class StreamUtil
     end
 end
 
-autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
-autoload :Closeable, "java/io/Closeable"
-autoload :InputStream, "java/io/InputStream"
-autoload :OutputStream, "java/io/OutputStream"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Java; module Io; autoload :Closeable, "java/io/Closeable" unless const_defined?(:Closeable, false); end; end
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Java; module Io; autoload :OutputStream, "java/io/OutputStream" unless const_defined?(:OutputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     StreamUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

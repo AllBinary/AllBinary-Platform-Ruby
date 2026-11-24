@@ -16,6 +16,8 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config
+
 class LoggingInitInfo
     
 
@@ -93,7 +95,7 @@ class LoggingInitInfo
     # throws Exception
     def self.getTypeList()
         LoggingInitInfo.updateIfNeeded()
-        allLogTypeVector = BasicArrayListD.new()
+        allLogTypeVector = ::Org::Allbinary::Util::BasicArrayListD.new()
         size = LoggingInitInfo.logConfigInfoList.size()
         (0...size).each do |index|
             logConfigInfo = LoggingInitInfo.logConfigInfoList.objectArray[index]
@@ -163,13 +165,15 @@ class LoggingInitInfo
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :LogConfig, "org/allbinary/logic/communication/log/config/LogConfig"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :LogConfig, "org/allbinary/logic/communication/log/config/LogConfig" unless const_defined?(:LogConfig, false)
 
 begin
     LoggingInitInfo.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

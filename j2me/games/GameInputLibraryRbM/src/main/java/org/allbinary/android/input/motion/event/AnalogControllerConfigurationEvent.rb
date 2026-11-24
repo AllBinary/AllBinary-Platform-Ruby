@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.android.input.motion.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class AnalogControllerConfigurationEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Android; module Input; module Motion; module Event
+
+class AnalogControllerConfigurationEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     
 
     def initialize(anyType)
         super(anyType)
     end
 end
+
+end; end; end; end; end; end
 

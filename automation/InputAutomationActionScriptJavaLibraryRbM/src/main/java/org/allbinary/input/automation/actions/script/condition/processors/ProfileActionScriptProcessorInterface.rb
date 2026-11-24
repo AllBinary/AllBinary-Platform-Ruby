@@ -14,15 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.actions.script.condition.processors
 
+require "java/lang/JavaOverload"
 # require "javax/swing/tree/MutableTreeNode"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 require "org/allbinary/input/automation/actions/script/ProfileActionScriptItemInterface"
 require "org/allbinary/input/automation/actions/script/condition/CustomTreeNodeInterface"
 
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition; module Processors
+
 module ProfileActionScriptProcessorInterface
-    include CustomTreeNodeInterface
-    include DomNodeInterface
+    include ::Org::Allbinary::Input::Automation::Actions::Script::Condition::CustomTreeNodeInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     include MutableTreeNode
-    include ProfileActionScriptItemInterface
+    include ::Org::Allbinary::Input::Automation::Actions::Script::ProfileActionScriptItemInterface
 end
+
+end; end; end; end; end; end; end; end
 

@@ -14,26 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
-# require "java/io/DataInputStream"
+
+module ::Org; module Allbinary; module Logic; module Io
 
 class LineReader
     attr_accessor :logUtil, :commonStrings, :fileName, :string, :index, :idFile, :idData
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @fileName = nil
-        @string = nil
+    def jfields_org_allbinary_logic_io_LineReader
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @fileName = nil unless instance_variable_defined?(:@fileName)
+        @string = nil unless instance_variable_defined?(:@string)
         @index = 0
-        @idFile = nil
-        @idData = nil
+        @idFile = nil unless instance_variable_defined?(:@idFile)
+        @idData = nil unless instance_variable_defined?(:@idData)
     end
     
 
     def initialize(fileName)
-        initialize_fields
+        jfields_org_allbinary_logic_io_LineReader
         begin
-            bytes = Array.new(100000, 0)
+            bytes = (Array.new(100000, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
             @fileName = fileName
             @idFile = AbFileInputStream.new(fileName)
             @idFile.read(bytes)
@@ -48,7 +49,7 @@ class LineReader
 
     def hasNext()
         begin
-            nextIndex = (@string.index(CommonSeps.getInstance().NEW_LINE, @index) || -1)
+            nextIndex = (@string.index(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE, @index) || -1)
             if nextIndex == -1
                 return false
             end
@@ -65,7 +66,7 @@ class LineReader
     # throws Exception
     def next_()
         begin
-            nextIndex = (@string.index(CommonSeps.getInstance().NEW_LINE, @index) || -1)
+            nextIndex = (@string.index(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE, @index) || -1)
             if nextIndex == -1
                 raise StandardError.new("next() should have been called first")
             end
@@ -81,8 +82,11 @@ class LineReader
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/io/AbFileInputStream"
+module ::Java; module Io; autoload :DataInputStream, "java/io/DataInputStream" unless const_defined?(:DataInputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false)
+
+end; end; end; end
 

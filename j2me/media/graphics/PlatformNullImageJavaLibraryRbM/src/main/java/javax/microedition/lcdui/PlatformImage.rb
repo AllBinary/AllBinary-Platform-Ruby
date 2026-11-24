@@ -15,6 +15,8 @@
 # package javax.microedition.lcdui
 
 
+module ::Javax; module Microedition; module Lcdui
+
 #PlatformNullImageJavaLibrary
 class PlatformImage
     
@@ -66,12 +68,14 @@ class PlatformImage
     
 
     def getData(image)
-        return NullUtil.getInstance().NULL_INT_ARRAY
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :NullImage, "javax/microedition/lcdui/NullImage"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false)
+autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false)
+autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false)
+
+end; end; end
 

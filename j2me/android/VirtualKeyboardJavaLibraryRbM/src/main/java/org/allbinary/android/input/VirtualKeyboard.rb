@@ -15,11 +15,13 @@
 # package org.allbinary.android.input
 
 
+module ::Org; module Allbinary; module Android; module Input
+
 class VirtualKeyboard
     
 
     def onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
     end
     
 
@@ -55,14 +57,16 @@ class VirtualKeyboard
     end
 end
 
-autoload :VirtualKeyboardEvent, "org/allbinary/input/event/VirtualKeyboardEvent"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+module ::Org; module Allbinary; module Input; module Event; autoload :VirtualKeyboardEvent, "org/allbinary/input/event/VirtualKeyboardEvent" unless const_defined?(:VirtualKeyboardEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
 
 begin
     VirtualKeyboard.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

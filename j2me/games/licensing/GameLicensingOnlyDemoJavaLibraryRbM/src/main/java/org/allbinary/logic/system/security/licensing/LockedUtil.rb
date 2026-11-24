@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.security.licensing
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/security/licensing/LockedUtilInterface"
+
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
 
 class LockedUtil
     include LockedUtilInterface
@@ -28,11 +31,13 @@ class LockedUtil
     def isLocked()
         return true
     end
+    java_overload :isLocked, 0
     
 
     def isLockedFeature(lockableFeatrue)
         return true
     end
+    java_overload :isLockedFeature, 1
 
     def self.instance()
         LockedUtil.java_static_fields unless @java_static_fields_started
@@ -65,11 +70,13 @@ class LockedUtil
     end
 end
 
-autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature"
+autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature" unless const_defined?(:LockableFeature, false)
 
 begin
     LockedUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

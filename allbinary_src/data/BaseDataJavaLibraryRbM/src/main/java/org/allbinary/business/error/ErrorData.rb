@@ -15,10 +15,12 @@
 # package org.allbinary.business.error
 
 
+module ::Org; module Allbinary; module Business; module Error
+
 class ErrorData
     attr_accessor :NAME, :TEXT
 
-    def initialize_fields
+    def jfields_org_allbinary_business_error_ErrorData
         @NAME = "ERROR_NAME"
         @TEXT = "ERROR_TEXT"
     end
@@ -30,7 +32,7 @@ class ErrorData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_error_ErrorData
     end
 
     def self.instance()
@@ -69,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

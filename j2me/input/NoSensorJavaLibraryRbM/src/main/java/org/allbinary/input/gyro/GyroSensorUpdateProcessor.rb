@@ -14,13 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.input.gyro
 
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/Processor"
 
-class GyroSensorUpdateProcessor < Processor
+module ::Org; module Allbinary; module Input; module Gyro
+
+class GyroSensorUpdateProcessor < ::Org::Allbinary::Canvas::Processor
     
 
     # throws Exception
     def process()
     end
+    java_overload :process, 0
 end
+
+end; end; end; end
 

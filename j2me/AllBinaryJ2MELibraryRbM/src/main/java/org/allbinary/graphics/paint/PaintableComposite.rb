@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/Paintable"
+
+module ::Org; module Allbinary; module Graphics; module Paint
 
 class PaintableComposite < Paintable
     attr_accessor :paintableArray
 
-    def initialize_fields
-        @paintableArray = nil
+    def jfields_org_allbinary_graphics_paint_PaintableComposite
+        @paintableArray = nil unless instance_variable_defined?(:@paintableArray)
     end
     
 
     def initialize(paintableArray)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_paint_PaintableComposite
         @paintableArray = paintableArray
     end
     
@@ -36,6 +39,7 @@ class PaintableComposite < Paintable
             @paintableArray[index].paint(graphics)
         end
     end
+    java_overload :paint, 1
     
 
     def paintThreed(graphics)
@@ -43,8 +47,11 @@ class PaintableComposite < Paintable
             @paintableArray[index].paintThreed(graphics)
         end
     end
+    java_overload :paintThreed, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface" unless const_defined?(:PaintableInterface, false)
+
+end; end; end; end
 

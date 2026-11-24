@@ -15,6 +15,8 @@
 # package org.allbinary.direction
 
 
+module ::Org; module Allbinary; module Direction
+
 module DirectionalInterface
     
 
@@ -42,6 +44,8 @@ module DirectionalInterface
     end
 end
 
-autoload :Angle, "org/allbinary/math/Angle"
-autoload :Direction, "org/allbinary/direction/Direction"
+module ::Org; module Allbinary; module MathPackage; autoload :Angle, "org/allbinary/math/Angle" unless const_defined?(:Angle, false); end; end; end
+autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false)
+
+end; end; end
 

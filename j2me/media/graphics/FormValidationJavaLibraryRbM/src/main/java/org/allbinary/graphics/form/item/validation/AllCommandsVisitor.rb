@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item.validation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/visitor/Visitor"
 
-class AllCommandsVisitor < Visitor
+module ::Org; module Allbinary; module Graphics; module Form; module Item; module Validation
+
+class AllCommandsVisitor < ::Org::Allbinary::Logic::Util::Visitor::Visitor
     
 
     def initialize()
@@ -25,9 +28,12 @@ class AllCommandsVisitor < Visitor
     
 
     def visit(anyType)
-        return BooleanFactory.getInstance().TRUE
+        return ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE
     end
+    java_overload :visit, 1
 end
 
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

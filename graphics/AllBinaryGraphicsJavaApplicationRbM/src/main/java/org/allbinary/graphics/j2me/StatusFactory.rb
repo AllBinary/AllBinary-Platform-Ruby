@@ -15,17 +15,19 @@
 # package org.allbinary.graphics.j2me
 
 
+module ::Org; module Allbinary; module Graphics; module J2me
+
 class StatusFactory
     attr_accessor :logUtil, :SETSTATUS, :STATUS_LABEL
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_graphics_j2me_StatusFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @SETSTATUS = "setStatus"
         @STATUS_LABEL = "Status: "
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_j2me_StatusFactory
     end
     
 
@@ -45,18 +47,44 @@ class StatusFactory
     end
 
     def self.instance()
+        StatusFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        StatusFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = StatusFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StatusFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/graphics/j2me/MyFrame"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :MyFrame, "org/allbinary/graphics/j2me/MyFrame" unless const_defined?(:MyFrame, false)
 
-class StatusFactory
-    @@instance = StatusFactory.new()
+begin
+    StatusFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

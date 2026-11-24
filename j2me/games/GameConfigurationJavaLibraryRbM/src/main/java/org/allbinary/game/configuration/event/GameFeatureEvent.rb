@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class GameFeatureEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Game; module Configuration; module Event
+
+class GameFeatureEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     attr_accessor :whatChanged
 
-    def initialize_fields
-        @whatChanged = nil
+    def jfields_org_allbinary_game_configuration_event_GameFeatureEvent
+        @whatChanged = nil unless instance_variable_defined?(:@whatChanged)
     end
     
 
     def initialize(anyType, whatChanged)
         super(anyType)
-        initialize_fields
+        jfields_org_allbinary_game_configuration_event_GameFeatureEvent
         @whatChanged = whatChanged
     end
     
@@ -34,10 +37,14 @@ class GameFeatureEvent < AllBinaryEventObject
     def getWhatChanged()
         return @whatChanged
     end
+    java_overload :getWhatChanged, 0
     
 
     def getGameOption()
         return self.getSource()
     end
+    java_overload :getGameOption, 0
 end
+
+end; end; end; end; end
 

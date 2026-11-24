@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.text
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/text/CustomTextAnimation"
+
+module ::Org; module Allbinary; module Animation; module Text
 
 class AdjustCustomTextAnimation < CustomTextAnimation
     attr_accessor :dx, :dy
 
-    def initialize_fields
-        @dx = nil
-        @dy = nil
+    def jfields_org_allbinary_animation_text_AdjustCustomTextAnimation
+        @dx = nil unless instance_variable_defined?(:@dx)
+        @dy = nil unless instance_variable_defined?(:@dy)
     end
     
 
     def initialize(text, fontSize, dx, dy, animationBehavior)
         super(text, fontSize, animationBehavior)
-        initialize_fields
+        jfields_org_allbinary_animation_text_AdjustCustomTextAnimation
         @dx = dx
         @dy = dy
     end
@@ -36,28 +39,35 @@ class AdjustCustomTextAnimation < CustomTextAnimation
     def getDx()
         return @dx
     end
+    java_overload :getDx, 0
     
 
     def setDx(dx)
         @dx = dx
     end
+    java_overload :setDx, 1
     
 
     def getDy()
         return @dy
     end
+    java_overload :getDy, 0
     
 
     def setDy(dy)
         @dy = dy
     end
+    java_overload :setDy, 1
     
 
     def paintXY(graphics, x, y)
-        super(graphics, x + @dx, y + @dy)
+        AdjustCustomTextAnimation.superclass.java_super_method(:paintXY, 3).bind(self).call(graphics, x + @dx, y + @dy)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+
+end; end; end; end
 

@@ -14,16 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "java/awt"
+# require "java/awt/Graphics2D"
 # require "java/awt/geom/AffineTransform"
 # require "java/awt/image/AffineTransformOp"
 # require "java/awt/image/BufferedImage"
 
+module ::Org; module Allbinary; module Media; module Image
+
 class MirrorImageUtil
     attr_accessor :logUtil, :imageUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_image_MirrorImageUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @imageUtil = ImageUtil.getInstance()
     end
     
@@ -34,7 +36,7 @@ class MirrorImageUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_MirrorImageUtil
     end
     
 
@@ -117,12 +119,14 @@ class MirrorImageUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false)
 
 begin
     MirrorImageUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

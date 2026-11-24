@@ -15,21 +15,23 @@
 # package org.allbinary.input
 
 
+module ::Org; module Allbinary; module Input
+
 #TouchJ2ME
 class TouchJ2ME
     attr_accessor :logUtil, :DEVICE_ID, :motionRecognizer
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_input_TouchJ2ME
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @DEVICE_ID = 0
-        @motionRecognizer = AllMotionRecognizer.new()
+        @motionRecognizer = ::Org::Allbinary::Input::Motion::AllMotionRecognizer.new()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_TouchJ2ME
         motionGesturesHandler = @motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler()
-        motionGesturesHandler.addListenerInterface(GameMotionGestureListener.new(MotionGestureReceiveInterfaceFactory.getInstance()))
+        motionGesturesHandler.addListenerInterface(::Org::Allbinary::Input::Motion::Gesture::Observer::GameMotionGestureListener.new(::Org::Allbinary::Input::Motion::Gesture::Observer::MotionGestureReceiveInterfaceFactory.getInstance()))
     end
     
 
@@ -37,7 +39,7 @@ class TouchJ2ME
         begin
             @motionRecognizer.processDraggedMotionEvent(x, y, @DEVICE_ID, 0)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, "pointerDragged", e)
         end
     end
@@ -47,7 +49,7 @@ class TouchJ2ME
         begin
             @motionRecognizer.processStartMotionEvent(x, y, @DEVICE_ID, 0)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, "pointerPressed", e)
         end
     end
@@ -57,16 +59,18 @@ class TouchJ2ME
         begin
             @motionRecognizer.processEndMotionEvent(x, y, @DEVICE_ID, 0)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, "pointerReleased", e)
         end
     end
 end
 
-autoload :AllMotionRecognizer, "org/allbinary/input/motion/AllMotionRecognizer"
-autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler"
-autoload :GameMotionGestureListener, "org/allbinary/input/motion/gesture/observer/GameMotionGestureListener"
-autoload :MotionGestureReceiveInterfaceFactory, "org/allbinary/input/motion/gesture/observer/MotionGestureReceiveInterfaceFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Input; module Motion; autoload :AllMotionRecognizer, "org/allbinary/input/motion/AllMotionRecognizer" unless const_defined?(:AllMotionRecognizer, false); end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler" unless const_defined?(:BasicMotionGesturesHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :GameMotionGestureListener, "org/allbinary/input/motion/gesture/observer/GameMotionGestureListener" unless const_defined?(:GameMotionGestureListener, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :MotionGestureReceiveInterfaceFactory, "org/allbinary/input/motion/gesture/observer/MotionGestureReceiveInterfaceFactory" unless const_defined?(:MotionGestureReceiveInterfaceFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end
 

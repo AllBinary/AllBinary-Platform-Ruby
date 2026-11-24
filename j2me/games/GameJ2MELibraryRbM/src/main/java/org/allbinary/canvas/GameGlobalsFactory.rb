@@ -15,17 +15,19 @@
 # package org.allbinary.canvas
 
 
+module ::Org; module Allbinary; module Canvas
+
 class GameGlobalsFactory
     attr_accessor :newCanvas, :newDisplaybleTime, :point
 
-    def initialize_fields
+    def jfields_org_allbinary_canvas_GameGlobalsFactory
         @newCanvas = true
-        @newDisplaybleTime = ((-2147483648)).to_i
-        @point = PointFactory.getInstance().ZERO_ZERO
+        @newDisplaybleTime = (((-2147483648)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+        @point = ::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_canvas_GameGlobalsFactory
     end
     
 
@@ -64,12 +66,14 @@ class GameGlobalsFactory
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
 
 begin
     GameGlobalsFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

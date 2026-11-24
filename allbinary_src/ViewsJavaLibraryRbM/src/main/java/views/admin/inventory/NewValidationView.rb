@@ -14,16 +14,19 @@
 # frozen_string_literal: false
 # package views.admin.inventory
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/validate/ValidationComponentInterface"
 require "views/admin/inventory/InventoryItemView"
 
+module ::Views; module Admin; module Inventory
+
 class NewValidationView < InventoryItemView
-    include ValidationComponentInterface
+    include ::Org::Allbinary::Logic::ControlPackage::Validate::ValidationComponentInterface
     
 
     def initialize(transformInfoInterface)
-        super(transformInfoInterface, StringUtil.getInstance().EMPTY_STRING)
-        @itemInterface = BasicItem.new()
+        super(transformInfoInterface, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
+        @itemInterface = ::Org::Allbinary::Business::User::Commerce::Inventory::Item::BasicItem.new()
     end
     
 
@@ -34,27 +37,40 @@ class NewValidationView < InventoryItemView
             return false
         end
     end
+    java_overload :isValid, 0
     
 
     def toValidationInfoDoc()
         return nil
     end
+    java_overload :toValidationInfoDoc, 0
     
 
     def toValidationInfoNode(document)
         return nil
     end
+    java_overload :toValidationInfoNode, 1
     
 
     def validationInfo()
         return "Error Creating New Item"
     end
+    java_overload :validationInfo, 0
+    
+
+    # throws Exception
+    def getTransformInfoInterface()
+        return NewValidationView.superclass.java_super_method(:getTransformInfoInterface, 0).bind(self).call()
+    end
+    java_overload :getTransformInfoInterface, 0
 end
 
-autoload :BasicItem, "org/allbinary/business/user/commerce/inventory/item/BasicItem"
-autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; autoload :BasicItem, "org/allbinary/business/user/commerce/inventory/item/BasicItem" unless const_defined?(:BasicItem, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; autoload :ItemInterface, "org/allbinary/business/user/commerce/inventory/item/ItemInterface" unless const_defined?(:ItemInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end
 

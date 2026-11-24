@@ -14,12 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.log
 
+require "java/lang/Object"
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module Communication; module Log
 
 #ActualPlatform
 class LogUtil
     attr_accessor :logFormatUtil, :LOG_SUCCESS
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_log_LogUtil
         @logFormatUtil = LogFormatUtil.getInstance()
         @LOG_SUCCESS = "org.allbinary: "
     end
@@ -31,7 +35,7 @@ class LogUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_LogUtil
     end
     
 
@@ -45,9 +49,9 @@ class LogUtil
     
 
     def putF(specialMessage, anyType, functionName)
-        className = CommonStrings.getInstance().EMPTY
-        if anyType.class.name != nil
-            className = String.new(StringMaker.new().append(anyType.class.name).append(CommonSeps.getInstance().COLON).append((TsUtil.getInstance().hashCode(anyType)).to_s(16)).to_s)
+        className = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY
+        if anyType.class.java_name != nil
+            className = String.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(anyType.class.java_name).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append((::Org::Allbinary::TsUtil.getInstance().hashCode(anyType)).to_s(16)).to_s)
         end
         message = @logFormatUtil.getS(className, functionName, specialMessage)
         print(@LOG_SUCCESS)
@@ -63,11 +67,11 @@ class LogUtil
     
 
     def put(specialMessage, anyType, functionName, exception)
-        className = CommonStrings.getInstance().EMPTY
-        if anyType.class.name != nil
-            hashCodeValue = TsUtil.getInstance().hashCode(anyType)
+        className = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY
+        if anyType.class.java_name != nil
+            hashCodeValue = ::Org::Allbinary::TsUtil.getInstance().hashCode(anyType)
             hexString = (hashCodeValue).to_s(16)
-            className = String.new(StringMaker.new().append(anyType.class.name).append(CommonSeps.getInstance().COLON).append(hexString).to_s)
+            className = String.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(anyType.class.java_name).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append(hexString).to_s)
         end
         message = @logFormatUtil.get(className, functionName, specialMessage, exception)
         print(@LOG_SUCCESS)
@@ -105,12 +109,12 @@ class LogUtil
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Log, "org/allbinary/logic/communication/log/Log"
-autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
+autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil" unless const_defined?(:LogFormatUtil, false)
 require "java/lang/System"
 
 begin
@@ -118,4 +122,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

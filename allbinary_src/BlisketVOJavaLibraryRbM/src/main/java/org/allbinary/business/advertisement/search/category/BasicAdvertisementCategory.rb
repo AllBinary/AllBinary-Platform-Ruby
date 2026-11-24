@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.business.advertisement.search.category
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/advertisement/search/category/AdvertisementCategoryInterface"
+
+module ::Org; module Allbinary; module Business; module Advertisement; module Search; module Category
 
 class BasicAdvertisementCategory
     include AdvertisementCategoryInterface
     attr_accessor :categoryId
 
-    def initialize_fields
-        @categoryId = nil
+    def jfields_org_allbinary_business_advertisement_search_category_BasicAdvertisementCategory
+        @categoryId = nil unless instance_variable_defined?(:@categoryId)
     end
     
 
     def initialize(categoryId)
-        initialize_fields
+        jfields_org_allbinary_business_advertisement_search_category_BasicAdvertisementCategory
         @categoryId = categoryId
     end
     
@@ -34,6 +37,9 @@ class BasicAdvertisementCategory
     def toString()
         return @categoryId
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end; end
 

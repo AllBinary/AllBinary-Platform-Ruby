@@ -15,21 +15,23 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class PlatformFormInputMappingFactory
     attr_accessor :logUtil, :inputToGameKeyMapping
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @inputToGameKeyMapping = InputToGameKeyMapping.getNullInstance()
+    def jfields_org_allbinary_game_input_PlatformFormInputMappingFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @inputToGameKeyMapping = ::Org::Allbinary::Game::Input::Mapping::InputToGameKeyMapping.getNullInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_PlatformFormInputMappingFactory
     end
     
 
     def self.getInstance()
-        if PlatformFormInputMappingFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if PlatformFormInputMappingFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             PlatformFormInputMappingFactory.instance = PlatformFormInputMappingFactory.new()
         end
         return PlatformFormInputMappingFactory.instance
@@ -38,9 +40,9 @@ class PlatformFormInputMappingFactory
 
     def getOrCreate()
         begin
-            if @inputToGameKeyMapping == InputToGameKeyMapping.getNullInstance()
+            if @inputToGameKeyMapping == ::Org::Allbinary::Game::Input::Mapping::InputToGameKeyMapping.getNullInstance()
                 pcKeyFactory = PCKeyFactory.getInstance()
-                inputToGameKeyMapping = InputToGameKeyMapping.new()
+                inputToGameKeyMapping = ::Org::Allbinary::Game::Input::Mapping::InputToGameKeyMapping.new()
                 gameKeyFactory = GameKeyFactory.getInstance()
                 inputToGameKeyMapping.add(gameKeyFactory.UP, pcKeyFactory.DPAD_UP)
                 inputToGameKeyMapping.add(gameKeyFactory.DOWN, pcKeyFactory.DPAD_DOWN)
@@ -50,7 +52,7 @@ class PlatformFormInputMappingFactory
                 @inputToGameKeyMapping = inputToGameKeyMapping
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
         end
         return @inputToGameKeyMapping
@@ -70,7 +72,7 @@ class PlatformFormInputMappingFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -87,16 +89,18 @@ class PlatformFormInputMappingFactory
     end
 end
 
-autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :PCKeyFactory, "org/allbinary/game/input/PCKeyFactory"
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping" unless const_defined?(:InputToGameKeyMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false)
+autoload :PCKeyFactory, "org/allbinary/game/input/PCKeyFactory" unless const_defined?(:PCKeyFactory, false)
 
 begin
     PlatformFormInputMappingFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

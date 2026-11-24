@@ -15,6 +15,8 @@
 # package org.allbinary.business.user.subscription
 
 
+module ::Org; module Allbinary; module Business; module User; module Subscription
+
 class Subscription
     
 
@@ -26,4 +28,6 @@ class Subscription
         return true
     end
 end
+
+end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map.racetrack
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMapCellTypeFactory"
+
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
 
 class CloseLoopRaceTrackGeographicMapCellTypeFactory < RaceTrackGeographicMapCellTypeFactory
     
@@ -32,17 +35,43 @@ class CloseLoopRaceTrackGeographicMapCellTypeFactory < RaceTrackGeographicMapCel
     end
 
     def self.instanceC()
+        CloseLoopRaceTrackGeographicMapCellTypeFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instanceC) ? @@instanceC : nil
     end
 
     def self.instanceC=(value)
+        CloseLoopRaceTrackGeographicMapCellTypeFactory.java_static_fields unless @java_static_fields_started
         @@instanceC = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instanceC = CloseLoopRaceTrackGeographicMapCellTypeFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CloseLoopRaceTrackGeographicMapCellTypeFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/racetrack/EmptyRaceRaceTrackGeographicMapCellTypeFactory"
+autoload :EmptyRaceRaceTrackGeographicMapCellTypeFactory, "org/allbinary/media/graphics/geography/map/racetrack/EmptyRaceRaceTrackGeographicMapCellTypeFactory" unless const_defined?(:EmptyRaceRaceTrackGeographicMapCellTypeFactory, false)
 
-class CloseLoopRaceTrackGeographicMapCellTypeFactory
-    @@instanceC = CloseLoopRaceTrackGeographicMapCellTypeFactory.new()
+begin
+    CloseLoopRaceTrackGeographicMapCellTypeFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

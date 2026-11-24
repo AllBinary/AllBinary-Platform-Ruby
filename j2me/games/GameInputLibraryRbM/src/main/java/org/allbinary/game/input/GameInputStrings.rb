@@ -15,10 +15,12 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class GameInputStrings
     attr_accessor :PROCESS_INPUT, :KEY_PRESSED, :KEY_RELEASED, :KEY_REPEATED, :ON_PRESS_GAME_KEY, :ON_DOWN_GAME_KEY, :ON_UP_GAME_KEY, :NO_KEY, :ADD_KEY_EVENT, :REMOVE_KEY_EVENT, :STRAFE_LEFT, :STRAFE_RIGHT, :PROCESS_MOTION_INPUT, :UDPATE_CURRENT_TOUCH_INPUT_FACTORY, :ENABLE_PLAYER_GAME_INPUTS, :ENABLE_PLAYER_GAME_INPUT
 
-    def initialize_fields
+    def jfields_org_allbinary_game_input_GameInputStrings
         @PROCESS_INPUT = "processInput"
         @KEY_PRESSED = "keyPressed"
         @KEY_RELEASED = "keyReleased"
@@ -38,7 +40,7 @@ class GameInputStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_GameInputStrings
     end
     
 
@@ -82,4 +84,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

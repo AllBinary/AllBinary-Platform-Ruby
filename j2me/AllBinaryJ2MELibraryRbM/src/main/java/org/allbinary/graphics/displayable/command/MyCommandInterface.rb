@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.displayable.command
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable; module Command
+
 module MyCommandInterface
     
 
@@ -30,5 +32,7 @@ module MyCommandInterface
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+
+end; end; end; end; end
 

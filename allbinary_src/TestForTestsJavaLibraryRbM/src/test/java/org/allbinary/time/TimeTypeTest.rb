@@ -2,19 +2,22 @@
 # frozen_string_literal: false
 # package org.allbinary.time
 
+require "java/lang/JavaOverload"
+
+module ::Org; module Allbinary; module TimePackage
 
 class TimeTypeTest
     class TestableTimeTypeUtil < TimeTypeUtil
         attr_accessor :hour
 
-        def initialize_fields
-            @hour = nil
+        def jfields_org_allbinary_time_TimeTypeTest_TestableTimeTypeUtil
+            @hour = nil unless instance_variable_defined?(:@hour)
         end
         
 
         def initialize(hour)
             super()
-            initialize_fields
+            jfields_org_allbinary_time_TimeTypeTest_TestableTimeTypeUtil
             @hour = hour
         end
         
@@ -22,15 +25,16 @@ class TimeTypeTest
         def getHourOfDay()
             return @hour
         end
+        java_overload :getHourOfDay, 0
     end
     
 
     def self.millisForHourLocal(hour)
-        cal = Calendar.getInstance()
-        cal.set(Calendar::HOUR_OF_DAY, hour)
-        cal.set(Calendar::MINUTE, 0)
-        cal.set(Calendar::SECOND, 0)
-        cal.set(Calendar::MILLISECOND, 0)
+        cal = ::Java::Util::Calendar.getInstance()
+        cal.set(::Java::Util::Calendar::HOUR_OF_DAY, hour)
+        cal.set(::Java::Util::Calendar::MINUTE, 0)
+        cal.set(::Java::Util::Calendar::SECOND, 0)
+        cal.set(::Java::Util::Calendar::MILLISECOND, 0)
         return cal.getTimeInMillis()
     end
     
@@ -52,9 +56,9 @@ class TimeTypeTest
 
     def getNightOrDay_returns_expected_label()
         nightUtil = TestableTimeTypeUtil.new(0)
-        Assertions.assertEquals(nightUtil.NIGHT, nightUtil.getNightOrDay())
+        ::Org::Junit::Jupiter::Api::Assertions.assertEquals(nightUtil.NIGHT, nightUtil.getNightOrDay())
         dayUtil = TestableTimeTypeUtil.new(12)
-        Assertions.assertEquals(dayUtil.DAY, dayUtil.getNightOrDay())
+        ::Org::Junit::Jupiter::Api::Assertions.assertEquals(dayUtil.DAY, dayUtil.getNightOrDay())
     end
     
 
@@ -75,8 +79,8 @@ class TimeTypeTest
         util = TimeTypeUtil.new()
         nightMillis = TimeTypeTest.millisForHourLocal(0)
         dayMillis = TimeTypeTest.millisForHourLocal(12)
-        Assertions.assertEquals(util.NIGHT, util.getNightOrDay(nightMillis))
-        Assertions.assertEquals(util.DAY, util.getNightOrDay(dayMillis))
+        ::Org::Junit::Jupiter::Api::Assertions.assertEquals(util.NIGHT, util.getNightOrDay(nightMillis))
+        ::Org::Junit::Jupiter::Api::Assertions.assertEquals(util.DAY, util.getNightOrDay(dayMillis))
     end
     
 
@@ -88,20 +92,22 @@ class TimeTypeTest
 
     def constants_accessible_and_stable()
         util = TimeTypeUtil.new()
-        Assertions.assertEquals("Night", util.NIGHT)
-        Assertions.assertEquals("Day", util.DAY)
+        ::Org::Junit::Jupiter::Api::Assertions.assertEquals("Night", util.NIGHT)
+        ::Org::Junit::Jupiter::Api::Assertions.assertEquals("Day", util.DAY)
     end
     
 
     def getInstance_returns_same_singleton()
         a = TimeTypeUtil.getInstance()
         b = TimeTypeUtil.getInstance()
-        Assertions.assertSame(a, b)
+        ::Org::Junit::Jupiter::Api::Assertions.assertSame(a, b)
     end
 end
 
-require "java/util/Calendar"
-require "org/junit/jupiter/api/Assertions"
-require "org/junit/jupiter/api/DisplayName"
-require "org/junit/jupiter/api/Test"
+module ::Java; module Util; autoload :Calendar, "java/util/Calendar" unless const_defined?(:Calendar, false); end; end
+module ::Org; module Junit; module Jupiter; module Api; autoload :Assertions, "org/junit/jupiter/api/Assertions" unless const_defined?(:Assertions, false); end; end; end; end
+module ::Org; module Junit; module Jupiter; module Api; autoload :DisplayName, "org/junit/jupiter/api/DisplayName" unless const_defined?(:DisplayName, false); end; end; end; end
+module ::Org; module Junit; module Jupiter; module Api; autoload :Test, "org/junit/jupiter/api/Test" unless const_defined?(:Test, false); end; end; end; end
+
+end; end; end
 

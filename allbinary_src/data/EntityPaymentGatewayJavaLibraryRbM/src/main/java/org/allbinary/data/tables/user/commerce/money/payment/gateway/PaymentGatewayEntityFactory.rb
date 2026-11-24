@@ -15,6 +15,8 @@
 # package org.allbinary.data.tables.user.commerce.money.payment.gateway
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Commerce; module Money; module Payment; module Gateway
+
 class PaymentGatewayEntityFactory
     
 
@@ -24,12 +26,12 @@ class PaymentGatewayEntityFactory
 
     # throws Exception
     def self.getInstance()
-        logUtil = LogUtil.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         begin
             return PaymentGatewayEntity.new()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
                 logUtil.put(commonStrings.EXCEPTION, "PaymentGatewayEntityFactory", commonStrings.GET_INSTANCE, e)
             end
             raise e
@@ -37,7 +39,11 @@ class PaymentGatewayEntityFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :PaymentGatewayEntity, "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntity"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :PaymentGatewayEntity, "org/allbinary/data/tables/user/commerce/money/payment/gateway/PaymentGatewayEntity" unless const_defined?(:PaymentGatewayEntity, false)
+
+end; end; end; end; end; end; end; end; end
 

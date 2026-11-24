@@ -3,6 +3,8 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class MultiPlayerGameFeatureFactory
     
 
@@ -16,7 +18,7 @@ class MultiPlayerGameFeatureFactory
     
 
     def addCommands(anyType)
-        gameCommandsFactory = GameCommandsFactory.getInstance()
+        gameCommandsFactory = ::Org::Allbinary::Game::Commands::GameCommandsFactory.getInstance()
         canvas = anyType
         canvas.addCommand(gameCommandsFactory.QUIT_COMMAND)
     end
@@ -52,12 +54,14 @@ class MultiPlayerGameFeatureFactory
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Commands; autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory" unless const_defined?(:GameCommandsFactory, false); end; end; end; end
 
 begin
     MultiPlayerGameFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

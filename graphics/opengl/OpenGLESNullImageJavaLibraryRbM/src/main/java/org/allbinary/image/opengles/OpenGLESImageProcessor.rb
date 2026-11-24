@@ -15,6 +15,8 @@
 # package org.allbinary.image.opengles
 
 
+module ::Org; module Allbinary; module Image; module Opengles
+
 class OpenGLESImageProcessor
     
 
@@ -69,11 +71,13 @@ class OpenGLESImageProcessor
     end
 end
 
-autoload :GL10, "javax/microedition/khronos/opengles/GL10"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
 
 begin
     OpenGLESImageProcessor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

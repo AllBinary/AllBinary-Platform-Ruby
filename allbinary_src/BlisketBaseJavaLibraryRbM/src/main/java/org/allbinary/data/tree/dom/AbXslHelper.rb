@@ -14,9 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.data.tree.dom
 
-# require "java/io/ByteArrayOutputStream"
 # require "javax/xml/transform/stream/StreamResult"
 # require "javax/xml/transform/stream/StreamSource"
+
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
 
 class AbXslHelper
     
@@ -27,27 +28,36 @@ class AbXslHelper
     
 
     # throws Exception
-    def translate(xslFile, xmlFile)
+    def translate_j2_1(xslFile, xmlFile)
         return self.translate(xslFile.getAbsolutePath(), xmlFile.getAbsolutePath())
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def translate(xslPath, xmlPath)
+    def translate_j2_2(xslPath, xmlPath)
         return self.translate(xslPath.getPath(), xmlPath.getPath())
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def translate(xsltFilePath, xmlFilePath)
+    def translate_j2_3(xsltFilePath, xmlFilePath)
         begin
-            outputStream = ByteArrayOutputStream.new()
+            outputStream = ::Java::Io::ByteArrayOutputStream.new()
             return XslHelper.getInstance().translate(StreamSource.new(xsltFilePath), StreamSource.new(xmlFilePath), StreamResult.new(outputStream)).to_s
         rescue StandardError => e
             raise e
         end
+    end
+
+    def translate(*java_overload_args)
+        return translate_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method translate takes #{java_overload_args.length} arguments"
+    end
+
+    def translate_j2(*java_overload_args)
+        return translate_j2_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::Allbinary::Logic::Io::FilePackage::AbFile)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::Org::Allbinary::Logic::Io::FilePackage::AbFile))
+        return translate_j2_2(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::Allbinary::Logic::Io::Path::AbPath)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::Org::Allbinary::Logic::Io::Path::AbPath))
+        return translate_j2_3(*java_overload_args)
     end
 
     def self.instance()
@@ -81,13 +91,16 @@ class AbXslHelper
     end
 end
 
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
-autoload :XslHelper, "org/allbinary/data/tree/dom/XslHelper"
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+autoload :XslHelper, "org/allbinary/data/tree/dom/XslHelper" unless const_defined?(:XslHelper, false)
 
 begin
     AbXslHelper.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

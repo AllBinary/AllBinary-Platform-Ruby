@@ -15,6 +15,8 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class SideScrollerAnimation
     
 
@@ -37,4 +39,6 @@ class SideScrollerAnimation
     def crouch()
     end
 end
+
+end; end; end
 

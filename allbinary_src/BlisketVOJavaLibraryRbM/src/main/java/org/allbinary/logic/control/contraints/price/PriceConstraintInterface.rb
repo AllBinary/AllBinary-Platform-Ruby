@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.control.contraints.price
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/contraints/MinMaxDoubleConstraintInterface"
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Price
+
 module PriceConstraintInterface
-    include MinMaxDoubleConstraintInterface
+    include ::Org::Allbinary::Logic::ControlPackage::Contraints::MinMaxDoubleConstraintInterface
 end
+
+end; end; end; end; end; end
 

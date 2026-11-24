@@ -15,17 +15,19 @@
 # package org.allbinary.layer
 
 
+module ::Org; module Allbinary; module Layer
+
 class LayerInterfaceFactory
     attr_accessor :logUtil, :list, :HASHTABLE_LABEL
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @list = BasicArrayListUtil.getInstance().getImmutableInstance()
+    def jfields_org_allbinary_layer_LayerInterfaceFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @list = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
         @HASHTABLE_LABEL = "Hashtable: "
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_layer_LayerInterfaceFactory
     end
     
 
@@ -35,14 +37,14 @@ class LayerInterfaceFactory
     
 
     def init()
-        @list = BasicArrayListD.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     # throws Exception
     def getNexInstance(hashtable, x, y, z)
-        commonStrings = CommonStrings.getInstance()
-        @logUtil.putF(StringMaker.new().append(@HASHTABLE_LABEL).append(StringUtil.getInstance().toString(hashtable)).to_s, self, commonStrings.GET_INSTANCE)
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@HASHTABLE_LABEL).append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(hashtable)).to_s, self, commonStrings.GET_INSTANCE)
         typeInteger = hashtable.get(Layer::ID)
         layerInterfaceFactoryInterface = @list.objectArray[typeInteger.to_i - 1]
         return layerInterfaceFactoryInterface.getNextInstance(hashtable, x, y, z)
@@ -74,21 +76,23 @@ class LayerInterfaceFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :Layer, "org/allbinary/layer/Layer"
-autoload :LayerInterfaceFactoryInterface, "org/allbinary/layer/LayerInterfaceFactoryInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false)
+autoload :Layer, "org/allbinary/layer/Layer" unless const_defined?(:Layer, false)
+autoload :LayerInterfaceFactoryInterface, "org/allbinary/layer/LayerInterfaceFactoryInterface" unless const_defined?(:LayerInterfaceFactoryInterface, false)
 
 begin
     LayerInterfaceFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

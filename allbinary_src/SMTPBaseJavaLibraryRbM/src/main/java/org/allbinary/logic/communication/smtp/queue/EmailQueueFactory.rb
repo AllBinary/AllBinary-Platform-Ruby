@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.smtp.queue
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module QueuePackage
+
 class EmailQueueFactory
     
 
@@ -57,12 +59,14 @@ class EmailQueueFactory
     end
 end
 
-autoload :BasicEmailQueue, "org/allbinary/logic/communication/smtp/queue/BasicEmailQueue"
-autoload :EmailQueueInterface, "org/allbinary/logic/communication/smtp/queue/EmailQueueInterface"
+autoload :BasicEmailQueue, "org/allbinary/logic/communication/smtp/queue/BasicEmailQueue" unless const_defined?(:BasicEmailQueue, false)
+autoload :EmailQueueInterface, "org/allbinary/logic/communication/smtp/queue/EmailQueueInterface" unless const_defined?(:EmailQueueInterface, false)
 
 begin
     EmailQueueFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

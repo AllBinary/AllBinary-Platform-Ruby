@@ -14,66 +14,76 @@
 # frozen_string_literal: false
 # package views.generic.advertisement.area
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 require "views/business/context/modules/storefront/HttpStoreComponentView"
 
-class AdvertisementAreaView < HttpStoreComponentView
-    include DomNodeInterface
+module ::Views; module Generic; module Advertisement; module Area
+
+class AdvertisementAreaView < ::Views::Business::Context::Modules::Storefront::HttpStoreComponentView
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     attr_accessor :logUtil, :advertisementAreaName
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @advertisementAreaName = nil
+    def jfields_views_generic_advertisement_area_AdvertisementAreaView
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @advertisementAreaName = nil unless instance_variable_defined?(:@advertisementAreaName)
     end
     
 
     def initialize(transformInfoInterface)
         super(transformInfoInterface)
-        initialize_fields
-        @advertisementAreaName = self.getPropertiesHashMap().get(AdvertisementAreaData.getInstance().NAME)
+        jfields_views_generic_advertisement_area_AdvertisementAreaView
+        @advertisementAreaName = self.getPropertiesHashMap().get(::Org::Allbinary::Business::Advertisement::Area::AdvertisementAreaData.getInstance().NAME)
     end
     
 
     # throws Exception
     def toXmlNode(document)
         begin
-            advertisementAreasEntityInterface = AdvertisementAreasEntityFactory.getInstance()
+            advertisementAreasEntityInterface = ::Org::Allbinary::DataPackage::Tables::Advertisement::Areas::AdvertisementAreasEntityFactory.getInstance()
             advertisementAreaInterface = advertisementAreasEntityInterface.get(self.getTransformInfoInterface().getStoreName(), @advertisementAreaName)
             return nil
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().XSLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().XSLLOGGINGERROR)
                 @logUtil.put(@commonStrings.FAILURE, self, "toXmlNode", e)
             end
             raise e
         end
     end
+    java_overload :toXmlNode, 1
     
 
     def addDomNodeInterfaces()
         self.addDomNodeInterface(self)
     end
+    java_overload :addDomNodeInterfaces, 0
     
 
     # throws Exception
     def view()
         begin
             self.addDomNodeInterfaces()
-            return super()
+            return AdvertisementAreaView.superclass.java_super_method(:view, 0).bind(self).call()
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "view()", e)
             end
             raise e
         end
     end
+    java_overload :view, 0
 end
 
-autoload :AdvertisementAreaData, "org/allbinary/business/advertisement/area/AdvertisementAreaData"
-autoload :AdvertisementAreaInterface, "org/allbinary/business/advertisement/area/AdvertisementAreaInterface"
-autoload :AdvertisementAreasEntityFactory, "org/allbinary/data/tables/advertisement/areas/AdvertisementAreasEntityFactory"
-autoload :AdvertisementAreasEntityInterface, "org/allbinary/data/tables/advertisement/areas/AdvertisementAreasEntityInterface"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module Business; module Advertisement; module Area; autoload :AdvertisementAreaData, "org/allbinary/business/advertisement/area/AdvertisementAreaData" unless const_defined?(:AdvertisementAreaData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Advertisement; module Area; autoload :AdvertisementAreaInterface, "org/allbinary/business/advertisement/area/AdvertisementAreaInterface" unless const_defined?(:AdvertisementAreaInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module Advertisement; module Areas; autoload :AdvertisementAreasEntityFactory, "org/allbinary/data/tables/advertisement/areas/AdvertisementAreasEntityFactory" unless const_defined?(:AdvertisementAreasEntityFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module Advertisement; module Areas; autoload :AdvertisementAreasEntityInterface, "org/allbinary/data/tables/advertisement/areas/AdvertisementAreasEntityInterface" unless const_defined?(:AdvertisementAreasEntityInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end
 

@@ -15,20 +15,26 @@
 # package org.allbinary.data.tree.dom.document
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document
+
 module DomDocumentQueueInterface
     
 
     # throws Exception
     def offer(domDocumentMappingInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def remove()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :DomDocumentMappingInterface, "org/allbinary/data/tree/dom/document/mapping/DomDocumentMappingInterface"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; module Mapping; autoload :DomDocumentMappingInterface, "org/allbinary/data/tree/dom/document/mapping/DomDocumentMappingInterface" unless const_defined?(:DomDocumentMappingInterface, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end
 

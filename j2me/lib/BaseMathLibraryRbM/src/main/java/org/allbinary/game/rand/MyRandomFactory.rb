@@ -19,13 +19,15 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 
+module ::Org; module Allbinary; module Game; module Rand
+
 #Do not use in client code for money related things.
 class MyRandomFactory
     attr_accessor :mathUtil, :rand
 
-    def initialize_fields
-        @mathUtil = MathUtil.getInstance()
-        @rand = nil
+    def jfields_org_allbinary_game_rand_MyRandomFactory
+        @mathUtil = ::Org::Allbinary::Logic::MathPackage::MathUtil.getInstance()
+        @rand = nil unless instance_variable_defined?(:@rand)
     end
     
 
@@ -35,8 +37,8 @@ class MyRandomFactory
     
 
     def initialize()
-        initialize_fields
-        @rand = Random.new((Time.now.to_f * 1000).to_i)
+        jfields_org_allbinary_game_rand_MyRandomFactory
+        @rand = Random.new((::Time.now.to_f * 1000).to_i)
     end
     
 
@@ -47,7 +49,7 @@ class MyRandomFactory
 
     def getNextInt(range)
         div = (2147483647 / range) + 1
-        return ((@rand.nextInt() / div)).to_i
+        return (((@rand.nextInt() / div)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
     end
     
 
@@ -111,16 +113,16 @@ class MyRandomFactory
 
     def self.main(args)
         randomFactory = MyRandomFactory.getInstance()
-        stringBuilder = StringMaker.new()
-        commonSeps = CommonSeps.getInstance()
+        stringBuilder = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         size2 = 100
         (0...size2).each do |index|
-            stringBuilder.appendint((randomFactory.getAbsoluteNextInt(3)).to_i).append(commonSeps.COMMA)
+            stringBuilder.appendint(((randomFactory.getAbsoluteNextInt(3)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).append(commonSeps.COMMA)
         end
         puts(stringBuilder.to_s)
         stringBuilder.delete(0, stringBuilder.length())
-        intArray = Array.new(52, 0)
-        intArray2 = Array.new(52, 0)
+        intArray = (Array.new(52, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        intArray2 = (Array.new(52, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         size = intArray.length
         (0...size).each do |index|
             intArray[index] = index
@@ -181,9 +183,9 @@ class MyRandomFactory
     end
 end
 
-autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 require "java/lang/System"
 
 begin
@@ -191,4 +193,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

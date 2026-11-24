@@ -15,10 +15,12 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class SensorFeatureFactory
     attr_accessor :NO_ORIENTATION, :ORIENTATION_SENSORS, :SIMULATED_ORIENTATION_SENSORS, :YAW, :YAW_MINUS_RIGHT_PLUS_LEFT, :YAW_MINUS_LEFT_PLUS_RIGHT, :PITCH, :ROLL
 
-    def initialize_fields
+    def jfields_org_allbinary_game_configuration_feature_SensorFeatureFactory
         @NO_ORIENTATION = SensorFeature.new("No Orientation")
         @ORIENTATION_SENSORS = SensorFeature.new("Orientation Sensors")
         @SIMULATED_ORIENTATION_SENSORS = SensorFeature.new("Simulated Orientation Sensors")
@@ -36,7 +38,7 @@ class SensorFeatureFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_SensorFeatureFactory
     end
 
     def self.instance()
@@ -70,11 +72,13 @@ class SensorFeatureFactory
     end
 end
 
-autoload :SensorFeature, "org/allbinary/game/configuration/feature/SensorFeature"
+autoload :SensorFeature, "org/allbinary/game/configuration/feature/SensorFeature" unless const_defined?(:SensorFeature, false)
 
 begin
     SensorFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

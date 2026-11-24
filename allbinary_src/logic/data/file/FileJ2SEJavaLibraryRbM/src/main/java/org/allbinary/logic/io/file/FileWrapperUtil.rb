@@ -16,6 +16,8 @@
 
 # require "java/io/File"
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 class FileWrapperUtil
     
 
@@ -27,7 +29,7 @@ class FileWrapperUtil
             end
             return abFileArray
         rescue StandardError => e
-            PreLogUtil.putSE("Exception Wrapping Files", "FileWrapperUtil", "wrapFiles", e)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putSE("Exception Wrapping Files", "FileWrapperUtil", "wrapFiles", e)
             return Array.new(0, nil)
         end
     end
@@ -37,12 +39,14 @@ class FileWrapperUtil
         begin
             return AbFile.new(file)
         rescue StandardError => e
-            PreLogUtil.putSE("Exception Wrapping File", "FileWrapperUtil", "wrapFile", e)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putSE("Exception Wrapping File", "FileWrapperUtil", "wrapFile", e)
             return AbFile::NULL_FILE
         end
     end
 end
 
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false)
+
+end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.logic.java.character
 
 
+module ::Org; module Allbinary; module Logic; module Java; module Character
+
 #import java.nio.charset.Charset;
 class CharacterSet
     
@@ -28,4 +30,6 @@ class CharacterSet
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end
 

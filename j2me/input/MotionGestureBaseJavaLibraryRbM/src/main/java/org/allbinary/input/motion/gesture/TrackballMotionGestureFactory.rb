@@ -15,19 +15,21 @@
 # package org.allbinary.input.motion.gesture
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture
+
 class TrackballMotionGestureFactory
     attr_accessor :LEFT, :RIGHT, :UP, :DOWN
 
-    def initialize_fields
-        @LEFT = nil
-        @RIGHT = nil
-        @UP = nil
-        @DOWN = nil
+    def jfields_org_allbinary_input_motion_gesture_TrackballMotionGestureFactory
+        @LEFT = nil unless instance_variable_defined?(:@LEFT)
+        @RIGHT = nil unless instance_variable_defined?(:@RIGHT)
+        @UP = nil unless instance_variable_defined?(:@UP)
+        @DOWN = nil unless instance_variable_defined?(:@DOWN)
     end
     
 
     def self.getInstance()
-        if TrackballMotionGestureFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if TrackballMotionGestureFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             TrackballMotionGestureFactory.instance = TrackballMotionGestureFactory.new()
         end
         return TrackballMotionGestureFactory.instance
@@ -35,8 +37,8 @@ class TrackballMotionGestureFactory
     
 
     def initialize()
-        initialize_fields
-        _MAX = InputFactory.getInstance().MAX
+        jfields_org_allbinary_input_motion_gesture_TrackballMotionGestureFactory
+        _MAX = ::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX
         @LEFT = MotionGestureInput.new(_MAX - 26, "L Trackball")
         @RIGHT = MotionGestureInput.new(_MAX - 27, "R Trackball")
         @UP = MotionGestureInput.new(_MAX - 28, "Up Trackball")
@@ -57,7 +59,7 @@ class TrackballMotionGestureFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -74,13 +76,15 @@ class TrackballMotionGestureFactory
     end
 end
 
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput" unless const_defined?(:MotionGestureInput, false)
 
 begin
     TrackballMotionGestureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,31 +14,39 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.smtp.event.modules.log
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/communication/smtp/event/UserEmailEventListenerInterface"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; module Modules; module Log
+
 class LogUserEmailEventListenerModule
-    include UserEmailEventListenerInterface
+    include ::Org::Allbinary::Logic::Communication::Smtp::Event::UserEmailEventListenerInterface
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_communication_smtp_event_modules_log_LogUserEmailEventListenerModule
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_smtp_event_modules_log_LogUserEmailEventListenerModule
     end
     
 
     # throws Exception
     def onEmailSendRequest(userEmailInfoEvent)
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
             message = "Logging EmailEvent - Temporary Listener for debugging.\n\n" + userEmailInfoEvent.to_s
             @logUtil.putF(message, self, "onEmailSendRequest")
         end
     end
+    java_overload :onEmailSendRequest, 1
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :EmailEvent, "org/allbinary/logic/communication/smtp/event/EmailEvent"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Event; autoload :EmailEvent, "org/allbinary/logic/communication/smtp/event/EmailEvent" unless const_defined?(:EmailEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end; end; end
 

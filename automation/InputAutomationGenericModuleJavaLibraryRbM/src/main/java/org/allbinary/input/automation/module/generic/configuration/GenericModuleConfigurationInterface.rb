@@ -15,18 +15,24 @@
 # package org.allbinary.input.automation.module.generic.configuration
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration
+
 module GenericModuleConfigurationInterface
     
 
     def getSelectedGenericProfile()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setSelectedGenericProfile(selectedGenericProfile)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :GenericProfile, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile; autoload :GenericProfile, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile" unless const_defined?(:GenericProfile, false); end; end; end; end; end; end; end; end
+
+end; end; end; end; end; end; end
 

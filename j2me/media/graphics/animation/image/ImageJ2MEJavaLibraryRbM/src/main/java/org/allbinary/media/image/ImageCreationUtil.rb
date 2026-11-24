@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageCreationUtil
     
@@ -29,14 +32,14 @@ class ImageCreationUtil
 
     # throws Exception
     def createImageWH(width, height)
-        image = GameFeatureImageCacheFactory.getInstance().get(self.class.name, width, height)
+        image = ::Org::Allbinary::Image::GameFeatureImageCacheFactory.getInstance().get(self.class.java_name, width, height)
         return image
     end
     
 
     # throws Exception
     def createImage(width, height, maxScaleX, maxScaleY)
-        image = GameFeatureImageCacheFactory.getInstance().get(self.class.name, (((width).to_f * maxScaleX)).to_i + 1, (((height).to_f * maxScaleY)).to_i + 1)
+        image = ::Org::Allbinary::Image::GameFeatureImageCacheFactory.getInstance().get(self.class.java_name, (((width).to_f * maxScaleX)).to_i + 1, (((height).to_f * maxScaleY)).to_i + 1)
         return image
     end
 
@@ -71,12 +74,14 @@ class ImageCreationUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :GameFeatureImageCacheFactory, "org/allbinary/image/GameFeatureImageCacheFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :GameFeatureImageCacheFactory, "org/allbinary/image/GameFeatureImageCacheFactory" unless const_defined?(:GameFeatureImageCacheFactory, false); end; end; end
 
 begin
     ImageCreationUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

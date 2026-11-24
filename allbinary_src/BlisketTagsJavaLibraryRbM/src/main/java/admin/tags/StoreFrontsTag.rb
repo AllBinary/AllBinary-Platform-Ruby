@@ -14,24 +14,27 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/JavaOverload"
 # require "java/lang/reflect/Method"
 # require "javax/servlet/jsp/JspTagException"
 # require "javax/servlet/jsp/tagext/TagSupport"
 require "admin/tags/TableTag"
 
+module ::Admin; module Tags
+
 class StoreFrontsTag < TableTag
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_admin_tags_StoreFrontsTag
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        self.setTagHelperFactory(StoreFrontsHelperFactory.new())
-        self.setTagRequestHelperFactory(StoreFrontsRequestHelperFactory.new())
+        jfields_admin_tags_StoreFrontsTag
+        self.setTagHelperFactory(::Admin::Taghelpers::StoreFrontsHelperFactory.new())
+        self.setTagRequestHelperFactory(::Admin::Taghelpers::StoreFrontsRequestHelperFactory.new())
     end
     
 
@@ -42,16 +45,17 @@ class StoreFrontsTag < TableTag
             method = anyType.class.getMethod("generateSelect", nil)
             result = method.invoke(anyType, nil)
             return result
-        rescue LicensingException => e
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
             raise e
         rescue StandardError => e
             error = "Failed to generate storefronts select"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "generateSelect()", e)
             end
             return error
         end
     end
+    java_overload :generateSelect, 0
     
 
     # throws LicensingException
@@ -61,16 +65,17 @@ class StoreFrontsTag < TableTag
             method = anyType.class.getMethod("install", nil)
             result = method.invoke(anyType, nil)
             return result
-        rescue LicensingException => e
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
             raise e
         rescue StandardError => e
             error = "Failed to generate storefronts select"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "generateSelect()", e)
             end
             return error
         end
     end
+    java_overload :install, 0
     
 
     # throws LicensingException
@@ -80,16 +85,17 @@ class StoreFrontsTag < TableTag
             method = anyType.class.getMethod("sendStoreCreatedEmails", nil)
             result = method.invoke(anyType, nil)
             return result
-        rescue LicensingException => e
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
             raise e
         rescue StandardError => e
             error = "Failed to send email"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "sendStoreCreatedEmails()", e)
             end
             return error
         end
     end
+    java_overload :sendStoreCreatedEmails, 0
     
 
     # throws JspTagException
@@ -97,7 +103,7 @@ class StoreFrontsTag < TableTag
         begin
             if self.isEnabled()
                 if self.getCommand() != nil
-                    storeFrontData = StoreFrontData.getInstance()
+                    storeFrontData = ::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontData.getInstance()
                     if self.getCommand().compareTo(storeFrontData.SELECT) == 0
                         @pageContext.getOut().print(self.generateSelect())
                     elsif self.getCommand().compareTo(storeFrontData.INSTALL) == 0
@@ -110,25 +116,30 @@ class StoreFrontsTag < TableTag
                     elsif self.getCommand().compareTo(storeFrontData.INSTALL_COMPLETE) == 0
                         self.sendStoreCreatedEmails()
                     else
-                        return super()
+                        return StoreFrontsTag.superclass.java_super_method(:doStartTag, 0).bind(self).call()
                     end
                 end
             end
             return SKIP_BODY
-        rescue LicensingException => e
-            AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
             return SKIP_BODY
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :StoreFrontsHelperFactory, "admin/taghelpers/StoreFrontsHelperFactory"
-autoload :StoreFrontsRequestHelperFactory, "admin/taghelpers/StoreFrontsRequestHelperFactory"
-autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+module ::Admin; module Taghelpers; autoload :StoreFrontsHelperFactory, "admin/taghelpers/StoreFrontsHelperFactory" unless const_defined?(:StoreFrontsHelperFactory, false); end; end
+module ::Admin; module Taghelpers; autoload :StoreFrontsRequestHelperFactory, "admin/taghelpers/StoreFrontsRequestHelperFactory" unless const_defined?(:StoreFrontsRequestHelperFactory, false); end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData" unless const_defined?(:StoreFrontData, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end
 

@@ -14,20 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.generic.configuration.profile
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerType"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile
 
 class SavedCaptureGenericProfileDataWorkerType < GenericProfileDataWorkerType
     attr_accessor :path, :lastFrame
 
-    def initialize_fields
-        @path = nil
-        @lastFrame = 0
+    def jfields_org_allbinary_input_automation_module_generic_configuration_profile_SavedCaptureGenericProfileDataWorkerType
+        @path = nil unless instance_variable_defined?(:@path)
+        @lastFrame = 0 unless instance_variable_defined?(:@lastFrame)
     end
     
 
     def initialize(name, path, lastFrame)
         super(name)
-        initialize_fields
+        jfields_org_allbinary_input_automation_module_generic_configuration_profile_SavedCaptureGenericProfileDataWorkerType
         self.setPath(path)
         self.setLastFrame(lastFrame)
     end
@@ -36,27 +40,31 @@ class SavedCaptureGenericProfileDataWorkerType < GenericProfileDataWorkerType
     def getPath()
         return @path
     end
+    java_overload :getPath, 0
     
 
     def setPath(path)
         @path = path
     end
+    java_overload :setPath, 1
     
 
     def getLastFrame()
         return @lastFrame
     end
+    java_overload :getLastFrame, 0
     
 
     def setLastFrame(lastFrame)
         @lastFrame = lastFrame
     end
+    java_overload :setLastFrame, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:SAVED_CAPTURE, SavedCaptureGenericProfileDataWorkerType.new("Saved " + InputImageType::CAPTURE.getName(), "c:\\share\\captures\\2\\", 100))
+            const_set(:SAVED_CAPTURE, SavedCaptureGenericProfileDataWorkerType.new("Saved " + ::Org::Allbinary::Input::Media::Image::InputImageType::CAPTURE.getName(), "c:\\share\\captures\\2\\", 100))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -73,11 +81,13 @@ class SavedCaptureGenericProfileDataWorkerType < GenericProfileDataWorkerType
     end
 end
 
-autoload :InputImageType, "org/allbinary/input/media/image/InputImageType"
+module ::Org; module Allbinary; module Input; module Media; module Image; autoload :InputImageType, "org/allbinary/input/media/image/InputImageType" unless const_defined?(:InputImageType, false); end; end; end; end; end
 
 begin
     SavedCaptureGenericProfileDataWorkerType.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

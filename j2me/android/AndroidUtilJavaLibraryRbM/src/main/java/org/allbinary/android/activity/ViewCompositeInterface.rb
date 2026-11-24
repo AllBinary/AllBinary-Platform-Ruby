@@ -15,24 +15,31 @@
 # package org.allbinary.android.activity
 
 
+module ::Org; module Allbinary; module Android; module Activity
+
 module ViewCompositeInterface
     
 
     def getRootView()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getView()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def runOnUiThread(action)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "android/view/View"
+module ::Android; module View; autoload :View, "android/view/View" unless const_defined?(:View, false); end; end
 require "java/lang/Runnable"
+
+end; end; end; end
 

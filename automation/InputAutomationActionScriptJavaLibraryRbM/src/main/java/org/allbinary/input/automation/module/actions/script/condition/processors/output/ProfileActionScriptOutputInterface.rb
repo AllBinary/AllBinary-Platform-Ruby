@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.actions.script.condition.processors.output
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/automation/actions/script/condition/processors/ProfileActionScriptProcessorInterface"
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Actions; module Script; module Condition; module Processors; module Output
+
 module ProfileActionScriptOutputInterface
-    include ProfileActionScriptProcessorInterface
+    include ::Org::Allbinary::Input::Automation::Actions::Script::Condition::Processors::ProfileActionScriptProcessorInterface
 end
+
+end; end; end; end; end; end; end; end; end; end
 

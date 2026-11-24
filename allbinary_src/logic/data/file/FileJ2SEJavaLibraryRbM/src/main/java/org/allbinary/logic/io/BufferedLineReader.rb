@@ -17,17 +17,19 @@
 # require "java/io/BufferedReader"
 # require "java/io/FileReader"
 
+module ::Org; module Allbinary; module Logic; module Io
+
 class BufferedLineReader
     attr_accessor :tmpIn
 
-    def initialize_fields
-        @tmpIn = nil
+    def jfields_org_allbinary_logic_io_BufferedLineReader
+        @tmpIn = nil unless instance_variable_defined?(:@tmpIn)
     end
     
 
     def initialize(file)
-        initialize_fields
-        @tmpIn = BufferedReader.new(FileReader.new(AbFileNativeUtil.get(file)))
+        jfields_org_allbinary_logic_io_BufferedLineReader
+        @tmpIn = BufferedReader.new(FileReader.new(::Org::Allbinary::Logic::Io::FilePackage::AbFileNativeUtil.get(file)))
     end
     
 
@@ -57,6 +59,8 @@ class BufferedLineReader
     end
 end
 
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFileNativeUtil, "org/allbinary/logic/io/file/AbFileNativeUtil" unless const_defined?(:AbFileNativeUtil, false); end; end; end; end; end
+
+end; end; end; end
 

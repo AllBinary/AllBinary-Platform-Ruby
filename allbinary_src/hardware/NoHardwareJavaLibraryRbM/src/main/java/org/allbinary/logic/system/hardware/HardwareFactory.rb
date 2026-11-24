@@ -15,10 +15,12 @@
 # package org.allbinary.logic.system.hardware
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware
+
 class HardwareFactory
     attr_accessor :SINGLETON
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_hardware_HardwareFactory
         @SINGLETON = NoHardware.getInstance()
     end
     
@@ -29,12 +31,11 @@ class HardwareFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_hardware_HardwareFactory
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(os)
         begin
             return @SINGLETON
@@ -74,13 +75,15 @@ class HardwareFactory
     end
 end
 
-autoload :OperatingSystemInterface, "org/allbinary/logic/system/os/OperatingSystemInterface"
-autoload :HardwareInterface, "org/allbinary/logic/system/hardware/HardwareInterface"
-autoload :NoHardware, "org/allbinary/logic/system/hardware/NoHardware"
+module ::Org; module Allbinary; module Logic; module System; module Os; autoload :OperatingSystemInterface, "org/allbinary/logic/system/os/OperatingSystemInterface" unless const_defined?(:OperatingSystemInterface, false); end; end; end; end; end
+autoload :HardwareInterface, "org/allbinary/logic/system/hardware/HardwareInterface" unless const_defined?(:HardwareInterface, false)
+autoload :NoHardware, "org/allbinary/logic/system/hardware/NoHardware" unless const_defined?(:NoHardware, false)
 
 begin
     HardwareFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,18 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.money.payment.gateway.transaction
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/TableMappingInterface"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Transaction
+
 module PaymentTransactionInterface
-    include TableMappingInterface
-    include DomNodeInterface
+    include ::Org::Allbinary::DataPackage::Tables::TableMappingInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     
 
     def getOrderHistory()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getOrderHistory, 0
 end
 
-autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Order; autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory" unless const_defined?(:OrderHistory, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end; end; end; end
 

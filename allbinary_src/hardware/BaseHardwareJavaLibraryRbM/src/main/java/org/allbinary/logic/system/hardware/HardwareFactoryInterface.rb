@@ -15,6 +15,10 @@
 # package org.allbinary.logic.system.hardware
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware
+
 module HardwareFactoryInterface
 end
+
+end; end; end; end; end
 

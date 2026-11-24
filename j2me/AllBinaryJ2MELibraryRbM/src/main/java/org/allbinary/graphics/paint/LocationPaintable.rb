@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/LocationPaintableInterface"
+
+module ::Org; module Allbinary; module Graphics; module Paint
 
 class LocationPaintable
     include LocationPaintableInterface
@@ -27,6 +30,7 @@ class LocationPaintable
 
     def paintXY(graphics, x, y)
     end
+    java_overload :paintXY, 3
 
     def self.instance()
         LocationPaintable.java_static_fields unless @java_static_fields_started
@@ -59,11 +63,13 @@ class LocationPaintable
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
 
 begin
     LocationPaintable.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

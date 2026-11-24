@@ -15,6 +15,8 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class PoolInterfaceFactory
     
 
@@ -28,8 +30,10 @@ class PoolInterfaceFactory
     end
 end
 
-autoload :CachePolicy, "org/allbinary/logic/util/cache/CachePolicy"
-autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
-autoload :PoolInterface, "org/allbinary/logic/util/cache/PoolInterface"
-autoload :PoolType, "org/allbinary/logic/util/cache/PoolType"
+autoload :CachePolicy, "org/allbinary/logic/util/cache/CachePolicy" unless const_defined?(:CachePolicy, false)
+autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface" unless const_defined?(:CacheableInterfaceFactoryInterface, false)
+autoload :PoolInterface, "org/allbinary/logic/util/cache/PoolInterface" unless const_defined?(:PoolInterface, false)
+autoload :PoolType, "org/allbinary/logic/util/cache/PoolType" unless const_defined?(:PoolType, false)
+
+end; end; end; end; end
 

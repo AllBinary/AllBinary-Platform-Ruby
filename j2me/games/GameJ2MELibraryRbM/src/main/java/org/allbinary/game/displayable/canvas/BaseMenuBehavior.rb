@@ -15,6 +15,8 @@
 # package org.allbinary.game.displayable.canvas
 
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 class BaseMenuBehavior
     
 
@@ -29,7 +31,7 @@ class BaseMenuBehavior
     
 
     def initSpecialPaint(allBinaryGameCanvas)
-        allBinaryGameCanvas.setNonBotPaintableP(NullPaintable.getInstance())
+        allBinaryGameCanvas.setNonBotPaintableP(::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance())
     end
     
 
@@ -82,13 +84,15 @@ class BaseMenuBehavior
     end
 end
 
-autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
-autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event; autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent" unless const_defined?(:DisplayChangeEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false); end; end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
 
 begin
     BaseMenuBehavior.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

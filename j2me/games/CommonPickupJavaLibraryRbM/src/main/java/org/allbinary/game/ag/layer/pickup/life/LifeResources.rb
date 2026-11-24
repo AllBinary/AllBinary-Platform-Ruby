@@ -15,16 +15,18 @@
 # package org.allbinary.game.ag.layer.pickup.life
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Pickup; module Life
+
 class LifeResources
     attr_accessor :RESOURCE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_ag_layer_pickup_life_LifeResources
         @RESOURCE = "life_drop_20_by_20.png"
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_ag_layer_pickup_life_LifeResources
     end
     
 
@@ -58,4 +60,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

@@ -15,14 +15,19 @@
 # package org.allbinary.business.user.commerce.money.payment.gateway.modules.gateway
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Modules; module Gateway
+
 module PaymentGatewayDomNodeFactoryInterface
     
 
     def getInstance(paymentGatewayInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
-autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface" unless const_defined?(:PaymentGatewayInterface, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomNodeInterface, "org/allbinary/data/tree/dom/DomNodeInterface" unless const_defined?(:DomNodeInterface, false); end; end; end; end; end
+
+end; end; end; end; end; end; end; end; end; end
 

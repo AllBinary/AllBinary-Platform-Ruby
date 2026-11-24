@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.paint
 
 
+module ::Org; module Allbinary; module Graphics; module Paint
+
 class PaintableFactory
     
 
@@ -23,6 +25,8 @@ class PaintableFactory
     end
 end
 
-autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
-autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false)
+autoload :Paintable, "org/allbinary/graphics/paint/Paintable" unless const_defined?(:Paintable, false)
+
+end; end; end; end
 

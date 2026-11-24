@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.os
 
 
+module ::Org; module Allbinary; module Logic; module System; module Os
+
 #NoPlatform
 class SystemProperties
     
@@ -83,4 +85,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

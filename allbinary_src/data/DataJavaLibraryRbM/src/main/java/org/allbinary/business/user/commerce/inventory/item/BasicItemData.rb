@@ -15,10 +15,12 @@
 # package org.allbinary.business.user.commerce.inventory.item
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item
+
 class BasicItemData
     attr_accessor :ITEM, :TOTAL, :ID, :NUMBER, :INBASKETS, :WEIGHT, :NEWORUSED, :SUMMARY, :DISTRIBUTOR, :IDUSEDBYDISTRIBUTOR, :PRODUCEDBY, :PRODUCTIONDATE, :STARTPRODUCTIONDATE, :DESCRIPTION, :KEYWORDS, :CATEGORY, :TYPE, :IMAGE, :SMALLIMAGE, :MEDIUMIMAGE, :LARGEIMAGE, :PRICE, :COMMENT, :CUSTOMS, :DOWNLOADS, :GROUPS, :OPTIONS, :PERMISSIONS, :SPECIALS
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_commerce_inventory_item_BasicItemData
         @ITEM = "BASICITEM"
         @TOTAL = "BASICITEM_TOTAL"
         @ID = "BASICITEM_ID"
@@ -51,7 +53,7 @@ class BasicItemData
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_inventory_item_BasicItemData
     end
     
 
@@ -60,15 +62,41 @@ class BasicItemData
     end
 
     def self.instance()
+        BasicItemData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        BasicItemData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = BasicItemData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicItemData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class BasicItemData
-    @@instance = BasicItemData.new()
+begin
+    BasicItemData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

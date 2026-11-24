@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.thread
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 require "org/allbinary/thread/ARunnable"
+
+module ::Org; module Allbinary; module ThreadPackage
 
 class NullRunnable < ARunnable
     
@@ -67,4 +70,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

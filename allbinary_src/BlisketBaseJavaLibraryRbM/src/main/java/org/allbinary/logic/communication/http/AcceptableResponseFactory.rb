@@ -15,17 +15,19 @@
 # package org.allbinary.logic.communication.http
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http
+
 class AcceptableResponseFactory
     attr_accessor :HTML, :WML, :VXML
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_http_AcceptableResponseFactory
         @HTML = AcceptableResponse.new("text/html", "html", 0)
         @WML = AcceptableResponse.new("text/wml", "wml", 1)
         @VXML = AcceptableResponse.new("text/vxml", "vxml", 2)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_communication_http_AcceptableResponseFactory
     end
     
 
@@ -64,11 +66,13 @@ class AcceptableResponseFactory
     end
 end
 
-autoload :AcceptableResponse, "org/allbinary/logic/communication/http/AcceptableResponse"
+autoload :AcceptableResponse, "org/allbinary/logic/communication/http/AcceptableResponse" unless const_defined?(:AcceptableResponse, false)
 
 begin
     AcceptableResponseFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,7 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageJ2MEScaleUtil
     
@@ -43,9 +44,9 @@ class ImageJ2MEScaleUtil
     def scale(image, width, height)
         sourceWidth = image.getWidth()
         sourceHeight = image.getHeight()
-        originalData = Array.new(image.getWidth() * image.getHeight(), 0)
+        originalData = (Array.new(image.getWidth() * image.getHeight(), 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         image.getRGB(originalData, 0, image.getWidth(), 0, 0, image.getWidth(), image.getHeight())
-        scaledData = Array.new(width * height, 0)
+        scaledData = (Array.new(width * height, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         heightRatioFactor = (8 * sourceHeight) / height
         widthRatioFactor = (8 * sourceWidth) / width
         scaledIndex = scaledData.length - 1
@@ -60,20 +61,48 @@ class ImageJ2MEScaleUtil
                 scaledData[((scaledIndex -= 1) + 1)] = originalData[(sourceWidth * dy) + dx]
             end
         end
-        scaledImage = Image.createRGBImage(scaledData, width, height, true)
+        scaledImage = ::Javax::Microedition::Lcdui::Image.createRGBImage(scaledData, width, height, true)
         return scaledImage
     end
 
     def self.instance()
+        ImageJ2MEScaleUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageJ2MEScaleUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageJ2MEScaleUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageJ2MEScaleUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class ImageJ2MEScaleUtil
-    @@instance = ImageJ2MEScaleUtil.new()
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+
+begin
+    ImageJ2MEScaleUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

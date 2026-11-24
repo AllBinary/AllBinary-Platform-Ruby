@@ -15,17 +15,19 @@
 # package org.allbinary.thirdparty.store
 
 
+module ::Org; module Allbinary; module Thirdparty; module Store
+
 class ThirdPartyMessageFactory
     attr_accessor :AUTHORIZED, :NOT_AUTHORIZED, :LINKAGE_ERROR
 
-    def initialize_fields
+    def jfields_org_allbinary_thirdparty_store_ThirdPartyMessageFactory
         @AUTHORIZED = "Authorized"
         @NOT_AUTHORIZED = "Not Authorized"
         @LINKAGE_ERROR = "Linkage Error"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_thirdparty_store_ThirdPartyMessageFactory
     end
     
 
@@ -69,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

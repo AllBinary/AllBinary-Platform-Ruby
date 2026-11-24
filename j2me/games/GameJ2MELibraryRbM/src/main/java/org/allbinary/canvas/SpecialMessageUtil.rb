@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.canvas
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Canvas
 
 class SpecialMessageUtil
     
@@ -24,16 +27,16 @@ class SpecialMessageUtil
     
 
     def get()
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(Memory.getInfo())
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(::Org::Allbinary::System::Memory.getInfo())
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(GameStatisticsFactory.getInstance().to_s)
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(" Option: ")
-        if Features.getInstance().isDefault(OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT)
-            stringBuffer.append(OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT.getName())
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isDefault(::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT)
+            stringBuffer.append(::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT.getName())
         else
-            stringBuffer.append(OpenGLFeatureFactory.getInstance().OPENGL_MINIMUM.getName())
+            stringBuffer.append(::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance().OPENGL_MINIMUM.getName())
         end
         return stringBuffer.to_s
     end
@@ -59,16 +62,18 @@ class SpecialMessageUtil
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :Memory, "org/allbinary/system/Memory"
-autoload :GameStatisticsFactory, "org/allbinary/canvas/GameStatisticsFactory"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory" unless const_defined?(:OpenGLFeatureFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module System; autoload :Memory, "org/allbinary/system/Memory" unless const_defined?(:Memory, false); end; end; end
+autoload :GameStatisticsFactory, "org/allbinary/canvas/GameStatisticsFactory" unless const_defined?(:GameStatisticsFactory, false)
 
 begin
     SpecialMessageUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

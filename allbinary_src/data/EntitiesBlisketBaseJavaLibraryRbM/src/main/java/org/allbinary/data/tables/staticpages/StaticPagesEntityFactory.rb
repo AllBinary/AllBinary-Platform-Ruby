@@ -15,11 +15,13 @@
 # package org.allbinary.data.tables.staticpages
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables; module Staticpages
+
 class StaticPagesEntityFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_data_tables_staticpages_StaticPagesEntityFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -29,7 +31,7 @@ class StaticPagesEntityFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_data_tables_staticpages_StaticPagesEntityFactory
     end
     
 
@@ -37,8 +39,8 @@ class StaticPagesEntityFactory
         begin
             return StaticPagesEntity.new()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().ENTITYFACTORYERROR)
                 @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
             end
             return nil
@@ -76,13 +78,17 @@ class StaticPagesEntityFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :StaticPagesEntity, "org/allbinary/data/tables/staticpages/StaticPagesEntity"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :StaticPagesEntity, "org/allbinary/data/tables/staticpages/StaticPagesEntity" unless const_defined?(:StaticPagesEntity, false)
 
 begin
     StaticPagesEntityFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

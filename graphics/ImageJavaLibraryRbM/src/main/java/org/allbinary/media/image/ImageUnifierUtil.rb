@@ -14,14 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "java/awt"
+# require "java/awt/GraphicsEnvironment"
+# require "java/awt/GraphicsDevice"
+# require "java/awt/GraphicsConfiguration"
+# require "java/awt/Graphics2D"
 # require "java/awt/image/BufferedImage"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageUnifierUtil
     attr_accessor :logUtil, :imageUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_image_ImageUnifierUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @imageUtil = ImageUtil.getInstance()
     end
     
@@ -32,7 +37,7 @@ class ImageUnifierUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageUnifierUtil
     end
     
 
@@ -45,7 +50,7 @@ class ImageUnifierUtil
 
     def getImage(bufferedImageArray, imageUnifierProperties)
         newBufferedImage = @imageUtil.create(imageUnifierProperties.getWidth(), imageUnifierProperties.getHeight())
-        commonLabels = CommonLabels.getInstance()
+        commonLabels = ::Org::Allbinary::StringPackage::CommonLabels.getInstance()
         @logUtil.putF("Setting Image - " + (commonLabels.WIDTH_LABEL).to_s + (newBufferedImage.getWidth()).to_s + (commonLabels.HEIGHT_LABEL).to_s + (newBufferedImage.getHeight()).to_s, self, "getImage")
         g = newBufferedImage.createGraphics()
         columnIndex = 0
@@ -96,14 +101,16 @@ class ImageUnifierUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :ImageUnifierProperties, "org/allbinary/media/image/ImageUnifierProperties"
-autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+autoload :ImageUnifierProperties, "org/allbinary/media/image/ImageUnifierProperties" unless const_defined?(:ImageUnifierProperties, false)
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false)
 
 begin
     ImageUnifierUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

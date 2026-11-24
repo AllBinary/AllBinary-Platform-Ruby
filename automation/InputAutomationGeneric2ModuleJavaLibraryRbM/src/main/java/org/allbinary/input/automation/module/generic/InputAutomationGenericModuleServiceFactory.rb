@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.generic
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/automation/module/osgi/InputAutomationModuleServiceFactory"
 
-class InputAutomationGenericModuleServiceFactory < InputAutomationModuleServiceFactory
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic
+
+class InputAutomationGenericModuleServiceFactory < ::Org::Allbinary::Input::Automation::ModulePackage::Osgi::InputAutomationModuleServiceFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_input_automation_module_generic_InputAutomationGenericModuleServiceFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_input_automation_module_generic_InputAutomationGenericModuleServiceFactory
         begin
             inputAutomationModuleInterfaceArray = Array.new(1, nil)
             inputAutomationModuleInterfaceArray[0] = GenericModuleFactory.new()
@@ -72,13 +75,15 @@ class InputAutomationGenericModuleServiceFactory < InputAutomationModuleServiceF
     end
 end
 
-autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :GenericModuleFactory, "org/allbinary/input/automation/module/generic/GenericModuleFactory"
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface" unless const_defined?(:InputAutomationModuleFactoryInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :GenericModuleFactory, "org/allbinary/input/automation/module/generic/GenericModuleFactory" unless const_defined?(:GenericModuleFactory, false)
 
 begin
     InputAutomationGenericModuleServiceFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

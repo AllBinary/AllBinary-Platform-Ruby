@@ -15,19 +15,21 @@
 # package org.allbinary.vector
 
 
+module ::Org; module Allbinary; module Vector
+
 class VectorInfo
     attr_accessor :width, :height, :points, :totalFrames
 
-    def initialize_fields
-        @width = nil
-        @height = nil
-        @points = nil
-        @totalFrames = nil
+    def jfields_org_allbinary_vector_VectorInfo
+        @width = nil unless instance_variable_defined?(:@width)
+        @height = nil unless instance_variable_defined?(:@height)
+        @points = nil unless instance_variable_defined?(:@points)
+        @totalFrames = nil unless instance_variable_defined?(:@totalFrames)
     end
     
 
     def initialize(width, height, points, totalFrames)
-        initialize_fields
+        jfields_org_allbinary_vector_VectorInfo
         @width = width
         @height = height
         @points = points
@@ -74,4 +76,6 @@ class VectorInfo
         @totalFrames = totalFrames
     end
 end
+
+end; end; end
 

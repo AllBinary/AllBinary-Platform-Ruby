@@ -15,20 +15,22 @@
 # package org.allbinary.game.ai
 
 
+module ::Org; module Allbinary; module Game; module Ai
+
 class ArtificialIntelligenceInterfaceFactoryInterfaceFactory
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListUtil.getInstance().getImmutableInstance()
+    def jfields_org_allbinary_game_ai_ArtificialIntelligenceInterfaceFactoryInterfaceFactory
+        @list = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_ai_ArtificialIntelligenceInterfaceFactoryInterfaceFactory
     end
     
 
     def clear()
-        @list = BasicArrayListD.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -70,16 +72,18 @@ class ArtificialIntelligenceInterfaceFactoryInterfaceFactory
     end
 end
 
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
-autoload :ArtificialIntelligenceInterfaceFactoryInterface, "org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface"
-autoload :BasicAI, "org/allbinary/game/ai/BasicAI"
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+autoload :ArtificialIntelligenceInterfaceFactoryInterface, "org/allbinary/game/ai/ArtificialIntelligenceInterfaceFactoryInterface" unless const_defined?(:ArtificialIntelligenceInterfaceFactoryInterface, false)
+autoload :BasicAI, "org/allbinary/game/ai/BasicAI" unless const_defined?(:BasicAI, false)
 
 begin
     ArtificialIntelligenceInterfaceFactoryInterfaceFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,33 +15,42 @@
 # package org.allbinary.logic.system.loader
 
 
+module ::Org; module Allbinary; module Logic; module System; module Loader
+
 module SecuredNativeLibraryInterface
     
 
     # throws Exception
     def load()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def unload()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def unlock(key)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLibraryName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

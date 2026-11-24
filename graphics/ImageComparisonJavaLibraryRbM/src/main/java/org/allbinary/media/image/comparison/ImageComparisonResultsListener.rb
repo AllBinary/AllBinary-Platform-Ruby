@@ -14,16 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/BasicEventListenerInterface"
 
+module ::Org; module Allbinary; module Media; module Image; module Comparison
+
 module ImageComparisonResultsListener
-    include BasicEventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::BasicEventListenerInterface
     
 
     def onImageComparisonResultsEvent(imageComparisonResultsEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onImageComparisonResultsEvent, 1
 end
 
-autoload :ImageComparisonResultsEvent, "org/allbinary/media/image/comparison/ImageComparisonResultsEvent"
+autoload :ImageComparisonResultsEvent, "org/allbinary/media/image/comparison/ImageComparisonResultsEvent" unless const_defined?(:ImageComparisonResultsEvent, false)
+
+end; end; end; end; end
 

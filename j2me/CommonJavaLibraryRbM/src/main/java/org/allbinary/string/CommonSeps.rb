@@ -18,10 +18,12 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module StringPackage
+
 class CommonSeps
     attr_accessor :NEW_LINE, :SEMICOLON, :EQUALS, :SPACE, :COMMA, :COLON, :PERIOD, :UNDERSCORE, :COLON_SEP, :COMMA_SEP, :PARENTHESIS_OPEN, :PARENTHESIS_CLOSE, :BRACE_OPEN, :BRACE_CLOSE, :BRACKET_OPEN, :BRACKET_CLOSE, :DASH, :PERCENT, :AMPERSAND, :FORWARD_SLASH, :BACK_SLASH, :QUESTION, :QUOTE, :QUOTE_END, :COMMENT, :INDENT
 
-    def initialize_fields
+    def jfields_org_allbinary_string_CommonSeps
         @NEW_LINE = "\n"
         @SEMICOLON = ";"
         @EQUALS = "="
@@ -30,8 +32,8 @@ class CommonSeps
         @COLON = ":"
         @PERIOD = "."
         @UNDERSCORE = "_"
-        @COLON_SEP = StringMaker.new().append(@COLON).append(@SPACE).to_s
-        @COMMA_SEP = StringMaker.new().append(@COMMA).append(@SPACE).to_s
+        @COLON_SEP = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@COLON).append(@SPACE).to_s
+        @COMMA_SEP = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@COMMA).append(@SPACE).to_s
         @PARENTHESIS_OPEN = "("
         @PARENTHESIS_CLOSE = ")"
         @BRACE_OPEN = "{"
@@ -51,7 +53,7 @@ class CommonSeps
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_string_CommonSeps
     end
     
 
@@ -90,11 +92,13 @@ class CommonSeps
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
 begin
     CommonSeps.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

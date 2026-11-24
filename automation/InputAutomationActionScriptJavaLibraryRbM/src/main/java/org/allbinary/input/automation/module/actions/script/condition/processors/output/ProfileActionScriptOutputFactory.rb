@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.module.actions.script.condition.processors.output
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Actions; module Script; module Condition; module Processors; module Output
+
 class ProfileActionScriptOutputFactory
     
 
@@ -25,7 +27,7 @@ class ProfileActionScriptOutputFactory
     # throws Exception
     def self.getInstance(node)
         profileActionScriptOutputInterface = nil
-        if DomSearchHelper.getNodeNoThrow(ImageActionScriptOutputData::NAME, node.getChildNodes()) != nil
+        if ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNodeNoThrow(ImageActionScriptOutputData::NAME, node.getChildNodes()) != nil
             profileActionScriptOutputInterface = ImageActionScriptOutput.new(node)
         else
             raise StandardError.new("No Such ActionScript Output")
@@ -34,9 +36,11 @@ class ProfileActionScriptOutputFactory
     end
 end
 
-autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
-autoload :Node, "org/w3c/dom/Node"
-autoload :ImageActionScriptOutput, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutput"
-autoload :ImageActionScriptOutputData, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputData"
-autoload :ProfileActionScriptOutputInterface, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ProfileActionScriptOutputInterface"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper" unless const_defined?(:DomSearchHelper, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :ImageActionScriptOutput, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutput" unless const_defined?(:ImageActionScriptOutput, false)
+autoload :ImageActionScriptOutputData, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ImageActionScriptOutputData" unless const_defined?(:ImageActionScriptOutputData, false)
+autoload :ProfileActionScriptOutputInterface, "org/allbinary/input/automation/module/actions/script/condition/processors/output/ProfileActionScriptOutputInterface" unless const_defined?(:ProfileActionScriptOutputInterface, false)
+
+end; end; end; end; end; end; end; end; end; end
 

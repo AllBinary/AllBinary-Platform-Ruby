@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/displayable/canvas/DemoPaintableInterface"
+
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
 
 class NullDemoPaintable
     include DemoPaintableInterface
@@ -22,6 +25,7 @@ class NullDemoPaintable
 
     def showGamePaintable()
     end
+    java_overload :showGamePaintable, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -49,4 +53,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

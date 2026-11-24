@@ -14,54 +14,62 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/JspTagException"
 require "admin/tags/TableTag"
+
+module ::Admin; module Tags
 
 class UserTag < TableTag
     attr_accessor :role, :enable
 
-    def initialize_fields
-        @role = nil
-        @enable = nil
+    def jfields_admin_tags_UserTag
+        @role = nil unless instance_variable_defined?(:@role)
+        @enable = nil unless instance_variable_defined?(:@enable)
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        self.setTagHelperFactory(UserHelperFactory.new())
-        self.setTagRequestHelperFactory(UserHelperFactory.new())
+        jfields_admin_tags_UserTag
+        self.setTagHelperFactory(::Admin::Taghelpers::UserHelperFactory.new())
+        self.setTagRequestHelperFactory(::Admin::Taghelpers::UserHelperFactory.new())
     end
     
 
     def setRole(value)
         @role = value
-        self.getPropertiesHashMap().put(UserRoleData::NAME, @role)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Business::User::Role::UserRoleData::NAME, @role)
     end
+    java_overload :setRole, 1
     
 
     def setEnable(value)
         @enable = value
-        self.getPropertiesHashMap().put(EntryData.getInstance().ENABLE, @enable)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Business::Entry::EntryData.getInstance().ENABLE, @enable)
     end
+    java_overload :setEnable, 1
     
 
     # throws JspTagException
     def doStartTag()
         begin
             if self.isEnabled()
-                return super()
+                return UserTag.superclass.java_super_method(:doStartTag, 0).bind(self).call()
             end
             return SKIP_BODY
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :UserHelperFactory, "admin/taghelpers/UserHelperFactory"
-autoload :EntryData, "org/allbinary/business/entry/EntryData"
-autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
+module ::Admin; module Taghelpers; autoload :UserHelperFactory, "admin/taghelpers/UserHelperFactory" unless const_defined?(:UserHelperFactory, false); end; end
+module ::Org; module Allbinary; module Business; module Entry; autoload :EntryData, "org/allbinary/business/entry/EntryData" unless const_defined?(:EntryData, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Role; autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData" unless const_defined?(:UserRoleData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+
+end; end
 

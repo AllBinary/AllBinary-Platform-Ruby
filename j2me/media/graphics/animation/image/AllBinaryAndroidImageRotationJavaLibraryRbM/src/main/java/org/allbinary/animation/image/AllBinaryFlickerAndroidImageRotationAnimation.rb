@@ -14,30 +14,32 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/ImageBaseRotationAnimation"
+
+module ::Org; module Allbinary; module Animation; module Image
 
 class AllBinaryFlickerAndroidImageRotationAnimation < ImageBaseRotationAnimation
     attr_accessor :imageModifierUtil, :androidImageUtil, :matrix, :halfWidth, :halfHeight, :increment, :originalImage
 
-    def initialize_fields
-        @imageModifierUtil = ImageModifierUtil.getInstanceOrCreate()
-        @androidImageUtil = AndroidImageUtil.getInstance()
-        @matrix = Matrix.new()
-        @halfWidth = nil
-        @halfHeight = nil
-        @increment = nil
-        @originalImage = nil
+    def jfields_org_allbinary_animation_image_AllBinaryFlickerAndroidImageRotationAnimation
+        @imageModifierUtil = ::Org::Allbinary::Media::Image::ImageModifierUtil.getInstanceOrCreate()
+        @androidImageUtil = ::Org::Allbinary::Media::Image::AndroidImageUtil.getInstance()
+        @matrix = ::Android::Graphics::Matrix.new()
+        @halfWidth = nil unless instance_variable_defined?(:@halfWidth)
+        @halfHeight = nil unless instance_variable_defined?(:@halfHeight)
+        @increment = nil unless instance_variable_defined?(:@increment)
+        @originalImage = nil unless instance_variable_defined?(:@originalImage)
     end
     
 
     def initialize(originalImage, image, angleInfo, totalAngle, animationBehavior)
         super(image, angleInfo, totalAngle, animationBehavior)
-        initialize_fields
+        jfields_org_allbinary_animation_image_AllBinaryFlickerAndroidImageRotationAnimation
         @originalImage = originalImage
         @halfWidth = (image.getWidth() >> 1)
         @halfHeight = (image.getHeight() >> 1)
-        @increment = ((((@angleInfo.getAngleIncrementInfo().getAngleIncrement())).to_i + 32768) % 65536 - 32768)
+        @increment = (((((@angleInfo.getAngleIncrementInfo().getAngleIncrement())).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + 32768) % 65536 - 32768)
     end
     
 
@@ -47,17 +49,19 @@ class AllBinaryFlickerAndroidImageRotationAnimation < ImageBaseRotationAnimation
             @imageModifierUtil.setColor(@originalImage, self.getImage(), 0, basicColor)
             changed = true
         end
-        super(basicColor)
+        AllBinaryFlickerAndroidImageRotationAnimation.superclass.java_super_method(:setBasicColorP, 1).bind(self).call(basicColor)
         if changed
             @matrix.setRotate(0.0, (@halfWidth).to_f, (@halfHeight).to_f)
             self.updateImage()
         end
     end
+    java_overload :setBasicColorP, 1
     
 
     def changeBasicColor(basicColor)
         self.setBasicColorP(basicColor)
     end
+    java_overload :changeBasicColor, 1
     
 
     def setAlpha(alpha)
@@ -65,32 +69,36 @@ class AllBinaryFlickerAndroidImageRotationAnimation < ImageBaseRotationAnimation
         if @alphaP != alpha
             changed = true
         end
-        super(alpha)
+        AllBinaryFlickerAndroidImageRotationAnimation.superclass.java_super_method(:setAlpha, 1).bind(self).call(alpha)
         @imageModifierUtil.setAlpha(@originalImage, self.getImage(), 0, @alphaP)
         if changed
             @matrix.setRotate(0.0, (@halfWidth).to_f, (@halfHeight).to_f)
             self.updateImage()
         end
     end
+    java_overload :setAlpha, 1
     
 
     def nextRotation()
-        super()
+        AllBinaryFlickerAndroidImageRotationAnimation.superclass.java_super_method(:nextRotation, 0).bind(self).call()
         @matrix.setRotate((@increment).to_f, (@halfWidth).to_f, (@halfHeight).to_f)
         self.updateImage()
     end
+    java_overload :nextRotation, 0
     
 
     def previousRotation()
-        super()
+        AllBinaryFlickerAndroidImageRotationAnimation.superclass.java_super_method(:previousRotation, 0).bind(self).call()
         @matrix.setRotate((-@increment).to_f, (@halfWidth).to_f, (@halfHeight).to_f)
         self.updateImage()
     end
+    java_overload :previousRotation, 0
     
 
     def updateImage()
         @androidImageUtil.rotate(self.getImage(), @originalImage, @matrix, @imageModifierUtil.paint)
     end
+    java_overload :updateImage, 0
     
 
     def setFrame(index)
@@ -101,12 +109,16 @@ class AllBinaryFlickerAndroidImageRotationAnimation < ImageBaseRotationAnimation
         @matrix.setRotate(((newFrame - currentFrame)).to_f * (@increment).to_f, (@halfWidth).to_f, (@halfHeight).to_f)
         self.updateImage()
     end
+    java_overload :setFrame, 1
 end
 
-require "android/graphics/Matrix"
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/math/AngleInfo"
-require "org/allbinary/media/image/AndroidImageUtil"
-require "org/allbinary/media/image/ImageModifierUtil"
+module ::Android; module Graphics; autoload :Matrix, "android/graphics/Matrix" unless const_defined?(:Matrix, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :AndroidImageUtil, "org/allbinary/media/image/AndroidImageUtil" unless const_defined?(:AndroidImageUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImageModifierUtil, "org/allbinary/media/image/ImageModifierUtil" unless const_defined?(:ImageModifierUtil, false); end; end; end; end
+
+end; end; end; end
 

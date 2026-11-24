@@ -15,17 +15,19 @@
 # package org.allbinary.thread
 
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class ThreadPoolStrings
     attr_accessor :ADD_TASK, :START_TASK, :COMPLETE_TASK
 
-    def initialize_fields
+    def jfields_org_allbinary_thread_ThreadPoolStrings
         @ADD_TASK = "addTask"
         @START_TASK = "Started Task: "
         @COMPLETE_TASK = "Completed Task: "
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_thread_ThreadPoolStrings
     end
     
 
@@ -69,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

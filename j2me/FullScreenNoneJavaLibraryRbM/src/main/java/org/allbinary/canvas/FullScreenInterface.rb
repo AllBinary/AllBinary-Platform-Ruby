@@ -15,6 +15,10 @@
 # package org.allbinary.canvas
 
 
+module ::Org; module Allbinary; module Canvas
+
 module FullScreenInterface
 end
+
+end; end; end
 

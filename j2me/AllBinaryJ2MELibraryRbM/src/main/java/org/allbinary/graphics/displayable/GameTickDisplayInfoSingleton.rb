@@ -15,10 +15,12 @@
 # package org.allbinary.graphics.displayable
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable
+
 class GameTickDisplayInfoSingleton
     attr_accessor :displayInfoSingleton, :lastWidth, :lastHeight, :lastHalfWidth, :lastHalfHeight
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_displayable_GameTickDisplayInfoSingleton
         @displayInfoSingleton = DisplayInfoSingleton.getInstance()
         @lastWidth = @displayInfoSingleton.getLastWidth()
         @lastHeight = @displayInfoSingleton.getLastHeight()
@@ -27,7 +29,7 @@ class GameTickDisplayInfoSingleton
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_displayable_GameTickDisplayInfoSingleton
     end
     
 
@@ -94,11 +96,13 @@ class GameTickDisplayInfoSingleton
     end
 end
 
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false)
 
 begin
     GameTickDisplayInfoSingleton.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

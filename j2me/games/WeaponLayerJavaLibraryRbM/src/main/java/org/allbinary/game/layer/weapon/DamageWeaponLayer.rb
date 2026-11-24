@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.weapon
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/weapon/WeaponLayer"
+
+module ::Org; module Allbinary; module Game; module Layer; module Weapon
 
 class DamageWeaponLayer < WeaponLayer
     
@@ -25,10 +28,12 @@ class DamageWeaponLayer < WeaponLayer
     end
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :Movement, "org/allbinary/physics/movement/Movement"
-autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
-autoload :CollidableDamageWeaponBehavior, "org/allbinary/game/layer/weapon/CollidableDamageWeaponBehavior"
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Game; module Multiplayer; module Layer; autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo" unless const_defined?(:RemoteInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Physics; module Movement; autoload :Movement, "org/allbinary/physics/movement/Movement" unless const_defined?(:Movement, false); end; end; end; end
+module ::Org; module Allbinary; module View; autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false); end; end; end
+autoload :CollidableDamageWeaponBehavior, "org/allbinary/game/layer/weapon/CollidableDamageWeaponBehavior" unless const_defined?(:CollidableDamageWeaponBehavior, false)
+
+end; end; end; end; end
 

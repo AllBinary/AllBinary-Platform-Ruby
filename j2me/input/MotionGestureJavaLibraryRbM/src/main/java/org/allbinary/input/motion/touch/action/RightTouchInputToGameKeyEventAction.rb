@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.touch.action
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
 
-class RightTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputEvent
+module ::Org; module Allbinary; module Input; module Motion; module Touch; module Action
+
+class RightTouchInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Motion::Action::GameKeyCompleteMotionGestureInputEvent
     
 
     def self.getInstance()
-        if RightTouchInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT
+        if RightTouchInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             RightTouchInputToGameKeyEventAction.instance = RightTouchInputToGameKeyEventAction.new()
         end
         return RightTouchInputToGameKeyEventAction.instance
@@ -28,7 +31,7 @@ class RightTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputEve
     
 
     def initialize()
-        super("Right Action", TouchMotionGestureFactory.getInstance().RIGHT, PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance().getInputMapping())
+        super("Right Action", ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().RIGHT, ::Org::Allbinary::Game::Input::PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance().getInputMapping())
     end
 
     def self.instance()
@@ -45,7 +48,7 @@ class RightTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputEve
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -62,13 +65,15 @@ class RightTouchInputToGameKeyEventAction < GameKeyCompleteMotionGestureInputEve
     end
 end
 
-autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
-autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Game; module Input; autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory" unless const_defined?(:PlatformInputMappingFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory" unless const_defined?(:TouchMotionGestureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
 
 begin
     RightTouchInputToGameKeyEventAction.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

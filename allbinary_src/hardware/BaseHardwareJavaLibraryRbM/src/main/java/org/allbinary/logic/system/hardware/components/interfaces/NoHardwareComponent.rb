@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.hardware.components.interfaces
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
+
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Interfaces
 
 class NoHardwareComponent
     include HardwareComponentInterface
@@ -31,11 +34,13 @@ class NoHardwareComponent
         end
         return false
     end
+    java_overload :compareTo, 1
     
 
     def toString()
-        return StringUtil.getInstance().NULL_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 
     def self.instance()
@@ -69,11 +74,13 @@ class NoHardwareComponent
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     NoHardwareComponent.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

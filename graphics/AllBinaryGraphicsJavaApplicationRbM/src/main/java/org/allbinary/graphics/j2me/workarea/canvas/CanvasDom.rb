@@ -14,67 +14,75 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.j2me.workarea.canvas
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Canvas
 
 class CanvasDom
     attr_accessor :graphicsStrings, :graphicItemHashMap, :angle, :dimension, :grid
 
-    def initialize_fields
-        @graphicsStrings = GraphicsStrings.getInstance()
-        @graphicItemHashMap = nil
-        @angle = nil
-        @dimension = nil
-        @grid = nil
+    def jfields_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom
+        @graphicsStrings = ::Org::Allbinary::Graphics::GraphicsStrings.getInstance()
+        @graphicItemHashMap = nil unless instance_variable_defined?(:@graphicItemHashMap)
+        @angle = nil unless instance_variable_defined?(:@angle)
+        @dimension = nil unless instance_variable_defined?(:@dimension)
+        @grid = nil unless instance_variable_defined?(:@grid)
     end
 
     def initialize(*args)
         case args.length
-        when 1 then constructor1(*args)
-        when 1 then constructor1(*args)
+        when 1 then jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom_1(*args)
+        else raise ArgumentError, "No constructor of CanvasDom takes #{args.length} arguments"
         end
+    end
+
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom_1(*java_overload_args)
+        return jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom_1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::W3c::Dom::Node))
+        return jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom_1_2(*java_overload_args)
     end
     
 
-    def constructor1(canvasNode)
-        initialize_fields
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom_1_1(canvasNode)
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom
         @grid = Grid.new()
-        @grid.grid = PointFactory.getInstance().createXY(0, 0)
+        @grid.grid = ::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(0, 0)
         @dimension = IntegerDimension.new(0, 0)
         name = canvasNode.getNodeName()
         if (name <=> CanvasDom::FRAME) == 0
-            @graphicItemHashMap = StdUtil.getInstance().createHashMap()
-            angleNode = DomHelper.getInstance().searchNodeList(ROTATE, canvasNode.getChildNodes())
+            @graphicItemHashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
+            angleNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(ROTATE, canvasNode.getChildNodes())
             angleTextNode = angleNode.getFirstChild()
             angle = angleTextNode.getNodeValue().to_f
             self.setAngle(angle)
-            sizeNode = DomHelper.getInstance().searchNodeList(SIZE, canvasNode.getChildNodes())
-            xNode = DomHelper.getInstance().searchNodeList(X, sizeNode.getChildNodes())
+            sizeNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(SIZE, canvasNode.getChildNodes())
+            xNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(X, sizeNode.getChildNodes())
             xTextNode = xNode.getFirstChild()
             x = xTextNode.getNodeValue().to_i
-            yNode = DomHelper.getInstance().searchNodeList(Y, sizeNode.getChildNodes())
+            yNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(Y, sizeNode.getChildNodes())
             yTextNode = yNode.getFirstChild()
             y = yTextNode.getNodeValue().to_i
             self.setWorkArea(x, y)
-            zoomNode = DomHelper.getInstance().searchNodeList(ZOOM, canvasNode.getChildNodes())
+            zoomNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(ZOOM, canvasNode.getChildNodes())
             zoomTextNode = zoomNode.getFirstChild()
             @grid.setZoom(zoomTextNode.getNodeValue().to_i)
-            gridNode = DomHelper.getInstance().searchNodeList(GRID, canvasNode.getChildNodes())
-            gridSizeNode = DomHelper.getInstance().searchNodeList(SIZE, gridNode.getChildNodes())
-            gridXNode = DomHelper.getInstance().searchNodeList(X, gridSizeNode.getChildNodes())
+            gridNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(GRID, canvasNode.getChildNodes())
+            gridSizeNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(SIZE, gridNode.getChildNodes())
+            gridXNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(X, gridSizeNode.getChildNodes())
             gridXTextNode = gridXNode.getFirstChild()
             gridX = gridXTextNode.getNodeValue().to_i
-            gridYNode = DomHelper.getInstance().searchNodeList(Y, gridSizeNode.getChildNodes())
+            gridYNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(Y, gridSizeNode.getChildNodes())
             gridYTextNode = gridYNode.getFirstChild()
             gridY = gridYTextNode.getNodeValue().to_i
             self.setGrid(gridX, gridY)
-            enableNode = DomHelper.getInstance().searchNodeList(ENABLED, gridNode.getChildNodes())
+            enableNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(ENABLED, gridNode.getChildNodes())
             enableTextNode = enableNode.getFirstChild()
             @grid.showGrid(enableTextNode.getNodeValue())
-            possibleNode = DomHelper.getInstance().searchNodeList(POSSIBLE, gridNode.getChildNodes())
+            possibleNode = ::Org::Allbinary::Dom::DomHelper.getInstance().searchNodeList(POSSIBLE, gridNode.getChildNodes())
             possibleTextNode = possibleNode.getFirstChild()
             @grid.isGridPossible = possibleTextNode.getNodeValue()
-            graphicItemNodeList = DomHelper.getInstance().getChildrenWithoutTextNodes(GRAPHICITEMS, canvasNode.getChildNodes())
+            graphicItemNodeList = ::Org::Allbinary::Dom::DomHelper.getInstance().getChildrenWithoutTextNodes(GRAPHICITEMS, canvasNode.getChildNodes())
             if graphicItemNodeList != nil
-                @graphicItemHashMap = GraphicItemFactory.getInstance().getInstance(graphicItemNodeList)
+                @graphicItemHashMap = ::Org::Allbinary::Graphics::J2me::Workarea::Tools::GraphicItemFactory.getInstance().getInstance(graphicItemNodeList)
             end
         else
             raise StandardError.new("Frame Element Not Found but Found: " + name)
@@ -82,8 +90,8 @@ class CanvasDom
     end
     
 
-    def constructor1(canvasJPanel)
-        initialize_fields
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom_1_2(canvasJPanel)
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_CanvasDom
         @angle = canvasJPanel.getAngle()
         @graphicItemHashMap = canvasJPanel.getGraphicItemHashMap()
         @dimension = canvasJPanel.getCanvasDimension()
@@ -115,12 +123,12 @@ class CanvasDom
 
     # throws Exception
     def setGrid(gridX, gridY)
-        @grid.grid = PointFactory.getInstance().createXY(gridX, gridY)
+        @grid.grid = ::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(gridX, gridY)
     end
     
 
     def getPointNode(point, pointName)
-        document = WorkAreaJPanel.getDocument()
+        document = ::Org::Allbinary::Graphics::J2me::Workarea::WorkAreaJPanel.getDocument()
         pointNode = document.createElement(pointName)
         xNode = document.createElement(X)
         xTextNode = document.createTextNode((point.getX()).to_s)
@@ -136,12 +144,12 @@ class CanvasDom
 
     # throws Exception
     def toDom()
-        document = WorkAreaJPanel.getDocument()
+        document = ::Org::Allbinary::Graphics::J2me::Workarea::WorkAreaJPanel.getDocument()
         frameNode = document.createElement(FRAME)
         angleNode = document.createElement(ROTATE)
         angleTextNode = document.createTextNode(self.getAngle().to_s)
         angleNode.appendChild(angleTextNode)
-        sizeNode = self.getPointNode(PointFactory.getInstance().createXY(self.getDimension().getWidth(), self.getDimension().getHeight()), SIZE)
+        sizeNode = self.getPointNode(::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(self.getDimension().getWidth(), self.getDimension().getHeight()), SIZE)
         zoomNode = document.createElement(ZOOM)
         zoomTextNode = document.createTextNode(self.getGrid().getZoom().to_s)
         zoomNode.appendChild(zoomTextNode)
@@ -157,7 +165,7 @@ class CanvasDom
         possibleNode.appendChild(possibleTextNode)
         gridNode.appendChild(possibleNode)
         realSizeNode = document.createElement(REAL_SIZE)
-        vectorCenterGenerator = VectorCenterGenerator.new()
+        vectorCenterGenerator = ::Org::Allbinary::Animation::Vector::VectorCenterGenerator.new()
         vectorCenterGenerator.calculate(self.getGraphicItemHashMap())
         widthNode = document.createElement(@graphicsStrings.WIDTH)
         widthTextNode = document.createTextNode((vectorCenterGenerator.getWidth()).to_s)
@@ -177,7 +185,7 @@ class CanvasDom
         size = graphicItemArray.length
         (0...size).each do |index|
             item = @graphicItemHashMap.get(graphicItemArray[index])
-            if item.getName() == LinesGraphicItem.getStaticName()
+            if item.getName() == ::Org::Allbinary::Graphics::J2me::Workarea::Tools::LinesGraphicItem.getStaticName()
                 if item.isValid()
                     graphicItemNode.appendChild(item.toDom(self))
                 end
@@ -201,36 +209,61 @@ class CanvasDom
     def getGrid()
         return @grid
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:FRAME, "frame")
+        const_set(:ROTATE, "rotate")
+        const_set(:SIZE, "size")
+        const_set(:X, "X")
+        const_set(:Y, "Y")
+        const_set(:ZOOM, "zoom")
+        const_set(:GRID, "grid")
+        const_set(:ENABLED, "enabled")
+        const_set(:POSSIBLE, "possible")
+        const_set(:GRAPHICITEMS, "graphicItems")
+        const_set(:REAL_SIZE, "realSize")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CanvasDom"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:FRAME, :ROTATE, :SIZE, :X, :Y, :ZOOM, :GRID, :ENABLED, :POSSIBLE, :GRAPHICITEMS, :REAL_SIZE].include?(name)
+        end
+        super
+    end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/animation/vector/VectorCenterGenerator"
-require "org/allbinary/dom/DomHelper"
-require "org/allbinary/graphics/GPoint"
-require "org/allbinary/graphics/GraphicsStrings"
-require "org/allbinary/graphics/PointFactory"
-require "org/allbinary/graphics/j2me/workarea/WorkAreaJPanel"
-require "org/allbinary/graphics/j2me/workarea/tools/GraphicItemFactory"
-require "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface"
-require "org/allbinary/graphics/j2me/workarea/tools/LinesGraphicItem"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/w3c/dom/Node"
-require "org/allbinary/graphics/j2me/workarea/canvas/CanvasJPanel"
-require "org/allbinary/graphics/j2me/workarea/canvas/Grid"
-require "org/allbinary/graphics/j2me/workarea/canvas/IntegerDimension"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Animation; module Vector; autoload :VectorCenterGenerator, "org/allbinary/animation/vector/VectorCenterGenerator" unless const_defined?(:VectorCenterGenerator, false); end; end; end; end
+module ::Org; module Allbinary; module Dom; autoload :DomHelper, "org/allbinary/dom/DomHelper" unless const_defined?(:DomHelper, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GraphicsStrings, "org/allbinary/graphics/GraphicsStrings" unless const_defined?(:GraphicsStrings, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; autoload :WorkAreaJPanel, "org/allbinary/graphics/j2me/workarea/WorkAreaJPanel" unless const_defined?(:WorkAreaJPanel, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :GraphicItemFactory, "org/allbinary/graphics/j2me/workarea/tools/GraphicItemFactory" unless const_defined?(:GraphicItemFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :GraphicItemInterface, "org/allbinary/graphics/j2me/workarea/tools/GraphicItemInterface" unless const_defined?(:GraphicItemInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; autoload :LinesGraphicItem, "org/allbinary/graphics/j2me/workarea/tools/LinesGraphicItem" unless const_defined?(:LinesGraphicItem, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+autoload :CanvasJPanel, "org/allbinary/graphics/j2me/workarea/canvas/CanvasJPanel" unless const_defined?(:CanvasJPanel, false)
+autoload :Grid, "org/allbinary/graphics/j2me/workarea/canvas/Grid" unless const_defined?(:Grid, false)
+autoload :IntegerDimension, "org/allbinary/graphics/j2me/workarea/canvas/IntegerDimension" unless const_defined?(:IntegerDimension, false)
 
-class CanvasDom
-    FRAME = "frame"
-    ROTATE = "rotate"
-    SIZE = "size"
-    X = "X"
-    Y = "Y"
-    ZOOM = "zoom"
-    GRID = "grid"
-    ENABLED = "enabled"
-    POSSIBLE = "possible"
-    GRAPHICITEMS = "graphicItems"
-    REAL_SIZE = "realSize"
+begin
+    CanvasDom.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.graphics.opengles
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles
+
 class OpenGLFeatureFactory
     attr_accessor :OPENGL_OPTIONS, :OPENGL, :OPENGL_SURFACE_VIEW, :OPENGL_2D, :OPENGL_3D, :OPENGL_2D_AND_3D, :OPENGL_AUTO_SELECT, :OPENGL_MINIMUM, :OPENGL_AS_GAME_THREAD, :OPENGL_AND_GAME_HAVE_DIFFERENT_THREADS, :IMAGE_COLOR_DEPTH_4444, :IMAGE_COLOR_DEPTH_8888, :IMAGE_COLOR_DEPTH_565, :OPENGL_COLOR_DEPTH_4444, :OPENGL_COLOR_DEPTH_8888, :OPENGL_COLOR_DEPTH_565, :OPENGL_DRAW_TEXTURE, :OPENGL_VERTEX_BUFFER_OBJECT, :OPENGL_SIMPLE_OBJECT3D_PROCESSOR, :OPENGL_COMPLEX_OBJECT3D_PROCESSOR, :OPENGL_SIMPLE_TEXTURE_PROCESSOR, :OPENGL_COMPLEX_TEXTURE_PROCESSOR
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_opengles_OpenGLFeatureFactory
         @OPENGL_OPTIONS = OpenGLFeature.new("OpenGL Options")
         @OPENGL = OpenGLFeature.new("OpenGL")
         @OPENGL_SURFACE_VIEW = OpenGLFeature.new("GLSurfaceView")
@@ -50,7 +52,7 @@ class OpenGLFeatureFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_OpenGLFeatureFactory
     end
 
     def self.instance()
@@ -84,11 +86,13 @@ class OpenGLFeatureFactory
     end
 end
 
-autoload :OpenGLFeature, "org/allbinary/graphics/opengles/OpenGLFeature"
+autoload :OpenGLFeature, "org/allbinary/graphics/opengles/OpenGLFeature" unless const_defined?(:OpenGLFeature, false)
 
 begin
     OpenGLFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

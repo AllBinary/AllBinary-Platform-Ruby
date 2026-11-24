@@ -14,39 +14,47 @@
 # frozen_string_literal: false
 # package org.allbinary.layer.relationship
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/RelativeRelationship"
 
-class RelativeLayerRelationship < RelativeRelationship
+module ::Org; module Allbinary; module Layer; module Relationship
+
+class RelativeLayerRelationship < ::Org::Allbinary::Graphics::RelativeRelationship
     attr_accessor :layer
 
-    def initialize_fields
-        @layer = AllBinaryLayer::NULL_ALLBINARY_LAYER
+    def jfields_org_allbinary_layer_relationship_RelativeLayerRelationship
+        @layer = ::Org::Allbinary::Layer::AllBinaryLayer::NULL_ALLBINARY_LAYER
     end
     
 
     def initialize(layer, point, typesAllowedList)
         super(point, typesAllowedList)
-        initialize_fields
+        jfields_org_allbinary_layer_relationship_RelativeLayerRelationship
         @layer = layer
     end
     
 
     def getX()
-        return @layer.getXP() + super()
+        return @layer.getXP() + RelativeLayerRelationship.superclass.java_super_method(:getX, 0).bind(self).call()
     end
+    java_overload :getX, 0
     
 
     def getY()
-        return @layer.getYP() + super()
+        return @layer.getYP() + RelativeLayerRelationship.superclass.java_super_method(:getY, 0).bind(self).call()
     end
+    java_overload :getY, 0
     
 
     def getZ()
-        return @layer.getZP() + super()
+        return @layer.getZP() + RelativeLayerRelationship.superclass.java_super_method(:getZ, 0).bind(self).call()
     end
+    java_overload :getZ, 0
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end
 

@@ -14,25 +14,26 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform
 
-# require "java/io/ByteArrayInputStream"
-# require "java/io/ByteArrayOutputStream"
-# require "java/io/InputStream"
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 # require "javax/xml/transform/URIResolver"
 require "org/allbinary/logic/visual/transform/AbTransformer"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform
 
 class BasicTransformer < AbTransformer
     attr_accessor :logUtil, :streamUtil, :abeClientInformation
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @streamUtil = StreamUtil.getInstance()
-        @abeClientInformation = nil
+    def jfields_org_allbinary_logic_visual_transform_BasicTransformer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @streamUtil = ::Org::Allbinary::Logic::Io::StreamUtil.getInstance()
+        @abeClientInformation = nil unless instance_variable_defined?(:@abeClientInformation)
     end
     
 
     def initialize(abeClientInformation, transformInfoInterface)
         super(transformInfoInterface)
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_BasicTransformer
         @abeClientInformation = abeClientInformation
         self.setTemplateAsInputStream()
     end
@@ -43,19 +44,19 @@ class BasicTransformer < AbTransformer
         outputStream = nil
         inputStream = nil
         begin
-            outputStream = ByteArrayOutputStream.new()
-            inputStream = AbFileInputStream.new(file)
-            outputStream = @streamUtil.get(inputStream, outputStream, Array.new(16384, 0))
-            abCrypt = AbCrypt.new(KeySpecFactory::DESEDE, AbKeys.getInstance().getKey(@abeClientInformation, file.getAbsolutePath()))
+            outputStream = ::Java::Io::ByteArrayOutputStream.new()
+            inputStream = ::Org::Allbinary::Logic::Io::AbFileInputStream.createFromAbFile(file)
+            outputStream = @streamUtil.get(inputStream, outputStream, (Array.new(16384, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) })
+            abCrypt = ::Org::Allbinary::Logic::ControlPackage::Crypt::Jcehelper::AbCrypt.new(::Org::Allbinary::Logic::ControlPackage::Crypt::Jcehelper::KeySpecFactory::DESEDE, ::Org::Allbinary::Logic::System::Security::AbKeys.getInstance().getKey(@abeClientInformation, file.getAbsolutePath()))
             decrypted = abCrypt.decrypt(outputStream.toByteArray())
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
                 @logUtil.putF("Decrypted Template: \n" + (decrypted.pack("c*").force_encoding("UTF-8")).to_s, self, "setEncryptedTemplateFileAsInputStream(file)")
             end
-            self.setInputStream(ByteArrayInputStream.new(decrypted))
-            self.setURIResolver(BasicUriResolver.new(TransformInfoTemplateData.getInstance().ENCRYPTED_EXTENSION))
+            self.setInputStream(::Java::Io::ByteArrayInputStream.new(decrypted))
+            self.setURIResolver(::Org::Allbinary::DataPackage::Tree::Dom::BasicUriResolver.new(::Org::Allbinary::Logic::Visual::Transform::Info::Template::TransformInfoTemplateData.getInstance().ENCRYPTED_EXTENSION))
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Failed to get Encrypted File: ")
                 stringBuffer.append(file.getPath())
                 stringBuffer.append(" \nName:")
@@ -68,6 +69,7 @@ class BasicTransformer < AbTransformer
             @streamUtil.close(inputStream)
         end
     end
+    java_overload :setEncryptedTemplateFileAsInputStream, 1
     
 
     # throws Exception
@@ -75,18 +77,18 @@ class BasicTransformer < AbTransformer
         outputStream = nil
         inputStream = nil
         begin
-            outputStream = ByteArrayOutputStream.new()
-            inputStream = ByteArrayInputStream.new(self.getTransformInfoInterface().getTemplate().getBytes())
-            outputStream = @streamUtil.get(inputStream, outputStream, Array.new(16384, 0))
-            abCrypt = AbCrypt.new(KeySpecFactory::DESEDE, AbKeys.getInstance().getKey(@abeClientInformation, self.getTransformInfoInterface().getName()))
+            outputStream = ::Java::Io::ByteArrayOutputStream.new()
+            inputStream = ::Java::Io::ByteArrayInputStream.new(self.getTransformInfoInterface().getTemplate().getBytes())
+            outputStream = @streamUtil.get(inputStream, outputStream, (Array.new(16384, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) })
+            abCrypt = ::Org::Allbinary::Logic::ControlPackage::Crypt::Jcehelper::AbCrypt.new(::Org::Allbinary::Logic::ControlPackage::Crypt::Jcehelper::KeySpecFactory::DESEDE, ::Org::Allbinary::Logic::System::Security::AbKeys.getInstance().getKey(@abeClientInformation, self.getTransformInfoInterface().getName()))
             decrypted = abCrypt.decrypt(outputStream.toByteArray())
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
                 @logUtil.putF("Decrypted Template: \n" + decrypted.to_s, self, "setEncryptedTemplateAsInputStream()")
             end
-            self.setInputStream(ByteArrayInputStream.new(decrypted))
-            self.setURIResolver(BasicUriResolver.new(TransformInfoTemplateData.getInstance().ENCRYPTED_EXTENSION))
+            self.setInputStream(::Java::Io::ByteArrayInputStream.new(decrypted))
+            self.setURIResolver(::Org::Allbinary::DataPackage::Tree::Dom::BasicUriResolver.new(::Org::Allbinary::Logic::Visual::Transform::Info::Template::TransformInfoTemplateData.getInstance().ENCRYPTED_EXTENSION))
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
                 @logUtil.put("Failed to set with template: " + (self.getTransformInfoInterface().getTemplateFilePath()).to_s, self, "setEncryptedTemplateFileAsInputStream()", e)
             end
             raise e
@@ -95,6 +97,7 @@ class BasicTransformer < AbTransformer
             @streamUtil.close(inputStream)
         end
     end
+    java_overload :setEncryptedTemplateAsInputStream, 0
     
 
     # throws Exception
@@ -102,28 +105,28 @@ class BasicTransformer < AbTransformer
         inputStream = nil
         outputStream = nil
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
                 @logUtil.putF(self.getTransformInfoInterface().log(), self, "setTemplateAsInputStream()")
             end
-            transformInfoTemplateData = TransformInfoTemplateData.getInstance()
-            pathUtil = PathUtil.getInstance()
+            transformInfoTemplateData = ::Org::Allbinary::Logic::Visual::Transform::Info::Template::TransformInfoTemplateData.getInstance()
+            pathUtil = ::Org::Allbinary::Logic::Io::Path::PathUtil.getInstance()
             if self.getTransformInfoInterface().getTemplateFilePath() != nil
                 extension = pathUtil.getExtensionWithAbPath(self.getTransformInfoInterface().getTemplateFilePath())
                 filePath = pathUtil.getWithoutExtensionWithAbPath(self.getTransformInfoInterface().getTemplateFilePath())
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
                     @logUtil.putF(self.getTransformInfoInterface().log(), self, "setTemplateAsInputStream()")
                 end
                 if (extension <=> transformInfoTemplateData.UNCRYPTED_EXTENSION) == 0
-                    stringBuffer = StringMaker.new()
+                    stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     stringBuffer.append(filePath)
-                    stringBuffer.append(AbPathData.getInstance().EXTENSION_SEP)
+                    stringBuffer.append(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP)
                     stringBuffer.append(transformInfoTemplateData.ENCRYPTED_EXTENSION)
-                    encFile = AbFile.createAbFile(stringBuffer.to_s)
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+                    encFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(stringBuffer.to_s)
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
                         @logUtil.putF(self.getTransformInfoInterface().log(), self, "setTemplateAsInputStream()")
                     end
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
-                        stringBuffer = StringMaker.new()
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+                        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                         stringBuffer.append("Encrypted Template File isFile=")
                         stringBuffer.appendboolean(encFile.isFile())
                         stringBuffer.append("\nEncTemplateFilePath: ")
@@ -134,31 +137,31 @@ class BasicTransformer < AbTransformer
                         self.setEncryptedTemplateFileAsInputStream(encFile)
                         return
                     else
-                        file = AbFile.createAbFileFromAbPath(self.getTransformInfoInterface().getTemplateFilePath())
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+                        file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(self.getTransformInfoInterface().getTemplateFilePath())
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
                             @logUtil.putF(self.getTransformInfoInterface().log(), self, "setTemplateAsInputStream()")
                         end
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
                             @logUtil.putF("Template File isFile=" + (file.isFile()).to_s, self, "setTemplateAsInputStream()")
                         end
                         if file.isFile()
-                            inputStream = AbFileInputStream.new(file)
-                            outputStream = ByteArrayOutputStream.new()
-                            outputStream = @streamUtil.get(inputStream, outputStream, Array.new(16384, 0))
-                            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
+                            inputStream = ::Org::Allbinary::Logic::Io::AbFileInputStream.createFromAbFile(file)
+                            outputStream = ::Java::Io::ByteArrayOutputStream.new()
+                            outputStream = @streamUtil.get(inputStream, outputStream, (Array.new(16384, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) })
+                            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORY)
                                 @logUtil.putF("Template: " + outputStream.to_s, self, "getTemplateAsInputStream()")
                             end
-                            self.setInputStream(ByteArrayInputStream.new(outputStream.toByteArray()))
-                            self.setURIResolver(BasicUriResolver.new(transformInfoTemplateData.UNCRYPTED_EXTENSION))
+                            self.setInputStream(::Java::Io::ByteArrayInputStream.new(outputStream.toByteArray()))
+                            self.setURIResolver(::Org::Allbinary::DataPackage::Tree::Dom::BasicUriResolver.new(transformInfoTemplateData.UNCRYPTED_EXTENSION))
                             return
                         end
                     end
                 elsif (extension <=> transformInfoTemplateData.ENCRYPTED_EXTENSION) == 0
-                    stringBuffer = StringMaker.new()
+                    stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     stringBuffer.append(filePath)
-                    stringBuffer.append(AbPathData.getInstance().EXTENSION_SEP)
+                    stringBuffer.append(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP)
                     stringBuffer.append(transformInfoTemplateData.ENCRYPTED_EXTENSION)
-                    file = AbFile.createAbFile(stringBuffer.to_s)
+                    file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(stringBuffer.to_s)
                     if file.isFile()
                         self.setEncryptedTemplateFileAsInputStream(file)
                     end
@@ -169,7 +172,7 @@ class BasicTransformer < AbTransformer
                 self.setEncryptedTemplateAsInputStream()
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
                 @logUtil.put("Failed to get Template Data", self, "setTemplateAsInputStream()", e)
             end
             raise e
@@ -179,20 +182,28 @@ class BasicTransformer < AbTransformer
         end
         raise StandardError.new("Error setTemplateAsInputStream()")
     end
+    java_overload :setTemplateAsInputStream, 0
 end
 
-autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbCrypt, "org/allbinary/logic/control/crypt/jcehelper/AbCrypt"
-autoload :KeySpecFactory, "org/allbinary/logic/control/crypt/jcehelper/KeySpecFactory"
-autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream"
-autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :AbKeys, "org/allbinary/logic/system/security/AbKeys"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :TransformInfoTemplateData, "org/allbinary/logic/visual/transform/info/template/TransformInfoTemplateData"
+module ::Java; module Io; autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream" unless const_defined?(:ByteArrayInputStream, false); end; end
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver" unless const_defined?(:BasicUriResolver, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Crypt; module Jcehelper; autoload :AbCrypt, "org/allbinary/logic/control/crypt/jcehelper/AbCrypt" unless const_defined?(:AbCrypt, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Crypt; module Jcehelper; autoload :KeySpecFactory, "org/allbinary/logic/control/crypt/jcehelper/KeySpecFactory" unless const_defined?(:KeySpecFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil" unless const_defined?(:StreamUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil" unless const_defined?(:PathUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; autoload :AbKeys, "org/allbinary/logic/system/security/AbKeys" unless const_defined?(:AbKeys, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module Template; autoload :TransformInfoTemplateData, "org/allbinary/logic/visual/transform/info/template/TransformInfoTemplateData" unless const_defined?(:TransformInfoTemplateData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end; end
 

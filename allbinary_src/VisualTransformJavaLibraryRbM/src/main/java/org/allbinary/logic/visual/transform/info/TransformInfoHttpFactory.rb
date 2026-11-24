@@ -16,6 +16,8 @@
 
 # require "javax/servlet/jsp/PageContext"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
+
 class TransformInfoHttpFactory
     
 
@@ -25,11 +27,11 @@ class TransformInfoHttpFactory
 
     # throws Exception
     def self.getInstance(propertiesHashMap, pageContext)
-        logUtil = LogUtil.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         begin
-            weblisketSession = WeblisketSession.new(propertiesHashMap, pageContext)
-            if !StringValidationUtil.getInstance().isEmpty(weblisketSession.getStoreName())
-                storeFrontInterface = StoreFrontFactory.getInstance(weblisketSession.getStoreName())
+            weblisketSession = ::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSession.new(propertiesHashMap, pageContext)
+            if !::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(weblisketSession.getStoreName())
+                storeFrontInterface = ::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontFactory.getInstance(weblisketSession.getStoreName())
                 if storeFrontInterface != nil
                     return TransformInfoHttpStore.new(storeFrontInterface, propertiesHashMap, pageContext)
                 else
@@ -39,8 +41,8 @@ class TransformInfoHttpFactory
                 return TransformInfoHttpContext.new(propertiesHashMap, pageContext)
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 logUtil.put(commonStrings.EXCEPTION, "TransformInfoFactory", commonStrings.GET_INSTANCE, e)
             end
             raise e
@@ -48,14 +50,18 @@ class TransformInfoHttpFactory
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory"
-autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TransformInfoHttpContext, "org/allbinary/logic/visual/transform/info/TransformInfoHttpContext"
-autoload :TransformInfoHttpStore, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStore"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontFactory, "org/allbinary/business/context/modules/storefront/StoreFrontFactory" unless const_defined?(:StoreFrontFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface" unless const_defined?(:StoreFrontInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; module Session; autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession" unless const_defined?(:WeblisketSession, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :TransformInfoHttpContext, "org/allbinary/logic/visual/transform/info/TransformInfoHttpContext" unless const_defined?(:TransformInfoHttpContext, false)
+autoload :TransformInfoHttpStore, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStore" unless const_defined?(:TransformInfoHttpStore, false)
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false)
+
+end; end; end; end; end; end
 

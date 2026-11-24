@@ -15,6 +15,8 @@
 # package org.allbinary.business.advertisement
 
 
+module ::Org; module Allbinary; module Business; module Advertisement
+
 class AdvertisementProcessorInterface
     
 
@@ -29,4 +31,6 @@ class AdvertisementProcessorInterface
     def stop()
     end
 end
+
+end; end; end; end
 

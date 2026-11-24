@@ -14,20 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.data.tables.user.address.shipping
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/user/address/StreetAddressesEntity"
 
-class ShippingAddressesEntity < StreetAddressesEntity
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Address; module Shipping
+
+class ShippingAddressesEntity < ::Org::Allbinary::DataPackage::Tables::User::Address::StreetAddressesEntity
     attr_accessor :TABLENAME
 
-    def initialize_fields
+    def jfields_org_allbinary_data_tables_user_address_shipping_ShippingAddressesEntity
         @TABLENAME = "shipping"
     end
     
 
     def initialize(userName)
         super(userName)
-        initialize_fields
+        jfields_org_allbinary_data_tables_user_address_shipping_ShippingAddressesEntity
         setTableName(@TABLENAME)
     end
 end
+
+end; end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.behavior.topview
 
 
+module ::Org; module Allbinary; module Game; module Behavior; module Topview
+
 class TopViewCharacterBehavior
     
 
@@ -40,10 +42,12 @@ class TopViewCharacterBehavior
     end
 end
 
-require "org/allbinary/direction/Direction"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
-require "org/allbinary/media/graphics/geography/map/topview/BasicTopViewGeographicMapCellTypeFactory"
+module ::Org; module Allbinary; module Direction; autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellType, "org/allbinary/media/graphics/geography/map/GeographicMapCellType" unless const_defined?(:GeographicMapCellType, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Topview; autoload :BasicTopViewGeographicMapCellTypeFactory, "org/allbinary/media/graphics/geography/map/topview/BasicTopViewGeographicMapCellTypeFactory" unless const_defined?(:BasicTopViewGeographicMapCellTypeFactory, false); end; end; end; end; end; end; end
+
+end; end; end; end; end
 

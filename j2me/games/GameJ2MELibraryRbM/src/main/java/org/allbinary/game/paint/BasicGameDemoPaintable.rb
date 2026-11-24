@@ -14,24 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/StatePaintable"
 
-class BasicGameDemoPaintable < StatePaintable
+module ::Org; module Allbinary; module Game; module Paint
+
+class BasicGameDemoPaintable < ::Org::Allbinary::Graphics::Paint::StatePaintable
     attr_accessor :mainDemoStatePaintable, :ownershipPaintable, :helpPaintableInterface, :currentStatePaintable
 
-    def initialize_fields
-        @mainDemoStatePaintable = nil
-        @ownershipPaintable = nil
-        @helpPaintableInterface = nil
-        @currentStatePaintable = NullPaintable.getInstance()
+    def jfields_org_allbinary_game_paint_BasicGameDemoPaintable
+        @mainDemoStatePaintable = nil unless instance_variable_defined?(:@mainDemoStatePaintable)
+        @ownershipPaintable = nil unless instance_variable_defined?(:@ownershipPaintable)
+        @helpPaintableInterface = nil unless instance_variable_defined?(:@helpPaintableInterface)
+        @currentStatePaintable = ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
     end
     
 
     def initialize(mainDemoStatePaintable, ownershipPaintable, helpPaintableInterface)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_paint_BasicGameDemoPaintable
         @mainDemoStatePaintable = mainDemoStatePaintable
-        self.setCurrentStatePaintable(NullPaintable.getInstance())
+        self.setCurrentStatePaintable(::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance())
         @ownershipPaintable = ownershipPaintable
         @helpPaintableInterface = helpPaintableInterface
     end
@@ -46,34 +49,42 @@ class BasicGameDemoPaintable < StatePaintable
             self.setCurrentStatePaintable(@ownershipPaintable)
         end
     end
+    java_overload :setState, 1
     
 
     def paint(graphics)
         self.getCurrentStatePaintable().paint(graphics)
     end
+    java_overload :paint, 1
     
 
     def getHelpPaintableInterface()
         return @helpPaintableInterface
     end
+    java_overload :getHelpPaintableInterface, 0
     
 
     def setCurrentStatePaintable(currentStatePaintable)
         @currentStatePaintable = currentStatePaintable
     end
+    java_overload :setCurrentStatePaintable, 1
     
 
     def getCurrentStatePaintable()
         return @currentStatePaintable
     end
+    java_overload :getCurrentStatePaintable, 0
     
 
     def getMainDemoStatePaintable()
         return @mainDemoStatePaintable
     end
+    java_overload :getMainDemoStatePaintable, 0
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
-autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :Paintable, "org/allbinary/graphics/paint/Paintable" unless const_defined?(:Paintable, false); end; end; end; end
+
+end; end; end; end
 

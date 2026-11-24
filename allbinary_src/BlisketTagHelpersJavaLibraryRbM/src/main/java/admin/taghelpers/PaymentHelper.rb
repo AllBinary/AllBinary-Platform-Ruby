@@ -14,28 +14,31 @@
 # frozen_string_literal: false
 # package admin.taghelpers
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/http/HttpServletRequest"
 # require "javax/servlet/jsp/PageContext"
 require "admin/taghelpers/Table"
 
+module ::Admin; module Taghelpers
+
 class PaymentHelper < Table
     attr_accessor :logUtil, :weblisketSession, :request, :value, :portion
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @weblisketSession = nil
-        @request = nil
-        @value = nil
-        @portion = nil
+    def jfields_admin_taghelpers_PaymentHelper
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @weblisketSession = nil unless instance_variable_defined?(:@weblisketSession)
+        @request = nil unless instance_variable_defined?(:@request)
+        @value = nil unless instance_variable_defined?(:@value)
+        @portion = nil unless instance_variable_defined?(:@portion)
     end
     
 
     def initialize(hashMap, pageContext)
         super()
-        initialize_fields
+        jfields_admin_taghelpers_PaymentHelper
         @request = pageContext.getRequest()
-        @weblisketSession = WeblisketSession.new(hashMap, pageContext)
-        @portion = Portion.new(hashMap)
+        @weblisketSession = ::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSession.new(hashMap, pageContext)
+        @portion = ::Org::Allbinary::Business::Installer::Portion.new(hashMap)
         self.getFormData()
     end
     
@@ -43,157 +46,170 @@ class PaymentHelper < Table
     def getFormData()
         @value = @request.getParameter("VALUE")
     end
+    java_overload :getFormData, 0
     
 
     def insert()
         begin
             success = "Successfully Added Payment"
-            paymentEntity = PaymentEntityFactory.getInstance().getPaymentEntityInstance()
-            paymentInterface = PaymentFactory.getInstance(@request)
+            paymentEntity = ::Org::Allbinary::DataPackage::Tables::User::Commerce::Money::Payment::PaymentEntityFactory.getInstance().getPaymentEntityInstance()
+            paymentInterface = ::Org::Allbinary::Business::User::Commerce::Money::Payment::PaymentFactory.getInstance(@request)
             paymentEntity.add(@weblisketSession.getUserName(), paymentInterface)
             paymentEntity.setDefault(@weblisketSession.getUserName(), paymentEntity.getLastId(@weblisketSession.getUserName()))
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, "addPayment()")
             end
             return success
         rescue StandardError => e
             error = "Failed to add Payment"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "addPayment()", e)
             end
             return error
         end
     end
+    java_overload :insert, 0
     
 
     def select()
         begin
             success = "Successfully Selected Payment"
-            paymentEntity = PaymentEntityFactory.getInstance().getPaymentEntityInstance()
+            paymentEntity = ::Org::Allbinary::DataPackage::Tables::User::Commerce::Money::Payment::PaymentEntityFactory.getInstance().getPaymentEntityInstance()
             paymentEntity.setDefault(@weblisketSession.getUserName(), @value)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, "selectPayment()")
             end
             return success
         rescue StandardError => e
             error = "Failed to select Payment"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "selectPayment()", e)
             end
             return error
         end
     end
+    java_overload :select, 0
     
 
     def delete()
         begin
             success = "Successfully Removed Payment"
-            paymentEntity = PaymentEntityFactory.getInstance().getPaymentEntityInstance()
+            paymentEntity = ::Org::Allbinary::DataPackage::Tables::User::Commerce::Money::Payment::PaymentEntityFactory.getInstance().getPaymentEntityInstance()
             paymentEntity.remove(@weblisketSession.getUserName(), @value)
             paymentInterface = paymentEntity.getDefault(@weblisketSession.getUserName())
             if paymentInterface == nil
                 paymentEntity.setDefault(@weblisketSession.getUserName(), paymentEntity.getLastId(@weblisketSession.getUserName()))
             end
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, "removePayment()")
             end
             return success
         rescue StandardError => e
             error = "Failed to remove Payment"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "removePayment()", e)
             end
             return error
         end
     end
+    java_overload :delete, 0
     
 
     def drop()
         begin
-            paymentEntity = PaymentEntityFactory.getInstance().getPaymentEntityInstance()
+            paymentEntity = ::Org::Allbinary::DataPackage::Tables::User::Commerce::Money::Payment::PaymentEntityFactory.getInstance().getPaymentEntityInstance()
             success = paymentEntity.dropTable()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, @commonStrings.DROP)
             end
             return success
         rescue StandardError => e
             error = "Failed to drop Admin table"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.DROP, e)
             end
             return error
         end
     end
+    java_overload :drop, 0
     
 
     def create()
         begin
-            paymentEntity = PaymentEntityFactory.getInstance().getPaymentEntityInstance()
+            paymentEntity = ::Org::Allbinary::DataPackage::Tables::User::Commerce::Money::Payment::PaymentEntityFactory.getInstance().getPaymentEntityInstance()
             success = paymentEntity.createTable()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, "create()")
             end
             return success
         rescue StandardError => e
             error = "Failed to create user table"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "create()", e)
             end
             return error
         end
     end
+    java_overload :create, 0
     
 
     def restore()
         begin
             success = "Restore Successful"
-            result = AbSqlTableUtil.getInstance().restoreTable(PaymentEntityFactory.getInstance().getPaymentEntityInstance(), @portion)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            result = ::Org::Allbinary::Logic::Communication::Sql::AbSqlTableUtil.getInstance().restoreTable(::Org::Allbinary::DataPackage::Tables::User::Commerce::Money::Payment::PaymentEntityFactory.getInstance().getPaymentEntityInstance(), @portion)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, "restore()")
             end
             return result
         rescue StandardError => e
             error = "Failed to restore backup"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "restore()", e)
             end
             return error
         end
     end
+    java_overload :restore, 0
     
 
     def backup()
         begin
             success = "Backup Successful"
-            result = AbSqlTableUtil.getInstance().backupTable(PaymentEntityFactory.getInstance().getPaymentEntityInstance())
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            result = ::Org::Allbinary::Logic::Communication::Sql::AbSqlTableUtil.getInstance().backupTable(::Org::Allbinary::DataPackage::Tables::User::Commerce::Money::Payment::PaymentEntityFactory.getInstance().getPaymentEntityInstance())
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, "backup()")
             end
             return result
         rescue StandardError => e
             error = "Failed to make backup"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "backup()", e)
             end
             return error
         end
     end
+    java_overload :backup, 0
     
 
     # throws LicensingException
     def update()
         return @commonStrings.NOT_IMPLEMENTED
     end
+    java_overload :update, 0
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :Portion, "org/allbinary/business/installer/Portion"
-autoload :PaymentFactory, "org/allbinary/business/user/commerce/money/payment/PaymentFactory"
-autoload :PaymentInterface, "org/allbinary/business/user/commerce/money/payment/PaymentInterface"
-autoload :PaymentEntity, "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntity"
-autoload :PaymentEntityFactory, "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntityFactory"
-autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module Installer; autoload :Portion, "org/allbinary/business/installer/Portion" unless const_defined?(:Portion, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; autoload :PaymentFactory, "org/allbinary/business/user/commerce/money/payment/PaymentFactory" unless const_defined?(:PaymentFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; autoload :PaymentInterface, "org/allbinary/business/user/commerce/money/payment/PaymentInterface" unless const_defined?(:PaymentInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Commerce; module Money; module Payment; autoload :PaymentEntity, "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntity" unless const_defined?(:PaymentEntity, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Commerce; module Money; module Payment; autoload :PaymentEntityFactory, "org/allbinary/data/tables/user/commerce/money/payment/PaymentEntityFactory" unless const_defined?(:PaymentEntityFactory, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; module Session; autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession" unless const_defined?(:WeblisketSession, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Sql; autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil" unless const_defined?(:AbSqlTableUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end
 

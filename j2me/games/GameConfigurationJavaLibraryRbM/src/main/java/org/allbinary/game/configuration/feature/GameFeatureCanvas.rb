@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.feature
 
+require "java/lang/JavaOverload"
 require "javax/microedition/lcdui/Canvas"
 
-class GameFeatureCanvas < Canvas
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
+class GameFeatureCanvas < ::Javax::Microedition::Lcdui::Canvas
     
 
     def initialize()
@@ -26,7 +29,10 @@ class GameFeatureCanvas < Canvas
 
     def paint(graphics)
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+
+end; end; end; end; end
 

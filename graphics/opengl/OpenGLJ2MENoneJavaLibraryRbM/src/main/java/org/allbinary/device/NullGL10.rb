@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.device
 
+require "java/lang/JavaOverload"
 require "javax/microedition/khronos/opengles/GL10"
 
+module ::Org; module Allbinary; module Device
+
 class NullGL10
-    include GL10
+    include ::Javax::Microedition::Khronos::Opengles::GL10
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -45,4 +48,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

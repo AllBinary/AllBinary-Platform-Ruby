@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.feature
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/configuration/feature/Feature"
+
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
 
 class TouchFeature < Feature
     
@@ -23,4 +26,6 @@ class TouchFeature < Feature
         super(name)
     end
 end
+
+end; end; end; end; end
 

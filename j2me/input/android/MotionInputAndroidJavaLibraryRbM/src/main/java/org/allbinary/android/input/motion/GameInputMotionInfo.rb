@@ -15,19 +15,23 @@
 # package org.allbinary.android.input.motion
 
 
+module ::Org; module Allbinary; module Android; module Input; module Motion
+
 class GameInputMotionInfo
     attr_accessor :MAX_API, :MAX_POINTERS
 
-    def initialize_fields
-        @MAX_API = nil
-        @MAX_POINTERS = nil
+    def jfields_org_allbinary_android_input_motion_GameInputMotionInfo
+        @MAX_API = nil unless instance_variable_defined?(:@MAX_API)
+        @MAX_POINTERS = nil unless instance_variable_defined?(:@MAX_POINTERS)
     end
     
 
     def initialize(maxApi, maxPointers)
-        initialize_fields
+        jfields_org_allbinary_android_input_motion_GameInputMotionInfo
         @MAX_API = maxApi
         @MAX_POINTERS = maxPointers
     end
 end
+
+end; end; end; end; end
 

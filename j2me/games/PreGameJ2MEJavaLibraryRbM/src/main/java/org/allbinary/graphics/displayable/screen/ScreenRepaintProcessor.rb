@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.screen
 
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/Processor"
 
-class ScreenRepaintProcessor < Processor
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen
+
+class ScreenRepaintProcessor < ::Org::Allbinary::Canvas::Processor
     attr_accessor :displayable
 
-    def initialize_fields
-        @displayable = nil
+    def jfields_org_allbinary_graphics_displayable_screen_ScreenRepaintProcessor
+        @displayable = nil unless instance_variable_defined?(:@displayable)
     end
     
 
     def initialize(displayable)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_displayable_screen_ScreenRepaintProcessor
         @displayable = displayable
     end
     
@@ -35,8 +38,11 @@ class ScreenRepaintProcessor < Processor
     def process()
         ScreenRepaintUtil.repaint(@displayable)
     end
+    java_overload :process, 0
 end
 
-autoload :Displayable, "javax/microedition/lcdui/Displayable"
-autoload :ScreenRepaintUtil, "org/allbinary/graphics/displayable/screen/ScreenRepaintUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Displayable, "javax/microedition/lcdui/Displayable" unless const_defined?(:Displayable, false); end; end; end
+autoload :ScreenRepaintUtil, "org/allbinary/graphics/displayable/screen/ScreenRepaintUtil" unless const_defined?(:ScreenRepaintUtil, false)
+
+end; end; end; end; end
 

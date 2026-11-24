@@ -19,10 +19,12 @@
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Util
+
 class CircularIndexUtil
     attr_accessor :index, :lastIndex, :size
 
-    def initialize_fields
+    def jfields_org_allbinary_util_CircularIndexUtil
         @index = 0
         @lastIndex = 0
         @size = 0
@@ -30,7 +32,7 @@ class CircularIndexUtil
     
 
     def initialize(index, size)
-        initialize_fields
+        jfields_org_allbinary_util_CircularIndexUtil
         self.setSize(size)
         self.setIndex(index)
     end
@@ -92,7 +94,7 @@ class CircularIndexUtil
     
 
     def toString()
-        return StringMaker.new().append(CommonLabels.getInstance().INDEX_LABEL).appendint(@index).append("lastIndex: ").appendint(@lastIndex).append("size: ").appendint(@size).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL).appendint(@index).append("lastIndex: ").appendint(@lastIndex).append("size: ").appendint(@size).to_s
     end
     alias_method :to_s, :toString
 
@@ -117,12 +119,14 @@ class CircularIndexUtil
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
 
 begin
     CircularIndexUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package javax.microedition.lcdui
 
+require "java/lang/JavaOverload"
 require "javax/microedition/lcdui/PlatformImage"
+
+module ::Javax; module Microedition; module Lcdui
 
 #PlatformNullImageJavaLibrary
 class PreLoadPlatformImage < PlatformImage
@@ -60,4 +63,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

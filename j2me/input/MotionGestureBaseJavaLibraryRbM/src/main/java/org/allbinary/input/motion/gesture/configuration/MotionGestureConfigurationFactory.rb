@@ -15,6 +15,8 @@
 # package org.allbinary.input.motion.gesture.configuration
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Configuration
+
 class MotionGestureConfigurationFactory
     
 
@@ -57,11 +59,13 @@ class MotionGestureConfigurationFactory
     end
 end
 
-autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration"
+autoload :MotionGestureConfiguration, "org/allbinary/input/motion/gesture/configuration/MotionGestureConfiguration" unless const_defined?(:MotionGestureConfiguration, false)
 
 begin
     MotionGestureConfigurationFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.generic.constraints
 
-# require "java/awt"
+require "java/lang/JavaOverload"
+# require "java/awt/Color"
 # require "java/awt/image/BufferedImage"
 require "org/allbinary/input/automation/module/ImageComparatorConstraints"
 
-class NoImageComparatorConstraints < ImageComparatorConstraints
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Constraints
+
+class NoImageComparatorConstraints < ::Org::Allbinary::Input::Automation::ModulePackage::ImageComparatorConstraints
     
 
     def initialize()
@@ -30,12 +33,16 @@ class NoImageComparatorConstraints < ImageComparatorConstraints
     def isColorAllowed(frame, point, color)
         return true
     end
+    java_overload :isColorAllowed, 3
     
 
     def isImageValid(bufferedImage)
         return true
     end
+    java_overload :isImageValid, 1
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+
+end; end; end; end; end; end; end
 

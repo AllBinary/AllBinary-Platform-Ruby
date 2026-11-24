@@ -14,26 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.pathfinding
 
-# require "java/util/HashSet"
-# require "java/util/PriorityQueue"
+require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/media/graphics/geography/pathfinding/GeographicPathFinderBase"
+
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding
 
 class PathFinder < GeographicPathFinderBase
     attr_accessor :logUtil, :basicArrayListUtil, :mathUtil, :openPriorityQueue, :closedSet, :geographicMapInterface, :costArray
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @basicArrayListUtil = BasicArrayListUtil.getInstance()
-        @mathUtil = MathUtil.getInstance()
-        @openPriorityQueue = PriorityQueue.new()
-        @closedSet = HashSet.new()
-        @geographicMapInterface = NullUtil.getInstance().NULL_OBJECT
+    def jfields_org_allbinary_media_graphics_geography_pathfinding_PathFinder
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @basicArrayListUtil = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance()
+        @mathUtil = ::Org::Allbinary::Logic::MathPackage::MathUtil.getInstance()
+        @openPriorityQueue = ::Org::Allbinary::Util::ABPriorityQueue.new()
+        @closedSet = ::Org::Allbinary::Util::ABHashSet.new()
+        @geographicMapInterface = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         @costArray = PathFindingNodeCost::NULL_PATH_FINDING_NODE_COST_ARRAY_ARRAY
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_pathfinding_PathFinder
     end
     
 
@@ -50,22 +52,24 @@ class PathFinder < GeographicPathFinderBase
             (0...sizeY).each do |row|
                 geographicMapCellType = geographicMapInterface.getCellTypeAt(basicGeographicMapCellPositionFactory.getAt(column, row))
                 raceTrackGeographicMapCellType = geographicMapCellType
-                node = PathFindingNodeCost.new(NullUtil.getInstance().NULL_OBJECT, basicGeographicMapCellPositionFactory.getAt(column, row), PathFindingNodeCostInfo.new((raceTrackGeographicMapCellType.getTravelCost()).to_i, -1))
+                node = PathFindingNodeCost.new(::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT, basicGeographicMapCellPositionFactory.getAt(column, row), PathFindingNodeCostInfo.new(((raceTrackGeographicMapCellType.getTravelCost()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }), -1))
                 @costArray[column][row] = node
             end
         end
     end
+    java_overload :init, 1
     
 
     def searchTotalPath(startPathFindingNodeList, endPathFindingNodeList, totalPaths)
         begin
             return self.search(startPathFindingNodeList.get(0), endPathFindingNodeList.get(0))
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, "search", e)
             return @basicArrayListUtil.getImmutableInstance()
         end
     end
+    java_overload :searchTotalPath, 3
     
 
     # throws Exception
@@ -79,21 +83,24 @@ class PathFinder < GeographicPathFinderBase
         end
         return @basicArrayListUtil.getImmutableInstance()
     end
+    java_overload :searchTotalPathN, 4
     
 
     # throws Exception
     def search(startPathFindingNode, endPathFindingNode)
         list = self.findPath(startPathFindingNode.geographicMapCellPosition, endPathFindingNode.geographicMapCellPosition)
-        pathList = BasicArrayListD.new()
+        pathList = ::Org::Allbinary::Util::BasicArrayListD.new()
         pathList.add(list)
         return pathList
     end
+    java_overload :search, 2
     
 
     # throws Exception
     def searchStart(startPathFindingNode, endPathFindingNode, multipassState)
         self.findPathStart(startPathFindingNode.geographicMapCellPosition, endPathFindingNode.geographicMapCellPosition, multipassState)
     end
+    java_overload :searchStart, 3
     
 
     # throws Exception
@@ -102,12 +109,13 @@ class PathFinder < GeographicPathFinderBase
         if list == nil
             return @basicArrayListUtil.getImmutableInstance()
         end
-        pathList = BasicArrayListD.new()
+        pathList = ::Org::Allbinary::Util::BasicArrayListD.new()
         pathList.add(list)
         multipassState.iteration = 0
         multipassState.step = 0
         return pathList
     end
+    java_overload :searchN, 3
     
 
     # throws Exception
@@ -122,7 +130,7 @@ class PathFinder < GeographicPathFinderBase
         sizeY = @costArray[0].length
         (0...sizeX).each do |column|
             (0...sizeY).each do |row|
-                discoveryCalculation = (@mathUtil.abs(column - targetColumn)).to_i + @mathUtil.abs(row - targetRow)
+                discoveryCalculation = ((@mathUtil.abs(column - targetColumn)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + @mathUtil.abs(row - targetRow)
                 node = @costArray[column][row]
                 node.pathFindingNodeCostInfoP.totalCostP = 0
                 node.pathFindingNodeCostInfoP.costToEndP = discoveryCalculation
@@ -169,6 +177,7 @@ class PathFinder < GeographicPathFinderBase
         end
         raise RuntimeError.new()
     end
+    java_overload :findPath, 2
     
 
     # throws Exception
@@ -183,7 +192,7 @@ class PathFinder < GeographicPathFinderBase
         sizeY = @costArray[0].length
         (0...sizeX).each do |column|
             (0...sizeY).each do |row|
-                discoveryCalculation = (@mathUtil.abs(column - targetColumn)).to_i + @mathUtil.abs(row - targetRow)
+                discoveryCalculation = ((@mathUtil.abs(column - targetColumn)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + @mathUtil.abs(row - targetRow)
                 node = @costArray[column][row]
                 node.pathFindingNodeCostInfoP.totalCostP = 0
                 node.pathFindingNodeCostInfoP.costToEndP = discoveryCalculation
@@ -193,6 +202,7 @@ class PathFinder < GeographicPathFinderBase
         @openPriorityQueue.add(startNode)
         multipassState.step += 1
     end
+    java_overload :findPathStart, 3
     
 
     # throws Exception
@@ -241,11 +251,12 @@ class PathFinder < GeographicPathFinderBase
         end
         raise RuntimeError.new()
     end
+    java_overload :findPathEnd, 3
     
 
     def extractPath(start, current)
-        path = BasicArrayListD.new()
-        while current.parent != NullUtil.getInstance().NULL_OBJECT
+        path = ::Org::Allbinary::Util::BasicArrayListD.new()
+        while current.parent != ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             path.add(current.geographicMapCellPosition)
             current = current.parent
         end
@@ -253,23 +264,28 @@ class PathFinder < GeographicPathFinderBase
         @basicArrayListUtil.reverse(path)
         return path
     end
+    java_overload :extractPath, 2
 end
 
-require "org/allbinary/game/layer/AllBinaryTiledLayer"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/math/MathUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
-require "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMapCellType"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/media/graphics/geography/pathfinding/MultipassState"
-require "org/allbinary/media/graphics/geography/pathfinding/PathFindingNode"
-require "org/allbinary/media/graphics/geography/pathfinding/PathFindingNodeCost"
-require "org/allbinary/media/graphics/geography/pathfinding/PathFindingNodeCostInfo"
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryTiledLayer, "org/allbinary/game/layer/AllBinaryTiledLayer" unless const_defined?(:AllBinaryTiledLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory" unless const_defined?(:BasicGeographicMapCellPositionFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellType, "org/allbinary/media/graphics/geography/map/GeographicMapCellType" unless const_defined?(:GeographicMapCellType, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack; autoload :RaceTrackGeographicMapCellType, "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMapCellType" unless const_defined?(:RaceTrackGeographicMapCellType, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashSet, "org/allbinary/util/ABHashSet" unless const_defined?(:ABHashSet, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABPriorityQueue, "org/allbinary/util/ABPriorityQueue" unless const_defined?(:ABPriorityQueue, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+autoload :MultipassState, "org/allbinary/media/graphics/geography/pathfinding/MultipassState" unless const_defined?(:MultipassState, false)
+autoload :PathFindingNode, "org/allbinary/media/graphics/geography/pathfinding/PathFindingNode" unless const_defined?(:PathFindingNode, false)
+autoload :PathFindingNodeCost, "org/allbinary/media/graphics/geography/pathfinding/PathFindingNodeCost" unless const_defined?(:PathFindingNodeCost, false)
+autoload :PathFindingNodeCostInfo, "org/allbinary/media/graphics/geography/pathfinding/PathFindingNodeCostInfo" unless const_defined?(:PathFindingNodeCostInfo, false)
+
+end; end; end; end; end; end
 

@@ -14,40 +14,43 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/configuration/persistance/BasicPersitance"
 
+module ::Org; module Allbinary; module Game; module Input
+
 #GameInputPersistanceLibrary
-class InputPersistance < BasicPersitance
+class InputPersistance < ::Org::Allbinary::Game::Configuration::Persistance::BasicPersitance
     attr_accessor :tsUtil, :hashtableUtil
 
-    def initialize_fields
-        @tsUtil = TsUtil.getInstance()
-        @hashtableUtil = HashtableUtil.getInstance()
+    def jfields_org_allbinary_game_input_InputPersistance
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
+        @hashtableUtil = ::Org::Allbinary::Util::HashtableUtil.getInstance()
     end
     
 
     def initialize(name)
         super(name)
-        initialize_fields
+        jfields_org_allbinary_game_input_InputPersistance
     end
     
 
     # throws Exception
     def loadAll(abeClientInformation)
-        recordStore = NullRecordStore::NULL_RECORD_STORE
+        recordStore = ::Org::Allbinary::Game::Configuration::Persistance::NullRecordStore::NULL_RECORD_STORE
         begin
-            recordStore = RecordStore.openRecordStore(self.getRecordId(abeClientInformation), true)
-            recordEnum = recordStore.enumerateRecords(NullRecordFilter::NULL_RECORD_FILTER, NullRecordComparator::NULL_RECORD_COMPARATOR, true)
+            recordStore = ::Javax::Microedition::Rms::RecordStore.openRecordStore(self.getRecordId(abeClientInformation), true)
+            recordEnum = recordStore.enumerateRecords(::Org::Allbinary::Game::Configuration::Persistance::NullRecordFilter::NULL_RECORD_FILTER, ::Org::Allbinary::Game::Configuration::Persistance::NullRecordComparator::NULL_RECORD_COMPARATOR, true)
             gameActionInputId = 0
             inputId = 0
             gameActionInput = nil
             input = nil
             hashtable = nil
             gameKeyFactory = GameKeyMappingFactory.getInstance()
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             inputFactory = InputFactory.getInstance()
-            smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-            stdUtil = StdUtil.getInstance()
+            smallIntegerSingletonFactory = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance()
+            stdUtil = ::Org::Allbinary::Logic::StdUtil.getInstance()
             recordAsBytes = nil
             byteArrayInputStream = nil
             inputStream = nil
@@ -57,8 +60,8 @@ class InputPersistance < BasicPersitance
                 @logUtil.putF(stringBuffer.append(@persistanceStrings.LOADING_ID).appendint(id).to_s, self, @persistanceStrings.LOAD_ALL)
                 recordAsBytes = @tsUtil.getRecord(recordStore, id)
                 if recordAsBytes != nil
-                    byteArrayInputStream = ByteArrayInputStream.new(recordAsBytes)
-                    inputStream = DataInputStream.new(byteArrayInputStream)
+                    byteArrayInputStream = ::Java::Io::ByteArrayInputStream.new(recordAsBytes)
+                    inputStream = ::Java::Io::DataInputStream.new(byteArrayInputStream)
                     hashtable = stdUtil.createHashtable()
                     value = 0
                     while inputStream.available() > 0
@@ -77,7 +80,7 @@ class InputPersistance < BasicPersitance
                                 stringBuffer.appendlong(inputId)
                                 stringBuffer.append(@persistanceStrings.GAME_ACTION_INPUT)
                                 stringBuffer.appendlong(gameActionInputId)
-                                PreLogUtil.put(stringBuffer.to_s, self, @persistanceStrings.LOAD_ALL)
+                                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(stringBuffer.to_s, self, @persistanceStrings.LOAD_ALL)
                             end
                             if gameActionInput == nil
                                 stringBuffer.delete(0, stringBuffer.length())
@@ -85,7 +88,7 @@ class InputPersistance < BasicPersitance
                                 stringBuffer.appendlong(gameActionInputId)
                                 stringBuffer.append(@persistanceStrings.ID)
                                 stringBuffer.appendlong(inputId)
-                                PreLogUtil.put(stringBuffer.to_s, self, @persistanceStrings.LOAD_ALL)
+                                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(stringBuffer.to_s, self, @persistanceStrings.LOAD_ALL)
                             end
                         else
                         end
@@ -100,28 +103,29 @@ class InputPersistance < BasicPersitance
             raise e
         ensure
             if recordStore != nil
-                PreLogUtil.put(@persistanceStrings.CLOSING_RECORDSTORE, self, @persistanceStrings.LOAD_ALL)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(@persistanceStrings.CLOSING_RECORDSTORE, self, @persistanceStrings.LOAD_ALL)
                 recordStore.closeRecordStore()
             end
         end
     end
+    java_overload :loadAll, 1
     
 
     # throws Exception
     def save(abeClientInformation, hashtable)
-        recordStore = NullRecordStore::NULL_RECORD_STORE
+        recordStore = ::Org::Allbinary::Game::Configuration::Persistance::NullRecordStore::NULL_RECORD_STORE
         begin
-            stringBuffer = StringMaker.new()
-            PreLogUtil.put(stringBuffer.append(@persistanceStrings.SAVING).append(StringUtil.getInstance().toString(hashtable)).to_s, self, @commonStrings.SAVE)
-            recordStore = RecordStore.openRecordStore(self.getRecordId(abeClientInformation), true)
-            byteArrayOutputStream = ByteArrayOutputStream.new()
-            outputStream = DataOutputStream.new(byteArrayOutputStream)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(stringBuffer.append(@persistanceStrings.SAVING).append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(hashtable)).to_s, self, @commonStrings.SAVE)
+            recordStore = ::Javax::Microedition::Rms::RecordStore.openRecordStore(self.getRecordId(abeClientInformation), true)
+            byteArrayOutputStream = ::Java::Io::ByteArrayOutputStream.new()
+            outputStream = ::Java::Io::DataOutputStream.new(byteArrayOutputStream)
             gameActionInput = nil
             list = nil
             input = nil
             savedGameBytes = nil
-            commonSeps = CommonSeps.getInstance()
-            smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
+            commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+            smallIntegerSingletonFactory = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance()
             inputObjectArray = @hashtableUtil.getKeysAsArray(hashtable)
             size = inputObjectArray.length
             (0...size).each do |index|
@@ -142,34 +146,37 @@ class InputPersistance < BasicPersitance
             raise e
         ensure
             if recordStore != nil
-                PreLogUtil.put(@persistanceStrings.CLOSING_RECORDSTORE, self, @commonStrings.SAVE)
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(@persistanceStrings.CLOSING_RECORDSTORE, self, @commonStrings.SAVE)
                 recordStore.closeRecordStore()
             end
         end
     end
+    java_overload :save, 2
 end
 
-autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
-autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
-autoload :DataInputStream, "java/io/DataInputStream"
-autoload :DataOutputStream, "java/io/DataOutputStream"
-autoload :RecordEnumeration, "javax/microedition/rms/RecordEnumeration"
-autoload :RecordStore, "javax/microedition/rms/RecordStore"
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :NullRecordComparator, "org/allbinary/game/configuration/persistance/NullRecordComparator"
-autoload :NullRecordFilter, "org/allbinary/game/configuration/persistance/NullRecordFilter"
-autoload :NullRecordStore, "org/allbinary/game/configuration/persistance/NullRecordStore"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :GameKeyMappingFactory, "org/allbinary/game/input/GameKeyMappingFactory"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+module ::Java; module Io; autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream" unless const_defined?(:ByteArrayInputStream, false); end; end
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Java; module Io; autoload :DataInputStream, "java/io/DataInputStream" unless const_defined?(:DataInputStream, false); end; end
+module ::Java; module Io; autoload :DataOutputStream, "java/io/DataOutputStream" unless const_defined?(:DataOutputStream, false); end; end
+module ::Javax; module Microedition; module Rms; autoload :RecordEnumeration, "javax/microedition/rms/RecordEnumeration" unless const_defined?(:RecordEnumeration, false); end; end; end
+module ::Javax; module Microedition; module Rms; autoload :RecordStore, "javax/microedition/rms/RecordStore" unless const_defined?(:RecordStore, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :NullRecordComparator, "org/allbinary/game/configuration/persistance/NullRecordComparator" unless const_defined?(:NullRecordComparator, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :NullRecordFilter, "org/allbinary/game/configuration/persistance/NullRecordFilter" unless const_defined?(:NullRecordFilter, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :NullRecordStore, "org/allbinary/game/configuration/persistance/NullRecordStore" unless const_defined?(:NullRecordStore, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :HashtableUtil, "org/allbinary/util/HashtableUtil" unless const_defined?(:HashtableUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :GameKeyMappingFactory, "org/allbinary/game/input/GameKeyMappingFactory" unless const_defined?(:GameKeyMappingFactory, false)
+autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false)
+autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false)
+
+end; end; end; end
 

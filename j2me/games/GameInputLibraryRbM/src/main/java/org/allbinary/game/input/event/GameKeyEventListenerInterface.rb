@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/event/DownGameKeyEventListenerInterface"
 require "org/allbinary/game/input/event/PressGameKeyEventListenerInterface"
 require "org/allbinary/game/input/event/UpGameKeyEventListenerInterface"
+
+module ::Org; module Allbinary; module Game; module Input; module Event
 
 module GameKeyEventListenerInterface
     include DownGameKeyEventListenerInterface
     include UpGameKeyEventListenerInterface
     include PressGameKeyEventListenerInterface
 end
+
+end; end; end; end; end
 

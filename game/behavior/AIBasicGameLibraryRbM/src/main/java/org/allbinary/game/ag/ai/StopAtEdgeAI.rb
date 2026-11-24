@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ai/BasicAI"
 
-class StopAtEdgeAI < BasicAI
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
+class StopAtEdgeAI < ::Org::Allbinary::Game::Ai::BasicAI
     
 
     def initialize(ownerLayerInterface, gameInput)
@@ -35,7 +38,7 @@ class StopAtEdgeAI < BasicAI
         y2 = ownerLayerInterface.getY2()
         width = ownerLayerInterface.getWidth()
         height = ownerLayerInterface.getHeight()
-        displayInfo = DisplayInfoSingleton.getInstance()
+        displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
         if x2 + velocityProperties.getVelocityXBasicDecimalP().getScaled() > displayInfo.getLastWidth()
             ownerLayerInterface.setPosition(displayInfo.getLastWidth() - width, y, ownerLayerInterface.getZP())
             velocityProperties.getVelocityYBasicDecimalP().setint(0)
@@ -53,12 +56,15 @@ class StopAtEdgeAI < BasicAI
             velocityProperties.getVelocityXBasicDecimalP().setint(0)
         end
     end
+    java_overload :processAI, 1
 end
 
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties" unless const_defined?(:BasicVelocityProperties, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface" unless const_defined?(:VelocityInterfaceCompositeInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end; end; end
 

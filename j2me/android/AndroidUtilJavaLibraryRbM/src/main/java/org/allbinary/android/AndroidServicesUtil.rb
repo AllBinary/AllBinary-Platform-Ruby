@@ -16,19 +16,21 @@
 
 # require "java/util/List"
 
+module ::Org; module Allbinary; module Android
+
 class AndroidServicesUtil
     attr_accessor :logUtil, :resourceUtil, :SERVICE_LIMIT_MAX, :IS_SERVICE_RUNNING, :SERVICE_NOT_FOUND_RUNNING
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @resourceUtil = ResourceUtil.getInstance()
+    def jfields_org_allbinary_android_AndroidServicesUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @resourceUtil = ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance()
         @SERVICE_LIMIT_MAX = 1000
         @IS_SERVICE_RUNNING = "isServiceRunning"
         @SERVICE_NOT_FOUND_RUNNING = "Service not found Running: "
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_android_AndroidServicesUtil
     end
     
 
@@ -38,7 +40,7 @@ class AndroidServicesUtil
     
 
     def isServiceRunning(name)
-        activityManager = @resourceUtil.getContext().getSystemService(Context::ACTIVITY_SERVICE)
+        activityManager = @resourceUtil.getContext().getSystemService(::Android::Content::Context::ACTIVITY_SERVICE)
         runningServicesList = activityManager.getRunningServices(@SERVICE_LIMIT_MAX)
         runningServiceInfo = nil
         serviceComponent = nil
@@ -57,22 +59,48 @@ class AndroidServicesUtil
     end
 
     def self.instance()
+        AndroidServicesUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AndroidServicesUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AndroidServicesUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AndroidServicesUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "android/app/ActivityManager"
-require "android/app/ActivityManager/RunningServiceInfo"
-require "android/content/ComponentName"
-require "android/content/Context"
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
+module ::Android; module App; autoload :ActivityManager, "android/app/ActivityManager" unless const_defined?(:ActivityManager, false); end; end
+module ::Android; module App; autoload :ActivityManager, "android/app/ActivityManager" unless const_defined?(:ActivityManager, false); end; end
+module ::Android; module Content; autoload :ComponentName, "android/content/ComponentName" unless const_defined?(:ComponentName, false); end; end
+module ::Android; module Content; autoload :Context, "android/content/Context" unless const_defined?(:Context, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
 
-class AndroidServicesUtil
-    @@instance = AndroidServicesUtil.new()
+begin
+    AndroidServicesUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

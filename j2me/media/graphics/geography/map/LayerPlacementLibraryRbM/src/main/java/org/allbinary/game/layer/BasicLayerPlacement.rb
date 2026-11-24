@@ -15,18 +15,20 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class BasicLayerPlacement
     attr_accessor :layerType, :width, :height
 
-    def initialize_fields
-        @layerType = nil
-        @width = nil
-        @height = nil
+    def jfields_org_allbinary_game_layer_BasicLayerPlacement
+        @layerType = nil unless instance_variable_defined?(:@layerType)
+        @width = nil unless instance_variable_defined?(:@width)
+        @height = nil unless instance_variable_defined?(:@height)
     end
     
 
     def initialize(layerType, width, height)
-        initialize_fields
+        jfields_org_allbinary_game_layer_BasicLayerPlacement
         @layerType = layerType
         @width = width
         @height = height
@@ -53,5 +55,7 @@ class BasicLayerPlacement
     end
 end
 
-autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType"
+autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType" unless const_defined?(:LayerPlacementType, false)
+
+end; end; end; end
 

@@ -16,6 +16,8 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary
+
 #TempBase
 class TsUtil
     
@@ -26,12 +28,12 @@ class TsUtil
     
 
     def longBitsToDouble(bits)
-        return java.lang.Double.longBitsToDouble(bits)
+        return Double.longBitsToDouble(bits)
     end
     
 
     def intBitsToFloat(bits)
-        return java.lang.Float.intBitsToFloat(bits)
+        return Float.intBitsToFloat(bits)
     end
     
 
@@ -89,4 +91,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end
 

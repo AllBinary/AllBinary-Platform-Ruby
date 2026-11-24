@@ -14,19 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.osgi
 
-# require "javax/swing"
+# require "javax/swing/JDialog"
+
+module ::Org; module Allbinary; module Input; module Automation; module Osgi
 
 class DesktopBundle
     attr_accessor :bundle
 
-    def initialize_fields
-        @bundle = nil
+    def jfields_org_allbinary_input_automation_osgi_DesktopBundle
+        @bundle = nil unless instance_variable_defined?(:@bundle)
     end
     
 
     def initialize()
-        initialize_fields
-        bundleContext = InputAutomationBundleActivator.getBundleContext()
+        jfields_org_allbinary_input_automation_osgi_DesktopBundle
+        bundleContext = ::Bundle::Input::Automation::InputAutomationBundleActivator.getBundleContext()
         if bundleContext != nil
             bundleArray = bundleContext.getBundles()
             (0...bundleArray.length).each do |index|
@@ -37,7 +39,7 @@ class DesktopBundle
                 end
             end
         else
-            textJDialog = BasicTextJDialog.new("BundlContext is Null")
+            textJDialog = ::Org::Allbinary::Gui::Dialog::BasicTextJDialog.new("BundlContext is Null")
             textJDialog.setVisible(true)
         end
     end
@@ -69,14 +71,16 @@ class DesktopBundle
     end
 end
 
-autoload :Bundle, "org/osgi/framework/Bundle"
-autoload :BundleContext, "org/osgi/framework/BundleContext"
-autoload :InputAutomationBundleActivator, "bundle/input/automation/InputAutomationBundleActivator"
-autoload :BasicTextJDialog, "org/allbinary/gui/dialog/BasicTextJDialog"
+module ::Org; module Osgi; module Framework; autoload :Bundle, "org/osgi/framework/Bundle" unless const_defined?(:Bundle, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :BundleContext, "org/osgi/framework/BundleContext" unless const_defined?(:BundleContext, false); end; end; end
+module ::Bundle; module Input; module Automation; autoload :InputAutomationBundleActivator, "bundle/input/automation/InputAutomationBundleActivator" unless const_defined?(:InputAutomationBundleActivator, false); end; end; end
+module ::Org; module Allbinary; module Gui; module Dialog; autoload :BasicTextJDialog, "org/allbinary/gui/dialog/BasicTextJDialog" unless const_defined?(:BasicTextJDialog, false); end; end; end; end
 
 begin
     DesktopBundle.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

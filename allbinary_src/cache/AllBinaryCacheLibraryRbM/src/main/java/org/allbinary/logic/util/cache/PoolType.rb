@@ -15,16 +15,18 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class PoolType
     attr_accessor :cacheType
 
-    def initialize_fields
-        @cacheType = nil
+    def jfields_org_allbinary_logic_util_cache_PoolType
+        @cacheType = nil unless instance_variable_defined?(:@cacheType)
     end
     
 
     def initialize(cacheType)
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_PoolType
         @cacheType = cacheType
     end
     
@@ -41,5 +43,7 @@ class PoolType
     alias_method :to_s, :toString
 end
 
-autoload :CacheType, "org/allbinary/logic/util/cache/CacheType"
+autoload :CacheType, "org/allbinary/logic/util/cache/CacheType" unless const_defined?(:CacheType, false)
+
+end; end; end; end; end
 

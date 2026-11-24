@@ -15,24 +15,28 @@
 # package dynamic
 
 
+module ::Dynamic
+
 class NativeLibraryHelper
     attr_accessor :library
 
-    def initialize_fields
-        @library = nil
+    def jfields_dynamic_NativeLibraryHelper
+        @library = nil unless instance_variable_defined?(:@library)
     end
     
 
     def initialize(library)
-        initialize_fields
+        jfields_dynamic_NativeLibraryHelper
         @library = library
     end
     
 
     def load()
-        System.loadLibrary(@library)
+        ::Java::Lang::System.loadLibrary(@library)
     end
 end
 
 require "java/lang/System"
+
+end
 

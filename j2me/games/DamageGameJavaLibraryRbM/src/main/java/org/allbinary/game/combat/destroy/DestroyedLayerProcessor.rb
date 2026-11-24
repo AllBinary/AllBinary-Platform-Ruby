@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.destroy
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/BasicLayerProcessor"
 
-class DestroyedLayerProcessor < BasicLayerProcessor
+module ::Org; module Allbinary; module Game; module Combat; module Destroy
+
+class DestroyedLayerProcessor < ::Org::Allbinary::Layer::BasicLayerProcessor
     
 
     def initialize()
@@ -25,7 +28,7 @@ class DestroyedLayerProcessor < BasicLayerProcessor
     
 
     def self.init()
-        (DestroyedLayerProcessor.send(:remove_const, :DESTROYED_LAYER_PROCESSOR) if DestroyedLayerProcessor.const_defined?(:DESTROYED_LAYER_PROCESSOR, false); DestroyedLayerProcessor.const_set(:DESTROYED_LAYER_PROCESSOR, DestroyedLayerProcessor.new()))
+        (DestroyedLayerProcessor.instance_exec(DestroyedLayerProcessor.new()) { |java_value| remove_const(:DESTROYED_LAYER_PROCESSOR) if const_defined?(:DESTROYED_LAYER_PROCESSOR, false); const_set(:DESTROYED_LAYER_PROCESSOR, java_value) })
     end
     
 
@@ -38,8 +41,8 @@ class DestroyedLayerProcessor < BasicLayerProcessor
     def process(allBinaryLayerManager)
         list = self.getList()
         size = list.size()
-        destroyedEventHandler = DestroyedEventHandler.getInstance()
-        destroyEventCircularStaticPool = DestroyEventCircularStaticPool.getInstance()
+        destroyedEventHandler = ::Org::Allbinary::Game::Combat::Destroy::Event::DestroyedEventHandler.getInstance()
+        destroyEventCircularStaticPool = ::Org::Allbinary::Game::Combat::Destroy::Event::DestroyEventCircularStaticPool.getInstance()
         destroyedEvent = nil
         layerInterface = nil
         (0...size).each do |index|
@@ -50,17 +53,18 @@ class DestroyedLayerProcessor < BasicLayerProcessor
                 destroyedEvent = destroyEventCircularStaticPool.getInstanceForLayer(layerInterface)
                 destroyedEventHandler.fireEvent(destroyedEvent)
             else
-                commonStrings = CommonStrings.getInstance()
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             end
         end
         list.clear()
     end
+    java_overload :process, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:DESTROYED_LAYER_PROCESSOR, BasicLayerProcessor::NULL_LAYER_PROCESSOR)
+            const_set(:DESTROYED_LAYER_PROCESSOR, ::Org::Allbinary::Layer::BasicLayerProcessor::NULL_LAYER_PROCESSOR)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -77,19 +81,21 @@ class DestroyedLayerProcessor < BasicLayerProcessor
     end
 end
 
-autoload :DestroyEventCircularStaticPool, "org/allbinary/game/combat/destroy/event/DestroyEventCircularStaticPool"
-autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent"
-autoload :DestroyedEventHandler, "org/allbinary/game/combat/destroy/event/DestroyedEventHandler"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Game; module Combat; module Destroy; module Event; autoload :DestroyEventCircularStaticPool, "org/allbinary/game/combat/destroy/event/DestroyEventCircularStaticPool" unless const_defined?(:DestroyEventCircularStaticPool, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Combat; module Destroy; module Event; autoload :DestroyedEvent, "org/allbinary/game/combat/destroy/event/DestroyedEvent" unless const_defined?(:DestroyedEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Combat; module Destroy; module Event; autoload :DestroyedEventHandler, "org/allbinary/game/combat/destroy/event/DestroyedEventHandler" unless const_defined?(:DestroyedEventHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
 
 begin
     DestroyedLayerProcessor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

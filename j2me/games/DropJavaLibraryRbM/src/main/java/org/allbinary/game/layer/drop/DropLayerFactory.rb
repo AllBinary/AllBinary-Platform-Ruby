@@ -15,17 +15,19 @@
 # package org.allbinary.game.layer.drop
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Drop
+
 class DropLayerFactory
     attr_accessor :list, :basicArrayListUtil
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
-        @basicArrayListUtil = BasicArrayListUtil.getInstance()
+    def jfields_org_allbinary_game_layer_drop_DropLayerFactory
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @basicArrayListUtil = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_layer_drop_DropLayerFactory
     end
     
 
@@ -79,14 +81,16 @@ class DropLayerFactory
     end
 end
 
-autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+module ::Org; module Allbinary; module Game; module Layer; module Pickup; autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface" unless const_defined?(:PickedUpLayerInterfaceFactoryInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
 
 begin
     DropLayerFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

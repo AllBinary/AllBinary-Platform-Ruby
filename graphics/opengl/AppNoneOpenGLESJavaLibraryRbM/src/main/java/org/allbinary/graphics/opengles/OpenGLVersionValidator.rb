@@ -15,15 +15,17 @@
 # package org.allbinary.graphics.opengles
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles
+
 class OpenGLVersionValidator
     attr_accessor :EGL_CONTEXT_CLIENT_VERSION_VALUE
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_opengles_OpenGLVersionValidator
         @EGL_CONTEXT_CLIENT_VERSION_VALUE = -1
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_OpenGLVersionValidator
     end
     
 
@@ -46,17 +48,43 @@ class OpenGLVersionValidator
     end
 
     def self.instance()
+        OpenGLVersionValidator.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OpenGLVersionValidator.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = OpenGLVersionValidator.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OpenGLVersionValidator"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/opengles/shader/ShaderComposite"
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader; autoload :ShaderComposite, "org/allbinary/graphics/opengles/shader/ShaderComposite" unless const_defined?(:ShaderComposite, false); end; end; end; end; end
 
-class OpenGLVersionValidator
-    @@instance = OpenGLVersionValidator.new()
+begin
+    OpenGLVersionValidator.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

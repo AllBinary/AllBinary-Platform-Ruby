@@ -15,18 +15,44 @@
 # package org.allbinary.game.input.form
 
 
+module ::Org; module Allbinary; module Game; module Input; module Form
+
 class NullRTSFormInputFactory
     
 
     def self.getInstance()
         return NullRTSFormInputFactory::SINGLETON
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, RTSFormInput.new(::Org::Allbinary::Game::Identification::BasicGroupFactory.getInstance().NONE_ARRAY))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NullRTSFormInputFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/identification/BasicGroupFactory"
-require "org/allbinary/game/input/form/RTSFormInput"
+module ::Org; module Allbinary; module Game; module Identification; autoload :BasicGroupFactory, "org/allbinary/game/identification/BasicGroupFactory" unless const_defined?(:BasicGroupFactory, false); end; end; end; end
+autoload :RTSFormInput, "org/allbinary/game/input/form/RTSFormInput" unless const_defined?(:RTSFormInput, false)
 
-class NullRTSFormInputFactory
-    SINGLETON = RTSFormInput.new(BasicGroupFactory.getInstance().NONE_ARRAY)
+begin
+    NullRTSFormInputFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

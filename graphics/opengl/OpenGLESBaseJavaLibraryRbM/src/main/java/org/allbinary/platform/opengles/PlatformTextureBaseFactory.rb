@@ -15,15 +15,17 @@
 # package org.allbinary.platform.opengles
 
 
+module ::Org; module Allbinary; module Platform; module Opengles
+
 class PlatformTextureBaseFactory
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_platform_opengles_PlatformTextureBaseFactory
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_platform_opengles_PlatformTextureBaseFactory
     end
     
 
@@ -51,13 +53,15 @@ class PlatformTextureBaseFactory
     end
 end
 
-autoload :GL10, "javax/microedition/khronos/opengles/GL10"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     PlatformTextureBaseFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

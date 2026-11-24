@@ -15,19 +15,21 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 #ActualPlatform
 class LogFactory
     
 
     def self.getInstanceD()
-        stringUtil = StringUtil.getInstance()
-        nullUtil = NullUtil.getInstance()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
+        nullUtil = ::Org::Allbinary::Logic::NullUtil.getInstance()
         return Log.new(stringUtil.EMPTY_STRING, nullUtil.NULL_OBJECT, stringUtil.EMPTY_STRING, nullUtil.NULL_OBJECT)
     end
     
 
     def self.getInstanceNoF(specialMessage, anyType, exception)
-        return Log.new(specialMessage, anyType, StringUtil.getInstance().EMPTY_STRING, exception)
+        return Log.new(specialMessage, anyType, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, exception)
     end
     
 
@@ -37,12 +39,14 @@ class LogFactory
     
 
     def self.getInstanceF(specialMessage, anyType, functionName)
-        nullUtil = NullUtil.getInstance()
+        nullUtil = ::Org::Allbinary::Logic::NullUtil.getInstance()
         return Log.new(specialMessage, anyType, functionName, nullUtil.NULL_OBJECT)
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :Log, "org/allbinary/logic/communication/log/Log"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
+
+end; end; end; end; end
 

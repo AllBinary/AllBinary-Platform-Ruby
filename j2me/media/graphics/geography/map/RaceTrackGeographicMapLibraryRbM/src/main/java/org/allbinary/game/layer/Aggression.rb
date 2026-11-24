@@ -15,18 +15,20 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class Aggression
     attr_accessor :ram, :projectile, :drops
 
-    def initialize_fields
-        @ram = SmallIntegerSingletonFactory.getInstance().getAt(0)
-        @projectile = SmallIntegerSingletonFactory.getInstance().getAt(0)
-        @drops = SmallIntegerSingletonFactory.getInstance().getAt(0)
+    def jfields_org_allbinary_game_layer_Aggression
+        @ram = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(0)
+        @projectile = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(0)
+        @drops = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(0)
     end
     
 
     def initialize(ram, projectile, drops)
-        initialize_fields
+        jfields_org_allbinary_game_layer_Aggression
         self.setRam(ram)
         self.setProjectile(projectile)
         self.setDrops(drops)
@@ -63,5 +65,7 @@ class Aggression
     end
 end
 
-require "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+
+end; end; end; end
 

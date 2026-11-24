@@ -14,36 +14,51 @@
 # frozen_string_literal: false
 # package org.allbinary.business.context.modules.storefront.statistics.orders.history
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/TableMappingInterface"
 
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; module Statistics; module Orders; module History
+
 module StoreFrontOrdersHistoryStatisticsInterface
-    include TableMappingInterface
+    include ::Org::Allbinary::DataPackage::Tables::TableMappingInterface
     
 
     def getNumberOfOrders()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getNumberOfOrders, 0
     
 
     def getSubTotal()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getSubTotal, 0
     
 
     def getShippingCost()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getShippingCost, 0
     
 
     def getTaxes()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getTaxes, 0
     
 
     def getTotal()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getTotal, 0
 end
 
-autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; autoload :Money, "org/allbinary/business/user/commerce/money/Money" unless const_defined?(:Money, false); end; end; end; end; end; end
+
+end; end; end; end; end; end; end; end; end
 

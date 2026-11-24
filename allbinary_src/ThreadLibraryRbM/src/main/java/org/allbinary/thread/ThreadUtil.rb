@@ -15,16 +15,18 @@
 # package org.allbinary.thread
 
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class ThreadUtil
     attr_accessor :logUtil, :JOIN
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_thread_ThreadUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @JOIN = "join"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_thread_ThreadUtil
     end
     
 
@@ -81,7 +83,7 @@ class ThreadUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
 require "java/lang/Thread"
 
 begin
@@ -89,4 +91,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.init
 
 
+module ::Org; module Allbinary; module Init
+
 module InitInterface
     
 
@@ -24,4 +26,6 @@ module InitInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

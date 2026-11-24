@@ -15,10 +15,12 @@
 # package org.allbinary.logic.communication.log.config.type
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type
+
 class LogConfigTypeFactory
     attr_accessor :NO_DESCRIPTION, :OS, :FACTORYERROR
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_log_config_type_LogConfigTypeFactory
         @NO_DESCRIPTION = "No Description"
         @OS = LogConfigType.new("Operating System", @NO_DESCRIPTION)
         @FACTORYERROR = LogConfigType.new("Factory Error", @NO_DESCRIPTION)
@@ -31,7 +33,7 @@ class LogConfigTypeFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_config_type_LogConfigTypeFactory
         LogConfigTypes::LOGGING.add(@OS)
         LogConfigTypes::LOGGING.add(@FACTORYERROR)
     end
@@ -67,12 +69,14 @@ class LogConfigTypeFactory
     end
 end
 
-autoload :LogConfigType, "org/allbinary/logic/communication/log/config/type/LogConfigType"
-autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
+autoload :LogConfigType, "org/allbinary/logic/communication/log/config/type/LogConfigType" unless const_defined?(:LogConfigType, false)
+autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false)
 
 begin
     LogConfigTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

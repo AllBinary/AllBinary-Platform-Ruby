@@ -15,43 +15,50 @@
 # package org.allbinary.logic.string.regex.replace
 
 
+module ::Org; module Allbinary; module Logic; module StringPackage; module Regex; module Replace
+
 class Replace
     attr_accessor :logUtil, :j2seUtil, :REPLACERS_, :ALL, :FOUND_KEY, :hashMap
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @j2seUtil = J2SEUtil.getInstance()
+    def jfields_org_allbinary_logic_string_regex_replace_Replace
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @j2seUtil = ::Org::Allbinary::J2SEUtil.getInstance()
         @REPLACERS_ = "Replacers: "
         @ALL = "all"
         @FOUND_KEY = "found key total: "
-        @hashMap = nil
+        @hashMap = nil unless instance_variable_defined?(:@hashMap)
     end
 
     def initialize(*args)
         case args.length
-        when 2 then constructor2(*args)
-        when 2 then constructor2(*args)
-        when 1 then constructor1(*args)
+        when 2 then jnew_org_allbinary_logic_string_regex_replace_Replace_2(*args)
+        when 1 then jnew_org_allbinary_logic_string_regex_replace_Replace_1(*args)
+        else raise ArgumentError, "No constructor of Replace takes #{args.length} arguments"
         end
+    end
+
+    def jnew_org_allbinary_logic_string_regex_replace_Replace_2(*java_overload_args)
+        return jnew_org_allbinary_logic_string_regex_replace_Replace_2_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::String)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::String))
+        return jnew_org_allbinary_logic_string_regex_replace_Replace_2_2(*java_overload_args)
     end
     
 
-    def constructor2(key, value)
-        initialize_fields
-        @hashMap = StdUtil.getInstance().createHashMap()
+    def jnew_org_allbinary_logic_string_regex_replace_Replace_2_1(key, value)
+        jfields_org_allbinary_logic_string_regex_replace_Replace
+        @hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         @hashMap.put([key], [value])
     end
     
 
-    def constructor2(keys, values)
-        initialize_fields
-        @hashMap = StdUtil.getInstance().createHashMap()
+    def jnew_org_allbinary_logic_string_regex_replace_Replace_2_2(keys, values)
+        jfields_org_allbinary_logic_string_regex_replace_Replace
+        @hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         @hashMap.put(keys, values)
     end
     
 
-    def constructor1(hashMap)
-        initialize_fields
+    def jnew_org_allbinary_logic_string_regex_replace_Replace_1(hashMap)
+        jfields_org_allbinary_logic_string_regex_replace_Replace
         @hashMap = hashMap
     end
     
@@ -62,7 +69,7 @@ class Replace
     
 
     def upTo(replace, total)
-        newStringBuffer = StringMaker.new()
+        newStringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         totalNumberOfReplaces = 0
         keys = nil
         values = nil
@@ -115,7 +122,7 @@ class Replace
             end
         end
         if totalNumberOfReplaces > 0
-            if LogConfigTypes::LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().REPLACE)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().REPLACE)
                 @logUtil.putF("Total Number Of Replaces: " + (totalNumberOfReplaces).to_s, self, @ALL)
             end
         end
@@ -124,7 +131,7 @@ class Replace
     
 
     def line(replace)
-        newStringBuffer = StringMaker.new()
+        newStringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         totalNumberOfReplaces = 0
         key = nil
         value = nil
@@ -152,7 +159,7 @@ class Replace
                 end
             end
         end
-        if LogConfigTypes::LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().REPLACE)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().REPLACE)
             @logUtil.putF("Total Number Of Replaces: " + (totalNumberOfReplaces).to_s, self, @ALL)
         end
         return replace
@@ -161,10 +168,10 @@ class Replace
 
     def self.main(args)
         begin
-            stringUtil = StringUtil.getInstance()
-            appUrlGlobals = AppUrlGlobals.new()
+            stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
+            appUrlGlobals = ::Org::Allbinary::Globals::AppUrlGlobals.new()
             appUrlGlobals.setWebappPath("G:/mnt/bc/mydev/work/allbinary_src/ToolsJavaLibrary/tools")
-            URLGLOBALS.init(appUrlGlobals)
+            ::Org::Allbinary::Globals::URLGLOBALS.init(appUrlGlobals)
             testString = "\"super gun\" big tank \"goodgunriflegun"
             replace = Replace.new("gun", "abcdefghijklmnopqrstuxwxyzabcdefghijklmnopqrstuxwxyz")
             puts("Old String: " + testString)
@@ -178,14 +185,17 @@ class Replace
     end
 end
 
-require "java/util/HashMap"
-require "org/allbinary/J2SEUtil"
-require "org/allbinary/globals/AppUrlGlobals"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; autoload :J2SEUtil, "org/allbinary/J2SEUtil" unless const_defined?(:J2SEUtil, false); end; end
+module ::Org; module Allbinary; module Globals; autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals" unless const_defined?(:AppUrlGlobals, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
 require "java/lang/System"
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.logic.io.file
 
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 #Used to correct user input for paths
 class FilePathUtil
     
@@ -24,8 +26,8 @@ class FilePathUtil
     
 
     def self.adjust(path)
-        abPathData = AbPathData.getInstance()
-        stringValidationUtil = StringValidationUtil.getInstance()
+        abPathData = ::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance()
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
         filePathData = FilePathData.getInstance()
         if stringValidationUtil.isEmpty(path)
             return filePathData.PATH_START
@@ -35,7 +37,9 @@ class FilePathUtil
     end
 end
 
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData" unless const_defined?(:FilePathData, false)
+
+end; end; end; end; end
 

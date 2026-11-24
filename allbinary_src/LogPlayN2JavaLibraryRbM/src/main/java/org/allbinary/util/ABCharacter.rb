@@ -16,6 +16,8 @@
 
 # require "jsinterop/annotations/JsType"
 
+module ::Org; module Allbinary; module Util
+
 class ABCharacter
     
 
@@ -23,4 +25,6 @@ class ABCharacter
         return (ch).to_s
     end
 end
+
+end; end; end
 

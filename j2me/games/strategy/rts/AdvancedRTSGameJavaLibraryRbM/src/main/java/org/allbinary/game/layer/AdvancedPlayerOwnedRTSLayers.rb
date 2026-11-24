@@ -14,25 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/PlayerOwnedRTSLayers"
+
+module ::Org; module Allbinary; module Game; module Layer
 
 class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
     attr_accessor :unitsList, :waypointsList, :buildingList, :baseList, :garrisonList, :houseList, :labList, :factoryList
 
-    def initialize_fields
-        @unitsList = BasicArrayListD.new()
-        @waypointsList = BasicArrayListD.new()
-        @buildingList = BasicArrayListD.new()
-        @baseList = BasicArrayListD.new()
-        @garrisonList = BasicArrayListD.new()
-        @houseList = BasicArrayListD.new()
-        @labList = BasicArrayListD.new()
-        @factoryList = BasicArrayListD.new()
+    def jfields_org_allbinary_game_layer_AdvancedPlayerOwnedRTSLayers
+        @unitsList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @waypointsList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @buildingList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @baseList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @garrisonList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @houseList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @labList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @factoryList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_layer_AdvancedPlayerOwnedRTSLayers
     end
     
 
@@ -40,12 +43,14 @@ class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
         @unitsList.add(rtsLayer)
         @rtsLayerList.add(rtsLayer)
     end
+    java_overload :addUnit, 1
     
 
     def addWaypoint(rtsLayer)
         @waypointsList.add(rtsLayer)
         @rtsLayerList.add(rtsLayer)
     end
+    java_overload :addWaypoint, 1
     
 
     def addBase(rtsLayer)
@@ -53,6 +58,7 @@ class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
         @buildingList.add(rtsLayer)
         @rtsLayerList.add(rtsLayer)
     end
+    java_overload :addBase, 1
     
 
     def addGarrison(rtsLayer)
@@ -60,6 +66,7 @@ class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
         @buildingList.add(rtsLayer)
         @rtsLayerList.add(rtsLayer)
     end
+    java_overload :addGarrison, 1
     
 
     def addHouse(rtsLayer)
@@ -67,6 +74,7 @@ class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
         @buildingList.add(rtsLayer)
         @rtsLayerList.add(rtsLayer)
     end
+    java_overload :addHouse, 1
     
 
     def addLab(rtsLayer)
@@ -74,6 +82,7 @@ class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
         @buildingList.add(rtsLayer)
         @rtsLayerList.add(rtsLayer)
     end
+    java_overload :addLab, 1
     
 
     def addFactory(rtsLayer)
@@ -81,58 +90,69 @@ class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
         @buildingList.add(rtsLayer)
         @rtsLayerList.add(rtsLayer)
     end
+    java_overload :addFactory, 1
     
 
     def removeUnit(gameLayer)
         @unitsList.remove(gameLayer)
         @rtsLayerList.remove(gameLayer)
     end
+    java_overload :removeUnit, 1
     
 
     def removeWaypoint(gameLayer)
         @waypointsList.remove(gameLayer)
         @rtsLayerList.remove(gameLayer)
     end
+    java_overload :removeWaypoint, 1
     
 
     def getUnitsList()
         return @unitsList
     end
+    java_overload :getUnitsList, 0
     
 
     def getWaypointsList()
         return @waypointsList
     end
+    java_overload :getWaypointsList, 0
     
 
     def getBaseList()
         return @baseList
     end
+    java_overload :getBaseList, 0
     
 
     def getGarrisonList()
         return @garrisonList
     end
+    java_overload :getGarrisonList, 0
     
 
     def getHouseList()
         return @houseList
     end
+    java_overload :getHouseList, 0
     
 
     def getLabList()
         return @labList
     end
+    java_overload :getLabList, 0
     
 
     def getFactoryList()
         return @factoryList
     end
+    java_overload :getFactoryList, 0
     
 
     def getTotalBuildings()
         return @baseList.size() + @garrisonList.size() + @houseList.size() + @labList.size() + @factoryList.size()
     end
+    java_overload :getTotalBuildings, 0
     
 
     def removeBuilding(layerInterface)
@@ -149,10 +169,11 @@ class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
             @rtsLayerList.remove(layerInterface)
         end
     end
+    java_overload :removeBuilding, 1
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(super.to_s)
         stringBuffer.append(" Bases: ")
         stringBuffer.appendint(self.getBaseList().size())
@@ -170,17 +191,21 @@ class AdvancedPlayerOwnedRTSLayers < PlayerOwnedRTSLayers
         stringBuffer.appendint(self.getUnitsList().size())
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
     
 
     def getBuildingList()
         return @buildingList
     end
+    java_overload :getBuildingList, 0
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/layer/AllBinaryGameLayer"
-require "org/allbinary/game/layer/RTSLayer"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer" unless const_defined?(:AllBinaryGameLayer, false)
+autoload :RTSLayer, "org/allbinary/game/layer/RTSLayer" unless const_defined?(:RTSLayer, false)
+
+end; end; end; end
 

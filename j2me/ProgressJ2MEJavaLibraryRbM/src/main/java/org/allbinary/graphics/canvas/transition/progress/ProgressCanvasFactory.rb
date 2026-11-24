@@ -15,26 +15,28 @@
 # package org.allbinary.graphics.canvas.transition.progress
 
 
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress
+
 class ProgressCanvasFactory
     
 
     def self.getInstance()
-        if ProgressCanvasFactory::PROGRESS_FORM_SCREEN == NullUtil.getInstance().NULL_OBJECT
-            (ProgressCanvasFactory.send(:remove_const, :PROGRESS_FORM_SCREEN) if ProgressCanvasFactory.const_defined?(:PROGRESS_FORM_SCREEN, false); ProgressCanvasFactory.const_set(:PROGRESS_FORM_SCREEN, ProgressCanvas.new(StringUtil.getInstance().EMPTY_STRING, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)))
+        if ProgressCanvasFactory::PROGRESS_FORM_SCREEN == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            (ProgressCanvasFactory.instance_exec(ProgressCanvas.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE)) { |java_value| remove_const(:PROGRESS_FORM_SCREEN) if const_defined?(:PROGRESS_FORM_SCREEN, false); const_set(:PROGRESS_FORM_SCREEN, java_value) })
         end
         return ProgressCanvasFactory::PROGRESS_FORM_SCREEN
     end
     
 
     def self.getLazyInstance()
-        return NullPaintable.getInstance()
+        return ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
     end
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:PROGRESS_FORM_SCREEN, NullUtil.getInstance().NULL_OBJECT)
+            const_set(:PROGRESS_FORM_SCREEN, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -51,16 +53,18 @@ class ProgressCanvasFactory
     end
 end
 
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
-autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface" unless const_defined?(:PaintableInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false)
 
 begin
     ProgressCanvasFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

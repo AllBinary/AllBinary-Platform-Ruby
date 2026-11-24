@@ -15,6 +15,8 @@
 # package org.allbinary.ai
 
 
+module ::Org; module Allbinary; module Ai
+
 module ArtificialIntelligenceTransitionInterface
     
 
@@ -23,4 +25,6 @@ module ArtificialIntelligenceTransitionInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

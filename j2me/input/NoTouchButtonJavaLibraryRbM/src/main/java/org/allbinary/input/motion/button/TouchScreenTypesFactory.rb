@@ -15,10 +15,12 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class TouchScreenTypesFactory
     attr_accessor :FINGER, :NOTOUCH, :STYLUS, :UNDEFINED
 
-    def initialize_fields
+    def jfields_org_allbinary_input_motion_button_TouchScreenTypesFactory
         @FINGER = TouchScreenType.new("Finger")
         @NOTOUCH = TouchScreenType.new("No Touch")
         @STYLUS = TouchScreenType.new("Stylus")
@@ -26,7 +28,7 @@ class TouchScreenTypesFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchScreenTypesFactory
     end
     
 
@@ -65,11 +67,13 @@ class TouchScreenTypesFactory
     end
 end
 
-autoload :TouchScreenType, "org/allbinary/input/motion/button/TouchScreenType"
+autoload :TouchScreenType, "org/allbinary/input/motion/button/TouchScreenType" unless const_defined?(:TouchScreenType, false)
 
 begin
     TouchScreenTypesFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

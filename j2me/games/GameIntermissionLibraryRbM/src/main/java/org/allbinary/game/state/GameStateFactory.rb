@@ -15,10 +15,12 @@
 # package org.allbinary.game.state
 
 
+module ::Org; module Allbinary; module Game; module State
+
 class GameStateFactory
     attr_accessor :index, :NO_GAME_STATE, :PLAYING_GAME_STATE, :SHOW_END_RESULT_GAME_STATE, :SHOW_HIGH_SCORE_GAME_STATE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_state_GameStateFactory
         @index = 0
         @NO_GAME_STATE = self.createGameState("NO_GAME_STATE")
         @PLAYING_GAME_STATE = self.createGameState("PLAYING_GAME_STATE")
@@ -28,7 +30,7 @@ class GameStateFactory
     
 
     def self.getInstance()
-        if GameStateFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if GameStateFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             GameStateFactory.instance = GameStateFactory.new()
         end
         return GameStateFactory.instance
@@ -36,7 +38,7 @@ class GameStateFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_state_GameStateFactory
     end
     
 
@@ -58,7 +60,7 @@ class GameStateFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -75,12 +77,14 @@ class GameStateFactory
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :GameState, "org/allbinary/game/state/GameState"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :GameState, "org/allbinary/game/state/GameState" unless const_defined?(:GameState, false)
 
 begin
     GameStateFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

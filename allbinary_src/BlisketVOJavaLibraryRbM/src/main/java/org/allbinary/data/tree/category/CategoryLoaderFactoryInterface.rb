@@ -15,6 +15,10 @@
 # package org.allbinary.data.tree.category
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Category
+
 module CategoryLoaderFactoryInterface
 end
+
+end; end; end; end; end
 

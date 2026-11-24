@@ -15,6 +15,8 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 module SequenceInterface
     
 
@@ -29,4 +31,6 @@ module SequenceInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

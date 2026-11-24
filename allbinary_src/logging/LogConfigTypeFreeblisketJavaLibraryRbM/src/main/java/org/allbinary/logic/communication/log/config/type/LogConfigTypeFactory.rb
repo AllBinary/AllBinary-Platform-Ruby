@@ -15,10 +15,12 @@
 # package org.allbinary.logic.communication.log.config.type
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type
+
 class LogConfigTypeFactory
     attr_accessor :NO_DESCRIPTION, :AUTHENTICATION, :AUTHENTICATIONERROR, :CATEGORY, :CATEGORYERROR, :CRYPT, :CRYPTERROR, :EMAILLOGGING, :EMAILLOGGINGERROR, :ENTITYFACTORYERROR, :NETBEANS_MODULE, :NETBEANS_MODULE_ERROR, :FACTORYERROR, :FILE, :FILEERROR, :HTTP, :HTTPERROR, :HTTPREQUEST, :HTTPREQUESTERROR, :IDLOGGING, :JSPEXTRAOUTPUT, :JSPTAGEXTRAOUTPUT, :JSPTAG, :JSPTAGERROR, :LICENSING, :LICENSINGERROR, :LOADER, :LOADERERROR, :OS, :OSERROR, :PAYMENT, :PAYMENTERROR, :PRELOADER, :PRELOADERERROR, :PRODUCTSEARCHLOGGING, :PRODUCTSEARCHLOGGINGERROR, :SERVLET, :SERVLETERROR, :SHIPPINGERROR, :SQLLOGGINGERROR, :SQLLOGGING, :SQLTAGS, :SQLTAGSERROR, :STYLE, :STYLEERROR, :TAGHELPER, :TAGHELPERERROR, :TAGHELPERFACTORY, :TAGHELPERFACTORYERROR, :TAX, :TAXERROR, :VALIDATION, :VALIDATIONERROR, :VIEW, :VIEWERROR, :VIEWFACTORYERROR, :WORKFLOW, :WORKFLOWERROR, :XMLLOGGING, :XMLLOGGINGERROR, :XSLLOGGING, :XSLLOGGINGERROR, :REPLACE, :REPLACE_INFO, :REPLACEERROR, :SQLLOGGINGPOOL, :SQLLOGGINGPOOLERROR, :STATICPAGEGENERATIONLOGGING, :STATICPAGEGENERATIONLOGGINGERROR
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_log_config_type_LogConfigTypeFactory
         @NO_DESCRIPTION = "No Description"
         @AUTHENTICATION = LogConfigType.new("Authentication", @NO_DESCRIPTION)
         @AUTHENTICATIONERROR = LogConfigType.new("Authentication Error", @NO_DESCRIPTION)
@@ -97,8 +99,8 @@ class LogConfigTypeFactory
     
 
     def initialize()
-        initialize_fields
-        PreLogUtil.put("FreeBlisket", self, CommonStrings.getInstance().CONSTRUCTOR)
+        jfields_org_allbinary_logic_communication_log_config_type_LogConfigTypeFactory
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("FreeBlisket", self, ::Org::Allbinary::StringPackage::CommonStrings.getInstance().CONSTRUCTOR)
     end
 
     def self.instance()
@@ -132,13 +134,15 @@ class LogConfigTypeFactory
     end
 end
 
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :LogConfigType, "org/allbinary/logic/communication/log/config/type/LogConfigType"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :LogConfigType, "org/allbinary/logic/communication/log/config/type/LogConfigType" unless const_defined?(:LogConfigType, false)
 
 begin
     LogConfigTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

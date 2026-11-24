@@ -15,10 +15,12 @@
 # package org.allbinary.string
 
 
+module ::Org; module Allbinary; module StringPackage
+
 class CommonStateStrings
     attr_accessor :CONTEXT, :FINISH, :CREATE, :START, :RESTART, :RESUME, :PAUSE, :STOP, :DESTROY, :BIND, :ON_SAVE_INSTANCE_STATE, :ON_START_COMMAND
 
-    def initialize_fields
+    def jfields_org_allbinary_string_CommonStateStrings
         @CONTEXT = "Context: "
         @FINISH = "finish"
         @CREATE = "onCreate"
@@ -34,7 +36,7 @@ class CommonStateStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_string_CommonStateStrings
     end
     
 
@@ -78,4 +80,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

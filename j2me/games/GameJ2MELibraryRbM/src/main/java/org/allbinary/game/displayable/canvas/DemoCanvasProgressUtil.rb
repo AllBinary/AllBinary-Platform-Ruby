@@ -15,6 +15,8 @@
 # package org.allbinary.game.displayable.canvas
 
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 class DemoCanvasProgressUtil
     
 
@@ -24,19 +26,21 @@ class DemoCanvasProgressUtil
     
 
     def self.showProgressOptionallyInTheBackground(demoCanvas, background)
-        progressCanvas = ProgressCanvasFactory.getInstance()
+        progressCanvas = ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance()
         progressCanvas.startBackground(background)
         paintableArray = Array.new(2, nil)
         paintableArray[0] = progressCanvas
         paintableArray[1] = demoCanvas.getDefaultPaintableInterface()
-        demoCanvas.setDefaultPaintableInterface(PaintableComposite.new(paintableArray))
+        demoCanvas.setDefaultPaintableInterface(::Org::Allbinary::Graphics::Paint::PaintableComposite.new(paintableArray))
         demoCanvas.setPaintableInterface(demoCanvas.getDefaultPaintableInterface())
     end
 end
 
-autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-autoload :PaintableComposite, "org/allbinary/graphics/paint/PaintableComposite"
-autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
-autoload :DemoCanvas, "org/allbinary/game/displayable/canvas/DemoCanvas"
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" unless const_defined?(:ProgressCanvasFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :PaintableComposite, "org/allbinary/graphics/paint/PaintableComposite" unless const_defined?(:PaintableComposite, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface" unless const_defined?(:PaintableInterface, false); end; end; end; end
+autoload :DemoCanvas, "org/allbinary/game/displayable/canvas/DemoCanvas" unless const_defined?(:DemoCanvas, false)
+
+end; end; end; end; end
 

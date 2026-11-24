@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/SpriteFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Layer
 
 class SpriteFactory
     include SpriteFactoryInterface
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_layer_SpriteFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_SpriteFactory
     end
     
 
@@ -35,8 +38,9 @@ class SpriteFactory
     
 
     def createSprite(image, frameWidth, frameHeight)
-        return Sprite.new(image, frameWidth, frameHeight)
+        return ::Javax::Microedition::Lcdui::Game::Sprite.new(image, frameWidth, frameHeight)
     end
+    java_overload :createSprite, 3
 
     def self.instance()
         SpriteFactory.java_static_fields unless @java_static_fields_started
@@ -69,13 +73,15 @@ class SpriteFactory
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; module Game; autoload :Sprite, "javax/microedition/lcdui/game/Sprite" unless const_defined?(:Sprite, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
 
 begin
     SpriteFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

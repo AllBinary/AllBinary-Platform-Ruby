@@ -14,14 +14,17 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image
 
-# require "java/awt"
+# require "java/awt/Point"
+# require "java/awt/Graphics2D"
 # require "java/awt/image/BufferedImage"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImagesRatioUtil
     attr_accessor :logUtil, :imageUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_image_ImagesRatioUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @imageUtil = ImageUtil.getInstance()
     end
     
@@ -32,7 +35,7 @@ class ImagesRatioUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImagesRatioUtil
     end
     
 
@@ -65,7 +68,7 @@ class ImagesRatioUtil
     
 
     # throws Exception
-    def fudge(bufferedImage, ratio)
+    def fudge_j2(bufferedImage, ratio)
         imageRatio = ((bufferedImage.getWidth()).to_f / bufferedImage.getHeight())
         point = Point.new()
         newHeight = bufferedImage.getHeight()
@@ -77,7 +80,7 @@ class ImagesRatioUtil
             newHeight = (((bufferedImage.getWidth()).to_f / ratio)).to_i
             point.y = (newHeight - bufferedImage.getHeight()) / 2
         end
-        commonLabels = CommonLabels.getInstance()
+        commonLabels = ::Org::Allbinary::StringPackage::CommonLabels.getInstance()
         @logUtil.putF((commonLabels.WIDTH_LABEL + bufferedImage.getWidth()).to_s + " newWidth: " + (newWidth).to_s + (commonLabels.HEIGHT_LABEL).to_s + (bufferedImage.getHeight()).to_s + " newHeight: " + (newHeight).to_s + " needed ratio: " + (((newWidth).to_f / (newHeight).to_f)).to_s, self, "fudge")
         newBufferedImage = @imageUtil.create(newWidth, newHeight)
         g = newBufferedImage.createGraphics()
@@ -105,8 +108,7 @@ class ImagesRatioUtil
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def fudge(bufferedImageArray, totalImages, ratio)
+    def fudge_j3(bufferedImageArray, totalImages, ratio)
         end_ = totalImages
         if bufferedImageArray.length < totalImages
             end_ = bufferedImageArray.length
@@ -116,6 +118,12 @@ class ImagesRatioUtil
             fudgedBufferedImageArray[index] = fudge(bufferedImageArray[index], ratio)
         end
         return fudgedBufferedImageArray
+    end
+
+    def fudge(*java_overload_args)
+        return fudge_j2(*java_overload_args) if java_overload_args.length == 2
+        return fudge_j3(*java_overload_args) if java_overload_args.length == 3
+        raise ArgumentError, "No method fudge takes #{java_overload_args.length} arguments"
     end
 
     def self.instance()
@@ -149,13 +157,15 @@ class ImagesRatioUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false)
 
 begin
     ImagesRatioUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

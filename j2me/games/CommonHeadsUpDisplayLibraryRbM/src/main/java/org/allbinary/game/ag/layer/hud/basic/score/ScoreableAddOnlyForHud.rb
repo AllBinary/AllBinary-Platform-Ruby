@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/Scoreable"
 
-class ScoreableAddOnlyForHud < Scoreable
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Hud; module Basic; module Score
+
+class ScoreableAddOnlyForHud < ::Org::Allbinary::Game::Score::Scoreable
     attr_accessor :scoreHudWidget
 
-    def initialize_fields
-        @scoreHudWidget = nil
+    def jfields_org_allbinary_game_ag_layer_hud_basic_score_ScoreableAddOnlyForHud
+        @scoreHudWidget = nil unless instance_variable_defined?(:@scoreHudWidget)
     end
     
 
     def initialize(scoreVectorGraphic)
         super(0)
-        initialize_fields
+        jfields_org_allbinary_game_ag_layer_hud_basic_score_ScoreableAddOnlyForHud
         @scoreHudWidget = scoreVectorGraphic
         self.getScoreHudWidget().set(0)
     end
@@ -34,18 +37,23 @@ class ScoreableAddOnlyForHud < Scoreable
 
     def removePoints(points)
     end
+    java_overload :removePoints, 1
     
 
     def addPoints(points)
-        super(points)
+        ScoreableAddOnlyForHud.superclass.java_super_method(:addPoints, 1).bind(self).call(points)
         self.getScoreHudWidget().add(points)
     end
+    java_overload :addPoints, 1
     
 
     def getScoreHudWidget()
         return @scoreHudWidget
     end
+    java_overload :getScoreHudWidget, 0
 end
 
-autoload :ScoreHudWidget, "org/allbinary/game/ag/layer/hud/basic/score/ScoreHudWidget"
+autoload :ScoreHudWidget, "org/allbinary/game/ag/layer/hud/basic/score/ScoreHudWidget" unless const_defined?(:ScoreHudWidget, false)
+
+end; end; end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class J2SEMath
     
 
@@ -73,4 +75,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

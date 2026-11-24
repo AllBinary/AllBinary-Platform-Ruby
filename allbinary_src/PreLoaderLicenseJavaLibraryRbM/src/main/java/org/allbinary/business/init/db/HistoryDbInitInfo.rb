@@ -14,29 +14,57 @@
 # frozen_string_literal: false
 # package org.allbinary.business.init.db
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/init/db/DbInitInfo"
+
+module ::Org; module Allbinary; module Business; module Init; module Db
 
 class HistoryDbInitInfo < DbInitInfo
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_org_allbinary_business_init_db_HistoryDbInitInfo_0(*args)
+        when 1 then jnew_org_allbinary_business_init_db_HistoryDbInitInfo_1(*args)
+        else raise ArgumentError, "No constructor of HistoryDbInitInfo takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        method(:initialize).super_method.call(INITFILE, true)
+    def jnew_org_allbinary_business_init_db_HistoryDbInitInfo_0()
+        HistoryDbInitInfo.superclass.instance_method(:initialize).bind(self).call(INITFILE, true)
     end
     
 
-    def constructor1(read)
-        method(:initialize).super_method.call(INITFILE, read)
+    def jnew_org_allbinary_business_init_db_HistoryDbInitInfo_1(read)
+        HistoryDbInitInfo.superclass.instance_method(:initialize).bind(self).call(INITFILE, read)
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:INITFILE, "historydbinitdata.dat")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "HistoryDbInitInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:INITFILE].include?(name)
+        end
+        super
     end
 end
 
-class HistoryDbInitInfo
-    INITFILE = "historydbinitdata.dat"
+begin
+    HistoryDbInitInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

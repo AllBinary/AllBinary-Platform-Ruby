@@ -19,10 +19,12 @@
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Graphics
+
 class PointFactory
     attr_accessor :ZERO_ZERO
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_PointFactory
         @ZERO_ZERO = self.createXYZ(0, 0, 0)
     end
     
@@ -37,7 +39,7 @@ class PointFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_PointFactory
     end
     
 
@@ -81,11 +83,13 @@ class PointFactory
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
+autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false)
 
 begin
     PointFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

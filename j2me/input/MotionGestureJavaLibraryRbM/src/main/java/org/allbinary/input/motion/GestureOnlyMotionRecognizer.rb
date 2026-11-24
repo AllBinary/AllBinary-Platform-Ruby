@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/MotionRecognizer"
+
+module ::Org; module Allbinary; module Input; module Motion
 
 class GestureOnlyMotionRecognizer < MotionRecognizer
     attr_accessor :motionGestureRecognizer, :id
 
-    def initialize_fields
-        @motionGestureRecognizer = nil
-        @id = nil
+    def jfields_org_allbinary_input_motion_GestureOnlyMotionRecognizer
+        @motionGestureRecognizer = nil unless instance_variable_defined?(:@motionGestureRecognizer)
+        @id = nil unless instance_variable_defined?(:@id)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_input_motion_GestureOnlyMotionRecognizer
         @id = ((GestureOnlyMotionRecognizer.index += 1) - 1)
-        @motionGestureRecognizer = MotionGestureRecognizer.new(@id)
+        @motionGestureRecognizer = ::Org::Allbinary::Input::Motion::Gesture::MotionGestureRecognizer.new(@id)
     end
     
 
@@ -40,6 +43,7 @@ class GestureOnlyMotionRecognizer < MotionRecognizer
         point.setY(y)
         @motionGestureRecognizer.processPressedMotionEvent(point, deviceId, modifiers)
     end
+    java_overload :processStartMotionEvent, 4
     
 
     # throws Exception
@@ -49,6 +53,7 @@ class GestureOnlyMotionRecognizer < MotionRecognizer
         point.setY(y)
         @motionGestureRecognizer.processReleasedMotionEvent(point, deviceId, modifiers)
     end
+    java_overload :processEndMotionEvent, 4
     
 
     # throws Exception
@@ -58,6 +63,7 @@ class GestureOnlyMotionRecognizer < MotionRecognizer
         point.setY(y)
         @motionGestureRecognizer.processDraggedMotionEvent(point, deviceId, modifiers)
     end
+    java_overload :processDraggedMotionEvent, 4
 
     def self.index()
         GestureOnlyMotionRecognizer.java_static_fields unless @java_static_fields_started
@@ -84,7 +90,7 @@ class GestureOnlyMotionRecognizer < MotionRecognizer
         @java_static_fields_started = true
         @@index = 0
         begin
-            @@pointCircularPool = GPointCircularPool.new(40)
+            @@pointCircularPool = ::Org::Allbinary::Graphics::GPointCircularPool.new(40)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -101,13 +107,15 @@ class GestureOnlyMotionRecognizer < MotionRecognizer
     end
 end
 
-autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
-autoload :GPointCircularPool, "org/allbinary/graphics/GPointCircularPool"
-autoload :MotionGestureRecognizer, "org/allbinary/input/motion/gesture/MotionGestureRecognizer"
+module ::Org; module Allbinary; module Graphics; autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint" unless const_defined?(:CustomGPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPointCircularPool, "org/allbinary/graphics/GPointCircularPool" unless const_defined?(:GPointCircularPool, false); end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :MotionGestureRecognizer, "org/allbinary/input/motion/gesture/MotionGestureRecognizer" unless const_defined?(:MotionGestureRecognizer, false); end; end; end; end; end
 
 begin
     GestureOnlyMotionRecognizer.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

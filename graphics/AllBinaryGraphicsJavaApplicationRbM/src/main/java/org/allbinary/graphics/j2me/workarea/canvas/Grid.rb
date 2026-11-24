@@ -15,11 +15,13 @@
 # package org.allbinary.graphics.j2me.workarea.canvas
 
 
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Canvas
+
 class Grid
     attr_accessor :grid, :isGridOn, :isGridPossible, :zoom, :isChanged
 
-    def initialize_fields
-        @grid = nil
+    def jfields_org_allbinary_graphics_j2me_workarea_canvas_Grid
+        @grid = nil unless instance_variable_defined?(:@grid)
         @isGridOn = true
         @isGridPossible = false
         @zoom = 3
@@ -28,19 +30,20 @@ class Grid
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_org_allbinary_graphics_j2me_workarea_canvas_Grid_0(*args)
+        when 1 then jnew_org_allbinary_graphics_j2me_workarea_canvas_Grid_1(*args)
+        else raise ArgumentError, "No constructor of Grid takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        initialize_fields
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_Grid_0()
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_Grid
     end
     
 
-    def constructor1(grid)
-        initialize_fields
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_Grid_1(grid)
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_Grid
         @grid = grid.grid
         self.showGrid(grid.isGridOn)
         @isGridPossible = grid.isGridPossible
@@ -82,5 +85,7 @@ class Grid
     end
 end
 
-require "org/allbinary/graphics/GPoint"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+
+end; end; end; end; end; end
 

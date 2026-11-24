@@ -15,16 +15,18 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class RendererStateFactory
     attr_accessor :loaded, :surfaceChanged
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_RendererStateFactory
         @loaded = false
         @surfaceChanged = false
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_RendererStateFactory
     end
     
 
@@ -88,4 +90,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

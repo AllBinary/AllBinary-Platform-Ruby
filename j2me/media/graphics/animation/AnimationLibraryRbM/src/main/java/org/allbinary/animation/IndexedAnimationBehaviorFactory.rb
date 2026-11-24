@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationBehaviorFactory"
+
+module ::Org; module Allbinary; module Animation
 
 class IndexedAnimationBehaviorFactory < AnimationBehaviorFactory
     attr_accessor :frameDelayTime, :loopTotal
 
-    def initialize_fields
-        @frameDelayTime = nil
-        @loopTotal = nil
+    def jfields_org_allbinary_animation_IndexedAnimationBehaviorFactory
+        @frameDelayTime = nil unless instance_variable_defined?(:@frameDelayTime)
+        @loopTotal = nil unless instance_variable_defined?(:@loopTotal)
     end
     
 
     def initialize(loopTotal, frameDelayTime)
         super()
-        initialize_fields
+        jfields_org_allbinary_animation_IndexedAnimationBehaviorFactory
         @loopTotal = loopTotal
         @frameDelayTime = frameDelayTime
     end
@@ -36,8 +39,11 @@ class IndexedAnimationBehaviorFactory < AnimationBehaviorFactory
     def getOrCreateInstance()
         return IndexedAnimationBehavior.new(@loopTotal, @frameDelayTime)
     end
+    java_overload :getOrCreateInstance, 0
 end
 
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :IndexedAnimationBehavior, "org/allbinary/animation/IndexedAnimationBehavior"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false)
+autoload :IndexedAnimationBehavior, "org/allbinary/animation/IndexedAnimationBehavior" unless const_defined?(:IndexedAnimationBehavior, false)
+
+end; end; end
 

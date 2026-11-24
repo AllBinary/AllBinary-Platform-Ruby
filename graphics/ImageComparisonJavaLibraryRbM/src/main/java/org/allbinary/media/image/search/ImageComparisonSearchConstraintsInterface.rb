@@ -15,14 +15,19 @@
 # package org.allbinary.media.image.search
 
 
+module ::Org; module Allbinary; module Media; module Image; module Search
+
 module ImageComparisonSearchConstraintsInterface
     
 
     def getStatisticalMatchConstraintsVector()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end; end
 

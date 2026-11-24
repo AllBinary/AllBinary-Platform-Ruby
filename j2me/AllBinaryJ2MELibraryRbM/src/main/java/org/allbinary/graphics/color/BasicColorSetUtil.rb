@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.color
 
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class BasicColorSetUtil
     
 
@@ -67,12 +69,14 @@ class BasicColorSetUtil
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
 
 begin
     BasicColorSetUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

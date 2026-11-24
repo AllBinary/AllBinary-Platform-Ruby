@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/CacheableInterface"
 require "org/allbinary/animation/image/AdjustedImageArrayRotationAnimation"
 
+module ::Org; module Allbinary; module Animation; module Image
+
 class ImageArrayRotationAnimationCacheable < AdjustedImageArrayRotationAnimation
-    include CacheableInterface
+    include ::Org::Allbinary::Logic::Util::Cache::CacheableInterface
     
 
     def initialize(anyType, animationBehavior)
@@ -27,18 +30,22 @@ class ImageArrayRotationAnimationCacheable < AdjustedImageArrayRotationAnimation
     
 
     def getKey()
-        return NullUtil.getInstance().NULL_OBJECT
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
     end
+    java_overload :getKey, 0
     
 
     def toString()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo" unless const_defined?(:ImageArrayRotationAnimationInfo, false)
+
+end; end; end; end
 

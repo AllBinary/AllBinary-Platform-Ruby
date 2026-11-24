@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.special
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/special/SpecialGameInputInterfaceProcessor"
+
+module ::Org; module Allbinary; module Game; module Layer; module Special
 
 class Special4GameInputInterfaceProcessor < SpecialGameInputInterfaceProcessor
     
@@ -28,9 +31,12 @@ class Special4GameInputInterfaceProcessor < SpecialGameInputInterfaceProcessor
     def processEvent(allbinaryLayerManager, gameKeyEvent)
         @specialGameInputInterface.special4(allbinaryLayerManager, gameKeyEvent)
     end
+    java_overload :processEvent, 2
 end
 
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :SpecialGameInputInterface, "org/allbinary/game/layer/special/SpecialGameInputInterface"
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+autoload :SpecialGameInputInterface, "org/allbinary/game/layer/special/SpecialGameInputInterface" unless const_defined?(:SpecialGameInputInterface, false)
+
+end; end; end; end; end
 

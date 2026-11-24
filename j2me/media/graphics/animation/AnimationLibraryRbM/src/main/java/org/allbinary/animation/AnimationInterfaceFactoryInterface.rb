@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 module AnimationInterfaceFactoryInterface
     include BasicAnimationInterfaceFactoryInterface
@@ -25,14 +28,18 @@ module AnimationInterfaceFactoryInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getInstance, 1
     
 
     def setInitialScale(scaleProperties)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setInitialScale, 1
 end
 
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :Animation, "org/allbinary/animation/Animation"
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
+
+end; end; end
 

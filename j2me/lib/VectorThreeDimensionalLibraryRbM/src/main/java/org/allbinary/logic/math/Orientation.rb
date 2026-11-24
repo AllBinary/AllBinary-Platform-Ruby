@@ -15,10 +15,12 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class Orientation
     attr_accessor :yaw, :pitch, :roll
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_math_Orientation
         @yaw = BasicDecimal.new(0)
         @pitch = BasicDecimal.new(0)
         @roll = BasicDecimal.new(0)
@@ -34,7 +36,7 @@ class Orientation
     
 
     def initialize(yaw, pitch, roll)
-        initialize_fields
+        jfields_org_allbinary_logic_math_Orientation
         @yaw.setint(yaw)
         @pitch.setint(pitch)
         @roll.setint(roll)
@@ -42,7 +44,7 @@ class Orientation
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Y: ")
         stringBuffer.append(@yaw.to_s)
         stringBuffer.append(" P: ")
@@ -75,12 +77,14 @@ class Orientation
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false)
 
 begin
     Orientation.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

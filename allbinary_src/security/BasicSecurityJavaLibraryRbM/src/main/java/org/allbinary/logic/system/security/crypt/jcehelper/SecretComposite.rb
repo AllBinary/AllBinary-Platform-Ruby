@@ -14,24 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.security.crypt.jcehelper
 
+require "java/lang/JavaOverload"
 # require "javax/crypto/Cipher"
 # require "javax/crypto/SecretKey"
 require "org/allbinary/logic/system/security/crypt/jcehelper/BaseSecretComposite"
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; module Jcehelper
+
 class SecretComposite < BaseSecretComposite
     attr_accessor :byteUtil, :cipher, :secretKey, :key
 
-    def initialize_fields
-        @byteUtil = ByteUtil.getInstance()
-        @cipher = nil
-        @secretKey = nil
-        @key = nil
+    def jfields_org_allbinary_logic_system_security_crypt_jcehelper_SecretComposite
+        @byteUtil = ::Org::Allbinary::Logic::Java::Byteutil::ByteUtil.getInstance()
+        @cipher = nil unless instance_variable_defined?(:@cipher)
+        @secretKey = nil unless instance_variable_defined?(:@secretKey)
+        @key = nil unless instance_variable_defined?(:@key)
     end
     
 
     def initialize(secretKey, cipher, key)
         super()
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_crypt_jcehelper_SecretComposite
         @secretKey = secretKey
         @cipher = cipher
         @key = key
@@ -44,6 +47,7 @@ class SecretComposite < BaseSecretComposite
         @cipher.init(Cipher::ENCRYPT_MODE, @secretKey)
         return @cipher.doFinal(array)
     end
+    java_overload :encrypt, 1
     
 
     # throws Exception
@@ -51,6 +55,7 @@ class SecretComposite < BaseSecretComposite
         @cipher.init(Cipher::DECRYPT_MODE, @secretKey)
         return self.mutilate(@cipher.doFinal(array))
     end
+    java_overload :decrypt, 1
     
 
     def mutilate(array)
@@ -62,7 +67,10 @@ class SecretComposite < BaseSecretComposite
         end
         return array
     end
+    java_overload :mutilate, 1
 end
 
-autoload :ByteUtil, "org/allbinary/logic/java/byteutil/ByteUtil"
+module ::Org; module Allbinary; module Logic; module Java; module Byteutil; autoload :ByteUtil, "org/allbinary/logic/java/byteutil/ByteUtil" unless const_defined?(:ByteUtil, false); end; end; end; end; end
+
+end; end; end; end; end; end; end
 

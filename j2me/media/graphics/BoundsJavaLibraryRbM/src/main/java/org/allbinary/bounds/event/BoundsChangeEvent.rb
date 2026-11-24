@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.bounds.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class BoundsChangeEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Bounds; module Event
+
+class BoundsChangeEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     
 
     def initialize(rectangle)
@@ -27,7 +30,10 @@ class BoundsChangeEvent < AllBinaryEventObject
     def getRectangle()
         return self.getSource()
     end
+    java_overload :getRectangle, 0
 end
 
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+
+end; end; end; end
 

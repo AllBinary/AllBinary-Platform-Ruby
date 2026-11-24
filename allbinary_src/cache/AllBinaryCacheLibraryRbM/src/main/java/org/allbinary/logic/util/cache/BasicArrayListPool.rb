@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/AbstractArrayListPool"
+
+module ::Org; module Allbinary; module Logic; module Util; module Cache
 
 class BasicArrayListPool < AbstractArrayListPool
     
@@ -27,6 +30,7 @@ class BasicArrayListPool < AbstractArrayListPool
     def clear()
         @buffers.clear()
     end
+    java_overload :clear, 0
     
 
     # throws Exception
@@ -38,6 +42,7 @@ class BasicArrayListPool < AbstractArrayListPool
             return @cacheableInterfaceFactoryInterface.getInstance(key)
         end
     end
+    java_overload :remove, 1
     
 
     # throws Exception
@@ -49,6 +54,7 @@ class BasicArrayListPool < AbstractArrayListPool
         end
         usedList.clear()
     end
+    java_overload :addAll, 1
     
 
     # throws Exception
@@ -62,10 +68,13 @@ class BasicArrayListPool < AbstractArrayListPool
             end
         end
     end
+    java_overload :releaseUsedBackToPool, 1
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListCacheable, "org/allbinary/logic/util/cache/BasicArrayListCacheable"
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
-autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :BasicArrayListCacheable, "org/allbinary/logic/util/cache/BasicArrayListCacheable" unless const_defined?(:BasicArrayListCacheable, false)
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false)
+autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface" unless const_defined?(:CacheableInterfaceFactoryInterface, false)
+
+end; end; end; end; end
 

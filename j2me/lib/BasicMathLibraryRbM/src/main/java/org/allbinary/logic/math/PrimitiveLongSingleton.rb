@@ -15,10 +15,12 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class PrimitiveLongSingleton
     attr_accessor :UNK, :NUMBER_ARRAY, :NUMBER_CHAR_ARRAY, :NUMBER_CHAR_ARRAYS, :ZERO
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_math_PrimitiveLongSingleton
         @UNK = ["U", "n", "k"]
         @NUMBER_ARRAY = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         @NUMBER_CHAR_ARRAY = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -27,7 +29,7 @@ class PrimitiveLongSingleton
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_math_PrimitiveLongSingleton
     end
     
 
@@ -44,7 +46,7 @@ class PrimitiveLongSingleton
                 return @NUMBER_ARRAY[index]
             end
         end
-        raise StandardError.new(StringMaker.new().append("numberAsChar was not in array: ").appendchar(numberAsChar).to_s)
+        raise StandardError.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("numberAsChar was not in array: ").appendchar(numberAsChar).to_s)
     end
 
     def self.instance()
@@ -78,11 +80,13 @@ class PrimitiveLongSingleton
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
 begin
     PrimitiveLongSingleton.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

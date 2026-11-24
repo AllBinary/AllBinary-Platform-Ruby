@@ -15,6 +15,8 @@
 # package org.allbinary.game.part
 
 
+module ::Org; module Allbinary; module Game; module Part
+
 class PartInterfaceUtil
     
 
@@ -43,11 +45,13 @@ class PartInterfaceUtil
     end
 end
 
-autoload :PartInterface, "org/allbinary/game/part/PartInterface"
+autoload :PartInterface, "org/allbinary/game/part/PartInterface" unless const_defined?(:PartInterface, false)
 
 begin
     PartInterfaceUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

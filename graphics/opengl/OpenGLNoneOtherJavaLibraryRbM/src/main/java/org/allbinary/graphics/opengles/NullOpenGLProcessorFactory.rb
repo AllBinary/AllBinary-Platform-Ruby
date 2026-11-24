@@ -3,6 +3,8 @@
 # package org.allbinary.graphics.opengles
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles
+
 class NullOpenGLProcessorFactory
     
 
@@ -41,11 +43,13 @@ class NullOpenGLProcessorFactory
     end
 end
 
-autoload :OpenGLProcessor, "org/allbinary/graphics/opengles/OpenGLProcessor"
+autoload :OpenGLProcessor, "org/allbinary/graphics/opengles/OpenGLProcessor" unless const_defined?(:OpenGLProcessor, false)
 
 begin
     NullOpenGLProcessorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

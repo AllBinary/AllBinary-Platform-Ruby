@@ -15,35 +15,39 @@
 # package org.allbinary.game.layer.hud.event
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class GameNotificationEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Layer; module Hud; module Event
+
+class GameNotificationEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :enabled
 
-    def initialize_fields
+    def jfields_org_allbinary_game_layer_hud_event_GameNotificationEventHandler
         @enabled = true
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_layer_hud_event_GameNotificationEventHandler
     end
     
 
     def removeAllListeners()
         java_monitor.synchronize do
-        eventListenerInterface = NullEventListener::NULL_EVENT_LISTENER
+        eventListenerInterface = ::Org::Allbinary::Logic::Util::Event::NullEventListener::NULL_EVENT_LISTENER
         list = @eventListenerInterfaceList
         if list.size() > 0
             eventListenerInterface = list.objectArray[0]
         end
-        super()
-        if eventListenerInterface != NullEventListener::NULL_EVENT_LISTENER
+        GameNotificationEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
+        if eventListenerInterface != ::Org::Allbinary::Logic::Util::Event::NullEventListener::NULL_EVENT_LISTENER
             self.addListenerInterface(eventListenerInterface)
         end
         end
     end
+    java_overload :removeAllListeners, 0
     
 
     def self.getInstance()
@@ -59,6 +63,7 @@ class GameNotificationEventHandler < BasicEventHandler
         gameNotificationListenerInterface = eventListenerInterface
         gameNotificationListenerInterface.onGameNotificationEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.instance()
         GameNotificationEventHandler.java_static_fields unless @java_static_fields_started
@@ -91,16 +96,18 @@ class GameNotificationEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :NullEventListener, "org/allbinary/logic/util/event/NullEventListener"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
-autoload :GameNotificationListenerInterface, "org/allbinary/game/layer/hud/event/GameNotificationListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :NullEventListener, "org/allbinary/logic/util/event/NullEventListener" unless const_defined?(:NullEventListener, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent" unless const_defined?(:GameNotificationEvent, false)
+autoload :GameNotificationListenerInterface, "org/allbinary/game/layer/hud/event/GameNotificationListenerInterface" unless const_defined?(:GameNotificationListenerInterface, false)
 
 begin
     GameNotificationEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

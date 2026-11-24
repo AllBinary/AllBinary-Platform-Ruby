@@ -15,6 +15,8 @@
 # package org.allbinary.logic.control.crypt.jcehelper
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Crypt; module Jcehelper
+
 class AbCrypt
     
 
@@ -36,4 +38,6 @@ class AbCrypt
         return nil
     end
 end
+
+end; end; end; end; end; end
 

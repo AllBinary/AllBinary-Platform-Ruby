@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Game; module Input
 
 class Input
     attr_accessor :id, :name
 
-    def initialize_fields
-        @id = 0
-        @name = StringUtil.getInstance().EMPTY_STRING
+    def jfields_org_allbinary_game_input_Input
+        @id = 0 unless instance_variable_defined?(:@id)
+        @name = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def initialize(id, name)
-        initialize_fields
+        jfields_org_allbinary_game_input_Input
         self.setId(id)
         self.setName(name)
     end
@@ -52,7 +55,7 @@ class Input
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Name: ")
         stringBuffer.append(self.getName())
         stringBuffer.append(" Id: ")
@@ -62,6 +65,8 @@ class Input
     alias_method :to_s, :toString
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end
 

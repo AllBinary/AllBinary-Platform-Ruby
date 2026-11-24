@@ -14,16 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.input.media.image.capture
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/BasicEventListenerInterface"
 
+module ::Org; module Allbinary; module Input; module Media; module Image; module Capture
+
 module CapturedImageWorkerResultsListener
-    include BasicEventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::BasicEventListenerInterface
     
 
     def onCaptureEvent(capturedimageworkerresultsevent)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onCaptureEvent, 1
 end
 
-autoload :CapturedImageWorkerResultsEvent, "org/allbinary/input/media/image/capture/CapturedImageWorkerResultsEvent"
+autoload :CapturedImageWorkerResultsEvent, "org/allbinary/input/media/image/capture/CapturedImageWorkerResultsEvent" unless const_defined?(:CapturedImageWorkerResultsEvent, false)
+
+end; end; end; end; end; end
 

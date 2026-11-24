@@ -15,12 +15,14 @@
 # package org.allbinary.graphics.form
 
 
+module ::Org; module Allbinary; module Graphics; module Form
+
 class CommandCurrentSelectionFormFactory
     
 
     # throws Exception
     def self.getInstance(title, items, rectangle, formType, border, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
-        if Features.getInstance().isFeature(TouchFeatureFactory.getInstance().TOUCH_ENABLED)
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::TouchFeatureFactory.getInstance().TOUCH_ENABLED)
             scrollSelectionForm = CommandCurrentSelectionForm.new(title, items, border, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
             scrollSelectionForm.init(rectangle, formType)
             return scrollSelectionForm
@@ -30,13 +32,15 @@ class CommandCurrentSelectionFormFactory
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :TouchFeatureFactory, "org/allbinary/game/configuration/feature/TouchFeatureFactory"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
-autoload :CommandCurrentSelectionForm, "org/allbinary/graphics/form/CommandCurrentSelectionForm"
-autoload :FormType, "org/allbinary/graphics/form/FormType"
-autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
-autoload :ScrollSelectionFormNoneFactory, "org/allbinary/graphics/form/ScrollSelectionFormNoneFactory"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :TouchFeatureFactory, "org/allbinary/game/configuration/feature/TouchFeatureFactory" unless const_defined?(:TouchFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false); end; end; end; end; end
+autoload :CommandCurrentSelectionForm, "org/allbinary/graphics/form/CommandCurrentSelectionForm" unless const_defined?(:CommandCurrentSelectionForm, false)
+autoload :FormType, "org/allbinary/graphics/form/FormType" unless const_defined?(:FormType, false)
+autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm" unless const_defined?(:ScrollSelectionForm, false)
+autoload :ScrollSelectionFormNoneFactory, "org/allbinary/graphics/form/ScrollSelectionFormNoneFactory" unless const_defined?(:ScrollSelectionFormNoneFactory, false)
+
+end; end; end; end
 

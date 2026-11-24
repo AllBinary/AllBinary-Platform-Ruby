@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/ImageArrayBaseRotationAnimation"
+
+module ::Org; module Allbinary; module Animation; module Image
 
 class ImageArrayRotationAnimation < ImageArrayBaseRotationAnimation
     attr_accessor :expectedTotalFrames
 
-    def initialize_fields
-        @expectedTotalFrames = 0
+    def jfields_org_allbinary_animation_image_ImageArrayRotationAnimation
+        @expectedTotalFrames = 0 unless instance_variable_defined?(:@expectedTotalFrames)
     end
     
 
@@ -33,29 +36,33 @@ class ImageArrayRotationAnimation < ImageArrayBaseRotationAnimation
 
     def initialize(imageArray, angleInfo, totalAngle, animationBehavior)
         super(imageArray, angleInfo, animationBehavior)
-        initialize_fields
-        self.init(imageArray, angleInfo, totalAngle)
+        jfields_org_allbinary_animation_image_ImageArrayRotationAnimation
+        self.initImageArray(imageArray, angleInfo, totalAngle)
     end
     
 
     # throws Exception
-    def init(imageArray, angleInfo, totalAngle)
+    def initImageArray(imageArray, angleInfo, totalAngle)
         @expectedTotalFrames = totalAngle / @angleInfo.getAngleIncrementInfo().getAngleIncrement()
         @angleInfo.adjustAngle(0)
         if @expectedTotalFrames != self.getSize()
             raise StandardError.new("Wrong Number of Frames")
         end
     end
+    java_overload :initImageArray, 3
     
 
     def setImageArray(imageArray)
-        super(imageArray)
+        ImageArrayRotationAnimation.superclass.java_super_method(:setImageArray, 1).bind(self).call(imageArray)
         @angleInfo.adjustAngle(0)
     end
+    java_overload :setImageArray, 1
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :AngleInfo, "org/allbinary/math/AngleInfo"
-autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo" unless const_defined?(:ImageArrayRotationAnimationInfo, false)
+
+end; end; end; end
 

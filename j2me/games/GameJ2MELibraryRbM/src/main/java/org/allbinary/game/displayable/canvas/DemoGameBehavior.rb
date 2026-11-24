@@ -15,15 +15,17 @@
 # package org.allbinary.game.displayable.canvas
 
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 class DemoGameBehavior
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_displayable_canvas_DemoGameBehavior
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_DemoGameBehavior
     end
     
 
@@ -52,7 +54,7 @@ class DemoGameBehavior
 
     # throws Exception
     def updateScreenButtonPaintable(allBinaryGameCanvas)
-        allBinaryGameCanvas.setTouchPaintableP(NullPaintable.getInstance())
+        allBinaryGameCanvas.setTouchPaintableP(::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance())
     end
     
 
@@ -77,8 +79,8 @@ class DemoGameBehavior
 
     # throws Exception
     def run(allBinaryGameCanvas)
-        commonStrings = CommonStrings.getInstance()
-        @logUtil.putF(GameTypeFactory.getInstance().BOT.to_s, self, commonStrings.RUN)
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @logUtil.putF(::Org::Allbinary::Game::GameTypeFactory.getInstance().BOT.to_s, self, commonStrings.RUN)
     end
     
 
@@ -117,16 +119,18 @@ class DemoGameBehavior
     end
 end
 
-autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory"
-autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+module ::Org; module Allbinary; module Game; autoload :GameTypeFactory, "org/allbinary/game/GameTypeFactory" unless const_defined?(:GameTypeFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
 
 begin
     DemoGameBehavior.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

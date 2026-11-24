@@ -14,19 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Animation; module Image
+
 class ImageArrayRotationAnimationCacheableInterfaceFactory
-    include CacheableInterfaceFactoryInterface
+    include ::Org::Allbinary::Logic::Util::Cache::CacheableInterfaceFactoryInterface
     
 
     # throws Exception
     def getInstance(key)
-        return ImageArrayRotationAnimationCacheable.new(key, AnimationBehavior.getInstance())
+        return ImageArrayRotationAnimationCacheable.new(key, ::Org::Allbinary::Animation::AnimationBehavior.getInstance())
     end
+    java_overload :getInstance, 1
 end
 
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
-autoload :ImageArrayRotationAnimationCacheable, "org/allbinary/animation/image/ImageArrayRotationAnimationCacheable"
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false); end; end; end; end; end
+autoload :ImageArrayRotationAnimationCacheable, "org/allbinary/animation/image/ImageArrayRotationAnimationCacheable" unless const_defined?(:ImageArrayRotationAnimationCacheable, false)
+
+end; end; end; end
 

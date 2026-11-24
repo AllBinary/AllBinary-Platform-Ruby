@@ -15,10 +15,12 @@
 # package org.allbinary.game.ag.layer.pickup.points
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Pickup; module Points
+
 class PointsResources
     attr_accessor :RESOURCE, :RESOURCE_2, :RESOURCE_3, :RESOURCE_4
 
-    def initialize_fields
+    def jfields_org_allbinary_game_ag_layer_pickup_points_PointsResources
         @RESOURCE = "points_drop_20_by_20.png"
         @RESOURCE_2 = "points_2_drop_20_by_20.png"
         @RESOURCE_3 = "points_3_drop_20_by_20.png"
@@ -27,7 +29,7 @@ class PointsResources
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_ag_layer_pickup_points_PointsResources
     end
     
 
@@ -61,4 +63,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

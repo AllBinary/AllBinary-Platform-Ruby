@@ -15,6 +15,8 @@
 # package org.allbinary.physics.movement
 
 
+module ::Org; module Allbinary; module Physics; module Movement
+
 module MovementInterface
     
 
@@ -37,6 +39,8 @@ module MovementInterface
     end
 end
 
-autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer"
-autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryGameLayer, "org/allbinary/game/layer/AllBinaryGameLayer" unless const_defined?(:AllBinaryGameLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false); end; end; end; end
+
+end; end; end; end
 

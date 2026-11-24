@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.business.advertisement.campaign
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/advertisement/campaign/AdvertisementCampaignsInterface"
+
+module ::Org; module Allbinary; module Business; module Advertisement; module Campaign
 
 class AdvertisementCampaigns
     include AdvertisementCampaignsInterface
     attr_accessor :advertisementsVector
 
-    def initialize_fields
-        @advertisementsVector = nil
+    def jfields_org_allbinary_business_advertisement_campaign_AdvertisementCampaigns
+        @advertisementsVector = nil unless instance_variable_defined?(:@advertisementsVector)
     end
     
 
     def initialize(vector)
-        initialize_fields
+        jfields_org_allbinary_business_advertisement_campaign_AdvertisementCampaigns
         @advertisementsVector = @advertisementsVector
     end
     
@@ -34,31 +37,38 @@ class AdvertisementCampaigns
     def add(advertisementInterface)
         @advertisementsVector.add(advertisementInterface)
     end
+    java_overload :add, 1
     
 
     def get(index)
         return @advertisementsVector.get(index)
     end
+    java_overload :get, 1
     
 
     def size()
         return @advertisementsVector.size()
     end
+    java_overload :size, 0
     
 
     def isEnabled()
         return true
     end
+    java_overload :isEnabled, 0
     
 
     def search(advertisementSearchInterface)
         return nil
     end
+    java_overload :search, 1
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :AdvertisementInterface, "org/allbinary/business/advertisement/AdvertisementInterface"
-autoload :AdvertisementsInterface, "org/allbinary/business/advertisement/AdvertisementsInterface"
-autoload :AdvertisementSearchInterface, "org/allbinary/business/advertisement/search/AdvertisementSearchInterface"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module Advertisement; autoload :AdvertisementInterface, "org/allbinary/business/advertisement/AdvertisementInterface" unless const_defined?(:AdvertisementInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module Advertisement; autoload :AdvertisementsInterface, "org/allbinary/business/advertisement/AdvertisementsInterface" unless const_defined?(:AdvertisementsInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module Advertisement; module Search; autoload :AdvertisementSearchInterface, "org/allbinary/business/advertisement/search/AdvertisementSearchInterface" unless const_defined?(:AdvertisementSearchInterface, false); end; end; end; end; end
+
+end; end; end; end; end
 

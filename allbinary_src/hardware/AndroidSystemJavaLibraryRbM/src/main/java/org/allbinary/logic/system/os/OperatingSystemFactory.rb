@@ -15,12 +15,15 @@
 # package org.allbinary.logic.system.os
 
 require "java/lang/Object"
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module System; module Os
 
 class OperatingSystemFactory
     attr_accessor :logUtil, :genericOperatingSystem, :hasDetected
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_system_os_OperatingSystemFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @genericOperatingSystem = NoOperatingSystem::NO_OPERATING_SYSTEM
         @hasDetected = false
     end
@@ -32,13 +35,13 @@ class OperatingSystemFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_os_OperatingSystemFactory
     end
     
 
     def getOperatingSystemInstance()
         java_monitor.synchronize do
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         begin
             systemProperties = SystemProperties.getInstance()
             osName = systemProperties.getName()
@@ -46,14 +49,14 @@ class OperatingSystemFactory
                 @hasDetected = true
                 if (osName.index(OperatingSystems.getInstance().ANDROID) || -1) >= 0
                     @logUtil.putF("Found a Android OS", self, commonStrings.GET_INSTANCE)
-                    @genericOperatingSystem = AndroidOperatingSystemFactory.getInstance().getOperatingSystemInstance()
-                    @logUtil.putF(StringMaker.new().append("Operating System Info: ").append(@genericOperatingSystem.to_s).to_s, self, commonStrings.GET_INSTANCE)
+                    @genericOperatingSystem = ::Org::Allbinary::Logic::System::Os::Android::AndroidOperatingSystemFactory.getInstance().getOperatingSystemInstance()
+                    @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Operating System Info: ").append(@genericOperatingSystem.to_s).to_s, self, commonStrings.GET_INSTANCE)
                 elsif (osName.index(OperatingSystems.getInstance().HARMONY) || -1) >= 0
                     @logUtil.putF("Found a Harmony OS", self, commonStrings.GET_INSTANCE)
-                    @genericOperatingSystem = AndroidOperatingSystemFactory.getInstance().getOperatingSystemInstance()
-                    @logUtil.putF(StringMaker.new().append("Operating System Info: ").append(@genericOperatingSystem.to_s).to_s, self, commonStrings.GET_INSTANCE)
+                    @genericOperatingSystem = ::Org::Allbinary::Logic::System::Os::Android::AndroidOperatingSystemFactory.getInstance().getOperatingSystemInstance()
+                    @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Operating System Info: ").append(@genericOperatingSystem.to_s).to_s, self, commonStrings.GET_INSTANCE)
                 else
-                    raise StandardError.new(StringMaker.new().append("OS Not Supported: ").append(osName).to_s)
+                    raise StandardError.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("OS Not Supported: ").append(osName).to_s)
                 end
             end
         rescue StandardError => e
@@ -65,24 +68,50 @@ class OperatingSystemFactory
     end
 
     def self.instance()
+        OperatingSystemFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OperatingSystemFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = OperatingSystemFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OperatingSystemFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/system/os/android/AndroidOperatingSystemFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/system/os/GenericOperatingSystem"
-require "org/allbinary/logic/system/os/NoOperatingSystem"
-require "org/allbinary/logic/system/os/OperatingSystems"
-require "org/allbinary/logic/system/os/SystemProperties"
+module ::Org; module Allbinary; module Logic; module System; module Os; module Android; autoload :AndroidOperatingSystemFactory, "org/allbinary/logic/system/os/android/AndroidOperatingSystemFactory" unless const_defined?(:AndroidOperatingSystemFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem" unless const_defined?(:GenericOperatingSystem, false)
+autoload :NoOperatingSystem, "org/allbinary/logic/system/os/NoOperatingSystem" unless const_defined?(:NoOperatingSystem, false)
+autoload :OperatingSystems, "org/allbinary/logic/system/os/OperatingSystems" unless const_defined?(:OperatingSystems, false)
+autoload :SystemProperties, "org/allbinary/logic/system/os/SystemProperties" unless const_defined?(:SystemProperties, false)
 
-class OperatingSystemFactory
-    @@instance = OperatingSystemFactory.new()
+begin
+    OperatingSystemFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

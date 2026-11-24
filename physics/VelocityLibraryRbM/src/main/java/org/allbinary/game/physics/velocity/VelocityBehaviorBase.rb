@@ -15,6 +15,8 @@
 # package org.allbinary.game.physics.velocity
 
 
+module ::Org; module Allbinary; module Game; module Physics; module Velocity
+
 class VelocityBehaviorBase
     
 
@@ -30,5 +32,7 @@ class VelocityBehaviorBase
     end
 end
 
-autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties" unless const_defined?(:BasicVelocityProperties, false)
+
+end; end; end; end; end
 

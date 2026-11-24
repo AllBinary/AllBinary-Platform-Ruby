@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.tactical
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ai/BasicAI"
 
-class HorizontalManeuverAI < BasicAI
+module ::Org; module Allbinary; module Game; module Ag; module Ai; module Tactical
+
+class HorizontalManeuverAI < ::Org::Allbinary::Game::Ai::BasicAI
     attr_accessor :currentRelativeAngle, :currentSpeed
 
-    def initialize_fields
+    def jfields_org_allbinary_game_ag_ai_tactical_HorizontalManeuverAI
         @currentRelativeAngle = 0
-        @currentSpeed = nil
+        @currentSpeed = nil unless instance_variable_defined?(:@currentSpeed)
     end
     
 
     def initialize(ownerLayerInterface, gameInput)
         super(ownerLayerInterface, gameInput)
-        initialize_fields
+        jfields_org_allbinary_game_ag_ai_tactical_HorizontalManeuverAI
         @currentSpeed = 5
     end
     
@@ -40,7 +43,7 @@ class HorizontalManeuverAI < BasicAI
             self.reverse()
             self.drop()
         end
-        if ownerLayerInterface.getX2() + @currentSpeed > DisplayInfoSingleton.getInstance().getLastWidth()
+        if ownerLayerInterface.getX2() + @currentSpeed > ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance().getLastWidth()
             self.reverse()
             self.accelerate()
             self.drop()
@@ -52,11 +55,12 @@ class HorizontalManeuverAI < BasicAI
         end
         ownerLayerInterface.setPosition(x, ownerLayerInterface.getYP(), ownerLayerInterface.getZP())
         if @currentRelativeAngle == 0
-            HorizontalManeuverAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_NUM0)
+            HorizontalManeuverAI.superclass.java_super_method(:processKeyAI, 1).bind(self).call(::Javax::Microedition::Lcdui::Canvas::KEY_NUM0)
         elsif @currentRelativeAngle == 180
-            HorizontalManeuverAI.superclass.instance_method(:processKeyAI).bind(self).call(Canvas::KEY_POUND)
+            HorizontalManeuverAI.superclass.java_super_method(:processKeyAI, 1).bind(self).call(::Javax::Microedition::Lcdui::Canvas::KEY_POUND)
         end
     end
+    java_overload :processAI, 1
     
 
     def reverse()
@@ -66,6 +70,7 @@ class HorizontalManeuverAI < BasicAI
             @currentRelativeAngle = 180
         end
     end
+    java_overload :reverse, 0
     
 
     def accelerate()
@@ -73,23 +78,27 @@ class HorizontalManeuverAI < BasicAI
             @currentSpeed += 1
         end
     end
+    java_overload :accelerate, 0
     
 
     def drop()
         ownerLayerInterface = self.getOwnerLayerInterface()
         y = ownerLayerInterface.getYP()
-        if ownerLayerInterface.getY2() + ownerLayerInterface.getHeight() > DisplayInfoSingleton.getInstance().getLastHeight()
+        if ownerLayerInterface.getY2() + ownerLayerInterface.getHeight() > ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance().getLastHeight()
             y = 0
         else
             y += ownerLayerInterface.getHeight() + 1
         end
         ownerLayerInterface.setPosition(ownerLayerInterface.getXP(), y, ownerLayerInterface.getZP())
     end
+    java_overload :drop, 0
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end; end; end; end
 

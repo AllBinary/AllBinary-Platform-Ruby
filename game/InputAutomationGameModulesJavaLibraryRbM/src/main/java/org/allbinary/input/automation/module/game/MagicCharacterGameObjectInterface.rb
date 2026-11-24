@@ -15,19 +15,25 @@
 # package org.allbinary.input.automation.module.game
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game
+
 module MagicCharacterGameObjectInterface
     
 
     def getHitPointGameObjectInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMagicGameObjectInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :HitPointGameObjectInterface, "org/allbinary/input/automation/module/game/HitPointGameObjectInterface"
-autoload :MagicGameObjectInterface, "org/allbinary/input/automation/module/game/MagicGameObjectInterface"
+autoload :HitPointGameObjectInterface, "org/allbinary/input/automation/module/game/HitPointGameObjectInterface" unless const_defined?(:HitPointGameObjectInterface, false)
+autoload :MagicGameObjectInterface, "org/allbinary/input/automation/module/game/MagicGameObjectInterface" unless const_defined?(:MagicGameObjectInterface, false)
+
+end; end; end; end; end; end
 

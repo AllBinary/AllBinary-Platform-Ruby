@@ -15,18 +15,20 @@
 # package org.allbinary.media.image.analysis
 
 
+module ::Org; module Allbinary; module Media; module Image; module Analysis
+
 class ImageAnalysisResults
     attr_accessor :imageColorRangeResults, :imageColorResults, :averageAmbientLevel
 
-    def initialize_fields
-        @imageColorRangeResults = nil
-        @imageColorResults = nil
-        @averageAmbientLevel = 0.0
+    def jfields_org_allbinary_media_image_analysis_ImageAnalysisResults
+        @imageColorRangeResults = nil unless instance_variable_defined?(:@imageColorRangeResults)
+        @imageColorResults = nil unless instance_variable_defined?(:@imageColorResults)
+        @averageAmbientLevel = 0.0 unless instance_variable_defined?(:@averageAmbientLevel)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_analysis_ImageAnalysisResults
         @imageColorRangeResults = ImageColorRangeResults.new()
         @imageColorResults = ImageColorResults.new()
     end
@@ -62,6 +64,8 @@ class ImageAnalysisResults
     end
 end
 
-autoload :ImageColorRangeResults, "org/allbinary/media/image/analysis/ImageColorRangeResults"
-autoload :ImageColorResults, "org/allbinary/media/image/analysis/ImageColorResults"
+autoload :ImageColorRangeResults, "org/allbinary/media/image/analysis/ImageColorRangeResults" unless const_defined?(:ImageColorRangeResults, false)
+autoload :ImageColorResults, "org/allbinary/media/image/analysis/ImageColorResults" unless const_defined?(:ImageColorResults, false)
+
+end; end; end; end; end
 

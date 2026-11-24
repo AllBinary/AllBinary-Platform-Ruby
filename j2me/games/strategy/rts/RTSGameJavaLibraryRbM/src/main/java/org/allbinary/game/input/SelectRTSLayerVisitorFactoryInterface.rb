@@ -15,14 +15,19 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 module SelectRTSLayerVisitorFactoryInterface
     
 
     def create(selectedRTSLayersPlayerGameInput)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/logic/util/visitor/Visitor"
-require "org/allbinary/game/input/SelectedRTSLayersPlayerGameInput"
+module ::Org; module Allbinary; module Logic; module Util; module Visitor; autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor" unless const_defined?(:Visitor, false); end; end; end; end; end
+autoload :SelectedRTSLayersPlayerGameInput, "org/allbinary/game/input/SelectedRTSLayersPlayerGameInput" unless const_defined?(:SelectedRTSLayersPlayerGameInput, false)
+
+end; end; end; end
 

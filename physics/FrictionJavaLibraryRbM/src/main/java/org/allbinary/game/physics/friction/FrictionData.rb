@@ -15,6 +15,8 @@
 # package org.allbinary.game.physics.friction
 
 
+module ::Org; module Allbinary; module Game; module Physics; module Friction
+
 class FrictionData
     
 
@@ -52,4 +54,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

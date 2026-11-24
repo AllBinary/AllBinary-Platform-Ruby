@@ -15,16 +15,18 @@
 # package org.allbinary.game.terrain
 
 
+module ::Org; module Allbinary; module Game; module Terrain
+
 class BasicTerrainInfo
     attr_accessor :angle
 
-    def initialize_fields
-        @angle = nil
+    def jfields_org_allbinary_game_terrain_BasicTerrainInfo
+        @angle = nil unless instance_variable_defined?(:@angle)
     end
     
 
     def initialize(angle)
-        initialize_fields
+        jfields_org_allbinary_game_terrain_BasicTerrainInfo
         @angle = angle
     end
     
@@ -42,7 +44,7 @@ class BasicTerrainInfo
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_BASIC_TERRAIN_INFO, BasicTerrainInfo.new(AngleFactory.getInstance().NOT_ANGLE))
+            const_set(:NULL_BASIC_TERRAIN_INFO, BasicTerrainInfo.new(::Org::Allbinary::MathPackage::AngleFactory.getInstance().NOT_ANGLE))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -59,12 +61,14 @@ class BasicTerrainInfo
     end
 end
 
-autoload :Angle, "org/allbinary/math/Angle"
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+module ::Org; module Allbinary; module MathPackage; autoload :Angle, "org/allbinary/math/Angle" unless const_defined?(:Angle, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false); end; end; end
 
 begin
     BasicTerrainInfo.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

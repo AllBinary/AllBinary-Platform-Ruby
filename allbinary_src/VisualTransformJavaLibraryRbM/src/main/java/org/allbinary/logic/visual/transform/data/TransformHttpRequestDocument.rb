@@ -14,34 +14,38 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.data
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/http/HttpServletRequest"
 # require "javax/servlet/jsp/PageContext"
 require "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module DataPackage
 
 class TransformHttpRequestDocument
     include TransformDocumentInterface
     attr_accessor :logUtil, :commonStrings, :baseNode, :document
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @baseNode = nil
-        @document = nil
+    def jfields_org_allbinary_logic_visual_transform_data_TransformHttpRequestDocument
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @baseNode = nil unless instance_variable_defined?(:@baseNode)
+        @document = nil unless instance_variable_defined?(:@document)
     end
 
     def initialize(*args)
         case args.length
-        when 2 then constructor2(*args)
-        when 1 then constructor1(*args)
+        when 2 then jnew_org_allbinary_logic_visual_transform_data_TransformHttpRequestDocument_2(*args)
+        when 1 then jnew_org_allbinary_logic_visual_transform_data_TransformHttpRequestDocument_1(*args)
+        else raise ArgumentError, "No constructor of TransformHttpRequestDocument takes #{args.length} arguments"
         end
     end
     
 
-    def constructor2(pageContext, weblisketSession)
-        initialize_fields
+    def jnew_org_allbinary_logic_visual_transform_data_TransformHttpRequestDocument_2(pageContext, weblisketSession)
+        jfields_org_allbinary_logic_visual_transform_data_TransformHttpRequestDocument
         begin
-            contentType = AcceptableResponseGenerator.getInstance().get(pageContext.getRequest())
-            @document = DomDocumentHelper.create()
+            contentType = ::Org::Allbinary::Logic::Communication::Http::AcceptableResponseGenerator.getInstance().get(pageContext.getRequest())
+            @document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create()
             contentTypeNode = @document.createElement(contentType)
             languageTypeNode = @document.createElement(@@language)
             localTypeNode = @document.createElement(@@local)
@@ -49,11 +53,11 @@ class TransformHttpRequestDocument
             languageTypeNode.appendChild(localTypeNode)
             contentTypeNode.appendChild(languageTypeNode)
             @document.appendChild(contentTypeNode)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.putF(self.log(), self, @commonStrings.CONSTRUCTOR)
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.CONSTRUCTOR, e)
             end
             raise e
@@ -61,11 +65,11 @@ class TransformHttpRequestDocument
     end
     
 
-    def constructor1(searchRequest)
-        initialize_fields
+    def jnew_org_allbinary_logic_visual_transform_data_TransformHttpRequestDocument_1(searchRequest)
+        jfields_org_allbinary_logic_visual_transform_data_TransformHttpRequestDocument
         begin
             contentType = searchRequest.getContentType()
-            @document = DomDocumentHelper.create()
+            @document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create()
             contentTypeNode = @document.createElement(contentType)
             languageTypeNode = @document.createElement(@@language)
             localTypeNode = @document.createElement(@@local)
@@ -74,7 +78,7 @@ class TransformHttpRequestDocument
             contentTypeNode.appendChild(languageTypeNode)
             @document.appendChild(contentTypeNode)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.CONSTRUCTOR, e)
             end
             raise e
@@ -85,16 +89,18 @@ class TransformHttpRequestDocument
     def getBaseNode()
         return @baseNode
     end
+    java_overload :getBaseNode, 0
     
 
     def getDoc()
         return @document
     end
+    java_overload :getDoc, 0
     
 
     # throws Exception
     def log()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         if @baseNode != nil
             stringBuffer.append("BaseNode: ")
             stringBuffer.append(@baseNode.getNodeName())
@@ -102,9 +108,10 @@ class TransformHttpRequestDocument
             stringBuffer.append("Log-Error: BaseNode is Null")
         end
         stringBuffer.append("\nDocument: ")
-        stringBuffer.append(XmlDocumentHelper.toString(@document))
+        stringBuffer.append(::Org::Allbinary::DataPackage::Tree::Dom::Document::XmlDocumentHelper.toString(@document))
         return stringBuffer.to_s
     end
+    java_overload :log, 0
 
     def self.language()
         TransformHttpRequestDocument.java_static_fields unless @java_static_fields_started
@@ -148,20 +155,24 @@ class TransformHttpRequestDocument
     end
 end
 
-autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-autoload :AcceptableResponseGenerator, "org/allbinary/logic/communication/http/AcceptableResponseGenerator"
-autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper" unless const_defined?(:DomDocumentHelper, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper" unless const_defined?(:XmlDocumentHelper, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; autoload :AcceptableResponseGenerator, "org/allbinary/logic/communication/http/AcceptableResponseGenerator" unless const_defined?(:AcceptableResponseGenerator, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; module Session; autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession" unless const_defined?(:WeblisketSession, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Search; autoload :SearchRequest, "org/allbinary/logic/control/search/SearchRequest" unless const_defined?(:SearchRequest, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
 begin
     TransformHttpRequestDocument.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

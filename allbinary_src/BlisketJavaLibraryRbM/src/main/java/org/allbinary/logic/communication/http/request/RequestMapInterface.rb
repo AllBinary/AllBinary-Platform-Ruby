@@ -15,13 +15,18 @@
 # package org.allbinary.logic.communication.http.request
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request
+
 module RequestMapInterface
     
 
     def getRequestHashMap()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+
+end; end; end; end; end; end
 

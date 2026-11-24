@@ -19,10 +19,12 @@
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Logic; module StringPackage
+
 class StringUtil
     attr_accessor :INIT_STRING, :NULL_STRING, :EMPTY_STRING, :ONE_EMPTY_STRING_ARRAY, :ONE_EMPTY_STRING_ARRAY_OF_ARRAYS, :stringArray
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_string_StringUtil
         @INIT_STRING = String.new("")
         @NULL_STRING = "null"
         @EMPTY_STRING = ""
@@ -38,7 +40,7 @@ class StringUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_string_StringUtil
     end
     
 
@@ -108,4 +110,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

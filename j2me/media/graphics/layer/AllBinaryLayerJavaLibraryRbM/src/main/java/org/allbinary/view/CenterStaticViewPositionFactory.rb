@@ -15,6 +15,8 @@
 # package org.allbinary.view
 
 
+module ::Org; module Allbinary; module View
+
 class CenterStaticViewPositionFactory
     
 
@@ -23,12 +25,14 @@ class CenterStaticViewPositionFactory
     
 
     def getInstance(z)
-        displayInfoSingleton = DisplayInfoSingleton.getInstance()
+        displayInfoSingleton = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
         return StaticViewPosition.new((displayInfoSingleton.getLastWidth() >> 1), (displayInfoSingleton.getLastHeight() >> 1), z)
     end
 end
 
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :StaticViewPosition, "org/allbinary/view/StaticViewPosition"
-autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+autoload :StaticViewPosition, "org/allbinary/view/StaticViewPosition" unless const_defined?(:StaticViewPosition, false)
+autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false)
+
+end; end; end
 

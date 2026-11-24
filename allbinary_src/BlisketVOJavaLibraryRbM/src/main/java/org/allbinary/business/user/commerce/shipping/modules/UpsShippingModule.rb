@@ -14,38 +14,46 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.shipping.modules
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
+
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Shipping; module Modules
 
 class UpsShippingModule
     include ShippingInterface
     attr_accessor :name, :description
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_commerce_shipping_modules_UpsShippingModule
         @name = "UPS"
         @description = "Brown Mail"
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_shipping_modules_UpsShippingModule
     end
     
 
     def getCost(order)
-        return Money.new()
+        return ::Org::Allbinary::Business::User::Commerce::Money::Money.new()
     end
+    java_overload :getCost, 1
     
 
     def getDescription()
         return @description
     end
+    java_overload :getDescription, 0
     
 
     def getName()
         return @name
     end
+    java_overload :getName, 0
 end
 
-autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
-autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Order; autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface" unless const_defined?(:OrderInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; autoload :Money, "org/allbinary/business/user/commerce/money/Money" unless const_defined?(:Money, false); end; end; end; end; end; end
+
+end; end; end; end; end; end; end
 

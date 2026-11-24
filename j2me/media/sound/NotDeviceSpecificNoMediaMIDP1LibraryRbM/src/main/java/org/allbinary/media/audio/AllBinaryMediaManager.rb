@@ -16,6 +16,8 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Media; module Audio
+
 #NotDeviceSpecificNoMediaMIDP1Library
 class AllBinaryMediaManager
     
@@ -40,10 +42,10 @@ class AllBinaryMediaManager
 
     # throws Exception
     def self.init(soundsFactoryInterface)
-        logUtil = LogUtil.getInstance()
-        commonString = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, commonString.INIT)
-        ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
+        ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
         Sounds.new(soundsFactoryInterface).init()
     end
     
@@ -52,21 +54,21 @@ class AllBinaryMediaManager
     def self.shutdown(soundsFactoryInterface)
         Sounds.new(soundsFactoryInterface).stopAll()
         Sounds.new(soundsFactoryInterface).closeAll()
-        TsUtil.getInstance().gc()
+        ::Org::Allbinary::TsUtil.getInstance().gc()
     end
     
 
     def self.createPlayerFromInputStream(stream, type)
-        logUtil = LogUtil.getInstance()
-        commonString = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, "creatPlayer(InputStream)")
         return NoPlayer::NO_PLAYER
     end
     
 
     def self.createPlayer(locator)
-        logUtil = LogUtil.getInstance()
-        commonString = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, "creatPlayer(locator)")
         return NoPlayer::NO_PLAYER
     end
@@ -79,12 +81,12 @@ class AllBinaryMediaManager
     
 
     def self.getSupportedContentTypes(protocol)
-        return StringUtil.getInstance().getArrayInstance()
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().getArrayInstance()
     end
     
 
     def self.getSupportedProtocols(content_type)
-        return StringUtil.getInstance().getArrayInstance()
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().getArrayInstance()
     end
 
     def self.java_static_fields
@@ -108,20 +110,22 @@ class AllBinaryMediaManager
     end
 end
 
-autoload :InputStream, "java/io/InputStream"
-autoload :Player, "javax/microedition/media/Player"
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :NoPlayer, "org/allbinary/media/audio/NoPlayer"
-autoload :Sounds, "org/allbinary/media/audio/Sounds"
-autoload :SoundsFactoryInterface, "org/allbinary/media/audio/SoundsFactoryInterface"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Javax; module Microedition; module Media; autoload :Player, "javax/microedition/media/Player" unless const_defined?(:Player, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" unless const_defined?(:ProgressCanvasFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :NoPlayer, "org/allbinary/media/audio/NoPlayer" unless const_defined?(:NoPlayer, false)
+autoload :Sounds, "org/allbinary/media/audio/Sounds" unless const_defined?(:Sounds, false)
+autoload :SoundsFactoryInterface, "org/allbinary/media/audio/SoundsFactoryInterface" unless const_defined?(:SoundsFactoryInterface, false)
 
 begin
     AllBinaryMediaManager.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.business.user.commerce.money.payment.gateway.transaction
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway; module Transaction
+
 class PaymentTransactionKeysFactory
     attr_accessor :TRXTYPE, :TENDER, :ACCT, :EXPDATE, :AMT, :AUTHCODE, :MICR, :CHECKNUM, :NAME, :STREET, :CITY, :STATE, :ZIP, :DL, :EMAIL, :COMMENT1, :COMMENT2, :ORIGID, :PONUM, :DESC, :DESC1TO4, :INVNUM, :SHIPTOZIP, :SWIPE, :TAXAMT, :COMMCARD, :DUTYAMT, :FRIEGHTAMT, :ORDERDATE, :TAXEXEMPT, :COUNTRYCODE, :CUSTCODE, :CVV2, :ABA, :ACCTTYPE, :DISCOUNT, :FIRSTNAME, :LASTNAME, :SHIPFROMZIP, :PRENOTE, :CHKTYPE, :DOB, :PHONENUM, :SS, :COMPANYNAME, :COUNTRY, :FREIGHTAMT, :SHIPTOCITY, :SHIPTOFIRSTNAME, :SHIPTOLASTNAME, :SHIPTOSTATE, :SHIPTOSTREET, :SPECIAL1, :SPECIAL2, :SPECIAL3, :PARTNER, :VENDOR, :USER, :PWD, :CHKNUM, :AVSADDR, :AVSZIP, :PNREF, :RESPMSG, :RESULT, :ORIGRESULT, :STATUS, :FRAUDCODE, :FRAUDMSG, :ERRCODE, :SCORE, :REASON1, :REASON2, :REASON3, :EXCEPTION1, :EXCEPTION2, :EXCEPTION3, :EXCEPTION4, :EXCEPTION5, :EXCEPTION6, :EXCEPTION7
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_commerce_money_payment_gateway_transaction_PaymentTransactionKeysFactory
         @TRXTYPE = PaymentTransactionKeys.new("TRXTYPE")
         @TENDER = PaymentTransactionKeys.new("TENDER")
         @ACCT = PaymentTransactionKeys.new("ACCT")
@@ -103,7 +105,7 @@ class PaymentTransactionKeysFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_gateway_transaction_PaymentTransactionKeysFactory
     end
     
 
@@ -142,11 +144,13 @@ class PaymentTransactionKeysFactory
     end
 end
 
-autoload :PaymentTransactionKeys, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionKeys"
+autoload :PaymentTransactionKeys, "org/allbinary/business/user/commerce/money/payment/gateway/transaction/PaymentTransactionKeys" unless const_defined?(:PaymentTransactionKeys, false)
 
 begin
     PaymentTransactionKeysFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end; end
 

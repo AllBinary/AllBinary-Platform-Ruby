@@ -15,18 +15,24 @@
 # package bundle.input.automation.robot
 
 
+module ::Bundle; module Input; module Automation; module Robot
+
 module InputAutomationRobotChangeListener
     
 
     def onAdd(inputAutomationRobotChangeEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onRemove(inputAutomationRobotChangeEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
+module ::Org; module Allbinary; module Input; module Automation; module Robot; module Osgi; autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent" unless const_defined?(:InputAutomationRobotChangeEvent, false); end; end; end; end; end; end
+
+end; end; end; end
 

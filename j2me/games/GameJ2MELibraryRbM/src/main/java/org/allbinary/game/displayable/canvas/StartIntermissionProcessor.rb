@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/Processor"
 
-class StartIntermissionProcessor < Processor
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class StartIntermissionProcessor < ::Org::Allbinary::Canvas::Processor
     attr_accessor :logUtil, :commonStrings, :gameCanvas, :WAIT
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @gameCanvas = nil
+    def jfields_org_allbinary_game_displayable_canvas_StartIntermissionProcessor
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @gameCanvas = nil unless instance_variable_defined?(:@gameCanvas)
         @WAIT = 5000
     end
     
 
     def initialize(gameCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_StartIntermissionProcessor
         @gameCanvas = gameCanvas
     end
     
@@ -41,9 +44,12 @@ class StartIntermissionProcessor < Processor
             @gameCanvas.getStartIntermissionInterface().setEnabled(false)
         end
     end
+    java_overload :process, 0
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
+
+end; end; end; end; end
 

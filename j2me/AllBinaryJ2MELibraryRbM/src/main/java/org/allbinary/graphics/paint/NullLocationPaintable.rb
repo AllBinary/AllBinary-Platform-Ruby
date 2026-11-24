@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/LocationPaintable"
+
+module ::Org; module Allbinary; module Graphics; module Paint
 
 class NullLocationPaintable < LocationPaintable
     
@@ -59,4 +62,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

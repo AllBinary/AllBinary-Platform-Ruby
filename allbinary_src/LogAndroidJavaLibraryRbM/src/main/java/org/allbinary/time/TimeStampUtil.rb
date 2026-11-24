@@ -15,6 +15,8 @@
 # package org.allbinary.time
 
 
+module ::Org; module Allbinary; module TimePackage
+
 #ActualPlatform
 class TimeStampUtil
     
@@ -29,24 +31,50 @@ class TimeStampUtil
     
 
     def getAsString()
-        calendar = Calendar.getInstance()
+        calendar = ::Java::Util::Calendar.getInstance()
         date = calendar.getTime()
         return date.to_s
     end
 
     def self.instance()
+        TimeStampUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TimeStampUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TimeStampUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TimeStampUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "java/util/Calendar"
-require "java/util/Date"
+module ::Java; module Util; autoload :Calendar, "java/util/Calendar" unless const_defined?(:Calendar, false); end; end
+module ::Java; module Util; autoload :Date, "java/util/Date" unless const_defined?(:Date, false); end; end
 
-class TimeStampUtil
-    @@instance = TimeStampUtil.new()
+begin
+    TimeStampUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

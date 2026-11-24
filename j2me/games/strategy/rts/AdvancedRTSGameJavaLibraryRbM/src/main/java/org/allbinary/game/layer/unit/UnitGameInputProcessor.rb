@@ -14,22 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.unit
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/GameInputProcessor"
 
-class UnitGameInputProcessor < GameInputProcessor
+module ::Org; module Allbinary; module Game; module Layer; module Unit
+
+class UnitGameInputProcessor < ::Org::Allbinary::Game::Input::GameInputProcessor
     attr_accessor :unitLayer
 
-    def initialize_fields
-        @unitLayer = nil
+    def jfields_org_allbinary_game_layer_unit_UnitGameInputProcessor
+        @unitLayer = nil unless instance_variable_defined?(:@unitLayer)
     end
     
 
     def initialize(unitLayer)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_layer_unit_UnitGameInputProcessor
         @unitLayer = unitLayer
     end
 end
 
-require "org/allbinary/game/layer/unit/UnitLayer"
+autoload :UnitLayer, "org/allbinary/game/layer/unit/UnitLayer" unless const_defined?(:UnitLayer, false)
+
+end; end; end; end; end
 

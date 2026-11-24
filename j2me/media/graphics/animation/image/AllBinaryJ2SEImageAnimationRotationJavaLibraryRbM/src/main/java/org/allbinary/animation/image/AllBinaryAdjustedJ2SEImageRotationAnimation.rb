@@ -14,22 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/AllBinaryJ2SEImageRotationAnimation"
+
+module ::Org; module Allbinary; module Animation; module Image
 
 class AllBinaryAdjustedJ2SEImageRotationAnimation < AllBinaryJ2SEImageRotationAnimation
     attr_accessor :dx, :dy
 
-    def initialize_fields
-        @dx = 0
-        @dy = 0
+    def jfields_org_allbinary_animation_image_AllBinaryAdjustedJ2SEImageRotationAnimation
+        @dx = 0 unless instance_variable_defined?(:@dx)
+        @dy = 0 unless instance_variable_defined?(:@dy)
     end
     
 
     def initialize(originalImage, image, angleInfo, totalAngle, dx, dy, animationBehavior)
         super(originalImage, image, angleInfo, totalAngle, animationBehavior)
-        initialize_fields
+        jfields_org_allbinary_animation_image_AllBinaryAdjustedJ2SEImageRotationAnimation
         self.init(dx, dy)
     end
     
@@ -39,33 +40,43 @@ class AllBinaryAdjustedJ2SEImageRotationAnimation < AllBinaryJ2SEImageRotationAn
         @dx = dx
         @dy = dy
     end
+    java_overload :init, 2
     
 
     def setDx(dx)
         @dx = dx
     end
+    java_overload :setDx, 1
     
 
     def getDx()
         return @dx
     end
+    java_overload :getDx, 0
     
 
     def setDy(dy)
         @dy = dy
     end
+    java_overload :setDy, 1
     
 
     def getDy()
         return @dy
     end
+    java_overload :getDy, 0
     
 
     def paintXY(graphics, x, y)
-        super(graphics, x + @dx, y + @dy)
+        AllBinaryAdjustedJ2SEImageRotationAnimation.superclass.java_super_method(:paintXY, 3).bind(self).call(graphics, x + @dx, y + @dy)
     end
+    java_overload :paintXY, 3
 end
 
-require "org/allbinary/animation/AnimationBehavior"
-require "org/allbinary/math/AngleInfo"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+
+end; end; end; end
 

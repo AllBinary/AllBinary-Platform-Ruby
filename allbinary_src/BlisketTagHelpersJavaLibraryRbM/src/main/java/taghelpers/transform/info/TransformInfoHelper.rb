@@ -14,90 +14,101 @@
 # frozen_string_literal: false
 # package taghelpers.transform.info
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/PageContext"
 require "admin/taghelpers/BasicTable"
 
-class TransformInfoHelper < BasicTable
+module ::Taghelpers; module Transform; module Info
+
+class TransformInfoHelper < ::Admin::Taghelpers::BasicTable
     attr_accessor :logUtil, :portion
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @portion = nil
+    def jfields_taghelpers_transform_info_TransformInfoHelper
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @portion = nil unless instance_variable_defined?(:@portion)
     end
     
 
     def initialize(hashMap, pageContext)
         super()
-        initialize_fields
-        @portion = Portion.new(hashMap)
+        jfields_taghelpers_transform_info_TransformInfoHelper
+        @portion = ::Org::Allbinary::Business::Installer::Portion.new(hashMap)
     end
     
 
     def drop()
         begin
-            return TransformInfoEntityBuilder.getInstance().dropTable()
+            return ::Org::Allbinary::DataPackage::Tables::Transform::Info::TransformInfoEntityBuilder.getInstance().dropTable()
         rescue StandardError => e
             error = "Failed to drop view info table"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.DROP, e)
             end
             return error
         end
     end
+    java_overload :drop, 0
     
 
     def create()
         begin
-            return TransformInfoEntityBuilder.getInstance().createTable()
+            return ::Org::Allbinary::DataPackage::Tables::Transform::Info::TransformInfoEntityBuilder.getInstance().createTable()
         rescue StandardError => e
             error = "Failed to create view info table"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "create()", e)
             end
             return error
         end
     end
+    java_overload :create, 0
     
 
     def restore()
         begin
             success = "Restore Successful"
-            result = AbSqlTableUtil.getInstance().restoreTable(TransformInfoEntityBuilder.getInstance(), @portion)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            result = ::Org::Allbinary::Logic::Communication::Sql::AbSqlTableUtil.getInstance().restoreTable(::Org::Allbinary::DataPackage::Tables::Transform::Info::TransformInfoEntityBuilder.getInstance(), @portion)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, "restore()")
             end
             return result
         rescue StandardError => e
             error = "Failed to restore backup"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "restore()", e)
             end
             return error
         end
     end
+    java_overload :restore, 0
     
 
     def backup()
         begin
             success = "Backup Successful"
-            result = AbSqlTableUtil.getInstance().backupTable(TransformInfoEntityBuilder.getInstance())
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGS)
+            result = ::Org::Allbinary::Logic::Communication::Sql::AbSqlTableUtil.getInstance().backupTable(::Org::Allbinary::DataPackage::Tables::Transform::Info::TransformInfoEntityBuilder.getInstance())
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGS)
                 @logUtil.putF(success, self, "backup()")
             end
             return result
         rescue StandardError => e
             error = "Failed to make backup"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "backup()", e)
             end
             return error
         end
     end
+    java_overload :backup, 0
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :Portion, "org/allbinary/business/installer/Portion"
-autoload :TransformInfoEntityBuilder, "org/allbinary/data/tables/transform/info/TransformInfoEntityBuilder"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module Installer; autoload :Portion, "org/allbinary/business/installer/Portion" unless const_defined?(:Portion, false); end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module Transform; module Info; autoload :TransformInfoEntityBuilder, "org/allbinary/data/tables/transform/info/TransformInfoEntityBuilder" unless const_defined?(:TransformInfoEntityBuilder, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Sql; autoload :AbSqlTableUtil, "org/allbinary/logic/communication/sql/AbSqlTableUtil" unless const_defined?(:AbSqlTableUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end
 

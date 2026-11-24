@@ -15,19 +15,21 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class GameFeatureUtil
     attr_accessor :logUtil, :tsUtil, :enumerationUtil, :ON_GAME_FEATURE_CHANGE, :GAME_FEATURE_CHANGED
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @tsUtil = TsUtil.getInstance()
-        @enumerationUtil = EnumerationUtil.getInstance()
+    def jfields_org_allbinary_game_configuration_feature_GameFeatureUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
+        @enumerationUtil = ::Org::Allbinary::Util::EnumerationUtil.getInstance()
         @ON_GAME_FEATURE_CHANGE = "onGameFeatureChange"
         @GAME_FEATURE_CHANGED = "Game Feature Changed: "
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_GameFeatureUtil
     end
     
 
@@ -38,11 +40,11 @@ class GameFeatureUtil
 
     # throws Exception
     def setDefault(choiceGroup)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         _METHOD_NAME = "setDefault"
         _SELECTED_ARRAY_RETURN = "selectedArray_return["
         _SELECTED_SEP = "] = "
-        selectedArray_return = Array.new(choiceGroup.size(), false)
+        selectedArray_return = (Array.new(choiceGroup.size(), false)).tap { |java_array| java_array.instance_variable_set(:@java_component, :Z) }
         total = choiceGroup.getSelectedFlags(selectedArray_return)
         stringBuffer.append("Multiple Total Choices: ")
         stringBuffer.appendint(total)
@@ -71,11 +73,11 @@ class GameFeatureUtil
 
     # throws Exception
     def updateMultiple(choiceGroup)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         _METHOD_NAME = "updateMultiple"
         _SELECTED_ARRAY_RETURN = "selectedArray_return["
         _SELECTED_SEP = "] = "
-        selectedArray_return = Array.new(choiceGroup.size(), false)
+        selectedArray_return = (Array.new(choiceGroup.size(), false)).tap { |java_array| java_array.instance_variable_set(:@java_component, :Z) }
         total = choiceGroup.getSelectedFlags(selectedArray_return)
         stringBuffer.append("Multiple Total Choices: ")
         stringBuffer.appendint(total)
@@ -102,11 +104,11 @@ class GameFeatureUtil
 
     # throws Exception
     def updateExclusiveForChoiceGroup(choiceGroup)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         _METHOD_NAME = "updateExclusive"
         _SELECTED_ARRAY_RETURN = "selectedArray_return["
         _SELECTED_SEP = "] = "
-        selectedArray_return = Array.new(choiceGroup.size(), false)
+        selectedArray_return = (Array.new(choiceGroup.size(), false)).tap { |java_array| java_array.instance_variable_set(:@java_component, :Z) }
         total = choiceGroup.getSelectedFlags(selectedArray_return)
         stringBuffer.append("Exclusive Total Choices: 1==")
         stringBuffer.appendint(total)
@@ -142,10 +144,10 @@ class GameFeatureUtil
 
     # throws Exception
     def updateExclusive(selectedChoiceLabel)
-        @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().ITEM_LABEL).append(selectedChoiceLabel).to_s, self, "updateExclusive")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().ITEM_LABEL).append(selectedChoiceLabel).to_s, self, "updateExclusive")
         gameFeature = Feature.getInstance(selectedChoiceLabel)
         hashtable = GameFeatureChoiceGroups.getExclusiveInstance().get()
-        objectArray = HashtableUtil.getInstance().getKeysAsArray(hashtable)
+        objectArray = ::Org::Allbinary::Util::HashtableUtil.getInstance().getKeysAsArray(hashtable)
         basicArrayList = nil
         anyType = nil
         size = objectArray.length
@@ -204,23 +206,25 @@ class GameFeatureUtil
     end
 end
 
-autoload :Enumeration, "java/util/Enumeration"
-autoload :ChoiceGroup, "javax/microedition/lcdui/ChoiceGroup"
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil"
-autoload :HashtableUtil, "org/allbinary/util/HashtableUtil"
-autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :GameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
+module ::Java; module Util; autoload :Enumeration, "java/util/Enumeration" unless const_defined?(:Enumeration, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :ChoiceGroup, "javax/microedition/lcdui/ChoiceGroup" unless const_defined?(:ChoiceGroup, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil" unless const_defined?(:EnumerationUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :HashtableUtil, "org/allbinary/util/HashtableUtil" unless const_defined?(:HashtableUtil, false); end; end; end
+autoload :Feature, "org/allbinary/game/configuration/feature/Feature" unless const_defined?(:Feature, false)
+autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false)
+autoload :GameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups" unless const_defined?(:GameFeatureChoiceGroups, false)
 
 begin
     GameFeatureUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,15 +15,17 @@
 # package org.allbinary.physics.movement
 
 
+module ::Org; module Allbinary; module Physics; module Movement
+
 class NoMovementFactory
     attr_accessor :movement
 
-    def initialize_fields
+    def jfields_org_allbinary_physics_movement_NoMovementFactory
         @movement = Movement.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_physics_movement_NoMovementFactory
     end
     
 
@@ -67,11 +69,13 @@ class NoMovementFactory
     end
 end
 
-autoload :Movement, "org/allbinary/physics/movement/Movement"
+autoload :Movement, "org/allbinary/physics/movement/Movement" unless const_defined?(:Movement, false)
 
 begin
     NoMovementFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

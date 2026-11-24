@@ -15,17 +15,19 @@
 # package org.allbinary.business.installer
 
 
+module ::Org; module Allbinary; module Business; module Installer
+
 class Portion
     attr_accessor :current, :total
 
-    def initialize_fields
-        @current = nil
-        @total = nil
+    def jfields_org_allbinary_business_installer_Portion
+        @current = nil unless instance_variable_defined?(:@current)
+        @total = nil unless instance_variable_defined?(:@total)
     end
     
 
     def initialize(hashMap)
-        initialize_fields
+        jfields_org_allbinary_business_installer_Portion
         @current = hashMap.get("current")
         @total = hashMap.get("total")
     end
@@ -41,5 +43,7 @@ class Portion
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+
+end; end; end; end
 

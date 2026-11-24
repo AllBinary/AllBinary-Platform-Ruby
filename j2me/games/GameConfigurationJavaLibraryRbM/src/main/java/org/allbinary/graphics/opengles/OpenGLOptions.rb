@@ -15,30 +15,34 @@
 # package org.allbinary.graphics.opengles
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles
+
 class OpenGLOptions
     
 
     def init()
         openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-        if Features.getInstance().isFeature(openGLFeatureFactory.OPENGL_OPTIONS)
-            openGLMultipleList = BasicArrayListD.new()
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(openGLFeatureFactory.OPENGL_OPTIONS)
+            openGLMultipleList = ::Org::Allbinary::Util::BasicArrayListD.new()
             openGLMultipleList.add(openGLFeatureFactory.OPENGL)
-            GameFeatureChoiceGroups.getMultipleInstance().add("OpenGL (Complete Restart)", openGLMultipleList)
-            openGLVersionSelectorMultipleList = BasicArrayListD.new()
+            ::Org::Allbinary::Game::Configuration::Feature::GameFeatureChoiceGroups.getMultipleInstance().add("OpenGL (Complete Restart)", openGLMultipleList)
+            openGLVersionSelectorMultipleList = ::Org::Allbinary::Util::BasicArrayListD.new()
             openGLVersionSelectorMultipleList.add(openGLFeatureFactory.OPENGL_AUTO_SELECT)
             openGLVersionSelectorMultipleList.add(openGLFeatureFactory.OPENGL_MINIMUM)
-            GameFeatureChoiceGroups.getExclusiveInstance().add("OpenGL Version Selector", openGLVersionSelectorMultipleList)
-            openGLImageColorMultipleList = BasicArrayListD.new()
+            ::Org::Allbinary::Game::Configuration::Feature::GameFeatureChoiceGroups.getExclusiveInstance().add("OpenGL Version Selector", openGLVersionSelectorMultipleList)
+            openGLImageColorMultipleList = ::Org::Allbinary::Util::BasicArrayListD.new()
             openGLImageColorMultipleList.add(openGLFeatureFactory.IMAGE_COLOR_DEPTH_4444)
             openGLImageColorMultipleList.add(openGLFeatureFactory.IMAGE_COLOR_DEPTH_8888)
-            GameFeatureChoiceGroups.getExclusiveInstance().add("OpenGL Image Color RGBA", openGLImageColorMultipleList)
+            ::Org::Allbinary::Game::Configuration::Feature::GameFeatureChoiceGroups.getExclusiveInstance().add("OpenGL Image Color RGBA", openGLImageColorMultipleList)
         end
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :GameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GameFeatureChoiceGroups, "org/allbinary/game/configuration/feature/GameFeatureChoiceGroups" unless const_defined?(:GameFeatureChoiceGroups, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory" unless const_defined?(:OpenGLFeatureFactory, false)
+
+end; end; end; end
 

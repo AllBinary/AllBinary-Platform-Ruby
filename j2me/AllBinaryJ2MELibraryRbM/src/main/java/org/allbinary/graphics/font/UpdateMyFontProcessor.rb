@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.font
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/font/MyFontProcessor"
+
+module ::Org; module Allbinary; module Graphics; module Font
 
 class UpdateMyFontProcessor < MyFontProcessor
     attr_accessor :updateMeasurementProcessor
 
-    def initialize_fields
-        @updateMeasurementProcessor = nil
+    def jfields_org_allbinary_graphics_font_UpdateMyFontProcessor
+        @updateMeasurementProcessor = nil unless instance_variable_defined?(:@updateMeasurementProcessor)
     end
     
 
     def initialize(keyValueDrawCharArray)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_font_UpdateMyFontProcessor
         @updateMeasurementProcessor = keyValueDrawCharArray
     end
     
@@ -34,8 +37,11 @@ class UpdateMyFontProcessor < MyFontProcessor
     def process(graphics)
         @updateMeasurementProcessor.updateMeasurement(graphics)
     end
+    java_overload :process, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :UpdateMyFontInterface, "org/allbinary/graphics/font/UpdateMyFontInterface"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+autoload :UpdateMyFontInterface, "org/allbinary/graphics/font/UpdateMyFontInterface" unless const_defined?(:UpdateMyFontInterface, false)
+
+end; end; end; end
 

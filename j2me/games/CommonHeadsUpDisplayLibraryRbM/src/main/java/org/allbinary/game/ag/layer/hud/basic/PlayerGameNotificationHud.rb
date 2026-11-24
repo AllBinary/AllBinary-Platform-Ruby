@@ -14,78 +14,40 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic
 
-require "org/allbinary/canvas/Processor"
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ag/layer/hud/basic/notification/GameNotificationHud"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 
-class PlayerGameNotificationHud < GameNotificationHud
-    include UpdateMyFontInterface
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Hud; module Basic
+
+class PlayerGameNotificationHud < ::Org::Allbinary::Game::Ag::Layer::Hud::Basic::Notification::GameNotificationHud
+    include ::Org::Allbinary::Graphics::Font::UpdateMyFontInterface
     attr_accessor :gameTickTimeDelayHelper, :EMPTY_STRING, :displayInfo, :timeDelayHelper, :circularIndexUtil, :gameNotification, :permanentGameNotification, :setAndRemoveProcessor, :nextUnremoveableProcessor, :processor, :PERMANENT_GAME_NOTIFICATION, :lastString, :string, :point, :width
-    class SetAndRemoveProcessor < Processor
-        attr_accessor :updateMeasurementProcessor
 
-        def initialize_fields
-            @updateMeasurementProcessor = nil
-        end
-        
-
-        def initialize(updateMeasurementProcessor)
-            super()
-            initialize_fields
-            @updateMeasurementProcessor = updateMeasurementProcessor
-        end
-        
-
-        # throws Exception
-        def process()
-            @updateMeasurementProcessor.setAndRemoveProcess()
-        end
-    end
-    class NextUnremoveableProcessor < Processor
-        attr_accessor :updateMeasurementProcessor
-
-        def initialize_fields
-            @updateMeasurementProcessor = nil
-        end
-        
-
-        def initialize(updateMeasurementProcessor)
-            super()
-            initialize_fields
-            @updateMeasurementProcessor = updateMeasurementProcessor
-        end
-        
-
-        # throws Exception
-        def process()
-            @updateMeasurementProcessor.setNextUnremoveableProcess()
-        end
-    end
-
-    def initialize_fields
-        @gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-        @EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
-        @displayInfo = DisplayInfoSingleton.getInstance()
-        @timeDelayHelper = TimeDelayHelper.new(0)
-        @circularIndexUtil = nil
-        @gameNotification = GameNotification.new()
-        @permanentGameNotification = GameNotification.new()
+    def jfields_org_allbinary_game_ag_layer_hud_basic_PlayerGameNotificationHud
+        @gameTickTimeDelayHelper = ::Org::Allbinary::TimePackage::GameTickTimeDelayHelperFactory.getInstance()
+        @EMPTY_STRING = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
+        @timeDelayHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(0)
+        @circularIndexUtil = nil unless instance_variable_defined?(:@circularIndexUtil)
+        @gameNotification = ::Org::Allbinary::Game::Ag::Layer::Hud::Basic::Notification::GameNotification.new()
+        @permanentGameNotification = ::Org::Allbinary::Game::Ag::Layer::Hud::Basic::Notification::GameNotification.new()
         @setAndRemoveProcessor = SetAndRemoveProcessor.new(self)
         @nextUnremoveableProcessor = NextUnremoveableProcessor.new(self)
-        @processor = Processor.getInstance()
+        @processor = ::Org::Allbinary::Canvas::Processor.getInstance()
         @PERMANENT_GAME_NOTIFICATION = "Permanent Game Notification: "
-        @lastString = StringUtil.getInstance().EMPTY_STRING
+        @lastString = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         @string = @EMPTY_STRING
-        @point = CustomGPoint::NULL_CUSTOM_POINT
-        @width = 0
+        @point = ::Org::Allbinary::Graphics::CustomGPoint::NULL_CUSTOM_POINT
+        @width = 0 unless instance_variable_defined?(:@width)
     end
     
 
     def initialize(location, direction, bufferZone, basicColor)
         super(location, direction, bufferZone, basicColor)
-        initialize_fields
-        @circularIndexUtil = CircularIndexUtil.createInstance(0)
-        gameNotificationEventHandler = GameNotificationEventHandler.getInstance()
+        jfields_org_allbinary_game_ag_layer_hud_basic_PlayerGameNotificationHud
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(0)
+        gameNotificationEventHandler = ::Org::Allbinary::Game::Layer::Hud::Event::GameNotificationEventHandler.getInstance()
         gameNotificationEventHandler.removeAllListeners()
         gameNotificationEventHandler.addListenerInterface(self)
     end
@@ -93,32 +55,34 @@ class PlayerGameNotificationHud < GameNotificationHud
 
     def updateMeasurement(graphics)
         begin
-            super(graphics)
+            PlayerGameNotificationHud.superclass.java_super_method(:updateMeasurement, 1).bind(self).call(graphics)
             font = graphics.getFont()
             @width = font.stringWidth(@string)
             @processor.process()
-            @processor = Processor.getInstance()
+            @processor = ::Org::Allbinary::Canvas::Processor.getInstance()
         rescue StandardError => e
-            logUtil = LogUtil.getInstance()
-            commonStrings = CommonStrings.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             logUtil.put(commonStrings.EXCEPTION, self, commonStrings.UPDATE, e)
         end
     end
+    java_overload :updateMeasurement, 1
     
 
     def getPoint(x, y)
-        @point = CustomGPoint.getInstance3(0, 0)
+        @point = ::Org::Allbinary::Graphics::CustomGPoint.getInstance3(0, 0)
         @point.setX(x)
         @point.setY(y)
         return @point
     end
+    java_overload :getPoint, 2
     
 
     def add(string, seconds, basicColor, permanent)
         if permanent
             if @lastString != string
                 @lastString = string
-                @logUtil.putF(StringMaker.new().append(@PERMANENT_GAME_NOTIFICATION).append(string).to_s, self, @commonStrings.ADD)
+                @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@PERMANENT_GAME_NOTIFICATION).append(string).to_s, self, @commonStrings.ADD)
             end
             @permanentGameNotification.add(string, seconds, basicColor)
             @circularIndexUtil.setSize(@permanentGameNotification.getSize())
@@ -126,12 +90,13 @@ class PlayerGameNotificationHud < GameNotificationHud
             @gameNotification.add(string, seconds, basicColor)
         end
     end
+    java_overload :add, 4
     
 
     # throws Exception
     def processTick()
         if @timeDelayHelper.isTime(@gameTickTimeDelayHelper.startTime)
-            gameAdState = GameAdStateFactory.getInstance().getCurrentInstance()
+            gameAdState = ::Org::Allbinary::Business::Advertisement::GameAdStateFactory.getInstance().getCurrentInstance()
             if gameAdState.isShowingAtLocation(self.getLocation())
                 @offsetY = -54
             else
@@ -146,6 +111,7 @@ class PlayerGameNotificationHud < GameNotificationHud
             end
         end
     end
+    java_overload :processTick, 0
     
 
     # throws Exception
@@ -153,6 +119,7 @@ class PlayerGameNotificationHud < GameNotificationHud
         @string = @gameNotification.stringList.removeAt(0)
         @processor = @setAndRemoveProcessor
     end
+    java_overload :setAndRemove, 0
     
 
     # throws Exception
@@ -168,6 +135,7 @@ class PlayerGameNotificationHud < GameNotificationHud
         @timeDelayHelper.delay = iTime
         self.setBasicColorP(@gameNotification.colorList.removeAt(0))
     end
+    java_overload :setAndRemoveProcess, 0
     
 
     # throws Exception
@@ -176,6 +144,7 @@ class PlayerGameNotificationHud < GameNotificationHud
         @string = @permanentGameNotification.stringList.objectArray[index]
         @processor = @nextUnremoveableProcessor
     end
+    java_overload :setNextUnremoveable, 0
     
 
     # throws Exception
@@ -189,36 +158,44 @@ class PlayerGameNotificationHud < GameNotificationHud
         self.setBasicColorP(@permanentGameNotification.colorList.objectArray[index])
         @circularIndexUtil.next_()
     end
+    java_overload :setNextUnremoveableProcess, 0
     
 
     def clear()
         @gameNotification.clear()
         @permanentGameNotification.clear()
     end
+    java_overload :clear, 0
     
 
     def paint(graphics)
         @myFontProcessor.process(graphics)
-        PlayerGameNotificationHud.superclass.instance_method(:paintString).bind(self).call(graphics, @string)
+        PlayerGameNotificationHud.superclass.java_super_method(:paintString, 2).bind(self).call(graphics, @string)
     end
+    java_overload :paint, 1
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory"
-autoload :GameAdState, "org/allbinary/game/GameAdState"
-autoload :GameNotification, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotification"
-autoload :GameNotificationEventHandler, "org/allbinary/game/layer/hud/event/GameNotificationEventHandler"
-autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint"
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper"
-autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory"
-autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Business; module Advertisement; autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory" unless const_defined?(:GameAdStateFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Canvas; autoload :Processor, "org/allbinary/canvas/Processor" unless const_defined?(:Processor, false); end; end; end
+module ::Org; module Allbinary; module Game; autoload :GameAdState, "org/allbinary/game/GameAdState" unless const_defined?(:GameAdState, false); end; end; end
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Hud; module Basic; module Notification; autoload :GameNotification, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotification" unless const_defined?(:GameNotification, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Hud; module Event; autoload :GameNotificationEventHandler, "org/allbinary/game/layer/hud/event/GameNotificationEventHandler" unless const_defined?(:GameNotificationEventHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CustomGPoint, "org/allbinary/graphics/CustomGPoint" unless const_defined?(:CustomGPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :GameTickTimeDelayHelper, "org/allbinary/time/GameTickTimeDelayHelper" unless const_defined?(:GameTickTimeDelayHelper, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :GameTickTimeDelayHelperFactory, "org/allbinary/time/GameTickTimeDelayHelperFactory" unless const_defined?(:GameTickTimeDelayHelperFactory, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :NextUnremoveableProcessor, "org/allbinary/game/ag/layer/hud/basic/NextUnremoveableProcessor" unless const_defined?(:NextUnremoveableProcessor, false)
+autoload :SetAndRemoveProcessor, "org/allbinary/game/ag/layer/hud/basic/SetAndRemoveProcessor" unless const_defined?(:SetAndRemoveProcessor, false)
+
+end; end; end; end; end; end; end
 

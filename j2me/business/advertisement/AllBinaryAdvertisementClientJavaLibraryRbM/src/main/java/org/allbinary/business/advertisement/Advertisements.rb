@@ -15,17 +15,19 @@
 # package org.allbinary.business.advertisement
 
 
+module ::Org; module Allbinary; module Business; module Advertisement
+
 class Advertisements
     attr_accessor :bannerList, :pageList, :myRandomFactory
 
-    def initialize_fields
-        @bannerList = BasicArrayListD.new()
-        @pageList = BasicArrayListD.new()
-        @myRandomFactory = MyRandomFactory.getInstance()
+    def jfields_org_allbinary_business_advertisement_Advertisements
+        @bannerList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @pageList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @myRandomFactory = ::Org::Allbinary::Game::Rand::MyRandomFactory.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_advertisement_Advertisements
     end
     
 
@@ -47,7 +49,7 @@ class Advertisements
     
 
     def processRandomPage()
-        if LockedUtil.getInstance().isLocked()
+        if ::Org::Allbinary::Logic::System::Security::Licensing::LockedUtil.getInstance().isLocked()
             size = @pageList.size()
             if size > 0
                 random = @myRandomFactory.getAbsoluteNextInt(size)
@@ -104,9 +106,11 @@ class Advertisements
     end
 end
 
-autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
-autoload :LockedUtil, "org/allbinary/logic/system/security/licensing/LockedUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :AdvertisementProcessorInterface, "org/allbinary/business/advertisement/AdvertisementProcessorInterface"
+module ::Org; module Allbinary; module Game; module Rand; autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory" unless const_defined?(:MyRandomFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LockedUtil, "org/allbinary/logic/system/security/licensing/LockedUtil" unless const_defined?(:LockedUtil, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :AdvertisementProcessorInterface, "org/allbinary/business/advertisement/AdvertisementProcessorInterface" unless const_defined?(:AdvertisementProcessorInterface, false)
+
+end; end; end; end
 

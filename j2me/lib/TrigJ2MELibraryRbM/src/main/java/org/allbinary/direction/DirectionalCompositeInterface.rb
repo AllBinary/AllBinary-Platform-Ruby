@@ -15,6 +15,8 @@
 # package org.allbinary.direction
 
 
+module ::Org; module Allbinary; module Direction
+
 module DirectionalCompositeInterface
     
 
@@ -24,5 +26,7 @@ module DirectionalCompositeInterface
     end
 end
 
-autoload :DirectionalInterface, "org/allbinary/direction/DirectionalInterface"
+autoload :DirectionalInterface, "org/allbinary/direction/DirectionalInterface" unless const_defined?(:DirectionalInterface, false)
+
+end; end; end
 

@@ -14,21 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.special
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/IndexedAnimationInterface"
 
+module ::Org; module Allbinary; module Animation; module Special
+
 module SpecialAnimationInterface
-    include IndexedAnimationInterface
+    include ::Org::Allbinary::Animation::IndexedAnimationInterface
     
 
     def setLastFrame()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setLastFrame, 0
     
 
     def isComplete()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isComplete, 0
 end
+
+end; end; end; end
 

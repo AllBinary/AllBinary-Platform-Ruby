@@ -17,18 +17,20 @@
 # require "java/lang/reflect/Constructor"
 # require "java/lang/reflect/Method"
 
+module ::Org; module Allbinary; module Logic; module System; module Loader
+
 class NativeLibraryHelperWrapper
     attr_accessor :libraryName, :loader, :anyType
 
-    def initialize_fields
-        @libraryName = nil
-        @loader = nil
-        @anyType = nil
+    def jfields_org_allbinary_logic_system_loader_NativeLibraryHelperWrapper
+        @libraryName = nil unless instance_variable_defined?(:@libraryName)
+        @loader = nil unless instance_variable_defined?(:@loader)
+        @anyType = nil unless instance_variable_defined?(:@anyType)
     end
     
 
     def initialize(libraryName)
-        initialize_fields
+        jfields_org_allbinary_logic_system_loader_NativeLibraryHelperWrapper
         self.setLibraryName(libraryName)
     end
     
@@ -43,7 +45,7 @@ class NativeLibraryHelperWrapper
         myClass = @loader.loadClass("dynamic.NativeLibraryHelper")
         constructor = myClass.getConstructor(classes)
         @anyType = constructor.newInstance(params)
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         method = @anyType.class.getMethod(commonStrings.LOAD, nil)
         method.invoke(@anyType, nil)
     end
@@ -73,7 +75,10 @@ class NativeLibraryHelperWrapper
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/system/loader/NativeLibraryClassLoader"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :NativeLibraryClassLoader, "org/allbinary/logic/system/loader/NativeLibraryClassLoader" unless const_defined?(:NativeLibraryClassLoader, false)
 require "java/lang/System"
+require "java/lang/ClassLoader"
+
+end; end; end; end; end
 

@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.weapon.mine
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/resources/BasicGameResources"
 
-class MineWeaponResources < BasicGameResources
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Weapon; module Mine
+
+class MineWeaponResources < ::Org::Allbinary::Game::Layer::Resources::BasicGameResources
     attr_accessor :DROP_TEXT_RESOURCE, :DROP_RESOURCE, :DROP_ICON_RESOURCE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_ag_layer_weapon_mine_MineWeaponResources
         @DROP_TEXT_RESOURCE = "/mine_drop_text_20_by_20.png"
         @DROP_RESOURCE = "/mine_drop_20_by_20.png"
         @DROP_ICON_RESOURCE = "/mine_drop_icon_20_by_20.png"
@@ -27,7 +30,7 @@ class MineWeaponResources < BasicGameResources
     
 
     def self.getInstance()
-        if MineWeaponResources.instance == NullUtil.getInstance().NULL_OBJECT
+        if MineWeaponResources.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             MineWeaponResources.instance = MineWeaponResources.new()
         end
         return MineWeaponResources.instance
@@ -36,7 +39,7 @@ class MineWeaponResources < BasicGameResources
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_ag_layer_weapon_mine_MineWeaponResources
         _ROOT = "/mine"
         _SMALL = "_20_by_20.png"
         _MEDIUM = _SMALL
@@ -44,7 +47,7 @@ class MineWeaponResources < BasicGameResources
         _SIZE_FIVE = _SMALL
         _SIZE_SIX = _SMALL
         _SIZE = [_SMALL, _MEDIUM, _SIZE_FOUR, _SIZE_FIVE, _SIZE_SIX]
-        MineWeaponResources.superclass.instance_method(:init).bind(self).call(_ROOT, _SIZE)
+        MineWeaponResources.superclass.java_super_method(:init, 2).bind(self).call(_ROOT, _SIZE)
     end
 
     def self.instance()
@@ -61,7 +64,7 @@ class MineWeaponResources < BasicGameResources
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -78,11 +81,13 @@ class MineWeaponResources < BasicGameResources
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
 
 begin
     MineWeaponResources.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

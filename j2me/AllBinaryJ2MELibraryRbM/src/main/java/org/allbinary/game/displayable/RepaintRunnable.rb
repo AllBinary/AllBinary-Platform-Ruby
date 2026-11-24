@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable
 
+require "java/lang/JavaOverload"
 require "org/allbinary/thread/ARunnable"
 
-class RepaintRunnable < ARunnable
+module ::Org; module Allbinary; module Game; module Displayable
+
+class RepaintRunnable < ::Org::Allbinary::ThreadPackage::ARunnable
     attr_accessor :canvas
 
-    def initialize_fields
-        @canvas = nil
+    def jfields_org_allbinary_game_displayable_RepaintRunnable
+        @canvas = nil unless instance_variable_defined?(:@canvas)
     end
     
 
     def initialize(canvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_RepaintRunnable
         @canvas = canvas
     end
     
@@ -34,17 +37,20 @@ class RepaintRunnable < ARunnable
     def run()
         begin
             @canvas.repaint()
-            DisplayInfoSingleton.getInstance().process()
+            ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance().process()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            logUtil = LogUtil.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
             logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
         end
     end
+    java_overload :run, 0
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary
 
 
+module ::Org; module Allbinary
+
 class PostGameCommandFactory
     
 
@@ -57,11 +59,13 @@ class PostGameCommandFactory
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
 
 begin
     PostGameCommandFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end
 

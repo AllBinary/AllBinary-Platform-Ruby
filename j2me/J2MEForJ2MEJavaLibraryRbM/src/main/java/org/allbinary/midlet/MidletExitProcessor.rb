@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.midlet
 
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/Processor"
 
-class MidletExitProcessor < Processor
+module ::Org; module Allbinary; module Midlet
+
+class MidletExitProcessor < ::Org::Allbinary::Canvas::Processor
     attr_accessor :midlet
 
-    def initialize_fields
-        @midlet = nil
+    def jfields_org_allbinary_midlet_MidletExitProcessor
+        @midlet = nil unless instance_variable_defined?(:@midlet)
     end
     
 
     def initialize(midlet)
         super()
-        initialize_fields
+        jfields_org_allbinary_midlet_MidletExitProcessor
         @midlet = midlet
     end
     
@@ -34,7 +37,10 @@ class MidletExitProcessor < Processor
     # throws Exception
     def process()
     end
+    java_overload :process, 0
 end
 
-autoload :MIDlet, "javax/microedition/midlet/MIDlet"
+module ::Javax; module Microedition; module Midlet; autoload :MIDlet, "javax/microedition/midlet/MIDlet" unless const_defined?(:MIDlet, false); end; end; end
+
+end; end; end
 

@@ -14,16 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison.motion
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/BasicEventListenerInterface"
 
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
+
 module MotionRectanglesResultsListener
-    include BasicEventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::BasicEventListenerInterface
     
 
     def onMotionRectanglesImageComparisonResultsEvent(motionRectanglesImageComparisonResultsEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onMotionRectanglesImageComparisonResultsEvent, 1
 end
 
-autoload :MotionRectanglesResultsEvent, "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsEvent"
+autoload :MotionRectanglesResultsEvent, "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsEvent" unless const_defined?(:MotionRectanglesResultsEvent, false)
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.logic.string
 
 
+module ::Org; module Allbinary; module Logic; module StringPackage
+
 class StringValidationJSEUtil
     
 
@@ -33,4 +35,6 @@ class StringValidationJSEUtil
         return true
     end
 end
+
+end; end; end; end
 

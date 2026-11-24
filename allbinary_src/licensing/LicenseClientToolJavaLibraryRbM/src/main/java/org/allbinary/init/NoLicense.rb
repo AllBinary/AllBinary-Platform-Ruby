@@ -15,6 +15,8 @@
 # package org.allbinary.init
 
 
+module ::Org; module Allbinary; module Init
+
 class NoLicense
     
 
@@ -24,9 +26,12 @@ class NoLicense
 
     # throws Exception
     def self.init(classLoader, pathString)
-        Globals.init(classLoader, pathString)
+        ::Org::Allbinary::Globals::Globals.init(classLoader, pathString)
     end
 end
 
-require "org/allbinary/globals/Globals"
+module ::Org; module Allbinary; module Globals; autoload :Globals, "org/allbinary/globals/Globals" unless const_defined?(:Globals, false); end; end; end
+require "java/lang/ClassLoader"
+
+end; end; end
 

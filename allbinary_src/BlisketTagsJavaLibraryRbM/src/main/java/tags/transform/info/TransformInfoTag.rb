@@ -14,142 +14,164 @@
 # frozen_string_literal: false
 # package tags.transform.info
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/JspTagException"
 require "tags/ModifyTag"
 
-class TransformInfoTag < ModifyTag
+module ::Tags; module Transform; module Info
+
+class TransformInfoTag < ::Tags::ModifyTag
     attr_accessor :logUtil, :name, :storeName, :objectFile, :anyType, :objectConfigFile, :objectConfig, :templateFile, :template, :dataFile, :data, :type
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @name = nil
-        @storeName = nil
-        @objectFile = nil
-        @anyType = nil
-        @objectConfigFile = nil
-        @objectConfig = nil
-        @templateFile = nil
-        @template = nil
-        @dataFile = nil
-        @data = nil
-        @type = nil
+    def jfields_tags_transform_info_TransformInfoTag
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @name = nil unless instance_variable_defined?(:@name)
+        @storeName = nil unless instance_variable_defined?(:@storeName)
+        @objectFile = nil unless instance_variable_defined?(:@objectFile)
+        @anyType = nil unless instance_variable_defined?(:@anyType)
+        @objectConfigFile = nil unless instance_variable_defined?(:@objectConfigFile)
+        @objectConfig = nil unless instance_variable_defined?(:@objectConfig)
+        @templateFile = nil unless instance_variable_defined?(:@templateFile)
+        @template = nil unless instance_variable_defined?(:@template)
+        @dataFile = nil unless instance_variable_defined?(:@dataFile)
+        @data = nil unless instance_variable_defined?(:@data)
+        @type = nil unless instance_variable_defined?(:@type)
     end
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_tags_transform_info_TransformInfoTag_0(*args)
+        when 1 then jnew_tags_transform_info_TransformInfoTag_1(*args)
+        else raise ArgumentError, "No constructor of TransformInfoTag takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        method(:initialize).super_method.call(TransformInfoRequestHelperFactory.new())
-        initialize_fields
+    def jnew_tags_transform_info_TransformInfoTag_0()
+        TransformInfoTag.superclass.instance_method(:initialize).bind(self).call(::Taghelpers::Transform::Info::TransformInfoRequestHelperFactory.new())
+        jfields_tags_transform_info_TransformInfoTag
     end
     
 
-    def constructor1(tagHelperFactoryInterface)
-        method(:initialize).super_method.call(tagHelperFactoryInterface)
-        initialize_fields
+    def jnew_tags_transform_info_TransformInfoTag_1(tagHelperFactoryInterface)
+        TransformInfoTag.superclass.instance_method(:initialize).bind(self).call(tagHelperFactoryInterface)
+        jfields_tags_transform_info_TransformInfoTag
     end
     
 
     def setName(value)
         @name = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().NAME, @name)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().NAME, @name)
     end
+    java_overload :setName, 1
     
 
     def setStoreName(value)
         @storeName = value
-        self.getPropertiesHashMap().put(StoreFrontData.getInstance().NAME, @storeName)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontData.getInstance().NAME, @storeName)
     end
+    java_overload :setStoreName, 1
     
 
     def setObjectFile(value)
         @objectFile = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().OBJECTFILENAME, @objectFile)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().OBJECTFILENAME, @objectFile)
     end
+    java_overload :setObjectFile, 1
     
 
     def setObject(value)
         @anyType = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().OBJECT, @anyType)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().OBJECT, @anyType)
     end
+    java_overload :setObject, 1
     
 
     def setTemplateFile(value)
         @templateFile = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().TEMPLATEFILENAME, @templateFile)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().TEMPLATEFILENAME, @templateFile)
     end
+    java_overload :setTemplateFile, 1
     
 
     def setTemplate(value)
         @template = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().TEMPLATE, @template)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().TEMPLATE, @template)
     end
+    java_overload :setTemplate, 1
     
 
     def setDataFile(value)
         @dataFile = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().DATAFILENAME, @dataFile)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().DATAFILENAME, @dataFile)
     end
+    java_overload :setDataFile, 1
     
 
     def setData(value)
         @data = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().DATA, @data)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().DATA, @data)
     end
+    java_overload :setData, 1
     
 
     def setObjectConfigFile(value)
         @objectConfigFile = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().OBJECTCONFIGFILENAME, @objectConfigFile)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().OBJECTCONFIGFILENAME, @objectConfigFile)
     end
+    java_overload :setObjectConfigFile, 1
     
 
     def setObjectConfig(value)
         @objectConfig = value
-        self.getPropertiesHashMap().put(TransformInfoData.getInstance().OBJECTCONFIG, @objectConfig)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Visual::Transform::Info::TransformInfoData.getInstance().OBJECTCONFIG, @objectConfig)
     end
+    java_overload :setObjectConfig, 1
     
 
     def setType(value)
         @type = value
-        self.getPropertiesHashMap().put(OutputTypeData.getInstance().NAME, @type)
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Io::OutputTypeData.getInstance().NAME, @type)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
             @logUtil.putF("TransformInfoTag type set: " + @type, self, "setType")
         end
     end
+    java_overload :setType, 1
     
 
     def getName()
         return @name
     end
+    java_overload :getName, 0
     
 
     def getObjectFile()
         return @objectFile
     end
+    java_overload :getObjectFile, 0
     
 
     # throws JspTagException
     def doStartTag()
         begin
-            return super()
+            return TransformInfoTag.superclass.java_super_method(:doStartTag, 0).bind(self).call()
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface"
-autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :OutputTypeData, "org/allbinary/logic/io/OutputTypeData"
-autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
-autoload :TransformInfoRequestHelperFactory, "taghelpers/transform/info/TransformInfoRequestHelperFactory"
+module ::Admin; module Taghelpers; autoload :TagHelperFactoryInterface, "admin/taghelpers/TagHelperFactoryInterface" unless const_defined?(:TagHelperFactoryInterface, false); end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData" unless const_defined?(:StoreFrontData, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :OutputTypeData, "org/allbinary/logic/io/OutputTypeData" unless const_defined?(:OutputTypeData, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData" unless const_defined?(:TransformInfoData, false); end; end; end; end; end; end
+module ::Taghelpers; module Transform; module Info; autoload :TransformInfoRequestHelperFactory, "taghelpers/transform/info/TransformInfoRequestHelperFactory" unless const_defined?(:TransformInfoRequestHelperFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end
 

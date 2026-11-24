@@ -15,6 +15,8 @@
 # package org.allbinary.logic.visual.transform.info
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
+
 class TransformInfoFactory
     
 
@@ -27,5 +29,7 @@ class TransformInfoFactory
     end
 end
 
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false)
+
+end; end; end; end; end; end
 

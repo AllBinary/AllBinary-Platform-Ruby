@@ -2,7 +2,10 @@
 # frozen_string_literal: false
 # package javax.microedition.lcdui
 
+require "java/lang/JavaOverload"
 require "javax/microedition/lcdui/CommandListener"
+
+module ::Javax; module Microedition; module Lcdui
 
 class NullCommandListener
     include CommandListener
@@ -10,6 +13,7 @@ class NullCommandListener
 
     def commandAction(c, d)
     end
+    java_overload :commandAction, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -32,12 +36,14 @@ class NullCommandListener
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :Displayable, "javax/microedition/lcdui/Displayable"
+autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false)
+autoload :Displayable, "javax/microedition/lcdui/Displayable" unless const_defined?(:Displayable, false)
 
 begin
     NullCommandListener.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

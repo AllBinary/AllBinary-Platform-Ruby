@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/AbstractArrayListPool"
+
+module ::Org; module Allbinary; module Logic; module Util; module Cache
 
 class BasicArrayListResetablePool < AbstractArrayListPool
     
@@ -26,6 +29,7 @@ class BasicArrayListResetablePool < AbstractArrayListPool
 
     def clear()
     end
+    java_overload :clear, 0
     
 
     # throws Exception
@@ -37,8 +41,11 @@ class BasicArrayListResetablePool < AbstractArrayListPool
             return @cacheableInterfaceFactoryInterface.getInstance(key)
         end
     end
+    java_overload :remove, 1
 end
 
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
-autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false)
+autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface" unless const_defined?(:CacheableInterfaceFactoryInterface, false)
+
+end; end; end; end; end
 

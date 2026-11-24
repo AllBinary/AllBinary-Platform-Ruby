@@ -15,23 +15,27 @@
 # package org.allbinary.thread
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/thread/RunnableInterface"
+
+module ::Org; module Allbinary; module ThreadPackage
 
 class ABRunnable
     include RunnableInterface
     attr_accessor :running
 
-    def initialize_fields
+    def jfields_org_allbinary_thread_ABRunnable
         @running = false
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_thread_ABRunnable
     end
     
 
     def setThread(thread)
     end
+    java_overload :setThread, 1
     
 
     def isRunning()
@@ -39,6 +43,7 @@ class ABRunnable
         return @running
         end
     end
+    java_overload :isRunning, 0
     
 
     def setRunning(running)
@@ -46,16 +51,21 @@ class ABRunnable
         @running = running
         end
     end
+    java_overload :setRunning, 1
     
 
     def run()
     end
+    java_overload :run, 0
     
 
     def getType()
         return -1
     end
+    java_overload :getType, 0
 end
 
 require "java/lang/Thread"
+
+end; end; end
 

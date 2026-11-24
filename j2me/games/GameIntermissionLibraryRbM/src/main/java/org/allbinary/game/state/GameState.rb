@@ -15,16 +15,18 @@
 # package org.allbinary.game.state
 
 
+module ::Org; module Allbinary; module Game; module State
+
 class GameState
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_game_state_GameState
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name, state)
-        initialize_fields
+        jfields_org_allbinary_game_state_GameState
         @name = name
     end
     
@@ -34,4 +36,6 @@ class GameState
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end
 

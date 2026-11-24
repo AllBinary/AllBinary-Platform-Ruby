@@ -14,19 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ai.path
 
-# require "javax/microedition/lcdui/Canvas"
+
+module ::Org; module Allbinary; module Game; module Ai; module Path
 
 class BasicDirectionAIHelper
     attr_accessor :name, :angleInfo
 
-    def initialize_fields
-        @name = nil
-        @angleInfo = nil
+    def jfields_org_allbinary_game_ai_path_BasicDirectionAIHelper
+        @name = nil unless instance_variable_defined?(:@name)
+        @angleInfo = nil unless instance_variable_defined?(:@angleInfo)
     end
     
 
     def initialize(name, angleInfo)
-        initialize_fields
+        jfields_org_allbinary_game_ai_path_BasicDirectionAIHelper
         @name = name
         @angleInfo = angleInfo
     end
@@ -39,15 +40,15 @@ class BasicDirectionAIHelper
         degrees = (directionAngle - angle).abs
         if degrees < 180
             if angle > directionAngle
-                keyDirection = Canvas::LEFT
+                keyDirection = ::Javax::Microedition::Lcdui::Canvas::LEFT
             elsif angle < directionAngle
-                keyDirection = Canvas::RIGHT
+                keyDirection = ::Javax::Microedition::Lcdui::Canvas::RIGHT
             end
         else
             if angle > directionAngle
-                keyDirection = Canvas::RIGHT
+                keyDirection = ::Javax::Microedition::Lcdui::Canvas::RIGHT
             elsif angle < directionAngle
-                keyDirection = Canvas::LEFT
+                keyDirection = ::Javax::Microedition::Lcdui::Canvas::LEFT
             end
         end
         return keyDirection
@@ -55,11 +56,11 @@ class BasicDirectionAIHelper
     
 
     def getAIKeyPressed(frame)
-        angle = (((@angleInfo.getAngleIncrementInfo().getFrameAngle(frame.to_i)).to_i + 32768) % 65536 - 32768)
+        angle = ((((@angleInfo.getAngleIncrementInfo().getFrameAngle(frame.to_i)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + 32768) % 65536 - 32768)
         if @angleInfo.getAngle() != angle
             return self.turnAI(frame.to_i)
         else
-            return Canvas::UP
+            return ::Javax::Microedition::Lcdui::Canvas::UP
         end
     end
     
@@ -67,7 +68,7 @@ class BasicDirectionAIHelper
     def getAIKeyPressedFromDirection(geographicMapDirectionData)
         keyDirection = -1
         angleIncrementInfo = @angleInfo.getAngleIncrementInfo()
-        directionFactory = DirectionFactory.getInstance()
+        directionFactory = ::Org::Allbinary::Direction::DirectionFactory.getInstance()
         if geographicMapDirectionData == directionFactory.DOWN
             keyDirection = self.getAIKeyPressed(angleIncrementInfo.DOWN_FRAME)
         elsif geographicMapDirectionData == directionFactory.UP
@@ -91,8 +92,11 @@ class BasicDirectionAIHelper
     end
 end
 
-require "org/allbinary/direction/Direction"
-require "org/allbinary/direction/DirectionFactory"
-require "org/allbinary/math/AngleIncrementInfo"
-require "org/allbinary/math/AngleInfo"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Direction; autoload :Direction, "org/allbinary/direction/Direction" unless const_defined?(:Direction, false); end; end; end
+module ::Org; module Allbinary; module Direction; autoload :DirectionFactory, "org/allbinary/direction/DirectionFactory" unless const_defined?(:DirectionFactory, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleIncrementInfo, "org/allbinary/math/AngleIncrementInfo" unless const_defined?(:AngleIncrementInfo, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+
+end; end; end; end; end
 

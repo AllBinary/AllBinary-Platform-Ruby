@@ -13,17 +13,24 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.building.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Layer; module Building; module Event
+
 module BuildingEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
     def onBuildingEvent(event)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onBuildingEvent, 1
 end
 
-require "org/allbinary/game/layer/RTSLayerEvent"
+module ::Org; module Allbinary; module Game; module Layer; autoload :RTSLayerEvent, "org/allbinary/game/layer/RTSLayerEvent" unless const_defined?(:RTSLayerEvent, false); end; end; end; end
+
+end; end; end; end; end; end
 

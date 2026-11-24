@@ -15,11 +15,37 @@
 # package org.allbinary.business.user.commerce.inventory.item.special
 
 
-class SpecialItemData
-end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; module Special
 
 class SpecialItemData
-    START_TIME = "SPECIALITEM_START_TIME"
-    END_TIME = "SPECIALITEM_END_TIME"
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:START_TIME, "SPECIALITEM_START_TIME")
+        const_set(:END_TIME, "SPECIALITEM_END_TIME")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "SpecialItemData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:START_TIME, :END_TIME].include?(name)
+        end
+        super
+    end
 end
+
+begin
+    SpecialItemData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
+end
+
+end; end; end; end; end; end; end; end
 

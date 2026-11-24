@@ -15,11 +15,13 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 class PlayerStateUtil
     attr_accessor :commonStrings, :UNREALIZED, :REALIZED, :PREFETCHED, :STARTED, :CLOSED
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_media_audio_PlayerStateUtil
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @UNREALIZED = "UNREALIZED"
         @REALIZED = "REALIZED"
         @PREFETCHED = "PREFETCHED"
@@ -28,7 +30,7 @@ class PlayerStateUtil
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_audio_PlayerStateUtil
     end
     
 
@@ -38,15 +40,15 @@ class PlayerStateUtil
     
 
     def convert(state)
-        if state == Player::UNREALIZED
+        if state == ::Javax::Microedition::Media::Player::UNREALIZED
             return @UNREALIZED
-        elsif state == Player::REALIZED
+        elsif state == ::Javax::Microedition::Media::Player::REALIZED
             return @REALIZED
-        elsif state == Player::PREFETCHED
+        elsif state == ::Javax::Microedition::Media::Player::PREFETCHED
             return @PREFETCHED
-        elsif state == Player::STARTED
+        elsif state == ::Javax::Microedition::Media::Player::STARTED
             return @STARTED
-        elsif state == Player::CLOSED
+        elsif state == ::Javax::Microedition::Media::Player::CLOSED
             return @CLOSED
         end
         return @commonStrings.UNKNOWN
@@ -83,12 +85,14 @@ class PlayerStateUtil
     end
 end
 
-autoload :Player, "javax/microedition/media/Player"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Javax; module Microedition; module Media; autoload :Player, "javax/microedition/media/Player" unless const_defined?(:Player, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     PlayerStateUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

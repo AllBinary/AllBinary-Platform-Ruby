@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class GameFeatureEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Configuration; module Event
+
+class GameFeatureEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def initialize()
@@ -34,6 +37,7 @@ class GameFeatureEventHandler < BasicEventHandler
         gameFeatureListenerInterface = (eventListenerInterface)
         gameFeatureListenerInterface.onGameFeatureChange(eventObject)
     end
+    java_overload :process, 2
 
     def self.gameKeyEventHandler()
         GameFeatureEventHandler.java_static_fields unless @java_static_fields_started
@@ -66,14 +70,16 @@ class GameFeatureEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent"
-autoload :GameFeatureListenerInterface, "org/allbinary/game/configuration/event/GameFeatureListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :GameFeatureEvent, "org/allbinary/game/configuration/event/GameFeatureEvent" unless const_defined?(:GameFeatureEvent, false)
+autoload :GameFeatureListenerInterface, "org/allbinary/game/configuration/event/GameFeatureListenerInterface" unless const_defined?(:GameFeatureListenerInterface, false)
 
 begin
     GameFeatureEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

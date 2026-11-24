@@ -15,15 +15,17 @@
 # package org.allbinary.midlet
 
 
+module ::Org; module Allbinary; module Midlet
+
 class MidletStrings
     attr_accessor :COMMAND_ACTION
 
-    def initialize_fields
+    def jfields_org_allbinary_midlet_MidletStrings
         @COMMAND_ACTION = "commandAction"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_midlet_MidletStrings
     end
     
 
@@ -67,4 +69,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

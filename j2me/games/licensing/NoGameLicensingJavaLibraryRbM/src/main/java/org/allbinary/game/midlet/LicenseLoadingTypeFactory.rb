@@ -15,10 +15,12 @@
 # package org.allbinary.game.midlet
 
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 class LicenseLoadingTypeFactory
     attr_accessor :INITIAL_LOADING, :GAME_START, :LOGIN, :OTHER
 
-    def initialize_fields
+    def jfields_org_allbinary_game_midlet_LicenseLoadingTypeFactory
         @INITIAL_LOADING = LicenseLoadingType.new("Initial Loading")
         @GAME_START = LicenseLoadingType.new("Game Start")
         @LOGIN = LicenseLoadingType.new("Login")
@@ -26,7 +28,7 @@ class LicenseLoadingTypeFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_midlet_LicenseLoadingTypeFactory
     end
     
 
@@ -65,11 +67,13 @@ class LicenseLoadingTypeFactory
     end
 end
 
-autoload :LicenseLoadingType, "org/allbinary/game/midlet/LicenseLoadingType"
+autoload :LicenseLoadingType, "org/allbinary/game/midlet/LicenseLoadingType" unless const_defined?(:LicenseLoadingType, false)
 
 begin
     LicenseLoadingTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

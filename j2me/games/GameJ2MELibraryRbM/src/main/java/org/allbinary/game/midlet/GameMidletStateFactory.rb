@@ -3,17 +3,19 @@
 # package org.allbinary.game.midlet
 
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 class GameMidletStateFactory
     attr_accessor :logUtil, :currentGameState
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @currentGameState = GameStateFactory.getInstance().NO_GAME_STATE
+    def jfields_org_allbinary_game_midlet_GameMidletStateFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @currentGameState = ::Org::Allbinary::Game::State::GameStateFactory.getInstance().NO_GAME_STATE
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_midlet_GameMidletStateFactory
     end
     
 
@@ -28,7 +30,7 @@ class GameMidletStateFactory
     
 
     def setCurrentGameState(currentGameState)
-        @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().CURRENT).append(" GameState: ").append(StringUtil.getInstance().toString(currentGameState)).to_s, self, "setCurrentGameState")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().CURRENT).append(" GameState: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(currentGameState)).to_s, self, "setCurrentGameState")
         @currentGameState = currentGameState
     end
 
@@ -53,16 +55,18 @@ class GameMidletStateFactory
     end
 end
 
-autoload :GameState, "org/allbinary/game/state/GameState"
-autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
+module ::Org; module Allbinary; module Game; module State; autoload :GameState, "org/allbinary/game/state/GameState" unless const_defined?(:GameState, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module State; autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory" unless const_defined?(:GameStateFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
 
 begin
     GameMidletStateFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

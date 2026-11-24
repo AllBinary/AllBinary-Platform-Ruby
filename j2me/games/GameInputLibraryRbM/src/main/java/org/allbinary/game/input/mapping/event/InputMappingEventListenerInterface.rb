@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.mapping.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Input; module Mapping; module Event
+
 module InputMappingEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module InputMappingEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onInputMappingEvent, 1
 end
 
-autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
+autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent" unless const_defined?(:InputMappingEvent, false)
+
+end; end; end; end; end; end
 

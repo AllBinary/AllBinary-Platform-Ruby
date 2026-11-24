@@ -14,37 +14,46 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.http.request
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 # require "java/util/List"
 # require "javax/servlet/http/HttpServletRequest"
 # require "javax/servlet/jsp/PageContext"
 require "org/allbinary/logic/communication/http/request/RequestParams"
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request
+
 class MultipartRequestParams < RequestParams
     attr_accessor :logUtil, :special
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_communication_http_request_MultipartRequestParams
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @special = false
     end
 
     def initialize(*args)
         case args.length
-        when 1 then constructor1(*args)
-        when 1 then constructor1(*args)
+        when 1 then jnew_org_allbinary_logic_communication_http_request_MultipartRequestParams_1(*args)
+        else raise ArgumentError, "No constructor of MultipartRequestParams takes #{args.length} arguments"
         end
+    end
+
+    def jnew_org_allbinary_logic_communication_http_request_MultipartRequestParams_1(*java_overload_args)
+        return jnew_org_allbinary_logic_communication_http_request_MultipartRequestParams_1_1(*java_overload_args) if true && !(java_overload_args[0].is_a?(::Numeric) || java_overload_args[0] == true || java_overload_args[0] == false || java_overload_args[0].is_a?(::Array))
+        return jnew_org_allbinary_logic_communication_http_request_MultipartRequestParams_1_2(*java_overload_args)
     end
     
 
-    def constructor1(request)
-        method(:initialize).super_method.call()
-        initialize_fields
+    def jnew_org_allbinary_logic_communication_http_request_MultipartRequestParams_1_1(request)
+        MultipartRequestParams.superclass.instance_method(:initialize).bind(self).call()
+        jfields_org_allbinary_logic_communication_http_request_MultipartRequestParams
         self.processMultipartRequest(request)
     end
     
 
-    def constructor1(pageContext)
-        method(:initialize).super_method.call()
-        initialize_fields
+    def jnew_org_allbinary_logic_communication_http_request_MultipartRequestParams_1_2(pageContext)
+        MultipartRequestParams.superclass.instance_method(:initialize).bind(self).call()
+        jfields_org_allbinary_logic_communication_http_request_MultipartRequestParams
         self.processMultipartRequest(pageContext.getRequest())
     end
     
@@ -52,14 +61,15 @@ class MultipartRequestParams < RequestParams
     def setSpecial()
         @special = true
     end
+    java_overload :setSpecial, 0
     
 
     def processMultipartRequest(request)
         begin
-            specialRequest = StdUtil.getInstance().createHashMap()
-            multipartRequestList = AbFileUploadFactory.getInstance().getFileItemStreamList(request)
+            specialRequest = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
+            multipartRequestList = ::Org::Allbinary::Logic::Communication::Http::FilePackage::Upload::AbFileUploadFactory.getInstance().getFileItemStreamList(request)
             if multipartRequestList != nil
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
                     @logUtil.putF("FileItem List Size: " + (multipartRequestList.size()).to_s, self, "processMultipartRequest()")
                 end
                 fileItemArray = multipartRequestList.toArray()
@@ -67,30 +77,31 @@ class MultipartRequestParams < RequestParams
                 (0...size).each do |index|
                     fileItem = fileItemArray[index]
                     name = fileItem.getName()
-                    if StringValidationUtil.getInstance().isEmpty(name)
+                    if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(name)
                         specialRequest.put(fileItem.getFieldName(), fileItem.getString())
                     else
                         specialRequest.put(fileItem.getFieldName(), fileItem)
                     end
                 end
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
                     @logUtil.putF("Special Request Data: " + specialRequest.to_s, self, "processMultipartRequest()")
                 end
                 self.setSpecial()
                 self.setMap(specialRequest)
             end
-        rescue InvalidContentTypeException => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUEST)
+        rescue ::Org::Apache::Commons::Fileupload::FileUploadBase::InvalidContentTypeException => e
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUEST)
                 @logUtil.putF("Using Normal RequestParams", self, "processMultipartRequest()")
             end
-            self.class.superclass.instance_method(:setMap).bind(self).call(request.getParameterMap())
+            MultipartRequestParams.superclass.java_super_method(:setMap, 1).bind(self).call(request.getParameterMap())
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().HTTPREQUESTERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().HTTPREQUESTERROR)
                 @logUtil.putF("Should Not Occur", self, "processMultipartRequest()")
             end
-            self.class.superclass.instance_method(:setMap).bind(self).call(request.getParameterMap())
+            MultipartRequestParams.superclass.java_super_method(:setMap, 1).bind(self).call(request.getParameterMap())
         end
     end
+    java_overload :processMultipartRequest, 1
     
 
     # throws Exception
@@ -98,16 +109,21 @@ class MultipartRequestParams < RequestParams
         if @special
             return self.getMap()
         else
-            return super()
+            return MultipartRequestParams.superclass.java_super_method(:toHashMap, 0).bind(self).call()
         end
     end
+    java_overload :toHashMap, 0
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :AbFileUploadFactory, "org/allbinary/logic/communication/http/file/upload/AbFileUploadFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :FileItem, "org/apache/commons/fileupload/FileItem"
-autoload :InvalidContentTypeException, "org/apache/commons/fileupload/FileUploadBase/InvalidContentTypeException"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module FilePackage; module Upload; autoload :AbFileUploadFactory, "org/allbinary/logic/communication/http/file/upload/AbFileUploadFactory" unless const_defined?(:AbFileUploadFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Apache; module Commons; module Fileupload; autoload :FileItem, "org/apache/commons/fileupload/FileItem" unless const_defined?(:FileItem, false); end; end; end; end
+module ::Org; module Apache; module Commons; module Fileupload; autoload :FileUploadBase, "org/apache/commons/fileupload/FileUploadBase" unless const_defined?(:FileUploadBase, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end
 

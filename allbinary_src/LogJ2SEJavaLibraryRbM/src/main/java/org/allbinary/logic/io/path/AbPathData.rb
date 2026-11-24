@@ -15,13 +15,15 @@
 # package org.allbinary.logic.io.path
 
 
+module ::Org; module Allbinary; module Logic; module Io; module Path
+
 class AbPathData
     attr_accessor :EXTENSION_SEP, :SEPARATORCHAR, :SEPARATOR
 
-    def initialize_fields
-        @EXTENSION_SEP = CommonSeps.getInstance().PERIOD
+    def jfields_org_allbinary_logic_io_path_AbPathData
+        @EXTENSION_SEP = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().PERIOD
         @SEPARATORCHAR = "/"
-        @SEPARATOR = CommonSeps.getInstance().FORWARD_SLASH
+        @SEPARATOR = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().FORWARD_SLASH
     end
     
 
@@ -31,7 +33,7 @@ class AbPathData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_io_path_AbPathData
     end
     
 
@@ -50,7 +52,7 @@ class AbPathData
 
     def getExtensionWithDot(filePath)
         indexOfFileExtensionDelmiter = self.getExtensionIndex(filePath)
-        extension = StringUtil.getInstance().EMPTY_STRING
+        extension = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         if indexOfFileExtensionDelmiter >= 0
             extension = filePath[indexOfFileExtensionDelmiter..]
         end
@@ -60,7 +62,7 @@ class AbPathData
 
     def getExtension(filePath)
         indexOfFileExtensionDelmiter = self.getExtensionIndex(filePath)
-        extension = StringUtil.getInstance().EMPTY_STRING
+        extension = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         if indexOfFileExtensionDelmiter >= 0
             extension = filePath[indexOfFileExtensionDelmiter + 1..]
         end
@@ -71,7 +73,7 @@ class AbPathData
     def getNameFromPath(path)
         endIndex = (path.rindex(@SEPARATORCHAR) || -1)
         if endIndex < 0
-            endIndex = (path.rindex(FilePathData.getInstance().SEPARATORCHAR) || -1)
+            endIndex = (path.rindex(::Org::Allbinary::Logic::Io::FilePackage::FilePathData.getInstance().SEPARATORCHAR) || -1)
         end
         if endIndex < 0
             return path
@@ -89,10 +91,10 @@ class AbPathData
     def removeNameFromPath(path)
         endIndex = (path.rindex(@SEPARATORCHAR) || -1)
         if endIndex < 0
-            endIndex = (path.rindex(FilePathData.getInstance().SEPARATORCHAR) || -1)
+            endIndex = (path.rindex(::Org::Allbinary::Logic::Io::FilePackage::FilePathData.getInstance().SEPARATORCHAR) || -1)
         end
         if endIndex < 0
-            return StringUtil.getInstance().EMPTY_STRING
+            return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         end
         if path.length == endIndex + 1
             return self.removeNameFromPath(path[0...endIndex - 1])
@@ -133,13 +135,15 @@ class AbPathData
     end
 end
 
-autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData" unless const_defined?(:FilePathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 
 begin
     AbPathData.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

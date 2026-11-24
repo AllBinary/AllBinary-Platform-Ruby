@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.input.media.image
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Input; module Media; module Image
 
 class InputImageType
     attr_accessor :name, :index
 
-    def initialize_fields
-        @name = nil
-        @index = nil
+    def jfields_org_allbinary_input_media_image_InputImageType
+        @name = nil unless instance_variable_defined?(:@name)
+        @index = nil unless instance_variable_defined?(:@index)
     end
     
 
     def initialize(name, index)
-        initialize_fields
+        jfields_org_allbinary_input_media_image_InputImageType
         @name = name
         @index = index
         InputImageType::TYPE_VECTOR.add(self)
@@ -72,8 +75,8 @@ class InputImageType
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@hashMap = StdUtil.getInstance().createHashMap()
-            const_set(:TYPE_VECTOR, BasicArrayListD.new())
+            @@hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
+            const_set(:TYPE_VECTOR, ::Org::Allbinary::Util::BasicArrayListD.new())
             const_set(:CAPTURE, InputImageType.new("Capture", 0))
             const_set(:COMPARISON, InputImageType.new("Comparison", 1))
             const_set(:MOTION, InputImageType.new("Motion", 2))
@@ -93,14 +96,16 @@ class InputImageType
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
 
 begin
     InputImageType.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

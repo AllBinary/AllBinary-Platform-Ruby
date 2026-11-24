@@ -15,10 +15,14 @@
 # package org.allbinary.graphics.threed
 
 
+module ::Org; module Allbinary; module Graphics; module Threed
+
 class RatioProcessor
     
 
     def setCustom(width, height, ratio)
     end
 end
+
+end; end; end; end
 

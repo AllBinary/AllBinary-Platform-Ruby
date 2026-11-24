@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory < TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
     
@@ -26,20 +29,24 @@ class TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory < Tou
 
     # throws Exception
     def init(level)
-        TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory.superclass.instance_method(:initImageCache).bind(self).call(OpenGLImageCacheFactory.getInstance(), level)
+        TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory.superclass.java_super_method(:initImageCache, 2).bind(self).call(::Org::Allbinary::Image::Opengles::OpenGLImageCacheFactory.getInstance(), level)
     end
+    java_overload :init, 1
     
 
     def isFeature()
-        if Features.getInstance().isDefault(OpenGLFeatureFactory.getInstance().OPENGL)
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isDefault(::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance().OPENGL)
             return true
         else
             return false
         end
     end
+    java_overload :isFeature, 0
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-autoload :OpenGLImageCacheFactory, "org/allbinary/image/opengles/OpenGLImageCacheFactory"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory" unless const_defined?(:OpenGLFeatureFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Image; module Opengles; autoload :OpenGLImageCacheFactory, "org/allbinary/image/opengles/OpenGLImageCacheFactory" unless const_defined?(:OpenGLImageCacheFactory, false); end; end; end; end
+
+end; end; end; end; end
 

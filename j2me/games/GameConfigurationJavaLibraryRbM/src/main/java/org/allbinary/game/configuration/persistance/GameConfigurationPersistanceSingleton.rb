@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.persistance
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/configuration/persistance/KeyValuePersistance"
+
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance
 
 class GameConfigurationPersistanceSingleton < KeyValuePersistance
     
@@ -49,11 +52,13 @@ class GameConfigurationPersistanceSingleton < KeyValuePersistance
     end
 end
 
-autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
+autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings" unless const_defined?(:GamePersistanceStrings, false)
 
 begin
     GameConfigurationPersistanceSingleton.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,42 +14,48 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/graphics/color/ColorChangeListener"
 require "org/allbinary/graphics/font/UpdateMyFontInterface"
 require "org/allbinary/graphics/paint/Paintable"
 
-class HighScoresPaintable < Paintable
-    include ColorChangeListener
-    include UpdateMyFontInterface
+module ::Org; module Allbinary; module Game; module Score
+
+class HighScoresPaintable < ::Org::Allbinary::Graphics::Paint::Paintable
+    include ::Org::Allbinary::Graphics::Color::ColorChangeListener
+    include ::Org::Allbinary::Graphics::Font::UpdateMyFontInterface
     attr_accessor :displayInfoSingleton, :myFontProcessor, :basicColor, :highScores, :anchor, :charHeight
 
-    def initialize_fields
-        @displayInfoSingleton = DisplayInfoSingleton.getInstance()
-        @myFontProcessor = UpdateMyFontProcessor.new(self)
-        @basicColor = BasicColorFactory.getInstance().WHITE
+    def jfields_org_allbinary_game_score_HighScoresPaintable
+        @displayInfoSingleton = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
+        @myFontProcessor = ::Org::Allbinary::Graphics::Font::UpdateMyFontProcessor.new(self)
+        @basicColor = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE
         @highScores = NullHighScoresSingletonFactory.getInstance()
-        @anchor = Anchor::TOP_LEFT
-        @charHeight = 0
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
+        @charHeight = 0 unless instance_variable_defined?(:@charHeight)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_score_HighScoresPaintable
     end
     
 
     def updateMeasurement(graphics)
         font = graphics.getFont()
         @charHeight = font.getHeight()
-        @myFontProcessor = MyFontProcessor.getInstance()
+        @myFontProcessor = ::Org::Allbinary::Graphics::Font::MyFontProcessor.getInstance()
     end
+    java_overload :updateMeasurement, 1
     
 
     def onEvent(eventObject)
         colorChangeEvent = eventObject
         @basicColor = colorChangeEvent.getBasicColorP()
     end
+    java_overload :onEvent, 1
     
 
     def paint(graphics)
@@ -88,35 +94,41 @@ class HighScoresPaintable < Paintable
             vectorIndex += 1
         end
     end
+    java_overload :paint, 1
     
 
     def setBasicColorP(basicColor)
         @basicColor = basicColor
     end
+    java_overload :setBasicColorP, 1
     
 
     def getBasicColorP()
         return @basicColor
     end
+    java_overload :getBasicColorP, 0
     
 
     def setHighScores(highScores)
         @highScores = highScores
     end
+    java_overload :setHighScores, 1
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Anchor, "org/allbinary/graphics/Anchor"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :ColorChangeEvent, "org/allbinary/graphics/color/ColorChangeEvent"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor"
-autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :HighScore, "org/allbinary/game/score/HighScore"
-autoload :HighScores, "org/allbinary/game/score/HighScores"
-autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :ColorChangeEvent, "org/allbinary/graphics/color/ColorChangeEvent" unless const_defined?(:ColorChangeEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :MyFontProcessor, "org/allbinary/graphics/font/MyFontProcessor" unless const_defined?(:MyFontProcessor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :UpdateMyFontProcessor, "org/allbinary/graphics/font/UpdateMyFontProcessor" unless const_defined?(:UpdateMyFontProcessor, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :HighScore, "org/allbinary/game/score/HighScore" unless const_defined?(:HighScore, false)
+autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false)
+autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory" unless const_defined?(:NullHighScoresSingletonFactory, false)
+
+end; end; end; end
 

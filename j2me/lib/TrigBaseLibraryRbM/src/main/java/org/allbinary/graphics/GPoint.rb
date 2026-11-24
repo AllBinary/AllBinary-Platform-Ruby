@@ -18,13 +18,15 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 
+module ::Org; module Allbinary; module Graphics
+
 class GPoint
     attr_accessor :x, :y, :z
 
-    def initialize_fields
-        @x = nil
-        @y = nil
-        @z = nil
+    def jfields_org_allbinary_graphics_GPoint
+        @x = nil unless instance_variable_defined?(:@x)
+        @y = nil unless instance_variable_defined?(:@y)
+        @z = nil unless instance_variable_defined?(:@z)
     end
     
 
@@ -34,7 +36,7 @@ class GPoint
     
 
     def initialize(x, y, z)
-        initialize_fields
+        jfields_org_allbinary_graphics_GPoint
         @x = x
         @y = y
         @z = z
@@ -78,15 +80,15 @@ class GPoint
     
 
     def self.toStringStatic(x, y, z)
-        stringBuffer = StringMaker.new()
-        positionStrings = PositionStrings.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        positionStrings = ::Org::Allbinary::MathPackage::PositionStrings.getInstance()
         stringBuffer.append(GPoint::POINT_LABEL)
         stringBuffer.append(positionStrings.X_LABEL)
         stringBuffer.appendint(x)
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(positionStrings.Y_LABEL)
         stringBuffer.appendint(y)
-        stringBuffer.append(CommonSeps.getInstance().SPACE)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(positionStrings.Z_LABEL)
         stringBuffer.appendint(z)
         return stringBuffer.to_s
@@ -113,13 +115,15 @@ class GPoint
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :PositionStrings, "org/allbinary/math/PositionStrings"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :PositionStrings, "org/allbinary/math/PositionStrings" unless const_defined?(:PositionStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 
 begin
     GPoint.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

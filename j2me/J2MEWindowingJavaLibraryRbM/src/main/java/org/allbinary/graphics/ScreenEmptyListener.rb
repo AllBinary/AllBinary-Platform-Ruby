@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/ScreenListenerInterface"
+
+module ::Org; module Allbinary; module Graphics
 
 class ScreenEmptyListener
     include ScreenListenerInterface
@@ -22,9 +25,13 @@ class ScreenEmptyListener
 
     def onFullScreen(isFullScreen)
     end
+    java_overload :onFullScreen, 1
     
 
     def onFullScreenDisplay()
     end
+    java_overload :onFullScreenDisplay, 0
 end
+
+end; end; end
 

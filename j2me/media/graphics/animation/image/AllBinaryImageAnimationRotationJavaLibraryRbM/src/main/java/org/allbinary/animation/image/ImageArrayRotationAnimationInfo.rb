@@ -15,20 +15,22 @@
 # package org.allbinary.animation.image
 
 
+module ::Org; module Allbinary; module Animation; module Image
+
 class ImageArrayRotationAnimationInfo
     attr_accessor :imageArray, :angleIncrement, :totalAngle, :dx, :dy
 
-    def initialize_fields
-        @imageArray = nil
-        @angleIncrement = nil
-        @totalAngle = nil
-        @dx = nil
-        @dy = nil
+    def jfields_org_allbinary_animation_image_ImageArrayRotationAnimationInfo
+        @imageArray = nil unless instance_variable_defined?(:@imageArray)
+        @angleIncrement = nil unless instance_variable_defined?(:@angleIncrement)
+        @totalAngle = nil unless instance_variable_defined?(:@totalAngle)
+        @dx = nil unless instance_variable_defined?(:@dx)
+        @dy = nil unless instance_variable_defined?(:@dy)
     end
     
 
     def initialize(imageArray, angleIncrement, totalAngle, dx, dy)
-        initialize_fields
+        jfields_org_allbinary_animation_image_ImageArrayRotationAnimationInfo
         @imageArray = imageArray
         @angleIncrement = angleIncrement
         @totalAngle = totalAngle
@@ -48,7 +50,7 @@ class ImageArrayRotationAnimationInfo
     
 
     def getAngleInfoP()
-        return AngleInfo.getInstance((((@angleIncrement).to_i + 32768) % 65536 - 32768))
+        return ::Org::Allbinary::MathPackage::AngleInfo.getInstance((((@angleIncrement).to_i + 32768) % 65536 - 32768))
     end
     
 
@@ -82,6 +84,8 @@ class ImageArrayRotationAnimationInfo
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :AngleInfo, "org/allbinary/math/AngleInfo"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+
+end; end; end; end
 

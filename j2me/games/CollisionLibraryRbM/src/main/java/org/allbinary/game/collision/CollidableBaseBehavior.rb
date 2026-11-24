@@ -14,85 +14,101 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/game/collision/CollidableInterface"
+
+module ::Org; module Allbinary; module Game; module Collision
 
 class CollidableBaseBehavior
     include CollidableInterface
     attr_accessor :logUtil, :commonStrings, :layerCollisionUtil, :collidable
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_game_collision_CollidableBaseBehavior
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @layerCollisionUtil = LayerCollisionUtil.getInstance()
         @collidable = true
     end
     
 
     def initialize(collidable)
-        initialize_fields
+        jfields_org_allbinary_game_collision_CollidableBaseBehavior
         @collidable = collidable
     end
     
 
     def update()
     end
+    java_overload :update, 0
     
 
     def getName()
-        return self.class.name
+        return self.class.java_name
     end
+    java_overload :getName, 0
     
 
     def setCollidable(collidable)
         @collidable = collidable
     end
+    java_overload :setCollidable, 1
     
 
     def isCollidable(ownerLayer)
         return @collidable
     end
+    java_overload :isCollidable, 1
     
 
     # throws Exception
     def collide(ownerLayer, allbinaryCollidableLayer)
-        raise StandardError.new(StringMaker.new().append(@commonStrings.NOT_IMPLEMENTED).append(CommonLabels.getInstance().COLON_SEP).append(self.class.name).to_s)
+        raise StandardError.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@commonStrings.NOT_IMPLEMENTED).append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().COLON_SEP).append(self.class.java_name).to_s)
     end
+    java_overload :collide, 2
     
 
     def isCollision(ownerLayer, collisionLayer)
         return @layerCollisionUtil.isCollision(ownerLayer, collisionLayer)
     end
+    java_overload :isCollision, 2
     
 
     def isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
         return @layerCollisionUtil.isCollision(ownerLayer, collidableInterfaceCompositeInterface)
     end
+    java_overload :isCollisionInterface, 2
     
 
     # throws Exception
     def collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :collideInterface, 2
     
 
     def paint(ownerLayer, graphics)
     end
+    java_overload :paint, 2
     
 
     def getCollisionTypeWith(layerInterface)
         return CollisionTypeFactory.getInstance().NONE
     end
+    java_overload :getCollisionTypeWith, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
-autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
-autoload :LayerCollisionUtil, "org/allbinary/game/collision/LayerCollisionUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface" unless const_defined?(:CollidableInterfaceCompositeInterface, false)
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType" unless const_defined?(:CollisionType, false)
+autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory" unless const_defined?(:CollisionTypeFactory, false)
+autoload :LayerCollisionUtil, "org/allbinary/game/collision/LayerCollisionUtil" unless const_defined?(:LayerCollisionUtil, false)
+
+end; end; end; end
 

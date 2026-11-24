@@ -3,6 +3,8 @@
 # package org.allbinary
 
 
+module ::Org; module Allbinary
+
 class KotlinUtil
     
 
@@ -12,9 +14,11 @@ class KotlinUtil
     
 
     def self.getShortName()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end
 

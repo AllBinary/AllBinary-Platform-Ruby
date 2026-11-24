@@ -18,16 +18,18 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 
+module ::Org; module Allbinary; module MathPackage
+
 class Angle
     attr_accessor :value
 
-    def initialize_fields
-        @value = nil
+    def jfields_org_allbinary_math_Angle
+        @value = nil unless instance_variable_defined?(:@value)
     end
     
 
     def initialize(angle)
-        initialize_fields
+        jfields_org_allbinary_math_Angle
         @value = angle
     end
     
@@ -36,4 +38,6 @@ class Angle
         return @value
     end
 end
+
+end; end; end
 

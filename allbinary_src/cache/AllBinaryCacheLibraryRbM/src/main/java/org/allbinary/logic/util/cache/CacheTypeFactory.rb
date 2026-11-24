@@ -3,18 +3,20 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class CacheTypeFactory
     attr_accessor :NO_CACHE, :CACHE, :SET, :CACHE_VECTOR
 
-    def initialize_fields
-        @NO_CACHE = CacheType.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING)
-        @CACHE = CacheType.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING)
-        @SET = CacheType.new(StringUtil.getInstance().EMPTY_STRING, "Set")
-        @CACHE_VECTOR = CacheType.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING)
+    def jfields_org_allbinary_logic_util_cache_CacheTypeFactory
+        @NO_CACHE = CacheType.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
+        @CACHE = CacheType.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
+        @SET = CacheType.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, "Set")
+        @CACHE_VECTOR = CacheType.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_CacheTypeFactory
     end
     
 
@@ -53,12 +55,14 @@ class CacheTypeFactory
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CacheType, "org/allbinary/logic/util/cache/CacheType"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :CacheType, "org/allbinary/logic/util/cache/CacheType" unless const_defined?(:CacheType, false)
 
 begin
     CacheTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

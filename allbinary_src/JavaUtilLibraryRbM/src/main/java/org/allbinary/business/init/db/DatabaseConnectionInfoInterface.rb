@@ -15,96 +15,118 @@
 # package org.allbinary.business.init.db
 
 
+module ::Org; module Allbinary; module Business; module Init; module Db
+
 module DatabaseConnectionInfoInterface
     
 
     def getUrl()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getJdbcDriver()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getUserName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getPassword()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getHost()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getSchema()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getServer()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getPort()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setJdbcDriver(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setName(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setUserName(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setPassword(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setSchema(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setServer(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setPort(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getUserNameKey()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getPasswordKey()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

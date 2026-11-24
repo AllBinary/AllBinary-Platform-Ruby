@@ -15,10 +15,12 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 class GameInfoData
     attr_accessor :GAME_TYPE, :GAME_MODE, :PLAYER_TYPE, :HIGHEST_LEVEL, :CURRENT_LEVEL, :SOFTWARE_INFORMATION
 
-    def initialize_fields
+    def jfields_org_allbinary_game_GameInfoData
         @GAME_TYPE = "GAME_TYPE"
         @GAME_MODE = "GAME_MODE"
         @PLAYER_TYPE = "PLAYER_TYPE"
@@ -34,7 +36,7 @@ class GameInfoData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_GameInfoData
     end
 
     def self.instance()
@@ -73,4 +75,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

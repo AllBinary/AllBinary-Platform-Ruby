@@ -4,22 +4,24 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Layer
+
 class LayerManager
     attr_accessor :logUtil, :commonStrings, :systemWrapper, :tsUtil, :layerManagerLogging, :list, :anyType
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @systemWrapper = ABSystemWrapper.getInstance()
-        @tsUtil = TsUtil.getInstance()
-        @layerManagerLogging = nil
-        @list = BasicArrayListD.new()
-        @anyType = SynchObject.new()
+    def jfields_org_allbinary_layer_LayerManager
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @systemWrapper = ::Org::Allbinary::Logic::ABSystemWrapper.getInstance()
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
+        @layerManagerLogging = nil unless instance_variable_defined?(:@layerManagerLogging)
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @anyType = ::Org::Allbinary::ThreadPackage::SynchObject.new()
     end
     
 
     def initialize(layerManagerLogging)
-        initialize_fields
+        jfields_org_allbinary_layer_LayerManager
         @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         @layerManagerLogging = layerManagerLogging
     end
@@ -122,15 +124,17 @@ class LayerManager
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :SynchObject, "org/allbinary/thread/SynchObject"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :Layer, "org/allbinary/layer/Layer"
-autoload :LayerManagerLoggingBase, "org/allbinary/layer/LayerManagerLoggingBase"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :SynchObject, "org/allbinary/thread/SynchObject" unless const_defined?(:SynchObject, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper" unless const_defined?(:ABSystemWrapper, false); end; end; end
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false)
+autoload :Layer, "org/allbinary/layer/Layer" unless const_defined?(:Layer, false)
+autoload :LayerManagerLoggingBase, "org/allbinary/layer/LayerManagerLoggingBase" unless const_defined?(:LayerManagerLoggingBase, false)
+
+end; end; end
 

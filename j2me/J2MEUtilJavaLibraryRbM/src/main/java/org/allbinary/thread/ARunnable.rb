@@ -14,15 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.thread
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 require "java/lang/Runnable"
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class ARunnable
-    include Runnable
+    include ::Java::Lang::Runnable
     
 
     def run()
     end
+    java_overload :run, 0
 end
+
+end; end; end
 

@@ -15,21 +15,23 @@
 # package org.allbinary.game.ag.ai
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
 class NumberInSameGroupSequence
     attr_accessor :NUMBER_ON_SAME_TEAM_SEQUENCE_ZERO, :NUMBER_ON_SAME_TEAM_SEQUENCE_ONE, :NUMBER_ON_SAME_TEAM_SEQUENCE_TWO, :NUMBER_ON_SAME_TEAM_SEQUENCE_THREE, :NUMBER_ON_SAME_TEAM_SEQUENCE_FOUR, :NUMBER_ON_SAME_TEAM_SEQUENCE_FIVE, :NUMBER_ON_SAME_TEAM_SEQUENCE_SIX, :NUMBER_ON_SAME_TEAM_SEQUENCE_SEVEN, :NUMBER_ON_SAME_TEAM_SEQUENCE_EIGHT, :NUMBER_ON_SAME_TEAM_SEQUENCE_NINE, :NUMBER_ON_SAME_TEAM_SEQUENCE
 
-    def initialize_fields
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_ZERO = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_ONE = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_TWO = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_THREE = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_FOUR = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_FIVE = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_SIX = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_SEVEN = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_EIGHT = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE_NINE = nil
-        @NUMBER_ON_SAME_TEAM_SEQUENCE = nil
+    def jfields_org_allbinary_game_ag_ai_NumberInSameGroupSequence
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_ZERO = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_ZERO)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_ONE = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_ONE)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_TWO = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_TWO)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_THREE = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_THREE)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_FOUR = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_FOUR)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_FIVE = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_FIVE)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_SIX = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_SIX)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_SEVEN = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_SEVEN)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_EIGHT = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_EIGHT)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE_NINE = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE_NINE)
+        @NUMBER_ON_SAME_TEAM_SEQUENCE = nil unless instance_variable_defined?(:@NUMBER_ON_SAME_TEAM_SEQUENCE)
     end
     
 
@@ -39,8 +41,8 @@ class NumberInSameGroupSequence
     
 
     def initialize()
-        initialize_fields
-        smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
+        jfields_org_allbinary_game_ag_ai_NumberInSameGroupSequence
+        smallIntegerSingletonFactory = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance()
         @NUMBER_ON_SAME_TEAM_SEQUENCE_ZERO = smallIntegerSingletonFactory.getAt(100)
         @NUMBER_ON_SAME_TEAM_SEQUENCE_ONE = smallIntegerSingletonFactory.getAt(101)
         @NUMBER_ON_SAME_TEAM_SEQUENCE_TWO = smallIntegerSingletonFactory.getAt(102)
@@ -55,5 +57,7 @@ class NumberInSameGroupSequence
     end
 end
 
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+
+end; end; end; end; end
 

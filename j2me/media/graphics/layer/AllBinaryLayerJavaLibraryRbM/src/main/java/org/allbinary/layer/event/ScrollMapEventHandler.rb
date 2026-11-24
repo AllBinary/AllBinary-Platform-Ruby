@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.layer.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class ScrollMapEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Layer; module Event
+
+class ScrollMapEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def initialize()
@@ -34,6 +37,7 @@ class ScrollMapEventHandler < BasicEventHandler
         scrollMapEventListenerInterface = (eventListenerInterface)
         scrollMapEventListenerInterface.onMoveEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -56,14 +60,16 @@ class ScrollMapEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :ScrollMapEvent, "org/allbinary/layer/event/ScrollMapEvent"
-autoload :ScrollMapEventListenerInterface, "org/allbinary/layer/event/ScrollMapEventListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :ScrollMapEvent, "org/allbinary/layer/event/ScrollMapEvent" unless const_defined?(:ScrollMapEvent, false)
+autoload :ScrollMapEventListenerInterface, "org/allbinary/layer/event/ScrollMapEventListenerInterface" unless const_defined?(:ScrollMapEventListenerInterface, false)
 
 begin
     ScrollMapEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

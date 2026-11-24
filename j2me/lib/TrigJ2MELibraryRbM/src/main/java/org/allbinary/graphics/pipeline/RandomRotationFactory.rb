@@ -15,16 +15,18 @@
 # package org.allbinary.graphics.pipeline
 
 
+module ::Org; module Allbinary; module Graphics; module Pipeline
+
 class RandomRotationFactory
     attr_accessor :myRandomFactory, :angleFactory
 
-    def initialize_fields
-        @myRandomFactory = MyRandomFactory.getInstance()
-        @angleFactory = AngleFactory.getInstance()
+    def jfields_org_allbinary_graphics_pipeline_RandomRotationFactory
+        @myRandomFactory = ::Org::Allbinary::Game::Rand::MyRandomFactory.getInstance()
+        @angleFactory = ::Org::Allbinary::MathPackage::AngleFactory.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_pipeline_RandomRotationFactory
     end
     
 
@@ -77,14 +79,16 @@ class RandomRotationFactory
     end
 end
 
-autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline"
+module ::Org; module Allbinary; module Game; module Rand; autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory" unless const_defined?(:MyRandomFactory, false); end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline" unless const_defined?(:BasicGraphicsPipeline, false)
 
 begin
     RandomRotationFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

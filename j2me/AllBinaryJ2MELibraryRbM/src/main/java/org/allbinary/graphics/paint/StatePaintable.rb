@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/displayable/StateControlledInterface"
 require "org/allbinary/graphics/paint/Paintable"
 
+module ::Org; module Allbinary; module Graphics; module Paint
+
 class StatePaintable < Paintable
-    include StateControlledInterface
+    include ::Org::Allbinary::Graphics::Displayable::StateControlledInterface
     
 
     def initialize()
@@ -28,5 +31,8 @@ class StatePaintable < Paintable
 
     def setState(state)
     end
+    java_overload :setState, 1
 end
+
+end; end; end; end
 

@@ -16,6 +16,8 @@
 
 # require "javax/servlet/jsp/PageContext"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module DataPackage
+
 class TransformHttpRequestDocumentFactory
     
 
@@ -29,7 +31,9 @@ class TransformHttpRequestDocumentFactory
     end
 end
 
-autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession"
-autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
-autoload :TransformHttpRequestDocument, "org/allbinary/logic/visual/transform/data/TransformHttpRequestDocument"
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; module Session; autoload :WeblisketSession, "org/allbinary/logic/communication/http/request/session/WeblisketSession" unless const_defined?(:WeblisketSession, false); end; end; end; end; end; end; end
+autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface" unless const_defined?(:TransformDocumentInterface, false)
+autoload :TransformHttpRequestDocument, "org/allbinary/logic/visual/transform/data/TransformHttpRequestDocument" unless const_defined?(:TransformHttpRequestDocument, false)
+
+end; end; end; end; end; end
 

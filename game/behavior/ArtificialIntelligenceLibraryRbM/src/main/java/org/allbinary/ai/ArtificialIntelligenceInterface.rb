@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/IdentifierInterface"
 
+module ::Org; module Allbinary; module Ai
+
 module ArtificialIntelligenceInterface
-    include IdentifierInterface
+    include ::Org::Allbinary::Graphics::IdentifierInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module ArtificialIntelligenceInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :processAI, 1
 end
 
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end
 

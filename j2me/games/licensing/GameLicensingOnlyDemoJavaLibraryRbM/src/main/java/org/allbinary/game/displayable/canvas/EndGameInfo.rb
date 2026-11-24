@@ -15,19 +15,21 @@
 # package org.allbinary.game.displayable.canvas
 
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 class EndGameInfo
     attr_accessor :NORMAL_GAME_OVER_WIN, :TEASER_DEMO_GAME_END_LAST_LEVEL, :TEASER_DEMO_GAME_END, :gameOverStr, :winStr
 
-    def initialize_fields
+    def jfields_org_allbinary_game_displayable_canvas_EndGameInfo
         @NORMAL_GAME_OVER_WIN = "You Won"
         @TEASER_DEMO_GAME_END_LAST_LEVEL = "End of Demo."
         @TEASER_DEMO_GAME_END = "Demo Game Over."
-        @gameOverStr = StringUtil.getInstance().EMPTY_STRING
+        @gameOverStr = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         @winStr = @gameOverStr
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_EndGameInfo
     end
     
 
@@ -62,7 +64,9 @@ class EndGameInfo
     end
 end
 
-autoload :GameInfo, "org/allbinary/game/GameInfo"
-autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Game; autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas" unless const_defined?(:MyCanvas, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end
 

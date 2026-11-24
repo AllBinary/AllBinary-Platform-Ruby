@@ -15,17 +15,19 @@
 # package org.allbinary.input.gyro
 
 
+module ::Org; module Allbinary; module Input; module Gyro
+
 class OrientationData
     attr_accessor :ORIENTATION_SENSOR_INPUT, :ORIENTATION_TYPE
 
-    def initialize_fields
+    def jfields_org_allbinary_input_gyro_OrientationData
         @ORIENTATION_SENSOR_INPUT = "Orientation Sensor Input"
         @ORIENTATION_TYPE = "Orientation Type"
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_gyro_OrientationData
     end
     
 
@@ -59,4 +61,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

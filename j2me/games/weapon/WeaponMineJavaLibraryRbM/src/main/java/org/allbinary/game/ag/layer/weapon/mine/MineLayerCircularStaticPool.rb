@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.layer.weapon.mine
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Weapon; module Mine
+
 class MineLayerCircularStaticPool
     
 
@@ -33,7 +35,7 @@ class MineLayerCircularStaticPool
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:WEAPON_LAYER_CIRCULAR_STATIC_POOL, WeaponLayerCircularPool.new())
+            const_set(:WEAPON_LAYER_CIRCULAR_STATIC_POOL, ::Org::Allbinary::Game::Layer::Weapon::WeaponLayerCircularPool.new())
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -50,14 +52,16 @@ class MineLayerCircularStaticPool
     end
 end
 
-autoload :WeaponLayerCircularPool, "org/allbinary/game/layer/weapon/WeaponLayerCircularPool"
-autoload :ViewPositionFactoryInterface, "org/allbinary/view/ViewPositionFactoryInterface"
-autoload :MineCountedPickedUpLayerInterfaceFactory, "org/allbinary/game/ag/layer/weapon/mine/MineCountedPickedUpLayerInterfaceFactory"
-autoload :MineLayerFactory, "org/allbinary/game/ag/layer/weapon/mine/MineLayerFactory"
+module ::Org; module Allbinary; module Game; module Layer; module Weapon; autoload :WeaponLayerCircularPool, "org/allbinary/game/layer/weapon/WeaponLayerCircularPool" unless const_defined?(:WeaponLayerCircularPool, false); end; end; end; end; end
+module ::Org; module Allbinary; module View; autoload :ViewPositionFactoryInterface, "org/allbinary/view/ViewPositionFactoryInterface" unless const_defined?(:ViewPositionFactoryInterface, false); end; end; end
+autoload :MineCountedPickedUpLayerInterfaceFactory, "org/allbinary/game/ag/layer/weapon/mine/MineCountedPickedUpLayerInterfaceFactory" unless const_defined?(:MineCountedPickedUpLayerInterfaceFactory, false)
+autoload :MineLayerFactory, "org/allbinary/game/ag/layer/weapon/mine/MineLayerFactory" unless const_defined?(:MineLayerFactory, false)
 
 begin
     MineLayerCircularStaticPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

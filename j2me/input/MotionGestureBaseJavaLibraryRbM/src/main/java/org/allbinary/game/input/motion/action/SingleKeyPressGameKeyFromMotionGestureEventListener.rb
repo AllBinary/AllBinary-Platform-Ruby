@@ -14,45 +14,52 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.motion.action
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/CompleteMotionGestureInputEventListener"
 
-class SingleKeyPressGameKeyFromMotionGestureEventListener < CompleteMotionGestureInputEventListener
+module ::Org; module Allbinary; module Game; module Input; module Motion; module Action
+
+class SingleKeyPressGameKeyFromMotionGestureEventListener < ::Org::Allbinary::Game::Input::CompleteMotionGestureInputEventListener
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_input_motion_action_SingleKeyPressGameKeyFromMotionGestureEventListener
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_input_motion_action_SingleKeyPressGameKeyFromMotionGestureEventListener
     end
     
 
     def onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
     end
+    java_overload :onEvent, 1
     
 
     def onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
         begin
             gameKeyCompleteMotionGestureInputEvent = completeMotionGestureInputEvent
             gameKeyEvent = gameKeyCompleteMotionGestureInputEvent.getGameKeyEvent()
-            PressGameKeyEventHandler.getInstance().fireEvent(gameKeyEvent)
+            ::Org::Allbinary::Game::Input::Event::PressGameKeyEventHandler.getInstance().fireEvent(gameKeyEvent)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, "onCompleteMotionGestureInputEvent", e)
         end
     end
+    java_overload :onCompleteMotionGestureInputEvent, 1
 end
 
-autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent"
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :PressGameKeyEventHandler, "org/allbinary/game/input/event/PressGameKeyEventHandler"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :GameKeyCompleteMotionGestureInputEvent, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent"
+module ::Org; module Allbinary; module Game; module Input; autoload :CompleteMotionGestureInputEvent, "org/allbinary/game/input/CompleteMotionGestureInputEvent" unless const_defined?(:CompleteMotionGestureInputEvent, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :PressGameKeyEventHandler, "org/allbinary/game/input/event/PressGameKeyEventHandler" unless const_defined?(:PressGameKeyEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :GameKeyCompleteMotionGestureInputEvent, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEvent" unless const_defined?(:GameKeyCompleteMotionGestureInputEvent, false)
+
+end; end; end; end; end; end
 

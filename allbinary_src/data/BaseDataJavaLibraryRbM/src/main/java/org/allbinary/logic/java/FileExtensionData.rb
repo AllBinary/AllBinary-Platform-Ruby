@@ -15,10 +15,12 @@
 # package org.allbinary.logic.java
 
 
+module ::Org; module Allbinary; module Logic; module Java
+
 class FileExtensionData
     attr_accessor :DOT_JAVA_SOURCE, :JAVA_SOURCE
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_java_FileExtensionData
         @DOT_JAVA_SOURCE = ".java"
         @JAVA_SOURCE = "java"
     end
@@ -30,7 +32,7 @@ class FileExtensionData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_java_FileExtensionData
     end
 
     def self.instance()
@@ -69,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

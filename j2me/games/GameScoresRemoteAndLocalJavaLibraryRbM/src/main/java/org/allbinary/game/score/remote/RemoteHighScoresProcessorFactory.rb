@@ -15,6 +15,8 @@
 # package org.allbinary.game.score.remote
 
 
+module ::Org; module Allbinary; module Game; module Score; module Remote
+
 class RemoteHighScoresProcessorFactory
     
 
@@ -43,12 +45,14 @@ class RemoteHighScoresProcessorFactory
     end
 end
 
-autoload :RemoteHighScoresProcessor, "org/allbinary/game/score/remote/RemoteHighScoresProcessor"
-autoload :RemoteHighScoresProcessorInterface, "org/allbinary/game/score/remote/RemoteHighScoresProcessorInterface"
+autoload :RemoteHighScoresProcessor, "org/allbinary/game/score/remote/RemoteHighScoresProcessor" unless const_defined?(:RemoteHighScoresProcessor, false)
+autoload :RemoteHighScoresProcessorInterface, "org/allbinary/game/score/remote/RemoteHighScoresProcessorInterface" unless const_defined?(:RemoteHighScoresProcessorInterface, false)
 
 begin
     RemoteHighScoresProcessorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

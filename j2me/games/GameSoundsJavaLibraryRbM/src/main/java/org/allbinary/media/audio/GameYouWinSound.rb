@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/audio/CompositeSound"
+
+module ::Org; module Allbinary; module Media; module Audio
 
 #Use 8hz16bitmono for most J2ME
 class GameYouWinSound < CompositeSound
@@ -60,11 +63,13 @@ class GameYouWinSound < CompositeSound
     end
 end
 
-autoload :Sound, "org/allbinary/media/audio/Sound"
+autoload :Sound, "org/allbinary/media/audio/Sound" unless const_defined?(:Sound, false)
 
 begin
     GameYouWinSound.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

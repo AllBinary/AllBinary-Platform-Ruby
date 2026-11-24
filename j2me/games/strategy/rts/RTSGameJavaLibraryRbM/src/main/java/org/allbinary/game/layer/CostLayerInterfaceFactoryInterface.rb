@@ -14,15 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Game; module Layer
+
 module CostLayerInterfaceFactoryInterface
-    include LayerInterfaceFactoryInterface
+    include ::Org::Allbinary::Layer::LayerInterfaceFactoryInterface
     
 
     # throws Exception
     def getCost()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getCost, 0
 end
+
+end; end; end; end
 

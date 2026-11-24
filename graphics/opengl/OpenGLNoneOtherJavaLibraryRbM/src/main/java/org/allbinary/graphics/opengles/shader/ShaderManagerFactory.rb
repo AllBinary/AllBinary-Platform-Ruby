@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.opengles.shader
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
+
 class ShaderManagerFactory
     
 
@@ -58,11 +60,13 @@ class ShaderManagerFactory
     end
 end
 
-autoload :ShaderManager, "org/allbinary/graphics/opengles/shader/ShaderManager"
+autoload :ShaderManager, "org/allbinary/graphics/opengles/shader/ShaderManager" unless const_defined?(:ShaderManager, false)
 
 begin
     ShaderManagerFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

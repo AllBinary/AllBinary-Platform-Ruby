@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io.path
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/io/path/AbPath"
+
+module ::Org; module Allbinary; module Logic; module Io; module Path
 
 class AbFilePath < AbPath
     
 
     def initialize(aPath)
-        super(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING)
+        super(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         pathData = AbPathData.getInstance()
         abPathUtil = PathUtil.getInstance()
         @schema = self.getSchema(aPath)
@@ -29,7 +32,9 @@ class AbFilePath < AbPath
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false)
+autoload :PathUtil, "org/allbinary/logic/io/path/PathUtil" unless const_defined?(:PathUtil, false)
+
+end; end; end; end; end
 

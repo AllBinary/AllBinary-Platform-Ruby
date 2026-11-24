@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.business.advertisement.thumbnail
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/advertisement/image/AdvertisementImageInterface"
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Thumbnail
+
 module AdvertisementThumbnailInterface
-    include AdvertisementImageInterface
+    include ::Org::Allbinary::Business::Advertisement::Image::AdvertisementImageInterface
 end
+
+end; end; end; end; end
 

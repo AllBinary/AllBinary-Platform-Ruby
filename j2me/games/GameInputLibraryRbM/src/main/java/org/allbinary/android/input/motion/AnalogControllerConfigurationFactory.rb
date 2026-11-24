@@ -15,14 +15,16 @@
 # package org.allbinary.android.input.motion
 
 
+module ::Org; module Allbinary; module Android; module Input; module Motion
+
 class AnalogControllerConfigurationFactory
     attr_accessor :SCALE_FACTOR, :SCALE_VALUE, :available, :analogControllerConfigurationEvent
 
-    def initialize_fields
-        @SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR
-        @SCALE_VALUE = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE
-        @available = false
-        @analogControllerConfigurationEvent = AnalogControllerConfigurationEvent.new(self)
+    def jfields_org_allbinary_android_input_motion_AnalogControllerConfigurationFactory
+        @SCALE_FACTOR = ::Org::Allbinary::Logic::MathPackage::ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR
+        @SCALE_VALUE = ::Org::Allbinary::Logic::MathPackage::ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE
+        @available = false unless instance_variable_defined?(:@available)
+        @analogControllerConfigurationEvent = ::Org::Allbinary::Android::Input::Motion::Event::AnalogControllerConfigurationEvent.new(self)
     end
     
 
@@ -32,7 +34,7 @@ class AnalogControllerConfigurationFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_android_input_motion_AnalogControllerConfigurationFactory
     end
     
 
@@ -44,7 +46,7 @@ class AnalogControllerConfigurationFactory
     # throws Exception
     def setAvailable(available)
         @available = available
-        AnalogControllerConfigurationEventHandler.getInstance().fireEvent(@analogControllerConfigurationEvent)
+        ::Org::Allbinary::Android::Input::Motion::Event::AnalogControllerConfigurationEventHandler.getInstance().fireEvent(@analogControllerConfigurationEvent)
     end
 
     def self.instance()
@@ -78,13 +80,15 @@ class AnalogControllerConfigurationFactory
     end
 end
 
-autoload :AnalogControllerConfigurationEvent, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent"
-autoload :AnalogControllerConfigurationEventHandler, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEventHandler"
-autoload :ScaleFactorFactory, "org/allbinary/logic/math/ScaleFactorFactory"
+module ::Org; module Allbinary; module Android; module Input; module Motion; module Event; autoload :AnalogControllerConfigurationEvent, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent" unless const_defined?(:AnalogControllerConfigurationEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Android; module Input; module Motion; module Event; autoload :AnalogControllerConfigurationEventHandler, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEventHandler" unless const_defined?(:AnalogControllerConfigurationEventHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :ScaleFactorFactory, "org/allbinary/logic/math/ScaleFactorFactory" unless const_defined?(:ScaleFactorFactory, false); end; end; end; end
 
 begin
     AnalogControllerConfigurationFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

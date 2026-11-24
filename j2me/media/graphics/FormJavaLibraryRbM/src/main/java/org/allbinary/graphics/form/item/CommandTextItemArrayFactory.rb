@@ -15,29 +15,31 @@
 # package org.allbinary.graphics.form.item
 
 
+module ::Org; module Allbinary; module Graphics; module Form; module Item
+
 class CommandTextItemArrayFactory
     attr_accessor :list, :visitorInterface
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
-        @visitorInterface = nil
+    def jfields_org_allbinary_graphics_form_item_CommandTextItemArrayFactory
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @visitorInterface = nil unless instance_variable_defined?(:@visitorInterface)
     end
     
 
     def initialize(visitorInterface)
-        initialize_fields
+        jfields_org_allbinary_graphics_form_item_CommandTextItemArrayFactory
         @visitorInterface = visitorInterface
     end
     
 
     def getInstance(vector, backgroundBasicColor, foregroundBasicColor)
-        vectorUtil = VectorUtil.getInstance()
+        vectorUtil = ::Org::Allbinary::Logic::VectorUtil.getInstance()
         size = vectorUtil.getSize(vector)
         @list.clear()
         textItem = nil
         priorityLimit = 7
-        displayInfo = DisplayInfoSingleton.getInstance()
-        isLargeEnoughDisplayForBigMenu = (displayInfo.isPortrait() && displayInfo.getLastHeight() >= ScreenInfo.getInstance().MEDIUM_WIDTH) || (!displayInfo.isPortrait() && displayInfo.getLastWidth() >= ScreenInfo.getInstance().MEDIUM_WIDTH)
+        displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
+        isLargeEnoughDisplayForBigMenu = (displayInfo.isPortrait() && displayInfo.getLastHeight() >= ::Org::Allbinary::Graphics::Form::ScreenInfo.getInstance().MEDIUM_WIDTH) || (!displayInfo.isPortrait() && displayInfo.getLastWidth() >= ::Org::Allbinary::Graphics::Form::ScreenInfo.getInstance().MEDIUM_WIDTH)
         if !isLargeEnoughDisplayForBigMenu && size > 3
             priorityLimit = 3
         end
@@ -47,7 +49,7 @@ class CommandTextItemArrayFactory
             if command.getPriority() < priorityLimit
                 aBoolean = @visitorInterface.visit(command)
                 if aBoolean
-                    textItem = CommandTextItem.new(command, ImageItem::LAYOUT_DEFAULT, StringUtil.getInstance().EMPTY_STRING, backgroundBasicColor, foregroundBasicColor)
+                    textItem = CommandTextItem.new(command, ::Javax::Microedition::Lcdui::ImageItem::LAYOUT_DEFAULT, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, backgroundBasicColor, foregroundBasicColor)
                     @list.add(textItem)
                 end
             end
@@ -61,16 +63,18 @@ class CommandTextItemArrayFactory
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :ImageItem, "javax/microedition/lcdui/ImageItem"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :ScreenInfo, "org/allbinary/graphics/form/ScreenInfo"
-autoload :VectorUtil, "org/allbinary/logic/VectorUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
-autoload :CommandTextItem, "org/allbinary/graphics/form/item/CommandTextItem"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :ImageItem, "javax/microedition/lcdui/ImageItem" unless const_defined?(:ImageItem, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScreenInfo, "org/allbinary/graphics/form/ScreenInfo" unless const_defined?(:ScreenInfo, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :VectorUtil, "org/allbinary/logic/VectorUtil" unless const_defined?(:VectorUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Visitor; autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor" unless const_defined?(:Visitor, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false)
+autoload :CommandTextItem, "org/allbinary/graphics/form/item/CommandTextItem" unless const_defined?(:CommandTextItem, false)
+
+end; end; end; end; end
 

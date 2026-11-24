@@ -14,26 +14,33 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.caption
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/Animation"
 
-class CaptionAnimationHelperBase < Animation
+module ::Org; module Allbinary; module Animation; module Caption
+
+class CaptionAnimationHelperBase < ::Org::Allbinary::Animation::Animation
     
 
     def isShowing()
         return false
     end
+    java_overload :isShowing, 0
     
 
     def tick()
     end
+    java_overload :tick, 0
     
 
     def update(message, basicColor)
     end
+    java_overload :update, 2
     
 
     def paintXY(graphics, x, y)
     end
+    java_overload :paintXY, 3
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -56,12 +63,14 @@ class CaptionAnimationHelperBase < Animation
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
 
 begin
     CaptionAnimationHelperBase.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

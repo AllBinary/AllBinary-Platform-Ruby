@@ -14,30 +14,35 @@
 # frozen_string_literal: false
 # package org.allbinary.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/AllBinarySensorListener"
+
+module ::Org; module Allbinary; module Input
 
 class AllBinarySensor
     include AllBinarySensorListener
     attr_accessor :logUtil, :commonStrings
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_input_AllBinarySensor
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_AllBinarySensor
     end
     
 
     def init()
     end
+    java_overload :init, 0
     
 
     # throws Exception
     def update()
     end
+    java_overload :update, 0
     
 
     def self.setMax(max)
@@ -53,16 +58,19 @@ class AllBinarySensor
     def getId()
         return AllBinarySensor.getMax()
     end
+    java_overload :getId, 0
     
 
     def shutdown()
         @logUtil.putF(@commonStrings.START, self, "shutdown")
     end
+    java_overload :shutdown, 0
     
 
     def onSensorChange()
-        ForcedLogUtil.log(@commonStrings.NOT_IMPLEMENTED, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(@commonStrings.NOT_IMPLEMENTED, self)
     end
+    java_overload :onSensorChange, 0
 
     def self.max()
         AllBinarySensor.java_static_fields unless @java_static_fields_started
@@ -96,13 +104,15 @@ class AllBinarySensor
     end
 end
 
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     AllBinarySensor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

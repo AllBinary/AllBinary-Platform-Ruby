@@ -14,29 +14,32 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.damage
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/combat/damage/DamageFloaters"
+
+module ::Org; module Allbinary; module Game; module Combat; module Damage
 
 class PtsDamageFloaters < DamageFloaters
     attr_accessor :basicSetColorUtil, :layerInterface, :lastDamage, :lastDamageString, :lastDamageStringSizeArray, :circularIndexUtil, :primitiveLongUtil, :myRandomFactory
 
-    def initialize_fields
-        @basicSetColorUtil = BasicColorSetUtil.getInstance()
-        @layerInterface = nil
-        @lastDamage = Array.new(5, 0)
+    def jfields_org_allbinary_game_combat_damage_PtsDamageFloaters
+        @basicSetColorUtil = ::Org::Allbinary::Graphics::Color::BasicColorSetUtil.getInstance()
+        @layerInterface = nil unless instance_variable_defined?(:@layerInterface)
+        @lastDamage = (Array.new(5, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         @lastDamageString = Array.new(5) { Array.new(0, "\0") }
-        @lastDamageStringSizeArray = Array.new(5, 0)
-        @circularIndexUtil = CircularIndexUtil.createInstance(5)
-        @primitiveLongUtil = nil
-        @myRandomFactory = MyRandomFactory.getInstance()
+        @lastDamageStringSizeArray = (Array.new(5, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(5)
+        @primitiveLongUtil = nil unless instance_variable_defined?(:@primitiveLongUtil)
+        @myRandomFactory = ::Org::Allbinary::Game::Rand::MyRandomFactory.getInstance()
     end
     
 
     def initialize(layerInterface)
         super()
-        initialize_fields
-        @primitiveLongUtil = PrimitiveLongUtil.createPowerOfTen(100000)
+        jfields_org_allbinary_game_combat_damage_PtsDamageFloaters
+        @primitiveLongUtil = ::Org::Allbinary::Logic::MathPackage::PrimitiveLongUtil.createPowerOfTen(100000)
         @layerInterface = layerInterface
-        _CHAR_ARRAY = CharArrayFactory.getInstance().getZeroCharArray()
+        _CHAR_ARRAY = ::Org::Allbinary::Logic::Java::Character::CharArrayFactory.getInstance().getZeroCharArray()
         (@lastDamageString.length - 1).step(0, -(1)) do |index|
             @lastDamageString[index] = _CHAR_ARRAY
         end
@@ -50,6 +53,7 @@ class PtsDamageFloaters < DamageFloaters
         @lastDamageStringSizeArray[index] = @primitiveLongUtil.getCurrentTotalDigits()
         @circularIndexUtil.next_()
     end
+    java_overload :add, 1
     
 
     def paint(graphics)
@@ -66,6 +70,7 @@ class PtsDamageFloaters < DamageFloaters
             @lastDamage[index] = 0
         end
     end
+    java_overload :paint, 1
 
     def self.basicColorArrayIndexer()
         PtsDamageFloaters.java_static_fields unless @java_static_fields_started
@@ -81,7 +86,7 @@ class PtsDamageFloaters < DamageFloaters
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@basicColorArrayIndexer = BasicColorArrayIndexer.new([BasicColorFactory.getInstance().WHITE, BasicColorFactory.getInstance().RED, BasicColorFactory.getInstance().YELLOW, BasicColorFactory.getInstance().BLUE])
+            @@basicColorArrayIndexer = ::Org::Allbinary::Graphics::Color::BasicColorArrayIndexer.new([::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().RED, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().YELLOW, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLUE])
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -98,22 +103,24 @@ class PtsDamageFloaters < DamageFloaters
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorArrayIndexer, "org/allbinary/graphics/color/BasicColorArrayIndexer"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :CharArrayFactory, "org/allbinary/logic/java/character/CharArrayFactory"
-autoload :PrimitiveLongUtil, "org/allbinary/logic/math/PrimitiveLongUtil"
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :ViewPosition, "org/allbinary/view/ViewPosition"
-autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Rand; autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory" unless const_defined?(:MyRandomFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorArrayIndexer, "org/allbinary/graphics/color/BasicColorArrayIndexer" unless const_defined?(:BasicColorArrayIndexer, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorSetUtil, "org/allbinary/graphics/color/BasicColorSetUtil" unless const_defined?(:BasicColorSetUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Character; autoload :CharArrayFactory, "org/allbinary/logic/java/character/CharArrayFactory" unless const_defined?(:CharArrayFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :PrimitiveLongUtil, "org/allbinary/logic/math/PrimitiveLongUtil" unless const_defined?(:PrimitiveLongUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+module ::Org; module Allbinary; module View; autoload :ViewPosition, "org/allbinary/view/ViewPosition" unless const_defined?(:ViewPosition, false); end; end; end
+module ::Org; module Allbinary; module View; autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false); end; end; end
 
 begin
     PtsDamageFloaters.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class ScreenCaptureFactory
     
 
@@ -53,12 +55,14 @@ class ScreenCaptureFactory
     end
 end
 
-autoload :ScreenCapture, "org/allbinary/graphics/ScreenCapture"
-autoload :ScreenCaptureNoneFactory, "org/allbinary/graphics/ScreenCaptureNoneFactory"
+autoload :ScreenCapture, "org/allbinary/graphics/ScreenCapture" unless const_defined?(:ScreenCapture, false)
+autoload :ScreenCaptureNoneFactory, "org/allbinary/graphics/ScreenCaptureNoneFactory" unless const_defined?(:ScreenCaptureNoneFactory, false)
 
 begin
     ScreenCaptureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -15,16 +15,18 @@
 # package org.allbinary.media.image
 
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageStrings
     attr_accessor :PNG, :PNG_EXTENSION
 
-    def initialize_fields
+    def jfields_org_allbinary_media_image_ImageStrings
         @PNG = "PNG"
         @PNG_EXTENSION = ".png"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageStrings
     end
     
 
@@ -68,4 +70,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

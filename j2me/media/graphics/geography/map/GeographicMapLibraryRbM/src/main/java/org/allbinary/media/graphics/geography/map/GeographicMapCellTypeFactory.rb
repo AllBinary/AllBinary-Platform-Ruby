@@ -15,16 +15,18 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 class GeographicMapCellTypeFactory
     attr_accessor :logUtil, :geographicMapCellTypeArray
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_graphics_geography_map_GeographicMapCellTypeFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @geographicMapCellTypeArray = Array.new(512, nil)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_GeographicMapCellTypeFactory
     end
     
 
@@ -63,18 +65,44 @@ class GeographicMapCellTypeFactory
     end
 
     def self.instance()
+        GeographicMapCellTypeFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GeographicMapCellTypeFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GeographicMapCellTypeFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GeographicMapCellTypeFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :GeographicMapCellType, "org/allbinary/media/graphics/geography/map/GeographicMapCellType" unless const_defined?(:GeographicMapCellType, false)
 
-class GeographicMapCellTypeFactory
-    @@instance = GeographicMapCellTypeFactory.new()
+begin
+    GeographicMapCellTypeFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/AllBinarySensor"
+
+module ::Org; module Allbinary; module Input
 
 class NoAllBinarySensor < AllBinarySensor
     
@@ -64,4 +67,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -15,13 +15,16 @@
 # package org.allbinary.media.graphics.geography.map.event
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class GeographicMapCellPositionEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Event
+
+class GeographicMapCellPositionEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_media_graphics_geography_map_event_GeographicMapCellPositionEventHandler
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -32,7 +35,7 @@ class GeographicMapCellPositionEventHandler < BasicEventHandler
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_event_GeographicMapCellPositionEventHandler
     end
     
 
@@ -41,18 +44,21 @@ class GeographicMapCellPositionEventHandler < BasicEventHandler
             @list.add(miniMapLayer)
         end
     end
+    java_overload :addListener, 1
     
 
     def removeAllListeners()
         @list.clear()
-        super()
+        GeographicMapCellPositionEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListener(eventListenerInterface)
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        GeographicMapCellPositionEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -63,11 +69,12 @@ class GeographicMapCellPositionEventHandler < BasicEventHandler
                 miniMapLayer = @list.get(index)
                 miniMapLayer.onGeographicMapCellPositionEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
-        super(eventObject)
+        GeographicMapCellPositionEventHandler.superclass.java_super_method(:fireEvent, 1).bind(self).call(eventObject)
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
@@ -80,7 +87,7 @@ class GeographicMapCellPositionEventHandler < BasicEventHandler
                 miniMapLayer = @list.get(index)
                 miniMapLayer.onRemoveGeographicMapCellPositionEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
         eventListenerInterface = nil
@@ -92,11 +99,12 @@ class GeographicMapCellPositionEventHandler < BasicEventHandler
                 geographicMapCellPositionEventListenerInterface = (eventListenerInterface)
                 geographicMapCellPositionEventListenerInterface.onRemoveGeographicMapCellPositionEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
         end
     end
+    java_overload :fireRemoveEvent, 1
     
 
     # throws Exception
@@ -104,26 +112,53 @@ class GeographicMapCellPositionEventHandler < BasicEventHandler
         geographicMapCellPositionEventListenerInterface = (eventListenerInterface)
         geographicMapCellPositionEventListenerInterface.onGeographicMapCellPositionEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.instance()
+        GeographicMapCellPositionEventHandler.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        GeographicMapCellPositionEventHandler.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = GeographicMapCellPositionEventHandler.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "GeographicMapCellPositionEventHandler"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/game/layer/geographic/map/MiniMapLayer"
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
-require "org/allbinary/logic/util/event/EventListenerInterface"
-require "org/allbinary/logic/util/event/EventStrings"
-require "org/allbinary/media/graphics/geography/map/event/GeographicMapCellPositionEvent"
-require "org/allbinary/media/graphics/geography/map/event/GeographicMapCellPositionEventListenerInterface"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Geographic; module Map; autoload :MiniMapLayer, "org/allbinary/game/layer/geographic/map/MiniMapLayer" unless const_defined?(:MiniMapLayer, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+autoload :GeographicMapCellPositionEvent, "org/allbinary/media/graphics/geography/map/event/GeographicMapCellPositionEvent" unless const_defined?(:GeographicMapCellPositionEvent, false)
+autoload :GeographicMapCellPositionEventListenerInterface, "org/allbinary/media/graphics/geography/map/event/GeographicMapCellPositionEventListenerInterface" unless const_defined?(:GeographicMapCellPositionEventListenerInterface, false)
 
-class GeographicMapCellPositionEventHandler
-    @@instance = GeographicMapCellPositionEventHandler.new()
+begin
+    GeographicMapCellPositionEventHandler.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

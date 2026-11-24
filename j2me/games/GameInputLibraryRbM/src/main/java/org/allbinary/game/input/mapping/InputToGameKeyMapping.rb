@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.mapping
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/mapping/InputMapping"
+
+module ::Org; module Allbinary; module Game; module Input; module Mapping
 
 class InputToGameKeyMapping < InputMapping
     attr_accessor :gameKeyFactory, :mappedGameKeys, :platformToGameKeyMapping, :negativePlatformToGameKeyMapping
 
-    def initialize_fields
-        @gameKeyFactory = GameKeyFactory.getInstance()
+    def jfields_org_allbinary_game_input_mapping_InputToGameKeyMapping
+        @gameKeyFactory = ::Org::Allbinary::Game::Input::GameKeyFactory.getInstance()
         @mappedGameKeys = [@gameKeyFactory.UP, @gameKeyFactory.DOWN, @gameKeyFactory.LEFT, @gameKeyFactory.RIGHT]
-        @platformToGameKeyMapping = Array.new(InputFactory.getInstance().MAX, nil)
+        @platformToGameKeyMapping = Array.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX, nil)
         @negativePlatformToGameKeyMapping = Array.new(0, nil)
     end
     
 
     def self.getNullInstance()
-        if InputToGameKeyMapping.instance == NullUtil.getInstance().NULL_OBJECT
+        if InputToGameKeyMapping.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             InputToGameKeyMapping.instance = InputToGameKeyMapping.new()
         end
         return InputToGameKeyMapping.instance
@@ -37,7 +40,7 @@ class InputToGameKeyMapping < InputMapping
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_input_mapping_InputToGameKeyMapping
         @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         self.clear()
     end
@@ -48,12 +51,14 @@ class InputToGameKeyMapping < InputMapping
             @platformToGameKeyMapping[index] = @gameKeyFactory.NONE
         end
     end
+    java_overload :clear, 0
     
 
     def removeAll()
-        super()
+        InputToGameKeyMapping.superclass.java_super_method(:removeAll, 0).bind(self).call()
         self.clear()
     end
+    java_overload :removeAll, 0
     
 
     def addMapping(inputToGameKeyMapping)
@@ -64,6 +69,7 @@ class InputToGameKeyMapping < InputMapping
             end
         end
     end
+    java_overload :addMapping, 1
     
 
     def addAll(input, list)
@@ -72,19 +78,22 @@ class InputToGameKeyMapping < InputMapping
             self.add(input, mappedToInput)
         end
     end
+    java_overload :addAll, 2
     
 
     def add(input, mappedToInput)
-        super(input, mappedToInput)
+        InputToGameKeyMapping.superclass.java_super_method(:add, 2).bind(self).call(input, mappedToInput)
         self.set(input, mappedToInput)
     end
+    java_overload :add, 2
     
 
     def remove(input, mappedToInput)
-        @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().START_LABEL).append(StringUtil.getInstance().toString(input)).append(" == ").append(StringUtil.getInstance().toString(mappedToInput)).to_s, self, "InputToGameKeyMapping::remove")
-        super(input, mappedToInput)
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(input)).append(" == ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(mappedToInput)).to_s, self, "InputToGameKeyMapping::remove")
+        InputToGameKeyMapping.superclass.java_super_method(:remove, 2).bind(self).call(input, mappedToInput)
         self.set(input, @gameKeyFactory.NONE)
     end
+    java_overload :remove, 2
     
 
     def set(input, mappedToInput)
@@ -93,16 +102,18 @@ class InputToGameKeyMapping < InputMapping
             @platformToGameKeyMapping[id] = input
         end
     end
+    java_overload :set, 2
     
 
     def getMaxMappable()
         return @platformToGameKeyMapping.length
     end
+    java_overload :getMaxMappable, 0
     
 
     def getReverseInstance(id)
-        list = BasicArrayListD.new()
-        inputFactory = InputFactory.getInstance()
+        list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        inputFactory = ::Org::Allbinary::Game::Input::InputFactory.getInstance()
         (0...@platformToGameKeyMapping.length).each do |index|
             if @platformToGameKeyMapping[index].getId() == id
                 input = inputFactory.getInstanceById(index)
@@ -113,6 +124,7 @@ class InputToGameKeyMapping < InputMapping
         end
         return list
     end
+    java_overload :getReverseInstance, 1
     
 
     # throws Exception
@@ -125,9 +137,10 @@ class InputToGameKeyMapping < InputMapping
                 @platformToGameKeyMapping[key] = gameKey
             end
         else
-            PreLogUtil.putOE(StringMaker.new().append(gameKey.to_s).append(CommonSeps.getInstance().COLON_SEP).appendint(key).to_s, self, @commonStrings.INIT, StandardError.new())
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(gameKey.to_s).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON_SEP).appendint(key).to_s, self, @commonStrings.INIT, StandardError.new())
         end
     end
+    java_overload :initGameKey, 2
     
 
     # throws Exception
@@ -143,6 +156,7 @@ class InputToGameKeyMapping < InputMapping
         end
         return smallestKey
     end
+    java_overload :getSmallestCanvasGameKeyCode, 1
     
 
     def init(canvas)
@@ -169,6 +183,7 @@ class InputToGameKeyMapping < InputMapping
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.INIT, t)
         end
     end
+    java_overload :init, 1
     
 
     def getInstanceForCanvas(canvas, id)
@@ -180,6 +195,7 @@ class InputToGameKeyMapping < InputMapping
             return @gameKeyFactory.NONE
         end
     end
+    java_overload :getInstanceForCanvas, 2
     
 
     def getInstance(id)
@@ -191,6 +207,7 @@ class InputToGameKeyMapping < InputMapping
             return @gameKeyFactory.NONE
         end
     end
+    java_overload :getInstance, 1
 
     def self.instance()
         InputToGameKeyMapping.java_static_fields unless @java_static_fields_started
@@ -206,7 +223,7 @@ class InputToGameKeyMapping < InputMapping
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -223,23 +240,25 @@ class InputToGameKeyMapping < InputMapping
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     InputToGameKeyMapping.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

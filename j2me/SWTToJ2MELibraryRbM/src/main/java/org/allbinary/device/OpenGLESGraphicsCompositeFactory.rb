@@ -15,15 +15,17 @@
 # package org.allbinary.device
 
 
+module ::Org; module Allbinary; module Device
+
 class OpenGLESGraphicsCompositeFactory
     attr_accessor :openGLESGraphicsFactory
 
-    def initialize_fields
+    def jfields_org_allbinary_device_OpenGLESGraphicsCompositeFactory
         @openGLESGraphicsFactory = OpenGLESGraphicsFactory.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_device_OpenGLESGraphicsCompositeFactory
     end
     
 
@@ -42,17 +44,43 @@ class OpenGLESGraphicsCompositeFactory
     end
 
     def self.instance()
+        OpenGLESGraphicsCompositeFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        OpenGLESGraphicsCompositeFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = OpenGLESGraphicsCompositeFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "OpenGLESGraphicsCompositeFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/device/OpenGLESGraphicsFactory"
+autoload :OpenGLESGraphicsFactory, "org/allbinary/device/OpenGLESGraphicsFactory" unless const_defined?(:OpenGLESGraphicsFactory, false)
 
-class OpenGLESGraphicsCompositeFactory
-    @@instance = OpenGLESGraphicsCompositeFactory.new()
+begin
+    OpenGLESGraphicsCompositeFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

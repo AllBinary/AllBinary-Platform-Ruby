@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.business.category.store.theme
 
+require "java/lang/JavaOverload"
 # require "java/util/Arrays"
 require "org/allbinary/business/category/CategoryView"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 
-class StoreThemeCategoryView < CategoryView
-    include DomNodeInterface
+module ::Org; module Allbinary; module Business; module Category; module Store; module Theme
+
+class StoreThemeCategoryView < ::Org::Allbinary::Business::Category::CategoryView
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     
 
     def initialize(categoryInterface)
@@ -29,7 +32,7 @@ class StoreThemeCategoryView < CategoryView
 
     # throws Exception
     def toXmlNode(document)
-        node = super(document)
+        node = StoreThemeCategoryView.superclass.java_super_method(:toXmlNode, 1).bind(self).call(document)
         storeThemeCategoryInterface = self.getCategoryInterface()
         themeValidationArray = storeThemeCategoryInterface.getThemes().toArray()
         Arrays.sort(themeValidationArray, ThemeComparator.new())
@@ -40,11 +43,14 @@ class StoreThemeCategoryView < CategoryView
         end
         return node
     end
+    java_overload :toXmlNode, 1
 end
 
-autoload :ThemeValidation, "org/allbinary/logic/visual/theme/ThemeValidation"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :StoreThemeCategoryInterface, "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface"
-autoload :ThemeComparator, "org/allbinary/business/category/store/theme/ThemeComparator"
+module ::Org; module Allbinary; module Logic; module Visual; module Theme; autoload :ThemeValidation, "org/allbinary/logic/visual/theme/ThemeValidation" unless const_defined?(:ThemeValidation, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :StoreThemeCategoryInterface, "org/allbinary/business/category/store/theme/StoreThemeCategoryInterface" unless const_defined?(:StoreThemeCategoryInterface, false)
+autoload :ThemeComparator, "org/allbinary/business/category/store/theme/ThemeComparator" unless const_defined?(:ThemeComparator, false)
+
+end; end; end; end; end; end
 

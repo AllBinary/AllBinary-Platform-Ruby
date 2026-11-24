@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.color
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class ColorCacheableFactory
-    include CacheableInterfaceFactoryInterface
+    include ::Org::Allbinary::Logic::Util::Cache::CacheableInterfaceFactoryInterface
     
 
     def initialize()
@@ -27,8 +30,11 @@ class ColorCacheableFactory
     def getInstance(key)
         return ColorCacheable.new(key)
     end
+    java_overload :getInstance, 1
 end
 
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
-autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable"
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false); end; end; end; end; end
+autoload :ColorCacheable, "org/allbinary/graphics/color/ColorCacheable" unless const_defined?(:ColorCacheable, false)
+
+end; end; end; end
 

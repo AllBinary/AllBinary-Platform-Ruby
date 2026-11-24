@@ -15,16 +15,17 @@
 # package org.allbinary.media.image
 
 # require "java/awt/image/BufferedImage"
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Media; module Image
 
 class ImageCopyUtil
     attr_accessor :logUtil, :imageUtil, :imageCreationUtil, :anchor
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_media_image_ImageCopyUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @imageUtil = ImageUtil.getInstance()
         @imageCreationUtil = ImageCreationUtil.getInstance()
-        @anchor = Anchor::TOP_LEFT
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
     end
     
 
@@ -34,7 +35,7 @@ class ImageCopyUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageCopyUtil
     end
     
 
@@ -58,8 +59,8 @@ class ImageCopyUtil
 
     # throws Exception
     def createImageScale(originalImage, canvasScale, resize)
-        newWidth = ((originalImage.getWidth() * canvasScale)).to_i
-        newHeight = ((originalImage.getHeight() * canvasScale)).to_i
+        newWidth = (((originalImage.getWidth() * canvasScale)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
+        newHeight = (((originalImage.getHeight() * canvasScale)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
         if resize
             if newWidth < newHeight
                 newWidth = newHeight
@@ -70,26 +71,53 @@ class ImageCopyUtil
         end
         originalBufferedImage = @imageUtil.getBufferedImage(originalImage)
         bufferedImage = @imageUtil.createBufferedImageWithLargerCanvas(originalBufferedImage, newWidth, newHeight)
-        image = J2SEImmutableImage.new(bufferedImage)
+        image = ::Org::Microemu::Device::J2se::J2SEImmutableImage.new(bufferedImage)
         return image
     end
 
     def self.instance()
+        ImageCopyUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ImageCopyUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ImageCopyUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ImageCopyUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/Anchor"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/microemu/device/j2se/J2SEImmutableImage"
-require "org/allbinary/media/image/ImageCreationUtil"
-require "org/allbinary/media/image/ImageUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Microemu; module Device; module J2se; autoload :J2SEImmutableImage, "org/microemu/device/j2se/J2SEImmutableImage" unless const_defined?(:J2SEImmutableImage, false); end; end; end; end
+autoload :ImageCreationUtil, "org/allbinary/media/image/ImageCreationUtil" unless const_defined?(:ImageCreationUtil, false)
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false)
 
-class ImageCopyUtil
-    @@instance = ImageCopyUtil.new()
+begin
+    ImageCopyUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

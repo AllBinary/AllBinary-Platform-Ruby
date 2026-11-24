@@ -15,6 +15,8 @@
 # package org.allbinary.game.multiplayer.client
 
 
+module ::Org; module Allbinary; module Game; module Multiplayer; module Client
+
 module PingInfoCompositeInterface
     
 
@@ -23,4 +25,6 @@ module PingInfoCompositeInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

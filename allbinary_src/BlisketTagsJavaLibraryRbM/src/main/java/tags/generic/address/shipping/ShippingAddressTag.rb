@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package tags.generic.address.shipping
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/jsp/JspTagException"
 require "tags/StoreValidationTransformTag"
 
-class ShippingAddressTag < StoreValidationTransformTag
+module ::Tags; module Generic; module Address; module Shipping
+
+class ShippingAddressTag < ::Tags::StoreValidationTransformTag
     attr_accessor :value
 
-    def initialize_fields
-        @value = nil
+    def jfields_tags_generic_address_shipping_ShippingAddressTag
+        @value = nil unless instance_variable_defined?(:@value)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_tags_generic_address_shipping_ShippingAddressTag
     end
     
 
@@ -35,13 +38,13 @@ class ShippingAddressTag < StoreValidationTransformTag
     def doStartTag()
         begin
             if self.getCommand() != nil
-                if self.getCommand().compareTo(org.allbinary.globals.GLOBALS2.VIEW) == 0
+                if self.getCommand().compareTo(::Org::Allbinary::Globals::GLOBALS2::VIEW) == 0
                     self.setName("Basic Shipping Address View")
                     self.setObjectFile("views.generic.address.shipping.ViewShippingAddressesView")
-                elsif self.getCommand().compareTo(org.allbinary.globals.GLOBALS2.EDIT) == 0
+                elsif self.getCommand().compareTo(::Org::Allbinary::Globals::GLOBALS2::EDIT) == 0
                     self.setName("Basic Shipping Address View")
                     self.setObjectFile("views.generic.address.shipping.EditShippingAddressesView")
-                elsif self.getCommand().compareTo(org.allbinary.globals.GLOBALS2.NEW) == 0
+                elsif self.getCommand().compareTo(::Org::Allbinary::Globals::GLOBALS2::NEW) == 0
                     self.setName("Basic Shipping Address View")
                     self.setObjectFile("views.generic.address.shipping.NewShippingAddressesView")
                 elsif self.getCommand().compareTo(@commonStrings.INSERT) == 0
@@ -50,29 +53,33 @@ class ShippingAddressTag < StoreValidationTransformTag
                 elsif self.getCommand().compareTo(@commonStrings.DELETE) == 0
                     self.setName("Basic Shipping Address View")
                     self.setObjectFile("views.generic.address.shipping.DeleteShippingAddressesView")
-                elsif self.getCommand().compareTo(ShippingAddressData::SELECT) == 0
+                elsif self.getCommand().compareTo(::Org::Allbinary::Business::User::Address::ShippingAddressData::SELECT) == 0
                     self.setName("Basic Shipping Address View")
                     self.setObjectFile("views.generic.address.shipping.SelectShippingAddressesView")
-                elsif self.getCommand().compareTo(ShippingAddressData::SETTOBILLINGADDRESS) == 0
+                elsif self.getCommand().compareTo(::Org::Allbinary::Business::User::Address::ShippingAddressData::SETTOBILLINGADDRESS) == 0
                     self.setName("Basic Shipping Address View")
                     self.setObjectFile("views.generic.address.shipping.SetShippingAddressesView")
                 else
                     raise StandardError.new("No Such View Command: " + (self.getCommand()).to_s)
                 end
-                return super()
+                return ShippingAddressTag.superclass.java_super_method(:doStartTag, 0).bind(self).call()
             end
             raise StandardError.new("Command Null")
-        rescue LicensingException => e
-            AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
             return SKIP_BODY
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :ShippingAddressData, "org/allbinary/business/user/address/ShippingAddressData"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :ShippingAddressData, "org/allbinary/business/user/address/ShippingAddressData" unless const_defined?(:ShippingAddressData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2" unless const_defined?(:GLOBALS2, false); end; end; end
+
+end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class SmallIntegerSingletonFactory
     attr_accessor :NEGATIVE_MAX, :POSITIVE_MAX, :INTEGER_ARRAY, :STRING_ARRAY, :MIN, :lastMin, :lastNegativeMin
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_math_SmallIntegerSingletonFactory
         @NEGATIVE_MAX = 500
         @POSITIVE_MAX = 0x2D1
         @INTEGER_ARRAY = Array.new(@NEGATIVE_MAX + @POSITIVE_MAX, nil)
@@ -37,19 +39,19 @@ class SmallIntegerSingletonFactory
     def getMin()
         minAllowed = self.getMinAllowed()
         if @MIN <= minAllowed
-            if J2MEUtil.isJ2ME()
-            elsif AndroidUtil.isAndroid()
-                logUtil = LogUtil.getInstance()
-                logUtil.putF(StringMaker.new().append("Android InputFactory was initialized before GameMidlet: ").appendint(@MIN).to_s, self, "getMin")
+            if ::Org::Allbinary::J2MEUtil.isJ2ME()
+            elsif ::Org::Allbinary::AndroidUtil.isAndroid()
+                logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+                logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Android InputFactory was initialized before GameMidlet: ").appendint(@MIN).to_s, self, "getMin")
                 self.initWithRange(0x291, 6)
             else
-                logUtil = LogUtil.getInstance()
-                logUtil.putF(StringMaker.new().append("InputFactory was initialized before GameMidlet or KeyFactoryInitializer - Currently this is occurs on JS build by TouchMotionGestureFactory constructor: ").appendint(@MIN).to_s, self, "getMin")
+                logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+                logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("InputFactory was initialized before GameMidlet or KeyFactoryInitializer - Currently this is occurs on JS build by TouchMotionGestureFactory constructor: ").appendint(@MIN).to_s, self, "getMin")
                 self.initWithRange(0x2D0, 6)
             end
         end
         if @MIN <= minAllowed
-            logUtil = LogUtil.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
             logUtil.put("This means you loaded the InputFactory before determining the platform input size requirements.", self, "getMin", StandardError.new())
         end
         return @MIN
@@ -57,10 +59,10 @@ class SmallIntegerSingletonFactory
     
 
     def getMinAllowed()
-        if J2MEUtil.isJ2ME()
+        if ::Org::Allbinary::J2MEUtil.isJ2ME()
             return 0
         else
-            if AndroidUtil.isAndroid()
+            if ::Org::Allbinary::AndroidUtil.isAndroid()
                 return 0x101
             else
                 return 23
@@ -102,7 +104,7 @@ class SmallIntegerSingletonFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_math_SmallIntegerSingletonFactory
         self.initWithRange(23, 0)
     end
     
@@ -168,14 +170,16 @@ class SmallIntegerSingletonFactory
     end
 end
 
-autoload :AndroidUtil, "org/allbinary/AndroidUtil"
-autoload :J2MEUtil, "org/allbinary/J2MEUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; autoload :AndroidUtil, "org/allbinary/AndroidUtil" unless const_defined?(:AndroidUtil, false); end; end
+module ::Org; module Allbinary; autoload :J2MEUtil, "org/allbinary/J2MEUtil" unless const_defined?(:J2MEUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
 begin
     SmallIntegerSingletonFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/paint/ColorFillBasePaintable"
+
+module ::Org; module Allbinary; module Game; module Paint
 
 class ColorFillPaintable < ColorFillBasePaintable
     attr_accessor :displayInfoSingleton
 
-    def initialize_fields
-        @displayInfoSingleton = DisplayInfoSingleton.getInstance()
+    def jfields_org_allbinary_game_paint_ColorFillPaintable
+        @displayInfoSingleton = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
     end
     
 
     def initialize(basicColor)
         super(basicColor)
-        initialize_fields
+        jfields_org_allbinary_game_paint_ColorFillPaintable
     end
     
 
@@ -34,9 +37,12 @@ class ColorFillPaintable < ColorFillBasePaintable
         graphics.setColor(@colorP)
         graphics.fillRect(0, 0, @displayInfoSingleton.getLastWidth(), @displayInfoSingleton.getLastHeight())
     end
+    java_overload :paint, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+
+end; end; end; end
 

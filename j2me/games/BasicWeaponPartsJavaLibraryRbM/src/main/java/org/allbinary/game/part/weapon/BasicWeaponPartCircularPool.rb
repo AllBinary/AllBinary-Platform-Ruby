@@ -16,15 +16,17 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Game; module Part; module Weapon
+
 class BasicWeaponPartCircularPool
     attr_accessor :basicWeaponPart
 
-    def initialize_fields
+    def jfields_org_allbinary_game_part_weapon_BasicWeaponPartCircularPool
         @basicWeaponPart = BasicWeaponPart::NULL_BASIC_WEAPON_PART
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_part_weapon_BasicWeaponPartCircularPool
     end
     
 
@@ -63,16 +65,18 @@ class BasicWeaponPartCircularPool
     end
 end
 
-autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties"
-autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface"
-autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :BasicWeaponPart, "org/allbinary/game/part/weapon/BasicWeaponPart"
-autoload :BasicWeaponPartFactoryInterface, "org/allbinary/game/part/weapon/BasicWeaponPartFactoryInterface"
+module ::Org; module Allbinary; module Game; module Combat; module Weapon; autoload :WeaponProperties, "org/allbinary/game/combat/weapon/WeaponProperties" unless const_defined?(:WeaponProperties, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :ScoreableInterface, "org/allbinary/game/score/ScoreableInterface" unless const_defined?(:ScoreableInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship" unless const_defined?(:RelativeRelationship, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :BasicWeaponPart, "org/allbinary/game/part/weapon/BasicWeaponPart" unless const_defined?(:BasicWeaponPart, false)
+autoload :BasicWeaponPartFactoryInterface, "org/allbinary/game/part/weapon/BasicWeaponPartFactoryInterface" unless const_defined?(:BasicWeaponPartFactoryInterface, false)
 
 begin
     BasicWeaponPartCircularPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

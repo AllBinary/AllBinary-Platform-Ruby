@@ -15,18 +15,20 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 class PlayerQueue
     attr_accessor :commonStrings, :list, :max
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @list = BasicArrayListD.new()
-        @max = nil
+    def jfields_org_allbinary_media_audio_PlayerQueue
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @max = nil unless instance_variable_defined?(:@max)
     end
     
 
     def initialize(max)
-        initialize_fields
+        jfields_org_allbinary_media_audio_PlayerQueue
         @max = max
     end
     
@@ -37,7 +39,7 @@ class PlayerQueue
                 @list.add(sound)
             end
         rescue StandardError => e
-            PreLogUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.ADD)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.ADD)
         end
     end
     
@@ -58,11 +60,11 @@ class PlayerQueue
             end
             return played
         rescue StandardError => e
-            resource = StringUtil.getInstance().EMPTY_STRING
+            resource = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
             if sound != nil
                 resource = sound.getResource()
             end
-            PreLogUtil.put(StringMaker.new().append(@commonStrings.EXCEPTION_LABEL).append(resource).to_s, self, @commonStrings.PROCESS)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@commonStrings.EXCEPTION_LABEL).append(resource).to_s, self, @commonStrings.PROCESS)
             return false
         end
     end
@@ -74,7 +76,7 @@ class PlayerQueue
     
 
     def toString()
-        return StringMaker.new().append(PlayerQueue::TOTAL).appendint(@list.size()).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(PlayerQueue::TOTAL).appendint(@list.size()).to_s
     end
     alias_method :to_s, :toString
 
@@ -99,18 +101,20 @@ class PlayerQueue
     end
 end
 
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :NoSound, "org/allbinary/media/audio/NoSound"
-autoload :Sound, "org/allbinary/media/audio/Sound"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :NoSound, "org/allbinary/media/audio/NoSound" unless const_defined?(:NoSound, false)
+autoload :Sound, "org/allbinary/media/audio/Sound" unless const_defined?(:Sound, false)
 
 begin
     PlayerQueue.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

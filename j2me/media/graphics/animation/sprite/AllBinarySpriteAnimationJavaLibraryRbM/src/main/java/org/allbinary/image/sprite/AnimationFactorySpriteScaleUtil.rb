@@ -15,19 +15,21 @@
 # package org.allbinary.image.sprite
 
 
+module ::Org; module Allbinary; module Image; module Sprite
+
 class AnimationFactorySpriteScaleUtil
     attr_accessor :imageCache, :imageScaleUtil, :openGLUtil, :j2seMath, :openGLESImageExclusionUtil
 
-    def initialize_fields
-        @imageCache = ImageCacheFactory.getInstance()
-        @imageScaleUtil = ImageScaleUtil.getInstance()
-        @openGLUtil = OpenGLUtil.getInstance()
-        @j2seMath = J2SEMath.getInstance()
-        @openGLESImageExclusionUtil = OpenGLESImageExclusionUtil.getInstance()
+    def jfields_org_allbinary_image_sprite_AnimationFactorySpriteScaleUtil
+        @imageCache = ::Org::Allbinary::Image::ImageCacheFactory.getInstance()
+        @imageScaleUtil = ::Org::Allbinary::Media::Image::ImageScaleUtil.getInstance()
+        @openGLUtil = ::Org::Allbinary::Graphics::Opengles::OpenGLUtil.getInstance()
+        @j2seMath = ::Org::Allbinary::Logic::MathPackage::J2SEMath.getInstance()
+        @openGLESImageExclusionUtil = ::Org::Allbinary::Image::Opengles::OpenGLESImageExclusionUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_image_sprite_AnimationFactorySpriteScaleUtil
     end
     
 
@@ -38,7 +40,7 @@ class AnimationFactorySpriteScaleUtil
 
     # throws Exception
     def createImage(image, width, height, scaleWidth, scaleHeight)
-        spriteFactory = SpriteFactory.getInstance()
+        spriteFactory = ::Org::Allbinary::Game::Layer::SpriteFactory.getInstance()
         sprite = nil
         scaledImage = nil
         if scaleWidth != 0 && scaleHeight != 0
@@ -105,23 +107,25 @@ class AnimationFactorySpriteScaleUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
-autoload :SpriteFactory, "org/allbinary/game/layer/SpriteFactory"
-autoload :OpenGLUtil, "org/allbinary/graphics/opengles/OpenGLUtil"
-autoload :ImageCache, "org/allbinary/image/ImageCache"
-autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory"
-autoload :OpenGLESImageExclusionUtil, "org/allbinary/image/opengles/OpenGLESImageExclusionUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :J2SEMath, "org/allbinary/logic/math/J2SEMath"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :ImageScaleUtil, "org/allbinary/media/image/ImageScaleUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; module Game; autoload :Sprite, "javax/microedition/lcdui/game/Sprite" unless const_defined?(:Sprite, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :SpriteFactory, "org/allbinary/game/layer/SpriteFactory" unless const_defined?(:SpriteFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLUtil, "org/allbinary/graphics/opengles/OpenGLUtil" unless const_defined?(:OpenGLUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Image; autoload :ImageCache, "org/allbinary/image/ImageCache" unless const_defined?(:ImageCache, false); end; end; end
+module ::Org; module Allbinary; module Image; autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory" unless const_defined?(:ImageCacheFactory, false); end; end; end
+module ::Org; module Allbinary; module Image; module Opengles; autoload :OpenGLESImageExclusionUtil, "org/allbinary/image/opengles/OpenGLESImageExclusionUtil" unless const_defined?(:OpenGLESImageExclusionUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :J2SEMath, "org/allbinary/logic/math/J2SEMath" unless const_defined?(:J2SEMath, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImageScaleUtil, "org/allbinary/media/image/ImageScaleUtil" unless const_defined?(:ImageScaleUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     AnimationFactorySpriteScaleUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

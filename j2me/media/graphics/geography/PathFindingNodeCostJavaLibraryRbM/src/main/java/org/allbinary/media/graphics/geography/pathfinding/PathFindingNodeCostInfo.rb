@@ -14,21 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.pathfinding
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding
 
 class PathFindingNodeCostInfo
     include Comparable
     attr_accessor :pathFindingNodeCostInfoData, :costFromStartP, :costToEndP, :totalCostP
 
-    def initialize_fields
+    def jfields_org_allbinary_media_graphics_geography_pathfinding_PathFindingNodeCostInfo
         @pathFindingNodeCostInfoData = PathFindingNodeCostInfoData.getInstance()
-        @costFromStartP = nil
-        @costToEndP = nil
-        @totalCostP = 0
+        @costFromStartP = nil unless instance_variable_defined?(:@costFromStartP)
+        @costToEndP = nil unless instance_variable_defined?(:@costToEndP)
+        @totalCostP = 0 unless instance_variable_defined?(:@totalCostP)
     end
     
 
     def initialize(costFromStart, costToGoal)
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_pathfinding_PathFindingNodeCostInfo
         @costFromStartP = costFromStart
         @costToEndP = costToGoal
         self.setCalculatedTotalCost()
@@ -38,11 +42,13 @@ class PathFindingNodeCostInfo
     def setCostToEnd(costToEnd)
         @costToEndP = costToEnd
     end
+    java_overload :setCostToEnd, 1
     
 
     def setTotalCost(totalCost)
         @totalCostP = totalCost
     end
+    java_overload :setTotalCost, 1
     
 
     # throws Exception
@@ -52,27 +58,36 @@ class PathFindingNodeCostInfo
             raise StandardError.new("Max Cost Exceeded")
         end
     end
+    java_overload :setCalculatedTotalCost, 0
     
 
     def setCostFromStart(cost)
         @costFromStartP = cost
     end
+    java_overload :setCostFromStart, 1
     
 
     def addCostFromStart(cost)
         @costFromStartP += cost
     end
+    java_overload :addCostFromStart, 1
     
 
     def compareTo(pathFindingNodeCostInfo)
-        return java.lang.Long.compare(@totalCostP, pathFindingNodeCostInfo.totalCostP)
+        if @totalCostP < pathFindingNodeCostInfo.totalCostP
+            return -1
+        elsif @totalCostP > pathFindingNodeCostInfo.totalCostP
+            return 1
+        end
+        return 0
     end
+    java_overload :compareTo, 1
     
 
     def toString()
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(self.class.name)
-        stringBuffer.append(CommonLabels.getInstance().COLON_SEP)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(self.class.java_name)
+        stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().COLON_SEP)
         stringBuffer.append("CostFromStart: ")
         stringBuffer.appendlong(@costFromStartP)
         stringBuffer.append(" CostToEnd: ")
@@ -81,10 +96,13 @@ class PathFindingNodeCostInfo
         stringBuffer.appendlong(@totalCostP)
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/media/graphics/geography/pathfinding/PathFindingNodeCostInfoData"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+autoload :PathFindingNodeCostInfoData, "org/allbinary/media/graphics/geography/pathfinding/PathFindingNodeCostInfoData" unless const_defined?(:PathFindingNodeCostInfoData, false)
+
+end; end; end; end; end; end
 

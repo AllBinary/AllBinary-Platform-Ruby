@@ -14,7 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.damage
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/game/combat/damage/DamageableInterface"
+
+module ::Org; module Allbinary; module Game; module Combat; module Damage
 
 class DamageableBaseBehavior
     include DamageableInterface
@@ -26,19 +30,22 @@ class DamageableBaseBehavior
     
 
     def getName()
-        return self.class.name
+        return self.class.java_name
     end
+    java_overload :getName, 0
     
 
     # throws Exception
     def damage(damage, damageType)
     end
+    java_overload :damage, 2
     
 
     # throws Exception
     def getDamage(damageType)
         return 6000
     end
+    java_overload :getDamage, 1
 
     def self.instance()
         DamageableBaseBehavior.java_static_fields unless @java_static_fields_started
@@ -76,4 +83,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

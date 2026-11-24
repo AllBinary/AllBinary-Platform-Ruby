@@ -15,14 +15,18 @@
 # package org.allbinary.game.ag.ai
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
 class DiveAndDirectionalTrackingAICompositeVisitorFactory
     
 
     def getInstance(diveBombAI)
-        return Visitor.getInstance()
+        return ::Org::Allbinary::Logic::Util::Visitor::Visitor.getInstance()
     end
 end
 
-autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
-autoload :DiveAndDirectionalTrackingAI, "org/allbinary/game/ag/ai/DiveAndDirectionalTrackingAI"
+module ::Org; module Allbinary; module Logic; module Util; module Visitor; autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor" unless const_defined?(:Visitor, false); end; end; end; end; end
+autoload :DiveAndDirectionalTrackingAI, "org/allbinary/game/ag/ai/DiveAndDirectionalTrackingAI" unless const_defined?(:DiveAndDirectionalTrackingAI, false)
+
+end; end; end; end; end
 

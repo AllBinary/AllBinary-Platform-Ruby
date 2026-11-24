@@ -15,16 +15,18 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class GameKeyMappingFactory
     attr_accessor :intKeyToGameKey
 
-    def initialize_fields
+    def jfields_org_allbinary_game_input_GameKeyMappingFactory
         @intKeyToGameKey = Array.new(InputFactory.getInstance().MAX, nil)
     end
     
 
     def self.getInstance()
-        if GameKeyMappingFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if GameKeyMappingFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             GameKeyMappingFactory.instance = GameKeyMappingFactory.new()
         end
         return GameKeyMappingFactory.instance
@@ -32,7 +34,7 @@ class GameKeyMappingFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_input_GameKeyMappingFactory
         gameKeyFactory = GameKeyFactory.getInstance()
         self.setGameKey(gameKeyFactory.NONE)
         self.setGameKey(gameKeyFactory.UP)
@@ -84,7 +86,7 @@ class GameKeyMappingFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -101,14 +103,16 @@ class GameKeyMappingFactory
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false)
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false)
+autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false)
 
 begin
     GameKeyMappingFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

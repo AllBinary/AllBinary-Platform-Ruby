@@ -15,10 +15,12 @@
 # package org.allbinary.logic.system.hardware.components
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components
+
 class ComponentFactory
     attr_accessor :VGA, :IDE, :SCSI, :BRIDGE, :ETHERNET, :USB, :MULTIMEDIA, :PCI, :RAID, :SMBUS, :PIC, :Class, :UNKNOWN
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_hardware_components_ComponentFactory
         @VGA = Component.new("VGA")
         @IDE = Component.new("IDE")
         @SCSI = Component.new("SCSI")
@@ -31,11 +33,11 @@ class ComponentFactory
         @SMBUS = Component.new("SMBus")
         @PIC = Component.new("PIC")
         @Class = Component.new("Class")
-        @UNKNOWN = Component.new(CommonStrings.getInstance().UNKNOWN)
+        @UNKNOWN = Component.new(::Org::Allbinary::StringPackage::CommonStrings.getInstance().UNKNOWN)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_system_hardware_components_ComponentFactory
     end
     
 
@@ -74,12 +76,14 @@ class ComponentFactory
     end
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Component, "org/allbinary/logic/system/hardware/components/Component"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :Component, "org/allbinary/logic/system/hardware/components/Component" unless const_defined?(:Component, false)
 
 begin
     ComponentFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

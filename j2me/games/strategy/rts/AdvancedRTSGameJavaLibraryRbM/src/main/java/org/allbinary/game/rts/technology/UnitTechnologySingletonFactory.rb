@@ -15,15 +15,17 @@
 # package org.allbinary.game.rts.technology
 
 
+module ::Org; module Allbinary; module Game; module Rts; module Technology
+
 class UnitTechnologySingletonFactory
     attr_accessor :damage, :health, :reload, :repair, :speed
 
-    def initialize_fields
-        @damage = 0
-        @health = 0
-        @reload = 0
-        @repair = 0
-        @speed = 0
+    def jfields_org_allbinary_game_rts_technology_UnitTechnologySingletonFactory
+        @damage = 0 unless instance_variable_defined?(:@damage)
+        @health = 0 unless instance_variable_defined?(:@health)
+        @reload = 0 unless instance_variable_defined?(:@reload)
+        @repair = 0 unless instance_variable_defined?(:@repair)
+        @speed = 0 unless instance_variable_defined?(:@speed)
     end
     
 
@@ -33,7 +35,7 @@ class UnitTechnologySingletonFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_rts_technology_UnitTechnologySingletonFactory
     end
     
 
@@ -96,15 +98,41 @@ class UnitTechnologySingletonFactory
     end
 
     def self.instance()
+        UnitTechnologySingletonFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        UnitTechnologySingletonFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = UnitTechnologySingletonFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UnitTechnologySingletonFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class UnitTechnologySingletonFactory
-    @@instance = UnitTechnologySingletonFactory.new()
+begin
+    UnitTechnologySingletonFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

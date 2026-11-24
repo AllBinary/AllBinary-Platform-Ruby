@@ -15,10 +15,12 @@
 # package org.allbinary.game.score.remote
 
 
+module ::Org; module Allbinary; module Game; module Score; module Remote
+
 class RemoteHighScoresData
     attr_accessor :HIGH_SCORES, :CUSTOMER_USER_NAME, :DISPLAY_NAME, :SCORE, :GAME_INFO, :GAME_CONFIGURATION
 
-    def initialize_fields
+    def jfields_org_allbinary_game_score_remote_RemoteHighScoresData
         @HIGH_SCORES = "HIGH_SCORES"
         @CUSTOMER_USER_NAME = "CUSTOMER_USER_NAME"
         @DISPLAY_NAME = "DISPLAY_NAME"
@@ -28,7 +30,7 @@ class RemoteHighScoresData
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_score_remote_RemoteHighScoresData
     end
     
 
@@ -62,4 +64,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

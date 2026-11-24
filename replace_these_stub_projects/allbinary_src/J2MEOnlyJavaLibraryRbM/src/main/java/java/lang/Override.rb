@@ -3,5 +3,9 @@
 # package java.lang
 
 
+module ::Java; module Lang
+
 "/* Otherwise - classOrInterfaceDeclaration - type - AnnotationDeclaration */"
+
+end; end
 

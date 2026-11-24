@@ -15,6 +15,8 @@
 # package org.allbinary.vector
 
 
+module ::Org; module Allbinary; module Vector
+
 module VectorInterface
     
 
@@ -29,4 +31,6 @@ module VectorInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

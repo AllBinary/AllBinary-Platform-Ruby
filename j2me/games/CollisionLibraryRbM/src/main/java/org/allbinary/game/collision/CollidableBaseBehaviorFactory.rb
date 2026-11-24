@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/collision/CollidableBaseBehaviorFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Collision
 
 class CollidableBaseBehaviorFactory
     include CollidableBaseBehaviorFactoryInterface
@@ -23,7 +26,10 @@ class CollidableBaseBehaviorFactory
     def createBehavior()
         raise RuntimeError.new()
     end
+    java_overload :createBehavior, 0
 end
 
-autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior" unless const_defined?(:CollidableBaseBehavior, false)
+
+end; end; end; end
 

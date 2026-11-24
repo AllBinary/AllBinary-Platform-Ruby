@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/special/CollidableDestroyableDamageableBehavior"
 
-class CollidableRTSBehavior < CollidableDestroyableDamageableBehavior
+module ::Org; module Allbinary; module Game; module Layer
+
+class CollidableRTSBehavior < ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableBehavior
     
 
     def initialize(collidable)
@@ -25,11 +28,11 @@ class CollidableRTSBehavior < CollidableDestroyableDamageableBehavior
     
 
     def isCollision(ownerLayer, collidableInterfaceCompositeInterface)
-        collisionTypeFactory = CollisionTypeFactory.getInstance()
+        collisionTypeFactory = ::Org::Allbinary::Game::Collision::CollisionTypeFactory.getInstance()
         collisionType = collidableInterfaceCompositeInterface.getCollidableInferface().getCollisionTypeWith(ownerLayer)
         if collisionType == collisionTypeFactory.PICKUP
         elsif collisionType == collisionTypeFactory.COLLISION
-            return super(ownerLayer, collidableInterfaceCompositeInterface)
+            return CollidableRTSBehavior.superclass.java_super_method(:isCollision, 2).bind(self).call(ownerLayer, collidableInterfaceCompositeInterface)
         else
             if collidableInterfaceCompositeInterface.getX2() <= ownerLayer.getXP() || collidableInterfaceCompositeInterface.getY2() <= ownerLayer.getYP() || collidableInterfaceCompositeInterface.getYP() >= ownerLayer.getY2() || collidableInterfaceCompositeInterface.getXP() >= ownerLayer.getX2()
                 return false
@@ -39,27 +42,32 @@ class CollidableRTSBehavior < CollidableDestroyableDamageableBehavior
         end
         return false
     end
+    java_overload :isCollision, 2
     
 
     # throws Exception
     def collide(ownerLayer, collidableInterfaceCompositeInterface)
-        collisionTypeFactory = CollisionTypeFactory.getInstance()
+        collisionTypeFactory = ::Org::Allbinary::Game::Collision::CollisionTypeFactory.getInstance()
         collisionType = collidableInterfaceCompositeInterface.getCollidableInferface().getCollisionTypeWith(ownerLayer)
         if collisionType == collisionTypeFactory.PICKUP
         elsif collisionType == collisionTypeFactory.COLLISION
-            super(ownerLayer, collidableInterfaceCompositeInterface)
+            CollidableRTSBehavior.superclass.java_super_method(:collide, 2).bind(self).call(ownerLayer, collidableInterfaceCompositeInterface)
         else
             self.collideNone(ownerLayer, collidableInterfaceCompositeInterface)
         end
     end
+    java_overload :collide, 2
     
 
     # throws Exception
     def collideNone(ownerLayer, collidableInterface)
     end
+    java_overload :collideNone, 2
 end
 
-require "org/allbinary/game/collision/CollisionType"
-require "org/allbinary/game/collision/CollisionTypeFactory"
-require "org/allbinary/game/layer/CollidableCompositeLayer"
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollisionType, "org/allbinary/game/collision/CollisionType" unless const_defined?(:CollisionType, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory" unless const_defined?(:CollisionTypeFactory, false); end; end; end; end
+autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false)
+
+end; end; end; end
 

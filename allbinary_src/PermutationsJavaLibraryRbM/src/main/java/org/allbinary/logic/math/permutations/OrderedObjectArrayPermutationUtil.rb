@@ -14,12 +14,15 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.math.permutations
 
+require "java/lang/Object"
 # require "java/util/Arrays"
+
+module ::Org; module Allbinary; module Logic; module MathPackage; module Permutations
 
 class OrderedObjectArrayPermutationUtil
     attr_accessor :TOTAL_ITERATIONS_TABLE, :FINISHED
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_math_permutations_OrderedObjectArrayPermutationUtil
         @TOTAL_ITERATIONS_TABLE = "Total Iterations: "
         @FINISHED = "\nFINISHED"
     end
@@ -31,14 +34,14 @@ class OrderedObjectArrayPermutationUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_math_permutations_OrderedObjectArrayPermutationUtil
     end
     
 
     def getNext(data)
         length = data.length
         i = length - 1
-        tsUtil = TsUtil.getInstance()
+        tsUtil = ::Org::Allbinary::TsUtil.getInstance()
         while tsUtil.hashCode(data[i - 1]) >= tsUtil.hashCode(data[i])
             i = i - 1
         end
@@ -132,10 +135,10 @@ class OrderedObjectArrayPermutationUtil
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor"
-autoload :ComparableObject, "org/allbinary/logic/math/permutations/ComparableObject"
-autoload :ObjectPermutationVisitor, "org/allbinary/logic/math/permutations/ObjectPermutationVisitor"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Util; module Visitor; autoload :Visitor, "org/allbinary/logic/util/visitor/Visitor" unless const_defined?(:Visitor, false); end; end; end; end; end
+autoload :ComparableObject, "org/allbinary/logic/math/permutations/ComparableObject" unless const_defined?(:ComparableObject, false)
+autoload :ObjectPermutationVisitor, "org/allbinary/logic/math/permutations/ObjectPermutationVisitor" unless const_defined?(:ObjectPermutationVisitor, false)
 require "java/lang/System"
 
 begin
@@ -143,4 +146,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

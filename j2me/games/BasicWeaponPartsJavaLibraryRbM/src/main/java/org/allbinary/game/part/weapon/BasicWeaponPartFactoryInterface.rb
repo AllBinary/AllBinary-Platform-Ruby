@@ -15,6 +15,8 @@
 # package org.allbinary.game.part.weapon
 
 
+module ::Org; module Allbinary; module Game; module Part; module Weapon
+
 module BasicWeaponPartFactoryInterface
     
 
@@ -25,5 +27,7 @@ module BasicWeaponPartFactoryInterface
     end
 end
 
-autoload :BasicWeaponPart, "org/allbinary/game/part/weapon/BasicWeaponPart"
+autoload :BasicWeaponPart, "org/allbinary/game/part/weapon/BasicWeaponPart" unless const_defined?(:BasicWeaponPart, false)
+
+end; end; end; end; end
 

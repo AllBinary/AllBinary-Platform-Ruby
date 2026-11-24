@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/audio/Sound"
+
+module ::Org; module Allbinary; module Media; module Audio
 
 class CompositeSound < Sound
     
@@ -28,8 +31,11 @@ class CompositeSound < Sound
     def init()
         self.setPlayerP(PlayerComposite.new(AllBinaryMediaManager.createPlayer(self.getResource()), 570))
     end
+    java_overload :init, 0
 end
 
-autoload :AllBinaryMediaManager, "org/allbinary/media/audio/AllBinaryMediaManager"
-autoload :PlayerComposite, "org/allbinary/media/audio/PlayerComposite"
+autoload :AllBinaryMediaManager, "org/allbinary/media/audio/AllBinaryMediaManager" unless const_defined?(:AllBinaryMediaManager, false)
+autoload :PlayerComposite, "org/allbinary/media/audio/PlayerComposite" unless const_defined?(:PlayerComposite, false)
+
+end; end; end; end
 

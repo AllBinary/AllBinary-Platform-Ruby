@@ -16,13 +16,15 @@
 
 # require "java/awt/image/BufferedImage"
 
+module ::Org; module Allbinary; module Media; module Image
+
 class SpriteSplitterUtil
     attr_accessor :logUtil, :commonSeps, :commonStrings, :ANIMATIONS_LABELS, :DIRECTIONAL_ANIMATIONS, :HORIZONTAL_ANIMATIONS, :HORIZONTAL_SPRITE, :ROW_NAME, :_ROW
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonSeps = CommonSeps.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_media_image_SpriteSplitterUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @ANIMATIONS_LABELS = ["Row Total:", "Column Total:", "Column Total:", "Row Total:", "Column Total:", "Row Total:"]
         @DIRECTIONAL_ANIMATIONS = "Directional DLRU"
         @HORIZONTAL_ANIMATIONS = "Horizontal Animations"
@@ -32,7 +34,7 @@ class SpriteSplitterUtil
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_SpriteSplitterUtil
     end
     
 
@@ -69,7 +71,7 @@ class SpriteSplitterUtil
                         if increaseWidth != 0 || increaseHeight != 0
                             generatedBufferedImageArray[index2][index3] = imageUtil.createBufferedImageAllowTranslate(generatedBufferedImageArray[index2][index3], cellWidth + increaseWidth, cellHeight + increaseHeight, false, true)
                         end
-                        nameEnding = StringMaker.new().appendint(index2).append(@commonSeps.UNDERSCORE).appendint(index3).to_s
+                        nameEnding = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().appendint(index2).append(@commonSeps.UNDERSCORE).appendint(index3).to_s
                         visitor.visit(generatedBufferedImageArray[index2][index3], nameEnding, index)
                     end
                 end
@@ -84,7 +86,7 @@ class SpriteSplitterUtil
                     tempBufferedImageArray = Array.new(columns, nil)
                     (0...columns).each do |index3|
                         tempBufferedImageArray[index3] = generatedBufferedImageArray[index2][index3]
-                        nameEnding = StringMaker.new().appendint(index2).append(@commonSeps.UNDERSCORE).appendint(1).append(@_ROW).to_s
+                        nameEnding = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().appendint(index2).append(@commonSeps.UNDERSCORE).appendint(1).append(@_ROW).to_s
                     end
                     generatedBufferedImage = ImageUnifierUtil.getInstance().getImage(tempBufferedImageArray, imageUnifierProperties)
                     visitor.visit(generatedBufferedImage, nameEnding, index)
@@ -109,7 +111,7 @@ class SpriteSplitterUtil
                         if increaseWidth != 0 || increaseHeight != 0
                             generatedBufferedImageArray[index2][index3] = ImageUtil.getInstance().createBufferedImageAllowTranslate(generatedBufferedImageArray[index2][index3], cellWidth + increaseWidth, cellHeight + increaseHeight, false, true)
                         end
-                        nameEnding = StringMaker.new().append(@commonStrings.DIRECTION_NAME[index2]).append(@commonSeps.UNDERSCORE).appendint(index3).to_s
+                        nameEnding = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@commonStrings.DIRECTION_NAME[index2]).append(@commonSeps.UNDERSCORE).appendint(index3).to_s
                         visitor.visit(generatedBufferedImageArray[index2][index3], nameEnding, index)
                     end
                 end
@@ -124,7 +126,7 @@ class SpriteSplitterUtil
                     tempBufferedImageArray = Array.new(columns, nil)
                     (0...columns).each do |index3|
                         tempBufferedImageArray[index3] = generatedBufferedImageArray[index2][index3]
-                        nameEnding = StringMaker.new().append(@commonStrings.DIRECTION_NAME[index2]).append(@commonSeps.UNDERSCORE).appendint(1).append(@_ROW).to_s
+                        nameEnding = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@commonStrings.DIRECTION_NAME[index2]).append(@commonSeps.UNDERSCORE).appendint(1).append(@_ROW).to_s
                     end
                     generatedBufferedImage = ImageUnifierUtil.getInstance().getImage(tempBufferedImageArray, imageUnifierProperties)
                     visitor.visit(generatedBufferedImage, nameEnding, index)
@@ -164,20 +166,22 @@ class SpriteSplitterUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ImageProcessedVisitor, "org/allbinary/media/image/ImageProcessedVisitor"
-autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput"
-autoload :ImageUnifierCell, "org/allbinary/media/image/ImageUnifierCell"
-autoload :ImageUnifierProperties, "org/allbinary/media/image/ImageUnifierProperties"
-autoload :ImageUnifierUtil, "org/allbinary/media/image/ImageUnifierUtil"
-autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :ImageProcessedVisitor, "org/allbinary/media/image/ImageProcessedVisitor" unless const_defined?(:ImageProcessedVisitor, false)
+autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput" unless const_defined?(:ImageProcessorInput, false)
+autoload :ImageUnifierCell, "org/allbinary/media/image/ImageUnifierCell" unless const_defined?(:ImageUnifierCell, false)
+autoload :ImageUnifierProperties, "org/allbinary/media/image/ImageUnifierProperties" unless const_defined?(:ImageUnifierProperties, false)
+autoload :ImageUnifierUtil, "org/allbinary/media/image/ImageUnifierUtil" unless const_defined?(:ImageUnifierUtil, false)
+autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false)
 
 begin
     SpriteSplitterUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

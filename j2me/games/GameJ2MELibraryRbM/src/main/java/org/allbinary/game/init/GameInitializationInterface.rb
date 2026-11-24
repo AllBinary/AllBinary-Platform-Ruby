@@ -15,6 +15,8 @@
 # package org.allbinary.game.init
 
 
+module ::Org; module Allbinary; module Game; module Init
+
 module GameInitializationInterface
     
 
@@ -25,6 +27,8 @@ module GameInitializationInterface
     end
 end
 
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+
+end; end; end; end
 

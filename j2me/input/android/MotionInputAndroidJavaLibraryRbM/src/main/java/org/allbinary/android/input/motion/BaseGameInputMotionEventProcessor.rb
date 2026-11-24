@@ -14,38 +14,45 @@
 # frozen_string_literal: false
 # package org.allbinary.android.input.motion
 
+require "java/lang/JavaOverload"
 require "org/allbinary/android/input/motion/MotionEventProcessor"
+
+module ::Org; module Allbinary; module Android; module Input; module Motion
 
 class BaseGameInputMotionEventProcessor < MotionEventProcessor
     attr_accessor :commonStrings, :gameMotionGestureListener
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @gameMotionGestureListener = nil
+    def jfields_org_allbinary_android_input_motion_BaseGameInputMotionEventProcessor
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @gameMotionGestureListener = nil unless instance_variable_defined?(:@gameMotionGestureListener)
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        @gameMotionGestureListener = GameMotionGestureListener.new(MotionGestureReceiveInterfaceFactory.getInstance())
+        jfields_org_allbinary_android_input_motion_BaseGameInputMotionEventProcessor
+        @gameMotionGestureListener = ::Org::Allbinary::Input::Motion::Gesture::Observer::GameMotionGestureListener.new(::Org::Allbinary::Input::Motion::Gesture::Observer::MotionGestureReceiveInterfaceFactory.getInstance())
         self.addListener()
     end
     
 
     def process(motionEvent)
     end
+    java_overload :process, 1
     
 
     def addListener()
-        motionGesturesHandler = BasicMotionGesturesHandler.getInstance()
+        motionGesturesHandler = ::Org::Allbinary::Input::Motion::Gesture::Observer::BasicMotionGesturesHandler.getInstance()
         motionGesturesHandler.addListenerInterface(@gameMotionGestureListener)
     end
+    java_overload :addListener, 0
 end
 
-require "android/view/MotionEvent"
-require "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler"
-require "org/allbinary/input/motion/gesture/observer/GameMotionGestureListener"
-require "org/allbinary/input/motion/gesture/observer/MotionGestureReceiveInterfaceFactory"
-require "org/allbinary/string/CommonStrings"
+module ::Android; module View; autoload :MotionEvent, "android/view/MotionEvent" unless const_defined?(:MotionEvent, false); end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler" unless const_defined?(:BasicMotionGesturesHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :GameMotionGestureListener, "org/allbinary/input/motion/gesture/observer/GameMotionGestureListener" unless const_defined?(:GameMotionGestureListener, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :MotionGestureReceiveInterfaceFactory, "org/allbinary/input/motion/gesture/observer/MotionGestureReceiveInterfaceFactory" unless const_defined?(:MotionGestureReceiveInterfaceFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end
 

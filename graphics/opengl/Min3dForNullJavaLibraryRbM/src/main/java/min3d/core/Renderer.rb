@@ -14,24 +14,32 @@
 # frozen_string_literal: false
 # package min3d.core
 
-# require "javax/microedition/khronos/egl/EGLConfig"
-# require "javax/microedition/khronos/opengles/GL10"
+
+module ::Min3d; module Core
 
 module Renderer
     
 
     def onSurfaceCreated(gl, config)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onSurfaceChanged(gl, width, height)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onDrawFrame(gl)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+module ::Javax; module Microedition; module Khronos; module Egl; autoload :EGLConfig, "javax/microedition/khronos/egl/EGLConfig" unless const_defined?(:EGLConfig, false); end; end; end; end
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+
+end; end
 

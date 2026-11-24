@@ -14,8 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 # require "java/util/Set"
 require "org/allbinary/logic/util/cache/AutomaticCacheInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Cache
 
 module J2SECacheInterface
     include AutomaticCacheInterface
@@ -25,5 +28,8 @@ module J2SECacheInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :keySet, 0
 end
+
+end; end; end; end; end
 

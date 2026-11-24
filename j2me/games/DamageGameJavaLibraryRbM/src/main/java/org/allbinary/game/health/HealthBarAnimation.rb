@@ -14,26 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.game.health
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/Animation"
 
-class HealthBarAnimation < Animation
+module ::Org; module Allbinary; module Game; module Health
+
+class HealthBarAnimation < ::Org::Allbinary::Animation::Animation
     attr_accessor :basicColorFactory, :x2, :thickness, :location, :allbinaryLayer
 
-    def initialize_fields
-        @basicColorFactory = BasicColorFactory.getInstance()
-        @x2 = 0
-        @thickness = 0
-        @location = nil
-        @allbinaryLayer = nil
+    def jfields_org_allbinary_game_health_HealthBarAnimation
+        @basicColorFactory = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance()
+        @x2 = 0 unless instance_variable_defined?(:@x2)
+        @thickness = 0 unless instance_variable_defined?(:@thickness)
+        @location = nil unless instance_variable_defined?(:@location)
+        @allbinaryLayer = nil unless instance_variable_defined?(:@allbinaryLayer)
     end
     
 
     def initialize(layerInterface, location)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_health_HealthBarAnimation
         @allbinaryLayer = layerInterface
         @location = location
-        basicHudFactory = BasicHudFactory.getInstance()
+        basicHudFactory = ::Org::Allbinary::Game::Graphics::Hud::BasicHudFactory.getInstance()
         if @location != basicHudFactory.TOPLEFT && @location != basicHudFactory.BOTTOMLEFT
             raise StandardError.new("Location Not Valid")
         end
@@ -64,10 +67,11 @@ class HealthBarAnimation < Animation
             @colorP = @basicColor.to_i
         end
     end
+    java_overload :onHealthChange, 1
     
 
     def getY()
-        basicHudFactory = BasicHudFactory.getInstance()
+        basicHudFactory = ::Org::Allbinary::Game::Graphics::Hud::BasicHudFactory.getInstance()
         if @location == basicHudFactory.TOPLEFT
             return @allbinaryLayer.getViewPosition().getY() - 4
         elsif @location == basicHudFactory.BOTTOMLEFT
@@ -75,9 +79,12 @@ class HealthBarAnimation < Animation
         end
         return -1
     end
+    java_overload :getY, 0
 end
 
-autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+module ::Org; module Allbinary; module Game; module Graphics; module Hud; autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory" unless const_defined?(:BasicHudFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+
+end; end; end; end
 

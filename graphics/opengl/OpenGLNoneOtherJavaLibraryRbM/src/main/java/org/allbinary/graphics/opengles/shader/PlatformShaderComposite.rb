@@ -14,20 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/opengles/shader/ShaderComposite"
+
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
 
 class PlatformShaderComposite < ShaderComposite
     
 
     def initialize(requiresOpenGLVersion, shaderArray, compositeShaderUpdater, shaderInitializer, modelViewProjection, colorOpenGLProcessor, vertexOpenGLProcessor)
-        super(requiresOpenGLVersion, shaderArray, compositeShaderUpdater, shaderInitializer, modelViewProjection, colorOpenGLProcessor, vertexOpenGLProcessor, NullOpenGLProcessorFactory.getInstance())
+        super(requiresOpenGLVersion, shaderArray, compositeShaderUpdater, shaderInitializer, modelViewProjection, colorOpenGLProcessor, vertexOpenGLProcessor, ::Org::Allbinary::Graphics::Opengles::NullOpenGLProcessorFactory.getInstance())
     end
 end
 
-autoload :NullOpenGLProcessorFactory, "org/allbinary/graphics/opengles/NullOpenGLProcessorFactory"
-autoload :OpenGLProcessor, "org/allbinary/graphics/opengles/OpenGLProcessor"
-autoload :CompositeShaderUpdater, "org/allbinary/graphics/opengles/shader/CompositeShaderUpdater"
-autoload :ModelViewProjection, "org/allbinary/graphics/opengles/shader/ModelViewProjection"
-autoload :Shader, "org/allbinary/graphics/opengles/shader/Shader"
-autoload :ShaderInitializer, "org/allbinary/graphics/opengles/shader/ShaderInitializer"
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :NullOpenGLProcessorFactory, "org/allbinary/graphics/opengles/NullOpenGLProcessorFactory" unless const_defined?(:NullOpenGLProcessorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLProcessor, "org/allbinary/graphics/opengles/OpenGLProcessor" unless const_defined?(:OpenGLProcessor, false); end; end; end; end
+autoload :CompositeShaderUpdater, "org/allbinary/graphics/opengles/shader/CompositeShaderUpdater" unless const_defined?(:CompositeShaderUpdater, false)
+autoload :ModelViewProjection, "org/allbinary/graphics/opengles/shader/ModelViewProjection" unless const_defined?(:ModelViewProjection, false)
+autoload :Shader, "org/allbinary/graphics/opengles/shader/Shader" unless const_defined?(:Shader, false)
+autoload :ShaderInitializer, "org/allbinary/graphics/opengles/shader/ShaderInitializer" unless const_defined?(:ShaderInitializer, false)
+
+end; end; end; end; end
 

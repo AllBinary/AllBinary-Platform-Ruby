@@ -15,10 +15,12 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 class GameStrings
     attr_accessor :PROCESS_TICK, :ON_GAME_INITIALIZED, :UPDATESURFACE, :ON_SET_DISPLAYABLE, :UNPAUSE, :TOGGLE_MENU, :SET_GAME_OVER, :GAME_STATE, :SET_GAME_STATE, :STOP_GAME_CANVAS_RUNNABLE_INTERFACE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_GameStrings
         @PROCESS_TICK = "processTick"
         @ON_GAME_INITIALIZED = "onGameInitialized"
         @UPDATESURFACE = "updateSurface"
@@ -32,7 +34,7 @@ class GameStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_GameStrings
     end
     
 
@@ -76,4 +78,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

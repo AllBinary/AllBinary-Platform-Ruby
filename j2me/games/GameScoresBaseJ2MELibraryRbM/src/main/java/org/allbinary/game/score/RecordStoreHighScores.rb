@@ -15,29 +15,33 @@
 # package org.allbinary.game.score
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 # require "java/io/EOFException"
 # require "java/io/IOException"
 require "org/allbinary/game/score/HighScores"
 
+module ::Org; module Allbinary; module Game; module Score
+
 class RecordStoreHighScores < HighScores
     attr_accessor :logUtil, :commonStrings, :platformRecordIdUtil, :tsUtil, :RECORD_ID, :MAXHIGHSCORES, :gameInfo, :abeClientInformation, :recordComparatorInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @platformRecordIdUtil = PlatformRecordIdUtil.getInstance()
-        @tsUtil = TsUtil.getInstance()
+    def jfields_org_allbinary_game_score_RecordStoreHighScores
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @platformRecordIdUtil = ::Org::Allbinary::Persistance::PlatformRecordIdUtil.getInstance()
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
         @RECORD_ID = "_HS"
         @MAXHIGHSCORES = 100
-        @gameInfo = nil
-        @abeClientInformation = nil
-        @recordComparatorInterface = nil
+        @gameInfo = nil unless instance_variable_defined?(:@gameInfo)
+        @abeClientInformation = nil unless instance_variable_defined?(:@abeClientInformation)
+        @recordComparatorInterface = nil unless instance_variable_defined?(:@recordComparatorInterface)
     end
     
 
     def initialize(abeClientInformation, gameInfo, name, heading, columnTwoHeading, recordComparatorInterface)
         super(name, heading, columnTwoHeading)
-        initialize_fields
+        jfields_org_allbinary_game_score_RecordStoreHighScores
         @abeClientInformation = abeClientInformation
         @gameInfo = gameInfo
         @recordComparatorInterface = recordComparatorInterface
@@ -59,24 +63,25 @@ class RecordStoreHighScores < HighScores
     
 
     def getRecordId(abeClientInformation)
-        return @platformRecordIdUtil.getRecordId(abeClientInformation, StringMaker.new().append(CommonSeps.getInstance().UNDERSCORE).append(self.getName()).append(@RECORD_ID).to_s)
+        return @platformRecordIdUtil.getRecordId(abeClientInformation, ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().UNDERSCORE).append(self.getName()).append(@RECORD_ID).to_s)
     end
+    java_overload :getRecordId, 1
     
 
     def addHighScore(newHighScore)
         java_monitor.synchronize do
-        recordStore = NullRecordStore::NULL_RECORD_STORE
+        recordStore = ::Org::Allbinary::Game::Configuration::Persistance::NullRecordStore::NULL_RECORD_STORE
         begin
-            @logUtil.putF(StringMaker.new().append("Adding HighScore: ").appendlong((newHighScore.getScore()).to_i).to_s, self, @commonStrings.ADD)
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Adding HighScore: ").appendlong(((newHighScore.getScore()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s, self, @commonStrings.ADD)
             if self.isTooManyHighScores()
                 @logUtil.putF("Removing Lowest Score", self, @commonStrings.ADD)
                 self.removeLowestHighScore()
             end
-            recordStore = RecordStore.openRecordStore(self.getRecordId(@abeClientInformation), true)
+            recordStore = ::Javax::Microedition::Rms::RecordStore.openRecordStore(self.getRecordId(@abeClientInformation), true)
             highScoreBytes = newHighScore.getAsBytes()
             recordId = recordStore.addRecord(highScoreBytes, 0, highScoreBytes.length)
             self.load()
-        rescue RecordStoreException => e
+        rescue ::Javax::Microedition::Rms::RecordStoreException => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.ADD, e)
         rescue IOError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.ADD, e)
@@ -85,24 +90,25 @@ class RecordStoreHighScores < HighScores
         ensure
             begin
                 if recordStore != nil
-                    PreLogUtil.put("Closing RecordStore", self, @commonStrings.ADD)
+                    ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Closing RecordStore", self, @commonStrings.ADD)
                     recordStore.closeRecordStore()
                 end
-            rescue RecordStoreException => e
+            rescue ::Javax::Microedition::Rms::RecordStoreException => e
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.ADD, e)
             end
         end
         end
     end
+    java_overload :addHighScore, 1
     
 
     def removeLowestHighScore()
-        recordStore = NullRecordStore::NULL_RECORD_STORE
+        recordStore = ::Org::Allbinary::Game::Configuration::Persistance::NullRecordStore::NULL_RECORD_STORE
         begin
-            recordStore = RecordStore.openRecordStore(self.getRecordId(@abeClientInformation), true)
-            recordEnum = recordStore.enumerateRecords(NullRecordFilter::NULL_RECORD_FILTER, NullRecordComparator::NULL_RECORD_COMPARATOR, true)
+            recordStore = ::Javax::Microedition::Rms::RecordStore.openRecordStore(self.getRecordId(@abeClientInformation), true)
+            recordEnum = recordStore.enumerateRecords(::Org::Allbinary::Game::Configuration::Persistance::NullRecordFilter::NULL_RECORD_FILTER, ::Org::Allbinary::Game::Configuration::Persistance::NullRecordComparator::NULL_RECORD_COMPARATOR, true)
             scoreComparator = (@recordComparatorInterface)
-            bestHighScore = HighScore.new(-1, "none", GameInfo::NONE, scoreComparator.getBestScore())
+            bestHighScore = HighScore.new(-1, "none", ::Org::Allbinary::Game::GameInfo::NONE, scoreComparator.getBestScore())
             recordAsBytes = nil
             byteArrayInputStream = nil
             inputStream = nil
@@ -110,43 +116,44 @@ class RecordStoreHighScores < HighScores
                 id = recordEnum.nextRecordId()
                 recordAsBytes = @tsUtil.getRecord(recordStore, id)
                 if recordAsBytes != nil
-                    byteArrayInputStream = ByteArrayInputStream.new(recordAsBytes)
-                    inputStream = DataInputStream.new(byteArrayInputStream)
+                    byteArrayInputStream = ::Java::Io::ByteArrayInputStream.new(recordAsBytes)
+                    inputStream = ::Java::Io::DataInputStream.new(byteArrayInputStream)
                     name = inputStream.readUTF()
                     nextScore = inputStream.readLong()
-                    nextCurrentHighScore = HighScore.new(id, name, GameInfo::NONE, nextScore)
-                    if @recordComparatorInterface.compare(nextCurrentHighScore.getAsBytes(), bestHighScore.getAsBytes()) == RecordComparator::FOLLOWS
+                    nextCurrentHighScore = HighScore.new(id, name, ::Org::Allbinary::Game::GameInfo::NONE, nextScore)
+                    if @recordComparatorInterface.compare(nextCurrentHighScore.getAsBytes(), bestHighScore.getAsBytes()) == ::Javax::Microedition::Rms::RecordComparator::FOLLOWS
                         bestHighScore = nextCurrentHighScore
                     end
                 end
             end
             if bestHighScore.getId() != -1
-                @logUtil.putF(StringMaker.new().append("Removing Lowest HighScore: ").appendlong((bestHighScore.getScore()).to_i).to_s, self, @commonStrings.LOAD)
+                @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Removing Lowest HighScore: ").appendlong(((bestHighScore.getScore()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s, self, @commonStrings.LOAD)
                 recordStore.deleteRecord(bestHighScore.getId())
             end
-        rescue RecordStoreException => e
+        rescue ::Javax::Microedition::Rms::RecordStoreException => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "removeLowestHighScore", e)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "removeLowestHighScore", e)
         ensure
             begin
                 if recordStore != nil
-                    PreLogUtil.put("Closing RecordStore", self, "removeLowestHighScore")
+                    ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Closing RecordStore", self, "removeLowestHighScore")
                     recordStore.closeRecordStore()
                 end
-            rescue RecordStoreException => e
+            rescue ::Javax::Microedition::Rms::RecordStoreException => e
                 @logUtil.put(@commonStrings.EXCEPTION, self, "removeLowestHighScore", e)
             end
         end
     end
+    java_overload :removeLowestHighScore, 0
     
 
     def load()
-        recordStore = NullRecordStore::NULL_RECORD_STORE
+        recordStore = ::Org::Allbinary::Game::Configuration::Persistance::NullRecordStore::NULL_RECORD_STORE
         begin
-            recordStore = RecordStore.openRecordStore(self.getRecordId(@abeClientInformation), true)
-            self.setList(BasicArrayListD.new())
-            recordEnum = recordStore.enumerateRecords(NullRecordFilter::NULL_RECORD_FILTER, NullRecordComparator::NULL_RECORD_COMPARATOR, true)
+            recordStore = ::Javax::Microedition::Rms::RecordStore.openRecordStore(self.getRecordId(@abeClientInformation), true)
+            self.setList(::Org::Allbinary::Util::BasicArrayListD.new())
+            recordEnum = recordStore.enumerateRecords(::Org::Allbinary::Game::Configuration::Persistance::NullRecordFilter::NULL_RECORD_FILTER, ::Org::Allbinary::Game::Configuration::Persistance::NullRecordComparator::NULL_RECORD_COMPARATOR, true)
             recordAsBytes = nil
             byteArrayInputStream = nil
             inputStream = nil
@@ -154,18 +161,18 @@ class RecordStoreHighScores < HighScores
                 id = recordEnum.nextRecordId()
                 recordAsBytes = @tsUtil.getRecord(recordStore, id)
                 if recordAsBytes != nil
-                    byteArrayInputStream = ByteArrayInputStream.new(recordAsBytes)
-                    inputStream = DataInputStream.new(byteArrayInputStream)
+                    byteArrayInputStream = ::Java::Io::ByteArrayInputStream.new(recordAsBytes)
+                    inputStream = ::Java::Io::DataInputStream.new(byteArrayInputStream)
                     begin
                         name = inputStream.readUTF()
                         score = inputStream.readLong()
-                        newHighScore = HighScore.new(id, name, GameInfo::NONE, score)
+                        newHighScore = HighScore.new(id, name, ::Org::Allbinary::Game::GameInfo::NONE, score)
                         list = self.getList()
                         size = list.size()
                         lastIndex = size
                         (0...size).each do |index|
                             highScore = list.objectArray[index]
-                            if @recordComparatorInterface.compare(newHighScore.getAsBytes(), highScore.getAsBytes()) == RecordComparator::PRECEDES
+                            if @recordComparatorInterface.compare(newHighScore.getAsBytes(), highScore.getAsBytes()) == ::Javax::Microedition::Rms::RecordComparator::PRECEDES
                                 lastIndex = index
                                 break
                             end
@@ -177,9 +184,9 @@ class RecordStoreHighScores < HighScores
                     end
                 end
             end
-        rescue RecordStoreNotFoundException => e
+        rescue ::Javax::Microedition::Rms::RecordStoreNotFoundException => e
             @logUtil.put("No High Scores", self, @commonStrings.LOAD, e)
-        rescue RecordStoreException => e
+        rescue ::Javax::Microedition::Rms::RecordStoreException => e
             @logUtil.put(@commonStrings.UNKNOWN, self, @commonStrings.LOAD, e)
         rescue IOError => e
             @logUtil.put(@commonStrings.UNKNOWN, self, @commonStrings.LOAD, e)
@@ -188,24 +195,26 @@ class RecordStoreHighScores < HighScores
         ensure
             begin
                 if recordStore != nil
-                    PreLogUtil.put("Closing RecordStore", self, @commonStrings.LOAD)
+                    ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Closing RecordStore", self, @commonStrings.LOAD)
                     recordStore.closeRecordStore()
                 end
-            rescue RecordStoreException => e
+            rescue ::Javax::Microedition::Rms::RecordStoreException => e
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.LOAD, e)
             end
         end
     end
+    java_overload :load, 0
     
 
     def isTooManyHighScores()
         if self.getList() != nil && self.getList().size() < @MAXHIGHSCORES
             return false
         else
-            @logUtil.putF(StringMaker.new().append("HighScores RecordStore Max Reached: ").appendint(@MAXHIGHSCORES).to_s, self, "isTooManyHighScores")
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("HighScores RecordStore Max Reached: ").appendint(@MAXHIGHSCORES).to_s, self, "isTooManyHighScores")
             return true
         end
     end
+    java_overload :isTooManyHighScores, 0
     
 
     # throws Exception
@@ -220,7 +229,7 @@ class RecordStoreHighScores < HighScores
                 size = list.size()
                 (0...size).each do |index|
                     highScore = list.objectArray[index]
-                    if @recordComparatorInterface.compare(newHighScore.getAsBytes(), highScore.getAsBytes()) == RecordComparator::FOLLOWS
+                    if @recordComparatorInterface.compare(newHighScore.getAsBytes(), highScore.getAsBytes()) == ::Javax::Microedition::Rms::RecordComparator::FOLLOWS
                         @logUtil.putF("Obtained a High Score", self, "isBestScore")
                         return true
                     end
@@ -234,20 +243,22 @@ class RecordStoreHighScores < HighScores
         end
         end
     end
+    java_overload :isBestScore, 1
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(super.to_s)
         list = self.getList()
         size = list.size()
         (0...size).each do |index|
             highScore = list.objectArray[index]
             stringBuffer.append(highScore.getScoreString())
-            stringBuffer.append(CommonSeps.getInstance().COMMA_SEP)
+            stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COMMA_SEP)
         end
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 
     def self.hashTable()
@@ -264,7 +275,7 @@ class RecordStoreHighScores < HighScores
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@hashTable = StdUtil.getInstance().createHashtable()
+            @@hashTable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -281,35 +292,37 @@ class RecordStoreHighScores < HighScores
     end
 end
 
-autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream"
-autoload :DataInputStream, "java/io/DataInputStream"
-autoload :RecordComparator, "javax/microedition/rms/RecordComparator"
-autoload :RecordEnumeration, "javax/microedition/rms/RecordEnumeration"
-autoload :RecordStore, "javax/microedition/rms/RecordStore"
-autoload :RecordStoreException, "javax/microedition/rms/RecordStoreException"
-autoload :RecordStoreNotFoundException, "javax/microedition/rms/RecordStoreNotFoundException"
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :GameInfo, "org/allbinary/game/GameInfo"
-autoload :NullRecordComparator, "org/allbinary/game/configuration/persistance/NullRecordComparator"
-autoload :NullRecordFilter, "org/allbinary/game/configuration/persistance/NullRecordFilter"
-autoload :NullRecordStore, "org/allbinary/game/configuration/persistance/NullRecordStore"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :PlatformRecordIdUtil, "org/allbinary/persistance/PlatformRecordIdUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :HighScore, "org/allbinary/game/score/HighScore"
-autoload :ScoreComparator, "org/allbinary/game/score/ScoreComparator"
+module ::Java; module Io; autoload :ByteArrayInputStream, "java/io/ByteArrayInputStream" unless const_defined?(:ByteArrayInputStream, false); end; end
+module ::Java; module Io; autoload :DataInputStream, "java/io/DataInputStream" unless const_defined?(:DataInputStream, false); end; end
+module ::Javax; module Microedition; module Rms; autoload :RecordComparator, "javax/microedition/rms/RecordComparator" unless const_defined?(:RecordComparator, false); end; end; end
+module ::Javax; module Microedition; module Rms; autoload :RecordEnumeration, "javax/microedition/rms/RecordEnumeration" unless const_defined?(:RecordEnumeration, false); end; end; end
+module ::Javax; module Microedition; module Rms; autoload :RecordStore, "javax/microedition/rms/RecordStore" unless const_defined?(:RecordStore, false); end; end; end
+module ::Javax; module Microedition; module Rms; autoload :RecordStoreException, "javax/microedition/rms/RecordStoreException" unless const_defined?(:RecordStoreException, false); end; end; end
+module ::Javax; module Microedition; module Rms; autoload :RecordStoreNotFoundException, "javax/microedition/rms/RecordStoreNotFoundException" unless const_defined?(:RecordStoreNotFoundException, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Game; autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false); end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :NullRecordComparator, "org/allbinary/game/configuration/persistance/NullRecordComparator" unless const_defined?(:NullRecordComparator, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :NullRecordFilter, "org/allbinary/game/configuration/persistance/NullRecordFilter" unless const_defined?(:NullRecordFilter, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :NullRecordStore, "org/allbinary/game/configuration/persistance/NullRecordStore" unless const_defined?(:NullRecordStore, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Persistance; autoload :PlatformRecordIdUtil, "org/allbinary/persistance/PlatformRecordIdUtil" unless const_defined?(:PlatformRecordIdUtil, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :HighScore, "org/allbinary/game/score/HighScore" unless const_defined?(:HighScore, false)
+autoload :ScoreComparator, "org/allbinary/game/score/ScoreComparator" unless const_defined?(:ScoreComparator, false)
 
 begin
     RecordStoreHighScores.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/Input"
+
+module ::Org; module Allbinary; module Game; module Input
 
 class GameKey < Input
     
@@ -25,15 +28,16 @@ class GameKey < Input
     
 
     def toString()
-        return StringMaker.new().append("GameKey ").append(super.to_s).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("GameKey ").append(super.to_s).to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_GAME_KEY, GameKey.new(-1, StringUtil.getInstance().NULL_STRING))
+            const_set(:NULL_GAME_KEY, GameKey.new(-1, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -50,12 +54,14 @@ class GameKey < Input
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     GameKey.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

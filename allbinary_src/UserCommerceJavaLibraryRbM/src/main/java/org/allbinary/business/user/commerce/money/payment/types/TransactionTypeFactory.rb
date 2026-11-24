@@ -15,10 +15,12 @@
 # package org.allbinary.business.user.commerce.money.payment.types
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
+
 class TransactionTypeFactory
     attr_accessor :SALE, :CREDIT, :AUTHORIZATION, :DELAYEDCAPTURE, :VOID, :INQUIRY
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_TransactionTypeFactory
         @SALE = TransactionType.new("Sale")
         @CREDIT = TransactionType.new("Credit")
         @AUTHORIZATION = TransactionType.new("Authorization")
@@ -28,7 +30,7 @@ class TransactionTypeFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_types_TransactionTypeFactory
     end
     
 
@@ -67,11 +69,13 @@ class TransactionTypeFactory
     end
 end
 
-autoload :TransactionType, "org/allbinary/business/user/commerce/money/payment/types/TransactionType"
+autoload :TransactionType, "org/allbinary/business/user/commerce/money/payment/types/TransactionType" unless const_defined?(:TransactionType, false)
 
 begin
     TransactionTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

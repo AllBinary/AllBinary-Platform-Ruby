@@ -16,11 +16,13 @@
 
 # require "jsinterop/annotations/JsType"
 
+module ::Org; module Allbinary; module Logic; module Java; module ExceptionPackage
+
 #ActualPlatform
 class ExceptionUtil
     attr_accessor :NONE
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_java_exception_ExceptionUtil
         @NONE = "No Stack Trace"
     end
     
@@ -31,7 +33,7 @@ class ExceptionUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_java_exception_ExceptionUtil
     end
     
 
@@ -77,4 +79,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

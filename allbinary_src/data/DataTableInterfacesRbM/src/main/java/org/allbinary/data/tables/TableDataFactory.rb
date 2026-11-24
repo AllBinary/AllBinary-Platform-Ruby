@@ -15,16 +15,18 @@
 # package org.allbinary.data.tables
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables
+
 class TableDataFactory
     attr_accessor :INTEGER_MAX_VALUE_STRING, :ZERO_STRING
 
-    def initialize_fields
+    def jfields_org_allbinary_data_tables_TableDataFactory
         @INTEGER_MAX_VALUE_STRING = (2147483647).to_s
-        @ZERO_STRING = CommonPhoneStrings.getInstance().ZERO
+        @ZERO_STRING = ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance().ZERO
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_data_tables_TableDataFactory
     end
     
 
@@ -63,11 +65,13 @@ class TableDataFactory
     end
 end
 
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
 
 begin
     TableDataFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,17 +15,19 @@
 # package org.allbinary.thirdparty.store
 
 
+module ::Org; module Allbinary; module Thirdparty; module Store
+
 class ThirdPartyStore
     attr_accessor :authorized, :name
 
-    def initialize_fields
-        @authorized = false
-        @name = nil
+    def jfields_org_allbinary_thirdparty_store_ThirdPartyStore
+        @authorized = false unless instance_variable_defined?(:@authorized)
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_thirdparty_store_ThirdPartyStore
         @name = name
     end
     
@@ -49,5 +51,7 @@ class ThirdPartyStore
     end
 end
 
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+
+end; end; end; end
 

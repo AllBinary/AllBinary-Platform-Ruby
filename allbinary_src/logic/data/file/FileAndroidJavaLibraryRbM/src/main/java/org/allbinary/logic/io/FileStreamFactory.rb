@@ -15,24 +15,26 @@
 # package org.allbinary.logic.io
 
 
+module ::Org; module Allbinary; module Logic; module Io
+
 class FileStreamFactory
     attr_accessor :context
 
-    def initialize_fields
-        @context = nil
+    def jfields_org_allbinary_logic_io_FileStreamFactory
+        @context = nil unless instance_variable_defined?(:@context)
     end
     
 
     def self.getInstance()
-        if FileStreamFactory::SINGLETON == NullUtil.getInstance().NULL_OBJECT
-            FileStreamFactory::SINGLETON = FileStreamFactory.new(ResourceUtil.getInstance().getContext())
+        if FileStreamFactory::SINGLETON == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            (FileStreamFactory.instance_exec(FileStreamFactory.new(::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance().getContext())) { |java_value| remove_const(:SINGLETON) if const_defined?(:SINGLETON, false); const_set(:SINGLETON, java_value) })
         end
         return FileStreamFactory::SINGLETON
     end
     
 
     def initialize(context)
-        initialize_fields
+        jfields_org_allbinary_logic_io_FileStreamFactory
         @context = context
     end
     
@@ -60,15 +62,39 @@ class FileStreamFactory
     def getContext()
         return @context
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FileStreamFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
+    end
 end
 
-require "android/content/Context"
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/io/AbFileInputStream"
-require "org/allbinary/logic/io/AbFileOutputStream"
+module ::Android; module Content; autoload :Context, "android/content/Context" unless const_defined?(:Context, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false)
+autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream" unless const_defined?(:AbFileOutputStream, false)
 
-class FileStreamFactory
-    SINGLETON = NullUtil.getInstance().NULL_OBJECT
+begin
+    FileStreamFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

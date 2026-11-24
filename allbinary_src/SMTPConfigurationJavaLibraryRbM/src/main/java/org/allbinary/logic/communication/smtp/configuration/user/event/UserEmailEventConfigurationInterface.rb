@@ -15,31 +15,40 @@
 # package org.allbinary.logic.communication.smtp.configuration.user.event
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module Configuration; module User; module Event
+
 module UserEmailEventConfigurationInterface
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setName(name)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getEventListenerClassPath()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setEventListenerClassPath(eventListenerClassPath)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def log()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end; end; end
 

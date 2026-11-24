@@ -15,28 +15,36 @@
 # package org.allbinary.business.advertisement.campaign
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Campaign
+
 module AdvertisementCampaignsInterface
     
 
     def add(advertisementInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def get(index)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def size()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isEnabled()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :AdvertisementInterface, "org/allbinary/business/advertisement/AdvertisementInterface"
+module ::Org; module Allbinary; module Business; module Advertisement; autoload :AdvertisementInterface, "org/allbinary/business/advertisement/AdvertisementInterface" unless const_defined?(:AdvertisementInterface, false); end; end; end; end
+
+end; end; end; end; end
 

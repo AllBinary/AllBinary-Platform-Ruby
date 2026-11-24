@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Image
 
 class AnimationFrameToImageUtil
     
@@ -25,7 +28,7 @@ class AnimationFrameToImageUtil
 
     # throws Exception
     def getInstanceTranslate(width, height, animationInterface)
-        image = GameFeatureImageCacheFactory.getInstance().get(AnimationFrameToImageUtil.instance.class.name, ((width * 3) >> 1), ((height * 3) >> 1))
+        image = GameFeatureImageCacheFactory.getInstance().get(AnimationFrameToImageUtil.instance.class.java_name, ((width * 3) >> 1), ((height * 3) >> 1))
         graphics = image.getGraphics()
         tranlateX = (width >> 2)
         tranlateY = (height >> 2)
@@ -38,7 +41,7 @@ class AnimationFrameToImageUtil
 
     # throws Exception
     def getInstanceWH(width, height, animationInterface)
-        image = GameFeatureImageCacheFactory.getInstance().get(AnimationFrameToImageUtil.instance.class.name, width, height)
+        image = GameFeatureImageCacheFactory.getInstance().get(AnimationFrameToImageUtil.instance.class.java_name, width, height)
         graphics = image.getGraphics()
         animationInterface.paintXY(graphics, 0, 0)
         return image
@@ -75,14 +78,16 @@ class AnimationFrameToImageUtil
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :GameFeatureImageCacheFactory, "org/allbinary/image/GameFeatureImageCacheFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+autoload :GameFeatureImageCacheFactory, "org/allbinary/image/GameFeatureImageCacheFactory" unless const_defined?(:GameFeatureImageCacheFactory, false)
 
 begin
     AnimationFrameToImageUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -15,15 +15,17 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class LicenseStrings
     attr_accessor :LOCKED
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_security_licensing_LicenseStrings
         @LOCKED = "Demo Locked Feature"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_LicenseStrings
     end
     
 
@@ -67,4 +69,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

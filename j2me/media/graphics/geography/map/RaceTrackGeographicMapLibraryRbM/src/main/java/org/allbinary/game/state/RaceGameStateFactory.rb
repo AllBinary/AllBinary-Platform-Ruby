@@ -15,41 +15,69 @@
 # package org.allbinary.game.state
 
 
+module ::Org; module Allbinary; module Game; module State
+
 class RaceGameStateFactory
     attr_accessor :START_GAME_STATE, :YELLOW_LIGHT_GAME_STATE, :RED_LIGHT_GAME_STATE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_state_RaceGameStateFactory
         @START_GAME_STATE = GameStateFactory.getInstance().createGameState("START_GAME_STATE")
         @YELLOW_LIGHT_GAME_STATE = GameStateFactory.getInstance().createGameState("YELLOW_LIGHT_GAME_STATE")
         @RED_LIGHT_GAME_STATE = GameStateFactory.getInstance().createGameState("RED_LIGHT_GAME_STATE")
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_state_RaceGameStateFactory
     end
     
 
     def self.getInstance()
-        if RaceGameStateFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if RaceGameStateFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             RaceGameStateFactory.instance = RaceGameStateFactory.new()
         end
         return RaceGameStateFactory.instance
     end
 
     def self.instance()
+        RaceGameStateFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        RaceGameStateFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RaceGameStateFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/game/state/GameState"
-require "org/allbinary/game/state/GameStateFactory"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :GameState, "org/allbinary/game/state/GameState" unless const_defined?(:GameState, false)
+autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory" unless const_defined?(:GameStateFactory, false)
 
-class RaceGameStateFactory
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    RaceGameStateFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

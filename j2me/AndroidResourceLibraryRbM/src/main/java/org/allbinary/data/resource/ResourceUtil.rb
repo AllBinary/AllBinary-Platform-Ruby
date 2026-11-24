@@ -14,17 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.data.resource
 
-# require "java/io/InputStream"
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module DataPackage; module Resource
 
 #Android
 class ResourceUtil
     attr_accessor :logUtil, :context, :resources, :hashMap
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @context = NullUtil.getInstance().NULL_OBJECT
-        @resources = NullUtil.getInstance().NULL_OBJECT
-        @hashMap = StdUtil.getInstance().createHashtable()
+    def jfields_org_allbinary_data_resource_ResourceUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @context = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        @resources = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        @hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
     end
     
 
@@ -34,12 +36,12 @@ class ResourceUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_data_resource_ResourceUtil
     end
     
 
     def setLoadingPaths(path, ext)
-        @logUtil.putF(CommonStrings.getInstance().NOT_IMPLEMENTED, self, "setLoadingPaths")
+        @logUtil.putF(::Org::Allbinary::StringPackage::CommonStrings.getInstance().NOT_IMPLEMENTED, self, "setLoadingPaths")
     end
     
 
@@ -60,18 +62,18 @@ class ResourceUtil
 
     def getResourceId(resource)
         value = @hashMap.get(resource)
-        if DebugFactory.getInstance() != NoDebug.getInstance()
-            PreLogUtil.put(StringMaker.new().append(resource).append(CommonSeps.getInstance().COLON).append(value.to_s).to_s, self, "getResourceId")
+        if ::Org::Allbinary::Debug::DebugFactory.getInstance() != ::Org::Allbinary::Debug::NoDebug.getInstance()
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(resource).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append(value.to_s).to_s, self, "getResourceId")
         end
         return value
     end
     
 
     def addResource(resource, value)
-        if DebugFactory.getInstance() != NoDebug.getInstance()
-            PreLogUtil.put(StringMaker.new().append(resource).append(CommonSeps.getInstance().COLON).append(value.to_s).to_s, self, "addResource")
+        if ::Org::Allbinary::Debug::DebugFactory.getInstance() != ::Org::Allbinary::Debug::NoDebug.getInstance()
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(resource).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append(value.to_s).to_s, self, "addResource")
             if self.containsDuplicate(resource, value)
-                ForcedLogUtil.log(StringMaker.new().append("Found Duplicate Resource: ").append(resource).to_s, self)
+                ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Found Duplicate Resource: ").append(resource).to_s, self)
             end
         end
         @hashMap.put(resource, value)
@@ -79,7 +81,7 @@ class ResourceUtil
     
 
     def containsDuplicate(resource, value)
-        objectArray = HashtableUtil.getInstance().getKeysAsArray(@hashMap)
+        objectArray = ::Org::Allbinary::Util::HashtableUtil.getInstance().getKeysAsArray(@hashMap)
         index = objectArray.length
         while (index -= 1) >= 0
             integer = @hashMap.get(objectArray[index])
@@ -96,7 +98,7 @@ class ResourceUtil
     
 
     def setResources(resources)
-        @logUtil.putF(StringMaker.new().append("Resource Loader: ").append(resources.class.name).to_s, self, "setResources")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Resource Loader: ").append(resources.class.java_name).to_s, self, "setResources")
         @resources = resources
     end
     
@@ -114,31 +116,58 @@ class ResourceUtil
     end
 
     def self.instance()
+        ResourceUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ResourceUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ResourceUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ResourceUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "android/app/Activity"
-require "android/content/Context"
-require "android/content/res/Resources"
-require "org/allbinary/debug/DebugFactory"
-require "org/allbinary/debug/NoDebug"
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/ForcedLogUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/ABHashtable"
-require "org/allbinary/util/HashtableUtil"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Android; module App; autoload :Activity, "android/app/Activity" unless const_defined?(:Activity, false); end; end
+module ::Android; module Content; autoload :Context, "android/content/Context" unless const_defined?(:Context, false); end; end
+module ::Android; module Content; module Res; autoload :Resources, "android/content/res/Resources" unless const_defined?(:Resources, false); end; end; end
+module ::Org; module Allbinary; module Debug; autoload :DebugFactory, "org/allbinary/debug/DebugFactory" unless const_defined?(:DebugFactory, false); end; end; end
+module ::Org; module Allbinary; module Debug; autoload :NoDebug, "org/allbinary/debug/NoDebug" unless const_defined?(:NoDebug, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :HashtableUtil, "org/allbinary/util/HashtableUtil" unless const_defined?(:HashtableUtil, false); end; end; end
 
-class ResourceUtil
-    @@instance = ResourceUtil.new()
+begin
+    ResourceUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -3,6 +3,8 @@
 # package org.allbinary.graph
 
 
+module ::Org; module Allbinary; module Graph
+
 class E
     
 
@@ -46,4 +48,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

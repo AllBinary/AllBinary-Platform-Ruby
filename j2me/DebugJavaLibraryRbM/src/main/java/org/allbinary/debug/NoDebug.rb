@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.debug
 
+require "java/lang/JavaOverload"
 require "org/allbinary/debug/DebugInterface"
+
+module ::Org; module Allbinary; module Debug
 
 class NoDebug
     include DebugInterface
@@ -27,25 +30,30 @@ class NoDebug
 
     def start()
     end
+    java_overload :start, 0
     
 
     def stop()
     end
+    java_overload :stop, 0
     
 
     def getMaxTime()
         return 10000
     end
+    java_overload :getMaxTime, 0
     
 
     def getStartTime()
         return 0
     end
+    java_overload :getStartTime, 0
     
 
     def isRunning()
         return false
     end
+    java_overload :isRunning, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -73,4 +81,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

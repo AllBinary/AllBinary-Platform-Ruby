@@ -14,18 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user
 
+require "java/lang/JavaOverload"
 require "java/io/Serializable"
 
+module ::Org; module Allbinary; module Business; module User
+
 module UserFactoryInterface
-    include Serializable
+    include ::Java::Io::Serializable
     
 
     # throws Exception
     def getInstance(hashMap)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getInstance, 1
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+autoload :UserInterface, "org/allbinary/business/user/UserInterface" unless const_defined?(:UserInterface, false)
+
+end; end; end; end
 

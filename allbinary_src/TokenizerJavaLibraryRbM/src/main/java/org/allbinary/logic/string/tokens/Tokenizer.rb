@@ -15,18 +15,20 @@
 # package org.allbinary.logic.string.tokens
 
 
+module ::Org; module Allbinary; module Logic; module StringPackage; module Tokens
+
 class Tokenizer
     attr_accessor :sep, :endSep
 
-    def initialize_fields
-        @sep = nil
-        @endSep = StringUtil.getInstance().EMPTY_STRING
+    def jfields_org_allbinary_logic_string_tokens_Tokenizer
+        @sep = nil unless instance_variable_defined?(:@sep)
+        @endSep = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def initialize(sep)
-        initialize_fields
-        if TsUtil.getInstance().compareTo(sep, StringUtil.getInstance().EMPTY_STRING) == 0
+        jfields_org_allbinary_logic_string_tokens_Tokenizer
+        if ::Org::Allbinary::TsUtil.getInstance().compareTo(sep, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING) == 0
             raise StandardError.new("Sep provided is not valid")
         end
         @sep = sep
@@ -44,7 +46,7 @@ class Tokenizer
     
 
     def getInsideSep(string)
-        tokenList = BasicArrayListD.new()
+        tokenList = ::Org::Allbinary::Util::BasicArrayListD.new()
         index = 0
         size = string.length
         while index < size
@@ -82,8 +84,8 @@ class Tokenizer
     
 
     def getTokens(stringVector)
-        tokenHashtable = StdUtil.getInstance().createHashtable()
-        string = StringUtil.getInstance().EMPTY_STRING
+        tokenHashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
+        string = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         end_ = 0
         size = stringVector.size()
         (0...size).each do |index|
@@ -97,10 +99,12 @@ class Tokenizer
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end; end
 

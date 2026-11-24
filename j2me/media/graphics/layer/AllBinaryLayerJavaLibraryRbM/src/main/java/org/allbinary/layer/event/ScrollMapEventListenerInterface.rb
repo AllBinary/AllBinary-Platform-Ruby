@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.layer.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Layer; module Event
+
 module ScrollMapEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module ScrollMapEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onMoveEvent, 1
 end
 
-autoload :ScrollMapEvent, "org/allbinary/layer/event/ScrollMapEvent"
+autoload :ScrollMapEvent, "org/allbinary/layer/event/ScrollMapEvent" unless const_defined?(:ScrollMapEvent, false)
+
+end; end; end; end
 

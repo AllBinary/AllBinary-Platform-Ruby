@@ -14,25 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.business.init.db
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/init/db/DbInitInfo"
+
+module ::Org; module Allbinary; module Business; module Init; module Db
 
 class UserDbInitInfo < DbInitInfo
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_org_allbinary_business_init_db_UserDbInitInfo_0(*args)
+        when 1 then jnew_org_allbinary_business_init_db_UserDbInitInfo_1(*args)
+        else raise ArgumentError, "No constructor of UserDbInitInfo takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        method(:initialize).super_method.call(nil, false)
+    def jnew_org_allbinary_business_init_db_UserDbInitInfo_0()
+        UserDbInitInfo.superclass.instance_method(:initialize).bind(self).call(nil, false)
     end
     
 
-    def constructor1(read)
-        method(:initialize).super_method.call(nil, false)
+    def jnew_org_allbinary_business_init_db_UserDbInitInfo_1(read)
+        UserDbInitInfo.superclass.instance_method(:initialize).bind(self).call(nil, false)
     end
 end
+
+end; end; end; end; end
 

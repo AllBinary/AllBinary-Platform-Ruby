@@ -15,16 +15,18 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class LockableFeature
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_logic_system_security_licensing_LockableFeature
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_LockableFeature
         @name = name
     end
     
@@ -33,4 +35,6 @@ class LockableFeature
         return @name
     end
 end
+
+end; end; end; end; end; end
 

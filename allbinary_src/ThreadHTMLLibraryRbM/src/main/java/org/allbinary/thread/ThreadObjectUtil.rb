@@ -3,15 +3,17 @@
 # package org.allbinary.thread
 
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class ThreadObjectUtil
     attr_accessor :NULL_PRIORITY_RUNNABLE
 
-    def initialize_fields
+    def jfields_org_allbinary_thread_ThreadObjectUtil
         @NULL_PRIORITY_RUNNABLE = NullPriorityRunnable.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_thread_ThreadObjectUtil
     end
     
 
@@ -69,8 +71,8 @@ class ThreadObjectUtil
     end
 end
 
-autoload :NullPriorityRunnable, "org/allbinary/thread/NullPriorityRunnable"
-autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable"
+autoload :NullPriorityRunnable, "org/allbinary/thread/NullPriorityRunnable" unless const_defined?(:NullPriorityRunnable, false)
+autoload :PriorityRunnable, "org/allbinary/thread/PriorityRunnable" unless const_defined?(:PriorityRunnable, false)
 require "java/lang/Runnable"
 
 begin
@@ -78,4 +80,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

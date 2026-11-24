@@ -15,13 +15,15 @@
 # package org.allbinary.thread
 
 
+module ::Org; module Allbinary; module ThreadPackage
+
 class NullThread
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_THREAD, JavaThread.new())
+            const_set(:NULL_THREAD, ::Java::Lang::JavaThread.new())
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -45,4 +47,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

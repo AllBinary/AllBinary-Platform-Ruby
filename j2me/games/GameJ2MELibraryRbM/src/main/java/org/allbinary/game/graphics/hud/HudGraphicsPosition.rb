@@ -15,17 +15,19 @@
 # package org.allbinary.game.graphics.hud
 
 
+module ::Org; module Allbinary; module Game; module Graphics; module Hud
+
 class HudGraphicsPosition
     attr_accessor :anchor, :point
 
-    def initialize_fields
-        @anchor = 0
-        @point = PointFactory.getInstance().ZERO_ZERO
+    def jfields_org_allbinary_game_graphics_hud_HudGraphicsPosition
+        @anchor = 0 unless instance_variable_defined?(:@anchor)
+        @point = ::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO
     end
     
 
     def initialize(point, anchor)
-        initialize_fields
+        jfields_org_allbinary_game_graphics_hud_HudGraphicsPosition
         self.setAnchor(anchor)
         self.setPoint(point)
     end
@@ -54,7 +56,7 @@ class HudGraphicsPosition
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_HUD_GRAPHICS_POSITION, HudGraphicsPosition.new(PointFactory.getInstance().ZERO_ZERO, 9))
+            const_set(:NULL_HUD_GRAPHICS_POSITION, HudGraphicsPosition.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, 9))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -71,12 +73,14 @@ class HudGraphicsPosition
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
 
 begin
     HudGraphicsPosition.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

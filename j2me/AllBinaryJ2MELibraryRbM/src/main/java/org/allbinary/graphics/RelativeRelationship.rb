@@ -15,19 +15,21 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class RelativeRelationship
     attr_accessor :typesAllowedList, :x, :y, :z
 
-    def initialize_fields
-        @typesAllowedList = nil
-        @x = nil
-        @y = nil
-        @z = nil
+    def jfields_org_allbinary_graphics_RelativeRelationship
+        @typesAllowedList = nil unless instance_variable_defined?(:@typesAllowedList)
+        @x = nil unless instance_variable_defined?(:@x)
+        @y = nil unless instance_variable_defined?(:@y)
+        @z = nil unless instance_variable_defined?(:@z)
     end
     
 
     def initialize(point, typesAllowedList)
-        initialize_fields
+        jfields_org_allbinary_graphics_RelativeRelationship
         @x = point.getX()
         @y = point.getY()
         @z = point.getZ()
@@ -63,7 +65,7 @@ class RelativeRelationship
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_RELATIVE_RELATIONSHIP, RelativeRelationship.new(PointFactory.getInstance().ZERO_ZERO, BasicArrayListUtil.getInstance().getImmutableInstance()))
+            const_set(:NULL_RELATIVE_RELATIONSHIP, RelativeRelationship.new(PointFactory.getInstance().ZERO_ZERO, ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -80,14 +82,16 @@ class RelativeRelationship
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false)
+autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false)
 
 begin
     RelativeRelationship.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

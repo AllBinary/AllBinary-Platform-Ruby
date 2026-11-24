@@ -15,6 +15,8 @@
 # package org.allbinary.layer
 
 
+module ::Org; module Allbinary; module Layer
+
 module LayerInterfaceFactoryInterface
     
 
@@ -25,6 +27,8 @@ module LayerInterfaceFactoryInterface
     end
 end
 
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false)
+
+end; end; end
 

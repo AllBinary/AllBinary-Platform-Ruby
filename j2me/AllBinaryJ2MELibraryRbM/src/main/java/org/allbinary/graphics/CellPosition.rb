@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graph/V"
 
-class CellPosition < V
+module ::Org; module Allbinary; module Graphics
+
+class CellPosition < ::Org::Allbinary::Graph::V
     attr_accessor :id, :column, :row
 
-    def initialize_fields
-        @id = nil
-        @column = nil
-        @row = nil
+    def jfields_org_allbinary_graphics_CellPosition
+        @id = nil unless instance_variable_defined?(:@id)
+        @column = nil unless instance_variable_defined?(:@column)
+        @row = nil unless instance_variable_defined?(:@row)
     end
     
 
     def initialize(column, row, columns, rows)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_CellPosition
         @column = column
         @row = row
         @id = (row * columns) + column
@@ -38,16 +41,19 @@ class CellPosition < V
     def getColumn()
         return @column
     end
+    java_overload :getColumn, 0
     
 
     def getRow()
         return @row
     end
+    java_overload :getRow, 0
     
 
     def toString()
         return CellPosition.toStringColRow(self.getColumn(), self.getRow())
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
     
 
@@ -57,8 +63,8 @@ class CellPosition < V
     
 
     def self.toStringColRow(i_column, i_row)
-        stringBuffer = StringMaker.new()
-        commonSeps = CommonSeps.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         stringBuffer.append(commonSeps.PARENTHESIS_OPEN)
         stringBuffer.appendint(i_column)
         stringBuffer.append(commonSeps.COMMA)
@@ -71,8 +77,11 @@ class CellPosition < V
     def getId()
         return @id
     end
+    java_overload :getId, 0
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+
+end; end; end
 

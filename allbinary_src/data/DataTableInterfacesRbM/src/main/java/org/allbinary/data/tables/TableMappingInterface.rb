@@ -15,27 +15,34 @@
 # package org.allbinary.data.tables
 
 
+module ::Org; module Allbinary; module DataPackage; module Tables
+
 module TableMappingInterface
     
 
     # throws Exception
     def getKey()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def toVector()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def toHashMap()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end
 

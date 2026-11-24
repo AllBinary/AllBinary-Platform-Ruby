@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.control.workflow
 
+require "java/lang/JavaClass"
 # require "javax/servlet/jsp/PageContext"
+
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Workflow
 
 class TagWorkFlowFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_control_workflow_TagWorkFlowFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -30,43 +33,42 @@ class TagWorkFlowFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_control_workflow_TagWorkFlowFactory
     end
     
 
     # throws Exception, LicensingException
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(abeClientInformation, propertiesHashMap, pageContext)
         begin
-            workFlowClassName = propertiesHashMap.get(DynamicObjectData::NAME)
+            workFlowClassName = propertiesHashMap.get(::Org::Allbinary::Business::DynamicObjectData::NAME)
             params = Array.new(2, nil)
             classes = Array.new(2, nil)
             classes[0] = propertiesHashMap.class
-            classes[1] = AbeFactory.getInstance().getClass(abeClientInformation, "javax.servlet.jsp.PageContext")
+            classes[1] = ::Org::Allbinary::Logic::System::Loader::AbeFactory.getInstance().getClass(abeClientInformation, "javax.servlet.jsp.PageContext")
             params[0] = propertiesHashMap
             params[1] = pageContext
-            return AbeFactory.getInstance().getInstance(abeClientInformation, workFlowClassName, classes, params)
-        rescue LicensingException => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
-                workFlowClassName = propertiesHashMap.get(DynamicObjectData::NAME)
-                stringBuffer = StringMaker.new()
+            return ::Org::Allbinary::Logic::System::Loader::AbeFactory.getInstance().getInstance(abeClientInformation, workFlowClassName, classes, params)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+                workFlowClassName = propertiesHashMap.get(::Org::Allbinary::Business::DynamicObjectData::NAME)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Failed To Get Instance: ")
                 stringBuffer.append(workFlowClassName)
                 stringBuffer.append("->")
-                stringBuffer.append(TagWorkFlowFactory.instance.class.name)
-                commonStrings = CommonStrings.getInstance()
+                stringBuffer.append(TagWorkFlowFactory.instance.class.java_name)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(stringBuffer.to_s, self, commonStrings.GET_INSTANCE, e)
             end
             raise e
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
-                workFlowClassName = propertiesHashMap.get(DynamicObjectData::NAME)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERFACTORYERROR)
+                workFlowClassName = propertiesHashMap.get(::Org::Allbinary::Business::DynamicObjectData::NAME)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Failed To Get Instance: ")
                 stringBuffer.append(workFlowClassName)
                 stringBuffer.append("->")
-                stringBuffer.append(TagWorkFlowFactory.instance.class.name)
-                commonStrings = CommonStrings.getInstance()
+                stringBuffer.append(TagWorkFlowFactory.instance.class.java_name)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(stringBuffer.to_s, self, commonStrings.GET_INSTANCE, e)
             end
             raise e
@@ -104,19 +106,23 @@ class TagWorkFlowFactory
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :AbeFactory, "org/allbinary/logic/system/loader/AbeFactory"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; autoload :DynamicObjectData, "org/allbinary/business/DynamicObjectData" unless const_defined?(:DynamicObjectData, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Loader; autoload :AbeFactory, "org/allbinary/logic/system/loader/AbeFactory" unless const_defined?(:AbeFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :WorkFlowInterface, "org/allbinary/logic/control/workflow/WorkFlowInterface" unless const_defined?(:WorkFlowInterface, false)
 
 begin
     TagWorkFlowFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

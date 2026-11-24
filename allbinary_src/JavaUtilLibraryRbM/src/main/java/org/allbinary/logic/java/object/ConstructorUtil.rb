@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.anyType
 
+require "java/lang/JavaClass"
 # require "java/lang/reflect/Constructor"
+
+module ::Org; module Allbinary; module Logic; module Java; module AnyType
 
 class ConstructorUtil
     
@@ -24,7 +27,7 @@ class ConstructorUtil
     
 
     def self.viewAll(myClass, lineBreak)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         constructor = myClass.getConstructors()
         stringBuffer.append("Constructors: ")
         stringBuffer.append(lineBreak)
@@ -37,8 +40,8 @@ class ConstructorUtil
 
     def self.view(constructor, lineBreak)
         if constructor != nil
-            commonSeps = CommonSeps.getInstance()
-            stringBuffer = StringMaker.new()
+            commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append(constructor.getName())
             classes = constructor.getParameterTypes()
             (0...classes.length).each do |index|
@@ -55,6 +58,8 @@ class ConstructorUtil
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+
+end; end; end; end; end
 

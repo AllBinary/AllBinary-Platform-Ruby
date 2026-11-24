@@ -14,8 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.image.opengles
 
-# require "javax/microedition/lcdui/Image"
+require "java/lang/JavaOverload"
 require "org/allbinary/image/opengles/OpenGLImageFactory"
+
+module ::Org; module Allbinary; module Image; module Opengles
 
 class OpenGLESGL11ExtImageFactory < OpenGLImageFactory
     
@@ -23,9 +25,13 @@ class OpenGLESGL11ExtImageFactory < OpenGLImageFactory
     def getInstance(image, bitmapFactory, textureFactory)
         return OpenGLESGL11ExtImage.new(image, bitmapFactory, textureFactory)
     end
+    java_overload :getInstance, 3
 end
 
-require "org/allbinary/platform/graphics/PlatformBitmapBaseFactory"
-require "org/allbinary/platform/opengles/PlatformTextureBaseFactory"
-require "org/allbinary/image/opengles/OpenGLESGL11ExtImage"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Platform; module Graphics; autoload :PlatformBitmapBaseFactory, "org/allbinary/platform/graphics/PlatformBitmapBaseFactory" unless const_defined?(:PlatformBitmapBaseFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Platform; module Opengles; autoload :PlatformTextureBaseFactory, "org/allbinary/platform/opengles/PlatformTextureBaseFactory" unless const_defined?(:PlatformTextureBaseFactory, false); end; end; end; end
+autoload :OpenGLESGL11ExtImage, "org/allbinary/image/opengles/OpenGLESGL11ExtImage" unless const_defined?(:OpenGLESGL11ExtImage, false)
+
+end; end; end; end
 

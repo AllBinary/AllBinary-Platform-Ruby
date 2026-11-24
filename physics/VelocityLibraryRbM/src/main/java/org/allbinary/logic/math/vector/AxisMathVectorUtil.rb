@@ -15,15 +15,17 @@
 # package org.allbinary.logic.math.vector
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage; module Vector
+
 class AxisMathVectorUtil
     attr_accessor :noDecimalTrigTable
 
-    def initialize_fields
-        @noDecimalTrigTable = NoDecimalTrigTable.getInstance()
+    def jfields_org_allbinary_logic_math_vector_AxisMathVectorUtil
+        @noDecimalTrigTable = ::Org::Allbinary::MathPackage::NoDecimalTrigTable.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_math_vector_AxisMathVectorUtil
     end
     
 
@@ -77,11 +79,13 @@ class AxisMathVectorUtil
     end
 end
 
-autoload :NoDecimalTrigTable, "org/allbinary/math/NoDecimalTrigTable"
+module ::Org; module Allbinary; module MathPackage; autoload :NoDecimalTrigTable, "org/allbinary/math/NoDecimalTrigTable" unless const_defined?(:NoDecimalTrigTable, false); end; end; end
 
 begin
     AxisMathVectorUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -2,15 +2,18 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.media
 
+require "java/lang/JavaClass"
 # require "java/awt/image/BufferedImage"
 # require "java/awt/image/RenderedImage"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Media
 
 #import com.sun.imageio.plugins.common.ImageUtil;
 class MediaUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_visual_media_MediaUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
@@ -20,7 +23,7 @@ class MediaUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_media_MediaUtil
     end
     
 
@@ -33,21 +36,21 @@ class MediaUtil
         if bufferedImage == nil
             raise StandardError.new("Unable to find ImageReader for this file.")
         end
-        if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().VIEW)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
             hashMap = self.getImageBufferPropertyHashMap(bufferedImage)
             @logUtil.putF("Image Properties: " + hashMap.to_s, self, "saveImageFile()")
         end
-        imageFile = AbFile.createAbFile(category + newImageFileName)
+        imageFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(category + newImageFileName)
         imageFile.createNewFile()
-        imageUtil = ImageUtil.getInstance()
+        imageUtil = ::Org::Allbinary::Media::Image::ImageUtil.getInstance()
         newBufferedImage = imageUtil.createBufferedImageForSave(bufferedImage, newWidth, newHeight)
         isWritten = ImageIOUtil.write(newBufferedImage, mediaData.getName(), imageFile)
         if !isWritten
             raise StandardError.new("Unable to write.")
         end
-        if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().VIEW)
-            commonLabels = CommonLabels.getInstance()
-            stringBuffer = StringMaker.new()
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
+            commonLabels = ::Org::Allbinary::StringPackage::CommonLabels.getInstance()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Get Path: ")
             stringBuffer.append(originalImageFile.getPath())
             stringBuffer.append("\nNewImageFileName: ")
@@ -70,7 +73,7 @@ class MediaUtil
     
 
     def self.getImageBufferPropertyHashMap(bufferedImage)
-        hashMap = StdUtil.getInstance().createHashMap()
+        hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         propertyStringArray = bufferedImage.getPropertyNames()
         if propertyStringArray != nil
             (0...propertyStringArray.length).each do |index|
@@ -112,21 +115,23 @@ class MediaUtil
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :ImageIOUtil, "org/allbinary/logic/visual/media/ImageIOUtil"
-autoload :MediaData, "org/allbinary/logic/visual/media/MediaData"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+autoload :ImageIOUtil, "org/allbinary/logic/visual/media/ImageIOUtil" unless const_defined?(:ImageIOUtil, false)
+autoload :MediaData, "org/allbinary/logic/visual/media/MediaData" unless const_defined?(:MediaData, false)
 
 begin
     MediaUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

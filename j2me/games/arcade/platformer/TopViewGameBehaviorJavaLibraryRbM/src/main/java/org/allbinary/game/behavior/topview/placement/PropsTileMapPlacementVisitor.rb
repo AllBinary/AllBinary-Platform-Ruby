@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.behavior.topview.placement
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/behavior/topview/placement/TileMapPlacementVisitor"
+
+module ::Org; module Allbinary; module Game; module Behavior; module Topview; module Placement
 
 class PropsTileMapPlacementVisitor < TileMapPlacementVisitor
     attr_accessor :logUtil, :randomFactory
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @randomFactory = MyRandomFactory.getInstance()
+    def jfields_org_allbinary_game_behavior_topview_placement_PropsTileMapPlacementVisitor
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @randomFactory = ::Org::Allbinary::Game::Rand::MyRandomFactory.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_behavior_topview_placement_PropsTileMapPlacementVisitor
     end
     
 
@@ -80,10 +83,11 @@ class PropsTileMapPlacementVisitor < TileMapPlacementVisitor
             end
         end
     end
+    java_overload :visit, 2
     
 
     def visit2(mapArray, mapData, index, index2)
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         countX = 0
         countY = 0
         index3 = index - 1
@@ -112,11 +116,14 @@ class PropsTileMapPlacementVisitor < TileMapPlacementVisitor
             countX += 1
         end
     end
+    java_overload :visit2, 4
 end
 
-require "org/allbinary/game/rand/MyRandomFactory"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/mapeditor/core/TileLayer"
-require "org/mapeditor/core/TiledMap"
+module ::Org; module Allbinary; module Game; module Rand; autoload :MyRandomFactory, "org/allbinary/game/rand/MyRandomFactory" unless const_defined?(:MyRandomFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Mapeditor; module Core; autoload :TileLayer, "org/mapeditor/core/TileLayer" unless const_defined?(:TileLayer, false); end; end; end
+module ::Org; module Mapeditor; module Core; autoload :TiledMap, "org/mapeditor/core/TiledMap" unless const_defined?(:TiledMap, false); end; end; end
+
+end; end; end; end; end; end
 

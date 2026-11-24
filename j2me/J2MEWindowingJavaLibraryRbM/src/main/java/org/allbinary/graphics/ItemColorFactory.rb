@@ -15,17 +15,19 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class ItemColorFactory
     attr_accessor :INVERT_PAINT, :PAINT, :TEXT_FIELD_NO_FOCUS
 
-    def initialize_fields
-        @INVERT_PAINT = 0xFF000000
-        @PAINT = 0xFFe07718
+    def jfields_org_allbinary_graphics_ItemColorFactory
+        @INVERT_PAINT = (0xFF000000 - 0x100000000)
+        @PAINT = (0xFFe07718 - 0x100000000)
         @TEXT_FIELD_NO_FOCUS = 0x7F7F7F
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_ItemColorFactory
     end
     
 
@@ -69,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

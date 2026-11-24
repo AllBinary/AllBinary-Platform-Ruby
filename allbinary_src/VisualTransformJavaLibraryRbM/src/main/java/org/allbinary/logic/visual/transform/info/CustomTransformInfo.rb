@@ -14,8 +14,11 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.info
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/transform/info/TransformInfo"
 require "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
 
 class CustomTransformInfo < TransformInfo
     include TransformInfoInterface
@@ -25,4 +28,6 @@ class CustomTransformInfo < TransformInfo
         super()
     end
 end
+
+end; end; end; end; end; end
 

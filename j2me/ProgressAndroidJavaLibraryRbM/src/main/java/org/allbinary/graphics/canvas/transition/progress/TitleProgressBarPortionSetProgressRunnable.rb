@@ -14,36 +14,42 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.canvas.transition.progress
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/canvas/transition/progress/ProgressRunnable"
+
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress
 
 class TitleProgressBarPortionSetProgressRunnable < ProgressRunnable
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_graphics_canvas_transition_progress_TitleProgressBarPortionSetProgressRunnable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize(midletActivity, progressCanvas)
         super(midletActivity, progressCanvas)
-        initialize_fields
+        jfields_org_allbinary_graphics_canvas_transition_progress_TitleProgressBarPortionSetProgressRunnable
     end
     
 
     def run()
         begin
             progressCanvas = @progressCanvas
-            @midletActivity.onSetProgress(((@progressCanvas.getValue() + @progressCanvas.getMaxValue() / progressCanvas.getPortion())).to_i, @progressCanvas.getText())
+            @midletActivity.onSetProgress((((@progressCanvas.getValue() + @progressCanvas.getMaxValue() / progressCanvas.getPortion())).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }), @progressCanvas.getText())
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
         end
     end
+    java_overload :run, 0
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "android/app/Activity"
-require "org/allbinary/graphics/canvas/transition/progress/AndroidBasicTitleProgressBar"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Android; module App; autoload :Activity, "android/app/Activity" unless const_defined?(:Activity, false); end; end
+autoload :AndroidBasicTitleProgressBar, "org/allbinary/graphics/canvas/transition/progress/AndroidBasicTitleProgressBar" unless const_defined?(:AndroidBasicTitleProgressBar, false)
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false)
+
+end; end; end; end; end; end
 

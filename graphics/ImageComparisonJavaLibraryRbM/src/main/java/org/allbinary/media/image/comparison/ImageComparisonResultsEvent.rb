@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class ImageComparisonResultsEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Media; module Image; module Comparison
+
+class ImageComparisonResultsEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     attr_accessor :imageComparisonResult
 
-    def initialize_fields
-        @imageComparisonResult = nil
+    def jfields_org_allbinary_media_image_comparison_ImageComparisonResultsEvent
+        @imageComparisonResult = nil unless instance_variable_defined?(:@imageComparisonResult)
     end
     
 
     def initialize(anyType, imageComparisonInfo)
         super(anyType)
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_ImageComparisonResultsEvent
         self.setImageComparisonResult(imageComparisonInfo)
     end
     
@@ -34,12 +37,16 @@ class ImageComparisonResultsEvent < AllBinaryEventObject
     def getImageComparisonResult()
         return @imageComparisonResult
     end
+    java_overload :getImageComparisonResult, 0
     
 
     def setImageComparisonResult(imageComparisonResult)
         @imageComparisonResult = imageComparisonResult
     end
+    java_overload :setImageComparisonResult, 1
 end
 
-autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
+autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult" unless const_defined?(:ImageComparisonResult, false)
+
+end; end; end; end; end
 

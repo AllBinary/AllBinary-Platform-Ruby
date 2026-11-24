@@ -14,19 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.actions.script.condition.processors.input
 
+require "java/lang/JavaOverload"
+# require "javax/swing/DefaultComboBoxModel"
+# require "javax/swing/GroupLayout"
+# require "javax/swing/JComboBox"
+# require "javax/swing/JLabel"
+# require "javax/swing/JPanel"
+# require "javax/swing/LayoutStyle"
+
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition; module Processors; module Input
 
 class InputAutomationTypeJPanel < JPanel
     attr_accessor :inputAutomationTypeJComboBox, :jLabel1
 
-    def initialize_fields
-        @inputAutomationTypeJComboBox = nil
-        @jLabel1 = nil
+    def jfields_org_allbinary_input_automation_actions_script_condition_processors_input_InputAutomationTypeJPanel
+        @inputAutomationTypeJComboBox = nil unless instance_variable_defined?(:@inputAutomationTypeJComboBox)
+        @jLabel1 = nil unless instance_variable_defined?(:@jLabel1)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_input_automation_actions_script_condition_processors_input_InputAutomationTypeJPanel
         self.initComponents()
     end
     
@@ -34,11 +43,13 @@ class InputAutomationTypeJPanel < JPanel
     def getInputAutomationTypeJComboBox()
         return @inputAutomationTypeJComboBox
     end
+    java_overload :getInputAutomationTypeJComboBox, 0
     
 
     def setInputAutomationTypeJComboBox(inputAutomationTypeJComboBox)
         @inputAutomationTypeJComboBox = inputAutomationTypeJComboBox
     end
+    java_overload :setInputAutomationTypeJComboBox, 1
     
 
     def initComponents()
@@ -48,8 +59,11 @@ class InputAutomationTypeJPanel < JPanel
         @jLabel1.setText("Input Type:")
         layout = GroupLayout.new(self)
         self.setLayout(layout)
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(@jLabel1).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(@inputAutomationTypeJComboBox, 0, 98, 32767)))
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(@jLabel1).addComponent(@inputAutomationTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(@jLabel1).addPreferredGap(LayoutStyle::ComponentPlacement.RELATED).addComponent(@inputAutomationTypeJComboBox, 0, 98, 32767)))
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addGroup(layout.createParallelGroup(GroupLayout::Alignment.BASELINE).addComponent(@jLabel1).addComponent(@inputAutomationTypeJComboBox, GroupLayout::PREFERRED_SIZE, GroupLayout::DEFAULT_SIZE, GroupLayout::PREFERRED_SIZE)))
     end
+    java_overload :initComponents, 0
 end
+
+end; end; end; end; end; end; end; end; end
 

@@ -3,15 +3,17 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class PoolTypeFactory
     attr_accessor :VECTOR_POOL
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_util_cache_PoolTypeFactory
         @VECTOR_POOL = PoolType.new(CacheTypeFactory.getInstance().NO_CACHE)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_PoolTypeFactory
     end
     
 
@@ -50,12 +52,14 @@ class PoolTypeFactory
     end
 end
 
-autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory"
-autoload :PoolType, "org/allbinary/logic/util/cache/PoolType"
+autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory" unless const_defined?(:CacheTypeFactory, false)
+autoload :PoolType, "org/allbinary/logic/util/cache/PoolType" unless const_defined?(:PoolType, false)
 
 begin
     PoolTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

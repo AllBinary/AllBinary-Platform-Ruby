@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
+
+module ::Org; module Allbinary; module Graphics; module Paint
 
 class AnimationCompositePaintable < InitUpdatePaintable
     attr_accessor :animationInterface
 
-    def initialize_fields
-        @animationInterface = nil
+    def jfields_org_allbinary_graphics_paint_AnimationCompositePaintable
+        @animationInterface = nil unless instance_variable_defined?(:@animationInterface)
     end
     
 
     def initialize(animationInterface)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_paint_AnimationCompositePaintable
         @animationInterface = animationInterface
     end
     
@@ -34,13 +37,17 @@ class AnimationCompositePaintable < InitUpdatePaintable
     def paint(graphics)
         @animationInterface.paintXY(graphics, 0, 0)
     end
+    java_overload :paint, 1
     
 
     def paintThreed(graphics)
         @animationInterface.paintThreedXYZ(graphics, 0, 0, 0)
     end
+    java_overload :paintThreed, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Animation, "org/allbinary/animation/Animation"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+
+end; end; end; end
 

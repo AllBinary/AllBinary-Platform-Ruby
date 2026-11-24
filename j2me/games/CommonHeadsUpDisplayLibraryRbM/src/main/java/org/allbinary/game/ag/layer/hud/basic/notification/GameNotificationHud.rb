@@ -14,14 +14,17 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.notification
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/graphics/hud/BasicHud"
 require "org/allbinary/game/layer/hud/event/GameNotificationListenerInterface"
 
-class GameNotificationHud < BasicHud
-    include GameNotificationListenerInterface
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Hud; module Basic; module Notification
+
+class GameNotificationHud < ::Org::Allbinary::Game::Graphics::Hud::BasicHud
+    include ::Org::Allbinary::Game::Layer::Hud::Event::GameNotificationListenerInterface
     attr_accessor :METHOD_NAME, :lastGameNotificationEvent
 
-    def initialize_fields
+    def jfields_org_allbinary_game_ag_layer_hud_basic_notification_GameNotificationHud
         @METHOD_NAME = "onGameNotificationEvent"
         @lastGameNotificationEvent = GameNotification::NULL_GAME_NOTIFICATION_EVENT
     end
@@ -29,13 +32,14 @@ class GameNotificationHud < BasicHud
 
     def initialize(location, direction, bufferZone, basicColor)
         super(location, direction, bufferZone, basicColor)
-        initialize_fields
+        jfields_org_allbinary_game_ag_layer_hud_basic_notification_GameNotificationHud
     end
     
 
     def onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
     end
+    java_overload :onEvent, 1
     
 
     # throws Exception
@@ -46,29 +50,34 @@ class GameNotificationHud < BasicHud
         end
         self.add(gameNotificationEvent.getString(), gameNotificationEvent.getSeconds(), gameNotificationEvent.getBasicColorP(), gameNotificationEvent.getPermanent())
     end
+    java_overload :onGameNotificationEvent, 1
     
 
     def add(string, seconds, basicColor, permanent)
     end
+    java_overload :add, 4
     
 
     # throws Exception
     def processTick()
     end
+    java_overload :processTick, 0
     
 
     def paint(graphics)
     end
+    java_overload :paint, 1
     
 
     def clear()
     end
+    java_overload :clear, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_GAME_NOTIFICATION, GameNotificationHud.new(BasicHudFactory.getInstance().TOPCENTER, BasicHudFactory.getInstance().HORIZONTAL, 0, BasicColorFactory.getInstance().RED))
+            const_set(:NULL_GAME_NOTIFICATION, GameNotificationHud.new(::Org::Allbinary::Game::Graphics::Hud::BasicHudFactory.getInstance().TOPCENTER, ::Org::Allbinary::Game::Graphics::Hud::BasicHudFactory.getInstance().HORIZONTAL, 0, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().RED))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -85,19 +94,21 @@ class GameNotificationHud < BasicHud
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory"
-autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :GameNotification, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotification"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Graphics; module Hud; autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory" unless const_defined?(:BasicHudFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Hud; module Event; autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent" unless const_defined?(:GameNotificationEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+autoload :GameNotification, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotification" unless const_defined?(:GameNotification, false)
 
 begin
     GameNotificationHud.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

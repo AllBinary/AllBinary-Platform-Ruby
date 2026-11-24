@@ -14,27 +14,33 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/init/Init"
 
-class KeyFactoryInitializer < Init
+module ::Org; module Allbinary; module Game; module Input
+
+class KeyFactoryInitializer < ::Org::Allbinary::Init::Init
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_input_KeyFactoryInitializer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_input_KeyFactoryInitializer
     end
     
 
     def init()
         @logUtil.putF(@commonStrings.START, self, @commonStrings.INIT)
-        SmallIntegerSingletonFactory.getInstance().initWithRange(0x2D0, 6)
+        ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().initWithRange(0x2D0, 6)
     end
+    java_overload :init, 0
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+
+end; end; end; end
 

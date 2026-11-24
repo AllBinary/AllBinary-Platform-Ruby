@@ -15,17 +15,19 @@
 # package org.allbinary.media.audio.music
 
 
+module ::Org; module Allbinary; module Media; module Audio; module Music
+
 class MusicStrings
     attr_accessor :SONG_EXTRA, :LEFT_VOLUME, :RIGHT_VOLUME
 
-    def initialize_fields
+    def jfields_org_allbinary_media_audio_music_MusicStrings
         @SONG_EXTRA = "SONG"
         @LEFT_VOLUME = "LEFT_VOLUME"
         @RIGHT_VOLUME = "RIGHT_VOLUME"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_audio_music_MusicStrings
     end
     
 
@@ -34,15 +36,41 @@ class MusicStrings
     end
 
     def self.instance()
+        MusicStrings.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        MusicStrings.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = MusicStrings.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MusicStrings"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class MusicStrings
-    @@instance = MusicStrings.new()
+begin
+    MusicStrings.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

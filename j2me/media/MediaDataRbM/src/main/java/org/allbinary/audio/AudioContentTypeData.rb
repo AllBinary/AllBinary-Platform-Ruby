@@ -15,16 +15,18 @@
 # package org.allbinary.audio
 
 
+module ::Org; module Allbinary; module Audio
+
 class AudioContentTypeData
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_audio_AudioContentTypeData
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_audio_AudioContentTypeData
         @name = name
     end
     
@@ -33,4 +35,6 @@ class AudioContentTypeData
         return @name
     end
 end
+
+end; end; end
 

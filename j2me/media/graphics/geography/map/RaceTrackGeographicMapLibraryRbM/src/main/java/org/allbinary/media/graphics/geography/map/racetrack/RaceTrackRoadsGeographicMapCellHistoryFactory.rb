@@ -15,6 +15,8 @@
 # package org.allbinary.media.graphics.geography.map.racetrack
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
+
 class RaceTrackRoadsGeographicMapCellHistoryFactory
     
 
@@ -27,17 +29,43 @@ class RaceTrackRoadsGeographicMapCellHistoryFactory
     end
 
     def self.geographicMapCellHistory()
+        RaceTrackRoadsGeographicMapCellHistoryFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@geographicMapCellHistory) ? @@geographicMapCellHistory : nil
     end
 
     def self.geographicMapCellHistory=(value)
+        RaceTrackRoadsGeographicMapCellHistoryFactory.java_static_fields unless @java_static_fields_started
         @@geographicMapCellHistory = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@geographicMapCellHistory = ::Org::Allbinary::Media::Graphics::Geography::Map::GeographicMapCellHistory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RaceTrackRoadsGeographicMapCellHistoryFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellHistory"
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellHistory, "org/allbinary/media/graphics/geography/map/GeographicMapCellHistory" unless const_defined?(:GeographicMapCellHistory, false); end; end; end; end; end; end
 
-class RaceTrackRoadsGeographicMapCellHistoryFactory
-    @@geographicMapCellHistory = GeographicMapCellHistory.new()
+begin
+    RaceTrackRoadsGeographicMapCellHistoryFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

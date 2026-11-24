@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/audio/BasicPlayer"
+
+module ::Org; module Allbinary; module Media; module Audio
 
 class NoPlayer < BasicPlayer
     
@@ -26,21 +29,25 @@ class NoPlayer < BasicPlayer
 
     def close()
     end
+    java_overload :close, 0
     
 
     def getContentType()
-        return StringUtil.getInstance().NULL_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING
     end
+    java_overload :getContentType, 0
     
 
     def getControl(controlType)
         return NullControl.new()
     end
+    java_overload :getControl, 1
     
 
     def getControls()
         return Array.new(0, nil)
     end
+    java_overload :getControls, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -63,13 +70,15 @@ class NoPlayer < BasicPlayer
     end
 end
 
-autoload :Control, "javax/microedition/media/Control"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :NullControl, "org/allbinary/media/audio/NullControl"
+module ::Javax; module Microedition; module Media; autoload :Control, "javax/microedition/media/Control" unless const_defined?(:Control, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :NullControl, "org/allbinary/media/audio/NullControl" unless const_defined?(:NullControl, false)
 
 begin
     NoPlayer.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

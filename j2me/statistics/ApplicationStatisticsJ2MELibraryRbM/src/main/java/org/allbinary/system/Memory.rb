@@ -15,19 +15,23 @@
 # package org.allbinary.system
 
 
+module ::Org; module Allbinary; module System
+
 #ActualPlatform
 class Memory
     
 
     def self.getInfo()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Memory: Free: ")
-        stringBuffer.appendlong((Runtime.getRuntime().freeMemory()).to_i)
+        stringBuffer.appendlong(((Runtime.getRuntime().freeMemory()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(" Total: ")
-        stringBuffer.appendlong((Runtime.getRuntime().totalMemory()).to_i)
+        stringBuffer.appendlong(((Runtime.getRuntime().totalMemory()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         return stringBuffer.to_s
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end
 

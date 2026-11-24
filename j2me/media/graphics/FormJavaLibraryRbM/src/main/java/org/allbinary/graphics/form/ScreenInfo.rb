@@ -3,10 +3,12 @@
 # package org.allbinary.graphics.form
 
 
+module ::Org; module Allbinary; module Graphics; module Form
+
 class ScreenInfo
     attr_accessor :SMALL_WIDTH, :SMALL_HEIGHT, :MEDIUM_WIDTH, :MEDIUM_HEIGHT
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_form_ScreenInfo
         @SMALL_WIDTH = 320
         @SMALL_HEIGHT = 240
         @MEDIUM_WIDTH = 800
@@ -14,7 +16,7 @@ class ScreenInfo
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_form_ScreenInfo
     end
     
 
@@ -58,4 +60,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

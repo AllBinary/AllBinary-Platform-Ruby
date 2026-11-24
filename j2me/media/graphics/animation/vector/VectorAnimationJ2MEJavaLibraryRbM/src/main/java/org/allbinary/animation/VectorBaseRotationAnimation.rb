@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/RotationAnimation"
 require "org/allbinary/animation/VectorAnimationInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class VectorBaseRotationAnimation < RotationAnimation
     include VectorAnimationInterface
     attr_accessor :currentPoints
 
-    def initialize_fields
-        @currentPoints = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
+    def jfields_org_allbinary_animation_VectorBaseRotationAnimation
+        @currentPoints = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
     end
     
 
     def initialize(angleInfo, currentPoints, basicColor, animationBehavior)
-        super(angleInfo, CircularIndexUtil.createInstance(360 / angleInfo.getAngleIncrementInfo().getAngleIncrement()), animationBehavior)
-        initialize_fields
+        super(angleInfo, ::Org::Allbinary::Util::CircularIndexUtil.createInstance(360 / angleInfo.getAngleIncrementInfo().getAngleIncrement()), animationBehavior)
+        jfields_org_allbinary_animation_VectorBaseRotationAnimation
         self.setPoints(currentPoints)
         self.setBasicColorP(basicColor)
     end
@@ -38,40 +41,48 @@ class VectorBaseRotationAnimation < RotationAnimation
     def getAnimationSize()
         return self.getSize()
     end
+    java_overload :getAnimationSize, 0
     
 
     def getFrame()
         return @circularIndexUtil.getIndex()
     end
+    java_overload :getFrame, 0
     
 
     def setFrame(index)
         @circularIndexUtil.setIndex(index)
     end
+    java_overload :setFrame, 1
     
 
     def nextFrame()
         @circularIndexUtil.next_()
     end
+    java_overload :nextFrame, 0
     
 
     def previousFrame()
         @circularIndexUtil.previous()
     end
+    java_overload :previousFrame, 0
     
 
     def getSize()
         return @currentPoints.length
     end
+    java_overload :getSize, 0
     
 
     def setSequence(sequence)
     end
+    java_overload :setSequence, 1
     
 
     def getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
+        return ::Org::Allbinary::Logic::MathPackage::PrimitiveIntUtil.getArrayInstance()
     end
+    java_overload :getSequence, 0
     
 
     def paintXY(graphics, x, y)
@@ -99,34 +110,41 @@ class VectorBaseRotationAnimation < RotationAnimation
             @logUtil.put(@commonStrings.EXCEPTION, self, "paintVectors", e)
         end
     end
+    java_overload :paintXY, 3
     
 
     def getPoints(frame)
         return @currentPoints[frame]
     end
+    java_overload :getPoints, 1
     
 
     def setPoints(currentPoints)
         @currentPoints = currentPoints
-        @circularIndexUtil = CircularIndexUtil.createInstance(@currentPoints.length)
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(@currentPoints.length)
     end
+    java_overload :setPoints, 1
     
 
     def getBasicColorP()
-        return super()
+        return VectorBaseRotationAnimation.superclass.java_super_method(:getBasicColorP, 0).bind(self).call()
     end
+    java_overload :getBasicColorP, 0
     
 
     def setBasicColorP(basicColor)
-        super(basicColor)
+        VectorBaseRotationAnimation.superclass.java_super_method(:setBasicColorP, 1).bind(self).call(basicColor)
     end
+    java_overload :setBasicColorP, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
-autoload :AngleInfo, "org/allbinary/math/AngleInfo"
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil" unless const_defined?(:PrimitiveIntUtil, false); end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false)
+
+end; end; end
 

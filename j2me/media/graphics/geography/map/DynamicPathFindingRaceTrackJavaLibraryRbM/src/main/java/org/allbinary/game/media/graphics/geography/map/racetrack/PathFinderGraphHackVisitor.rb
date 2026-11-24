@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.media.graphics.geography.map.racetrack
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/media/graphics/geography/map/racetrack/BasePathFinderGraphVisitor"
+
+module ::Org; module Allbinary; module Game; module Media; module Graphics; module Geography; module Map; module Racetrack
 
 class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_media_graphics_geography_map_racetrack_PathFinderGraphHackVisitor
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize(geographicMapInterface, edgeMinimum, minPathWeight, maxPathWeight)
         super(geographicMapInterface, edgeMinimum, minPathWeight, maxPathWeight)
-        initialize_fields
+        jfields_org_allbinary_game_media_graphics_geography_map_racetrack_PathFinderGraphHackVisitor
     end
     
 
@@ -36,6 +39,7 @@ class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
         self.fixEnd(graph, endPathFindingNodeList)
         self.fixOverPassEdges(graph)
     end
+    java_overload :visit, 3
     
 
     # throws Exception
@@ -54,6 +58,7 @@ class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
             end
         end
     end
+    java_overload :fixStart, 2
     
 
     # throws Exception
@@ -73,6 +78,7 @@ class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
             end
         end
     end
+    java_overload :fixEnd, 2
     
 
     # throws Exception
@@ -93,6 +99,7 @@ class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
             graph.addEdge(overPassGeographicMapCellPosition, leftUnderPassGeographicMapCellPosition)
         end
     end
+    java_overload :fixOverPassEdges, 1
     
 
     # throws Exception
@@ -100,7 +107,7 @@ class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
         (startPathFindingNodeList.size() - 1).step(0, -(1)) do |index|
             endPathFindingNode = endPathFindingNodeList.get(index)
             startPathFindingNode = startPathFindingNodeList.get(index)
-            if BasicGeographicMapUtil.getInstance().isSameCellPosition(startPathFindingNode.geographicMapCellPosition, endPathFindingNode.geographicMapCellPosition)
+            if ::Org::Allbinary::Media::Graphics::Geography::Map::BasicGeographicMapUtil.getInstance().isSameCellPosition(startPathFindingNode.geographicMapCellPosition, endPathFindingNode.geographicMapCellPosition)
                 if pathList.remove(endPathFindingNode.geographicMapCellPosition)
                     pathList.remove(startPathFindingNode.geographicMapCellPosition)
                     pathList.addAt(0, startPathFindingNode.geographicMapCellPosition)
@@ -109,6 +116,7 @@ class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
         end
         self.removeOverPassEdges(pathList)
     end
+    java_overload :fixPath, 3
     
 
     # throws Exception
@@ -125,6 +133,7 @@ class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
             end
         end
     end
+    java_overload :removeOverPassEdges, 1
     
 
     def isValid(graphPath)
@@ -134,19 +143,22 @@ class PathFinderGraphHackVisitor < BasePathFinderGraphVisitor
             return false
         end
     end
+    java_overload :isValid, 1
 end
 
-require "org/jgrapht/GraphPath"
-require "org/jgrapht/graph/DefaultWeightedEdge"
-require "org/jgrapht/graph/SimpleWeightedGraph"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/game/layer/AllBinaryTiledLayer"
-require "org/allbinary/graphics/CellPosition"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMapUtil"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMap"
-require "org/allbinary/media/graphics/geography/pathfinding/PathFindingNode"
+module ::Org; module Jgrapht; autoload :GraphPath, "org/jgrapht/GraphPath" unless const_defined?(:GraphPath, false); end; end
+module ::Org; module Jgrapht; module Graph; autoload :DefaultWeightedEdge, "org/jgrapht/graph/DefaultWeightedEdge" unless const_defined?(:DefaultWeightedEdge, false); end; end; end
+module ::Org; module Jgrapht; module Graph; autoload :SimpleWeightedGraph, "org/jgrapht/graph/SimpleWeightedGraph" unless const_defined?(:SimpleWeightedGraph, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryTiledLayer, "org/allbinary/game/layer/AllBinaryTiledLayer" unless const_defined?(:AllBinaryTiledLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CellPosition, "org/allbinary/graphics/CellPosition" unless const_defined?(:CellPosition, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory" unless const_defined?(:BasicGeographicMapCellPositionFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMapUtil, "org/allbinary/media/graphics/geography/map/BasicGeographicMapUtil" unless const_defined?(:BasicGeographicMapUtil, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack; autoload :RaceTrackGeographicMap, "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMap" unless const_defined?(:RaceTrackGeographicMap, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding; autoload :PathFindingNode, "org/allbinary/media/graphics/geography/pathfinding/PathFindingNode" unless const_defined?(:PathFindingNode, false); end; end; end; end; end; end
+
+end; end; end; end; end; end; end; end
 

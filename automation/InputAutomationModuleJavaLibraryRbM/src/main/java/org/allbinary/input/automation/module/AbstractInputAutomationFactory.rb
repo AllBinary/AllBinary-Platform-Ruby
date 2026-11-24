@@ -14,61 +14,70 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module
 
+require "java/lang/JavaOverload"
 # require "java/net/URL"
 # require "javax/help/HelpSet"
-# require "javax/swing"
+# require "javax/swing/JPanel"
 require "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage
 
 class AbstractInputAutomationFactory < InputAutomationModuleFactoryInterface
     attr_accessor :name, :jPanel, :helpSet
 
-    def initialize_fields
-        @name = nil
-        @jPanel = nil
-        @helpSet = nil
+    def jfields_org_allbinary_input_automation_module_AbstractInputAutomationFactory
+        @name = nil unless instance_variable_defined?(:@name)
+        @jPanel = nil unless instance_variable_defined?(:@jPanel)
+        @helpSet = nil unless instance_variable_defined?(:@helpSet)
     end
 
     def initialize(*args)
         case args.length
-        when 3 then constructor3(*args)
-        when 2 then constructor2(*args)
+        when 3 then jnew_org_allbinary_input_automation_module_AbstractInputAutomationFactory_3(*args)
+        when 2 then jnew_org_allbinary_input_automation_module_AbstractInputAutomationFactory_2(*args)
+        else raise ArgumentError, "No constructor of AbstractInputAutomationFactory takes #{args.length} arguments"
         end
     end
     
 
-    def constructor3(name, jPanel, helpSet)
-        method(:initialize).super_method.call()
-        initialize_fields
+    def jnew_org_allbinary_input_automation_module_AbstractInputAutomationFactory_3(name, jPanel, helpSet)
+        AbstractInputAutomationFactory.superclass.instance_method(:initialize).bind(self).call()
+        jfields_org_allbinary_input_automation_module_AbstractInputAutomationFactory
         @name = name
         @jPanel = jPanel
         @helpSet = helpSet
     end
     
 
-    def constructor2(name, jPanel)
-        method(:initialize).super_method.call()
-        initialize_fields
+    def jnew_org_allbinary_input_automation_module_AbstractInputAutomationFactory_2(name, jPanel)
+        AbstractInputAutomationFactory.superclass.instance_method(:initialize).bind(self).call()
+        jfields_org_allbinary_input_automation_module_AbstractInputAutomationFactory
         @name = name
         @jPanel = jPanel
         url = self.class.getResource("/help/Help.hs")
-        @helpSet = JavaHelpUtil.getInstance().getHelpSet(url)
+        @helpSet = ::Org::Allbinary::Logic::Java::Help::JavaHelpUtil.getInstance().getHelpSet(url)
     end
     
 
     def getName()
         return @name
     end
+    java_overload :getName, 0
     
 
     def getConfigurationJPanel()
         return @jPanel
     end
+    java_overload :getConfigurationJPanel, 0
     
 
     def getHelpSet()
         return @helpSet
     end
+    java_overload :getHelpSet, 0
 end
 
-autoload :JavaHelpUtil, "org/allbinary/logic/java/help/JavaHelpUtil"
+module ::Org; module Allbinary; module Logic; module Java; module Help; autoload :JavaHelpUtil, "org/allbinary/logic/java/help/JavaHelpUtil" unless const_defined?(:JavaHelpUtil, false); end; end; end; end; end
+
+end; end; end; end; end
 

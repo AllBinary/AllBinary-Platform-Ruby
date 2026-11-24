@@ -15,15 +15,20 @@
 # package org.allbinary.game.score.remote
 
 
+module ::Org; module Allbinary; module Game; module Score; module Remote
+
 module RemoteHighScoresSubmissionProcessorInterface
     
 
     def process(remoteHighScores, abeClientInformation, highScore)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :HighScore, "org/allbinary/game/score/HighScore"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :RemoteHighScores, "org/allbinary/game/score/remote/RemoteHighScores"
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScore, "org/allbinary/game/score/HighScore" unless const_defined?(:HighScore, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+autoload :RemoteHighScores, "org/allbinary/game/score/remote/RemoteHighScores" unless const_defined?(:RemoteHighScores, false)
+
+end; end; end; end; end
 

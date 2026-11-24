@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/HighScoreCommandsBaseFactory"
+
+module ::Org; module Allbinary; module Game; module Score
 
 class HighScoreCommandsFactory < HighScoreCommandsBaseFactory
     
@@ -59,12 +62,14 @@ class HighScoreCommandsFactory < HighScoreCommandsBaseFactory
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :HighScoreCommands, "org/allbinary/game/score/HighScoreCommands"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+autoload :HighScoreCommands, "org/allbinary/game/score/HighScoreCommands" unless const_defined?(:HighScoreCommands, false)
 
 begin
     HighScoreCommandsFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.media
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Media
+
 class MediaTypeData
     attr_accessor :RESIZABLE_MEDIA, :NOT_RESIZABLE_MEDIA
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_media_MediaTypeData
         @RESIZABLE_MEDIA = "RESIZABLE_MEDIA"
         @NOT_RESIZABLE_MEDIA = "NOT_RESIZABLE_MEDIA"
     end
@@ -30,19 +32,45 @@ class MediaTypeData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_media_MediaTypeData
     end
 
     def self.instance()
+        MediaTypeData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        MediaTypeData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = MediaTypeData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MediaTypeData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class MediaTypeData
-    @@instance = MediaTypeData.new()
+begin
+    MediaTypeData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

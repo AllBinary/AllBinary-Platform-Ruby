@@ -15,22 +15,24 @@
 # package org.allbinary.layer
 
 
+module ::Org; module Allbinary; module Layer
+
 class Layer
     attr_accessor :logUtil, :x, :y, :z, :width, :height, :visible
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @x = 0
-        @y = 0
+    def jfields_org_allbinary_layer_Layer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @x = 0 unless instance_variable_defined?(:@x)
+        @y = 0 unless instance_variable_defined?(:@y)
         @z = 3
-        @width = 0
-        @height = 0
+        @width = 0 unless instance_variable_defined?(:@width)
+        @height = 0 unless instance_variable_defined?(:@height)
         @visible = true
     end
     
 
     def initialize(width, height)
-        initialize_fields
+        jfields_org_allbinary_layer_Layer
         self.setLayerWidth(width)
         self.setLayerHeight(height)
     end
@@ -97,8 +99,8 @@ class Layer
     
 
     def paint(graphics)
-        commonStrings = CommonStrings.getInstance()
-        canvasStrings = CanvasStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        canvasStrings = ::Org::Allbinary::Graphics::Displayable::CanvasStrings.getInstance()
         @logUtil.putF(commonStrings.NOT_IMPLEMENTED, self, canvasStrings.PAINT)
     end
     
@@ -126,7 +128,7 @@ class Layer
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:ID, SmallIntegerSingletonFactory.getInstance().getAt(0))
+            const_set(:ID, ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(0))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -143,16 +145,18 @@ class Layer
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings" unless const_defined?(:CanvasStrings, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     Layer.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

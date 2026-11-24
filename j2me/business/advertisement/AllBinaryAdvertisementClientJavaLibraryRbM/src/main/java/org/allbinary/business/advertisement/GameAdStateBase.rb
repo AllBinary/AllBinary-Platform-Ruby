@@ -15,18 +15,20 @@
 # package org.allbinary.business.advertisement
 
 
+module ::Org; module Allbinary; module Business; module Advertisement
+
 class GameAdStateBase
     attr_accessor :adConfigurationP, :advertisementsP, :okayToShowAdsP
 
-    def initialize_fields
-        @adConfigurationP = nil
+    def jfields_org_allbinary_business_advertisement_GameAdStateBase
+        @adConfigurationP = nil unless instance_variable_defined?(:@adConfigurationP)
         @advertisementsP = Advertisements.new()
-        @okayToShowAdsP = false
+        @okayToShowAdsP = false unless instance_variable_defined?(:@okayToShowAdsP)
     end
     
 
     def initialize(adConfiguration)
-        initialize_fields
+        jfields_org_allbinary_business_advertisement_GameAdStateBase
         @adConfigurationP = adConfiguration
     end
     
@@ -63,7 +65,7 @@ class GameAdStateBase
     
 
     def onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
     end
     
 
@@ -129,11 +131,13 @@ class GameAdStateBase
     end
 end
 
-autoload :GameType, "org/allbinary/game/GameType"
-autoload :GameState, "org/allbinary/game/state/GameState"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :AdConfiguration, "org/allbinary/business/advertisement/AdConfiguration"
-autoload :Advertisements, "org/allbinary/business/advertisement/Advertisements"
+module ::Org; module Allbinary; module Game; autoload :GameType, "org/allbinary/game/GameType" unless const_defined?(:GameType, false); end; end; end
+module ::Org; module Allbinary; module Game; module State; autoload :GameState, "org/allbinary/game/state/GameState" unless const_defined?(:GameState, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+autoload :AdConfiguration, "org/allbinary/business/advertisement/AdConfiguration" unless const_defined?(:AdConfiguration, false)
+autoload :Advertisements, "org/allbinary/business/advertisement/Advertisements" unless const_defined?(:Advertisements, false)
+
+end; end; end; end
 

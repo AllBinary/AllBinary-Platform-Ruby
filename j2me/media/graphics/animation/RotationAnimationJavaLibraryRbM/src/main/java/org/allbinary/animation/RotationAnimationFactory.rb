@@ -14,28 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class RotationAnimationFactory
     include AnimationInterfaceFactoryInterface
     include ProceduralAnimationInterfaceFactoryInterface
     attr_accessor :totalAngle, :angleIncrement
 
-    def initialize_fields
-        @totalAngle = nil
-        @angleIncrement = nil
+    def jfields_org_allbinary_animation_RotationAnimationFactory
+        @totalAngle = nil unless instance_variable_defined?(:@totalAngle)
+        @angleIncrement = nil unless instance_variable_defined?(:@angleIncrement)
     end
     
 
     def self.createFactory()
-        totalAngle = AngleFactory.getInstance().TOTAL_ANGLE
-        return RotationAnimationFactory.new(totalAngle, ((((totalAngle / GameConfigurationCentral.getInstance().getGameControlFidelity())).to_i + 32768) % 65536 - 32768))
+        totalAngle = ::Org::Allbinary::MathPackage::AngleFactory.getInstance().TOTAL_ANGLE
+        return RotationAnimationFactory.new(totalAngle, (((((totalAngle / ::Org::Allbinary::Game::Configuration::GameConfigurationCentral.getInstance().getGameControlFidelity())).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + 32768) % 65536 - 32768))
     end
     
 
     def initialize(totalAngle, angleIncrement)
-        initialize_fields
+        jfields_org_allbinary_animation_RotationAnimationFactory
         @totalAngle = totalAngle
         @angleIncrement = angleIncrement
     end
@@ -43,25 +46,30 @@ class RotationAnimationFactory
 
     # throws Exception
     def getInstance(instanceId)
-        return NullRotationAnimation.createTotalAngle(AngleInfo.getInstance(@angleIncrement), @totalAngle, AnimationBehavior.getInstance())
+        return NullRotationAnimation.createTotalAngle(::Org::Allbinary::MathPackage::AngleInfo.getInstance(@angleIncrement), @totalAngle, AnimationBehavior.getInstance())
     end
+    java_overload :getInstance, 1
     
 
     # throws Exception
     def getInstanceAnimation(animationInterface)
-        return NullRotationAnimation.createTotalAngle(AngleInfo.getInstance(@angleIncrement), @totalAngle, AnimationBehavior.getInstance())
+        return NullRotationAnimation.createTotalAngle(::Org::Allbinary::MathPackage::AngleInfo.getInstance(@angleIncrement), @totalAngle, AnimationBehavior.getInstance())
     end
+    java_overload :getInstanceAnimation, 1
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
 end
 
-autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral"
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
-autoload :AngleInfo, "org/allbinary/math/AngleInfo"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :NullRotationAnimation, "org/allbinary/animation/NullRotationAnimation"
+module ::Org; module Allbinary; module Game; module Configuration; autoload :GameConfigurationCentral, "org/allbinary/game/configuration/GameConfigurationCentral" unless const_defined?(:GameConfigurationCentral, false); end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleInfo, "org/allbinary/math/AngleInfo" unless const_defined?(:AngleInfo, false); end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false)
+autoload :NullRotationAnimation, "org/allbinary/animation/NullRotationAnimation" unless const_defined?(:NullRotationAnimation, false)
+
+end; end; end
 

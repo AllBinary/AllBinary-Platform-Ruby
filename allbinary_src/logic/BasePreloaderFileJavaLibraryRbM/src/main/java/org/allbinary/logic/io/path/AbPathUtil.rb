@@ -15,15 +15,17 @@
 # package org.allbinary.logic.io.path
 
 
+module ::Org; module Allbinary; module Logic; module Io; module Path
+
 class AbPathUtil
     attr_accessor :NO_ABPATH
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_io_path_AbPathUtil
         @NO_ABPATH = AbPath.createAbPath()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_io_path_AbPathUtil
     end
     
 
@@ -62,11 +64,13 @@ class AbPathUtil
     end
 end
 
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false)
 
 begin
     AbPathUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

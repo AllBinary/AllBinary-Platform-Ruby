@@ -14,20 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.business.context.modules.storefront.statistics.users
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/TableMappingInterface"
+
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; module Statistics; module Users
 
 #import org.allbinary.business.user.commerce.money.Money;
 module StoreFrontUsersStatisticsInterface
-    include TableMappingInterface
+    include ::Org::Allbinary::DataPackage::Tables::TableMappingInterface
     
 
     def getNumberOfUsers()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getNumberOfUsers, 0
     
 
     def getNumberOfUsersByRole(role)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getNumberOfUsersByRole, 1
 end
+
+end; end; end; end; end; end; end; end
 

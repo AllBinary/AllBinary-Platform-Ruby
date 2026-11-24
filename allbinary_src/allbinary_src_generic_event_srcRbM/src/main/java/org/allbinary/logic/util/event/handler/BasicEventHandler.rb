@@ -15,26 +15,29 @@
 # package org.allbinary.logic.util.event.handler
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandlerInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Event; module Handler
 
 class BasicEventHandler
     include BasicEventHandlerInterface
     attr_accessor :logUtil, :eventListenerInterfaceList
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @eventListenerInterfaceList = nil
+    def jfields_org_allbinary_logic_util_event_handler_BasicEventHandler
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @eventListenerInterfaceList = nil unless instance_variable_defined?(:@eventListenerInterfaceList)
     end
     
 
     def initialize()
-        initialize_fields
-        @eventListenerInterfaceList = BasicArrayListD.new()
+        jfields_org_allbinary_logic_util_event_handler_BasicEventHandler
+        @eventListenerInterfaceList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         _LISTENER = " Listener: "
         stringBuffer.append("Total Listeners: ")
         stringBuffer.appendint(@eventListenerInterfaceList.size())
@@ -44,23 +47,25 @@ class BasicEventHandler
             begin
                 eventListenerInterface = @eventListenerInterfaceList.objectArray[index]
                 stringBuffer.append(_LISTENER)
-                stringBuffer.append(StringUtil.getInstance().toString(eventListenerInterface))
+                stringBuffer.append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(eventListenerInterface))
             rescue StandardError => e
-                commonStrings = CommonStrings.getInstance()
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.TOSTRING, e)
             end
             index += 1
         end
         return stringBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
     
 
     def removeAllListeners()
         java_monitor.synchronize do
-        @eventListenerInterfaceList = BasicArrayListD.new()
+        @eventListenerInterfaceList = ::Org::Allbinary::Util::BasicArrayListD.new()
         end
     end
+    java_overload :removeAllListeners, 0
     
 
     def addListenerSingleThreaded(eventListenerInterface)
@@ -68,6 +73,7 @@ class BasicEventHandler
             @eventListenerInterfaceList.add(eventListenerInterface)
         end
     end
+    java_overload :addListenerSingleThreaded, 1
     
 
     def addListenerInterface(eventListenerInterface)
@@ -77,11 +83,13 @@ class BasicEventHandler
         end
         end
     end
+    java_overload :addListenerInterface, 1
     
 
     def removeListenerSingleThreaded(eventListenerInterface)
         @eventListenerInterfaceList.remove(eventListenerInterface)
     end
+    java_overload :removeListenerSingleThreaded, 1
     
 
     def removeListener(eventListenerInterface)
@@ -89,6 +97,7 @@ class BasicEventHandler
         @eventListenerInterfaceList.remove(eventListenerInterface)
         end
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -101,24 +110,27 @@ class BasicEventHandler
                 eventListenerInterface = @eventListenerInterfaceList.objectArray[index]
                 self.process(eventObject, eventListenerInterface)
             rescue StandardError => e
-                commonStrings = CommonStrings.getInstance()
-                @logUtil.put(commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+                @logUtil.put(commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
             index += 1
         end
         end
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
     def process(eventObject, eventListenerInterface)
         eventListenerInterface.onEvent(eventObject)
     end
+    java_overload :process, 2
     
 
     def getEventListenerInterfaceListP()
         return @eventListenerInterfaceList
     end
+    java_overload :getEventListenerInterfaceListP, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -141,19 +153,21 @@ class BasicEventHandler
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     BasicEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

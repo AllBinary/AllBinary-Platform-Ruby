@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/IntermissionEnableListenerInterface"
+
+module ::Org; module Allbinary; module Game
 
 class NullIntermissionEnableListener
     include IntermissionEnableListenerInterface
@@ -31,6 +34,7 @@ class NullIntermissionEnableListener
 
     def notifyIntermission(enable)
     end
+    java_overload :notifyIntermission, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -58,4 +62,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/LocationPaintable"
+
+module ::Org; module Allbinary; module Graphics; module Paint
 
 class StringLocationPaintable < LocationPaintable
     attr_accessor :value
 
-    def initialize_fields
-        @value = nil
+    def jfields_org_allbinary_graphics_paint_StringLocationPaintable
+        @value = nil unless instance_variable_defined?(:@value)
     end
     
 
     def initialize(value)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_paint_StringLocationPaintable
         @value = value
     end
     
@@ -34,7 +37,10 @@ class StringLocationPaintable < LocationPaintable
     def paintXY(graphics, x, y)
         graphics.drawString(@value, x, y, 0)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+
+end; end; end; end
 

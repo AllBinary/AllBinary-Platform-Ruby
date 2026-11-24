@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/IndexedBasicArrayListCache"
+
+module ::Org; module Allbinary; module Logic; module Util; module Cache
 
 class KeylessBasicArrayListCache < IndexedBasicArrayListCache
     attr_accessor :logUtil, :basicArrayListUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @basicArrayListUtil = BasicArrayListUtil.getInstance()
+    def jfields_org_allbinary_logic_util_cache_KeylessBasicArrayListCache
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @basicArrayListUtil = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_KeylessBasicArrayListCache
     end
     
 
@@ -43,20 +46,22 @@ class KeylessBasicArrayListCache < IndexedBasicArrayListCache
             return @basicArrayListUtil.getImmutableInstance()
         end
     end
+    java_overload :get, 0
     
 
     def clear()
-        super()
+        KeylessBasicArrayListCache.superclass.java_super_method(:clear, 0).bind(self).call()
         basicArrayList = nil
         (@list.size() - 1).step(0, -(1)) do |index|
             basicArrayList = (@list.objectArray[index])
             basicArrayList.clear()
         end
     end
+    java_overload :clear, 0
     
 
     def log()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("S: ")
         stringBuffer.appendint(@list.size())
         _S_LABEL = " s: "
@@ -68,10 +73,13 @@ class KeylessBasicArrayListCache < IndexedBasicArrayListCache
         end
         return stringBuffer.to_s
     end
+    java_overload :log, 0
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+
+end; end; end; end; end
 

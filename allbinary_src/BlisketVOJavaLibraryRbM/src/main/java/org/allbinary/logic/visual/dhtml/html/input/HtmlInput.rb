@@ -14,27 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/HtmlTag"
 
-class HtmlInput < HtmlTag
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Input
+
+class HtmlInput < ::Org::Allbinary::Logic::Visual::Dhtml::Html::HtmlTag
     attr_accessor :END, :STARTINPUT, :ENDINPUT, :TYPE, :NAME, :before, :type, :name, :after
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlInput
         @END = ">"
         @STARTINPUT = "<INPUT "
         @ENDINPUT = "</INPUT>"
         @TYPE = "TYPE=\""
         @NAME = "NAME=\""
-        @before = nil
-        @type = nil
-        @name = nil
-        @after = nil
+        @before = nil unless instance_variable_defined?(:@before)
+        @type = nil unless instance_variable_defined?(:@type)
+        @name = nil unless instance_variable_defined?(:@name)
+        @after = nil unless instance_variable_defined?(:@after)
     end
     
 
     def initialize(before, type, name, after)
         super()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlInput
         @before = before
         @type = type
         @name = name
@@ -43,7 +46,7 @@ class HtmlInput < HtmlTag
     
 
     def toString()
-        stringUtil = StringUtil.getInstance()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         result = stringUtil.EMPTY_STRING
         attributeKeys = @otherAttributes.keySet().toArray()
         attributeSize = attributeKeys.length
@@ -70,8 +73,11 @@ class HtmlInput < HtmlTag
         result += (@after).to_s
         return result
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end; end; end
 

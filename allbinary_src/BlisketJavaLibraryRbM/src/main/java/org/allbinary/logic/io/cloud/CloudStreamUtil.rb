@@ -14,17 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io
 
-# require "java/io/InputStream"
+
+module ::Org; module Allbinary; module Logic; module Io
 
 class CloudStreamUtil
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_io_CloudStreamUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_io_CloudStreamUtil
     end
     
 
@@ -35,10 +36,10 @@ class CloudStreamUtil
 
     # throws Exception
     def getFile(file)
-        inputStream = AbFileInputStream.new(file)
+        inputStream = AbFileInputStream.createFromAbFile(file)
         available = inputStream.available()
         if available > 0
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
                 @logUtil.putF("Cloud File Bytes: " + (available).to_s, self, "processRequest()")
             end
         end
@@ -51,14 +52,14 @@ class CloudStreamUtil
         inputStream = AbFileLocalInputStream.new(file)
         available = inputStream.available()
         if available > 0
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
                 @logUtil.putF("Local File Bytes: " + (available).to_s, self, "processRequest()")
             end
         else
-            inputStream = AbFileInputStream.new(file)
+            inputStream = AbFileInputStream.createFromAbFile(file)
             available = inputStream.available()
             if available > 0
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEWERROR)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEWERROR)
                     @logUtil.putF("Cloud File Bytes: " + (available).to_s, self, "processRequest()")
                 end
             end
@@ -72,7 +73,7 @@ class CloudStreamUtil
         inputStream = AbFileLocalInputStream.new(file)
         available = inputStream.available()
         if available > 0
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
                 @logUtil.putF("Local File Bytes: " + (available).to_s, self, "processRequest()")
             end
         end
@@ -110,12 +111,17 @@ class CloudStreamUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
 begin
     CloudStreamUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

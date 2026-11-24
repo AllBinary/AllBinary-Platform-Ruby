@@ -15,6 +15,8 @@
 # package org.allbinary.image
 
 
+module ::Org; module Allbinary; module Image
+
 class IndexedAnimationToImageArrayUtil
     
 
@@ -30,7 +32,9 @@ class IndexedAnimationToImageArrayUtil
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
-autoload :AnimationFrameToImageUtil, "org/allbinary/image/AnimationFrameToImageUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation" unless const_defined?(:IndexedAnimation, false); end; end; end
+autoload :AnimationFrameToImageUtil, "org/allbinary/image/AnimationFrameToImageUtil" unless const_defined?(:AnimationFrameToImageUtil, false)
+
+end; end; end
 

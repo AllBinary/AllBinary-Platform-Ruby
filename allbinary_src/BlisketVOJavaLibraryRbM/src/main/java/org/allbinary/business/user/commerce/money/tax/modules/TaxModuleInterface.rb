@@ -15,21 +15,27 @@
 # package org.allbinary.business.user.commerce.money.tax.modules
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Tax; module Modules
+
 module TaxModuleInterface
     
 
     # throws Exception
     def getTaxRate(streetAddress, storeFrontInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def isValid(streetAddress, storeFrontInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface" unless const_defined?(:StoreFrontInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress" unless const_defined?(:StreetAddress, false); end; end; end; end; end
+
+end; end; end; end; end; end; end; end
 

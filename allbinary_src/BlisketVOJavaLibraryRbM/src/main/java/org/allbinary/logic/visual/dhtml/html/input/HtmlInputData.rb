@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.dhtml.html.input
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Input
+
 class HtmlInputData
     attr_accessor :TEXT, :RADIO, :CHECKBOX, :HIDDEN, :IMAGE, :PASSWORD, :RESET, :SUBMIT, :TYPES
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlInputData
         @TEXT = "text"
         @RADIO = "radio"
         @CHECKBOX = "checkbox"
@@ -31,7 +33,7 @@ class HtmlInputData
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlInputData
     end
     
 
@@ -75,4 +77,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

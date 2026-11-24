@@ -15,6 +15,8 @@
 # package org.allbinary.game.input.mapping
 
 
+module ::Org; module Allbinary; module Game; module Input; module Mapping
+
 module InputMappingInterface
     
 
@@ -25,6 +27,8 @@ module InputMappingInterface
     end
 end
 
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :Input, "org/allbinary/game/input/Input"
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false); end; end; end; end
+
+end; end; end; end; end
 

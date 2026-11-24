@@ -15,12 +15,17 @@
 # package org.allbinary.media.image.io
 
 
+module ::Org; module Allbinary; module Media; module Image; module Io
+
 module ImageIOInterface
     
 
     # throws Exception
     def save(frame)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.damage
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/NamedInterface"
 
+module ::Org; module Allbinary; module Game; module Combat; module Damage
+
 module DamageableInterface
-    include NamedInterface
+    include ::Org::Allbinary::Layer::NamedInterface
     
 
     # throws Exception
@@ -25,6 +28,7 @@ module DamageableInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :damage, 2
     
 
     # throws Exception
@@ -32,5 +36,8 @@ module DamageableInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getDamage, 1
 end
+
+end; end; end; end; end
 

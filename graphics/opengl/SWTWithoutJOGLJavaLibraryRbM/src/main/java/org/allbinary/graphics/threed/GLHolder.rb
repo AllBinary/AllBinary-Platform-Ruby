@@ -15,16 +15,18 @@
 # package org.allbinary.graphics.threed
 
 
+module ::Org; module Allbinary; module Graphics; module Threed
+
 class GLHolder
     attr_accessor :isCreated
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_threed_GLHolder
         @isCreated = true
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_threed_GLHolder
     end
     
 
@@ -39,4 +41,6 @@ class GLHolder
     def run(renderer)
     end
 end
+
+end; end; end; end
 

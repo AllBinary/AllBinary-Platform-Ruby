@@ -15,16 +15,18 @@
 # package org.allbinary.graphics.color
 
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class ColorCacheFactory
     
 
     def self.static_init
-        logUtil = LogUtil.getInstance()
-        commonStrings = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         _STATIC_BLOCK = "Static Block"
         begin
             logUtil.putF(commonStrings.START, ColorCacheFactory, _STATIC_BLOCK)
-            ColorCacheFactory.cacheInterface = AutomaticCacheInterfaceFactory.getInstance(ColorCacheableFactory.new(), CacheTypeFactory.getInstance().CACHE, CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
+            ColorCacheFactory.cacheInterface = ::Org::Allbinary::Logic::Util::Cache::AutomaticCacheInterfaceFactory.getInstance(ColorCacheableFactory.new(), ::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
             logUtil.putF(commonStrings.END_, ColorCacheFactory, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, ColorCacheFactory, _STATIC_BLOCK, e)
@@ -72,17 +74,19 @@ class ColorCacheFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface"
-autoload :AutomaticCacheInterfaceFactory, "org/allbinary/logic/util/cache/AutomaticCacheInterfaceFactory"
-autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory"
-autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ColorCacheableFactory, "org/allbinary/graphics/color/ColorCacheableFactory"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :AutomaticCacheInterface, "org/allbinary/logic/util/cache/AutomaticCacheInterface" unless const_defined?(:AutomaticCacheInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :AutomaticCacheInterfaceFactory, "org/allbinary/logic/util/cache/AutomaticCacheInterfaceFactory" unless const_defined?(:AutomaticCacheInterfaceFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CachePolicyFactory, "org/allbinary/logic/util/cache/CachePolicyFactory" unless const_defined?(:CachePolicyFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheTypeFactory, "org/allbinary/logic/util/cache/CacheTypeFactory" unless const_defined?(:CacheTypeFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :ColorCacheableFactory, "org/allbinary/graphics/color/ColorCacheableFactory" unless const_defined?(:ColorCacheableFactory, false)
 
 begin
     ColorCacheFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

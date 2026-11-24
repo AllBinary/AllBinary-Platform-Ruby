@@ -14,28 +14,35 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.mapping
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Input; module Mapping
+
 class MotionInputMappingEventListener
-    include InputMappingEventListenerInterface
+    include ::Org::Allbinary::Game::Input::Mapping::Event::InputMappingEventListenerInterface
     
 
     def onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
     end
+    java_overload :onEvent, 1
     
 
     # throws Exception
     def onInputMappingEvent(inputMappingEvent)
-        GameKeyCompleteMotionGestureInputEventFactory.getInstance().updateAll()
-        BasicTouchInputFactory.getInstance().updateAll(inputMappingEvent.getInputToGameKeyMapping())
+        ::Org::Allbinary::Game::Input::Motion::Action::GameKeyCompleteMotionGestureInputEventFactory.getInstance().updateAll()
+        ::Org::Allbinary::Input::Motion::Button::BasicTouchInputFactory.getInstance().updateAll(inputMappingEvent.getInputToGameKeyMapping())
     end
+    java_overload :onInputMappingEvent, 1
 end
 
-autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
-autoload :GameKeyCompleteMotionGestureInputEventFactory, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEventFactory"
-autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
+module ::Org; module Allbinary; module Game; module Input; module Mapping; module Event; autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent" unless const_defined?(:InputMappingEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Motion; module Action; autoload :GameKeyCompleteMotionGestureInputEventFactory, "org/allbinary/game/input/motion/action/GameKeyCompleteMotionGestureInputEventFactory" unless const_defined?(:GameKeyCompleteMotionGestureInputEventFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Button; autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+
+end; end; end; end; end
 

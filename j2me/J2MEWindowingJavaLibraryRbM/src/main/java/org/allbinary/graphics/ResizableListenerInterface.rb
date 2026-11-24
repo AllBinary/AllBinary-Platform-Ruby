@@ -15,6 +15,8 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 module ResizableListenerInterface
     
 
@@ -23,4 +25,6 @@ module ResizableListenerInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

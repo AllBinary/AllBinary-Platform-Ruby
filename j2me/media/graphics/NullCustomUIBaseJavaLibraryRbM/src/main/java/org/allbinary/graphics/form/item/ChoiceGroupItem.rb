@@ -3,6 +3,10 @@
 # package org.allbinary.graphics.form.item
 
 
+module ::Org; module Allbinary; module Graphics; module Form; module Item
+
 class ChoiceGroupItem
 end
+
+end; end; end; end; end
 

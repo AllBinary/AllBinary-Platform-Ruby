@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.input.magnetic.field
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/AllBinarySensor"
 
-class AllBinaryMagneticFieldSensor < AllBinarySensor
+module ::Org; module Allbinary; module Input; module Magnetic; module Field
+
+class AllBinaryMagneticFieldSensor < ::Org::Allbinary::Input::AllBinarySensor
     
 
     def initialize()
         super()
     end
 end
+
+end; end; end; end; end
 

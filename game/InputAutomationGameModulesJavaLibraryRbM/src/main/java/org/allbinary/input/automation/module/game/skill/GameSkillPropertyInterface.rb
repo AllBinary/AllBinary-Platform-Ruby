@@ -15,16 +15,22 @@
 # package org.allbinary.input.automation.module.game.skill
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game; module Skill
+
 module GameSkillPropertyInterface
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getValue()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end; end
 

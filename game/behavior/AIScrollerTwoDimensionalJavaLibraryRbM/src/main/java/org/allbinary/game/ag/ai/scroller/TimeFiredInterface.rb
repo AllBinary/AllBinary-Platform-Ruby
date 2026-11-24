@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.ai.scroller
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai; module Scroller
+
 module TimeFiredInterface
     
 
@@ -23,4 +25,6 @@ module TimeFiredInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end
 

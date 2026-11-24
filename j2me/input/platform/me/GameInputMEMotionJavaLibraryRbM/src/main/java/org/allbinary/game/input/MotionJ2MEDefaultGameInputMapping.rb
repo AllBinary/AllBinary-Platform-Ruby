@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/mapping/PersistentInputMapping"
 
-class MotionJ2MEDefaultGameInputMapping < PersistentInputMapping
+module ::Org; module Allbinary; module Game; module Input
+
+class MotionJ2MEDefaultGameInputMapping < ::Org::Allbinary::Game::Input::Mapping::PersistentInputMapping
     
 
     def initialize()
-        super(GamePersistanceStrings.getInstance().DEFAULT_INPUT_MAPPING_RECORD_ID)
+        super(::Org::Allbinary::Game::Configuration::Persistance::GamePersistanceStrings.getInstance().DEFAULT_INPUT_MAPPING_RECORD_ID)
         inputToGameKeyMapping = self.getInputMapping()
         gameKeyFactory = GameKeyFactory.getInstance()
         inputToGameKeyMapping.add(gameKeyFactory.UP, gameKeyFactory.KEY_NUM2)
@@ -46,11 +49,11 @@ class MotionJ2MEDefaultGameInputMapping < PersistentInputMapping
         inputToGameKeyMapping.add(gameKeyFactory.KEY_NUM9, gameKeyFactory.KEY_NUM9)
         inputToGameKeyMapping.add(gameKeyFactory.KEY_NUM0, gameKeyFactory.KEY_NUM0)
         inputToGameKeyMapping.add(gameKeyFactory.KEY_NUM1, gameKeyFactory.FIRE)
-        inputToGameKeyMapping.add(gameKeyFactory.UP, TouchMotionGestureFactory.getInstance().UP)
-        inputToGameKeyMapping.add(gameKeyFactory.DOWN, TouchMotionGestureFactory.getInstance().DOWN)
-        inputToGameKeyMapping.add(gameKeyFactory.LEFT, TouchMotionGestureFactory.getInstance().LEFT)
-        inputToGameKeyMapping.add(gameKeyFactory.RIGHT, TouchMotionGestureFactory.getInstance().RIGHT)
-        basicTouchInputFactory = BasicTouchInputFactory.getInstance()
+        inputToGameKeyMapping.add(gameKeyFactory.UP, ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().UP)
+        inputToGameKeyMapping.add(gameKeyFactory.DOWN, ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().DOWN)
+        inputToGameKeyMapping.add(gameKeyFactory.LEFT, ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().LEFT)
+        inputToGameKeyMapping.add(gameKeyFactory.RIGHT, ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().RIGHT)
+        basicTouchInputFactory = ::Org::Allbinary::Input::Motion::Button::BasicTouchInputFactory.getInstance()
         inputToGameKeyMapping.add(gameKeyFactory.UP, basicTouchInputFactory.UP)
         inputToGameKeyMapping.add(gameKeyFactory.LEFT, basicTouchInputFactory.LEFT)
         inputToGameKeyMapping.add(gameKeyFactory.RIGHT, basicTouchInputFactory.RIGHT)
@@ -64,9 +67,11 @@ class MotionJ2MEDefaultGameInputMapping < PersistentInputMapping
     end
 end
 
-autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
-autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory"
-autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings" unless const_defined?(:GamePersistanceStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping" unless const_defined?(:InputToGameKeyMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Button; autoload :BasicTouchInputFactory, "org/allbinary/input/motion/button/BasicTouchInputFactory" unless const_defined?(:BasicTouchInputFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; autoload :TouchMotionGestureFactory, "org/allbinary/input/motion/gesture/TouchMotionGestureFactory" unless const_defined?(:TouchMotionGestureFactory, false); end; end; end; end; end
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false)
+
+end; end; end; end
 

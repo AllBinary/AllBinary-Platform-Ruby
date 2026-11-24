@@ -14,15 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.game.skill
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game; module Skill
 
 class GameSkill
     attr_accessor :gameSkillType, :extra, :time, :vector, :GAME_SKILL_LABEL, :EXTRA_LABEL, :TIME_LABEL
 
-    def initialize_fields
-        @gameSkillType = nil
-        @extra = nil
-        @time = 0
-        @vector = nil
+    def jfields_org_allbinary_input_automation_module_game_skill_GameSkill
+        @gameSkillType = nil unless instance_variable_defined?(:@gameSkillType)
+        @extra = nil unless instance_variable_defined?(:@extra)
+        @time = 0 unless instance_variable_defined?(:@time)
+        @vector = nil unless instance_variable_defined?(:@vector)
         @GAME_SKILL_LABEL = "GameSkill: "
         @EXTRA_LABEL = "Extra: "
         @TIME_LABEL = "Time: "
@@ -30,12 +33,12 @@ class GameSkill
     
 
     def initialize(gameSkillType, extra, time)
-        initialize_fields
+        jfields_org_allbinary_input_automation_module_game_skill_GameSkill
         self.setGameSkillType(gameSkillType)
         self.setExtra(extra)
         self.setTime(time)
-        @vector = BasicArrayListD.new()
-        GameSkill.hashMap.put(StringMaker.new().append(self.getGameSkillType().getName()).append(CommonSeps.getInstance().SPACE).append(extra).to_s, self)
+        @vector = ::Org::Allbinary::Util::BasicArrayListD.new()
+        GameSkill.hashMap.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(self.getGameSkillType().getName()).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(extra).to_s, self)
     end
     
 
@@ -80,13 +83,13 @@ class GameSkill
     
 
     def self.getInstance(gameSkillType, extra)
-        return GameSkill.hashMap.get(StringMaker.new().append(gameSkillType.getName()).append(CommonSeps.getInstance().SPACE).append(extra).to_s)
+        return GameSkill.hashMap.get(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(gameSkillType.getName()).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(extra).to_s)
     end
     
 
     def toString()
-        commonSeps = CommonSeps.getInstance()
-        stringBuffer = StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@GAME_SKILL_LABEL)
         stringBuffer.append(self.getGameSkillType().to_s)
         stringBuffer.append(commonSeps.SPACE)
@@ -113,7 +116,7 @@ class GameSkill
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@hashMap = StdUtil.getInstance().createHashMap()
+            @@hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -130,18 +133,20 @@ class GameSkill
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :GameSkillPropertyInterface, "org/allbinary/input/automation/module/game/skill/GameSkillPropertyInterface"
-autoload :GameSkillType, "org/allbinary/input/automation/module/game/skill/GameSkillType"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :GameSkillPropertyInterface, "org/allbinary/input/automation/module/game/skill/GameSkillPropertyInterface" unless const_defined?(:GameSkillPropertyInterface, false)
+autoload :GameSkillType, "org/allbinary/input/automation/module/game/skill/GameSkillType" unless const_defined?(:GameSkillType, false)
 
 begin
     GameSkill.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

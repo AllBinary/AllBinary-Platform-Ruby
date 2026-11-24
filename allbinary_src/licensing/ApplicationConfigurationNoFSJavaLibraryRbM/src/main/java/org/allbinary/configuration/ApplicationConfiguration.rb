@@ -3,11 +3,13 @@
 # package org.allbinary.configuration
 
 
+module ::Org; module Allbinary; module Configuration
+
 class ApplicationConfiguration
     attr_accessor :logUtil, :fullscreen, :showTitleBar, :progressBarView
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_configuration_ApplicationConfiguration
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @fullscreen = true
         @showTitleBar = false
         @progressBarView = false
@@ -15,7 +17,7 @@ class ApplicationConfiguration
     
 
     def self.getInstance()
-        if ApplicationConfiguration.instance == NullUtil.getInstance().NULL_OBJECT
+        if ApplicationConfiguration.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             ApplicationConfiguration.instance = ApplicationConfiguration.new()
         end
         return ApplicationConfiguration.instance
@@ -23,11 +25,11 @@ class ApplicationConfiguration
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_configuration_ApplicationConfiguration
         begin
             self.read()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
         end
     end
@@ -49,8 +51,8 @@ class ApplicationConfiguration
 
     # throws Exception
     def update(gameFeature)
-        if gameFeature == MainFeatureFactory.getInstance().FULL_SCREEN
-            features = Features.getInstance()
+        if gameFeature == ::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance().FULL_SCREEN
+            features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
             if features.isFeature(gameFeature)
                 if !self.isFullscreen()
                     self.setFullscreen(true)
@@ -97,7 +99,7 @@ class ApplicationConfiguration
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("isFullscreen: ")
         stringBuffer.appendboolean(self.isFullscreen())
         stringBuffer.append(" isProgressBarView: ")
@@ -122,7 +124,7 @@ class ApplicationConfiguration
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -139,17 +141,19 @@ class ApplicationConfiguration
     end
 end
 
-autoload :Feature, "org/allbinary/game/configuration/feature/Feature"
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Feature, "org/allbinary/game/configuration/feature/Feature" unless const_defined?(:Feature, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory" unless const_defined?(:MainFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     ApplicationConfiguration.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

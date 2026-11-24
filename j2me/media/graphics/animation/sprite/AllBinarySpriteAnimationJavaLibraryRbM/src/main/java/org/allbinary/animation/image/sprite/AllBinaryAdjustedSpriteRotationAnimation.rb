@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image.sprite
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/sprite/AllBinarySpriteRotationAnimation"
+
+module ::Org; module Allbinary; module Animation; module Image; module Sprite
 
 class AllBinaryAdjustedSpriteRotationAnimation < AllBinarySpriteRotationAnimation
     attr_accessor :dx, :dy
 
-    def initialize_fields
-        @dx = nil
-        @dy = nil
+    def jfields_org_allbinary_animation_image_sprite_AllBinaryAdjustedSpriteRotationAnimation
+        @dx = nil unless instance_variable_defined?(:@dx)
+        @dy = nil unless instance_variable_defined?(:@dy)
     end
     
 
     def initialize(sprite, image, dx, dy, animationBehavior)
         super(sprite, image, animationBehavior)
-        initialize_fields
+        jfields_org_allbinary_animation_image_sprite_AllBinaryAdjustedSpriteRotationAnimation
         @dx = dx
         @dy = dy
     end
@@ -37,10 +40,13 @@ class AllBinaryAdjustedSpriteRotationAnimation < AllBinarySpriteRotationAnimatio
         @sprite.setPosition(x + @dx, y + @dy)
         self.paint(g)
     end
+    java_overload :paintXY, 3
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Sprite, "javax/microedition/lcdui/game/Sprite"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; module Game; autoload :Sprite, "javax/microedition/lcdui/game/Sprite" unless const_defined?(:Sprite, false); end; end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+
+end; end; end; end; end
 

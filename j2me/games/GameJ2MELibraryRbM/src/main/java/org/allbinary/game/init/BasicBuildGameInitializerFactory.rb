@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.init
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/init/GameInitializationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Init
 
 class BasicBuildGameInitializerFactory
     include GameInitializationInterfaceFactoryInterface
@@ -23,6 +26,7 @@ class BasicBuildGameInitializerFactory
     def getInstance()
         return BaseGameInitialization::NULL_BASE_GAME_INITIALIZATION
     end
+    java_overload :getInstance, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -45,12 +49,14 @@ class BasicBuildGameInitializerFactory
     end
 end
 
-autoload :BaseGameInitialization, "org/allbinary/game/init/BaseGameInitialization"
-autoload :GameInitializationInterface, "org/allbinary/game/init/GameInitializationInterface"
+autoload :BaseGameInitialization, "org/allbinary/game/init/BaseGameInitialization" unless const_defined?(:BaseGameInitialization, false)
+autoload :GameInitializationInterface, "org/allbinary/game/init/GameInitializationInterface" unless const_defined?(:GameInitializationInterface, false)
 
 begin
     BasicBuildGameInitializerFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

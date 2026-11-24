@@ -15,11 +15,13 @@
 # package org.allbinary.game.combat.damage
 
 
+module ::Org; module Allbinary; module Game; module Combat; module Damage
+
 class DamageUtil
     attr_accessor :logUtil, :COLLIDE
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_combat_damage_DamageUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @COLLIDE = "collide"
     end
     
@@ -30,7 +32,7 @@ class DamageUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_combat_damage_DamageUtil
     end
     
 
@@ -45,7 +47,7 @@ class DamageUtil
         collidableDestroyableDamageableLayer = collidableInterfaceCompositeInterface
         damage = collidableDestroyableDamageableLayer.getDamage(0)
         if damage > 20000
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Collision ")
             stringBuffer.append(collidableInterfaceCompositeInterface1.to_s)
             stringBuffer.append(" with: ")
@@ -87,15 +89,17 @@ class DamageUtil
     end
 end
 
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :DamageableInterface, "org/allbinary/game/combat/damage/DamageableInterface"
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Special; autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+autoload :DamageableInterface, "org/allbinary/game/combat/damage/DamageableInterface" unless const_defined?(:DamageableInterface, false)
 
 begin
     DamageUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

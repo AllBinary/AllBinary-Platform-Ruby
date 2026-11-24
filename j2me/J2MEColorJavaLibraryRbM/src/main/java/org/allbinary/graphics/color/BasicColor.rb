@@ -19,25 +19,27 @@
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class BasicColor
     attr_accessor :name, :value, :redComponent, :greenComponent, :blueComponent, :alphaComponent, :red, :green, :blue, :alpha
 
-    def initialize_fields
-        @name = nil
-        @value = nil
-        @redComponent = nil
-        @greenComponent = nil
-        @blueComponent = nil
-        @alphaComponent = nil
-        @red = nil
-        @green = nil
-        @blue = nil
-        @alpha = nil
+    def jfields_org_allbinary_graphics_color_BasicColor
+        @name = nil unless instance_variable_defined?(:@name)
+        @value = nil unless instance_variable_defined?(:@value)
+        @redComponent = nil unless instance_variable_defined?(:@redComponent)
+        @greenComponent = nil unless instance_variable_defined?(:@greenComponent)
+        @blueComponent = nil unless instance_variable_defined?(:@blueComponent)
+        @alphaComponent = nil unless instance_variable_defined?(:@alphaComponent)
+        @red = nil unless instance_variable_defined?(:@red)
+        @green = nil unless instance_variable_defined?(:@green)
+        @blue = nil unless instance_variable_defined?(:@blue)
+        @alpha = nil unless instance_variable_defined?(:@alpha)
     end
     
 
     def initialize(alphaValue, value, name)
-        initialize_fields
+        jfields_org_allbinary_graphics_color_BasicColor
         @name = name
         tempValue = 0
         basicColorUtil = BasicColorUtil.getInstance()
@@ -77,7 +79,7 @@ class BasicColor
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("BasicColor: ")
         stringBuffer.append("Alpha: ")
         stringBuffer.appendshort(@alpha)
@@ -119,6 +121,8 @@ class BasicColor
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil" unless const_defined?(:BasicColorUtil, false)
+
+end; end; end; end
 

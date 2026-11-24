@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map.racetrack
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
 
-class RaceTrackGeographicMapCellType < GeographicMapCellType
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
+
+class RaceTrackGeographicMapCellType < ::Org::Allbinary::Media::Graphics::Geography::Map::GeographicMapCellType
     attr_accessor :name, :travelCost
 
-    def initialize_fields
-        @name = nil
-        @travelCost = nil
+    def jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackGeographicMapCellType
+        @name = nil unless instance_variable_defined?(:@name)
+        @travelCost = nil unless instance_variable_defined?(:@travelCost)
     end
     
 
     def initialize(name, type, travelCost, reset)
         super(type, reset)
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackGeographicMapCellType
         @name = name
         @travelCost = travelCost
     end
@@ -36,7 +39,10 @@ class RaceTrackGeographicMapCellType < GeographicMapCellType
     def getTravelCost()
         return @travelCost
     end
+    java_overload :getTravelCost, 0
 end
 
-require "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end; end; end
 

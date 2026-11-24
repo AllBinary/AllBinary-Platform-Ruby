@@ -14,32 +14,36 @@
 # frozen_string_literal: false
 # package org.allbinary.business.advertisement.area
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/advertisement/area/AdvertisementAreaConstraintsInterface"
+
+module ::Org; module Allbinary; module Business; module Advertisement; module Area
 
 class AdvertisementAreaConstraints
     include AdvertisementAreaConstraintsInterface
     attr_accessor :displayInBrowserContraintsInterface, :twoDimensionConstraintsInterface
 
-    def initialize_fields
-        @displayInBrowserContraintsInterface = nil
-        @twoDimensionConstraintsInterface = nil
+    def jfields_org_allbinary_business_advertisement_area_AdvertisementAreaConstraints
+        @displayInBrowserContraintsInterface = nil unless instance_variable_defined?(:@displayInBrowserContraintsInterface)
+        @twoDimensionConstraintsInterface = nil unless instance_variable_defined?(:@twoDimensionConstraintsInterface)
     end
     
 
     def initialize(document)
-        initialize_fields
-        node = DomSearchHelper.getNode(AdvertisementAreaData.getInstance().NAME, document.getChildNodes())
-        @displayInBrowserContraintsInterface = DisplayInBrowserContraints.new(node)
-        @twoDimensionConstraintsInterface = TwoDimensionalConstraint.new(node)
+        jfields_org_allbinary_business_advertisement_area_AdvertisementAreaConstraints
+        node = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(AdvertisementAreaData.getInstance().NAME, document.getChildNodes())
+        @displayInBrowserContraintsInterface = ::Org::Allbinary::Logic::ControlPackage::Contraints::Display::Browser::DisplayInBrowserContraints.new(node)
+        @twoDimensionConstraintsInterface = ::Org::Allbinary::Logic::ControlPackage::Contraints::Size::TwoDimensionalConstraint.new(node)
     end
     
 
     def setDisplayInBrowserContraints(displayInBrowserContraintsInterface)
         @displayInBrowserContraintsInterface = displayInBrowserContraintsInterface
     end
+    java_overload :setDisplayInBrowserContraints, 1
     
 
-    def getTwoDimensionContraints(twoDimensionConstraintsInterface)
+    def getTwoDimensionContraints_j1(twoDimensionConstraintsInterface)
         @twoDimensionConstraintsInterface = twoDimensionConstraintsInterface
     end
     
@@ -47,20 +51,28 @@ class AdvertisementAreaConstraints
     def getDisplayInBrowserContraints()
         return @displayInBrowserContraintsInterface
     end
+    java_overload :getDisplayInBrowserContraints, 0
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def getTwoDimensionContraints()
+    def getTwoDimensionContraints_j0()
         return @twoDimensionConstraintsInterface
+    end
+
+    def getTwoDimensionContraints(*java_overload_args)
+        return getTwoDimensionContraints_j1(*java_overload_args) if java_overload_args.length == 1
+        return getTwoDimensionContraints_j0(*java_overload_args) if java_overload_args.length == 0
+        raise ArgumentError, "No method getTwoDimensionContraints takes #{java_overload_args.length} arguments"
     end
 end
 
-autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper"
-autoload :DisplayInBrowserContraints, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraints"
-autoload :DisplayInBrowserContraintsInterface, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface"
-autoload :TwoDimensionalConstraint, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraint"
-autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :AdvertisementAreaData, "org/allbinary/business/advertisement/area/AdvertisementAreaData"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :DomSearchHelper, "org/allbinary/data/tree/dom/DomSearchHelper" unless const_defined?(:DomSearchHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Display; module Browser; autoload :DisplayInBrowserContraints, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraints" unless const_defined?(:DisplayInBrowserContraints, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Display; module Browser; autoload :DisplayInBrowserContraintsInterface, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface" unless const_defined?(:DisplayInBrowserContraintsInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Size; autoload :TwoDimensionalConstraint, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraint" unless const_defined?(:TwoDimensionalConstraint, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Size; autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface" unless const_defined?(:TwoDimensionalConstraintInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :AdvertisementAreaData, "org/allbinary/business/advertisement/area/AdvertisementAreaData" unless const_defined?(:AdvertisementAreaData, false)
+
+end; end; end; end; end
 

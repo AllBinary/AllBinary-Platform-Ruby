@@ -14,13 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.exception
 
-# require "java/io/PrintStream"
+
+module ::Org; module Allbinary; module Logic; module Java; module ExceptionPackage
 
 #ActualPlatform
 class ExceptionUtil
     attr_accessor :NONE
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_java_exception_ExceptionUtil
         @NONE = "No Stack Trace"
     end
     
@@ -31,14 +32,14 @@ class ExceptionUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_java_exception_ExceptionUtil
     end
     
 
     def getStackTrace(e)
         if e != nil
-            byteArrayOutputStream = ByteArrayOutputStream.new()
-            printStream = PrintStream.new(byteArrayOutputStream)
+            byteArrayOutputStream = ::Java::Io::ByteArrayOutputStream.new()
+            printStream = ::Java::Io::PrintStream.new(byteArrayOutputStream)
             e.printStackTrace(printStream)
             output = byteArrayOutputStream.to_s
             return String.new(output)
@@ -78,11 +79,14 @@ class ExceptionUtil
     end
 end
 
-autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
+module ::Java; module Io; autoload :PrintStream, "java/io/PrintStream" unless const_defined?(:PrintStream, false); end; end
 
 begin
     ExceptionUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

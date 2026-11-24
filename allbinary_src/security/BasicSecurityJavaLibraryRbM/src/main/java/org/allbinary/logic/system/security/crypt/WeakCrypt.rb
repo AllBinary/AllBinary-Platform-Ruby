@@ -15,22 +15,24 @@
 # package org.allbinary.logic.system.security.crypt
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt
+
 class WeakCrypt
     attr_accessor :tsUtil, :abCrypt
 
-    def initialize_fields
-        @tsUtil = TsUtil.getInstance()
-        @abCrypt = AbCrypt.new(KeySpecFactory.getInstance().DES)
+    def jfields_org_allbinary_logic_system_security_crypt_WeakCrypt
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
+        @abCrypt = ::Org::Allbinary::Logic::System::Security::Crypt::Jcehelper::AbCrypt.new(::Org::Allbinary::Logic::System::Security::Crypt::Jcehelper::KeySpecFactory.getInstance().DES)
     end
     
 
     def initialize(key)
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_crypt_WeakCrypt
         begin
             @abCrypt.init(WeakCrypt.keys[key])
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putOE(commonStrings.EXCEPTION, self, "SuperCrypt(key)", e)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(commonStrings.EXCEPTION, self, "SuperCrypt(key)", e)
         end
     end
     
@@ -40,8 +42,8 @@ class WeakCrypt
             crypted = @abCrypt.encrypt(@tsUtil.getByteArray(value))
             return DatabaseEncoder.encode(crypted)
         rescue StandardError => e
-            PreLogUtil.putOE("Encrypt Failed", self, "encrypt", e)
-            return StringUtil.getInstance().EMPTY_STRING
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE("Encrypt Failed", self, "encrypt", e)
+            return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         end
     end
     
@@ -51,8 +53,8 @@ class WeakCrypt
             decrypted = @abCrypt.decrypt(DatabaseEncoder.decode(value))
             return decrypted.pack("c*").force_encoding("UTF-8")
         rescue StandardError => e
-            PreLogUtil.putOE("decrypt Failed", self, "decrypt", e)
-            return StringUtil.getInstance().EMPTY_STRING
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE("decrypt Failed", self, "decrypt", e)
+            return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         end
     end
 
@@ -88,17 +90,19 @@ class WeakCrypt
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :AbCrypt, "org/allbinary/logic/system/security/crypt/jcehelper/AbCrypt"
-autoload :KeySpecFactory, "org/allbinary/logic/system/security/crypt/jcehelper/KeySpecFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :DatabaseEncoder, "org/allbinary/logic/system/security/crypt/DatabaseEncoder"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; module Jcehelper; autoload :AbCrypt, "org/allbinary/logic/system/security/crypt/jcehelper/AbCrypt" unless const_defined?(:AbCrypt, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; module Jcehelper; autoload :KeySpecFactory, "org/allbinary/logic/system/security/crypt/jcehelper/KeySpecFactory" unless const_defined?(:KeySpecFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :DatabaseEncoder, "org/allbinary/logic/system/security/crypt/DatabaseEncoder" unless const_defined?(:DatabaseEncoder, false)
 
 begin
     WeakCrypt.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -15,10 +15,14 @@
 # package org.allbinary.media
 
 
+module ::Org; module Allbinary; module Media
+
 class AllBinaryVibrationME
     
 
     def vibrate(duration, type, volume)
     end
 end
+
+end; end; end
 

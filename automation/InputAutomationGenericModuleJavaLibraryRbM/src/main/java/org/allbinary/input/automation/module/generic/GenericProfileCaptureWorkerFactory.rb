@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.module.generic
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic
+
 class GenericProfileCaptureWorkerFactory
     
 
@@ -28,9 +30,9 @@ class GenericProfileCaptureWorkerFactory
         size = vector.size()
         (0...size).each do |index|
             genericProfileDataWorkerType = vector.get(index)
-            if genericProfileDataWorkerType == GenericProfileDataWorkerType::SCREEN_CAPTURE
-                return ScreenCaptureImagesWorker.new()
-            elsif genericProfileDataWorkerType == GenericProfileDataWorkerType::SAVED_CAPTURE
+            if genericProfileDataWorkerType == ::Org::Allbinary::Input::Automation::ModulePackage::Generic::Configuration::Profile::GenericProfileDataWorkerType::SCREEN_CAPTURE
+                return ::Org::Allbinary::Input::Media::Image::Capture::ScreenCaptureImagesWorker.new()
+            elsif genericProfileDataWorkerType == ::Org::Allbinary::Input::Automation::ModulePackage::Generic::Configuration::Profile::GenericProfileDataWorkerType::SAVED_CAPTURE
                 return SavedCaptureImagesWorker.new(genericProfileDataWorkerType)
             end
         end
@@ -38,12 +40,14 @@ class GenericProfileCaptureWorkerFactory
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :GenericProfile, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile"
-autoload :GenericProfileDataWorkerType, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerType"
-autoload :SavedCaptureGenericProfileDataWorkerType, "org/allbinary/input/automation/module/generic/configuration/profile/SavedCaptureGenericProfileDataWorkerType"
-autoload :CaptureWorkerInterface, "org/allbinary/input/media/image/capture/CaptureWorkerInterface"
-autoload :ScreenCaptureImagesWorker, "org/allbinary/input/media/image/capture/ScreenCaptureImagesWorker"
-autoload :SavedCaptureImagesWorker, "org/allbinary/input/automation/module/generic/SavedCaptureImagesWorker"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile; autoload :GenericProfile, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfile" unless const_defined?(:GenericProfile, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile; autoload :GenericProfileDataWorkerType, "org/allbinary/input/automation/module/generic/configuration/profile/GenericProfileDataWorkerType" unless const_defined?(:GenericProfileDataWorkerType, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Generic; module Configuration; module Profile; autoload :SavedCaptureGenericProfileDataWorkerType, "org/allbinary/input/automation/module/generic/configuration/profile/SavedCaptureGenericProfileDataWorkerType" unless const_defined?(:SavedCaptureGenericProfileDataWorkerType, false); end; end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Media; module Image; module Capture; autoload :CaptureWorkerInterface, "org/allbinary/input/media/image/capture/CaptureWorkerInterface" unless const_defined?(:CaptureWorkerInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Media; module Image; module Capture; autoload :ScreenCaptureImagesWorker, "org/allbinary/input/media/image/capture/ScreenCaptureImagesWorker" unless const_defined?(:ScreenCaptureImagesWorker, false); end; end; end; end; end; end
+autoload :SavedCaptureImagesWorker, "org/allbinary/input/automation/module/generic/SavedCaptureImagesWorker" unless const_defined?(:SavedCaptureImagesWorker, false)
+
+end; end; end; end; end; end
 

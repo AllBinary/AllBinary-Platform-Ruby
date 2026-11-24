@@ -14,12 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.log
 
+require "java/lang/Object"
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module Communication; module Log
 
 #ActualPlatform
 class LogUtil
     attr_accessor :logFormatUtil
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_communication_log_LogUtil
         @logFormatUtil = LogFormatUtil.getInstance()
     end
     
@@ -30,7 +34,7 @@ class LogUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_LogUtil
     end
     
 
@@ -44,9 +48,9 @@ class LogUtil
     
 
     def putF(specialMessage, anyType, functionName)
-        className = CommonStrings.getInstance().EMPTY
-        if anyType.class.name != nil
-            className = String.new(StringMaker.new().append(anyType.class.name).append(CommonSeps.getInstance().COLON).append((TsUtil.getInstance().hashCode(anyType)).to_s(16)).to_s)
+        className = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY
+        if anyType.class.java_name != nil
+            className = String.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(anyType.class.java_name).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append((::Org::Allbinary::Logic::TsUtil.getInstance().hashCode(anyType)).to_s(16)).to_s)
         end
         message = @logFormatUtil.getS(className, functionName, specialMessage)
         print(LogUtil::LOG_SUCCESS)
@@ -55,7 +59,7 @@ class LogUtil
     
 
     def putFS(specialMessage, className, functionName)
-        className = String.new(StringMaker.new().append(className).append(CommonSeps.getInstance().COLON).append((TsUtil.getInstance().hashCode(@anyType)).to_s(16)).to_s)
+        className = String.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(className).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append((::Org::Allbinary::Logic::TsUtil.getInstance().hashCode(@anyType)).to_s(16)).to_s)
         message = @logFormatUtil.getS(className, functionName, specialMessage)
         print(LogUtil::LOG_SUCCESS)
         puts(message)
@@ -63,9 +67,9 @@ class LogUtil
     
 
     def put(specialMessage, anyType, functionName, exception)
-        className = CommonStrings.getInstance().EMPTY
-        if anyType.class.name != nil
-            className = String.new(StringMaker.new().append(anyType.class.name).append(CommonSeps.getInstance().COLON).append((TsUtil.getInstance().hashCode(anyType)).to_s(16)).to_s)
+        className = ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY
+        if anyType.class.java_name != nil
+            className = String.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(anyType.class.java_name).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append((::Org::Allbinary::Logic::TsUtil.getInstance().hashCode(anyType)).to_s(16)).to_s)
         end
         message = @logFormatUtil.get(className, functionName, specialMessage, exception)
         print(LogUtil::LOG_SUCCESS)
@@ -73,24 +77,50 @@ class LogUtil
     end
 
     def self.instance()
+        LogUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LogUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:LOG_SUCCESS, "org.allbinary: ")
+        begin
+            @@instance = LogUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LogUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:LOG_SUCCESS].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/TsUtil"
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/string/CommonSeps"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/Log"
-require "org/allbinary/logic/communication/log/LogFormatUtil"
+module ::Org; module Allbinary; module Logic; autoload :TsUtil, "org/allbinary/logic/TsUtil" unless const_defined?(:TsUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
+autoload :LogFormatUtil, "org/allbinary/logic/communication/log/LogFormatUtil" unless const_defined?(:LogFormatUtil, false)
 require "java/lang/System"
 
-class LogUtil
-    @@instance = LogUtil.new()
-    LOG_SUCCESS = "org.allbinary: "
+begin
+    LogUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

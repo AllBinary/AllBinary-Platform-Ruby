@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.paint
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/InitUpdatePaintable"
+
+module ::Org; module Allbinary; module Graphics; module Paint
 
 class NullInitUpdatePaintable < InitUpdatePaintable
     
@@ -54,4 +57,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

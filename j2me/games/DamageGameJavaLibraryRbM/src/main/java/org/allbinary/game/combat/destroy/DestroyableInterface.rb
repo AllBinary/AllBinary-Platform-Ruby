@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.destroy
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/NamedInterface"
 
+module ::Org; module Allbinary; module Game; module Combat; module Destroy
+
 module DestroyableInterface
-    include NamedInterface
+    include ::Org::Allbinary::Layer::NamedInterface
     
 
     # throws Exception
@@ -25,5 +28,8 @@ module DestroyableInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isDestroyed, 0
 end
+
+end; end; end; end; end
 

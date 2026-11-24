@@ -13,7 +13,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/audio/CompositeSound"
+
+module ::Org; module Allbinary; module Media; module Audio
 
 class AttackSound < CompositeSound
     
@@ -28,17 +31,43 @@ class AttackSound < CompositeSound
     end
 
     def self.soundInterface()
+        AttackSound.java_static_fields unless @java_static_fields_started
         return defined?(@@soundInterface) ? @@soundInterface : nil
     end
 
     def self.soundInterface=(value)
+        AttackSound.java_static_fields unless @java_static_fields_started
         @@soundInterface = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@soundInterface = AttackSound.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AttackSound"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/media/audio/Sound"
+autoload :Sound, "org/allbinary/media/audio/Sound" unless const_defined?(:Sound, false)
 
-class AttackSound
-    @@soundInterface = AttackSound.new()
+begin
+    AttackSound.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

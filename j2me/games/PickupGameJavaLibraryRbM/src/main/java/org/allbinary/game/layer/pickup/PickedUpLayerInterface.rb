@@ -14,23 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.pickup
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerInterface"
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 module PickedUpLayerInterface
-    include LayerInterface
+    include ::Org::Allbinary::Layer::LayerInterface
     
 
     def getPickedUpLayerInterfaceFactoryInterface()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getPickedUpLayerInterfaceFactoryInterface, 0
     
 
     def setPickedUp()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setPickedUp, 0
 end
 
-autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+autoload :PickedUpLayerInterfaceFactoryInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface" unless const_defined?(:PickedUpLayerInterfaceFactoryInterface, false)
+
+end; end; end; end; end
 

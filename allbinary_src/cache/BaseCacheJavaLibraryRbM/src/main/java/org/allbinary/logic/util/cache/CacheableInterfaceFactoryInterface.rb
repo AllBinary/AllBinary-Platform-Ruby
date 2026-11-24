@@ -15,6 +15,8 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 module CacheableInterfaceFactoryInterface
     
 
@@ -25,5 +27,7 @@ module CacheableInterfaceFactoryInterface
     end
 end
 
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false)
+
+end; end; end; end; end
 

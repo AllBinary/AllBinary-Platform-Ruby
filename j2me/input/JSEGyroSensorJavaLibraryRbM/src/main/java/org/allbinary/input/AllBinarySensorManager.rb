@@ -15,18 +15,20 @@
 # package org.allbinary.input
 
 
+module ::Org; module Allbinary; module Input
+
 class AllBinarySensorManager
     attr_accessor :ORIENTATION_SENSOR_INPUT, :ORIENTATION_TYPE, :list
 
-    def initialize_fields
+    def jfields_org_allbinary_input_AllBinarySensorManager
         @ORIENTATION_SENSOR_INPUT = "Orientation Sensor Input"
         @ORIENTATION_TYPE = "Orientation Type"
-        @list = BasicArrayListD.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def self.getInstance()
-        if AllBinarySensorManager.instance == NullUtil.getInstance().NULL_OBJECT
+        if AllBinarySensorManager.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             AllBinarySensorManager.instance = AllBinarySensorManager.new()
         end
         return AllBinarySensorManager.instance
@@ -34,7 +36,7 @@ class AllBinarySensorManager
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_AllBinarySensorManager
     end
     
 
@@ -64,7 +66,7 @@ class AllBinarySensorManager
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -81,13 +83,15 @@ class AllBinarySensorManager
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     AllBinarySensorManager.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

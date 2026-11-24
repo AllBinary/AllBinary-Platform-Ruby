@@ -14,23 +14,26 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class IndependentVectorExplosionRotationAnimationFactory
     include ProceduralAnimationInterfaceFactoryInterface
     attr_accessor :framePoints, :vectorInfo, :basicColor, :vectorAnimationFactoryInterface, :vectorExplosionGenerator
 
-    def initialize_fields
-        @framePoints = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
-        @vectorInfo = nil
-        @basicColor = nil
-        @vectorAnimationFactoryInterface = nil
+    def jfields_org_allbinary_animation_IndependentVectorExplosionRotationAnimationFactory
+        @framePoints = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
+        @vectorInfo = nil unless instance_variable_defined?(:@vectorInfo)
+        @basicColor = nil unless instance_variable_defined?(:@basicColor)
+        @vectorAnimationFactoryInterface = nil unless instance_variable_defined?(:@vectorAnimationFactoryInterface)
         @vectorExplosionGenerator = VectorExplosionGenerator.getInstance()
     end
     
 
     def initialize(vectorInfo, basicColor, vectorAnimationFactoryInterface)
-        initialize_fields
+        jfields_org_allbinary_animation_IndependentVectorExplosionRotationAnimationFactory
         @vectorInfo = vectorInfo
         @basicColor = basicColor
         @vectorAnimationFactoryInterface = vectorAnimationFactoryInterface
@@ -42,6 +45,7 @@ class IndependentVectorExplosionRotationAnimationFactory
     def init()
         @framePoints = VectorRotationGenerator.getInstance().getInstance(@vectorInfo)
     end
+    java_overload :init, 0
     
 
     # throws Exception
@@ -54,14 +58,17 @@ class IndependentVectorExplosionRotationAnimationFactory
         points = @vectorExplosionGenerator.getInstance(@framePoints[frame], 6, @vectorExplosionGenerator.ROTATION)
         return @vectorAnimationFactoryInterface.getInstance(points, @basicColor)
     end
+    java_overload :getInstanceAnimation, 1
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :VectorInfo, "org/allbinary/vector/VectorInfo"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation"
-autoload :VectorAnimationFactoryInterface, "org/allbinary/animation/VectorAnimationFactoryInterface"
-autoload :VectorExplosionGenerator, "org/allbinary/animation/VectorExplosionGenerator"
-autoload :VectorRotationGenerator, "org/allbinary/animation/VectorRotationGenerator"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Vector; autoload :VectorInfo, "org/allbinary/vector/VectorInfo" unless const_defined?(:VectorInfo, false); end; end; end
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
+autoload :IndexedAnimation, "org/allbinary/animation/IndexedAnimation" unless const_defined?(:IndexedAnimation, false)
+autoload :VectorAnimationFactoryInterface, "org/allbinary/animation/VectorAnimationFactoryInterface" unless const_defined?(:VectorAnimationFactoryInterface, false)
+autoload :VectorExplosionGenerator, "org/allbinary/animation/VectorExplosionGenerator" unless const_defined?(:VectorExplosionGenerator, false)
+autoload :VectorRotationGenerator, "org/allbinary/animation/VectorRotationGenerator" unless const_defined?(:VectorRotationGenerator, false)
+
+end; end; end
 

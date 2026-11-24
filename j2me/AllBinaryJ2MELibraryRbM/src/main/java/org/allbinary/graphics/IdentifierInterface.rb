@@ -15,6 +15,8 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 module IdentifierInterface
     
 
@@ -23,4 +25,6 @@ module IdentifierInterface
         raise NotImplementedError
     end
 end
+
+end; end; end
 

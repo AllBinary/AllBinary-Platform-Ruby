@@ -15,6 +15,8 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 class NullHighScoresSingletonFactory
     
 
@@ -26,7 +28,7 @@ class NullHighScoresSingletonFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:SINGLETON, HighScores.new(CommonStrings.getInstance().LOADING, "High Scores Not Loaded", CommonStrings.getInstance().PERIODS))
+            const_set(:SINGLETON, HighScores.new(::Org::Allbinary::StringPackage::CommonStrings.getInstance().LOADING, "High Scores Not Loaded", ::Org::Allbinary::StringPackage::CommonStrings.getInstance().PERIODS))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -43,12 +45,14 @@ class NullHighScoresSingletonFactory
     end
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :HighScores, "org/allbinary/game/score/HighScores"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false)
 
 begin
     NullHighScoresSingletonFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

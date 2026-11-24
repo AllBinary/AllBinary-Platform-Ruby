@@ -15,18 +15,20 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class TouchScreenFactory
     attr_accessor :multiTouch, :touch, :touchScreenType
 
-    def initialize_fields
-        @multiTouch = false
-        @touch = false
+    def jfields_org_allbinary_input_motion_button_TouchScreenFactory
+        @multiTouch = false unless instance_variable_defined?(:@multiTouch)
+        @touch = false unless instance_variable_defined?(:@touch)
         @touchScreenType = TouchScreenTypesFactory.getInstance().NOTOUCH
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_TouchScreenFactory
     end
     
 
@@ -74,12 +76,14 @@ class TouchScreenFactory
     end
 end
 
-autoload :TouchScreenType, "org/allbinary/input/motion/button/TouchScreenType"
-autoload :TouchScreenTypesFactory, "org/allbinary/input/motion/button/TouchScreenTypesFactory"
+autoload :TouchScreenType, "org/allbinary/input/motion/button/TouchScreenType" unless const_defined?(:TouchScreenType, false)
+autoload :TouchScreenTypesFactory, "org/allbinary/input/motion/button/TouchScreenTypesFactory" unless const_defined?(:TouchScreenTypesFactory, false)
 
 begin
     TouchScreenFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

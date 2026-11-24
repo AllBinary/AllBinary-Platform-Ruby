@@ -16,16 +16,18 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Logic; module Util; module QueuePackage
+
 class BasicQueue
     attr_accessor :queueVector
 
-    def initialize_fields
-        @queueVector = BasicArrayListD.new()
+    def jfields_org_allbinary_logic_util_queue_BasicQueue
+        @queueVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_util_queue_BasicQueue
     end
     
 
@@ -54,6 +56,8 @@ class BasicQueue
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end; end
 

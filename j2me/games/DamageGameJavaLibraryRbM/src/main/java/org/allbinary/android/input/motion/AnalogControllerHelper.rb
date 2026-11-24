@@ -15,21 +15,23 @@
 # package org.allbinary.android.input.motion
 
 
+module ::Org; module Allbinary; module Android; module Input; module Motion
+
 class AnalogControllerHelper
     attr_accessor :reduceTimeFactor, :SCALE_VALUE, :rightTimeElapsedHelper, :leftTimeElapsedHelper, :downTimeElapsedHelper, :upTimeElapsedHelper
 
-    def initialize_fields
-        @reduceTimeFactor = nil
+    def jfields_org_allbinary_android_input_motion_AnalogControllerHelper
+        @reduceTimeFactor = nil unless instance_variable_defined?(:@reduceTimeFactor)
         @SCALE_VALUE = AnalogControllerConfigurationFactory.getInstance().SCALE_VALUE
-        @rightTimeElapsedHelper = TimeDelayHelper.new(0)
-        @leftTimeElapsedHelper = TimeDelayHelper.new(0)
-        @downTimeElapsedHelper = TimeDelayHelper.new(0)
-        @upTimeElapsedHelper = TimeDelayHelper.new(0)
+        @rightTimeElapsedHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(0)
+        @leftTimeElapsedHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(0)
+        @downTimeElapsedHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(0)
+        @upTimeElapsedHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(0)
     end
     
 
     def initialize(reduceTimeFactor)
-        initialize_fields
+        jfields_org_allbinary_android_input_motion_AnalogControllerHelper
         @reduceTimeFactor = reduceTimeFactor
     end
     
@@ -70,7 +72,9 @@ class AnalogControllerHelper
     end
 end
 
-autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
-autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
-autoload :AnalogControllerConfigurationFactory, "org/allbinary/android/input/motion/AnalogControllerConfigurationFactory"
+module ::Org; module Allbinary; module Game; module Layer; module Special; autoload :CollidableDestroyableDamageableLayer, "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer" unless const_defined?(:CollidableDestroyableDamageableLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+autoload :AnalogControllerConfigurationFactory, "org/allbinary/android/input/motion/AnalogControllerConfigurationFactory" unless const_defined?(:AnalogControllerConfigurationFactory, false)
+
+end; end; end; end; end
 

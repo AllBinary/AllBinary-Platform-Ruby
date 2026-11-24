@@ -14,29 +14,42 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.theme
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/TableMappingInterface"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Theme
+
 module ThemeInterface
-    include TableMappingInterface
+    include ::Org::Allbinary::DataPackage::Tables::TableMappingInterface
     
 
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getName, 0
     
 
     def getPath()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getPath, 0
     
 
     def getPreviewImageName()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getPreviewImageName, 0
     
 
     def getPreviewImagePath()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getPreviewImagePath, 0
 end
+
+end; end; end; end; end
 

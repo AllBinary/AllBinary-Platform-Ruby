@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.control.validate
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/validate/ValidatorBase"
+
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate
 
 class GenericValidator < ValidatorBase
     
@@ -27,13 +30,17 @@ class GenericValidator < ValidatorBase
     def toValidationInfoDoc()
         return nil
     end
+    java_overload :toValidationInfoDoc, 0
     
 
     def toValidationInfoNode(document)
         return nil
     end
+    java_overload :toValidationInfoNode, 1
 end
 
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end; end; end
 

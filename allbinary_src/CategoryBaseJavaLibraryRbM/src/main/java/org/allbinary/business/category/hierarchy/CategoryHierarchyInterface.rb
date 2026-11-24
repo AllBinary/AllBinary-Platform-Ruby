@@ -15,43 +15,54 @@
 # package org.allbinary.business.category.hierarchy
 
 
+module ::Org; module Allbinary; module Business; module Category; module Hierarchy
+
 module CategoryHierarchyInterface
     
 
     def getLevel()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getLevelString()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getRoot()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getParent()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setLevel(level)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setRoot(categoryInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setParent(categoryInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface"
+module ::Org; module Allbinary; module Business; module Category; autoload :CategoryInterface, "org/allbinary/business/category/CategoryInterface" unless const_defined?(:CategoryInterface, false); end; end; end; end
+
+end; end; end; end; end
 

@@ -15,27 +15,34 @@
 # package org.allbinary.business.user.commerce.shipping
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Shipping
+
 module ShippingMethodsInterface
     
 
     def get()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getShippingInterface(name)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getDefault()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ShippingInterface, "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Shipping; module Modules; autoload :ShippingInterface, "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface" unless const_defined?(:ShippingInterface, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end
 

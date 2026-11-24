@@ -16,10 +16,12 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Business; module Init
+
 class LicenseInitInfoUtil
     attr_accessor :INITFILENAME, :ABOUT, :PRIVACY_POLICY, :OFFICIAL_ALLBINARY_SERVICES_SERVER
 
-    def initialize_fields
+    def jfields_org_allbinary_business_init_LicenseInitInfoUtil
         @INITFILENAME = "licenseinitdata.dat"
         @ABOUT = "about"
         @PRIVACY_POLICY = "privacy_policy"
@@ -39,7 +41,7 @@ class LicenseInitInfoUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_init_LicenseInitInfoUtil
     end
     
 
@@ -99,11 +101,13 @@ class LicenseInitInfoUtil
     end
 end
 
-autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo"
+autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo" unless const_defined?(:LicenseInitInfo, false)
 
 begin
     LicenseInitInfoUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

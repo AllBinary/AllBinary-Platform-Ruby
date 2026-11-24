@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.drop
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/BasicLayerProcessor"
 
-class DropLayerProcessor < BasicLayerProcessor
+module ::Org; module Allbinary; module Game; module Layer; module Drop
+
+class DropLayerProcessor < ::Org::Allbinary::Layer::BasicLayerProcessor
     
 
     def initialize()
@@ -43,6 +46,7 @@ class DropLayerProcessor < BasicLayerProcessor
         end
         list.clear()
     end
+    java_overload :process, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -65,14 +69,16 @@ class DropLayerProcessor < BasicLayerProcessor
     end
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :DropLayerInterface, "org/allbinary/game/layer/drop/DropLayerInterface"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :DropLayerInterface, "org/allbinary/game/layer/drop/DropLayerInterface" unless const_defined?(:DropLayerInterface, false)
 
 begin
     DropLayerProcessor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

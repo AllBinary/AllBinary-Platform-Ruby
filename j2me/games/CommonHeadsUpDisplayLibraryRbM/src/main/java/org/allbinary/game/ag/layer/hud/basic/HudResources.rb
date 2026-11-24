@@ -15,10 +15,12 @@
 # package org.allbinary.game.ag.layer.hud.basic
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Hud; module Basic
+
 class HudResources
     attr_accessor :RESOURCE_LIFE, :RESOURCE_HEALTH
 
-    def initialize_fields
+    def jfields_org_allbinary_game_ag_layer_hud_basic_HudResources
         @RESOURCE_LIFE = "/hud_life_10_by_10.png"
         @RESOURCE_HEALTH = "/hud_health_10_by_10.png"
     end
@@ -30,7 +32,7 @@ class HudResources
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_ag_layer_hud_basic_HudResources
     end
 
     def self.instance()
@@ -69,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

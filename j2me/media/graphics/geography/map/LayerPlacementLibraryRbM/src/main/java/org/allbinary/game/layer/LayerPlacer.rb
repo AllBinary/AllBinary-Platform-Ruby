@@ -15,18 +15,20 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class LayerPlacer
     attr_accessor :enumerationUtil, :layerInterfaceVisitor, :dimension
 
-    def initialize_fields
-        @enumerationUtil = EnumerationUtil.getInstance()
-        @layerInterfaceVisitor = nil
-        @dimension = nil
+    def jfields_org_allbinary_game_layer_LayerPlacer
+        @enumerationUtil = ::Org::Allbinary::Util::EnumerationUtil.getInstance()
+        @layerInterfaceVisitor = nil unless instance_variable_defined?(:@layerInterfaceVisitor)
+        @dimension = nil unless instance_variable_defined?(:@dimension)
     end
     
 
     def initialize(layerInterfaceVisitor, dimension)
-        initialize_fields
+        jfields_org_allbinary_game_layer_LayerPlacer
         @layerInterfaceVisitor = layerInterfaceVisitor
         @dimension = dimension
     end
@@ -46,7 +48,7 @@ class LayerPlacer
     # throws Exception
     def process(layerPlacementInterface)
         relativePoint = self.getPoint(layerPlacementInterface)
-        layerInterfaceFactory = LayerInterfaceFactory.getInstance()
+        layerInterfaceFactory = ::Org::Allbinary::Layer::LayerInterfaceFactory.getInstance()
         hashtable = layerPlacementInterface.getInstance()
         enumeration = hashtable.keys()
         point = nil
@@ -69,7 +71,7 @@ class LayerPlacer
 
     # throws Exception
     def getPoint(layerPlacementInterface)
-        pointFactory = PointFactory.getInstance()
+        pointFactory = ::Org::Allbinary::Graphics::PointFactory.getInstance()
         layerPlacementType = layerPlacementInterface.getLayerType()
         if layerPlacementType == LayerPlacementTypeFactory.getInstance().MAP
             width = layerPlacementInterface.getWidth()
@@ -89,16 +91,18 @@ class LayerPlacer
     end
 end
 
-autoload :Enumeration, "java/util/Enumeration"
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :LayerInterfaceFactory, "org/allbinary/layer/LayerInterfaceFactory"
-autoload :LayerInterfaceVisitor, "org/allbinary/layer/LayerInterfaceVisitor"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil"
-autoload :LayerPlacementInterface, "org/allbinary/game/layer/LayerPlacementInterface"
-autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType"
-autoload :LayerPlacementTypeFactory, "org/allbinary/game/layer/LayerPlacementTypeFactory"
+module ::Java; module Util; autoload :Enumeration, "java/util/Enumeration" unless const_defined?(:Enumeration, false); end; end
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :LayerInterfaceFactory, "org/allbinary/layer/LayerInterfaceFactory" unless const_defined?(:LayerInterfaceFactory, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :LayerInterfaceVisitor, "org/allbinary/layer/LayerInterfaceVisitor" unless const_defined?(:LayerInterfaceVisitor, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :EnumerationUtil, "org/allbinary/util/EnumerationUtil" unless const_defined?(:EnumerationUtil, false); end; end; end
+autoload :LayerPlacementInterface, "org/allbinary/game/layer/LayerPlacementInterface" unless const_defined?(:LayerPlacementInterface, false)
+autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType" unless const_defined?(:LayerPlacementType, false)
+autoload :LayerPlacementTypeFactory, "org/allbinary/game/layer/LayerPlacementTypeFactory" unless const_defined?(:LayerPlacementTypeFactory, false)
+
+end; end; end; end
 

@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class DisplayChangeEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event
+
+class DisplayChangeEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     
 
     def initialize(anyType)
         super(anyType)
     end
 end
+
+end; end; end; end; end
 

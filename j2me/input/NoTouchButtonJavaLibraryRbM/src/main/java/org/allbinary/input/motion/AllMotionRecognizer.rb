@@ -15,16 +15,18 @@
 # package org.allbinary.input.motion
 
 
+module ::Org; module Allbinary; module Input; module Motion
+
 class AllMotionRecognizer
     attr_accessor :id
 
-    def initialize_fields
-        @id = nil
+    def jfields_org_allbinary_input_motion_AllMotionRecognizer
+        @id = nil unless instance_variable_defined?(:@id)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_motion_AllMotionRecognizer
         @id = ((AllMotionRecognizer.index += 1) - 1)
     end
     
@@ -94,4 +96,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

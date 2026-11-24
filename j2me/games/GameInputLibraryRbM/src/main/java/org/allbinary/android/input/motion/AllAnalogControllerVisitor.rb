@@ -14,24 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.android.input.motion
 
+require "java/lang/JavaOverload"
 require "org/allbinary/android/input/motion/AnalogControllerVisitor"
+
+module ::Org; module Allbinary; module Android; module Input; module Motion
 
 class AllAnalogControllerVisitor < AnalogControllerVisitor
     
 
     def process(allbinaryLayerManager, analogLocationInputProcessor)
-        analogLocationInputList = AnalogLocationInputFactory.getInstance().getList()
+        analogLocationInputList = ::Org::Allbinary::Game::Input::Analog::AnalogLocationInputFactory.getInstance().getList()
         analogLocationInput = nil
         (analogLocationInputList.size() - 1).step(0, -(1)) do |index|
             analogLocationInput = analogLocationInputList.get(index)
             analogLocationInputProcessor.process(allbinaryLayerManager, analogLocationInput)
         end
     end
+    java_overload :process, 2
 end
 
-autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput"
-autoload :AnalogLocationInputFactory, "org/allbinary/game/input/analog/AnalogLocationInputFactory"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :AnalogLocationInputProcessor, "org/allbinary/android/input/motion/AnalogLocationInputProcessor"
+module ::Org; module Allbinary; module Game; module Input; module Analog; autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput" unless const_defined?(:AnalogLocationInput, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Analog; autoload :AnalogLocationInputFactory, "org/allbinary/game/input/analog/AnalogLocationInputFactory" unless const_defined?(:AnalogLocationInputFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :AnalogLocationInputProcessor, "org/allbinary/android/input/motion/AnalogLocationInputProcessor" unless const_defined?(:AnalogLocationInputProcessor, false)
+
+end; end; end; end; end
 

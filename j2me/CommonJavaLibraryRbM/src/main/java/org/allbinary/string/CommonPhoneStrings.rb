@@ -16,10 +16,12 @@
 
 # require "jsinterop/annotations/JsType"
 
+module ::Org; module Allbinary; module StringPackage
+
 class CommonPhoneStrings
     attr_accessor :UP, :DOWN, :LEFT, :RIGHT, :ZERO, :ONE, :TWO, :THREE, :FOUR, :FIVE, :SIX, :SEVEN, :EIGHT, :NINE, :POUND, :STAR, :FIRE
 
-    def initialize_fields
+    def jfields_org_allbinary_string_CommonPhoneStrings
         @UP = "UP"
         @DOWN = "DOWN"
         @LEFT = "LEFT"
@@ -40,7 +42,7 @@ class CommonPhoneStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_string_CommonPhoneStrings
     end
     
 
@@ -84,4 +86,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

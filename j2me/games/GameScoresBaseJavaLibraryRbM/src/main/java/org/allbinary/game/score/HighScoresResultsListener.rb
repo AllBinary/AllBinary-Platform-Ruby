@@ -15,6 +15,8 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 module HighScoresResultsListener
     
 
@@ -24,5 +26,7 @@ module HighScoresResultsListener
     end
 end
 
-autoload :HighScores, "org/allbinary/game/score/HighScores"
+autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false)
+
+end; end; end; end
 

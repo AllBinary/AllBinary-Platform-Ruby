@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.mapping.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/mapping/event/InputMappingEventListenerInterface"
+
+module ::Org; module Allbinary; module Game; module Input; module Mapping; module Event
 
 class NullInputMappingEventListener
     include InputMappingEventListenerInterface
@@ -23,10 +26,12 @@ class NullInputMappingEventListener
     # throws Exception
     def onInputMappingEvent(inputMappingEvent)
     end
+    java_overload :onInputMappingEvent, 1
     
 
     def onEvent(eventObject)
     end
+    java_overload :onEvent, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -49,12 +54,14 @@ class NullInputMappingEventListener
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+autoload :InputMappingEvent, "org/allbinary/game/input/mapping/event/InputMappingEvent" unless const_defined?(:InputMappingEvent, false)
 
 begin
     NullInputMappingEventListener.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -3,6 +3,8 @@
 # package org.allbinary.graph
 
 
+module ::Org; module Allbinary; module Graph
+
 class V
     
 
@@ -10,4 +12,6 @@ class V
         return 0
     end
 end
+
+end; end; end
 

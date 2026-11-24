@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.image.opengles
 
+require "java/lang/JavaOverload"
 require "javax/microedition/lcdui/Image"
 require "org/allbinary/image/opengles/OpenGLSurfaceChangedInterface"
 
+module ::Org; module Allbinary; module Image; module Opengles
+
 #OpenGLESNullImageJavaLibrary
-class OpenGLESImage < Image
+class OpenGLESImage < ::Javax::Microedition::Lcdui::Image
     include OpenGLSurfaceChangedInterface
     attr_accessor :commonStrings, :textureFactory, :openGLBitmap, :openGLESImageProperties, :imageProcessor, :openGLESImageTranslate
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @textureFactory = nil
-        @openGLBitmap = nil
+    def jfields_org_allbinary_image_opengles_OpenGLESImage
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @textureFactory = nil unless instance_variable_defined?(:@textureFactory)
+        @openGLBitmap = nil unless instance_variable_defined?(:@openGLBitmap)
         @openGLESImageProperties = OpenGLESImageProperties.new()
         @imageProcessor = OpenGLESImageProcessor.getInstance()
         @openGLESImageTranslate = OpenGLESImageTranslate.getInstance()
@@ -34,7 +37,7 @@ class OpenGLESImage < Image
 
     def initialize(image, bitmapFactory, textureFactory)
         super()
-        initialize_fields
+        jfields_org_allbinary_image_opengles_OpenGLESImage
         @openGLBitmap = bitmapFactory.createBitmap(image)
         @textureFactory = textureFactory
     end
@@ -44,24 +47,29 @@ class OpenGLESImage < Image
     def set(gl)
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :set, 1
     
 
     def initTexture(gl)
         return false
     end
+    java_overload :initTexture, 1
     
 
     def drawRegion(gl, viewHeight, x_src, y_src, width, height, x, y, z)
     end
+    java_overload :drawRegion, 9
     
 
     def draw(gl, x, y, z)
     end
+    java_overload :draw, 4
     
 
     def getType()
         return OpenGLESImage::TYPE
     end
+    java_overload :getType, 0
 
     def self.texture2dList()
         OpenGLESImage.java_static_fields unless @java_static_fields_started
@@ -78,8 +86,8 @@ class OpenGLESImage < Image
         @java_static_fields_started = true
         const_set(:TYPE, 4)
         begin
-            const_set(:NULL_OPENGL_IMAGE, OpenGLESImage.new(NullImage::NULL_IMAGE, PlatformBitmapBaseFactory::NULL_PLATFORM_BITMAP_BASE_FACTORY, PlatformTextureBaseFactory::NULL_PLATFORM_TEXTURE_BASE_FACTORY))
-            @@texture2dList = BasicArrayListD.new()
+            const_set(:NULL_OPENGL_IMAGE, OpenGLESImage.new(::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE, ::Org::Allbinary::Platform::Graphics::PlatformBitmapBaseFactory::NULL_PLATFORM_BITMAP_BASE_FACTORY, ::Org::Allbinary::Platform::Opengles::PlatformTextureBaseFactory::NULL_PLATFORM_TEXTURE_BASE_FACTORY))
+            @@texture2dList = ::Org::Allbinary::Util::BasicArrayListD.new()
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -96,22 +104,24 @@ class OpenGLESImage < Image
     end
 end
 
-autoload :GL, "javax/microedition/khronos/opengles/GL"
-autoload :GL10, "javax/microedition/khronos/opengles/GL10"
-autoload :NullImage, "javax/microedition/lcdui/NullImage"
-autoload :PlatformBitmapBase, "org/allbinary/platform/graphics/PlatformBitmapBase"
-autoload :PlatformBitmapBaseFactory, "org/allbinary/platform/graphics/PlatformBitmapBaseFactory"
-autoload :PlatformTextureBaseFactory, "org/allbinary/platform/opengles/PlatformTextureBaseFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :OpenGLESImageProcessor, "org/allbinary/image/opengles/OpenGLESImageProcessor"
-autoload :OpenGLESImageProperties, "org/allbinary/image/opengles/OpenGLESImageProperties"
-autoload :OpenGLESImageTranslate, "org/allbinary/image/opengles/OpenGLESImageTranslate"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL, "javax/microedition/khronos/opengles/GL" unless const_defined?(:GL, false); end; end; end; end
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; module Platform; module Graphics; autoload :PlatformBitmapBase, "org/allbinary/platform/graphics/PlatformBitmapBase" unless const_defined?(:PlatformBitmapBase, false); end; end; end; end
+module ::Org; module Allbinary; module Platform; module Graphics; autoload :PlatformBitmapBaseFactory, "org/allbinary/platform/graphics/PlatformBitmapBaseFactory" unless const_defined?(:PlatformBitmapBaseFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Platform; module Opengles; autoload :PlatformTextureBaseFactory, "org/allbinary/platform/opengles/PlatformTextureBaseFactory" unless const_defined?(:PlatformTextureBaseFactory, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :OpenGLESImageProcessor, "org/allbinary/image/opengles/OpenGLESImageProcessor" unless const_defined?(:OpenGLESImageProcessor, false)
+autoload :OpenGLESImageProperties, "org/allbinary/image/opengles/OpenGLESImageProperties" unless const_defined?(:OpenGLESImageProperties, false)
+autoload :OpenGLESImageTranslate, "org/allbinary/image/opengles/OpenGLESImageTranslate" unless const_defined?(:OpenGLESImageTranslate, false)
 
 begin
     OpenGLESImage.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

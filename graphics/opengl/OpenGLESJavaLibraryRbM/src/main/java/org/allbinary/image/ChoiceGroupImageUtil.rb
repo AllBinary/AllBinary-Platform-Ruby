@@ -14,10 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.image
 
-# require "javax/microedition/khronos/opengles/GL"
-# require "javax/microedition/lcdui/ChoiceGroupImageFactory"
-# require "javax/microedition/lcdui/Graphics"
-# require "javax/microedition/lcdui/Image"
+
+module ::Org; module Allbinary; module Image
 
 class ChoiceGroupImageUtil
     
@@ -28,10 +26,10 @@ class ChoiceGroupImageUtil
     
 
     def init()
-        features = Features.getInstance()
-        choiceGroupFactory = ChoiceGroupImageFactory.getInstance()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        choiceGroupFactory = ::Javax::Microedition::Lcdui::ChoiceGroupImageFactory.getInstance()
         imageArray = choiceGroupFactory.getImageArray()
-        if features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL)
+        if features.isDefault(::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance().OPENGL)
             preResourceImageUtil = PreResourceImageUtil.getInstance()
             size = imageArray.length
             (0...size).each do |index|
@@ -42,11 +40,11 @@ class ChoiceGroupImageUtil
     end
     
 
-    def update(gl)
-        features = Features.getInstance()
-        choiceGroupFactory = ChoiceGroupImageFactory.getInstance()
+    def update_j1_1(gl)
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        choiceGroupFactory = ::Javax::Microedition::Lcdui::ChoiceGroupImageFactory.getInstance()
         imageArray = choiceGroupFactory.getImageArray()
-        if features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL)
+        if features.isDefault(::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance().OPENGL)
             preResourceImageUtil = PreResourceImageUtil.getInstance()
             size = imageArray.length
             (0...size).each do |index|
@@ -57,12 +55,11 @@ class ChoiceGroupImageUtil
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def update(graphics)
-        features = Features.getInstance()
-        choiceGroupFactory = ChoiceGroupImageFactory.getInstance()
+    def update_j1_2(graphics)
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        choiceGroupFactory = ::Javax::Microedition::Lcdui::ChoiceGroupImageFactory.getInstance()
         imageArray = choiceGroupFactory.getImageArray()
-        if features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL)
+        if features.isDefault(::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance().OPENGL)
             preResourceImageUtil = PreResourceImageUtil.getInstance()
             size = imageArray.length
             (0...size).each do |index|
@@ -72,20 +69,60 @@ class ChoiceGroupImageUtil
         choiceGroupFactory.init(imageArray)
     end
 
+    def update(*java_overload_args)
+        return update_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method update takes #{java_overload_args.length} arguments"
+    end
+
+    def update_j1(*java_overload_args)
+        return update_j1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Javax::Microedition::Khronos::Opengles::GL))
+        return update_j1_2(*java_overload_args)
+    end
+
     def self.instance()
+        ChoiceGroupImageUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ChoiceGroupImageUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ChoiceGroupImageUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ChoiceGroupImageUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/image/PreResourceImageUtil"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL, "javax/microedition/khronos/opengles/GL" unless const_defined?(:GL, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :ChoiceGroupImageFactory, "javax/microedition/lcdui/ChoiceGroupImageFactory" unless const_defined?(:ChoiceGroupImageFactory, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory" unless const_defined?(:OpenGLFeatureFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+autoload :PreResourceImageUtil, "org/allbinary/image/PreResourceImageUtil" unless const_defined?(:PreResourceImageUtil, false)
 
-class ChoiceGroupImageUtil
-    @@instance = ChoiceGroupImageUtil.new()
+begin
+    ChoiceGroupImageUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

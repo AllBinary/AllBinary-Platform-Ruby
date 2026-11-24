@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.persistance
 
+require "java/lang/JavaOverload"
 require "javax/microedition/rms/RecordStore"
 
-class NullRecordStore < RecordStore
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance
+
+class NullRecordStore < ::Javax::Microedition::Rms::RecordStore
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -44,4 +47,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

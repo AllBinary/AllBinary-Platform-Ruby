@@ -16,34 +16,36 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Business; module Init
+
 class InstallerInfo
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_business_init_InstallerInfo
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_init_InstallerInfo
     end
     
 
     # throws Exception
     def write()
         java_monitor.synchronize do
-        _FILEABPATH = AbPath.new(URLGLOBALS.getMainPath() + InstallerInfo::PACKAGE, InstallerInfo::INITFILENAME)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + InstallerInfo::PACKAGE, InstallerInfo::INITFILENAME)
         begin
-            newFile = AbFile.createAbFileFromAbPath(_FILEABPATH)
+            newFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
             newFile.createNewFile()
-            dataOutputStream = DataOutputStreamFactory.getInstance().getInstanceForAbFile(newFile)
-            cryptedUserName = WeakCrypt.new(1).encrypt(self.getUserName()).getBytes()
-            cryptedPassword = WeakCrypt.new(2).encrypt(self.getPassword()).getBytes()
-            dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedUserName))
-            dataOutputStream.writeUTF(DatabaseEncoder.encode(cryptedPassword))
+            dataOutputStream = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstanceForAbFile(newFile)
+            cryptedUserName = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(1).encrypt(self.getUserName()).getBytes()
+            cryptedPassword = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(2).encrypt(self.getPassword()).getBytes()
+            dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedUserName))
+            dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedPassword))
             InstallerInfo.hasRead = false
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().PRELOADERERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADERERROR)
                 @logUtil.putF("Failed", self, "write")
             end
             raise e
@@ -55,23 +57,23 @@ class InstallerInfo
     # throws Exception
     def read()
         java_monitor.synchronize do
-        _FILEABPATH = AbPath.new(URLGLOBALS.getMainPath() + InstallerInfo::PACKAGE, InstallerInfo::INITFILENAME)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + InstallerInfo::PACKAGE, InstallerInfo::INITFILENAME)
         begin
-            file = AbFile.createAbFileFromAbPath(_FILEABPATH)
+            file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
             if file.isFile()
-                iFile = AbFileLocalInputStream.new(file)
-                iData = AbDataInputStream.new(iFile)
-                decryptedUserName = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                decryptedPassword = String.new(DatabaseEncoder.decode(iData.readUTF()))
-                self.setUserName(WeakCrypt.new(1).decrypt(decryptedUserName))
-                self.setPassword(WeakCrypt.new(2).decrypt(decryptedPassword))
+                iFile = ::Org::Allbinary::Logic::Io::AbFileLocalInputStream.new(file)
+                iData = ::Org::Allbinary::Logic::Io::AbDataInputStream.new(iFile)
+                decryptedUserName = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                decryptedPassword = String.new(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.decode(iData.readUTF()))
+                self.setUserName(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(1).decrypt(decryptedUserName))
+                self.setPassword(::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(2).decrypt(decryptedPassword))
             else
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().PRELOADER)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADER)
                     @logUtil.putF("Not a File - Failed Loading: " + _FILEABPATH.to_s, self, "read")
                 end
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().PRELOADERERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADERERROR)
                 @logUtil.putF("Failed", self, "read")
             end
         end
@@ -103,7 +105,7 @@ class InstallerInfo
             InstallerInfo.hasRead = true
             self.read()
             if InstallerInfo.userName == nil || InstallerInfo.password == nil
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().PRELOADER)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADER)
                     @logUtil.putF("Failed", self, "updateIfNeeded")
                 end
             end
@@ -136,57 +138,91 @@ class InstallerInfo
     end
 
     def self.instance()
+        InstallerInfo.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        InstallerInfo.java_static_fields unless @java_static_fields_started
         @@instance = value
     end
 
     def self.userName()
+        InstallerInfo.java_static_fields unless @java_static_fields_started
         return defined?(@@userName) ? @@userName : nil
     end
 
     def self.userName=(value)
+        InstallerInfo.java_static_fields unless @java_static_fields_started
         @@userName = value
     end
 
     def self.password()
+        InstallerInfo.java_static_fields unless @java_static_fields_started
         return defined?(@@password) ? @@password : nil
     end
 
     def self.password=(value)
+        InstallerInfo.java_static_fields unless @java_static_fields_started
         @@password = value
     end
 
     def self.hasRead()
+        InstallerInfo.java_static_fields unless @java_static_fields_started
         return defined?(@@hasRead) ? @@hasRead : nil
     end
 
     def self.hasRead=(value)
+        InstallerInfo.java_static_fields unless @java_static_fields_started
         @@hasRead = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:INITFILENAME, "installerdata.dat")
+        @@hasRead = false
+        begin
+            @@instance = InstallerInfo.new()
+            const_set(:PACKAGE, ::Org::Allbinary::Globals::PATH_GLOBALS.getInstance().INIT_PATH)
+            @@userName = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+            @@password = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "InstallerInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:INITFILENAME, :PACKAGE].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/globals/PATH_GLOBALS"
-require "org/allbinary/globals/URLGLOBALS"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/io/AbDataInputStream"
-require "org/allbinary/logic/io/AbDataOutputStream"
-require "org/allbinary/logic/io/AbFileLocalInputStream"
-require "org/allbinary/logic/io/DataOutputStreamFactory"
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/logic/io/path/AbPath"
-require "org/allbinary/logic/string/StringUtil"
-require "org/allbinary/logic/system/security/crypt/DatabaseEncoder"
-require "org/allbinary/logic/system/security/crypt/WeakCrypt"
+module ::Org; module Allbinary; module Globals; autoload :PATH_GLOBALS, "org/allbinary/globals/PATH_GLOBALS" unless const_defined?(:PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataInputStream, "org/allbinary/logic/io/AbDataInputStream" unless const_defined?(:AbDataInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileLocalInputStream, "org/allbinary/logic/io/AbFileLocalInputStream" unless const_defined?(:AbFileLocalInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory" unless const_defined?(:DataOutputStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; autoload :DatabaseEncoder, "org/allbinary/logic/system/security/crypt/DatabaseEncoder" unless const_defined?(:DatabaseEncoder, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; autoload :WeakCrypt, "org/allbinary/logic/system/security/crypt/WeakCrypt" unless const_defined?(:WeakCrypt, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
-class InstallerInfo
-    @@instance = InstallerInfo.new()
-    INITFILENAME = "installerdata.dat"
-    PACKAGE = PATH_GLOBALS.getInstance().INIT_PATH
-    @@userName = StringUtil.getInstance().EMPTY_STRING
-    @@password = StringUtil.getInstance().EMPTY_STRING
-    @@hasRead = false
+begin
+    InstallerInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

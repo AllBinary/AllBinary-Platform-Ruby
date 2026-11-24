@@ -14,18 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.j2me.workarea.color
 
+require "java/lang/JavaOverload"
+# require "java/awt/BorderLayout"
+# require "javax/swing/JColorChooser"
+# require "javax/swing/JPanel"
+
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Color
 
 class ColorChooser < JPanel
     attr_accessor :jColorChooser1
 
-    def initialize_fields
-        @jColorChooser1 = nil
+    def jfields_org_allbinary_graphics_j2me_workarea_color_ColorChooser
+        @jColorChooser1 = nil unless instance_variable_defined?(:@jColorChooser1)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_j2me_workarea_color_ColorChooser
         self.initComponents()
     end
     
@@ -33,7 +39,10 @@ class ColorChooser < JPanel
     def initComponents()
         @jColorChooser1 = JColorChooser.new()
         setLayout(BorderLayout.new())
-        add(@jColorChooser1, java.awt.BorderLayout.CENTER)
+        add(@jColorChooser1, BorderLayout::CENTER)
     end
+    java_overload :initComponents, 0
 end
+
+end; end; end; end; end; end
 

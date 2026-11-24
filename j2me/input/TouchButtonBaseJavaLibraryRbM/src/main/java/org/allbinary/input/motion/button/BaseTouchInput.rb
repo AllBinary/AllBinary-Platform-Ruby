@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.input.motion.button
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Input; module Motion; module Button
 
 class BaseTouchInput
     attr_accessor :commonStrings, :basicArrayListUtil
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @basicArrayListUtil = BasicArrayListUtil.getInstance()
+    def jfields_org_allbinary_input_motion_button_BaseTouchInput
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @basicArrayListUtil = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_BaseTouchInput
     end
     
 
@@ -35,12 +38,14 @@ class BaseTouchInput
     
 
     def toString()
-        return self.class.name
+        return self.class.java_name
     end
     alias_method :to_s, :toString
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+
+end; end; end; end; end
 

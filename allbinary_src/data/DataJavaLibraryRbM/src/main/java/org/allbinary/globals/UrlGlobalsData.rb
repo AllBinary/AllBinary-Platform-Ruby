@@ -15,18 +15,44 @@
 # package org.allbinary.globals
 
 
+module ::Org; module Allbinary; module Globals
+
 class UrlGlobalsData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "URLGLOBALS_NAME")
+        const_set(:WEBAPPPATH, "URLGLOBALS_WEBAPPPATH")
+        const_set(:TESTINGMODE, "URLGLOBALS_TESTINGMODE")
+        const_set(:TESTINGHTMLPATH, "URLGLOBALS_TESTINGHTMLPATH")
+        const_set(:MAINPATH, "URLGLOBALS_MAINPATH")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UrlGlobalsData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME, :WEBAPPPATH, :TESTINGMODE, :TESTINGHTMLPATH, :MAINPATH].include?(name)
+        end
+        super
+    end
 end
 
-class UrlGlobalsData
-    NAME = "URLGLOBALS_NAME"
-    WEBAPPPATH = "URLGLOBALS_WEBAPPPATH"
-    TESTINGMODE = "URLGLOBALS_TESTINGMODE"
-    TESTINGHTMLPATH = "URLGLOBALS_TESTINGHTMLPATH"
-    MAINPATH = "URLGLOBALS_MAINPATH"
+begin
+    UrlGlobalsData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

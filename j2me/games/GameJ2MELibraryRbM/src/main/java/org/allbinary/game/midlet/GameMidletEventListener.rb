@@ -14,17 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.midlet
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 module GameMidletEventListener
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     def onGameEnd(eventObject)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onGameEnd, 1
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+
+end; end; end; end
 

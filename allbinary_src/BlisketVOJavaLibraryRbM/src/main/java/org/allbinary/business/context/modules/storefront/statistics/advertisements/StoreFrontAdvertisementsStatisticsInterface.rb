@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.business.context.modules.storefront.statistics.advertisements
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/TableMappingInterface"
 
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; module Statistics; module Advertisements
+
 module StoreFrontAdvertisementsStatisticsInterface
-    include TableMappingInterface
+    include ::Org::Allbinary::DataPackage::Tables::TableMappingInterface
 end
+
+end; end; end; end; end; end; end; end
 

@@ -15,24 +15,31 @@
 # package org.allbinary.media.graphics.geography.pathfinding
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding
+
 module PathFindingInfoInterface
     
 
     def getStartPathFindingNodeList()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getEndPathFindingNodeList()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getPathFinder()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/media/graphics/geography/pathfinding/GeographicPathFinderBase"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :GeographicPathFinderBase, "org/allbinary/media/graphics/geography/pathfinding/GeographicPathFinderBase" unless const_defined?(:GeographicPathFinderBase, false)
+
+end; end; end; end; end; end
 

@@ -15,97 +15,101 @@
 # package org.allbinary.game.displayable.canvas
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/RunnableCanvas"
 require "org/allbinary/graphics/displayable/event/DisplayChangeEventListener"
 require "org/allbinary/game/displayable/canvas/DemoPaintableInterface"
 require "org/allbinary/game/displayable/canvas/GameCanvasRunnableInterface"
 require "org/allbinary/game/displayable/canvas/MenuListener"
 
-class DemoCanvas < RunnableCanvas
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class DemoCanvas < ::Org::Allbinary::Canvas::RunnableCanvas
     include GameCanvasRunnableInterface
     include MenuListener
-    include DisplayChangeEventListener
+    include ::Org::Allbinary::Graphics::Displayable::Event::DisplayChangeEventListener
     include DemoPaintableInterface
     attr_accessor :basicColorFactory, :myCommandsFactory, :gameAdStateFactory, :gameInputStrings, :gameStateFactory, :threadFactoryUtil, :formUtil, :fullscreenPaintable, :basicGameDemoPaintable, :specialAnimationInterface, :paintedSpecialAnimationInterface, :fullScreenUtil, :gameCanvas, :highScoresHelper, :realHighScoresPaintable, :highScoresPaintable, :state, :canvasThread, :timeDelayHelper, :basicColor, :abeClientInformation, :highScoresFactoryInterface, :menuInputProcessor, :menuForm, :gameInitializationInterfaceFactoryInterface, :initialized, :demoGameRunnable, :defaultPaintableInterface, :paintableInterface, :overlayPaintable, :progressPaintable, :tempWait, :inputToGameKeyMapping, :gameRunnable, :isSingleKeyRepeatableProcessing, :NONE, :gameKeyEventFactory, :lastKeyNotMapped, :SET_STATE, :baseGameStatistics
 
-    def initialize_fields
-        @basicColorFactory = BasicColorFactory.getInstance()
-        @myCommandsFactory = MyCommandsFactory.getInstance()
-        @gameAdStateFactory = GameAdStateFactory.getInstance()
-        @gameInputStrings = GameInputStrings.getInstance()
-        @gameStateFactory = GameStateFactory.getInstance()
-        @threadFactoryUtil = ThreadFactoryUtil.getInstance()
+    def jfields_org_allbinary_game_displayable_canvas_DemoCanvas
+        @basicColorFactory = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance()
+        @myCommandsFactory = ::Org::Allbinary::Graphics::Displayable::Command::MyCommandsFactory.getInstance()
+        @gameAdStateFactory = ::Org::Allbinary::Business::Advertisement::GameAdStateFactory.getInstance()
+        @gameInputStrings = ::Org::Allbinary::Game::Input::GameInputStrings.getInstance()
+        @gameStateFactory = ::Org::Allbinary::Game::State::GameStateFactory.getInstance()
+        @threadFactoryUtil = ::Org::Allbinary::ThreadPackage::ThreadFactoryUtil.getInstance()
         @formUtil = FormUtil.getInstance()
-        @fullscreenPaintable = FullScreenPaintableFactory.getInstance().paintable
-        @basicGameDemoPaintable = StatePaintableFactory.getInstance()
-        @specialAnimationInterface = SpecialAnimation.getInstance()
-        @paintedSpecialAnimationInterface = SpecialAnimation.getInstance()
-        @fullScreenUtil = FullScreenUtil.getInstance()
+        @fullscreenPaintable = ::Org::Allbinary::Graphics::Displayable::Screen::FullScreenPaintableFactory.getInstance().paintable
+        @basicGameDemoPaintable = ::Org::Allbinary::Graphics::Paint::StatePaintableFactory.getInstance()
+        @specialAnimationInterface = ::Org::Allbinary::Animation::Special::SpecialAnimation.getInstance()
+        @paintedSpecialAnimationInterface = ::Org::Allbinary::Animation::Special::SpecialAnimation.getInstance()
+        @fullScreenUtil = ::Org::Allbinary::Canvas::FullScreenUtil.getInstance()
         @gameCanvas = NullGameCanvas.getInstance()
-        @highScoresHelper = HighScoresHelper.new()
-        @realHighScoresPaintable = HighScoresPaintable.new()
-        @highScoresPaintable = NullPaintable.getInstance()
+        @highScoresHelper = ::Org::Allbinary::Game::Score::HighScoresHelper.new()
+        @realHighScoresPaintable = ::Org::Allbinary::Game::Score::HighScoresPaintable.new()
+        @highScoresPaintable = ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
         @state = 0
-        @canvasThread = NullThread::NULL_THREAD
-        @timeDelayHelper = TimeDelayHelper.new(6000)
+        @canvasThread = ::Org::Allbinary::ThreadPackage::NullThread::NULL_THREAD
+        @timeDelayHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(6000)
         @basicColor = @basicColorFactory.RED
-        @abeClientInformation = nil
-        @highScoresFactoryInterface = nil
+        @abeClientInformation = nil unless instance_variable_defined?(:@abeClientInformation)
+        @highScoresFactoryInterface = nil unless instance_variable_defined?(:@highScoresFactoryInterface)
         @menuInputProcessor = NoMenuInputProcessor.getInstance()
-        @menuForm = ScrollSelectionForm.getNullScrollSelectionForm()
-        @gameInitializationInterfaceFactoryInterface = nil
-        @initialized = false
-        @demoGameRunnable = nil
-        @defaultPaintableInterface = NullPaintable.getInstance()
-        @paintableInterface = NullPaintable.getInstance()
-        @overlayPaintable = nil
-        @progressPaintable = ProgressCanvasFactory.getLazyInstance()
+        @menuForm = ::Org::Allbinary::Graphics::Form::ScrollSelectionForm.getNullScrollSelectionForm()
+        @gameInitializationInterfaceFactoryInterface = nil unless instance_variable_defined?(:@gameInitializationInterfaceFactoryInterface)
+        @initialized = false unless instance_variable_defined?(:@initialized)
+        @demoGameRunnable = nil unless instance_variable_defined?(:@demoGameRunnable)
+        @defaultPaintableInterface = ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
+        @paintableInterface = ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
+        @overlayPaintable = nil unless instance_variable_defined?(:@overlayPaintable)
+        @progressPaintable = ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getLazyInstance()
         @tempWait = NullWaitGameRunnable.getInstance().WAIT
-        @inputToGameKeyMapping = PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance().getInputMapping()
+        @inputToGameKeyMapping = ::Org::Allbinary::Game::Input::PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance().getInputMapping()
         @gameRunnable = NullWaitGameRunnable.getInstance()
-        @isSingleKeyRepeatableProcessing = Features.getInstance().isFeature(InputFeatureFactory.getInstance().SINGLE_KEY_REPEAT_PRESS)
-        @NONE = GameKeyFactory.getInstance().NONE
-        @gameKeyEventFactory = GameKeyEventFactory.getInstance()
+        @isSingleKeyRepeatableProcessing = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::InputFeatureFactory.getInstance().SINGLE_KEY_REPEAT_PRESS)
+        @NONE = ::Org::Allbinary::Game::Input::GameKeyFactory.getInstance().NONE
+        @gameKeyEventFactory = ::Org::Allbinary::Game::Input::Event::GameKeyEventFactory.getInstance()
         @lastKeyNotMapped = -1
         @SET_STATE = "setState"
-        @baseGameStatistics = GameStatisticsFactory.getInstance()
+        @baseGameStatistics = ::Org::Allbinary::Canvas::GameStatisticsFactory.getInstance()
     end
     
 
     def initialize(abeClientInformation, commandListener, highScoresFactoryInterface, paintable, overlayPaintable, gameInitializationInterfaceFactoryInterface, isContinue)
-        super(commandListener, CurrentDisplayableFactory.getInstance().DEFAULT_CHILD_NAME_LIST, true)
-        initialize_fields
+        super(commandListener, ::Org::Allbinary::Graphics::Opengles::CurrentDisplayableFactory.getInstance().DEFAULT_CHILD_NAME_LIST, true)
+        jfields_org_allbinary_game_displayable_canvas_DemoCanvas
         @abeClientInformation = abeClientInformation
         self.setWait(NullWaitGameRunnable.getInstance().WAIT)
         @gameInitializationInterfaceFactoryInterface = gameInitializationInterfaceFactoryInterface
-        GameInitializationUtil.getInstance().initDemo(abeClientInformation, self, gameInitializationInterfaceFactoryInterface)
-        ResizableListenerHandler.getInstance().fireEvent(false)
+        ::Org::Allbinary::Game::Init::GameInitializationUtil.getInstance().initDemo(abeClientInformation, self, gameInitializationInterfaceFactoryInterface)
+        ::Org::Allbinary::Graphics::ResizableListenerHandler.getInstance().fireEvent(false)
         @overlayPaintable = overlayPaintable
         @highScoresFactoryInterface = highScoresFactoryInterface
         self.setDefaultPaintableInterface(paintable)
         self.setPaintableInterface(self.getDefaultPaintableInterface())
         if isContinue
-            self.addCommand(GameCommandsFactory.getInstance().CONTINUE_COMMAND)
+            self.addCommand(::Org::Allbinary::Game::Commands::GameCommandsFactory.getInstance().CONTINUE_COMMAND)
         end
-        if ChangedGameFeatureListener.getInstance().isChangedFeature(GameFeatureFactory.getInstance().SOUND)
+        if ::Org::Allbinary::Game::Configuration::Event::ChangedGameFeatureListener.getInstance().isChangedFeature(::Org::Allbinary::Game::Configuration::Feature::GameFeatureFactory.getInstance().SOUND)
             self.mediaInit()
         end
         @demoGameRunnable = DemoGameStartupRunnable.new(self)
-        DisplayChangeEventHandler.getInstance().addListenerInterface(self)
+        ::Org::Allbinary::Graphics::Displayable::Event::DisplayChangeEventHandler.getInstance().addListenerInterface(self)
     end
     
 
     def onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
     end
+    java_overload :onEvent, 1
     
 
     def onDisplayChangeEvent(displayChangeEvent)
         begin
-            @logUtil.putF(StringMaker.new().append(@commonLabels.START_LABEL).append(@displayInfo.to_s).to_s, self, @canvasStrings.ON_DISPLAY_CHANGE_EVENT)
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@commonLabels.START_LABEL).append(@displayInfo.to_s).to_s, self, @canvasStrings.ON_DISPLAY_CHANGE_EVENT)
             scrollSelectionForm = self.getMenuForm()
             if scrollSelectionForm != nil
-                formType = FormTypeFactory.getInstance().getFormType()
+                formType = ::Org::Allbinary::Graphics::Form::FormTypeFactory.getInstance().getFormType()
                 rectangle = @formUtil.createFormRectangle()
                 scrollSelectionForm.init(rectangle, formType)
             end
@@ -114,27 +118,28 @@ class DemoCanvas < RunnableCanvas
             @logUtil.put(@commonStrings.EXCEPTION, self, @canvasStrings.ON_DISPLAY_CHANGE_EVENT, e)
         end
     end
+    java_overload :onDisplayChangeEvent, 1
     
 
     def getCustomCommands()
-        gameCommandsFactory = GameCommandsFactory.getInstance()
-        if J2MEUtil.isHTML()
-            commandArray = [gameCommandsFactory.START_COMMAND, HighScoreCommands.getInstance().DISPLAY, GameInputMappingCanvas::DISPLAY, gameCommandsFactory.DISPLAY_ABOUT]
+        gameCommandsFactory = ::Org::Allbinary::Game::Commands::GameCommandsFactory.getInstance()
+        if ::Org::Allbinary::J2MEUtil.isHTML()
+            commandArray = [gameCommandsFactory.START_COMMAND, ::Org::Allbinary::Game::Score::HighScoreCommands.getInstance().DISPLAY, GameInputMappingCanvas::DISPLAY, gameCommandsFactory.DISPLAY_ABOUT]
             return commandArray
         else
-            commandList = BasicArrayListD.new()
+            commandList = ::Org::Allbinary::Util::BasicArrayListD.new()
             commandList.add(gameCommandsFactory.START_COMMAND)
-            inApplicationPurchaseFactory = InApplicationPurchaseFactory.getInstance()
+            inApplicationPurchaseFactory = ::Org::Allbinary::Logic::System::Security::Licensing::InApplicationPurchaseFactory.getInstance()
             if inApplicationPurchaseFactory.isEnabled()
-                list = LockableFeatureFactory.getInstance().getList()
+                list = ::Org::Allbinary::Logic::System::Security::Licensing::LockableFeatureFactory.getInstance().getList()
                 if list.size() > 0 && !inApplicationPurchaseFactory.isPurchased(list.get(0))
                     commandList.add(gameCommandsFactory.BUY_COMMAND)
                 end
             end
-            commandList.add(HighScoreCommands.getInstance().DISPLAY)
+            commandList.add(::Org::Allbinary::Game::Score::HighScoreCommands.getInstance().DISPLAY)
             begin
-                isOverScan = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan()
-                if SWTUtil.isSWT
+                isOverScan = ::Org::Allbinary::Logic::System::Os::OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan()
+                if ::Org::Allbinary::Game::Layer::SWTUtil.isSWT
                     commandList.add(GameInputMappingCanvas::DISPLAY)
                 elsif !isOverScan
                     commandList.add(gameCommandsFactory.DISPLAY_OPTIONS)
@@ -148,6 +153,7 @@ class DemoCanvas < RunnableCanvas
             return commandArray
         end
     end
+    java_overload :getCustomCommands, 0
     
 
     def initCommands(cmdListener)
@@ -157,25 +163,29 @@ class DemoCanvas < RunnableCanvas
         (0...size).each do |index|
             self.addCommand(commandArray[index])
         end
-        CustomGameMenuUtil.add(self)
+        ::Org::Allbinary::Canvas::CustomGameMenuUtil.add(self)
         self.setCommandListener(cmdListener)
     end
+    java_overload :initCommands, 1
     
 
     # throws Exception
     def initPostPaint()
     end
+    java_overload :initPostPaint, 0
     
 
     # throws Exception
     def mediaInit()
-        AllBinaryMediaManager.init(EarlySoundsFactory.getInstance())
+        ::Org::Allbinary::Media::Audio::AllBinaryMediaManager.init(::Org::Allbinary::Media::Audio::EarlySoundsFactory.getInstance())
     end
+    java_overload :mediaInit, 0
     
 
     def itemStateChanged(item)
-        ForcedLogUtil.log(@commonStrings.NOT_IMPLEMENTED, self)
+        ::Org::Allbinary::Logic::Communication::Log::ForcedLogUtil.log(@commonStrings.NOT_IMPLEMENTED, self)
     end
+    java_overload :itemStateChanged, 1
     
 
     # throws Exception
@@ -183,61 +193,70 @@ class DemoCanvas < RunnableCanvas
         self.close()
         commandTextItemArrayFactory = DemoLimitedCommandTextItemArrayFactory.getInstance().getCommandTextItemArrayFactory()
         items = commandTextItemArrayFactory.getInstance(self.getCommandStack(), @basicColorFactory.BLACK, @basicColorFactory.WHITE)
-        formType = FormTypeFactory.getInstance().getFormType()
+        formType = ::Org::Allbinary::Graphics::Form::FormTypeFactory.getInstance().getFormType()
         rectangle = @formUtil.createFormRectangle()
-        PreLogUtil.put(StringMaker.new().append(@commonLabels.START_LABEL).append(@displayInfo.to_s).to_s, self, "initMenu")
-        scrollSelectionForm = CommandCurrentSelectionFormFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, items, rectangle, formType, 15, true, @basicColorFactory.BLACK, @basicColorFactory.WHITE)
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@commonLabels.START_LABEL).append(@displayInfo.to_s).to_s, self, "initMenu")
+        scrollSelectionForm = ::Org::Allbinary::Graphics::Form::CommandCurrentSelectionFormFactory.getInstance(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, items, rectangle, formType, 15, true, @basicColorFactory.BLACK, @basicColorFactory.WHITE)
         self.setMenuForm(scrollSelectionForm)
-        formType2 = FormTypeFactory.getInstance().getFormType()
+        formType2 = ::Org::Allbinary::Graphics::Form::FormTypeFactory.getInstance().getFormType()
         rectangle2 = @formUtil.createFormRectangle()
         scrollSelectionForm.init(rectangle2, formType2)
-        if self.getMenuForm() != ScrollSelectionFormNoneFactory.getInstance()
-            self.setMenuInputProcessor(CommandFormInputProcessor.new(BasicArrayListD.new(), -1, self, self.getMenuForm()))
+        if self.getMenuForm() != ::Org::Allbinary::Graphics::Form::ScrollSelectionFormNoneFactory.getInstance()
+            self.setMenuInputProcessor(CommandFormInputProcessor.new(::Org::Allbinary::Util::BasicArrayListD.new(), -1, self, self.getMenuForm()))
         end
         self.open()
     end
+    java_overload :initMenu, 0
     
 
     def open()
-        BasicMotionGesturesHandler.getInstance().addListenerInterface(self.getMenuInputProcessor())
-        GameKeyEventHandler.getInstance().addListener(self.getMenuInputProcessor())
+        ::Org::Allbinary::Input::Motion::Gesture::Observer::BasicMotionGesturesHandler.getInstance().addListenerInterface(self.getMenuInputProcessor())
+        ::Org::Allbinary::Game::Input::Event::GameKeyEventHandler.getInstance().addListener(self.getMenuInputProcessor())
     end
+    java_overload :open, 0
     
 
     def close()
-        BasicMotionGesturesHandler.getInstance().removeListener(self.getMenuInputProcessor())
-        GameKeyEventHandler.getInstance().removeListener(self.getMenuInputProcessor())
+        ::Org::Allbinary::Input::Motion::Gesture::Observer::BasicMotionGesturesHandler.getInstance().removeListener(self.getMenuInputProcessor())
+        ::Org::Allbinary::Game::Input::Event::GameKeyEventHandler.getInstance().removeListener(self.getMenuInputProcessor())
     end
+    java_overload :close, 0
     
 
     def getSourceId()
         return DemoCanvas.id
     end
+    java_overload :getSourceId, 0
     
 
     def keyPressed(keyCode)
         self.keyPressedByDevice(keyCode, 0)
     end
+    java_overload :keyPressed, 1
     
 
     def keyReleased(keyCode)
         self.keyReleasedByDevice(keyCode, 0)
     end
+    java_overload :keyReleased, 1
     
 
     def keyRepeated(keyCode)
         self.keyRepeatedByDevice(keyCode, 0)
     end
+    java_overload :keyRepeated, 1
     
 
     def keyPressedByDevice(keyCode, deviceId)
         self.addGameKeyEvent(keyCode, false)
     end
+    java_overload :keyPressedByDevice, 2
     
 
     def keyReleasedByDevice(keyCode, deviceId)
         self.removeGameKeyEvent(keyCode, false)
     end
+    java_overload :keyReleasedByDevice, 2
     
 
     def keyRepeatedByDevice(keyCode, deviceId)
@@ -245,6 +264,7 @@ class DemoCanvas < RunnableCanvas
             self.addGameKeyEvent(keyCode, true)
         end
     end
+    java_overload :keyRepeatedByDevice, 2
     
 
     def addGameKeyEvent(keyCode, repeated)
@@ -252,17 +272,18 @@ class DemoCanvas < RunnableCanvas
             gameKey = @inputToGameKeyMapping.getInstanceForCanvas(self, keyCode)
             if gameKey != @NONE
                 gameKeyEvent = @gameKeyEventFactory.getInstanceForInput(self, gameKey)
-                DownGameKeyEventHandler.getInstance().fireEvent(gameKeyEvent)
+                ::Org::Allbinary::Game::Input::Event::DownGameKeyEventHandler.getInstance().fireEvent(gameKeyEvent)
             else
                 if @lastKeyNotMapped != keyCode
                     @lastKeyNotMapped = keyCode
-                    @logUtil.putF(StringMaker.new().append(@gameInputStrings.NO_KEY).appendint(keyCode).to_s, self, @gameInputStrings.ADD_KEY_EVENT)
+                    @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@gameInputStrings.NO_KEY).appendint(keyCode).to_s, self, @gameInputStrings.ADD_KEY_EVENT)
                 end
             end
         rescue StandardError => e
             @logUtil.put("Key Event Error", self, @gameInputStrings.ADD_KEY_EVENT, e)
         end
     end
+    java_overload :addGameKeyEvent, 2
     
 
     def removeGameKeyEvent(keyCode, repeated)
@@ -270,14 +291,15 @@ class DemoCanvas < RunnableCanvas
             gameKey = @inputToGameKeyMapping.getInstanceForCanvas(self, keyCode)
             if gameKey != @NONE
                 gameKeyEvent = @gameKeyEventFactory.getInstanceForInput(self, gameKey)
-                UpGameKeyEventHandler.getInstance().fireEvent(gameKeyEvent)
+                ::Org::Allbinary::Game::Input::Event::UpGameKeyEventHandler.getInstance().fireEvent(gameKeyEvent)
             else
-                @logUtil.putF(StringMaker.new().append(@gameInputStrings.NO_KEY).appendint(keyCode).to_s, self, @gameInputStrings.REMOVE_KEY_EVENT)
+                @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@gameInputStrings.NO_KEY).appendint(keyCode).to_s, self, @gameInputStrings.REMOVE_KEY_EVENT)
             end
         rescue StandardError => e
             @logUtil.put("Key Event Error", self, @gameInputStrings.REMOVE_KEY_EVENT, e)
         end
     end
+    java_overload :removeGameKeyEvent, 2
     
 
     def pause()
@@ -288,6 +310,7 @@ class DemoCanvas < RunnableCanvas
         @gameCanvas.pause()
         end
     end
+    java_overload :pause, 0
     
 
     def unPause()
@@ -298,27 +321,31 @@ class DemoCanvas < RunnableCanvas
         self.setPaused(false)
         end
     end
+    java_overload :unPause, 0
     
 
     def isPausable()
-        if CurrentDisplayableFactory.getInstance().getUsedRunnable() == NullWaitGameRunnable.getInstance()
+        if ::Org::Allbinary::Graphics::Opengles::CurrentDisplayableFactory.getInstance().getUsedRunnable() == NullWaitGameRunnable.getInstance()
             return true
         else
             return false
         end
     end
+    java_overload :isPausable, 0
     
 
     def isGameOver()
-        @logUtil.putF(StringMaker.new().append(@commonStrings.NOT_IMPLEMENTED).append(" since not a game").to_s, self, "isGameOver")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@commonStrings.NOT_IMPLEMENTED).append(" since not a game").to_s, self, "isGameOver")
         return false
     end
+    java_overload :isGameOver, 0
     
 
     # throws Exception
     def setLoadStateHashtable(hashtable)
         @logUtil.putF("Trying to continue a demo lol - only continue a game canvas not the demo", self, "setLoadStateHashtable")
     end
+    java_overload :setLoadStateHashtable, 1
     
 
     # throws Exception
@@ -326,6 +353,7 @@ class DemoCanvas < RunnableCanvas
         @logUtil.putF("Trying to continue a demo lol - only continue a game canvas not the demo", self, "getLoadStateHashtable")
         return @stdUtil.NULL_TABLE
     end
+    java_overload :getLoadStateHashtable, 0
     
 
     # throws Exception
@@ -333,10 +361,12 @@ class DemoCanvas < RunnableCanvas
         @logUtil.putF("Trying to save the AI lol", self, "getCurrentStateHashtable")
         return @stdUtil.NULL_TABLE
     end
+    java_overload :getCurrentStateHashtable, 0
     
 
     def setHighScoreSubmitted(isNotUsed)
     end
+    java_overload :setHighScoreSubmitted, 1
     
 
     def paint(graphics)
@@ -348,12 +378,14 @@ class DemoCanvas < RunnableCanvas
         @fullscreenPaintable.paint(graphics)
         @progressPaintable.paint(graphics)
     end
+    java_overload :paint, 1
     
 
     def paintThreed(graphics)
         @paintableInterface.paintThreed(graphics)
         @paintedSpecialAnimationInterface.paintThreedXYZ(graphics, 0, 0, 0)
     end
+    java_overload :paintThreed, 1
     
 
     def processGameOver()
@@ -361,6 +393,7 @@ class DemoCanvas < RunnableCanvas
         @logUtil.putF("Not Implemented since not a game", self, "setGameOver")
         end
     end
+    java_overload :processGameOver, 0
     
 
     def demoStateChange()
@@ -372,7 +405,7 @@ class DemoCanvas < RunnableCanvas
                 newState = 0
             else
                 highScores = @highScoresHelper.getNextHighScores()
-                if highScores == NullHighScoresSingletonFactory.getInstance()
+                if highScores == ::Org::Allbinary::Game::Score::NullHighScoresSingletonFactory.getInstance()
                     newState = 0
                 else
                     self.getRealHighScoresPaintable().setHighScores(highScores)
@@ -382,49 +415,54 @@ class DemoCanvas < RunnableCanvas
         self.setState(newState)
         self.updateDemoState()
     end
+    java_overload :demoStateChange, 0
     
 
     def updateDemoState()
-        PreLogUtil.put(SmallIntegerSingletonFactory.getInstance().createInstance(@state).to_s, self, @SET_STATE)
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().createInstance(@state).to_s, self, @SET_STATE)
         self.getBasicGameDemoPaintable().setState(@state)
         if @state == 0
-            @highScoresPaintable = NullPaintable.getInstance()
+            @highScoresPaintable = ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
             @paintedSpecialAnimationInterface = self.getSpecialAnimationInterface()
             if !@demoGameRunnable.isRunning() && @gameCanvas.isInitialized()
                 self.getSpecialAnimationInterface().reset()
             end
         elsif @state == 1
-            @paintedSpecialAnimationInterface = SpecialAnimation.getInstance()
+            @paintedSpecialAnimationInterface = ::Org::Allbinary::Animation::Special::SpecialAnimation.getInstance()
         elsif @state == 2
             @highScoresPaintable = self.getRealHighScoresPaintable()
         end
         gameAdState = @gameAdStateFactory.getCurrentInstance()
         gameAdState.processPageAdState()
     end
+    java_overload :updateDemoState, 0
     
 
     # throws Exception
     def getNextRandom()
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :getNextRandom, 0
     
 
     # throws Exception
     def createGameLayerManager(randomValue)
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :createGameLayerManager, 1
     
 
     # throws Exception
     def createRunnable(randomLevel)
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :createRunnable, 1
     
 
     # throws Exception
     def create()
-        PreLogUtil.put(@commonStrings.START, self, "create")
-        @highScoresPaintable = NullPaintable.getInstance()
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(@commonStrings.START, self, "create")
+        @highScoresPaintable = ::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance()
         randomLevel = self.getNextRandom()
         @gameCanvas = self.createRunnable(randomLevel)
         @basicColor = @gameCanvas.getLayerManager().getForegroundBasicColor()
@@ -433,12 +471,13 @@ class DemoCanvas < RunnableCanvas
         gameInfo = @gameCanvas.getLayerManager().getGameInfo()
         self.getHighScoresFactoryInterface().fetchHighScores(gameInfo, @highScoresHelper)
     end
+    java_overload :create, 0
     
 
     # throws Exception
     def start()
         gameCanvas = @gameCanvas
-        PreLogUtil.put(StringMaker.new().append("Game Thread in DemoCanvas: ").append(@stringUtil.toString(gameCanvas)).to_s, self, @commonStrings.START)
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Game Thread in DemoCanvas: ").append(@stringUtil.toString(gameCanvas)).to_s, self, @commonStrings.START)
         @canvasThread = @threadFactoryUtil.getInstanceGameCanvasRunnable(gameCanvas)
         @gameCanvas.setThread(@canvasThread)
         @threadFactoryUtil.start(@canvasThread)
@@ -446,23 +485,25 @@ class DemoCanvas < RunnableCanvas
             self.setWait(self.getTempWait())
         end
     end
+    java_overload :start, 0
     
 
     def preDemoProcess()
         if !@gameCanvas.isInitialized() || @gameCanvas.getTitle() == NullGameCanvas::NO_GAME
-            if AllBinaryMediaManager.update()
-                if !PrimaryPlayerQueueFactory.getInstance().process()
-                    SecondaryPlayerQueueFactory.getInstance().process()
+            if ::Org::Allbinary::Media::Audio::AllBinaryMediaManager.update()
+                if !::Org::Allbinary::Media::Audio::PrimaryPlayerQueueFactory.getInstance().process()
+                    ::Org::Allbinary::Media::Audio::SecondaryPlayerQueueFactory.getInstance().process()
                 end
             end
         end
         @overlayPaintable.update()
     end
+    java_overload :preDemoProcess, 0
     
 
     # throws Exception
     def process()
-        super()
+        DemoCanvas.superclass.java_super_method(:process, 0).bind(self).call()
         self.getMenuInputProcessor().processInputList()
         self.preDemoProcess()
         if @state == 0
@@ -489,12 +530,14 @@ class DemoCanvas < RunnableCanvas
             end
         end
     end
+    java_overload :process, 0
     
 
     # throws Exception
     def startDemoGame()
         DemoCanvasProgressUtil.showProgress(self)
     end
+    java_overload :startDemoGame, 0
     
 
     # throws Exception
@@ -503,29 +546,32 @@ class DemoCanvas < RunnableCanvas
             @logUtil.putF("Set Running False", self, "stopGameDemo")
             @gameCanvas.setRunning(false)
         end
-        ThreadUtil.getInstance().join(@canvasThread)
+        ::Org::Allbinary::ThreadPackage::ThreadUtil.getInstance().join(@canvasThread)
     end
+    java_overload :stopGameDemo, 0
     
 
     def showGamePaintable()
         _METHOD_NAME = "showGamePaintable"
-        PreLogUtil.put(@commonStrings.START, self, _METHOD_NAME)
-        isDefault = J2MEUtil.isHTML()
-        if @gameCanvas != NullGameCanvas.getInstance() && (@gameCanvas.isRunning() || isDefault || SWTUtil.isSWT) && !(@gameCanvas.getType() == NullGameCanvas::TYPE)
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(@commonStrings.START, self, _METHOD_NAME)
+        isDefault = ::Org::Allbinary::J2MEUtil.isHTML()
+        if @gameCanvas != NullGameCanvas.getInstance() && (@gameCanvas.isRunning() || isDefault || ::Org::Allbinary::Game::Layer::SWTUtil.isSWT) && !@gameCanvas.getType() == NullGameCanvas::TYPE
             @gameRunnable = @gameCanvas.gameRunnable
-            PreLogUtil.put("Showing Game", self, _METHOD_NAME)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Showing Game", self, _METHOD_NAME)
             self.setPaintableInterface(@gameCanvas)
         else
             @gameRunnable = NullWaitGameRunnable.getInstance()
-            PreLogUtil.put("Not Showing Game", self, _METHOD_NAME)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put("Not Showing Game", self, _METHOD_NAME)
             self.setPaintableInterface(self.getDefaultPaintableInterface())
         end
     end
+    java_overload :showGamePaintable, 0
     
 
     def isReadyForStateChange()
         return !@demoGameRunnable.isRunning() && @gameCanvas.isInitialized()
     end
+    java_overload :isReadyForStateChange, 0
     
 
     # throws Exception
@@ -540,18 +586,19 @@ class DemoCanvas < RunnableCanvas
             self.process()
         end
     end
+    java_overload :processGame, 0
     
 
     def run()
         @logUtil.putF(@commonStrings.START_RUNNABLE, self, @commonStrings.RUN)
         begin
-            progressCanvas = ProgressCanvasFactory.getInstance()
-            features = Features.getInstance()
-            openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
+            progressCanvas = ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance()
+            features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+            openGLFeatureFactory = ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance()
             progressCanvas.addNormalPortion(50, "Demo Thread")
             self.setCurrentThread()
             self.setRunning(true)
-            if features.isFeature(MainFeatureFactory.getInstance().LOAD_ONDEMAND)
+            if features.isFeature(::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance().LOAD_ONDEMAND)
                 progressCanvas.end_()
             else
                 progressCanvas.addNormalPortion(50, "Demo Thread Running")
@@ -567,14 +614,14 @@ class DemoCanvas < RunnableCanvas
                     self.processLoopSleep()
                 end
                 demoGameRunnable = DemoGameRunnable.new(self)
-                currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
+                currentDisplayableFactory = ::Org::Allbinary::Graphics::Opengles::CurrentDisplayableFactory.getInstance()
                 currentDisplayableFactory.setRunnable(demoGameRunnable)
                 currentDisplayableFactory.setMyCanvas(self)
-                OpenGLThreadUtil.getInstance().onResume()
+                ::Org::Allbinary::Graphics::Opengles::OpenGLThreadUtil.getInstance().onResume()
             end
-            if features.isDefault(openGLFeatureFactory.OPENGL_AS_GAME_THREAD) || J2MEUtil.isHTML()
+            if features.isDefault(openGLFeatureFactory.OPENGL_AS_GAME_THREAD) || ::Org::Allbinary::J2MEUtil.isHTML()
                 demoGameRunnable = DemoGameRunnable.new(self)
-                currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
+                currentDisplayableFactory = ::Org::Allbinary::Graphics::Opengles::CurrentDisplayableFactory.getInstance()
                 currentDisplayableFactory.setRunnable(demoGameRunnable)
                 currentDisplayableFactory.setMyCanvas(self)
             else
@@ -588,6 +635,7 @@ class DemoCanvas < RunnableCanvas
         end
         @logUtil.putF(@commonStrings.END_RUNNABLE, self, @commonStrings.RUN)
     end
+    java_overload :run, 0
     
 
     # throws Exception
@@ -596,17 +644,18 @@ class DemoCanvas < RunnableCanvas
         self.processGame()
         self.processLoopSleep()
     end
+    java_overload :run3, 0
     
 
     def setRunning(running)
-        super(running)
+        DemoCanvas.superclass.java_super_method(:setRunning, 1).bind(self).call(running)
         begin
-            features = Features.getInstance()
-            openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
+            features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+            openGLFeatureFactory = ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance()
             if running
             else
-                if (features.isDefault(openGLFeatureFactory.OPENGL) || J2MEUtil.isHTML()) || SWTUtil.isSWT
-                    currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
+                if (features.isDefault(openGLFeatureFactory.OPENGL) || ::Org::Allbinary::J2MEUtil.isHTML()) || ::Org::Allbinary::Game::Layer::SWTUtil.isSWT
+                    currentDisplayableFactory = ::Org::Allbinary::Graphics::Opengles::CurrentDisplayableFactory.getInstance()
                     currentDisplayableFactory.clearRunnable()
                     self.end_()
                 end
@@ -615,36 +664,41 @@ class DemoCanvas < RunnableCanvas
             @logUtil.put(@commonStrings.EXCEPTION, self, @SET_RUNNING, e)
         end
     end
+    java_overload :setRunning, 1
     
 
     # throws Exception
     def end_()
-        progressCanvas = ProgressCanvasFactory.getInstance()
-        features = Features.getInstance()
-        @baseGameStatistics.add(StringMaker.new().append(DemoCanvas::BOT_GAME_STATS).append(@baseGameStatistics.to_s).append(CommonSeps.getInstance().NEW_LINE).to_s)
+        progressCanvas = ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        @baseGameStatistics.add(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(DemoCanvas::BOT_GAME_STATS).append(@baseGameStatistics.to_s).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE).to_s)
         @baseGameStatistics.init()
-        if features.isFeature(MainFeatureFactory.getInstance().LOAD_ONDEMAND)
+        if features.isFeature(::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance().LOAD_ONDEMAND)
             progressCanvas.start()
         end
         @logUtil.putF("Demo End", self, @commonStrings.RUN)
         self.close()
-        DisplayChangeEventHandler.getInstance().removeListener(self)
+        ::Org::Allbinary::Graphics::Displayable::Event::DisplayChangeEventHandler.getInstance().removeListener(self)
         self.stopGameDemo()
     end
+    java_overload :end_, 0
     
 
     def setGameState(gameState)
     end
+    java_overload :setGameState, 1
     
 
     def getGameState()
         return @gameStateFactory.PLAYING_GAME_STATE
     end
+    java_overload :getGameState, 0
     
 
     def getGameCanvasRunnableInterface()
         return @gameCanvas
     end
+    java_overload :getGameCanvasRunnableInterface, 0
     
 
     def isDemoLoading()
@@ -656,149 +710,177 @@ class DemoCanvas < RunnableCanvas
         end
         return true
     end
+    java_overload :isDemoLoading, 0
     
 
     def getState()
         return @state
     end
+    java_overload :getState, 0
     
 
     def setState(state)
         @state = state
     end
+    java_overload :setState, 1
     
 
     def isHighScoreSubmitted()
         @logUtil.putF("Wow the AI got a high score!", self, "isHighScoreSubmitted")
         return false
     end
+    java_overload :isHighScoreSubmitted, 0
     
 
     def getRealHighScoresPaintable()
         return @realHighScoresPaintable
     end
+    java_overload :getRealHighScoresPaintable, 0
     
 
     def setSpecialAnimationInterface(specialAnimationInterface)
         specialAnimationInterface.setFrame(0)
         @specialAnimationInterface = specialAnimationInterface
     end
+    java_overload :setSpecialAnimationInterface, 1
     
 
     def getSpecialAnimationInterface()
         return @specialAnimationInterface
     end
+    java_overload :getSpecialAnimationInterface, 0
     
 
     def setPaintableInterface(paintableInterface)
         @paintableInterface = paintableInterface
     end
+    java_overload :setPaintableInterface, 1
     
 
     def getPaintableInterface()
         return @paintableInterface
     end
+    java_overload :getPaintableInterface, 0
     
 
     def setDefaultPaintableInterface(defaultPaintableInterface)
         @defaultPaintableInterface = defaultPaintableInterface
     end
+    java_overload :setDefaultPaintableInterface, 1
     
 
     def getDefaultPaintableInterface()
         return @defaultPaintableInterface
     end
+    java_overload :getDefaultPaintableInterface, 0
     
 
     def getHighScoresFactoryInterface()
         return @highScoresFactoryInterface
     end
+    java_overload :getHighScoresFactoryInterface, 0
     
 
     def setMenuInputProcessor(menuInputProcessor)
         @menuInputProcessor = menuInputProcessor
     end
+    java_overload :setMenuInputProcessor, 1
     
 
     def getMenuInputProcessor()
         return @menuInputProcessor
     end
+    java_overload :getMenuInputProcessor, 0
     
 
     def getMenuForm()
         return @menuForm
     end
+    java_overload :getMenuForm, 0
     
 
     def setMenuForm(menuForm)
         @menuForm = menuForm
     end
+    java_overload :setMenuForm, 1
     
 
     def isInitialized()
         return @initialized
     end
+    java_overload :isInitialized, 0
     
 
     def getOverlayPaintable()
         return @overlayPaintable
     end
+    java_overload :getOverlayPaintable, 0
     
 
     def setBasicGameDemoPaintable(basicGameDemoPaintable)
         @basicGameDemoPaintable = basicGameDemoPaintable
     end
+    java_overload :setBasicGameDemoPaintable, 1
     
 
     def getBasicGameDemoPaintable()
         return @basicGameDemoPaintable
     end
+    java_overload :getBasicGameDemoPaintable, 0
     
 
     def setTempWait(tempWait)
         @tempWait = tempWait
     end
+    java_overload :setTempWait, 1
     
 
     def getTempWait()
         return @tempWait
     end
+    java_overload :getTempWait, 0
     
 
     def isSingleThread()
-        return OpenGLFeatureUtil.getInstance().isAnyThreed() || SWTUtil.isSWT
+        return ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureUtil.getInstance().isAnyThreed() || ::Org::Allbinary::Game::Layer::SWTUtil.isSWT
     end
+    java_overload :isSingleThread, 0
     
 
     def isRunningInAnotherThread()
-        features = Features.getInstance()
-        openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        openGLFeatureFactory = ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureFactory.getInstance()
         if features.isDefault(openGLFeatureFactory.OPENGL_AS_GAME_THREAD)
             return true
         else
             return self.isRunning()
         end
     end
+    java_overload :isRunningInAnotherThread, 0
     
 
     def getGameInitializationInterfaceFactoryInterface()
         return @gameInitializationInterfaceFactoryInterface
     end
+    java_overload :getGameInitializationInterfaceFactoryInterface, 0
     
 
     def getType()
         return DemoCanvas::TYPE
     end
+    java_overload :getType, 0
     
 
     def getTitle()
-        return super()
+        return DemoCanvas.superclass.java_super_method(:getTitle, 0).bind(self).call()
     end
+    java_overload :getTitle, 0
     
 
     def isPaused()
-        return super()
+        return DemoCanvas.superclass.java_super_method(:isPaused, 0).bind(self).call()
     end
+    java_overload :isPaused, 0
 
     def self.id()
         DemoCanvas.java_static_fields unless @java_static_fields_started
@@ -833,116 +915,116 @@ class DemoCanvas < RunnableCanvas
     end
 end
 
-autoload :Command, "javax/microedition/lcdui/Command"
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :Item, "javax/microedition/lcdui/Item"
-autoload :J2MEUtil, "org/allbinary/J2MEUtil"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :IndexedAnimationBehavior, "org/allbinary/animation/IndexedAnimationBehavior"
-autoload :SpecialAnimation, "org/allbinary/animation/special/SpecialAnimation"
-autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory"
-autoload :BaseGameStatistics, "org/allbinary/canvas/BaseGameStatistics"
-autoload :CustomGameMenuUtil, "org/allbinary/canvas/CustomGameMenuUtil"
-autoload :FullScreenUtil, "org/allbinary/canvas/FullScreenUtil"
-autoload :GameStatisticsFactory, "org/allbinary/canvas/GameStatisticsFactory"
-autoload :GameAdState, "org/allbinary/game/GameAdState"
-autoload :GameInfo, "org/allbinary/game/GameInfo"
-autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory"
-autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener"
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory"
-autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory"
-autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
-autoload :BasicBuildGameInitializerFactory, "org/allbinary/game/init/BasicBuildGameInitializerFactory"
-autoload :GameInitializationUtil, "org/allbinary/game/init/GameInitializationUtil"
-autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings"
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
-autoload :DownGameKeyEventHandler, "org/allbinary/game/input/event/DownGameKeyEventHandler"
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
-autoload :GameKeyEventHandler, "org/allbinary/game/input/event/GameKeyEventHandler"
-autoload :UpGameKeyEventHandler, "org/allbinary/game/input/event/UpGameKeyEventHandler"
-autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
-autoload :SWTUtil, "org/allbinary/game/layer/SWTUtil"
-autoload :DemoGameMidlet, "org/allbinary/game/midlet/DemoGameMidlet"
-autoload :HighScoreCommands, "org/allbinary/game/score/HighScoreCommands"
-autoload :HighScores, "org/allbinary/game/score/HighScores"
-autoload :HighScoresFactoryInterface, "org/allbinary/game/score/HighScoresFactoryInterface"
-autoload :HighScoresHelper, "org/allbinary/game/score/HighScoresHelper"
-autoload :HighScoresHelperBase, "org/allbinary/game/score/HighScoresHelperBase"
-autoload :HighScoresPaintable, "org/allbinary/game/score/HighScoresPaintable"
-autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
-autoload :GameState, "org/allbinary/game/state/GameState"
-autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :ResizableListenerHandler, "org/allbinary/graphics/ResizableListenerHandler"
-autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
-autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory"
-autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent"
-autoload :DisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/DisplayChangeEventHandler"
-autoload :FullScreenPaintableFactory, "org/allbinary/graphics/displayable/screen/FullScreenPaintableFactory"
-autoload :CommandCurrentSelectionFormFactory, "org/allbinary/graphics/form/CommandCurrentSelectionFormFactory"
-autoload :FormType, "org/allbinary/graphics/form/FormType"
-autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory"
-autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm"
-autoload :ScrollSelectionFormNoneFactory, "org/allbinary/graphics/form/ScrollSelectionFormNoneFactory"
-autoload :CommandTextItemArrayFactory, "org/allbinary/graphics/form/item/CommandTextItemArrayFactory"
-autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem"
-autoload :CurrentDisplayableFactory, "org/allbinary/graphics/opengles/CurrentDisplayableFactory"
-autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory"
-autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
-autoload :OpenGLThreadUtil, "org/allbinary/graphics/opengles/OpenGLThreadUtil"
-autoload :InitUpdatePaintable, "org/allbinary/graphics/paint/InitUpdatePaintable"
-autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
-autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
-autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface"
-autoload :StatePaintable, "org/allbinary/graphics/paint/StatePaintable"
-autoload :StatePaintableFactory, "org/allbinary/graphics/paint/StatePaintableFactory"
-autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory"
-autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-autoload :InApplicationPurchaseFactory, "org/allbinary/logic/system/security/licensing/InApplicationPurchaseFactory"
-autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature"
-autoload :LockableFeatureFactory, "org/allbinary/logic/system/security/licensing/LockableFeatureFactory"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :AllBinaryMediaManager, "org/allbinary/media/audio/AllBinaryMediaManager"
-autoload :EarlySoundsFactory, "org/allbinary/media/audio/EarlySoundsFactory"
-autoload :PrimaryPlayerQueueFactory, "org/allbinary/media/audio/PrimaryPlayerQueueFactory"
-autoload :SecondaryPlayerQueueFactory, "org/allbinary/media/audio/SecondaryPlayerQueueFactory"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :NullThread, "org/allbinary/thread/NullThread"
-autoload :ThreadFactoryUtil, "org/allbinary/thread/ThreadFactoryUtil"
-autoload :ThreadUtil, "org/allbinary/thread/ThreadUtil"
-autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
-autoload :BasicMenuInputProcessor, "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor"
-autoload :CommandFormInputProcessor, "org/allbinary/game/displayable/canvas/CommandFormInputProcessor"
-autoload :DemoCanvasProgressUtil, "org/allbinary/game/displayable/canvas/DemoCanvasProgressUtil"
-autoload :DemoGameRunnable, "org/allbinary/game/displayable/canvas/DemoGameRunnable"
-autoload :DemoGameStartupRunnable, "org/allbinary/game/displayable/canvas/DemoGameStartupRunnable"
-autoload :DemoLimitedCommandTextItemArrayFactory, "org/allbinary/game/displayable/canvas/DemoLimitedCommandTextItemArrayFactory"
-autoload :FormUtil, "org/allbinary/game/displayable/canvas/FormUtil"
-autoload :GameInputMappingCanvas, "org/allbinary/game/displayable/canvas/GameInputMappingCanvas"
-autoload :GameRunnable, "org/allbinary/game/displayable/canvas/GameRunnable"
-autoload :NoMenuInputProcessor, "org/allbinary/game/displayable/canvas/NoMenuInputProcessor"
-autoload :NullGameCanvas, "org/allbinary/game/displayable/canvas/NullGameCanvas"
-autoload :NullWaitGameRunnable, "org/allbinary/game/displayable/canvas/NullWaitGameRunnable"
+module ::Javax; module Microedition; module Lcdui; autoload :Command, "javax/microedition/lcdui/Command" unless const_defined?(:Command, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Item, "javax/microedition/lcdui/Item" unless const_defined?(:Item, false); end; end; end
+module ::Org; module Allbinary; autoload :J2MEUtil, "org/allbinary/J2MEUtil" unless const_defined?(:J2MEUtil, false); end; end
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :IndexedAnimationBehavior, "org/allbinary/animation/IndexedAnimationBehavior" unless const_defined?(:IndexedAnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module Animation; module Special; autoload :SpecialAnimation, "org/allbinary/animation/special/SpecialAnimation" unless const_defined?(:SpecialAnimation, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module Advertisement; autoload :GameAdStateFactory, "org/allbinary/business/advertisement/GameAdStateFactory" unless const_defined?(:GameAdStateFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Canvas; autoload :BaseGameStatistics, "org/allbinary/canvas/BaseGameStatistics" unless const_defined?(:BaseGameStatistics, false); end; end; end
+module ::Org; module Allbinary; module Canvas; autoload :CustomGameMenuUtil, "org/allbinary/canvas/CustomGameMenuUtil" unless const_defined?(:CustomGameMenuUtil, false); end; end; end
+module ::Org; module Allbinary; module Canvas; autoload :FullScreenUtil, "org/allbinary/canvas/FullScreenUtil" unless const_defined?(:FullScreenUtil, false); end; end; end
+module ::Org; module Allbinary; module Canvas; autoload :GameStatisticsFactory, "org/allbinary/canvas/GameStatisticsFactory" unless const_defined?(:GameStatisticsFactory, false); end; end; end
+module ::Org; module Allbinary; module Game; autoload :GameAdState, "org/allbinary/game/GameAdState" unless const_defined?(:GameAdState, false); end; end; end
+module ::Org; module Allbinary; module Game; autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false); end; end; end
+module ::Org; module Allbinary; module Game; module Commands; autoload :GameCommandsFactory, "org/allbinary/game/commands/GameCommandsFactory" unless const_defined?(:GameCommandsFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Event; autoload :ChangedGameFeatureListener, "org/allbinary/game/configuration/event/ChangedGameFeatureListener" unless const_defined?(:ChangedGameFeatureListener, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory" unless const_defined?(:GameFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :InputFeatureFactory, "org/allbinary/game/configuration/feature/InputFeatureFactory" unless const_defined?(:InputFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory" unless const_defined?(:MainFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Init; autoload :BasicBuildGameInitializerFactory, "org/allbinary/game/init/BasicBuildGameInitializerFactory" unless const_defined?(:BasicBuildGameInitializerFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Init; autoload :GameInitializationUtil, "org/allbinary/game/init/GameInitializationUtil" unless const_defined?(:GameInitializationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInputStrings, "org/allbinary/game/input/GameInputStrings" unless const_defined?(:GameInputStrings, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory" unless const_defined?(:PlatformInputMappingFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :DownGameKeyEventHandler, "org/allbinary/game/input/event/DownGameKeyEventHandler" unless const_defined?(:DownGameKeyEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory" unless const_defined?(:GameKeyEventFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEventHandler, "org/allbinary/game/input/event/GameKeyEventHandler" unless const_defined?(:GameKeyEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :UpGameKeyEventHandler, "org/allbinary/game/input/event/UpGameKeyEventHandler" unless const_defined?(:UpGameKeyEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping" unless const_defined?(:InputToGameKeyMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager" unless const_defined?(:AllBinaryGameLayerManager, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :SWTUtil, "org/allbinary/game/layer/SWTUtil" unless const_defined?(:SWTUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Midlet; autoload :DemoGameMidlet, "org/allbinary/game/midlet/DemoGameMidlet" unless const_defined?(:DemoGameMidlet, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScoreCommands, "org/allbinary/game/score/HighScoreCommands" unless const_defined?(:HighScoreCommands, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScoresFactoryInterface, "org/allbinary/game/score/HighScoresFactoryInterface" unless const_defined?(:HighScoresFactoryInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScoresHelper, "org/allbinary/game/score/HighScoresHelper" unless const_defined?(:HighScoresHelper, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScoresHelperBase, "org/allbinary/game/score/HighScoresHelperBase" unless const_defined?(:HighScoresHelperBase, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScoresPaintable, "org/allbinary/game/score/HighScoresPaintable" unless const_defined?(:HighScoresPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory" unless const_defined?(:NullHighScoresSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module State; autoload :GameState, "org/allbinary/game/state/GameState" unless const_defined?(:GameState, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module State; autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory" unless const_defined?(:GameStateFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :ResizableListenerHandler, "org/allbinary/graphics/ResizableListenerHandler" unless const_defined?(:ResizableListenerHandler, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" unless const_defined?(:ProgressCanvasFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Command; autoload :MyCommandsFactory, "org/allbinary/graphics/displayable/command/MyCommandsFactory" unless const_defined?(:MyCommandsFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event; autoload :DisplayChangeEvent, "org/allbinary/graphics/displayable/event/DisplayChangeEvent" unless const_defined?(:DisplayChangeEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Event; autoload :DisplayChangeEventHandler, "org/allbinary/graphics/displayable/event/DisplayChangeEventHandler" unless const_defined?(:DisplayChangeEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen; autoload :FullScreenPaintableFactory, "org/allbinary/graphics/displayable/screen/FullScreenPaintableFactory" unless const_defined?(:FullScreenPaintableFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :CommandCurrentSelectionFormFactory, "org/allbinary/graphics/form/CommandCurrentSelectionFormFactory" unless const_defined?(:CommandCurrentSelectionFormFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :FormType, "org/allbinary/graphics/form/FormType" unless const_defined?(:FormType, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :FormTypeFactory, "org/allbinary/graphics/form/FormTypeFactory" unless const_defined?(:FormTypeFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScrollSelectionForm, "org/allbinary/graphics/form/ScrollSelectionForm" unless const_defined?(:ScrollSelectionForm, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; autoload :ScrollSelectionFormNoneFactory, "org/allbinary/graphics/form/ScrollSelectionFormNoneFactory" unless const_defined?(:ScrollSelectionFormNoneFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :CommandTextItemArrayFactory, "org/allbinary/graphics/form/item/CommandTextItemArrayFactory" unless const_defined?(:CommandTextItemArrayFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ABCustomItem, "org/allbinary/graphics/form/item/ABCustomItem" unless const_defined?(:ABCustomItem, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :CurrentDisplayableFactory, "org/allbinary/graphics/opengles/CurrentDisplayableFactory" unless const_defined?(:CurrentDisplayableFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureFactory, "org/allbinary/graphics/opengles/OpenGLFeatureFactory" unless const_defined?(:OpenGLFeatureFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil" unless const_defined?(:OpenGLFeatureUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLThreadUtil, "org/allbinary/graphics/opengles/OpenGLThreadUtil" unless const_defined?(:OpenGLThreadUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :InitUpdatePaintable, "org/allbinary/graphics/paint/InitUpdatePaintable" unless const_defined?(:InitUpdatePaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :Paintable, "org/allbinary/graphics/paint/Paintable" unless const_defined?(:Paintable, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :PaintableInterface, "org/allbinary/graphics/paint/PaintableInterface" unless const_defined?(:PaintableInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :StatePaintable, "org/allbinary/graphics/paint/StatePaintable" unless const_defined?(:StatePaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :StatePaintableFactory, "org/allbinary/graphics/paint/StatePaintableFactory" unless const_defined?(:StatePaintableFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Input; module Motion; module Gesture; module Observer; autoload :BasicMotionGesturesHandler, "org/allbinary/input/motion/gesture/observer/BasicMotionGesturesHandler" unless const_defined?(:BasicMotionGesturesHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Os; autoload :OperatingSystemFactory, "org/allbinary/logic/system/os/OperatingSystemFactory" unless const_defined?(:OperatingSystemFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :InApplicationPurchaseFactory, "org/allbinary/logic/system/security/licensing/InApplicationPurchaseFactory" unless const_defined?(:InApplicationPurchaseFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LockableFeature, "org/allbinary/logic/system/security/licensing/LockableFeature" unless const_defined?(:LockableFeature, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LockableFeatureFactory, "org/allbinary/logic/system/security/licensing/LockableFeatureFactory" unless const_defined?(:LockableFeatureFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Audio; autoload :AllBinaryMediaManager, "org/allbinary/media/audio/AllBinaryMediaManager" unless const_defined?(:AllBinaryMediaManager, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Audio; autoload :EarlySoundsFactory, "org/allbinary/media/audio/EarlySoundsFactory" unless const_defined?(:EarlySoundsFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Audio; autoload :PrimaryPlayerQueueFactory, "org/allbinary/media/audio/PrimaryPlayerQueueFactory" unless const_defined?(:PrimaryPlayerQueueFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Audio; autoload :SecondaryPlayerQueueFactory, "org/allbinary/media/audio/SecondaryPlayerQueueFactory" unless const_defined?(:SecondaryPlayerQueueFactory, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :NullThread, "org/allbinary/thread/NullThread" unless const_defined?(:NullThread, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :ThreadFactoryUtil, "org/allbinary/thread/ThreadFactoryUtil" unless const_defined?(:ThreadFactoryUtil, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :ThreadUtil, "org/allbinary/thread/ThreadUtil" unless const_defined?(:ThreadUtil, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
+autoload :BasicMenuInputProcessor, "org/allbinary/game/displayable/canvas/BasicMenuInputProcessor" unless const_defined?(:BasicMenuInputProcessor, false)
+autoload :CommandFormInputProcessor, "org/allbinary/game/displayable/canvas/CommandFormInputProcessor" unless const_defined?(:CommandFormInputProcessor, false)
+autoload :DemoCanvasProgressUtil, "org/allbinary/game/displayable/canvas/DemoCanvasProgressUtil" unless const_defined?(:DemoCanvasProgressUtil, false)
+autoload :DemoGameRunnable, "org/allbinary/game/displayable/canvas/DemoGameRunnable" unless const_defined?(:DemoGameRunnable, false)
+autoload :DemoGameStartupRunnable, "org/allbinary/game/displayable/canvas/DemoGameStartupRunnable" unless const_defined?(:DemoGameStartupRunnable, false)
+autoload :DemoLimitedCommandTextItemArrayFactory, "org/allbinary/game/displayable/canvas/DemoLimitedCommandTextItemArrayFactory" unless const_defined?(:DemoLimitedCommandTextItemArrayFactory, false)
+autoload :FormUtil, "org/allbinary/game/displayable/canvas/FormUtil" unless const_defined?(:FormUtil, false)
+autoload :GameInputMappingCanvas, "org/allbinary/game/displayable/canvas/GameInputMappingCanvas" unless const_defined?(:GameInputMappingCanvas, false)
+autoload :GameRunnable, "org/allbinary/game/displayable/canvas/GameRunnable" unless const_defined?(:GameRunnable, false)
+autoload :NoMenuInputProcessor, "org/allbinary/game/displayable/canvas/NoMenuInputProcessor" unless const_defined?(:NoMenuInputProcessor, false)
+autoload :NullGameCanvas, "org/allbinary/game/displayable/canvas/NullGameCanvas" unless const_defined?(:NullGameCanvas, false)
+autoload :NullWaitGameRunnable, "org/allbinary/game/displayable/canvas/NullWaitGameRunnable" unless const_defined?(:NullWaitGameRunnable, false)
 require "java/lang/Thread"
 
 begin
@@ -950,4 +1032,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

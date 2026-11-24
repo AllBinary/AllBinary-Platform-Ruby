@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form
 
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/Processor"
 
-class FormPlayerGameInputProcessor < Processor
+module ::Org; module Allbinary; module Graphics; module Form
+
+class FormPlayerGameInputProcessor < ::Org::Allbinary::Canvas::Processor
     attr_accessor :playerGameInputCompositeInterface
 
-    def initialize_fields
-        @playerGameInputCompositeInterface = nil
+    def jfields_org_allbinary_graphics_form_FormPlayerGameInputProcessor
+        @playerGameInputCompositeInterface = nil unless instance_variable_defined?(:@playerGameInputCompositeInterface)
     end
     
 
     def initialize(playerGameInputCompositeInterface)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_form_FormPlayerGameInputProcessor
         @playerGameInputCompositeInterface = playerGameInputCompositeInterface
     end
     
@@ -35,7 +38,10 @@ class FormPlayerGameInputProcessor < Processor
     def process()
         @playerGameInputCompositeInterface.getPlayerGameInput().update()
     end
+    java_overload :process, 0
 end
 
-autoload :PlayerGameInputCompositeInterface, "org/allbinary/game/input/PlayerGameInputCompositeInterface"
+module ::Org; module Allbinary; module Game; module Input; autoload :PlayerGameInputCompositeInterface, "org/allbinary/game/input/PlayerGameInputCompositeInterface" unless const_defined?(:PlayerGameInputCompositeInterface, false); end; end; end; end
+
+end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.logic.util.event
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Event
+
 module AllBinaryEventObjectFactoryInterface
     
 
@@ -24,5 +26,7 @@ module AllBinaryEventObjectFactoryInterface
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
+autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false)
+
+end; end; end; end; end
 

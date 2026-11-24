@@ -4,15 +4,17 @@
 
 # require "jsinterop/annotations/JsType"
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class MathUtil
     attr_accessor :ACCURACY
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_math_MathUtil
         @ACCURACY = 100
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_math_MathUtil
     end
     
 
@@ -116,4 +118,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

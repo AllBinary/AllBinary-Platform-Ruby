@@ -15,15 +15,17 @@
 # package org.allbinary.device
 
 
+module ::Org; module Allbinary; module Device
+
 class OpenGLESGraphicsCompositeFactory
     attr_accessor :openGLESGraphicsFactory
 
-    def initialize_fields
+    def jfields_org_allbinary_device_OpenGLESGraphicsCompositeFactory
         @openGLESGraphicsFactory = OpenGLESGraphicsFactory.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_device_OpenGLESGraphicsCompositeFactory
     end
     
 
@@ -72,11 +74,13 @@ class OpenGLESGraphicsCompositeFactory
     end
 end
 
-autoload :OpenGLESGraphicsFactory, "org/allbinary/device/OpenGLESGraphicsFactory"
+autoload :OpenGLESGraphicsFactory, "org/allbinary/device/OpenGLESGraphicsFactory" unless const_defined?(:OpenGLESGraphicsFactory, false)
 
 begin
     OpenGLESGraphicsCompositeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

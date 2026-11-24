@@ -15,6 +15,8 @@
 # package org.allbinary
 
 
+module ::Org; module Allbinary
+
 class AndroidUtil
     
 
@@ -31,4 +33,6 @@ class AndroidUtil
         return false
     end
 end
+
+end; end
 

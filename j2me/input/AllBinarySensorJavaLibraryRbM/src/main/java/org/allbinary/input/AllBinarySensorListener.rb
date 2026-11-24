@@ -15,6 +15,8 @@
 # package org.allbinary.input
 
 
+module ::Org; module Allbinary; module Input
+
 module AllBinarySensorListener
     
 
@@ -23,4 +25,6 @@ module AllBinarySensorListener
         raise NotImplementedError
     end
 end
+
+end; end; end
 

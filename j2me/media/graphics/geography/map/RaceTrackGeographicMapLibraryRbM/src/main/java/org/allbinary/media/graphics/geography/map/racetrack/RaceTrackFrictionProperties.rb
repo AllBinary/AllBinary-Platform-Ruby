@@ -15,19 +15,21 @@
 # package org.allbinary.media.graphics.geography.map.racetrack
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
+
 class RaceTrackFrictionProperties
     attr_accessor :ROAD_FRICTION_NOMINATOR, :GROUND_FRICTION_NOMINATOR
 
-    def initialize_fields
-        @ROAD_FRICTION_NOMINATOR = nil
-        @GROUND_FRICTION_NOMINATOR = nil
+    def jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackFrictionProperties
+        @ROAD_FRICTION_NOMINATOR = nil unless instance_variable_defined?(:@ROAD_FRICTION_NOMINATOR)
+        @GROUND_FRICTION_NOMINATOR = nil unless instance_variable_defined?(:@GROUND_FRICTION_NOMINATOR)
     end
     
 
     def initialize(roadFriction, groundFriction)
-        initialize_fields
-        @ROAD_FRICTION_NOMINATOR = FrictionData.getFrictionDenominator() - roadFriction
-        @GROUND_FRICTION_NOMINATOR = FrictionData.getFrictionDenominator() - groundFriction
+        jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackFrictionProperties
+        @ROAD_FRICTION_NOMINATOR = ::Org::Allbinary::Game::Physics::Friction::FrictionData.getFrictionDenominator() - roadFriction
+        @GROUND_FRICTION_NOMINATOR = ::Org::Allbinary::Game::Physics::Friction::FrictionData.getFrictionDenominator() - groundFriction
     end
     
 
@@ -41,5 +43,7 @@ class RaceTrackFrictionProperties
     end
 end
 
-require "org/allbinary/game/physics/friction/FrictionData"
+module ::Org; module Allbinary; module Game; module Physics; module Friction; autoload :FrictionData, "org/allbinary/game/physics/friction/FrictionData" unless const_defined?(:FrictionData, false); end; end; end; end; end
+
+end; end; end; end; end; end; end
 

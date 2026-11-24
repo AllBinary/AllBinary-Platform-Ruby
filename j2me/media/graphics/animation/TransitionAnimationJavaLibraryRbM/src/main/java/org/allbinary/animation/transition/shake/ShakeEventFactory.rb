@@ -15,10 +15,12 @@
 # package org.allbinary.animation.transition.shake
 
 
+module ::Org; module Allbinary; module Animation; module Transition; module Shake
+
 class ShakeEventFactory
     attr_accessor :MICRO, :SMALL, :MEDIUM, :LARGE
 
-    def initialize_fields
+    def jfields_org_allbinary_animation_transition_shake_ShakeEventFactory
         @MICRO = ShakeEvent.new()
         @SMALL = ShakeEvent.new()
         @MEDIUM = ShakeEvent.new()
@@ -26,7 +28,7 @@ class ShakeEventFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_animation_transition_shake_ShakeEventFactory
     end
     
 
@@ -69,11 +71,13 @@ class ShakeEventFactory
     end
 end
 
-autoload :ShakeEvent, "org/allbinary/animation/transition/shake/ShakeEvent"
+autoload :ShakeEvent, "org/allbinary/animation/transition/shake/ShakeEvent" unless const_defined?(:ShakeEvent, false)
 
 begin
     ShakeEventFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

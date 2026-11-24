@@ -15,20 +15,26 @@
 # package org.allbinary.media.graphics.geography.map.racetrack
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
+
 module RaceTrackGeographicMapInterfaceFactoryInterface
     
 
     # throws Exception
     def getLevelInstance(id)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getTrackInstance(id)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMap"
+autoload :RaceTrackGeographicMap, "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMap" unless const_defined?(:RaceTrackGeographicMap, false)
+
+end; end; end; end; end; end; end
 

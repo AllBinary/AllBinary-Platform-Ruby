@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.physics.velocity
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/physics/velocity/VelocityBehaviorBase"
+
+module ::Org; module Allbinary; module Game; module Physics; module Velocity
 
 class DragVelocityBehavior < VelocityBehaviorBase
     
@@ -31,6 +34,7 @@ class DragVelocityBehavior < VelocityBehaviorBase
             basicDecimal.divideint(denominator)
         end
     end
+    java_overload :reduce, 3
     
 
     def reduceX(velocityProperties, nominator, denominator)
@@ -40,6 +44,7 @@ class DragVelocityBehavior < VelocityBehaviorBase
             basicDecimal.divideint(denominator)
         end
     end
+    java_overload :reduceX, 3
     
 
     def reduceY(velocityProperties, nominator, denominator)
@@ -49,6 +54,7 @@ class DragVelocityBehavior < VelocityBehaviorBase
             basicDecimal.divideint(denominator)
         end
     end
+    java_overload :reduceY, 3
 
     def self.instance()
         DragVelocityBehavior.java_static_fields unless @java_static_fields_started
@@ -81,12 +87,14 @@ class DragVelocityBehavior < VelocityBehaviorBase
     end
 end
 
-autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
-autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false); end; end; end; end
+autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties" unless const_defined?(:BasicVelocityProperties, false)
 
 begin
     DragVelocityBehavior.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

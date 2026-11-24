@@ -15,12 +15,17 @@
 # package org.allbinary.logic.visual.transform.template
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Template
+
 module TransformTemplateInterface
     
 
     # throws Exception
     def getName()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end
 

@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.media.audio.music
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/audio/music/BaseMusicService"
 
-class MusicService < BaseMusicService
+module ::Org; module Allbinary; module Media; module Audio; module Music
+
+class MusicService < ::Org::Allbinary::Media::Audio::Music::BaseMusicService
 end
+
+end; end; end; end; end
 

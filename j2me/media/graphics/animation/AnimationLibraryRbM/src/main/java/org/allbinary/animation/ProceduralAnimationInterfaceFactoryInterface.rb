@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/BasicAnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 module ProceduralAnimationInterfaceFactoryInterface
     include BasicAnimationInterfaceFactoryInterface
@@ -25,7 +28,10 @@ module ProceduralAnimationInterfaceFactoryInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getInstanceAnimation, 1
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
+
+end; end; end
 

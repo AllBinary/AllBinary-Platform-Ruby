@@ -15,20 +15,22 @@
 # package org.allbinary.game.score
 
 
+module ::Org; module Allbinary; module Game; module Score
+
 class LastFetchHighScoresFactory
     attr_accessor :highScoresArray
 
-    def initialize_fields
+    def jfields_org_allbinary_game_score_LastFetchHighScoresFactory
         @highScoresArray = NoHighScoresFactory.getInstance().NO_HIGH_SCORES
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_score_LastFetchHighScoresFactory
     end
     
 
     def self.getInstance()
-        if LastFetchHighScoresFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if LastFetchHighScoresFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             LastFetchHighScoresFactory.instance = LastFetchHighScoresFactory.new()
         end
         return LastFetchHighScoresFactory.instance
@@ -48,7 +50,7 @@ class LastFetchHighScoresFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -65,13 +67,15 @@ class LastFetchHighScoresFactory
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :HighScores, "org/allbinary/game/score/HighScores"
-autoload :NoHighScoresFactory, "org/allbinary/game/score/NoHighScoresFactory"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false)
+autoload :NoHighScoresFactory, "org/allbinary/game/score/NoHighScoresFactory" unless const_defined?(:NoHighScoresFactory, false)
 
 begin
     LastFetchHighScoresFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

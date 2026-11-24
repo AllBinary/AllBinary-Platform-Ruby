@@ -14,31 +14,39 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.j2me.workarea.properties
 
+require "java/lang/JavaOverload"
 # require "javax/swing"
+# require "java/awt/Font"
+# require "java/awt/GridLayout"
+# require "javax/swing/JButton"
+# require "javax/swing/JPanel"
+# require "javax/swing/JTextField"
+
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Properties
 
 class PropertiesJPanel < JPanel
     attr_accessor :rotateJButton, :copyVerticalJButton, :leftJButton, :rotateJPanel, :angleJTextField, :workAreaPropertiesJPanel, :modifierJPanel, :upJButton, :jPanel8, :downJButton, :jPanel7, :rightJButton, :copyHorizontalJButton
 
-    def initialize_fields
-        @rotateJButton = nil
-        @copyVerticalJButton = nil
-        @leftJButton = nil
-        @rotateJPanel = nil
-        @angleJTextField = nil
-        @workAreaPropertiesJPanel = nil
-        @modifierJPanel = nil
-        @upJButton = nil
-        @jPanel8 = nil
-        @downJButton = nil
-        @jPanel7 = nil
-        @rightJButton = nil
-        @copyHorizontalJButton = nil
+    def jfields_org_allbinary_graphics_j2me_workarea_properties_PropertiesJPanel
+        @rotateJButton = nil unless instance_variable_defined?(:@rotateJButton)
+        @copyVerticalJButton = nil unless instance_variable_defined?(:@copyVerticalJButton)
+        @leftJButton = nil unless instance_variable_defined?(:@leftJButton)
+        @rotateJPanel = nil unless instance_variable_defined?(:@rotateJPanel)
+        @angleJTextField = nil unless instance_variable_defined?(:@angleJTextField)
+        @workAreaPropertiesJPanel = nil unless instance_variable_defined?(:@workAreaPropertiesJPanel)
+        @modifierJPanel = nil unless instance_variable_defined?(:@modifierJPanel)
+        @upJButton = nil unless instance_variable_defined?(:@upJButton)
+        @jPanel8 = nil unless instance_variable_defined?(:@jPanel8)
+        @downJButton = nil unless instance_variable_defined?(:@downJButton)
+        @jPanel7 = nil unless instance_variable_defined?(:@jPanel7)
+        @rightJButton = nil unless instance_variable_defined?(:@rightJButton)
+        @copyHorizontalJButton = nil unless instance_variable_defined?(:@copyHorizontalJButton)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_j2me_workarea_properties_PropertiesJPanel
         self.initComponents()
     end
     
@@ -47,6 +55,7 @@ class PropertiesJPanel < JPanel
         @workAreaPropertiesJPanel.add(panel)
         self.repaint()
     end
+    java_overload :set, 1
     
 
     def initComponents()
@@ -98,5 +107,8 @@ class PropertiesJPanel < JPanel
         @modifierJPanel.add(@jPanel8)
         add(@modifierJPanel)
     end
+    java_overload :initComponents, 0
 end
+
+end; end; end; end; end; end
 

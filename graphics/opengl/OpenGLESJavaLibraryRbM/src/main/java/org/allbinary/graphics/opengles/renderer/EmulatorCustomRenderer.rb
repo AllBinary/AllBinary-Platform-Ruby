@@ -14,31 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.renderer
 
-# require "javax/microedition/khronos/egl/EGLConfig"
-# require "javax/microedition/khronos/opengles/GL10"
+
+module ::Org; module Allbinary; module Graphics; module Opengles; module Renderer
 
 class EmulatorCustomRenderer
     attr_accessor :logUtil, :commonStrings, :renderStrings
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_graphics_opengles_renderer_EmulatorCustomRenderer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @renderStrings = RendererStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_renderer_EmulatorCustomRenderer
     end
     
 
     def onSurfaceCreated(gl, eglConfig)
         @logUtil.putF(@commonStrings.START, self, @renderStrings.ON_SURFACE_CREATED)
-        initEmulatorFactory = InitEmulatorFactory.getInstance()
+        initEmulatorFactory = ::Org::Allbinary::Emulator::InitEmulatorFactory.getInstance()
         if !initEmulatorFactory.isInitEmulator()
             begin
                 _WAIT_FOR_EMULATOR = "Waiting on Emulator Initialization"
                 while !initEmulatorFactory.isInitEmulator()
-                    PreLogUtil.put(_WAIT_FOR_EMULATOR, self, @renderStrings.ON_SURFACE_CREATED)
+                    ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(_WAIT_FOR_EMULATOR, self, @renderStrings.ON_SURFACE_CREATED)
                     sleep((180) / 1000.0)
                 end
             rescue StandardError => e
@@ -48,10 +48,14 @@ class EmulatorCustomRenderer
     end
 end
 
-require "org/allbinary/emulator/InitEmulatorFactory"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/graphics/opengles/renderer/RendererStrings"
+module ::Javax; module Microedition; module Khronos; module Egl; autoload :EGLConfig, "javax/microedition/khronos/egl/EGLConfig" unless const_defined?(:EGLConfig, false); end; end; end; end
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Org; module Allbinary; module Emulator; autoload :InitEmulatorFactory, "org/allbinary/emulator/InitEmulatorFactory" unless const_defined?(:InitEmulatorFactory, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+autoload :RendererStrings, "org/allbinary/graphics/opengles/renderer/RendererStrings" unless const_defined?(:RendererStrings, false)
 require "java/lang/Thread"
+
+end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/opengles/shader/ShaderInitializer"
+
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
 
 class SimpleShaderInitializer < ShaderInitializer
     
@@ -59,4 +62,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

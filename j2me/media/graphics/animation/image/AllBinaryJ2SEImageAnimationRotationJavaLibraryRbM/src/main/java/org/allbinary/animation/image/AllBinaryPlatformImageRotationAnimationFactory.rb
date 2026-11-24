@@ -14,8 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
-# require "javax/microedition/lcdui/Image"
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/AllBinaryJ2SEImageRotationAnimationFactory"
+
+module ::Org; module Allbinary; module Animation; module Image
 
 class AllBinaryPlatformImageRotationAnimationFactory < AllBinaryJ2SEImageRotationAnimationFactory
     
@@ -25,5 +27,8 @@ class AllBinaryPlatformImageRotationAnimationFactory < AllBinaryJ2SEImageRotatio
     end
 end
 
-require "org/allbinary/animation/AnimationBehaviorFactory"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory" unless const_defined?(:AnimationBehaviorFactory, false); end; end; end
+
+end; end; end; end
 

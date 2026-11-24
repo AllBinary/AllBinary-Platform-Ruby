@@ -15,33 +15,41 @@
 # package org.allbinary.logic.control.validate
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate
+
 module ValidationInterface
     
 
     # throws Exception
     def isValid()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def toValidationInfoNode(document)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def toValidationInfoDoc()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def validationInfo()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end; end; end
 

@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/BasicArrayListResetablePool"
 
-class ImageArrayRotationAnimationPool < BasicArrayListResetablePool
+module ::Org; module Allbinary; module Animation; module Image
+
+class ImageArrayRotationAnimationPool < ::Org::Allbinary::Logic::Util::Cache::BasicArrayListResetablePool
     
 
     def initialize(cacheableInterfaceFactoryInterface)
@@ -31,12 +34,13 @@ class ImageArrayRotationAnimationPool < BasicArrayListResetablePool
 
     # throws Exception
     def remove(key)
-        cacheableInterface = super(key)
+        cacheableInterface = ImageArrayRotationAnimationPool.superclass.java_super_method(:remove, 1).bind(self).call(key)
         allBinaryImageRotationAnimationInfo = key
         imageArrayRotationAnimationCacheable = (cacheableInterface)
         imageArrayRotationAnimationCacheable.setImageArray(allBinaryImageRotationAnimationInfo.getImageArray())
         return cacheableInterface
     end
+    java_overload :remove, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -59,16 +63,18 @@ class ImageArrayRotationAnimationPool < BasicArrayListResetablePool
     end
 end
 
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
-autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
-autoload :PoolInterface, "org/allbinary/logic/util/cache/PoolInterface"
-autoload :ImageArrayRotationAnimationCacheable, "org/allbinary/animation/image/ImageArrayRotationAnimationCacheable"
-autoload :ImageArrayRotationAnimationCacheableInterfaceFactory, "org/allbinary/animation/image/ImageArrayRotationAnimationCacheableInterfaceFactory"
-autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo"
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface" unless const_defined?(:CacheableInterfaceFactoryInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Cache; autoload :PoolInterface, "org/allbinary/logic/util/cache/PoolInterface" unless const_defined?(:PoolInterface, false); end; end; end; end; end
+autoload :ImageArrayRotationAnimationCacheable, "org/allbinary/animation/image/ImageArrayRotationAnimationCacheable" unless const_defined?(:ImageArrayRotationAnimationCacheable, false)
+autoload :ImageArrayRotationAnimationCacheableInterfaceFactory, "org/allbinary/animation/image/ImageArrayRotationAnimationCacheableInterfaceFactory" unless const_defined?(:ImageArrayRotationAnimationCacheableInterfaceFactory, false)
+autoload :ImageArrayRotationAnimationInfo, "org/allbinary/animation/image/ImageArrayRotationAnimationInfo" unless const_defined?(:ImageArrayRotationAnimationInfo, false)
 
 begin
     ImageArrayRotationAnimationPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

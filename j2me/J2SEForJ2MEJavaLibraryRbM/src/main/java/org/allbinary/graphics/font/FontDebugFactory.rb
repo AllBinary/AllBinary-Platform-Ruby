@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.font
 
 
+module ::Org; module Allbinary; module Graphics; module Font
+
 class FontDebugFactory
     
 
@@ -58,12 +60,14 @@ class FontDebugFactory
     end
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
 
 begin
     FontDebugFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

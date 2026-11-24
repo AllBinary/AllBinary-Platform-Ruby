@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io.file.visitor
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/io/file/visitor/BooleanFileVisitor"
+
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; module Visitor
 
 class IncludeFileExtensionsBooleanFileVisitor < BooleanFileVisitor
     
@@ -24,16 +27,15 @@ class IncludeFileExtensionsBooleanFileVisitor < BooleanFileVisitor
     end
     
 
-    def visit(file)
+    def visit_j1(file)
         if self.getFilterStringBasicArrayList().size() == 0
             return false
         end
-        return super(file)
+        return IncludeFileExtensionsBooleanFileVisitor.superclass.java_super_method(:visit, 1).bind(self).call(file)
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def visit(file, fileNameString)
+    def visit_j2(file, fileNameString)
         fileNameAndExtension = file.getPath()
         if fileNameAndExtension.length > fileNameString.length
             startIndex = fileNameAndExtension.length - fileNameString.length
@@ -44,8 +46,16 @@ class IncludeFileExtensionsBooleanFileVisitor < BooleanFileVisitor
         end
         return false
     end
+
+    def visit(*java_overload_args)
+        return visit_j1(*java_overload_args) if java_overload_args.length == 1
+        return visit_j2(*java_overload_args) if java_overload_args.length == 2
+        raise ArgumentError, "No method visit takes #{java_overload_args.length} arguments"
+    end
 end
 
-require "org/allbinary/logic/io/file/AbFile"
-require "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end; end; end
 

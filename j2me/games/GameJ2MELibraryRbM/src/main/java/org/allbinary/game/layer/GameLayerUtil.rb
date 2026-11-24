@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class GameLayerUtil
     
 
@@ -23,7 +25,7 @@ class GameLayerUtil
     
 
     def self.isOnScreen(layer)
-        displayInfo = DisplayInfoSingleton.getInstance()
+        displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
         viewPosition = layer.getViewPosition()
         return GameLayerUtil.isInside(viewPosition.getX(), viewPosition.getY(), viewPosition.getX2(), viewPosition.getY2(), 0, 0, displayInfo.getLastWidth(), displayInfo.getLastHeight())
     end
@@ -38,7 +40,9 @@ class GameLayerUtil
     end
 end
 
-autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :DisplayInfoSingleton, "org/allbinary/graphics/displayable/DisplayInfoSingleton" unless const_defined?(:DisplayInfoSingleton, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module View; autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false); end; end; end
+
+end; end; end; end
 

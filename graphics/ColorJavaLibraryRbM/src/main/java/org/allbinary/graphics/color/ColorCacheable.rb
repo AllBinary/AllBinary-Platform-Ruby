@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.color
 
-# require "java/awt"
+require "java/lang/JavaOverload"
+# require "java/awt/Color"
 require "org/allbinary/logic/util/cache/CacheableInterface"
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class ColorCacheable
-    include CacheableInterface
+    include ::Org::Allbinary::Logic::Util::Cache::CacheableInterface
     attr_accessor :key, :color
 
-    def initialize_fields
-        @key = nil
-        @color = nil
+    def jfields_org_allbinary_graphics_color_ColorCacheable
+        @key = nil unless instance_variable_defined?(:@key)
+        @color = nil unless instance_variable_defined?(:@color)
     end
     
 
     def initialize(key)
-        initialize_fields
+        jfields_org_allbinary_graphics_color_ColorCacheable
         @key = key
         @color = Color.new((key).to_i)
     end
@@ -37,15 +40,20 @@ class ColorCacheable
     def getKey()
         return @key
     end
+    java_overload :getKey, 0
     
 
     def getColor()
         return @color
     end
+    java_overload :getColor, 0
     
 
     def setColor(color)
         @color = color
     end
+    java_overload :setColor, 1
 end
+
+end; end; end; end
 

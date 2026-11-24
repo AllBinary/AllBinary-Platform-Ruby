@@ -15,6 +15,8 @@
 # package org.allbinary.media.graphics.geography.pathfinding
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding
+
 #1.4.2
 class PathFinderGraphVisitorBase
     
@@ -41,5 +43,7 @@ class PathFinderGraphVisitorBase
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+
+end; end; end; end; end; end
 

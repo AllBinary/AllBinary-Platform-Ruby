@@ -18,6 +18,8 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 
+module ::Org; module Allbinary; module MathPackage
+
 class FrameUtil
     
 
@@ -89,11 +91,13 @@ class FrameUtil
     end
 end
 
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
+autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false)
 
 begin
     FrameUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

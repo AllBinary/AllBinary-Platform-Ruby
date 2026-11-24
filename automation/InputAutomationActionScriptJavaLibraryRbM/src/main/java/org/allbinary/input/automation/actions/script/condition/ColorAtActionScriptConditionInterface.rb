@@ -14,35 +14,44 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.actions.script.condition
 
-# require "java/awt"
+# require "java/awt/Point"
+
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition
 
 module ColorAtActionScriptConditionInterface
     
 
     def getPoint()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setPoint(point)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getColorRangeInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setColorRangeInterface(colorRangeInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def log()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface"
+module ::Org; module Allbinary; module Media; module Image; module Analysis; autoload :ColorRangeInterface, "org/allbinary/media/image/analysis/ColorRangeInterface" unless const_defined?(:ColorRangeInterface, false); end; end; end; end; end
+
+end; end; end; end; end; end; end
 

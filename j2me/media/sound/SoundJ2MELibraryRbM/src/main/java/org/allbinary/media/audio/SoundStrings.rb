@@ -15,10 +15,12 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 class SoundStrings
     attr_accessor :STOP_ALL, :CLOSE_ALL, :SOUND, :INIT_SOUND, :STOPPING_SOUND, :CLOSING_SOUND
 
-    def initialize_fields
+    def jfields_org_allbinary_media_audio_SoundStrings
         @STOP_ALL = "stopAll"
         @CLOSE_ALL = "closeAll"
         @SOUND = " Sound: "
@@ -28,7 +30,7 @@ class SoundStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_audio_SoundStrings
     end
     
 
@@ -72,4 +74,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

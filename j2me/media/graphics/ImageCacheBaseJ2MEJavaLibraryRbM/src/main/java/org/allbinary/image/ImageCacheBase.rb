@@ -15,16 +15,18 @@
 # package org.allbinary.image
 
 
+module ::Org; module Allbinary; module Image
+
 class ImageCacheBase
     attr_accessor :logUtil, :imageFactory, :hashtable, :SIZE, :widths, :heights, :listOfList, :availableListOfList, :volume, :nextIndex
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_image_ImageCacheBase
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @imageFactory = ImageFactory.getInstance()
-        @hashtable = StdUtil.getInstance().createHashtable()
+        @hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
         @SIZE = 128
-        @widths = Array.new(@SIZE, 0)
-        @heights = Array.new(@SIZE, 0)
+        @widths = (Array.new(@SIZE, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        @heights = (Array.new(@SIZE, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         @listOfList = Array.new(@SIZE, nil)
         @availableListOfList = Array.new(@SIZE, nil)
         @volume = 0
@@ -33,12 +35,12 @@ class ImageCacheBase
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_image_ImageCacheBase
         (@listOfList.length - 1).step(0, -(1)) do |index|
-            @listOfList[index] = BasicArrayListD.new()
+            @listOfList[index] = ::Org::Allbinary::Util::BasicArrayListD.new()
         end
         (@availableListOfList.length - 1).step(0, -(1)) do |index|
-            @availableListOfList[index] = BasicArrayListD.new()
+            @availableListOfList[index] = ::Org::Allbinary::Util::BasicArrayListD.new()
         end
     end
     
@@ -46,7 +48,7 @@ class ImageCacheBase
     def getImage(resourceId)
         imageCanBeNull = @hashtable.get(resourceId)
         if imageCanBeNull == nil
-            return NullImage::NULL_IMAGE
+            return ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
         end
         return imageCanBeNull
     end
@@ -57,7 +59,7 @@ class ImageCacheBase
             @availableListOfList[index].clear()
             @availableListOfList[index].addAllList(@listOfList[index])
         end
-        @logUtil.putF(StringMaker.new().append("ImageCache: ").append(self.to_s).to_s, self, "releaseAll")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("ImageCache: ").append(self.to_s).to_s, self, "releaseAll")
     end
     
 
@@ -81,7 +83,7 @@ class ImageCacheBase
                 return list.removeAt(list.size() - 1)
             end
         end
-        return NullImage::NULL_IMAGE
+        return ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
     end
     
 
@@ -110,7 +112,7 @@ class ImageCacheBase
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         (@nextIndex - 1).step(0, -(1)) do |index|
             width = @widths[index]
             height = @heights[index]
@@ -120,8 +122,8 @@ class ImageCacheBase
             stringBuffer.appendint(width)
             stringBuffer.append(" h: ")
             stringBuffer.appendint(height)
-            stringBuffer.append(CommonSeps.getInstance().SPACE)
-            stringBuffer.append(CommonLabels.getInstance().TOTAL_LABEL)
+            stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
+            stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().TOTAL_LABEL)
             stringBuffer.appendint(total)
             stringBuffer.append(" available: ")
             stringBuffer.appendint(totalAvailable)
@@ -144,16 +146,18 @@ class ImageCacheBase
     end
 end
 
-autoload :InputStream, "java/io/InputStream"
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :NullImage, "javax/microedition/lcdui/NullImage"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ImageFactory, "org/allbinary/image/ImageFactory"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :ImageFactory, "org/allbinary/image/ImageFactory" unless const_defined?(:ImageFactory, false)
+
+end; end; end
 

@@ -15,15 +15,17 @@
 # package org.osgi.framework
 
 
+module ::Org; module Osgi; module Framework
+
 class NullServiceReferenceFactory
     attr_accessor :NULL_SERVICE_REFERENCE
 
-    def initialize_fields
+    def jfields_org_osgi_framework_NullServiceReferenceFactory
         @NULL_SERVICE_REFERENCE = NullServiceReference.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_osgi_framework_NullServiceReferenceFactory
     end
     
 
@@ -62,11 +64,13 @@ class NullServiceReferenceFactory
     end
 end
 
-autoload :NullServiceReference, "org/osgi/framework/NullServiceReference"
+autoload :NullServiceReference, "org/osgi/framework/NullServiceReference" unless const_defined?(:NullServiceReference, false)
 
 begin
     NullServiceReferenceFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

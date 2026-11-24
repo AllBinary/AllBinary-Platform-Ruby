@@ -15,10 +15,12 @@
 # package org.allbinary.logic.util.event
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Event
+
 class EventStrings
     attr_accessor :PERFORMANCE_MESSAGE, :TOTAL_LISTENERS, :LISTENER_LABEL, :FIRE_EVENT
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_util_event_EventStrings
         @PERFORMANCE_MESSAGE = "Use Custom onEvent Methods for needed optimization"
         @TOTAL_LISTENERS = "Total Listeners: "
         @LISTENER_LABEL = " Listener: "
@@ -26,7 +28,7 @@ class EventStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_util_event_EventStrings
     end
     
 
@@ -70,4 +72,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,6 +14,7 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation
 
+require "java/lang/JavaOverload"
 # require "java/net/URI"
 # require "java/net/URL"
 # require "java/awt/Desktop"
@@ -25,52 +26,76 @@
 # require "javax/help/event/HelpSetListener"
 require "bundle/input/automation/module/configuration/InputAutomationConfigurationModuleChangeListener"
 require "bundle/input/automation/robot/InputAutomationRobotChangeListener"
+# require "java/awt/Dimension"
+# require "java/awt/EventQueue"
+# require "java/awt/event/ActionEvent"
+# require "java/awt/event/ActionListener"
+# require "java/awt/event/FocusAdapter"
+# require "java/awt/event/FocusEvent"
+# require "java/awt/event/WindowEvent"
+# require "java/awt/event/WindowFocusListener"
+# require "javax/swing/GroupLayout"
+# require "javax/swing/JCheckBoxMenuItem"
+# require "javax/swing/JFrame"
+# require "javax/swing/JLabel"
+# require "javax/swing/JList"
+# require "javax/swing/JMenu"
+# require "javax/swing/JMenuBar"
+# require "javax/swing/JMenuItem"
+# require "javax/swing/JPanel"
+# require "javax/swing/JScrollPane"
+# require "javax/swing/JTabbedPane"
+# require "javax/swing/WindowConstants"
+# require "javax/swing/event/ListSelectionEvent"
+# require "javax/swing/event/ListSelectionListener"
+
+module ::Org; module Allbinary; module Input; module Automation
 
 class InputAutomationJFrame < JFrame
-    include InputAutomationConfigurationModuleChangeListener
-    include InputAutomationRobotChangeListener
+    include ::Bundle::Input::Automation::ModulePackage::Configuration::InputAutomationConfigurationModuleChangeListener
+    include ::Bundle::Input::Automation::Robot::InputAutomationRobotChangeListener
     include HelpSetListener
     attr_accessor :logUtil, :commonStrings, :inputAutomationModuleConfigurations, :inputAutomationModuleFactory, :inputAutomationModuleInterface, :runnableInterface, :thread, :helpSet, :uri, :aboutJMenuItem, :automationModuleConfigurationJPanel, :gameRobotJTabbedPane, :helpJMenuItem, :inputAutomationModuleJList, :inputAutomationModuleJPanel, :jScrollPane1, :mainJMenuBar, :modulesJMenuItem, :noModuleSelectedJDialog, :noModuleSelectedJLabel, :optionsJMenu, :processingJMenu, :startJMenuItem, :stopJMenuItem, :stopOnFocusJCheckBoxMenuItem, :subscriptionJMenuItem, :toolsJMenu, :updatesJMenuItem
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @inputAutomationModuleConfigurations = InputAutomationModuleConfigurations.new()
-        @inputAutomationModuleFactory = nil
-        @inputAutomationModuleInterface = nil
-        @runnableInterface = nil
-        @thread = nil
-        @helpSet = nil
+    def jfields_org_allbinary_input_automation_InputAutomationJFrame
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @inputAutomationModuleConfigurations = ::Org::Allbinary::Input::Automation::ModulePackage::Configuration::InputAutomationModuleConfigurations.new()
+        @inputAutomationModuleFactory = nil unless instance_variable_defined?(:@inputAutomationModuleFactory)
+        @inputAutomationModuleInterface = nil unless instance_variable_defined?(:@inputAutomationModuleInterface)
+        @runnableInterface = nil unless instance_variable_defined?(:@runnableInterface)
+        @thread = nil unless instance_variable_defined?(:@thread)
+        @helpSet = nil unless instance_variable_defined?(:@helpSet)
         @uri = URI.new("http://geocities.com/allbinary/")
-        @aboutJMenuItem = nil
-        @automationModuleConfigurationJPanel = nil
-        @gameRobotJTabbedPane = nil
-        @helpJMenuItem = nil
-        @inputAutomationModuleJList = nil
-        @inputAutomationModuleJPanel = nil
-        @jScrollPane1 = nil
-        @mainJMenuBar = nil
-        @modulesJMenuItem = nil
-        @noModuleSelectedJDialog = nil
-        @noModuleSelectedJLabel = nil
-        @optionsJMenu = nil
-        @processingJMenu = nil
-        @startJMenuItem = nil
-        @stopJMenuItem = nil
-        @stopOnFocusJCheckBoxMenuItem = nil
-        @subscriptionJMenuItem = nil
-        @toolsJMenu = nil
-        @updatesJMenuItem = nil
+        @aboutJMenuItem = nil unless instance_variable_defined?(:@aboutJMenuItem)
+        @automationModuleConfigurationJPanel = nil unless instance_variable_defined?(:@automationModuleConfigurationJPanel)
+        @gameRobotJTabbedPane = nil unless instance_variable_defined?(:@gameRobotJTabbedPane)
+        @helpJMenuItem = nil unless instance_variable_defined?(:@helpJMenuItem)
+        @inputAutomationModuleJList = nil unless instance_variable_defined?(:@inputAutomationModuleJList)
+        @inputAutomationModuleJPanel = nil unless instance_variable_defined?(:@inputAutomationModuleJPanel)
+        @jScrollPane1 = nil unless instance_variable_defined?(:@jScrollPane1)
+        @mainJMenuBar = nil unless instance_variable_defined?(:@mainJMenuBar)
+        @modulesJMenuItem = nil unless instance_variable_defined?(:@modulesJMenuItem)
+        @noModuleSelectedJDialog = nil unless instance_variable_defined?(:@noModuleSelectedJDialog)
+        @noModuleSelectedJLabel = nil unless instance_variable_defined?(:@noModuleSelectedJLabel)
+        @optionsJMenu = nil unless instance_variable_defined?(:@optionsJMenu)
+        @processingJMenu = nil unless instance_variable_defined?(:@processingJMenu)
+        @startJMenuItem = nil unless instance_variable_defined?(:@startJMenuItem)
+        @stopJMenuItem = nil unless instance_variable_defined?(:@stopJMenuItem)
+        @stopOnFocusJCheckBoxMenuItem = nil unless instance_variable_defined?(:@stopOnFocusJCheckBoxMenuItem)
+        @subscriptionJMenuItem = nil unless instance_variable_defined?(:@subscriptionJMenuItem)
+        @toolsJMenu = nil unless instance_variable_defined?(:@toolsJMenu)
+        @updatesJMenuItem = nil unless instance_variable_defined?(:@updatesJMenuItem)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_input_automation_InputAutomationJFrame
         self.initComponents()
         url = self.class.getResource("/help/Help.hs")
         @logUtil.putF("URL: " + (url).to_s, self, @commonStrings.CONSTRUCTOR)
-        @helpSet = JavaHelpUtil.getInstance().getHelpSet(url)
+        @helpSet = ::Org::Allbinary::Logic::Java::Help::JavaHelpUtil.getInstance().getHelpSet(url)
         url = self.class.getResource("/resources/allbinaryicon8bit.jpg")
         imageIcon = ImageIcon.new(url)
         self.setIconImage(imageIcon.getImage())
@@ -81,27 +106,30 @@ class InputAutomationJFrame < JFrame
     def helpSetAdded(helpSetEvent)
         @helpSet.add(helpSetEvent.getHelpSet())
     end
+    java_overload :helpSetAdded, 1
     
 
     def helpSetRemoved(helpSetEvent)
         @helpSet.remove(helpSetEvent.getHelpSet())
     end
+    java_overload :helpSetRemoved, 1
     
 
     # throws Exception
     def init()
-        inputAutomationConfigurationFactory = InputAutomationConfigurationFactory.getInstance()
-        inputAutomationConfigurationFactory.init(InputAutomationClientInformationFactory.getInstance())
+        inputAutomationConfigurationFactory = ::Org::Allbinary::Input::Automation::Configuration::InputAutomationConfigurationFactory.getInstance()
+        inputAutomationConfigurationFactory.init(::Org::Allbinary::Logic::System::Security::Licensing::InputAutomationClientInformationFactory.getInstance())
         inputAutomationModuleConfigurationList = inputAutomationConfigurationFactory.inputAutomationConfiguration.getInputAutomationModuleConfigurationList()
         if inputAutomationModuleConfigurationList == nil
         else
-            @inputAutomationModuleConfigurations = InputAutomationModuleConfigurations.new(inputAutomationModuleConfigurationList)
+            @inputAutomationModuleConfigurations = ::Org::Allbinary::Input::Automation::ModulePackage::Configuration::InputAutomationModuleConfigurations.new(inputAutomationModuleConfigurationList)
         end
-        @inputAutomationModuleFactory = InputAutomationModuleFactoryFactory.new(@inputAutomationModuleConfigurations, self)
-        (JListSwingWorker.new(@inputAutomationModuleJList, @inputAutomationModuleFactory.getListModel())).execute()
+        @inputAutomationModuleFactory = ::Org::Allbinary::Input::Automation::ModulePackage::InputAutomationModuleFactoryFactory.new(@inputAutomationModuleConfigurations, self)
+        (::Org::Allbinary::Gui::Swing::Workers::JListSwingWorker.new(@inputAutomationModuleJList, @inputAutomationModuleFactory.getListModel())).execute()
         @gameRobotJTabbedPane.setEnabledAt(1, false)
         @gameRobotJTabbedPane.setSelectedIndex(0)
     end
+    java_overload :init, 0
     
 
     def initComponents()
@@ -128,9 +156,9 @@ class InputAutomationJFrame < JFrame
         @noModuleSelectedJLabel.setText("Please Select A Module")
         noModuleSelectedJDialogLayout = GroupLayout.new(@noModuleSelectedJDialog.getContentPane())
         @noModuleSelectedJDialog.getContentPane().setLayout(noModuleSelectedJDialogLayout)
-        noModuleSelectedJDialogLayout.setHorizontalGroup(noModuleSelectedJDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(noModuleSelectedJDialogLayout.createSequentialGroup().addContainerGap().addComponent(@noModuleSelectedJLabel).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, 32767)))
-        noModuleSelectedJDialogLayout.setVerticalGroup(noModuleSelectedJDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(@noModuleSelectedJLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, 32767))
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE)
+        noModuleSelectedJDialogLayout.setHorizontalGroup(noModuleSelectedJDialogLayout.createParallelGroup(GroupLayout::Alignment.LEADING).addGroup(noModuleSelectedJDialogLayout.createSequentialGroup().addContainerGap().addComponent(@noModuleSelectedJLabel).addContainerGap(GroupLayout::DEFAULT_SIZE, 32767)))
+        noModuleSelectedJDialogLayout.setVerticalGroup(noModuleSelectedJDialogLayout.createParallelGroup(GroupLayout::Alignment.LEADING).addComponent(@noModuleSelectedJLabel, GroupLayout::Alignment.TRAILING, GroupLayout::DEFAULT_SIZE, 48, 32767))
+        setDefaultCloseOperation(WindowConstants::EXIT_ON_CLOSE)
         self.setMinimumSize(Dimension.new(325, 215))
         setResizable(false)
         addWindowFocusListener(Class.new(WindowFocusListener.is_a?(Class) ? WindowFocusListener : Object) do
@@ -140,11 +168,13 @@ class InputAutomationJFrame < JFrame
             def windowGainedFocus(evt)
                 formWindowGainedFocus(evt)
             end
+            java_overload :windowGainedFocus, 1
             
 
             def windowLostFocus(evt)
                 formWindowLostFocus(evt)
             end
+            java_overload :windowLostFocus, 1
         end.new())
         addFocusListener(Class.new(FocusAdapter.is_a?(Class) ? FocusAdapter : Object) do
             include(FocusAdapter) unless FocusAdapter.is_a?(Class)
@@ -153,11 +183,13 @@ class InputAutomationJFrame < JFrame
             def focusGained(evt)
                 formFocusGained(evt)
             end
+            java_overload :focusGained, 1
             
 
             def focusLost(evt)
                 formFocusLost(evt)
             end
+            java_overload :focusLost, 1
         end.new())
         @gameRobotJTabbedPane.setMinimumSize(Dimension.new(320, 200))
         @inputAutomationModuleJList.setMinimumSize(Dimension.new(200, 0))
@@ -168,17 +200,18 @@ class InputAutomationJFrame < JFrame
             def valueChanged(evt)
                 inputAutomationModuleJListValueChanged(evt)
             end
+            java_overload :valueChanged, 1
         end.new())
         @jScrollPane1.setViewportView(@inputAutomationModuleJList)
         inputAutomationModuleJPanelLayout = GroupLayout.new(@inputAutomationModuleJPanel)
         @inputAutomationModuleJPanel.setLayout(inputAutomationModuleJPanelLayout)
-        inputAutomationModuleJPanelLayout.setHorizontalGroup(inputAutomationModuleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(inputAutomationModuleJPanelLayout.createSequentialGroup().addComponent(@jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(367, 32767)))
-        inputAutomationModuleJPanelLayout.setVerticalGroup(inputAutomationModuleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(inputAutomationModuleJPanelLayout.createSequentialGroup().addComponent(@jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, 32767)))
+        inputAutomationModuleJPanelLayout.setHorizontalGroup(inputAutomationModuleJPanelLayout.createParallelGroup(GroupLayout::Alignment.LEADING).addGroup(inputAutomationModuleJPanelLayout.createSequentialGroup().addComponent(@jScrollPane1, GroupLayout::PREFERRED_SIZE, 199, GroupLayout::PREFERRED_SIZE).addContainerGap(367, 32767)))
+        inputAutomationModuleJPanelLayout.setVerticalGroup(inputAutomationModuleJPanelLayout.createParallelGroup(GroupLayout::Alignment.LEADING).addGroup(inputAutomationModuleJPanelLayout.createSequentialGroup().addComponent(@jScrollPane1, GroupLayout::PREFERRED_SIZE, 330, GroupLayout::PREFERRED_SIZE).addContainerGap(GroupLayout::DEFAULT_SIZE, 32767)))
         @gameRobotJTabbedPane.addTab("Modules", @inputAutomationModuleJPanel)
         automationModuleConfigurationJPanelLayout = GroupLayout.new(@automationModuleConfigurationJPanel)
         @automationModuleConfigurationJPanel.setLayout(automationModuleConfigurationJPanelLayout)
-        automationModuleConfigurationJPanelLayout.setHorizontalGroup(automationModuleConfigurationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 566, 32767))
-        automationModuleConfigurationJPanelLayout.setVerticalGroup(automationModuleConfigurationJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 334, 32767))
+        automationModuleConfigurationJPanelLayout.setHorizontalGroup(automationModuleConfigurationJPanelLayout.createParallelGroup(GroupLayout::Alignment.LEADING).addGap(0, 566, 32767))
+        automationModuleConfigurationJPanelLayout.setVerticalGroup(automationModuleConfigurationJPanelLayout.createParallelGroup(GroupLayout::Alignment.LEADING).addGap(0, 334, 32767))
         @gameRobotJTabbedPane.addTab("Configuration", @automationModuleConfigurationJPanel)
         @processingJMenu.setText("Processing")
         @processingJMenu.setToolTipText("Set module processing state")
@@ -190,6 +223,7 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 startJMenuItemActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @processingJMenu.add(@startJMenuItem)
         @stopJMenuItem.setText("Stop")
@@ -200,6 +234,7 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 stopJMenuItemActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @processingJMenu.add(@stopJMenuItem)
         @mainJMenuBar.add(@processingJMenu)
@@ -211,6 +246,7 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 optionsJMenuActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @stopOnFocusJCheckBoxMenuItem.setSelected(true)
         @stopOnFocusJCheckBoxMenuItem.setEnabled(false)
@@ -222,6 +258,7 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 stopOnFocusJCheckBoxMenuItemActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @optionsJMenu.add(@stopOnFocusJCheckBoxMenuItem)
         @mainJMenuBar.add(@optionsJMenu)
@@ -234,6 +271,7 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 helpJMenuItemActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @toolsJMenu.add(@helpJMenuItem)
         @updatesJMenuItem.setText("Updates")
@@ -244,6 +282,7 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 updatesJMenuItemActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @toolsJMenu.add(@updatesJMenuItem)
         @subscriptionJMenuItem.setText("Subscription")
@@ -254,6 +293,7 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 subscriptionJMenuItemActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @toolsJMenu.add(@subscriptionJMenuItem)
         @modulesJMenuItem.setText("Module Manager")
@@ -264,6 +304,7 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 modulesJMenuItemActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @toolsJMenu.add(@modulesJMenuItem)
         @aboutJMenuItem.setText("About")
@@ -274,16 +315,18 @@ class InputAutomationJFrame < JFrame
             def actionPerformed(evt)
                 aboutJMenuItemActionPerformed(evt)
             end
+            java_overload :actionPerformed, 1
         end.new())
         @toolsJMenu.add(@aboutJMenuItem)
         @mainJMenuBar.add(@toolsJMenu)
         setJMenuBar(@mainJMenuBar)
         layout = GroupLayout.new(getContentPane())
         getContentPane().setLayout(layout)
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(@gameRobotJTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 571, 32767))
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(@gameRobotJTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 359, 32767))
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addComponent(@gameRobotJTabbedPane, GroupLayout::Alignment.TRAILING, GroupLayout::DEFAULT_SIZE, 571, 32767))
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addComponent(@gameRobotJTabbedPane, GroupLayout::Alignment.TRAILING, GroupLayout::DEFAULT_SIZE, 359, 32767))
         pack()
     end
+    java_overload :initComponents, 0
     
 
     def subscriptionJMenuItemActionPerformed(evt)
@@ -293,6 +336,7 @@ class InputAutomationJFrame < JFrame
             @logUtil.put(@commonStrings.EXCEPTION, self, "subscriptionJMenuItemActionPerformed", e)
         end
     end
+    java_overload :subscriptionJMenuItemActionPerformed, 1
     
 
     def updatesJMenuItemActionPerformed(evt)
@@ -302,40 +346,47 @@ class InputAutomationJFrame < JFrame
             @logUtil.put(@commonStrings.EXCEPTION, self, "updatesJMenuItemActionPerformed", e)
         end
     end
+    java_overload :updatesJMenuItemActionPerformed, 1
     
 
     def aboutJMenuItemActionPerformed(evt)
-        textJDialog = BasicTextJDialog.new("Copyright (c) 2002-2007 AllBinary")
+        textJDialog = ::Org::Allbinary::Gui::Dialog::BasicTextJDialog.new("Copyright (c) 2002-2007 AllBinary")
         textJDialog.setVisible(true)
         textJDialog.setLocationRelativeTo(self)
     end
+    java_overload :aboutJMenuItemActionPerformed, 1
     
 
     def modulesJMenuItemActionPerformed(evt)
         begin
-            DesktopBundle.new().start()
+            ::Org::Allbinary::Input::Automation::Osgi::DesktopBundle.new().start()
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "modulesJMenuItemActionPerformed", e)
         end
     end
+    java_overload :modulesJMenuItemActionPerformed, 1
     
 
     def helpJMenuItemActionPerformed(evt)
-        JavaHelpUtil.getInstance().show(@helpSet)
+        ::Org::Allbinary::Logic::Java::Help::JavaHelpUtil.getInstance().show(@helpSet)
     end
+    java_overload :helpJMenuItemActionPerformed, 1
     
 
     def stopOnFocusJCheckBoxMenuItemActionPerformed(evt)
     end
+    java_overload :stopOnFocusJCheckBoxMenuItemActionPerformed, 1
     
 
     def optionsJMenuActionPerformed(evt)
     end
+    java_overload :optionsJMenuActionPerformed, 1
     
 
     def formWindowLostFocus(evt)
         @logUtil.putF("Nothing", self, "focusLost")
     end
+    java_overload :formWindowLostFocus, 1
     
 
     def formWindowGainedFocus(evt)
@@ -346,14 +397,17 @@ class InputAutomationJFrame < JFrame
             end
         end
     end
+    java_overload :formWindowGainedFocus, 1
     
 
     def formFocusLost(evt)
     end
+    java_overload :formFocusLost, 1
     
 
     def formFocusGained(evt)
     end
+    java_overload :formFocusGained, 1
     
 
     def inputAutomationModuleJListValueChanged(evt)
@@ -363,8 +417,8 @@ class InputAutomationJFrame < JFrame
                 @inputAutomationModuleInterface = @inputAutomationModuleFactory.getInstance(gameAutomationRobotModuleNameString)
                 self.getAutomationModuleConfigurationJPanel().removeAll()
                 layout = self.getAutomationModuleConfigurationJPanel().getLayout()
-                layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 395, 32767).addComponent(@inputAutomationModuleInterface.getConfigurationJPanel(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 256, 32767).addComponent(@inputAutomationModuleInterface.getConfigurationJPanel(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addGap(0, 395, 32767).addComponent(@inputAutomationModuleInterface.getConfigurationJPanel(), GroupLayout::PREFERRED_SIZE, GroupLayout::DEFAULT_SIZE, GroupLayout::PREFERRED_SIZE))
+                layout.setVerticalGroup(layout.createParallelGroup(GroupLayout::Alignment.LEADING).addGap(0, 256, 32767).addComponent(@inputAutomationModuleInterface.getConfigurationJPanel(), GroupLayout::PREFERRED_SIZE, GroupLayout::DEFAULT_SIZE, GroupLayout::PREFERRED_SIZE))
                 @gameRobotJTabbedPane.setEnabledAt(1, true)
                 @logUtil.putF("Setting Module: " + gameAutomationRobotModuleNameString + " and Configuration JPanel", self, "gameAutomationRobotModuleJListValueChanged")
             else
@@ -375,6 +429,7 @@ class InputAutomationJFrame < JFrame
             @logUtil.put(@commonStrings.EXCEPTION, self, "gameAutomationRobotModuleJListValueChanged", e)
         end
     end
+    java_overload :inputAutomationModuleJListValueChanged, 1
     
 
     def stopJMenuItemActionPerformed(evt)
@@ -385,6 +440,7 @@ class InputAutomationJFrame < JFrame
             @noModuleSelectedJDialog.setLocationRelativeTo(self)
         end
     end
+    java_overload :stopJMenuItemActionPerformed, 1
     
 
     def startJMenuItemActionPerformed(evt)
@@ -393,8 +449,8 @@ class InputAutomationJFrame < JFrame
             if @inputAutomationModuleInterface != nil
                 @runnableInterface = @inputAutomationModuleInterface.getInstance()
                 if @runnableInterface != nil
-                    @thread = JavaThread.new(@runnableInterface)
-                    @thread.setPriority(JavaThread::MIN_PRIORITY + 1)
+                    @thread = ::Java::Lang::JavaThread.new(@runnableInterface)
+                    @thread.setPriority(::Java::Lang::JavaThread::MIN_PRIORITY + 1)
                     @thread.start()
                 else
                     @logUtil.putF("Runnnable was null", self, "startJMenuItemActionPerformed")
@@ -410,6 +466,7 @@ class InputAutomationJFrame < JFrame
             @logUtil.put(@commonStrings.EXCEPTION, self, "startJMenuItemActionPerformed", e)
         end
     end
+    java_overload :startJMenuItemActionPerformed, 1
     
 
     def self.getInstance()
@@ -423,22 +480,22 @@ class InputAutomationJFrame < JFrame
     
 
     def self.create(inputAutomationBundleActivatorListenerInterface)
-        LogConfigTypeFactory.getInstance()
-        appUrlGlobals = AppUrlGlobals.new()
+        ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance()
+        appUrlGlobals = ::Org::Allbinary::Globals::AppUrlGlobals.new()
         appUrlGlobals.setWebappPath("G:/mnt/bc/mydev/work_automation/automation/run/")
-        URLGLOBALS.init(appUrlGlobals)
-        WebappClassLoaderInfo.setLoader(appUrlGlobals.class.getClassLoader())
-        java.awt.EventQueue.invokeLater(Class.new(ARunnable.is_a?(Class) ? ARunnable : Object) do
-            include(ARunnable) unless ARunnable.is_a?(Class)
+        ::Org::Allbinary::Globals::URLGLOBALS.init(appUrlGlobals)
+        ::Org::Allbinary::Logic::System::Loader::WebappClassLoaderInfo.setLoader(appUrlGlobals.class.getClassLoader())
+        EventQueue.invokeLater(Class.new(::Org::Allbinary::ThreadPackage::ARunnable.is_a?(Class) ? ::Org::Allbinary::ThreadPackage::ARunnable : Object) do
+            include(::Org::Allbinary::ThreadPackage::ARunnable) unless ::Org::Allbinary::ThreadPackage::ARunnable.is_a?(Class)
             
 
             def run()
-                logUtil = LogUtil.getInstance()
-                commonStrings = CommonStrings.getInstance()
+                logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 begin
                     logUtil.putF("Running", self, commonStrings.RUN)
-                    (InputAutomationJFrame.send(:remove_const, :INPUTAUTOMATION_JFRAME) if InputAutomationJFrame.const_defined?(:INPUTAUTOMATION_JFRAME, false); InputAutomationJFrame.const_set(:INPUTAUTOMATION_JFRAME, InputAutomationJFrame.new()))
-                    InputRobotFactory.getInstance().addListener(InputAutomationJFrame.getInstance())
+                    (InputAutomationJFrame.instance_exec(InputAutomationJFrame.new()) { |java_value| remove_const(:INPUTAUTOMATION_JFRAME) if const_defined?(:INPUTAUTOMATION_JFRAME, false); const_set(:INPUTAUTOMATION_JFRAME, java_value) })
+                    ::Org::Allbinary::Input::Automation::Robot::InputRobotFactory.getInstance().addListener(InputAutomationJFrame.getInstance())
                     if inputAutomationBundleActivatorListenerInterface != nil
                         inputAutomationBundleActivatorListenerInterface.registerAsService()
                         inputAutomationBundleActivatorListenerInterface.useServices()
@@ -448,6 +505,7 @@ class InputAutomationJFrame < JFrame
                     logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
                 end
             end
+            java_overload :run, 0
         end.new())
     end
     
@@ -461,35 +519,36 @@ class InputAutomationJFrame < JFrame
     def getAutomationModuleConfigurationJPanel()
         return @automationModuleConfigurationJPanel
     end
+    java_overload :getAutomationModuleConfigurationJPanel, 0
     
 
     def setAutomationModuleConfigurationJPanel(automationModuleConfigurationJPanel)
         @automationModuleConfigurationJPanel = automationModuleConfigurationJPanel
     end
+    java_overload :setAutomationModuleConfigurationJPanel, 1
     
 
-    def onAdd(inputAutomationRobotChangeEvent)
+    def onAdd_j1_1(inputAutomationRobotChangeEvent)
         begin
             @logUtil.putF(@commonStrings.START, self, "onAdd")
-            InputRobotFactory.getInstance().add(inputAutomationRobotChangeEvent.getInputAutomationRobotInterfaceWrapper().getInputRobotInterface())
+            ::Org::Allbinary::Input::Automation::Robot::InputRobotFactory.getInstance().add(inputAutomationRobotChangeEvent.getInputAutomationRobotInterfaceWrapper().getInputRobotInterface())
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "onAdd", e)
         end
     end
     
 
-    def onRemove(inputAutomationRobotChangeEvent)
+    def onRemove_j1_1(inputAutomationRobotChangeEvent)
         begin
             @logUtil.putF(@commonStrings.START, self, "onRemove")
-            InputRobotFactory.getInstance().add(inputAutomationRobotChangeEvent.getInputAutomationRobotInterfaceWrapper().getInputRobotInterface())
+            ::Org::Allbinary::Input::Automation::Robot::InputRobotFactory.getInstance().add(inputAutomationRobotChangeEvent.getInputAutomationRobotInterfaceWrapper().getInputRobotInterface())
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "onRemove", e)
         end
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def onAdd(inputAutomationConfigurationChangeEvent)
+    def onAdd_j1_2(inputAutomationConfigurationChangeEvent)
         begin
             @logUtil.putF(@commonStrings.START, self, "onAdd")
             @inputAutomationModuleConfigurations.add(inputAutomationConfigurationChangeEvent.getInputAutomationModuleConfiguration())
@@ -498,26 +557,45 @@ class InputAutomationJFrame < JFrame
             @logUtil.put(@commonStrings.EXCEPTION, self, "onAdd", e)
         end
     end
+
+    def onAdd(*java_overload_args)
+        return onAdd_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method onAdd takes #{java_overload_args.length} arguments"
+    end
+
+    def onAdd_j1(*java_overload_args)
+        return onAdd_j1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::Allbinary::Input::Automation::Robot::Osgi::InputAutomationRobotChangeEvent))
+        return onAdd_j1_2(*java_overload_args)
+    end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def onRemove(inputAutomationConfigurationChangeEvent)
+    def onRemove_j1_2(inputAutomationConfigurationChangeEvent)
         begin
             @logUtil.putF(@commonStrings.START, self, "onRemove")
-            inputAutomationConfiguration = InputAutomationConfigurationFactory.getInstance().inputAutomationConfiguration
+            inputAutomationConfiguration = ::Org::Allbinary::Input::Automation::Configuration::InputAutomationConfigurationFactory.getInstance().inputAutomationConfiguration
             inputAutomationModuleConfigurationList = inputAutomationConfiguration.getInputAutomationModuleConfigurationList()
             if inputAutomationModuleConfigurationList == nil
-                logUtil = LogUtil.getInstance()
-                commonStrings = CommonStrings.getInstance()
+                logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 logUtil.putF("inputAutomationModuleConfigurationList: " + (inputAutomationModuleConfigurationList).to_s, self, commonStrings.INIT)
                 raise StandardError.new()
             end
-            inputAutomationModuleConfigurations = InputAutomationModuleConfigurations.new(inputAutomationConfiguration.getInputAutomationModuleConfigurationList())
+            inputAutomationModuleConfigurations = ::Org::Allbinary::Input::Automation::ModulePackage::Configuration::InputAutomationModuleConfigurations.new(inputAutomationConfiguration.getInputAutomationModuleConfigurationList())
             inputAutomationModuleConfigurations.remove(inputAutomationConfigurationChangeEvent.getInputAutomationModuleConfiguration())
             self.init()
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "onRemove", e)
         end
+    end
+
+    def onRemove(*java_overload_args)
+        return onRemove_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method onRemove takes #{java_overload_args.length} arguments"
+    end
+
+    def onRemove_j1(*java_overload_args)
+        return onRemove_j1_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Org::Allbinary::Input::Automation::Robot::Osgi::InputAutomationRobotChangeEvent))
+        return onRemove_j1_2(*java_overload_args)
     end
 
     def self.java_static_fields
@@ -541,29 +619,29 @@ class InputAutomationJFrame < JFrame
     end
 end
 
-autoload :ARunnable, "org/allbinary/thread/ARunnable"
-autoload :InputAutomationBundleActivatorListenerInterface, "bundle/input/automation/InputAutomationBundleActivatorListenerInterface"
-autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals"
-autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
-autoload :BasicTextJDialog, "org/allbinary/gui/dialog/BasicTextJDialog"
-autoload :JListSwingWorker, "org/allbinary/gui/swing/workers/JListSwingWorker"
-autoload :InputAutomationConfiguration, "org/allbinary/input/automation/configuration/InputAutomationConfiguration"
-autoload :InputAutomationConfigurationFactory, "org/allbinary/input/automation/configuration/InputAutomationConfigurationFactory"
-autoload :InputAutomationConfigurationModuleChangeEvent, "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
-autoload :InputAutomationModuleFactoryFactory, "org/allbinary/input/automation/module/InputAutomationModuleFactoryFactory"
-autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface"
-autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration"
-autoload :InputAutomationModuleConfigurations, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfigurations"
-autoload :DesktopBundle, "org/allbinary/input/automation/osgi/DesktopBundle"
-autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory"
-autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-autoload :JavaHelpUtil, "org/allbinary/logic/java/help/JavaHelpUtil"
-autoload :WebappClassLoaderInfo, "org/allbinary/logic/system/loader/WebappClassLoaderInfo"
-autoload :InputAutomationClientInformationFactory, "org/allbinary/logic/system/security/licensing/InputAutomationClientInformationFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface"
+module ::Org; module Allbinary; module ThreadPackage; autoload :ARunnable, "org/allbinary/thread/ARunnable" unless const_defined?(:ARunnable, false); end; end; end
+module ::Bundle; module Input; module Automation; autoload :InputAutomationBundleActivatorListenerInterface, "bundle/input/automation/InputAutomationBundleActivatorListenerInterface" unless const_defined?(:InputAutomationBundleActivatorListenerInterface, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :AppUrlGlobals, "org/allbinary/globals/AppUrlGlobals" unless const_defined?(:AppUrlGlobals, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Gui; module Dialog; autoload :BasicTextJDialog, "org/allbinary/gui/dialog/BasicTextJDialog" unless const_defined?(:BasicTextJDialog, false); end; end; end; end
+module ::Org; module Allbinary; module Gui; module Swing; module Workers; autoload :JListSwingWorker, "org/allbinary/gui/swing/workers/JListSwingWorker" unless const_defined?(:JListSwingWorker, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module Configuration; autoload :InputAutomationConfiguration, "org/allbinary/input/automation/configuration/InputAutomationConfiguration" unless const_defined?(:InputAutomationConfiguration, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module Configuration; autoload :InputAutomationConfigurationFactory, "org/allbinary/input/automation/configuration/InputAutomationConfigurationFactory" unless const_defined?(:InputAutomationConfigurationFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module Configuration; autoload :InputAutomationConfigurationModuleChangeEvent, "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent" unless const_defined?(:InputAutomationConfigurationModuleChangeEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; autoload :InputAutomationModuleFactoryFactory, "org/allbinary/input/automation/module/InputAutomationModuleFactoryFactory" unless const_defined?(:InputAutomationModuleFactoryFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; autoload :InputAutomationModuleFactoryInterface, "org/allbinary/input/automation/module/InputAutomationModuleFactoryInterface" unless const_defined?(:InputAutomationModuleFactoryInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Configuration; autoload :InputAutomationModuleConfiguration, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfiguration" unless const_defined?(:InputAutomationModuleConfiguration, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Configuration; autoload :InputAutomationModuleConfigurations, "org/allbinary/input/automation/module/configuration/InputAutomationModuleConfigurations" unless const_defined?(:InputAutomationModuleConfigurations, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module Osgi; autoload :DesktopBundle, "org/allbinary/input/automation/osgi/DesktopBundle" unless const_defined?(:DesktopBundle, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotFactory, "org/allbinary/input/automation/robot/InputRobotFactory" unless const_defined?(:InputRobotFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Input; module Automation; module Robot; module Osgi; autoload :InputAutomationRobotChangeEvent, "org/allbinary/input/automation/robot/osgi/InputAutomationRobotChangeEvent" unless const_defined?(:InputAutomationRobotChangeEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Help; autoload :JavaHelpUtil, "org/allbinary/logic/java/help/JavaHelpUtil" unless const_defined?(:JavaHelpUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Loader; autoload :WebappClassLoaderInfo, "org/allbinary/logic/system/loader/WebappClassLoaderInfo" unless const_defined?(:WebappClassLoaderInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :InputAutomationClientInformationFactory, "org/allbinary/logic/system/security/licensing/InputAutomationClientInformationFactory" unless const_defined?(:InputAutomationClientInformationFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module ThreadPackage; autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface" unless const_defined?(:RunnableInterface, false); end; end; end
 require "java/lang/Thread"
 
 begin
@@ -571,4 +649,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

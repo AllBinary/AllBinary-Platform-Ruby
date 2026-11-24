@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package admin.taghelpers
 
+require "java/lang/JavaOverload"
 require "admin/taghelpers/ModifyTableInterface"
+
+module ::Admin; module Taghelpers
 
 class ModifyTable
     include ModifyTableInterface
     attr_accessor :commonStrings, :tagStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @tagStrings = TagStrings.getInstance()
+    def jfields_admin_taghelpers_ModifyTable
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @tagStrings = ::Tags::TagStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_admin_taghelpers_ModifyTable
     end
     
 
@@ -34,20 +37,25 @@ class ModifyTable
     def insert()
         raise RuntimeError.new()
     end
+    java_overload :insert, 0
     
 
     # throws Exception
     def delete()
         raise RuntimeError.new()
     end
+    java_overload :delete, 0
     
 
     # throws Exception
     def update()
         raise RuntimeError.new()
     end
+    java_overload :update, 0
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TagStrings, "tags/TagStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Tags; autoload :TagStrings, "tags/TagStrings" unless const_defined?(:TagStrings, false); end
+
+end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.thread
 
+require "java/lang/JavaOverload"
 require "org/allbinary/thread/PriorityRunnable"
+
+module ::Org; module Allbinary; module ThreadPackage
 
 class NullPriorityRunnable
     include PriorityRunnable
@@ -23,18 +26,24 @@ class NullPriorityRunnable
     def getPriority()
         return 0
     end
+    java_overload :getPriority, 0
     
 
     def isDone()
         return true
     end
+    java_overload :isDone, 0
     
 
     def reset()
     end
+    java_overload :reset, 0
     
 
     def run()
     end
+    java_overload :run, 0
 end
+
+end; end; end
 

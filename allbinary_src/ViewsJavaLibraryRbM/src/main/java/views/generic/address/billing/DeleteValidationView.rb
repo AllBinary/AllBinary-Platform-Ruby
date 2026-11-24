@@ -14,23 +14,26 @@
 # frozen_string_literal: false
 # package views.generic.address.billing
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/validate/ValidationComponentInterface"
 require "views/generic/address/billing/BillingAddressView"
 
+module ::Views; module Generic; module Address; module Billing
+
 class DeleteValidationView < BillingAddressView
-    include ValidationComponentInterface
+    include ::Org::Allbinary::Logic::ControlPackage::Validate::ValidationComponentInterface
     attr_accessor :value
 
-    def initialize_fields
-        @value = nil
+    def jfields_views_generic_address_billing_DeleteValidationView
+        @value = nil unless instance_variable_defined?(:@value)
     end
     
 
     def initialize(transformInfoInterface)
         super(transformInfoInterface)
-        initialize_fields
+        jfields_views_generic_address_billing_DeleteValidationView
         httpTransformInfoInterface = self.getTransformInfoInterface()
-        @value = httpTransformInfoInterface.getPageContext().getRequest().getParameter(StreetAddressData::ID)
+        @value = httpTransformInfoInterface.getPageContext().getRequest().getParameter(::Org::Allbinary::Business::User::Address::StreetAddressData::ID)
     end
     
 
@@ -38,34 +41,47 @@ class DeleteValidationView < BillingAddressView
         if self.getWeblisketSession().getUserName() != nil
             return false
         end
-        billingAddressesEntity = BillingAddressesEntity.new(self.getWeblisketSession().getUserName())
+        billingAddressesEntity = ::Org::Allbinary::DataPackage::Tables::User::Address::Billing::BillingAddressesEntity.new(self.getWeblisketSession().getUserName())
         @streetAddress = billingAddressesEntity.get(@value)
         if @streetAddress == nil
             return false
         end
         return @streetAddress.isValid()
     end
+    java_overload :isValid, 0
     
 
     def validationInfo()
         return @streetAddress.validationInfo()
     end
+    java_overload :validationInfo, 0
     
 
     def toValidationInfoDoc()
         return nil
     end
+    java_overload :toValidationInfoDoc, 0
     
 
     def toValidationInfoNode(document)
         return nil
     end
+    java_overload :toValidationInfoNode, 1
+    
+
+    # throws Exception
+    def getTransformInfoInterface()
+        return DeleteValidationView.superclass.java_super_method(:getTransformInfoInterface, 0).bind(self).call()
+    end
+    java_overload :getTransformInfoInterface, 0
 end
 
-autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData"
-autoload :BillingAddressesEntity, "org/allbinary/data/tables/user/address/billing/BillingAddressesEntity"
-autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData" unless const_defined?(:StreetAddressData, false); end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tables; module User; module Address; module Billing; autoload :BillingAddressesEntity, "org/allbinary/data/tables/user/address/billing/BillingAddressesEntity" unless const_defined?(:BillingAddressesEntity, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoHttpInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpInterface" unless const_defined?(:TransformInfoHttpInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+
+end; end; end; end
 

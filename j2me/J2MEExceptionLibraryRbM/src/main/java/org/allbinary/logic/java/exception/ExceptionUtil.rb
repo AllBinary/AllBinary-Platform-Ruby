@@ -15,11 +15,13 @@
 # package org.allbinary.logic.java.exception
 
 
+module ::Org; module Allbinary; module Logic; module Java; module ExceptionPackage
+
 #ActualPlatform
 class ExceptionUtil
     attr_accessor :PRETEND_EXCEPTION, :NONE
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_java_exception_ExceptionUtil
         @PRETEND_EXCEPTION = StandardError.new("Not Really An Exception")
         @NONE = "No Stack Trace"
     end
@@ -31,12 +33,12 @@ class ExceptionUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_java_exception_ExceptionUtil
     end
     
 
     def getStackTrace(e)
-        bs = ByteArrayOutputStream.new()
+        bs = ::Java::Io::ByteArrayOutputStream.new()
         puts(e.full_message)
         output = bs.to_s
         return String.new(output)
@@ -73,11 +75,13 @@ class ExceptionUtil
     end
 end
 
-autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream"
+module ::Java; module Io; autoload :ByteArrayOutputStream, "java/io/ByteArrayOutputStream" unless const_defined?(:ByteArrayOutputStream, false); end; end
 
 begin
     ExceptionUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

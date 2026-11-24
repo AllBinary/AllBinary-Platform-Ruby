@@ -16,6 +16,8 @@
 
 # require "java/io/File"
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 class AbFileNativeUtil
     
 
@@ -24,5 +26,7 @@ class AbFileNativeUtil
     end
 end
 
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
+autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false)
+
+end; end; end; end; end
 

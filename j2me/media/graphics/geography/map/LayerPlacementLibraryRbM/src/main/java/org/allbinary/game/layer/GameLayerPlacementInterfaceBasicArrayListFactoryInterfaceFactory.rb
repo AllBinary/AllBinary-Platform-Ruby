@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 module GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory
     
 
@@ -30,5 +32,7 @@ module GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory
     end
 end
 
-autoload :LayerPlacementInterfaceBasicArrayListFactoryInterface, "org/allbinary/game/layer/LayerPlacementInterfaceBasicArrayListFactoryInterface"
+autoload :LayerPlacementInterfaceBasicArrayListFactoryInterface, "org/allbinary/game/layer/LayerPlacementInterfaceBasicArrayListFactoryInterface" unless const_defined?(:LayerPlacementInterfaceBasicArrayListFactoryInterface, false)
+
+end; end; end; end
 

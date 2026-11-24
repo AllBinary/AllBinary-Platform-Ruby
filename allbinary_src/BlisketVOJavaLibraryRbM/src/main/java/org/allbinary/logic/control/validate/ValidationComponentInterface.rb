@@ -14,11 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.control.validate
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/transform/TransformInterface"
 require "org/allbinary/logic/control/validate/ValidationInterface"
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate
+
 module ValidationComponentInterface
-    include TransformInterface
+    include ::Org::Allbinary::Logic::Visual::Transform::TransformInterface
     include ValidationInterface
 end
+
+end; end; end; end; end
 

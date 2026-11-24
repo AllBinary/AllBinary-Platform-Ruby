@@ -15,10 +15,12 @@
 # package org.allbinary.media.graphics.geography.map
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
+
 class GeographicMapCellPositionTracking
     attr_accessor :currentGeographicMapCellPosition, :previousGeographicMapCellPosition, :newGeographicMapCellPosition, :currentCellType
 
-    def initialize_fields
+    def jfields_org_allbinary_media_graphics_geography_map_GeographicMapCellPositionTracking
         @currentGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
         @previousGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
         @newGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
@@ -27,7 +29,7 @@ class GeographicMapCellPositionTracking
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_GeographicMapCellPositionTracking
     end
     
 
@@ -75,11 +77,13 @@ class GeographicMapCellPositionTracking
     end
 end
 
-require "org/allbinary/game/displayable/canvas/AllBinaryGameCanvasInterface"
-require "org/allbinary/layer/AllBinaryLayer"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCompositeInterface"
-require "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory"
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas; autoload :AllBinaryGameCanvasInterface, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvasInterface" unless const_defined?(:AllBinaryGameCanvasInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false)
+autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false)
+autoload :GeographicMapCellType, "org/allbinary/media/graphics/geography/map/GeographicMapCellType" unless const_defined?(:GeographicMapCellType, false)
+autoload :GeographicMapCompositeInterface, "org/allbinary/media/graphics/geography/map/GeographicMapCompositeInterface" unless const_defined?(:GeographicMapCompositeInterface, false)
+autoload :SimpleGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory" unless const_defined?(:SimpleGeographicMapCellPositionFactory, false)
+
+end; end; end; end; end; end
 

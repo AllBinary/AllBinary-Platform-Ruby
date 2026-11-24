@@ -15,10 +15,10 @@
 # package org.allbinary.media.audio
 
 require "java/lang/Object"
+require "java/lang/JavaClass"
 # require "java/io/IOException"
-# require "java/io/InputStream"
-# require "javax/microedition/media/MediaException"
-# require "javax/microedition/media/Player"
+
+module ::Org; module Allbinary; module Media; module Audio
 
 #AndroidMediaMIDPLibrary
 class AllBinaryMediaManager
@@ -44,12 +44,12 @@ class AllBinaryMediaManager
 
     # throws Exception
     def self.init(soundsFactoryInterface)
-        logUtil = LogUtil.getInstance()
-        commonString = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, commonString.INIT)
         AllBinaryMediaManager.shutdown(soundsFactoryInterface)
-        ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
-        TsUtil.getInstance().gc()
+        ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
+        ::Org::Allbinary::TsUtil.getInstance().gc()
         Sounds.new(soundsFactoryInterface).init()
         logUtil.putF(commonString.END_, AllBinaryMediaManager::THIS, commonString.INIT)
     end
@@ -57,8 +57,8 @@ class AllBinaryMediaManager
 
     # throws Exception
     def self.shutdown(soundsFactoryInterface)
-        logUtil = LogUtil.getInstance()
-        commonString = CommonStrings.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, "shutdown")
         if soundsFactoryInterface.isInitialized()
             Sounds.new(soundsFactoryInterface).stopAll()
@@ -75,13 +75,13 @@ class AllBinaryMediaManager
                             androidMediaPlayerWrapper = player2
                             MediaPlayerUtil.getInstance().waitForMediaPlayer(androidMediaPlayerWrapper.getMediaPlayer())
                         else
-                            raise StandardError.new("Unknown Property Player: " + player.class.name)
+                            raise StandardError.new("Unknown Property Player: " + player.class.java_name)
                         end
                     end
                 end
             end
             Sounds.new(soundsFactoryInterface).closeAll()
-            TsUtil.getInstance().gc()
+            ::Org::Allbinary::TsUtil.getInstance().gc()
             soundsFactoryInterface.setInitialized(false)
             AllBinaryMediaManager.mostUsedTotal = 0
         end
@@ -92,12 +92,12 @@ class AllBinaryMediaManager
     # throws Exception
     def self.createPlayer(resource)
         AllBinaryMediaManager.mostUsedTotal += 1
-        logUtil = LogUtil.getInstance()
-        if Features.getInstance().isFeature(GameFeatureFactory.getInstance().SOUND)
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::GameFeatureFactory.getInstance().SOUND)
             begin
                 return AndroidMediaPlayerWrapper.new(resource)
             rescue StandardError => e
-                logUtil.put("Could not create AndroidMediaPlayerWrapper using NoPlayer at " + (CommonLabels.getInstance().TOTAL_LABEL).to_s + (AllBinaryMediaManager.mostUsedTotal).to_s, AllBinaryMediaManager::THIS, "createPlayer", e)
+                logUtil.put("Could not create AndroidMediaPlayerWrapper using NoPlayer at " + (::Org::Allbinary::StringPackage::CommonLabels.getInstance().TOTAL_LABEL).to_s + (AllBinaryMediaManager.mostUsedTotal).to_s, AllBinaryMediaManager::THIS, "createPlayer", e)
                 return NoPlayer::NO_PLAYER
             end
         else
@@ -108,14 +108,14 @@ class AllBinaryMediaManager
 
     # throws IOException, MediaException
     def self.createPlayerFromInputStream(stream, type)
-        raise MediaException.new("No Input Stream Player")
+        raise ::Javax::Microedition::Media::MediaException.new("No Input Stream Player")
     end
     
 
     # throws MediaException
     def self.playTone(frequency, time, volume)
         java_monitor.synchronize do
-        raise MediaException.new("No Tone Player")
+        raise ::Javax::Microedition::Media::MediaException.new("No Tone Player")
         end
     end
     
@@ -125,32 +125,61 @@ class AllBinaryMediaManager
     end
 
     def self.mostUsedTotal()
+        AllBinaryMediaManager.java_static_fields unless @java_static_fields_started
         return defined?(@@mostUsedTotal) ? @@mostUsedTotal : nil
     end
 
     def self.mostUsedTotal=(value)
+        AllBinaryMediaManager.java_static_fields unless @java_static_fields_started
         @@mostUsedTotal = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:THIS, "AllBinaryMediaManagerAndroid")
+        @@mostUsedTotal = 0
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AllBinaryMediaManager"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:THIS].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/TsUtil"
-require "org/allbinary/game/configuration/feature/Features"
-require "org/allbinary/game/configuration/feature/GameFeatureFactory"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory"
-require "org/allbinary/logic/ABSystemWrapper"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonLabels"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/audio/AndroidMediaPlayerWrapper"
-require "org/allbinary/media/audio/MediaPlayerUtil"
-require "org/allbinary/media/audio/NoPlayer"
-require "org/allbinary/media/audio/PlayerComposite"
-require "org/allbinary/media/audio/Sound"
-require "org/allbinary/media/audio/Sounds"
-require "org/allbinary/media/audio/SoundsFactoryInterface"
+module ::Java; module Io; autoload :InputStream, "java/io/InputStream" unless const_defined?(:InputStream, false); end; end
+module ::Javax; module Microedition; module Media; autoload :MediaException, "javax/microedition/media/MediaException" unless const_defined?(:MediaException, false); end; end; end
+module ::Javax; module Microedition; module Media; autoload :Player, "javax/microedition/media/Player" unless const_defined?(:Player, false); end; end; end
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GameFeatureFactory, "org/allbinary/game/configuration/feature/GameFeatureFactory" unless const_defined?(:GameFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress; autoload :ProgressCanvasFactory, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" unless const_defined?(:ProgressCanvasFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :ABSystemWrapper, "org/allbinary/logic/ABSystemWrapper" unless const_defined?(:ABSystemWrapper, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AndroidMediaPlayerWrapper, "org/allbinary/media/audio/AndroidMediaPlayerWrapper" unless const_defined?(:AndroidMediaPlayerWrapper, false)
+autoload :MediaPlayerUtil, "org/allbinary/media/audio/MediaPlayerUtil" unless const_defined?(:MediaPlayerUtil, false)
+autoload :NoPlayer, "org/allbinary/media/audio/NoPlayer" unless const_defined?(:NoPlayer, false)
+autoload :PlayerComposite, "org/allbinary/media/audio/PlayerComposite" unless const_defined?(:PlayerComposite, false)
+autoload :Sound, "org/allbinary/media/audio/Sound" unless const_defined?(:Sound, false)
+autoload :Sounds, "org/allbinary/media/audio/Sounds" unless const_defined?(:Sounds, false)
+autoload :SoundsFactoryInterface, "org/allbinary/media/audio/SoundsFactoryInterface" unless const_defined?(:SoundsFactoryInterface, false)
 
-class AllBinaryMediaManager
-    THIS = "AllBinaryMediaManagerAndroid"
-    @@mostUsedTotal = 0
+begin
+    AllBinaryMediaManager.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

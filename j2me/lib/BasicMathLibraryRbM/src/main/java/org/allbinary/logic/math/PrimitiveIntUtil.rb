@@ -15,6 +15,8 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class PrimitiveIntUtil
     
 
@@ -23,14 +25,16 @@ class PrimitiveIntUtil
     
 
     def self.getArrayInstance()
-        return NullUtil.getInstance().NULL_INT_ARRAY
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY
     end
     
 
     def self.getTwoDimensionalArrayInstance()
-        return NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+
+end; end; end; end
 

@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.view
 
+require "java/lang/JavaOverload"
 require "org/allbinary/view/CenterStaticViewPositionFactory"
+
+module ::Org; module Allbinary; module View
 
 class CenterViewPositionFactory < CenterStaticViewPositionFactory
 end
+
+end; end; end
 

@@ -15,14 +15,18 @@
 # package org.allbinary.platform.graphics
 
 
+module ::Org; module Allbinary; module Platform; module Graphics
+
 class PlatformBitmapBase
     
 
     def getImage()
-        return NullImage::NULL_IMAGE
+        return ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :NullImage, "javax/microedition/lcdui/NullImage"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :NullImage, "javax/microedition/lcdui/NullImage" unless const_defined?(:NullImage, false); end; end; end
+
+end; end; end; end
 

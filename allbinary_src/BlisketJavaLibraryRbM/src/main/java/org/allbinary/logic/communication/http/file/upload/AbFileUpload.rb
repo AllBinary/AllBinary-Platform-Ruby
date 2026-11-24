@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.http.file.upload
 
+require "java/lang/JavaOverload"
 # require "java/io/IOException"
 # require "javax/servlet/http/HttpServletRequest"
 require "org/apache/commons/fileupload/FileUpload"
 
-class AbFileUpload < FileUpload
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module FilePackage; module Upload
+
+class AbFileUpload < ::Org::Apache::Commons::Fileupload::FileUpload
     
 
     def initialize(fileItemFactory)
@@ -28,12 +31,15 @@ class AbFileUpload < FileUpload
 
     # throws FileUploadException, IOException
     def getItemIterator(request)
-        return super(ServletRequestContext.new(request))
+        return AbFileUpload.superclass.java_super_method(:getItemIterator, 1).bind(self).call(::Org::Apache::Commons::Fileupload::Servlet::ServletRequestContext.new(request))
     end
+    java_overload :getItemIterator, 1
 end
 
-autoload :FileItemFactory, "org/apache/commons/fileupload/FileItemFactory"
-autoload :FileItemIterator, "org/apache/commons/fileupload/FileItemIterator"
-autoload :FileUploadException, "org/apache/commons/fileupload/FileUploadException"
-autoload :ServletRequestContext, "org/apache/commons/fileupload/servlet/ServletRequestContext"
+module ::Org; module Apache; module Commons; module Fileupload; autoload :FileItemFactory, "org/apache/commons/fileupload/FileItemFactory" unless const_defined?(:FileItemFactory, false); end; end; end; end
+module ::Org; module Apache; module Commons; module Fileupload; autoload :FileItemIterator, "org/apache/commons/fileupload/FileItemIterator" unless const_defined?(:FileItemIterator, false); end; end; end; end
+module ::Org; module Apache; module Commons; module Fileupload; autoload :FileUploadException, "org/apache/commons/fileupload/FileUploadException" unless const_defined?(:FileUploadException, false); end; end; end; end
+module ::Org; module Apache; module Commons; module Fileupload; module Servlet; autoload :ServletRequestContext, "org/apache/commons/fileupload/servlet/ServletRequestContext" unless const_defined?(:ServletRequestContext, false); end; end; end; end; end
+
+end; end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.displayable.canvas
 
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 class CanvasUtil
     
 
@@ -23,22 +25,24 @@ class CanvasUtil
     
 
     def self.getKeyName(key)
-        commonPhoneStrings = CommonPhoneStrings.getInstance()
-        if key == Canvas::UP
+        commonPhoneStrings = ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance()
+        if key == ::Javax::Microedition::Lcdui::Canvas::UP
             return commonPhoneStrings.UP
-        elsif key == Canvas::DOWN
+        elsif key == ::Javax::Microedition::Lcdui::Canvas::DOWN
             return commonPhoneStrings.DOWN
-        elsif key == Canvas::RIGHT
+        elsif key == ::Javax::Microedition::Lcdui::Canvas::RIGHT
             return commonPhoneStrings.RIGHT
-        elsif key == Canvas::LEFT
+        elsif key == ::Javax::Microedition::Lcdui::Canvas::LEFT
             return commonPhoneStrings.LEFT
-        elsif key == Canvas::FIRE
+        elsif key == ::Javax::Microedition::Lcdui::Canvas::FIRE
             return commonPhoneStrings.FIRE
         end
         return "UNKNOWN KEY"
     end
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+
+end; end; end; end; end
 

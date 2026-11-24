@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/BasicLayerProcessorInterface"
+
+module ::Org; module Allbinary; module Layer
 
 module LayerProcessorInterface
     include BasicLayerProcessorInterface
@@ -24,6 +27,7 @@ module LayerProcessorInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getLayerManager, 0
     
 
     # throws Exception
@@ -31,6 +35,7 @@ module LayerProcessorInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :processAt, 3
     
 
     # throws Exception
@@ -38,9 +43,12 @@ module LayerProcessorInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :isProcessorLayer, 1
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :LayerManager, "org/allbinary/layer/LayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false)
+autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false)
+autoload :LayerManager, "org/allbinary/layer/LayerManager" unless const_defined?(:LayerManager, false)
+
+end; end; end
 

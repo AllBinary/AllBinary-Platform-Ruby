@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation
 
-# require "java/awt"
+# require "java/awt/Point"
+# require "java/awt/Rectangle"
+
+module ::Org; module Allbinary; module Input; module Automation
 
 class PointHelper
     
@@ -60,11 +63,13 @@ class PointHelper
     end
 end
 
-autoload :PointFactory, "org/allbinary/input/automation/PointFactory"
+autoload :PointFactory, "org/allbinary/input/automation/PointFactory" unless const_defined?(:PointFactory, false)
 
 begin
     PointHelper.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,13 +15,15 @@
 # package org.allbinary.logic.communication.http
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http
+
 class HttpData
     attr_accessor :EQUALS, :PARAM_SEP, :URL_PARAM_SEP, :URL_LABEL
 
-    def initialize_fields
-        @EQUALS = nil
-        @PARAM_SEP = nil
-        @URL_PARAM_SEP = nil
+    def jfields_org_allbinary_logic_communication_http_HttpData
+        @EQUALS = nil unless instance_variable_defined?(:@EQUALS)
+        @PARAM_SEP = nil unless instance_variable_defined?(:@PARAM_SEP)
+        @URL_PARAM_SEP = nil unless instance_variable_defined?(:@URL_PARAM_SEP)
         @URL_LABEL = "Url: "
     end
     
@@ -32,8 +34,8 @@ class HttpData
     
 
     def initialize()
-        initialize_fields
-        commonSeps = CommonSeps.getInstance()
+        jfields_org_allbinary_logic_communication_http_HttpData
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         @EQUALS = commonSeps.EQUALS
         @PARAM_SEP = commonSeps.AMPERSAND
         @URL_PARAM_SEP = commonSeps.QUESTION
@@ -70,11 +72,13 @@ class HttpData
     end
 end
 
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 
 begin
     HttpData.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

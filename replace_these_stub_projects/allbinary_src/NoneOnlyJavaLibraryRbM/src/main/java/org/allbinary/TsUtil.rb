@@ -16,6 +16,8 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary
+
 #None - Do not use
 class TsUtil
     
@@ -38,7 +40,7 @@ class TsUtil
     
 
     def getRecord(anyType, recordId)
-        return Array.new(0, 0)
+        return (Array.new(0, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
     end
     
 
@@ -124,4 +126,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end
 

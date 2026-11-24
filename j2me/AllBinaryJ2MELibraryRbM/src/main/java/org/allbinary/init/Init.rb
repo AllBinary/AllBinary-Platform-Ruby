@@ -14,25 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.init
 
+require "java/lang/JavaOverload"
 require "org/allbinary/init/InitInterface"
+
+module ::Org; module Allbinary; module Init
 
 class Init
     include InitInterface
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_init_Init
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_init_Init
     end
     
 
     # throws Exception
     def init()
     end
+    java_overload :init, 0
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end
 

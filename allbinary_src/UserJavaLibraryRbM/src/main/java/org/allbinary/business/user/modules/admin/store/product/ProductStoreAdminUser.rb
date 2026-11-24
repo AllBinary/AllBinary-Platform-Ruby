@@ -14,39 +14,47 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.modules.admin.store.product
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/user/modules/User"
 
-class ProductStoreAdminUser < User
+module ::Org; module Allbinary; module Business; module User; module Modules; module Admin; module Store; module Product
+
+class ProductStoreAdminUser < ::Org::Allbinary::Business::User::Modules::User
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_org_allbinary_business_user_modules_admin_store_product_ProductStoreAdminUser_0(*args)
+        when 1 then jnew_org_allbinary_business_user_modules_admin_store_product_ProductStoreAdminUser_1(*args)
+        else raise ArgumentError, "No constructor of ProductStoreAdminUser takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        method(:initialize).super_method.call()
+    def jnew_org_allbinary_business_user_modules_admin_store_product_ProductStoreAdminUser_0()
+        ProductStoreAdminUser.superclass.instance_method(:initialize).bind(self).call()
     end
     
 
-    def constructor1(userHashMap)
-        method(:initialize).super_method.call(userHashMap)
+    def jnew_org_allbinary_business_user_modules_admin_store_product_ProductStoreAdminUser_1(userHashMap)
+        ProductStoreAdminUser.superclass.instance_method(:initialize).bind(self).call(userHashMap)
     end
     
 
     def validateSession(weblisketSession)
-        super(weblisketSession)
+        ProductStoreAdminUser.superclass.java_super_method(:validateSession, 1).bind(self).call(weblisketSession)
         self.updateSession(weblisketSession)
     end
+    java_overload :validateSession, 1
     
 
     def updateSession(weblisketSession)
         weblisketSession.setStoreName(self.getPermissions())
     end
+    java_overload :updateSession, 1
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :WeblisketSessionInterface, "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; module Session; autoload :WeblisketSessionInterface, "org/allbinary/logic/communication/http/request/session/WeblisketSessionInterface" unless const_defined?(:WeblisketSessionInterface, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end; end; end
 

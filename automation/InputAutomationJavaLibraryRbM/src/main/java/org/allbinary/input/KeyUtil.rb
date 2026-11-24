@@ -16,6 +16,8 @@
 
 # require "java/awt/event/KeyEvent"
 
+module ::Org; module Allbinary; module Input
+
 class KeyUtil
     
 
@@ -32,4 +34,6 @@ class KeyUtil
         end
     end
 end
+
+end; end; end
 

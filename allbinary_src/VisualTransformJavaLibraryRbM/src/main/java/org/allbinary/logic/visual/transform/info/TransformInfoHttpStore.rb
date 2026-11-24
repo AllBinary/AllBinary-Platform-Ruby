@@ -14,55 +14,64 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.info
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 # require "javax/servlet/jsp/PageContext"
 require "org/allbinary/logic/visual/transform/info/TransformInfoHttp"
 require "org/allbinary/logic/visual/transform/info/TransformInfoHttpStoreInterface"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
 
 class TransformInfoHttpStore < TransformInfoHttp
     include TransformInfoHttpStoreInterface
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
 
     def initialize(*args)
         case args.length
-        when 2 then constructor2(*args)
-        when 3 then constructor3(*args)
-        when 3 then constructor3(*args)
+        when 2 then jnew_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore_2(*args)
+        when 3 then jnew_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore_3(*args)
+        else raise ArgumentError, "No constructor of TransformInfoHttpStore takes #{args.length} arguments"
         end
+    end
+
+    def jnew_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore_3(*java_overload_args)
+        return jnew_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore_3_1(*java_overload_args) if true && (java_overload_args[0].nil? || java_overload_args[0].is_a?(::Java::Util::HashMap)) && (java_overload_args[1].nil? || java_overload_args[1].is_a?(::Java::Util::HashMap)) && !(java_overload_args[2].is_a?(::Numeric) || java_overload_args[2] == true || java_overload_args[2] == false || java_overload_args[2].is_a?(::Array))
+        return jnew_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore_3_2(*java_overload_args)
     end
     
 
-    def constructor2(propertiesHashMap, pageContext)
-        method(:initialize).super_method.call(propertiesHashMap, pageContext, true)
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+    def jnew_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore_2(propertiesHashMap, pageContext)
+        TransformInfoHttpStore.superclass.instance_method(:initialize).bind(self).call(propertiesHashMap, pageContext, true)
+        jfields_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
             @logUtil.putF("Properties HashMap: " + propertiesHashMap.to_s, self, @commonStrings.CONSTRUCTOR)
         end
     end
     
 
-    def constructor3(databaseHashMap, propertiesHashMap, pageContext)
-        method(:initialize).super_method.call(databaseHashMap, propertiesHashMap, pageContext)
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
-            stringBuffer = StringMaker.new()
+    def jnew_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore_3_1(databaseHashMap, propertiesHashMap, pageContext)
+        TransformInfoHttpStore.superclass.instance_method(:initialize).bind(self).call(databaseHashMap, propertiesHashMap, pageContext)
+        jfields_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Database HashMap: ")
             stringBuffer.append(databaseHashMap.to_s)
             stringBuffer.append("\nProperties HashMap: ")
             stringBuffer.append(propertiesHashMap.to_s)
             @logUtil.putF(stringBuffer.to_s, self, "Constructor(HashMap, HashMap , PageContext)")
         end
-        self.setStoreName(databaseHashMap.get(StoreFrontData.getInstance().NAME))
+        self.setStoreName(databaseHashMap.get(::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontData.getInstance().NAME))
     end
     
 
-    def constructor3(storeFrontInterface, propertiesHashMap, pageContext)
-        method(:initialize).super_method.call(propertiesHashMap, pageContext)
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().VIEW)
+    def jnew_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore_3_2(storeFrontInterface, propertiesHashMap, pageContext)
+        TransformInfoHttpStore.superclass.instance_method(:initialize).bind(self).call(propertiesHashMap, pageContext)
+        jfields_org_allbinary_logic_visual_transform_info_TransformInfoHttpStore
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
             @logUtil.putF("Properties HashMap: " + propertiesHashMap.to_s, self, @commonStrings.CONSTRUCTOR)
         end
         self.setStoreName(storeFrontInterface.getName())
@@ -71,40 +80,60 @@ class TransformInfoHttpStore < TransformInfoHttp
 
     # throws Exception
     def getPath()
-        stringBuffer = StringMaker.new()
-        stringBuffer.append(URLGLOBALS.getMainPath())
-        stringBuffer.append(FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH)
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        stringBuffer.append(::Org::Allbinary::Globals::URLGLOBALS.getMainPath())
+        stringBuffer.append(::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH)
         stringBuffer.append(self.getStoreName())
-        stringBuffer.append(AbPathData.getInstance().SEPARATOR)
+        stringBuffer.append(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATOR)
         return stringBuffer.to_s
     end
+    java_overload :getPath, 0
     
 
     # throws Exception
     def getTemplateFilePath()
-        return AbPath.new(self.getPath(), self.getTemplateFile())
+        return ::Org::Allbinary::Logic::Io::Path::AbPath.new(self.getPath(), self.getTemplateFile())
     end
+    java_overload :getTemplateFilePath, 0
     
 
     # throws Exception
     def getObjectConfigFilePath()
-        return AbPath.new(self.getPath(), self.getObjectConfigFile())
+        return ::Org::Allbinary::Logic::Io::Path::AbPath.new(self.getPath(), self.getObjectConfigFile())
     end
+    java_overload :getObjectConfigFilePath, 0
     
 
     # throws Exception
     def getDataFilePath()
-        return AbPath.new(self.getPath(), self.getDataFile())
+        return ::Org::Allbinary::Logic::Io::Path::AbPath.new(self.getPath(), self.getDataFile())
     end
+    java_overload :getDataFilePath, 0
+    
+
+    def setStoreName(value)
+        TransformInfoHttpStore.superclass.java_super_method(:setStoreName, 1).bind(self).call(value)
+    end
+    java_overload :setStoreName, 1
+    
+
+    def getStoreName()
+        return TransformInfoHttpStore.superclass.java_super_method(:getStoreName, 0).bind(self).call()
+    end
+    java_overload :getStoreName, 0
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData"
-autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface"
-autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData" unless const_defined?(:StoreFrontData, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontInterface, "org/allbinary/business/context/modules/storefront/StoreFrontInterface" unless const_defined?(:StoreFrontInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS" unless const_defined?(:FREEBLISKET_PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end
 

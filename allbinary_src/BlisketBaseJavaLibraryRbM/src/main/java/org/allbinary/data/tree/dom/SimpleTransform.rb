@@ -17,17 +17,19 @@
 # require "java/io/StringBufferInputStream"
 # require "javax/xml/transform/stream/StreamSource"
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
+
 class SimpleTransform
     attr_accessor :xsltFilePath, :dataFilePath
 
-    def initialize_fields
-        @xsltFilePath = nil
-        @dataFilePath = nil
+    def jfields_org_allbinary_data_tree_dom_SimpleTransform
+        @xsltFilePath = nil unless instance_variable_defined?(:@xsltFilePath)
+        @dataFilePath = nil unless instance_variable_defined?(:@dataFilePath)
     end
     
 
     def initialize(xsltFilePath, dataFilePath)
-        initialize_fields
+        jfields_org_allbinary_data_tree_dom_SimpleTransform
         @xsltFilePath = xsltFilePath
         @dataFilePath = dataFilePath
     end
@@ -35,18 +37,20 @@ class SimpleTransform
 
     # throws Exception
     def transform()
-        inputStream = AbFileLocalInputStream.new(AbFile.createAbFileFromAbPath(@xsltFilePath))
-        document = DomDocumentHelper.create(AbFileLocalInputStream.new(AbFile.createAbFileFromAbPath(@dataFilePath)))
-        result = XslHelper.getInstance().translate(StreamSource.new(inputStream), StreamSource.new(StringBufferInputStream.new(XmlDocumentHelper.toString(document))))
+        inputStream = ::Org::Allbinary::Logic::Io::AbFileLocalInputStream.new(::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(@xsltFilePath))
+        document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create(::Org::Allbinary::Logic::Io::AbFileLocalInputStream.new(::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(@dataFilePath)))
+        result = XslHelper.getInstance().translate(StreamSource.new(inputStream), StreamSource.new(StringBufferInputStream.new(::Org::Allbinary::DataPackage::Tree::Dom::Document::XmlDocumentHelper.toString(document))))
         return result
     end
 end
 
-autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper"
-autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper"
-autoload :AbFileLocalInputStream, "org/allbinary/logic/io/AbFileLocalInputStream"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
-autoload :Document, "org/w3c/dom/Document"
-autoload :XslHelper, "org/allbinary/data/tree/dom/XslHelper"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :DomDocumentHelper, "org/allbinary/data/tree/dom/document/DomDocumentHelper" unless const_defined?(:DomDocumentHelper, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :XmlDocumentHelper, "org/allbinary/data/tree/dom/document/XmlDocumentHelper" unless const_defined?(:XmlDocumentHelper, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileLocalInputStream, "org/allbinary/logic/io/AbFileLocalInputStream" unless const_defined?(:AbFileLocalInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+autoload :XslHelper, "org/allbinary/data/tree/dom/XslHelper" unless const_defined?(:XslHelper, false)
+
+end; end; end; end; end
 

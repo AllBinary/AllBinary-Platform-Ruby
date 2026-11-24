@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.ai.sequence
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Ai; module Sequence
+
 class NumberLayersSequenceAIFactory
     
 
@@ -23,8 +25,10 @@ class NumberLayersSequenceAIFactory
     end
 end
 
-autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :NumberLayersSequenceAI, "org/allbinary/game/ag/ai/sequence/NumberLayersSequenceAI"
+module ::Org; module Allbinary; module Ai; autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface" unless const_defined?(:ArtificialIntelligenceInterface, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :NumberLayersSequenceAI, "org/allbinary/game/ag/ai/sequence/NumberLayersSequenceAI" unless const_defined?(:NumberLayersSequenceAI, false)
+
+end; end; end; end; end; end
 

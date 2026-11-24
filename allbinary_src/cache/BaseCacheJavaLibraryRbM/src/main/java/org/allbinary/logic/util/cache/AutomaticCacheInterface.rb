@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/CacheInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Cache
 
 module AutomaticCacheInterface
     include CacheInterface
@@ -25,7 +28,10 @@ module AutomaticCacheInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :get, 1
 end
 
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false)
+
+end; end; end; end; end
 

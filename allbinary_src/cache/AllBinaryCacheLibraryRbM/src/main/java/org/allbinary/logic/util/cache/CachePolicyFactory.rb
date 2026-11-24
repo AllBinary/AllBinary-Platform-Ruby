@@ -15,10 +15,12 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class CachePolicyFactory
     attr_accessor :NAME, :MAX_TIME_THOUSAND_MAX, :THIRTY_MINUTES_TEN_THOUSAND_MAX, :THIRTY_MINUTES_FIFTY_THOUSAND_MAX, :ONE_MINUTE_FIVE_MAX, :ONE_MINUTE_TEN_MAX, :ONE_MINUTE_ONE_HUNDRED_MAX
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_util_cache_CachePolicyFactory
         @NAME = "lru"
         @MAX_TIME_THOUSAND_MAX = CachePolicy.new(@NAME, 9223372036854775807, 1000)
         @THIRTY_MINUTES_TEN_THOUSAND_MAX = CachePolicy.new(@NAME, 1000 * 60 * 30, 10000)
@@ -29,7 +31,7 @@ class CachePolicyFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_CachePolicyFactory
     end
     
 
@@ -68,11 +70,13 @@ class CachePolicyFactory
     end
 end
 
-autoload :CachePolicy, "org/allbinary/logic/util/cache/CachePolicy"
+autoload :CachePolicy, "org/allbinary/logic/util/cache/CachePolicy" unless const_defined?(:CachePolicy, false)
 
 begin
     CachePolicyFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

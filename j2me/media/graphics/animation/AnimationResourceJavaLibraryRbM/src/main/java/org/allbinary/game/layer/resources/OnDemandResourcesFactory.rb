@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer.resources
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Resources
+
 class OnDemandResourcesFactory
     
 
@@ -28,5 +30,7 @@ class OnDemandResourcesFactory
     end
 end
 
-autoload :OnDemandResources, "org/allbinary/game/layer/resources/OnDemandResources"
+autoload :OnDemandResources, "org/allbinary/game/layer/resources/OnDemandResources" unless const_defined?(:OnDemandResources, false)
+
+end; end; end; end; end
 

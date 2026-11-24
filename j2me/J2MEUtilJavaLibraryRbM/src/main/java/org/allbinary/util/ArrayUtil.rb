@@ -5,15 +5,17 @@
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsMethod"
 
+module ::Org; module Allbinary; module Util
+
 class ArrayUtil
     attr_accessor :mathUtil
 
-    def initialize_fields
-        @mathUtil = MathUtil.getInstance()
+    def jfields_org_allbinary_util_ArrayUtil
+        @mathUtil = ::Org::Allbinary::Logic::MathPackage::MathUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_util_ArrayUtil
     end
     
 
@@ -35,56 +37,56 @@ class ArrayUtil
     
 
     def copyOfbyte(original, newLength)
-        copy = Array.new(newLength, 0)
+        copy = (Array.new(newLength, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :B) }
         copy[0, @mathUtil.min(original.length, newLength)] = original[0, @mathUtil.min(original.length, newLength)]
         return copy
     end
     
 
     def copyOfshort(original, newLength)
-        copy = Array.new(newLength, 0)
+        copy = (Array.new(newLength, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :S) }
         copy[0, @mathUtil.min(original.length, newLength)] = original[0, @mathUtil.min(original.length, newLength)]
         return copy
     end
     
 
     def copyOfint(original, newLength)
-        copy = Array.new(newLength, 0)
+        copy = (Array.new(newLength, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         copy[0, @mathUtil.min(original.length, newLength)] = original[0, @mathUtil.min(original.length, newLength)]
         return copy
     end
     
 
     def copyOflong(original, newLength)
-        copy = Array.new(newLength, 0)
+        copy = (Array.new(newLength, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :J) }
         copy[0, @mathUtil.min(original.length, newLength)] = original[0, @mathUtil.min(original.length, newLength)]
         return copy
     end
     
 
     def copyOfchar(original, newLength)
-        copy = Array.new(newLength, "\0")
+        copy = (Array.new(newLength, "\0")).tap { |java_array| java_array.instance_variable_set(:@java_component, :C) }
         copy[0, @mathUtil.min(original.length, newLength)] = original[0, @mathUtil.min(original.length, newLength)]
         return copy
     end
     
 
     def copyOffloat(original, newLength)
-        copy = Array.new(newLength, 0.0)
+        copy = (Array.new(newLength, 0.0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :F) }
         copy[0, @mathUtil.min(original.length, newLength)] = original[0, @mathUtil.min(original.length, newLength)]
         return copy
     end
     
 
     def copyOfdouble(original, newLength)
-        copy = Array.new(newLength, 0.0)
+        copy = (Array.new(newLength, 0.0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :D) }
         copy[0, @mathUtil.min(original.length, newLength)] = original[0, @mathUtil.min(original.length, newLength)]
         return copy
     end
     
 
     def copyOfboolean(original, newLength)
-        copy = Array.new(newLength, false)
+        copy = (Array.new(newLength, false)).tap { |java_array| java_array.instance_variable_set(:@java_component, :Z) }
         copy[0, @mathUtil.min(original.length, newLength)] = original[0, @mathUtil.min(original.length, newLength)]
         return copy
     end
@@ -120,14 +122,14 @@ class ArrayUtil
     
 
     def toStringFromTwoDimensionaArray(twoDimensionalIntArray)
-        stringBuffer = StringMaker.new()
-        commonSeps = CommonSeps.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         endIndex = twoDimensionalIntArray.length
         endIndex2 = twoDimensionalIntArray[0].length
         (0...endIndex).each do |index|
             stringBuffer.append(commonSeps.BRACE_OPEN)
             (0...endIndex2).each do |index2|
-                stringBuffer.appendint((twoDimensionalIntArray[index][index2]).to_i)
+                stringBuffer.appendint(((twoDimensionalIntArray[index][index2]).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
                 stringBuffer.append(commonSeps.COMMA_SEP)
             end
             stringBuffer.append(commonSeps.BRACE_CLOSE)
@@ -138,10 +140,10 @@ class ArrayUtil
     
 
     def toStringFromObjectArray(objectArray)
-        stringBuffer = StringMaker.new()
-        commonSeps = CommonSeps.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         (0...objectArray.length).each do |index|
-            stringBuffer.append(StringUtil.getInstance().toString(objectArray[index]))
+            stringBuffer.append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(objectArray[index]))
             stringBuffer.append(commonSeps.COMMA_SEP)
         end
         return stringBuffer.to_s
@@ -149,8 +151,8 @@ class ArrayUtil
     
 
     def toStringFromByteArray(byteArray)
-        stringBuffer = StringMaker.new()
-        commonSeps = CommonSeps.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         (0...byteArray.length).each do |index|
             stringBuffer.appendbyte(byteArray[index])
             stringBuffer.append(commonSeps.COMMA_SEP)
@@ -189,10 +191,10 @@ class ArrayUtil
     end
 end
 
-autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 require "java/lang/System"
 
 begin
@@ -200,4 +202,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

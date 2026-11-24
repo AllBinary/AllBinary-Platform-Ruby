@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.communication.http
 
+require "java/lang/JavaOverload"
 require "org/apache/commons/fileupload/DefaultFileItemFactory"
 
-class AbFileItemFactory < DefaultFileItemFactory
+module ::Org; module Allbinary; module Logic; module Communication; module Http
+
+class AbFileItemFactory < ::Org::Apache::Commons::Fileupload::DefaultFileItemFactory
     
 
     def initialize()
         super()
     end
 end
+
+end; end; end; end; end
 

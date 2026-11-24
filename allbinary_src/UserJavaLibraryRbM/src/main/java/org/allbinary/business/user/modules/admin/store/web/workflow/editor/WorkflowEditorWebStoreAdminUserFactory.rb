@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.modules.admin.store.web.workflow.editor
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/user/UserFactoryInterface"
 
+module ::Org; module Allbinary; module Business; module User; module Modules; module Admin; module Store; module Web; module Workflow; module Editor
+
 class WorkflowEditorWebStoreAdminUserFactory
-    include UserFactoryInterface
+    include ::Org::Allbinary::Business::User::UserFactoryInterface
     
 
     def initialize()
@@ -25,19 +28,26 @@ class WorkflowEditorWebStoreAdminUserFactory
     
 
     # throws Exception
-    def getInstance()
+    def getInstance_j0()
         return WorkflowEditorWebStoreAdminUser.new()
     end
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
-    def getInstance(hashMap)
+    def getInstance_j1(hashMap)
         return WorkflowEditorWebStoreAdminUser.new(hashMap)
+    end
+
+    def getInstance(*java_overload_args)
+        return getInstance_j0(*java_overload_args) if java_overload_args.length == 0
+        return getInstance_j1(*java_overload_args) if java_overload_args.length == 1
+        raise ArgumentError, "No method getInstance takes #{java_overload_args.length} arguments"
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :UserInterface, "org/allbinary/business/user/UserInterface"
-autoload :WorkflowEditorWebStoreAdminUser, "org/allbinary/business/user/modules/admin/store/web/workflow/editor/WorkflowEditorWebStoreAdminUser"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module User; autoload :UserInterface, "org/allbinary/business/user/UserInterface" unless const_defined?(:UserInterface, false); end; end; end; end
+autoload :WorkflowEditorWebStoreAdminUser, "org/allbinary/business/user/modules/admin/store/web/workflow/editor/WorkflowEditorWebStoreAdminUser" unless const_defined?(:WorkflowEditorWebStoreAdminUser, false)
+
+end; end; end; end; end; end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.form.item.validation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/form/item/validation/TextFieldItemValidator"
+
+module ::Org; module Allbinary; module Graphics; module Form; module Item; module Validation
 
 class PasswordValidator < TextFieldItemValidator
     
@@ -24,5 +27,7 @@ class PasswordValidator < TextFieldItemValidator
     end
 end
 
-autoload :ABTextFieldItem, "org/allbinary/graphics/form/item/ABTextFieldItem"
+module ::Org; module Allbinary; module Graphics; module Form; module Item; autoload :ABTextFieldItem, "org/allbinary/graphics/form/item/ABTextFieldItem" unless const_defined?(:ABTextFieldItem, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

@@ -14,40 +14,48 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.shipping.modules
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/user/commerce/shipping/modules/ShippingInterface"
+
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Shipping; module Modules
 
 class PickUpShippingModule
     include ShippingInterface
     attr_accessor :commonStrings, :name, :description
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_business_user_commerce_shipping_modules_PickUpShippingModule
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @name = "No Shipping (For Pickup Orders Only)"
         @description = "This shipping method is for pickup orders only."
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_shipping_modules_PickUpShippingModule
     end
     
 
     def getCost(order)
-        return Money.new()
+        return ::Org::Allbinary::Business::User::Commerce::Money::Money.new()
     end
+    java_overload :getCost, 1
     
 
     def getDescription()
         return @description
     end
+    java_overload :getDescription, 0
     
 
     def getName()
         return @name
     end
+    java_overload :getName, 0
 end
 
-autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface"
-autoload :Money, "org/allbinary/business/user/commerce/money/Money"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Order; autoload :OrderInterface, "org/allbinary/business/user/commerce/inventory/order/OrderInterface" unless const_defined?(:OrderInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; autoload :Money, "org/allbinary/business/user/commerce/money/Money" unless const_defined?(:Money, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end; end; end
 

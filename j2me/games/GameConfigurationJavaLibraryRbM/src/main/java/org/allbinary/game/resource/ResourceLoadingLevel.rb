@@ -15,17 +15,19 @@
 # package org.allbinary.game.resource
 
 
+module ::Org; module Allbinary; module Game; module Resource
+
 class ResourceLoadingLevel
     attr_accessor :name, :level
 
-    def initialize_fields
-        @name = nil
-        @level = nil
+    def jfields_org_allbinary_game_resource_ResourceLoadingLevel
+        @name = nil unless instance_variable_defined?(:@name)
+        @level = nil unless instance_variable_defined?(:@level)
     end
     
 
     def initialize(name, level)
-        initialize_fields
+        jfields_org_allbinary_game_resource_ResourceLoadingLevel
         @name = name
         @level = level
     end
@@ -40,4 +42,6 @@ class ResourceLoadingLevel
         return @name
     end
 end
+
+end; end; end; end
 

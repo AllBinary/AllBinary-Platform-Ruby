@@ -15,6 +15,8 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 module TimeBaseInterface
     
 
@@ -31,6 +33,8 @@ module TimeBaseInterface
     end
 end
 
-autoload :MediaException, "javax/microedition/media/MediaException"
-autoload :TimeBase, "javax/microedition/media/TimeBase"
+module ::Javax; module Microedition; module Media; autoload :MediaException, "javax/microedition/media/MediaException" unless const_defined?(:MediaException, false); end; end; end
+module ::Javax; module Microedition; module Media; autoload :TimeBase, "javax/microedition/media/TimeBase" unless const_defined?(:TimeBase, false); end; end; end
+
+end; end; end; end
 

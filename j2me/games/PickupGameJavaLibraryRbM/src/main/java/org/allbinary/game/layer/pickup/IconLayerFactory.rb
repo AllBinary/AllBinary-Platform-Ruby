@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer.pickup
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 class IconLayerFactory
     
 
@@ -24,6 +26,8 @@ class IconLayerFactory
     end
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :IconLayer, "org/allbinary/game/layer/pickup/IconLayer"
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+autoload :IconLayer, "org/allbinary/game/layer/pickup/IconLayer" unless const_defined?(:IconLayer, false)
+
+end; end; end; end; end
 

@@ -15,13 +15,18 @@
 # package org.allbinary.business.category.properties
 
 
+module ::Org; module Allbinary; module Business; module Category; module Properties
+
 module CategoryPropertiesFactoryInterface
     
 
     def getInstance()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface" unless const_defined?(:CategoryPropertiesInterface, false)
+
+end; end; end; end; end
 

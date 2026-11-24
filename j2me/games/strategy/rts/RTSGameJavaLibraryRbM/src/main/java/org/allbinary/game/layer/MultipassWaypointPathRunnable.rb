@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/thread/ARunnable"
 require "org/allbinary/game/layer/WaypointPathRunnableBase"
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class MultipassWaypointPathRunnable < WaypointPathRunnableBase
     attr_accessor :logUtil, :basicArrayListUtil, :multipassState, :done, :list, :pathFindingInfo, :FIRST_RUNNABLE, :SECOND_RUNNABLE, :END_RUNNABLE, :ALREADY_ENDED_RUNNABLE, :currentPassRunnable
-    class FirstRunnable < ARunnable
+    class FirstRunnable < ::Org::Allbinary::ThreadPackage::ARunnable
         attr_accessor :multipassWaypointPathRunnable
 
-        def initialize_fields
-            @multipassWaypointPathRunnable = nil
+        def jfields_org_allbinary_game_layer_MultipassWaypointPathRunnable_FirstRunnable
+            @multipassWaypointPathRunnable = nil unless instance_variable_defined?(:@multipassWaypointPathRunnable)
         end
         
 
         def initialize(multipassWaypointPathRunnable)
             super()
-            initialize_fields
+            jfields_org_allbinary_game_layer_MultipassWaypointPathRunnable_FirstRunnable
             @multipassWaypointPathRunnable = multipassWaypointPathRunnable
         end
         
@@ -37,19 +40,20 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
         def run()
             @multipassWaypointPathRunnable.processFirstRunnable()
         end
+        java_overload :run, 0
     end
     #    private boolean first = true;
-    class SecondRunnable < ARunnable
+    class SecondRunnable < ::Org::Allbinary::ThreadPackage::ARunnable
         attr_accessor :multipassWaypointPathRunnable
 
-        def initialize_fields
-            @multipassWaypointPathRunnable = nil
+        def jfields_org_allbinary_game_layer_MultipassWaypointPathRunnable_SecondRunnable
+            @multipassWaypointPathRunnable = nil unless instance_variable_defined?(:@multipassWaypointPathRunnable)
         end
         
 
         def initialize(multipassWaypointPathRunnable)
             super()
-            initialize_fields
+            jfields_org_allbinary_game_layer_MultipassWaypointPathRunnable_SecondRunnable
             @multipassWaypointPathRunnable = multipassWaypointPathRunnable
         end
         
@@ -57,18 +61,19 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
         def run()
             @multipassWaypointPathRunnable.processSecondRunnable()
         end
+        java_overload :run, 0
     end
-    class EndRunnable < ARunnable
+    class EndRunnable < ::Org::Allbinary::ThreadPackage::ARunnable
         attr_accessor :multipassWaypointPathRunnable
 
-        def initialize_fields
-            @multipassWaypointPathRunnable = nil
+        def jfields_org_allbinary_game_layer_MultipassWaypointPathRunnable_EndRunnable
+            @multipassWaypointPathRunnable = nil unless instance_variable_defined?(:@multipassWaypointPathRunnable)
         end
         
 
         def initialize(multipassWaypointPathRunnable)
             super()
-            initialize_fields
+            jfields_org_allbinary_game_layer_MultipassWaypointPathRunnable_EndRunnable
             @multipassWaypointPathRunnable = multipassWaypointPathRunnable
         end
         
@@ -76,25 +81,27 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
         def run()
             @multipassWaypointPathRunnable.processEndRunnable()
         end
+        java_overload :run, 0
     end
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @basicArrayListUtil = BasicArrayListUtil.getInstance()
-        @multipassState = MultipassState.new()
+    def jfields_org_allbinary_game_layer_MultipassWaypointPathRunnable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @basicArrayListUtil = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance()
+        @multipassState = ::Org::Allbinary::Media::Graphics::Geography::Pathfinding::MultipassState.new()
         @done = false
         @list = @basicArrayListUtil.getImmutableInstance()
-        @pathFindingInfo = NullUtil.getInstance().NULL_OBJECT
+        @pathFindingInfo = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         @FIRST_RUNNABLE = FirstRunnable.new(self)
         @SECOND_RUNNABLE = SecondRunnable.new(self)
         @END_RUNNABLE = EndRunnable.new(self)
-        @ALREADY_ENDED_RUNNABLE = Class.new(ARunnable.is_a?(Class) ? ARunnable : Object) do
-        include(ARunnable) unless ARunnable.is_a?(Class)
+        @ALREADY_ENDED_RUNNABLE = Class.new(::Org::Allbinary::ThreadPackage::ARunnable.is_a?(Class) ? ::Org::Allbinary::ThreadPackage::ARunnable : Object) do
+        include(::Org::Allbinary::ThreadPackage::ARunnable) unless ::Org::Allbinary::ThreadPackage::ARunnable.is_a?(Class)
         
 
         def run()
             raise RuntimeError.new()
         end
+        java_overload :run, 0
     end.new()
         @currentPassRunnable = @FIRST_RUNNABLE
     end
@@ -102,7 +109,7 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_layer_MultipassWaypointPathRunnable
     end
     
 
@@ -113,26 +120,29 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
             @done = false
         end
     end
+    java_overload :setRunning, 1
     
 
     def run()
-        logUtil = LogUtil.getInstance()
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         begin
             @currentPassRunnable.run()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             self.setRunning(false)
         end
     end
+    java_overload :run, 0
     
 
     def reset2()
         @multipassState.step = 0
         @multipassState.iteration = 0
         @multipassState.iteration2 = 0
-        @pathFindingInfo = NullUtil.getInstance().NULL_OBJECT
+        @pathFindingInfo = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
     end
+    java_overload :reset2, 0
     
 
     def finish()
@@ -140,11 +150,13 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
         @currentPassRunnable = @ALREADY_ENDED_RUNNABLE
         @done = true
     end
+    java_overload :finish, 0
     
 
     def isDone()
         return @done
     end
+    java_overload :isDone, 0
     
 
     def reset()
@@ -152,6 +164,7 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
         @currentPassRunnable = @FIRST_RUNNABLE
         @done = false
     end
+    java_overload :reset, 0
     
 
     def processFirstRunnable()
@@ -171,12 +184,13 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
                 @currentPassRunnable = @SECOND_RUNNABLE
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             self.setRunning(false)
             self.finish()
         end
     end
+    java_overload :processFirstRunnable, 0
     
 
     def processSecondRunnable()
@@ -188,12 +202,13 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
                 @END_RUNNABLE.run()
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             self.setRunning(false)
             self.finish()
         end
     end
+    java_overload :processSecondRunnable, 0
     
 
     def processEndRunnable()
@@ -202,22 +217,25 @@ class MultipassWaypointPathRunnable < WaypointPathRunnableBase
             waypointBehavior.setWaypointPathsList(@list)
             @pathFindingLayer.getWaypointRunnableLogHelper().end_(@pathFindingLayer)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             self.setRunning(false)
         end
         self.finish()
     end
+    java_overload :processEndRunnable, 0
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/pathfinding/MultipassState"
-require "org/allbinary/media/graphics/geography/pathfinding/PathFindingInfo"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/game/layer/WaypointBehaviorBase"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding; autoload :MultipassState, "org/allbinary/media/graphics/geography/pathfinding/MultipassState" unless const_defined?(:MultipassState, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding; autoload :PathFindingInfo, "org/allbinary/media/graphics/geography/pathfinding/PathFindingInfo" unless const_defined?(:PathFindingInfo, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+autoload :WaypointBehaviorBase, "org/allbinary/game/layer/WaypointBehaviorBase" unless const_defined?(:WaypointBehaviorBase, false)
 require "java/lang/Runnable"
+
+end; end; end; end
 

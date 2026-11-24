@@ -15,7 +15,9 @@
 # package org.allbinary.input.automation.module
 
 # require "javax/help/HelpSet"
-# require "javax/swing"
+# require "javax/swing/JPanel"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage
 
 class InputAutomationModuleFactoryInterface
     
@@ -41,5 +43,7 @@ class InputAutomationModuleFactoryInterface
     end
 end
 
-autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface"
+module ::Org; module Allbinary; module ThreadPackage; autoload :RunnableInterface, "org/allbinary/thread/RunnableInterface" unless const_defined?(:RunnableInterface, false); end; end; end
+
+end; end; end; end; end
 

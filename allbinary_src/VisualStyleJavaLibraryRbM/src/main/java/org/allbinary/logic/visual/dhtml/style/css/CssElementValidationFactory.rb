@@ -15,6 +15,8 @@
 # package org.allbinary.logic.visual.dhtml.style.css
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Style; module Css
+
 class CssElementValidationFactory
     
 
@@ -28,7 +30,9 @@ class CssElementValidationFactory
     end
 end
 
-autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface"
-autoload :Node, "org/w3c/dom/Node"
-autoload :CssElementValidation, "org/allbinary/logic/visual/dhtml/style/css/CssElementValidation"
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate; autoload :ValidationInterface, "org/allbinary/logic/control/validate/ValidationInterface" unless const_defined?(:ValidationInterface, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :CssElementValidation, "org/allbinary/logic/visual/dhtml/style/css/CssElementValidation" unless const_defined?(:CssElementValidation, false)
+
+end; end; end; end; end; end; end
 

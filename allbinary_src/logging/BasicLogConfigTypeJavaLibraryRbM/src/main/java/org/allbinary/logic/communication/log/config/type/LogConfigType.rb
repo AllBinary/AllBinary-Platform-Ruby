@@ -15,17 +15,19 @@
 # package org.allbinary.logic.communication.log.config.type
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type
+
 class LogConfigType
     attr_accessor :name, :description
 
-    def initialize_fields
-        @name = nil
-        @description = nil
+    def jfields_org_allbinary_logic_communication_log_config_type_LogConfigType
+        @name = nil unless instance_variable_defined?(:@name)
+        @description = nil unless instance_variable_defined?(:@description)
     end
     
 
     def initialize(name, description)
-        initialize_fields
+        jfields_org_allbinary_logic_communication_log_config_type_LogConfigType
         @name = name
         @description = description
     end
@@ -50,4 +52,6 @@ class LogConfigType
         @description = value
     end
 end
+
+end; end; end; end; end; end; end
 

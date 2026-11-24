@@ -19,20 +19,22 @@
 # require "jsinterop/annotations/JsConstructor"
 # require "jsinterop/annotations/JsProperty"
 
+module ::Org; module Allbinary; module MathPackage
+
 class AngleFactory
     attr_accessor :logUtil, :TOTAL_ANGLE, :QUARTER_TOTAL_ANGLE, :angleArray, :NEGATIVE_ONE, :NOT_ANGLE, :DOWN, :UP, :LEFT, :RIGHT, :frameUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_math_AngleFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @TOTAL_ANGLE = 360
         @QUARTER_TOTAL_ANGLE = 90
         @angleArray = Array.new(@TOTAL_ANGLE, nil)
         @NEGATIVE_ONE = (((-1).to_i + 32768) % 65536 - 32768)
-        @NOT_ANGLE = NamedAngle.new(@NEGATIVE_ONE, CommonStrings.getInstance().EMPTY)
-        @DOWN = nil
-        @UP = nil
-        @LEFT = nil
-        @RIGHT = nil
+        @NOT_ANGLE = NamedAngle.new(@NEGATIVE_ONE, ::Org::Allbinary::StringPackage::CommonStrings.getInstance().EMPTY)
+        @DOWN = nil unless instance_variable_defined?(:@DOWN)
+        @UP = nil unless instance_variable_defined?(:@UP)
+        @LEFT = nil unless instance_variable_defined?(:@LEFT)
+        @RIGHT = nil unless instance_variable_defined?(:@RIGHT)
         @frameUtil = FrameUtil.getInstance()
     end
     
@@ -43,8 +45,8 @@ class AngleFactory
     
 
     def initialize()
-        initialize_fields
-        commonPhoneStrings = CommonPhoneStrings.getInstance()
+        jfields_org_allbinary_math_AngleFactory
+        commonPhoneStrings = ::Org::Allbinary::StringPackage::CommonPhoneStrings.getInstance()
         total = (((@angleArray.length).to_i + 32768) % 65536 - 32768)
         @UP = NamedAngle.new((((0).to_i + 32768) % 65536 - 32768), commonPhoneStrings.UP)
         @angleArray[0] = @UP
@@ -70,7 +72,7 @@ class AngleFactory
     
 
     def getAt(index)
-        adjustedIndex = (@frameUtil.adjustAngleToFrameAngle(index)).to_i
+        adjustedIndex = ((@frameUtil.adjustAngleToFrameAngle(index)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
         return @angleArray[adjustedIndex]
     end
     
@@ -95,12 +97,12 @@ class AngleFactory
     
 
     def self.main(args)
-        stringMaker = StringMaker.new()
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         angleFactory = AngleFactory.getInstance()
         (0...360).each do |index|
-            stringMaker.appendint(index).append(CommonSeps.getInstance().FORWARD_SLASH).appendshort((((angleFactory.getClosestDirection(index).getValue()).to_i + 32768) % 65536 - 32768)).append(CommonSeps.getInstance().NEW_LINE)
+            stringMaker.appendint(index).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().FORWARD_SLASH).appendshort(((((angleFactory.getClosestDirection(index).getValue()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }) + 32768) % 65536 - 32768)).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE)
         end
-        LogUtil.getInstance().putF(stringMaker.to_s, "main", "main")
+        ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance().putF(stringMaker.to_s, "main", "main")
     end
 
     def self.instance()
@@ -134,18 +136,20 @@ class AngleFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :Angle, "org/allbinary/math/Angle"
-autoload :FrameUtil, "org/allbinary/math/FrameUtil"
-autoload :NamedAngle, "org/allbinary/math/NamedAngle"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonPhoneStrings, "org/allbinary/string/CommonPhoneStrings" unless const_defined?(:CommonPhoneStrings, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :Angle, "org/allbinary/math/Angle" unless const_defined?(:Angle, false)
+autoload :FrameUtil, "org/allbinary/math/FrameUtil" unless const_defined?(:FrameUtil, false)
+autoload :NamedAngle, "org/allbinary/math/NamedAngle" unless const_defined?(:NamedAngle, false)
 
 begin
     AngleFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

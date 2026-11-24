@@ -15,13 +15,15 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 #ActualPlatform
 class LogFactory
     
 
     def self.getInstanceD()
-        stringUtil = StringUtil.getInstance()
-        nullUtil = NullUtil.getInstance()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
+        nullUtil = ::Org::Allbinary::Logic::NullUtil.getInstance()
         return Log.new(stringUtil.EMPTY_STRING, nullUtil.NULL_OBJECT, stringUtil.EMPTY_STRING, nullUtil.NULL_OBJECT)
     end
     
@@ -39,7 +41,7 @@ class LogFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:LOG, Log.new(StringUtil.getInstance().EMPTY_STRING, NullUtil.getInstance().NULL_OBJECT, StringUtil.getInstance().EMPTY_STRING, NullUtil.getInstance().NULL_OBJECT))
+            const_set(:LOG, Log.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -56,13 +58,15 @@ class LogFactory
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :Log, "org/allbinary/logic/communication/log/Log"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :Log, "org/allbinary/logic/communication/log/Log" unless const_defined?(:Log, false)
 
 begin
     LogFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

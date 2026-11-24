@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.os
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/os/GenericOperatingSystem"
+
+module ::Org; module Allbinary; module Logic; module System; module Os
 
 class NoOperatingSystem < GenericOperatingSystem
     
@@ -49,4 +52,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

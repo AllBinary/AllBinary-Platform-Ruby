@@ -15,12 +15,17 @@
 # package org.allbinary.logic.visual.transform.info.objectConfig.generator
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module ObjectConfig; module Generator
+
 module TransformInfoObjectConfigGeneratorInterface
     
 
     # throws Exception
     def process(input)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end; end; end
 

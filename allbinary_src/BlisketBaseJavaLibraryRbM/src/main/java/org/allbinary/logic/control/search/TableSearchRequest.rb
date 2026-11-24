@@ -15,20 +15,22 @@
 # package org.allbinary.logic.control.search
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Search
+
 class TableSearchRequest
     attr_accessor :xslFile, :pageName, :contentType, :keywords, :searchParams
 
-    def initialize_fields
-        @xslFile = nil
-        @pageName = nil
-        @contentType = nil
-        @keywords = nil
-        @searchParams = nil
+    def jfields_org_allbinary_logic_control_search_TableSearchRequest
+        @xslFile = nil unless instance_variable_defined?(:@xslFile)
+        @pageName = nil unless instance_variable_defined?(:@pageName)
+        @contentType = nil unless instance_variable_defined?(:@contentType)
+        @keywords = nil unless instance_variable_defined?(:@keywords)
+        @searchParams = nil unless instance_variable_defined?(:@searchParams)
     end
     
 
     def initialize(keywords, searchParams, xslFile, contentType)
-        initialize_fields
+        jfields_org_allbinary_logic_control_search_TableSearchRequest
         @keywords = keywords
         @searchParams = searchParams
         @xslFile = xslFile
@@ -74,7 +76,7 @@ class TableSearchRequest
 
     # throws Exception
     def getXslFile()
-        path = (URLGLOBALS.getMainPath() + FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH).to_s + @xslFile
+        path = (::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + ::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH).to_s + @xslFile
         return path
     end
     
@@ -91,15 +93,17 @@ class TableSearchRequest
 
     # throws Exception
     def getFileBaseNameNode(document)
-        return ModDomHelper.createNameValueNodes(document, SearchData::FILENAME, self.getFileBaseName())
+        return ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, SearchData::FILENAME, self.getFileBaseName())
     end
 end
 
-autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
-autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :SearchData, "org/allbinary/logic/control/search/SearchData"
-autoload :SearchParams, "org/allbinary/logic/control/search/SearchParams"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper" unless const_defined?(:ModDomHelper, false); end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS" unless const_defined?(:FREEBLISKET_PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :SearchData, "org/allbinary/logic/control/search/SearchData" unless const_defined?(:SearchData, false)
+autoload :SearchParams, "org/allbinary/logic/control/search/SearchParams" unless const_defined?(:SearchParams, false)
+
+end; end; end; end; end
 

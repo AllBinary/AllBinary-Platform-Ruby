@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.layer.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Layer; module Event
+
 module LayerManagerEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,6 +28,7 @@ module LayerManagerEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onCreateLayerManagerEvent, 1
     
 
     # throws Exception
@@ -32,7 +36,10 @@ module LayerManagerEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onDeleteLayerManagerEvent, 1
 end
 
-autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent"
+autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent" unless const_defined?(:LayerManagerEvent, false)
+
+end; end; end; end
 

@@ -14,24 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.visitor
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/visitor/VisitorInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Visitor
 
 class Visitor
     include VisitorInterface
     attr_accessor :nullUtil
 
-    def initialize_fields
-        @nullUtil = NullUtil.getInstance()
+    def jfields_org_allbinary_logic_util_visitor_Visitor
+        @nullUtil = ::Org::Allbinary::Logic::NullUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_util_visitor_Visitor
     end
     
 
     def visit(anyType)
         return @nullUtil.NULL_OBJECT
     end
+    java_overload :visit, 1
     
 
     def self.getInstance()
@@ -69,11 +73,13 @@ class Visitor
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
 
 begin
     Visitor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

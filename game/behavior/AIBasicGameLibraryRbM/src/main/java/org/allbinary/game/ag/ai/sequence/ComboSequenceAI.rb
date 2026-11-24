@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.sequence
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ag/ai/sequence/SequenceAI"
+
+module ::Org; module Allbinary; module Game; module Ag; module Ai; module Sequence
 
 class ComboSequenceAI < SequenceAI
     
@@ -30,13 +33,16 @@ class ComboSequenceAI < SequenceAI
         size = artificialIntelligenceInterfaceArray.length
         (0...size).each do |index|
             self.setIndex(index)
-            super(allBinaryLayerManager)
+            ComboSequenceAI.superclass.java_super_method(:processAI, 1).bind(self).call(allBinaryLayerManager)
         end
     end
+    java_overload :processAI, 1
 end
 
-autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface"
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
+module ::Org; module Allbinary; module Ai; autoload :ArtificialIntelligenceInterface, "org/allbinary/ai/ArtificialIntelligenceInterface" unless const_defined?(:ArtificialIntelligenceInterface, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+
+end; end; end; end; end; end
 

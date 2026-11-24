@@ -14,69 +14,79 @@
 # frozen_string_literal: false
 # package admin.tags
 
+require "java/lang/Object"
+require "java/lang/JavaOverload"
 # require "javax/servlet/http/HttpServletRequest"
 # require "javax/servlet/jsp/JspTagException"
 # require "javax/servlet/jsp/tagext/TagSupport"
 require "tags/CustomTagSupport"
 
-class FileAuthenticationTag < CustomTagSupport
+module ::Admin; module Tags
+
+class FileAuthenticationTag < ::Tags::CustomTagSupport
     attr_accessor :logUtil, :attemptsInteger, :weblisketSession, :request, :command, :userName, :password, :newPassword, :authenticated, :sessionUserName, :role, :timeout, :roles
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @attemptsInteger = nil
-        @weblisketSession = nil
-        @request = nil
-        @command = nil
-        @userName = nil
-        @password = nil
-        @newPassword = nil
-        @authenticated = nil
-        @sessionUserName = nil
-        @role = nil
-        @timeout = nil
-        @roles = nil
+    def jfields_admin_tags_FileAuthenticationTag
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @attemptsInteger = nil unless instance_variable_defined?(:@attemptsInteger)
+        @weblisketSession = nil unless instance_variable_defined?(:@weblisketSession)
+        @request = nil unless instance_variable_defined?(:@request)
+        @command = nil unless instance_variable_defined?(:@command)
+        @userName = nil unless instance_variable_defined?(:@userName)
+        @password = nil unless instance_variable_defined?(:@password)
+        @newPassword = nil unless instance_variable_defined?(:@newPassword)
+        @authenticated = nil unless instance_variable_defined?(:@authenticated)
+        @sessionUserName = nil unless instance_variable_defined?(:@sessionUserName)
+        @role = nil unless instance_variable_defined?(:@role)
+        @timeout = nil unless instance_variable_defined?(:@timeout)
+        @roles = nil unless instance_variable_defined?(:@roles)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_admin_tags_FileAuthenticationTag
     end
     
 
     def setCommand(command)
         @command = command
     end
+    java_overload :setCommand, 1
     
 
     def setUserName(userName)
         @userName = userName
     end
+    java_overload :setUserName, 1
     
 
     def setPassword(value)
         @password = value
     end
+    java_overload :setPassword, 1
     
 
     def setNewPassword(value)
         @newPassword = value
     end
+    java_overload :setNewPassword, 1
     
 
     def setRoles(values)
         @roles = values
     end
+    java_overload :setRoles, 1
     
 
     def makeSessionValid(storedRole, userName)
         @weblisketSession.setAuthenticated()
         @weblisketSession.setRole(storedRole)
         @weblisketSession.setUserName(userName)
-        @request.removeAttribute(WeblisketSessionData::REMOVABLEUSERNAME)
-        @request.removeAttribute(WeblisketSessionData::REMOVABLEPASSWORD)
+        @request.removeAttribute(::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSessionData::REMOVABLEUSERNAME)
+        @request.removeAttribute(::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSessionData::REMOVABLEPASSWORD)
     end
+    java_overload :makeSessionValid, 2
     
 
     def getFormData()
@@ -86,6 +96,7 @@ class FileAuthenticationTag < CustomTagSupport
         @attemptsInteger = @weblisketSession.getAttempts()
         @timeout = @weblisketSession.getTimeout()
     end
+    java_overload :getFormData, 0
     
 
     def nextAttempt()
@@ -95,19 +106,20 @@ class FileAuthenticationTag < CustomTagSupport
             @weblisketSession.setAttempts(1)
         end
     end
+    java_overload :nextAttempt, 0
     
 
     # throws LicensingException
     def changePassword()
         begin
-            userName = @request.getParameter(WeblisketSessionData::REMOVABLEUSERNAME)
-            password = @request.getParameter(WeblisketSessionData::REMOVABLEPASSWORD)
-            newPassword = @request.getParameter(WeblisketSessionData::REMOVABLENEWPASSWORD)
-            newReenteredPassword = @request.getParameter(WeblisketSessionData::REMOVABLEREENTERNEWPASSWORD)
+            userName = @request.getParameter(::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSessionData::REMOVABLEUSERNAME)
+            password = @request.getParameter(::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSessionData::REMOVABLEPASSWORD)
+            newPassword = @request.getParameter(::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSessionData::REMOVABLENEWPASSWORD)
+            newReenteredPassword = @request.getParameter(::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSessionData::REMOVABLEREENTERNEWPASSWORD)
             if (newPassword <=> newReenteredPassword) != 0
                 return false
             end
-            installerInfo = InstallerInfo.new()
+            installerInfo = ::Org::Allbinary::Business::Init::InstallerInfo.new()
             if installerInfo.isValid(userName, password)
                 installerInfo.setPassword(newPassword)
                 installerInfo.write()
@@ -116,15 +128,16 @@ class FileAuthenticationTag < CustomTagSupport
                 return true
             end
             return false
-        rescue LicensingException => e
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
             raise e
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "invalidateSession()", e)
             end
             return false
         end
     end
+    java_overload :changePassword, 0
     
 
     def invalidateSession()
@@ -132,12 +145,13 @@ class FileAuthenticationTag < CustomTagSupport
             @weblisketSession.clear()
             return TagSupport::EVAL_BODY_INCLUDE.to_i
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "invalidateSession()", e)
             end
             return TagSupport::SKIP_BODY
         end
     end
+    java_overload :invalidateSession, 0
     
 
     # throws LicensingException
@@ -146,11 +160,11 @@ class FileAuthenticationTag < CustomTagSupport
             if @role != nil
                 timeCreated = @weblisketSession.getCreationTime()
                 sessionTimout = @role.getSessionTimeout()
-                calendar = Calendar.getInstance()
+                calendar = ::Java::Util::Calendar.getInstance()
                 timeFirst = calendar.getTimeInMillis() - sessionTimout
                 if timeFirst > timeCreated
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().AUTHENTICATION)
-                        stringBuffer = StringMaker.new()
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().AUTHENTICATION)
+                        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                         stringBuffer.append("Session Is Old - Timeout: ")
                         stringBuffer.appendlong(sessionTimout)
                         stringBuffer.append(" Eval: ")
@@ -162,18 +176,19 @@ class FileAuthenticationTag < CustomTagSupport
                     return true
                 end
             else
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().AUTHENTICATION)
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().AUTHENTICATION)
                     @logUtil.putF("Role Is Not In Session", self, "isSessionOld()")
                 end
             end
             return self.isRarelyUsedSession()
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "isSessionOld()", e)
             end
             return false
         end
     end
+    java_overload :isSessionOld, 0
     
 
     def isRarelyUsedSession()
@@ -181,10 +196,10 @@ class FileAuthenticationTag < CustomTagSupport
             timeCreated = @weblisketSession.getCreationTime()
             lastAccess = @weblisketSession.getLastAccessedTime()
             timePassed = @role.getSessionInactivityTimeout()
-            calendar = Calendar.getInstance()
+            calendar = ::Java::Util::Calendar.getInstance()
             timeFirst = calendar.getTimeInMillis() - lastAccess
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().AUTHENTICATION)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().AUTHENTICATION)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 stringBuffer.append("Session Is Rarely Used - Timeout: ")
                 stringBuffer.appendlong(lastAccess)
                 stringBuffer.append(" Eval: ")
@@ -194,66 +209,70 @@ class FileAuthenticationTag < CustomTagSupport
                 @logUtil.putF(stringBuffer.to_s, self, "isRarelyUsedSession()")
             end
         else
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().AUTHENTICATION)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().AUTHENTICATION)
                 @logUtil.putF("Role Is Not In Session", self, "isRarelyUsedSession()")
             end
         end
         return false
     end
+    java_overload :isRarelyUsedSession, 0
     
 
     # throws LicensingException
     def isRoleValid()
         begin
-            self.makeSessionValid(BasicUserRoleFactory.getInstance().INSTALLER, @userName)
+            self.makeSessionValid(::Org::Allbinary::Business::User::Role::BasicUserRoleFactory.getInstance().INSTALLER, @userName)
             return true
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "isRoleValid()", e)
             end
             return false
         end
     end
+    java_overload :isRoleValid, 0
     
 
     # throws LicensingException
     def validRole()
         begin
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Trying New login<p>")
             return stringBuffer.to_s
         rescue StandardError => e
             error = "Failed to set valid role"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "validRole()", e)
             end
             return error
         end
     end
+    java_overload :validRole, 0
     
 
     # throws LicensingException
     def invalidRole()
         begin
             @weblisketSession.setAuthenticated(false)
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append("Sorry your username and password is invalid on this page.")
             stringBuffer.append("Trying New login<p>")
             return stringBuffer.to_s
         rescue StandardError => e
             error = "Failed to set role invalid"
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "invalidRole()", e)
             end
             return error
         end
     end
+    java_overload :invalidRole, 0
     
 
     # throws LicensingException
     def isAuthenticationSessionValid()
         begin
-            if BooleanUtil.getInstance().getFromString(@authenticated)
+            if ::Org::Allbinary::Logic::Java::Bool::BooleanUtil.getInstance().getFromString(@authenticated)
                 size = @roles.size()
                 (0...size).each do |index|
                     mustBeOfRole = @roles.get(index)
@@ -265,29 +284,30 @@ class FileAuthenticationTag < CustomTagSupport
             end
             return false
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "isAuthenticationSessionValid()", e)
             end
             return false
         end
     end
+    java_overload :isAuthenticationSessionValid, 0
     
 
     # throws LicensingException
     def processIfNewLogin()
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERERROR)
                 @logUtil.putF("Starting for User: " + @userName + " Attempt: " + (@weblisketSession.getAttempts()).to_s, self, "processIfNewLogin()")
             end
-            if @userName != nil && (@userName <=> StringUtil.getInstance().EMPTY_STRING) != 0 && @password != nil && (@password <=> StringUtil.getInstance().EMPTY_STRING) != 0
+            if @userName != nil && (@userName <=> ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING) != 0 && @password != nil && (@password <=> ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING) != 0
                 login = nil
-                installerInfo = InstallerInfo.new()
+                installerInfo = ::Org::Allbinary::Business::Init::InstallerInfo.new()
                 if installerInfo.isValid(@userName, @password)
-                    login = org.allbinary.globals.GLOBALS2.LOGINSUCCESS
+                    login = ::Org::Allbinary::Globals::GLOBALS2::LOGINSUCCESS
                 else
-                    login = org.allbinary.globals.GLOBALS2.LOGINFAILED
+                    login = ::Org::Allbinary::Globals::GLOBALS2::LOGINFAILED
                 end
-                if (login <=> org.allbinary.globals.GLOBALS2.LOGINSUCCESS) == 0
+                if (login <=> ::Org::Allbinary::Globals::GLOBALS2::LOGINSUCCESS) == 0
                     @weblisketSession.setAttempts(0)
                     return true
                 end
@@ -297,47 +317,49 @@ class FileAuthenticationTag < CustomTagSupport
             self.nextAttempt()
             return false
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "processIfNewLogin()", e)
             end
             return false
         end
     end
+    java_overload :processIfNewLogin, 0
     
 
     # throws LicensingException
     def processInvalidation()
         begin
-            if BooleanUtil.getInstance().getFromString(@timeout)
+            if ::Org::Allbinary::Logic::Java::Bool::BooleanUtil.getInstance().getFromString(@timeout)
                 self.invalidateSession()
                 return true
             end
             begin
-                @weblisketSession.setTimeout(BooleanFactory.getInstance().TRUE_STRING)
+                @weblisketSession.setTimeout(::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE_STRING)
                 return false
             end
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAGERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "isSetToInvalidate()", e)
             end
             return false
         end
     end
+    java_overload :processInvalidation, 0
     
 
     # throws JspTagException
     def doStartTag()
         begin
-            stringUtil = StringUtil.getInstance()
+            stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
             @request = @pageContext.getRequest()
-            @weblisketSession = BasicWeblisketSession.new(@pageContext)
+            @weblisketSession = ::Org::Allbinary::Logic::Communication::Http::Request::Session::BasicWeblisketSession.new(@pageContext)
             self.getFormData()
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                 @logUtil.putF("Started", self, @tagStrings.DO_START_TAG)
             end
             if @command != nil
-                if (@command <=> org.allbinary.globals.GLOBALS2.CHANGEPASSWORD) == 0
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                if (@command <=> ::Org::Allbinary::Globals::GLOBALS2::CHANGEPASSWORD) == 0
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                         @logUtil.putF("Change Password", self, @tagStrings.DO_START_TAG)
                     end
                     if !self.changePassword()
@@ -347,28 +369,28 @@ class FileAuthenticationTag < CustomTagSupport
                         @pageContext.getOut().print("Password Changed Successfully.<p>")
                         return SKIP_BODY
                     end
-                elsif (@command <=> WeblisketSessionData::INVALIDATESESSION) == 0
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                elsif (@command <=> ::Org::Allbinary::Logic::Communication::Http::Request::Session::WeblisketSessionData::INVALIDATESESSION) == 0
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                         @logUtil.putF("INVALIDATESESSION", self, @tagStrings.DO_START_TAG)
                     end
                     return self.invalidateSession()
                 else
                     if self.isSessionOld()
                         if self.processInvalidation()
-                            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                                 @logUtil.putF("Processing Invalidation", self, @tagStrings.DO_START_TAG)
                             end
                             @pageContext.getOut().print("Please login again.<p>")
-                            if (@command <=> org.allbinary.globals.GLOBALS2.PROCESSBODYIFAUTHENTICATED) == 0
+                            if (@command <=> ::Org::Allbinary::Globals::GLOBALS2::PROCESSBODYIFAUTHENTICATED) == 0
                                 return TagSupport::SKIP_BODY
                             else
                                 return TagSupport::EVAL_BODY_INCLUDE
                             end
                         else
-                            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                                 @logUtil.putF("Preparing session for invalidation", self, @tagStrings.DO_START_TAG)
                             end
-                            if (@command <=> org.allbinary.globals.GLOBALS2.PROCESSBODYIFAUTHENTICATED) == 0
+                            if (@command <=> ::Org::Allbinary::Globals::GLOBALS2::PROCESSBODYIFAUTHENTICATED) == 0
                                 return TagSupport::SKIP_BODY
                             else
                                 return TagSupport::EVAL_BODY_INCLUDE
@@ -376,50 +398,50 @@ class FileAuthenticationTag < CustomTagSupport
                         end
                     end
                     if (@userName == nil || (@userName <=> stringUtil.EMPTY_STRING) == 0) && (@password == nil || (@password <=> stringUtil.EMPTY_STRING) == 0) && @roles != nil && self.isAuthenticationSessionValid()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                             @logUtil.putF("Authenticated session is valid", self, @tagStrings.DO_START_TAG)
                         end
-                        if (@command <=> org.allbinary.globals.GLOBALS2.PROCESSBODYIFAUTHENTICATED) == 0
+                        if (@command <=> ::Org::Allbinary::Globals::GLOBALS2::PROCESSBODYIFAUTHENTICATED) == 0
                             return TagSupport::EVAL_BODY_INCLUDE
                         else
                             return TagSupport::SKIP_BODY
                         end
                     end
                     if @userName != nil && @password != nil && self.processIfNewLogin()
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                             @logUtil.putF("Processing new login.", self, @tagStrings.DO_START_TAG)
                         end
                         if self.isRoleValid()
-                            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                                 @logUtil.putF("Role is valid - Processing new login", self, @tagStrings.DO_START_TAG)
                             end
                             @pageContext.getOut().print(validRole())
-                            if (@command <=> org.allbinary.globals.GLOBALS2.PROCESSBODYIFAUTHENTICATED) == 0
+                            if (@command <=> ::Org::Allbinary::Globals::GLOBALS2::PROCESSBODYIFAUTHENTICATED) == 0
                                 return EVAL_BODY_INCLUDE
                             else
                                 return SKIP_BODY
                             end
                         else
-                            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                                 @logUtil.putF("Role is not valid - Processing new login", self, @tagStrings.DO_START_TAG)
                             end
                             @pageContext.getOut().print(invalidRole())
-                            if (@command <=> org.allbinary.globals.GLOBALS2.PROCESSBODYIFAUTHENTICATED) == 0
+                            if (@command <=> ::Org::Allbinary::Globals::GLOBALS2::PROCESSBODYIFAUTHENTICATED) == 0
                                 return SKIP_BODY
                             else
                                 return EVAL_BODY_INCLUDE
                             end
                         end
                     else
-                        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+                        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
                             @logUtil.putF("Invalid Login", self, @tagStrings.DO_START_TAG)
                         end
-                        if @userName != nil && (@userName <=> StringUtil.getInstance().EMPTY_STRING) != 0 && @password != nil && (@password <=> StringUtil.getInstance().EMPTY_STRING) != 0
+                        if @userName != nil && (@userName <=> ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING) != 0 && @password != nil && (@password <=> ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING) != 0
                             @pageContext.getOut().print("Sorry your username and/or password is invalid.<p>")
                         end
                     end
-                    if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
-                        stringBuffer = StringMaker.new()
+                    if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
+                        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                         stringBuffer.append("Major authentication error - userName: ")
                         stringBuffer.append(@userName)
                         stringBuffer.append(" Password: ")
@@ -428,7 +450,7 @@ class FileAuthenticationTag < CustomTagSupport
                         stringBuffer.append(@command)
                         @logUtil.putF(stringBuffer.to_s, self, @tagStrings.DO_START_TAG)
                     end
-                    if (@command <=> org.allbinary.globals.GLOBALS2.PROCESSBODYIFAUTHENTICATED) == 0
+                    if (@command <=> ::Org::Allbinary::Globals::GLOBALS2::PROCESSBODYIFAUTHENTICATED) == 0
                         return TagSupport::SKIP_BODY
                     else
                         return TagSupport::EVAL_BODY_INCLUDE
@@ -436,29 +458,35 @@ class FileAuthenticationTag < CustomTagSupport
                 end
             end
             return SKIP_BODY
-        rescue LicensingException => e
-            AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
             return SKIP_BODY
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
 end
 
-autoload :Calendar, "java/util/Calendar"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :InstallerInfo, "org/allbinary/business/init/InstallerInfo"
-autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole"
-autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory"
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :BasicWeblisketSession, "org/allbinary/logic/communication/http/request/session/BasicWeblisketSession"
-autoload :WeblisketSessionData, "org/allbinary/logic/communication/http/request/session/WeblisketSessionData"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :BooleanUtil, "org/allbinary/logic/java/bool/BooleanUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
+module ::Java; module Util; autoload :Calendar, "java/util/Calendar" unless const_defined?(:Calendar, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Business; module Init; autoload :InstallerInfo, "org/allbinary/business/init/InstallerInfo" unless const_defined?(:InstallerInfo, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Role; autoload :BasicUserRole, "org/allbinary/business/user/role/BasicUserRole" unless const_defined?(:BasicUserRole, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Role; autoload :BasicUserRoleFactory, "org/allbinary/business/user/role/BasicUserRoleFactory" unless const_defined?(:BasicUserRoleFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; module Session; autoload :BasicWeblisketSession, "org/allbinary/logic/communication/http/request/session/BasicWeblisketSession" unless const_defined?(:BasicWeblisketSession, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; module Session; autoload :WeblisketSessionData, "org/allbinary/logic/communication/http/request/session/WeblisketSessionData" unless const_defined?(:WeblisketSessionData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanUtil, "org/allbinary/logic/java/bool/BooleanUtil" unless const_defined?(:BooleanUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Globals; autoload :GLOBALS2, "org/allbinary/globals/GLOBALS2" unless const_defined?(:GLOBALS2, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end
 

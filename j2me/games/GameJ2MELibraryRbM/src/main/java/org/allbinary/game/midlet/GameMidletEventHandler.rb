@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.midlet
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class GameMidletEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Midlet
+
+class GameMidletEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def initialize()
@@ -34,6 +37,7 @@ class GameMidletEventHandler < BasicEventHandler
         gameMidletEventListener = eventListenerInterface
         gameMidletEventListener.onGameEnd(eventObject)
     end
+    java_overload :process, 2
 
     def self.gameKeyEventHandler()
         GameMidletEventHandler.java_static_fields unless @java_static_fields_started
@@ -66,13 +70,15 @@ class GameMidletEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :GameMidletEventListener, "org/allbinary/game/midlet/GameMidletEventListener"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :GameMidletEventListener, "org/allbinary/game/midlet/GameMidletEventListener" unless const_defined?(:GameMidletEventListener, false)
 
 begin
     GameMidletEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

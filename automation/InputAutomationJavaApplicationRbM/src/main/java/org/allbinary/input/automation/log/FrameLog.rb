@@ -15,20 +15,21 @@
 # package org.allbinary.input.automation.log
 
 # require "java/io/File"
-# require "java/io/FileOutputStream"
+
+module ::Org; module Allbinary; module Input; module Automation; module Log
 
 class FrameLog
     attr_accessor :frame, :infoStringBuffer, :actionsStringBuffer
 
-    def initialize_fields
-        @frame = nil
-        @infoStringBuffer = StringMaker.new()
-        @actionsStringBuffer = StringMaker.new()
+    def jfields_org_allbinary_input_automation_log_FrameLog
+        @frame = nil unless instance_variable_defined?(:@frame)
+        @infoStringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        @actionsStringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
     end
     
 
     def initialize(frame)
-        initialize_fields
+        jfields_org_allbinary_input_automation_log_FrameLog
         @frame = frame
     end
     
@@ -48,18 +49,18 @@ class FrameLog
 
     def addAction(action)
         @actionsStringBuffer.append(action)
-        @actionsStringBuffer.append(CommonSeps.getInstance().NEW_LINE)
+        @actionsStringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE)
     end
     
 
     # throws Exception
     def write()
-        filePathStringBuffer = StringMaker.new()
-        filePathStringBuffer.append(ImageOutputData::SAVE_PATH)
-        filePathStringBuffer.append(LongUtil.fillIn(@frame.to_s))
+        filePathStringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        filePathStringBuffer.append(::Org::Allbinary::Input::Automation::ImageOutputData::SAVE_PATH)
+        filePathStringBuffer.append(::Org::Allbinary::Logic::Java::Number::LongUtil.fillIn(@frame.to_s))
         filePathStringBuffer.append(".txt")
         filePath = filePathStringBuffer.to_s
-        fileOutputStream = FileOutputStream.new(File.new(filePath))
+        fileOutputStream = ::Java::Io::FileOutputStream.new(File.new(filePath))
         fileOutputStream.write(FrameLog.frameBytes)
         fileOutputStream.write(getFrame().to_s.bytes)
         fileOutputStream.write("\n")
@@ -129,16 +130,19 @@ class FrameLog
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ImageOutputData, "org/allbinary/input/automation/ImageOutputData"
-autoload :LongUtil, "org/allbinary/logic/java/number/LongUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Java; module Io; autoload :FileOutputStream, "java/io/FileOutputStream" unless const_defined?(:FileOutputStream, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Input; module Automation; autoload :ImageOutputData, "org/allbinary/input/automation/ImageOutputData" unless const_defined?(:ImageOutputData, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Number; autoload :LongUtil, "org/allbinary/logic/java/number/LongUtil" unless const_defined?(:LongUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 
 begin
     FrameLog.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

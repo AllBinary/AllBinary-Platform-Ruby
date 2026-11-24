@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.combat.damage
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/paint/Paintable"
 
-class DamageFloaters < Paintable
+module ::Org; module Allbinary; module Game; module Combat; module Damage
+
+class DamageFloaters < ::Org::Allbinary::Graphics::Paint::Paintable
     
 
     def self.getInstance()
@@ -26,6 +29,7 @@ class DamageFloaters < Paintable
 
     def add(damage)
     end
+    java_overload :add, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -53,4 +57,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

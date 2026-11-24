@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 require "java/util/HashMap"
 
-class ABHashMap < HashMap
+module ::Org; module Allbinary; module Util
+
+class ABHashMap < ::Java::Util::HashMap
 end
+
+end; end; end
 

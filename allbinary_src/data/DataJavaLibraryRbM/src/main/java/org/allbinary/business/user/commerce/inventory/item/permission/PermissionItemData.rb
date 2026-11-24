@@ -15,15 +15,41 @@
 # package org.allbinary.business.user.commerce.inventory.item.permission
 
 
-class PermissionItemData
-end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Item; module Permission
 
 class PermissionItemData
-    WHO = "PERMISSIONSITEM_WHO"
-    WHAT = "PERMISSIONSITEM_WHAT"
-    TYPE = "PERMISSIONSITEM_TYPE"
-    START_TIME = "PERMISSIONSITEM_START_TIME"
-    END_TIME = "PERMISSIONSITEM_END_TIME"
-    REMOTE_ADDR = "PERMISSIONSITEM_REMOTE_ADDR"
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:WHO, "PERMISSIONSITEM_WHO")
+        const_set(:WHAT, "PERMISSIONSITEM_WHAT")
+        const_set(:TYPE, "PERMISSIONSITEM_TYPE")
+        const_set(:START_TIME, "PERMISSIONSITEM_START_TIME")
+        const_set(:END_TIME, "PERMISSIONSITEM_END_TIME")
+        const_set(:REMOTE_ADDR, "PERMISSIONSITEM_REMOTE_ADDR")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PermissionItemData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:WHO, :WHAT, :TYPE, :START_TIME, :END_TIME, :REMOTE_ADDR].include?(name)
+        end
+        super
+    end
 end
+
+begin
+    PermissionItemData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
+end
+
+end; end; end; end; end; end; end; end
 

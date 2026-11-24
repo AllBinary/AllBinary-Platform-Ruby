@@ -14,15 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.actions.script.condition
 
-# require "javax/swing"
+require "java/lang/JavaOverload"
+# require "javax/swing/JPopupMenu"
 # require "javax/swing/tree/MutableTreeNode"
+
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition
 
 module CustomTreeNodeInterface
     include MutableTreeNode
     
 
     def getJPopupMenu()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getJPopupMenu, 0
 end
+
+end; end; end; end; end; end; end
 

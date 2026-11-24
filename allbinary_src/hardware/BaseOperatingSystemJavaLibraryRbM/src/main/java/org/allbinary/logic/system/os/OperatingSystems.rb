@@ -15,10 +15,12 @@
 # package org.allbinary.logic.system.os
 
 
+module ::Org; module Allbinary; module Logic; module System; module Os
+
 class OperatingSystems
     attr_accessor :LINUX, :WINDOWS, :SOLARIS, :WINDOWS2000, :WINDOWS_NT, :WINDOWS_10, :WINDOWS_11, :WINDOWS_VISTA, :WINDOWS_XP, :ANDROID, :HARMONY, :unknownSpecificOSAllowed
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_os_OperatingSystems
         @LINUX = "Linux"
         @WINDOWS = "Windows"
         @SOLARIS = "Solaris"
@@ -35,7 +37,7 @@ class OperatingSystems
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_os_OperatingSystems
     end
     
 
@@ -89,4 +91,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

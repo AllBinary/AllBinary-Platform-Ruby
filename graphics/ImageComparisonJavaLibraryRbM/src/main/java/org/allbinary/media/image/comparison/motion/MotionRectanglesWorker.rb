@@ -15,26 +15,29 @@
 # package org.allbinary.media.image.comparison.motion
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 require "org/allbinary/media/image/comparison/ImageComparisonResultsListener"
 
-class MotionRectanglesWorker < BasicEventHandler
-    include ImageComparisonResultsListener
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
+
+class MotionRectanglesWorker < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
+    include ::Org::Allbinary::Media::Image::Comparison::ImageComparisonResultsListener
     attr_accessor :logUtil, :commonStrings, :imageComparisonInfoVector, :motionRectangleConstraintsInterface, :index, :running
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @imageComparisonInfoVector = BasicArrayListD.new()
-        @motionRectangleConstraintsInterface = nil
-        @index = 0
-        @running = false
+    def jfields_org_allbinary_media_image_comparison_motion_MotionRectanglesWorker
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @imageComparisonInfoVector = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @motionRectangleConstraintsInterface = nil unless instance_variable_defined?(:@motionRectangleConstraintsInterface)
+        @index = 0 unless instance_variable_defined?(:@index)
+        @running = false unless instance_variable_defined?(:@running)
     end
     
 
     def initialize(motionRectangleConstraintsInterface)
         super()
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_motion_MotionRectanglesWorker
         @motionRectangleConstraintsInterface = motionRectangleConstraintsInterface
     end
     
@@ -43,11 +46,13 @@ class MotionRectanglesWorker < BasicEventHandler
         @imageComparisonInfoVector.add(imageComparisonResultsEvent)
         self.run()
     end
+    java_overload :onImageComparisonResultsEvent, 1
     
 
     def onEvent(allBinaryEventObject)
         self.onImageComparisonResultsEvent(allBinaryEventObject)
     end
+    java_overload :onEvent, 1
     
 
     def isRunning()
@@ -55,6 +60,7 @@ class MotionRectanglesWorker < BasicEventHandler
         return @running
         end
     end
+    java_overload :isRunning, 0
     
 
     def setRunning(running)
@@ -62,13 +68,14 @@ class MotionRectanglesWorker < BasicEventHandler
         @running = running
         end
     end
+    java_overload :setRunning, 1
     
 
     def run()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.RUN)
             self.setRunning(true)
-            timeHelper = TimeDelayHelper.new(1000)
+            timeHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(1000)
             timeHelper.setStartTimeTNT()
             imageComparisonResultsEvent = @imageComparisonInfoVector.get(0)
             imageComparisonInfo = imageComparisonResultsEvent.getImageComparisonResult()
@@ -83,33 +90,36 @@ class MotionRectanglesWorker < BasicEventHandler
             self.fireEvent(MotionRectanglesResultsEvent.new(self, imageComparisonInfo.getFrameTwo(), constrainedMotionRectangles))
             @imageComparisonInfoVector.remove(imageComparisonResultsEvent)
             @index += 1
-            @logUtil.putF(CommonLabels.getInstance().ELAPSED + timeHelper.getElapsedTNT(), self, @commonStrings.RUN)
+            @logUtil.putF(::Org::Allbinary::StringPackage::CommonLabels.getInstance().ELAPSED + timeHelper.getElapsedTNT(), self, @commonStrings.RUN)
             self.setRunning(false)
             @logUtil.putF(@commonStrings.END_, self, @commonStrings.RUN)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.RUN, e)
         end
     end
+    java_overload :run, 0
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult"
-autoload :ImageComparisonResultsEvent, "org/allbinary/media/image/comparison/ImageComparisonResultsEvent"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
-autoload :AllMotionRectangles, "org/allbinary/media/image/comparison/motion/AllMotionRectangles"
-autoload :AllMotionRectanglesResultsCacheSingleton, "org/allbinary/media/image/comparison/motion/AllMotionRectanglesResultsCacheSingleton"
-autoload :ConsolidateMotionRectangles, "org/allbinary/media/image/comparison/motion/ConsolidateMotionRectangles"
-autoload :ConsolidatedMotionRectanglesResultsCacheSingleton, "org/allbinary/media/image/comparison/motion/ConsolidatedMotionRectanglesResultsCacheSingleton"
-autoload :ConstrainedMotionRectangles, "org/allbinary/media/image/comparison/motion/ConstrainedMotionRectangles"
-autoload :ConstrainedMotionRectanglesResultsCacheSingleton, "org/allbinary/media/image/comparison/motion/ConstrainedMotionRectanglesResultsCacheSingleton"
-autoload :MotionRectangleConstraintsInterface, "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface"
-autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles"
-autoload :MotionRectanglesResultsEvent, "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsEvent"
-autoload :MotionRectanglesResultsFrameCacheable, "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsFrameCacheable"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; autoload :ImageComparisonResult, "org/allbinary/media/image/comparison/ImageComparisonResult" unless const_defined?(:ImageComparisonResult, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; autoload :ImageComparisonResultsEvent, "org/allbinary/media/image/comparison/ImageComparisonResultsEvent" unless const_defined?(:ImageComparisonResultsEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+autoload :AllMotionRectangles, "org/allbinary/media/image/comparison/motion/AllMotionRectangles" unless const_defined?(:AllMotionRectangles, false)
+autoload :AllMotionRectanglesResultsCacheSingleton, "org/allbinary/media/image/comparison/motion/AllMotionRectanglesResultsCacheSingleton" unless const_defined?(:AllMotionRectanglesResultsCacheSingleton, false)
+autoload :ConsolidateMotionRectangles, "org/allbinary/media/image/comparison/motion/ConsolidateMotionRectangles" unless const_defined?(:ConsolidateMotionRectangles, false)
+autoload :ConsolidatedMotionRectanglesResultsCacheSingleton, "org/allbinary/media/image/comparison/motion/ConsolidatedMotionRectanglesResultsCacheSingleton" unless const_defined?(:ConsolidatedMotionRectanglesResultsCacheSingleton, false)
+autoload :ConstrainedMotionRectangles, "org/allbinary/media/image/comparison/motion/ConstrainedMotionRectangles" unless const_defined?(:ConstrainedMotionRectangles, false)
+autoload :ConstrainedMotionRectanglesResultsCacheSingleton, "org/allbinary/media/image/comparison/motion/ConstrainedMotionRectanglesResultsCacheSingleton" unless const_defined?(:ConstrainedMotionRectanglesResultsCacheSingleton, false)
+autoload :MotionRectangleConstraintsInterface, "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface" unless const_defined?(:MotionRectangleConstraintsInterface, false)
+autoload :MotionRectangles, "org/allbinary/media/image/comparison/motion/MotionRectangles" unless const_defined?(:MotionRectangles, false)
+autoload :MotionRectanglesResultsEvent, "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsEvent" unless const_defined?(:MotionRectanglesResultsEvent, false)
+autoload :MotionRectanglesResultsFrameCacheable, "org/allbinary/media/image/comparison/motion/MotionRectanglesResultsFrameCacheable" unless const_defined?(:MotionRectanglesResultsFrameCacheable, false)
+
+end; end; end; end; end; end
 

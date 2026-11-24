@@ -15,11 +15,13 @@
 # package org.allbinary.game.layer.pickup
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 class PickedUpLayerTypeFactory
     attr_accessor :NONE, :BEAM, :MINE, :PROJECTILE, :ENHANCEMENT, :MORPH, :PART, :HEAL, :LIFE, :POINTS
 
-    def initialize_fields
-        @NONE = PickedUpLayerType.new(StringUtil.getInstance().NULL_STRING)
+    def jfields_org_allbinary_game_layer_pickup_PickedUpLayerTypeFactory
+        @NONE = PickedUpLayerType.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING)
         @BEAM = PickedUpLayerType.new("BEAM")
         @MINE = PickedUpLayerType.new("MINE")
         @PROJECTILE = PickedUpLayerType.new("PROJECTILE")
@@ -32,7 +34,7 @@ class PickedUpLayerTypeFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_pickup_PickedUpLayerTypeFactory
     end
     
 
@@ -71,12 +73,14 @@ class PickedUpLayerTypeFactory
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType" unless const_defined?(:PickedUpLayerType, false)
 
 begin
     PickedUpLayerTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

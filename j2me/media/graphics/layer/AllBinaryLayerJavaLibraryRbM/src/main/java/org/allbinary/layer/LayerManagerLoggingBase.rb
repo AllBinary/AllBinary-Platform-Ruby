@@ -15,6 +15,8 @@
 # package org.allbinary.layer
 
 
+module ::Org; module Allbinary; module Layer
+
 class LayerManagerLoggingBase
     
 
@@ -39,6 +41,8 @@ class LayerManagerLoggingBase
     end
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :LayerManager, "org/allbinary/layer/LayerManager"
+autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false)
+autoload :LayerManager, "org/allbinary/layer/LayerManager" unless const_defined?(:LayerManager, false)
+
+end; end; end
 

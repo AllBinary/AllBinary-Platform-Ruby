@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.health
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/health/HealthListenerInterface"
+
+module ::Org; module Allbinary; module Game; module Health
 
 class NullHealthListener
     include HealthListenerInterface
@@ -22,6 +25,7 @@ class NullHealthListener
 
     def onHealthChange()
     end
+    java_overload :onHealthChange, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -49,4 +53,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

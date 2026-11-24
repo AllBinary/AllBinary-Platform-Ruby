@@ -8,12 +8,14 @@
 # package org.allbinary.game.testgamedemo
 
 
+module ::Org; module Allbinary; module Game; module Testgamedemo
+
 class R
-    class attr
+    class Attr
     end
-    class drawable
+    class Drawable
     end
-    class id
+    class Id
 
         def self.custom_web_view()
             return defined?(@@custom_web_view) ? @@custom_web_view : nil
@@ -60,7 +62,7 @@ class R
         @@ad_area_right = 0x7f060004
         @@ad_area_top = 0x7f060001
     end
-    class layout
+    class Layout
 
         def self.webview_layout()
             return defined?(@@webview_layout) ? @@webview_layout : nil
@@ -71,7 +73,7 @@ class R
         end
         @@webview_layout = 0x7f020000
     end
-    class raw
+    class Raw
 
         def self.about()
             return defined?(@@about) ? @@about : nil
@@ -361,7 +363,7 @@ class R
         @@ouya_key = 0x7f040013
         @@google_key = 0x7f040013
     end
-    class string
+    class String
 
         def self.progressbar_in_title_string()
             return defined?(@@progressbar_in_title_string) ? @@progressbar_in_title_string : nil
@@ -373,4 +375,6 @@ class R
         @@progressbar_in_title_string = 0x7f050001
     end
 end
+
+end; end; end; end
 

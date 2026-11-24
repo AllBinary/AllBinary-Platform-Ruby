@@ -15,17 +15,19 @@
 # package org.allbinary.logic.visual.dhtml.html.head.meta
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Head; module Meta
+
 class HtmlMetaAttributeData
     attr_accessor :id, :name
 
-    def initialize_fields
-        @id = nil
-        @name = nil
+    def jfields_org_allbinary_logic_visual_dhtml_html_head_meta_HtmlMetaAttributeData
+        @id = nil unless instance_variable_defined?(:@id)
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(id, value)
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_head_meta_HtmlMetaAttributeData
         @name = value
         @id = id
     end
@@ -46,4 +48,6 @@ class HtmlMetaAttributeData
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end; end; end; end
 

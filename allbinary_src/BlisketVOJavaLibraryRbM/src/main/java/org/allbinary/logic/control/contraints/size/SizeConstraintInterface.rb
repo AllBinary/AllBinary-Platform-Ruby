@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.control.contraints.size
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/contraints/MinMaxIntConstraintInterface"
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Size
+
 module SizeConstraintInterface
-    include MinMaxIntConstraintInterface
+    include ::Org::Allbinary::Logic::ControlPackage::Contraints::MinMaxIntConstraintInterface
 end
+
+end; end; end; end; end; end
 

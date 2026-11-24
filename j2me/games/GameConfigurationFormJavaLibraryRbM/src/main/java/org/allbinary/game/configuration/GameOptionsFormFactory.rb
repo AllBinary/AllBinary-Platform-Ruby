@@ -15,16 +15,18 @@
 # package org.allbinary.game.configuration
 
 
+module ::Org; module Allbinary; module Game; module Configuration
+
 class GameOptionsFormFactory
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_configuration_GameOptionsFormFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_configuration_GameOptionsFormFactory
     end
     
 
@@ -37,9 +39,9 @@ class GameOptionsFormFactory
         begin
             return GameOptionsForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.INIT, e)
-            return CommandForm.getNullCommandForm()
+            return ::Org::Allbinary::Graphics::Displayable::Screen::CommandForm.getNullCommandForm()
         end
     end
 
@@ -74,16 +76,18 @@ class GameOptionsFormFactory
     end
 end
 
-autoload :CommandListener, "javax/microedition/lcdui/CommandListener"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :CommandForm, "org/allbinary/graphics/displayable/screen/CommandForm"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :GameOptionsForm, "org/allbinary/game/configuration/GameOptionsForm"
+module ::Javax; module Microedition; module Lcdui; autoload :CommandListener, "javax/microedition/lcdui/CommandListener" unless const_defined?(:CommandListener, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen; autoload :CommandForm, "org/allbinary/graphics/displayable/screen/CommandForm" unless const_defined?(:CommandForm, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :GameOptionsForm, "org/allbinary/game/configuration/GameOptionsForm" unless const_defined?(:GameOptionsForm, false)
 
 begin
     GameOptionsFormFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -3,6 +3,10 @@
 # package org.osgi.framework
 
 
+module ::Org; module Osgi; module Framework
+
 module ServiceFactory
 end
+
+end; end; end
 

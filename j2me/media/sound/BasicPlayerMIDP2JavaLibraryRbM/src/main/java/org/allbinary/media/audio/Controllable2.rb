@@ -15,6 +15,8 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 module Controllable2
     
 
@@ -23,4 +25,6 @@ module Controllable2
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

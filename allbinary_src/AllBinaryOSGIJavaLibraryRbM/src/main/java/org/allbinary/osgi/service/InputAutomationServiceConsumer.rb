@@ -15,21 +15,23 @@
 # package org.allbinary.osgi.service
 
 
+module ::Org; module Allbinary; module Osgi; module Service
+
 class InputAutomationServiceConsumer
     attr_accessor :logUtil, :commonStrings, :osgiServiceUtil, :registryName, :bundleContext, :osgiServiceVisitorInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_osgi_service_InputAutomationServiceConsumer
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @osgiServiceUtil = OSGIServiceUtil.getInstance()
-        @registryName = nil
-        @bundleContext = nil
-        @osgiServiceVisitorInterface = nil
+        @registryName = nil unless instance_variable_defined?(:@registryName)
+        @bundleContext = nil unless instance_variable_defined?(:@bundleContext)
+        @osgiServiceVisitorInterface = nil unless instance_variable_defined?(:@osgiServiceVisitorInterface)
     end
     
 
     def initialize(registryName, bundleContext, osgiServiceVisitorInterface)
-        initialize_fields
+        jfields_org_allbinary_osgi_service_InputAutomationServiceConsumer
         self.setRegistryName(registryName)
         self.setBundleContext(bundleContext)
         self.setOsgiServiceVisitorInterface(osgiServiceVisitorInterface)
@@ -88,13 +90,15 @@ class InputAutomationServiceConsumer
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :BundleContext, "org/osgi/framework/BundleContext"
-autoload :ServiceReference, "org/osgi/framework/ServiceReference"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :OSGIServiceInterface, "org/allbinary/osgi/OSGIServiceInterface"
-autoload :OSGIServiceVisitorInterface, "org/allbinary/osgi/OSGIServiceVisitorInterface"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :OSGIServiceUtil, "org/allbinary/osgi/service/OSGIServiceUtil"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :BundleContext, "org/osgi/framework/BundleContext" unless const_defined?(:BundleContext, false); end; end; end
+module ::Org; module Osgi; module Framework; autoload :ServiceReference, "org/osgi/framework/ServiceReference" unless const_defined?(:ServiceReference, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Osgi; autoload :OSGIServiceInterface, "org/allbinary/osgi/OSGIServiceInterface" unless const_defined?(:OSGIServiceInterface, false); end; end; end
+module ::Org; module Allbinary; module Osgi; autoload :OSGIServiceVisitorInterface, "org/allbinary/osgi/OSGIServiceVisitorInterface" unless const_defined?(:OSGIServiceVisitorInterface, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :OSGIServiceUtil, "org/allbinary/osgi/service/OSGIServiceUtil" unless const_defined?(:OSGIServiceUtil, false)
+
+end; end; end; end
 

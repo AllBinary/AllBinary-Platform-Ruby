@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.anyType
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module Java; module AnyType
 
 class ParamsUtil
     
@@ -24,7 +27,7 @@ class ParamsUtil
 
     def self.viewParams(params)
         if params != nil
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             (0...params.length).each do |index|
                 stringBuffer.append(" ")
                 stringBuffer.append(params[index].getName())
@@ -36,5 +39,7 @@ class ParamsUtil
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+
+end; end; end; end; end
 

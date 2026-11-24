@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.java.anyType.clazz.loader
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module Java; module AnyType; module Clazz; module Loader
 
 class ClassLoaderUtil
     
@@ -26,9 +29,13 @@ class ClassLoaderUtil
     def self.getName(anyType)
         classLoader = anyType.class.getClassLoader()
         if classLoader != nil
-            return "ClassLoader: " + classLoader.class.name
+            return "ClassLoader: " + classLoader.class.java_name
         end
         raise StandardError.new("Unable to get ClassLoader")
     end
 end
+
+require "java/lang/ClassLoader"
+
+end; end; end; end; end; end; end
 

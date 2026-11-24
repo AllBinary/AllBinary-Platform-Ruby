@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 module LayerPlacementInterface
     
 
@@ -43,6 +45,8 @@ module LayerPlacementInterface
     end
 end
 
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType"
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+autoload :LayerPlacementType, "org/allbinary/game/layer/LayerPlacementType" unless const_defined?(:LayerPlacementType, false)
+
+end; end; end; end
 

@@ -14,24 +14,27 @@
 # frozen_string_literal: false
 # package views.generic.address.billing
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/http/HttpServletRequest"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 require "views/business/context/modules/storefront/HttpStoreComponentView"
 
-class BillingAddressView < HttpStoreComponentView
-    include DomNodeInterface
+module ::Views; module Generic; module Address; module Billing
+
+class BillingAddressView < ::Views::Business::Context::Modules::Storefront::HttpStoreComponentView
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     attr_accessor :logUtil, :request, :streetAddress
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @request = nil
-        @streetAddress = nil
+    def jfields_views_generic_address_billing_BillingAddressView
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @request = nil unless instance_variable_defined?(:@request)
+        @streetAddress = nil unless instance_variable_defined?(:@streetAddress)
     end
     
 
     def initialize(transformInfoInterface)
         super(transformInfoInterface)
-        initialize_fields
+        jfields_views_generic_address_billing_BillingAddressView
         @request = self.getPageContext().getRequest()
     end
     
@@ -39,48 +42,56 @@ class BillingAddressView < HttpStoreComponentView
     def getRequest()
         return @request
     end
+    java_overload :getRequest, 0
     
 
     # throws Exception
     def toXmlNode(document)
         begin
-            formNode = document.createElement(StreetAddressData::FORM)
+            formNode = document.createElement(::Org::Allbinary::Business::User::Address::StreetAddressData::FORM)
             formNode.appendChild(@streetAddress.toXmlNode(document))
             return formNode
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().XSLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().XSLLOGGINGERROR)
                 @logUtil.put(@commonStrings.FAILURE, self, "toXmlNode", e)
             end
             raise e
         end
     end
+    java_overload :toXmlNode, 1
     
 
     def addDomNodeInterfaces()
         self.addDomNodeInterface(self)
-        self.addDomNodeInterface(StatesView.new())
+        self.addDomNodeInterface(::Views::Generic::Address::StatesView.new())
     end
+    java_overload :addDomNodeInterfaces, 0
     
 
     # throws Exception
     def view()
         begin
             self.addDomNodeInterfaces()
-            return super()
+            return BillingAddressView.superclass.java_super_method(:view, 0).bind(self).call()
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "view()", e)
             end
             raise e
         end
     end
+    java_overload :view, 0
 end
 
-autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress"
-autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :StatesView, "views/generic/address/StatesView"
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :StreetAddress, "org/allbinary/business/user/address/StreetAddress" unless const_defined?(:StreetAddress, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Address; autoload :StreetAddressData, "org/allbinary/business/user/address/StreetAddressData" unless const_defined?(:StreetAddressData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Views; module Generic; module Address; autoload :StatesView, "views/generic/address/StatesView" unless const_defined?(:StatesView, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end; end
 

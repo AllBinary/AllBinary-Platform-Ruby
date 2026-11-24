@@ -15,6 +15,8 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class ScreenCapture
     
 
@@ -29,4 +31,6 @@ class ScreenCapture
     def endRecording()
     end
 end
+
+end; end; end
 

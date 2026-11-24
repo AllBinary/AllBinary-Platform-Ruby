@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.money.payment.gateway
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/TableMappingInterface"
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Gateway
+
 class PaymentGatewayEncryptedMapping
-    include TableMappingInterface
+    include ::Org::Allbinary::DataPackage::Tables::TableMappingInterface
     attr_accessor :paymentGatewayInterface
 
-    def initialize_fields
-        @paymentGatewayInterface = nil
+    def jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayEncryptedMapping
+        @paymentGatewayInterface = nil unless instance_variable_defined?(:@paymentGatewayInterface)
     end
     
 
     def initialize(paymentGatewayInterface)
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayEncryptedMapping
         @paymentGatewayInterface = paymentGatewayInterface
     end
     
@@ -35,21 +38,26 @@ class PaymentGatewayEncryptedMapping
     def toHashMap()
         return @paymentGatewayInterface.toHashMap(true)
     end
+    java_overload :toHashMap, 0
     
 
     def toVector()
         return @paymentGatewayInterface.toVector(true)
     end
+    java_overload :toVector, 0
     
 
     # throws Exception
     def getKey()
         return @paymentGatewayInterface.getKey()
     end
+    java_overload :getKey, 0
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :PaymentGatewayInterface, "org/allbinary/business/user/commerce/money/payment/gateway/PaymentGatewayInterface" unless const_defined?(:PaymentGatewayInterface, false)
+
+end; end; end; end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/BaseImageAnimationFactory"
+
+module ::Org; module Allbinary; module Animation; module Image
 
 class LeftToRightImageAnimationFactory < BaseImageAnimationFactory
     
@@ -34,11 +37,14 @@ class LeftToRightImageAnimationFactory < BaseImageAnimationFactory
             return LeftToRightImageAnimation.new(scaledImage, self.getSequenceArray(), @animationBehaviorFactory.getOrCreateInstance())
         end
     end
+    java_overload :getInstance, 1
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
-autoload :AdjustedLeftToRightImageAnimation, "org/allbinary/animation/image/AdjustedLeftToRightImageAnimation"
-autoload :LeftToRightImageAnimation, "org/allbinary/animation/image/LeftToRightImageAnimation"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory" unless const_defined?(:AnimationBehaviorFactory, false); end; end; end
+autoload :AdjustedLeftToRightImageAnimation, "org/allbinary/animation/image/AdjustedLeftToRightImageAnimation" unless const_defined?(:AdjustedLeftToRightImageAnimation, false)
+autoload :LeftToRightImageAnimation, "org/allbinary/animation/image/LeftToRightImageAnimation" unless const_defined?(:LeftToRightImageAnimation, false)
+
+end; end; end; end
 

@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.multiplayer.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/special/CollidableDestroyableDamageableLayer"
 require "org/allbinary/game/multiplayer/layer/MultiPlayerGameLayerInterface"
 
-class MultiPlayerGameLayer < CollidableDestroyableDamageableLayer
+module ::Org; module Allbinary; module Game; module Multiplayer; module Layer
+
+class MultiPlayerGameLayer < ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer
     include MultiPlayerGameLayerInterface
     
 
@@ -29,24 +32,30 @@ class MultiPlayerGameLayer < CollidableDestroyableDamageableLayer
     def getMultiplayerBehavior()
         return MultiplayerBehavior::NULL_MULTIPLAYER_BEHAVIOR
     end
+    java_overload :getMultiplayerBehavior, 0
     
 
     def setPingInfo(show)
     end
+    java_overload :setPingInfo, 1
     
 
     def setFiring(firing)
     end
+    java_overload :setFiring, 1
     
 
     def getFiring()
         return 0
     end
+    java_overload :getFiring, 0
 end
 
-autoload :Group, "org/allbinary/game/identification/Group"
-autoload :Rectangle, "org/allbinary/graphics/Rectangle"
-autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase"
-autoload :MultiplayerBehavior, "org/allbinary/game/multiplayer/layer/MultiplayerBehavior"
-autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo"
+module ::Org; module Allbinary; module Game; module Identification; autoload :Group, "org/allbinary/game/identification/Group" unless const_defined?(:Group, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module View; autoload :ViewPositionBase, "org/allbinary/view/ViewPositionBase" unless const_defined?(:ViewPositionBase, false); end; end; end
+autoload :MultiplayerBehavior, "org/allbinary/game/multiplayer/layer/MultiplayerBehavior" unless const_defined?(:MultiplayerBehavior, false)
+autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo" unless const_defined?(:RemoteInfo, false)
+
+end; end; end; end; end
 

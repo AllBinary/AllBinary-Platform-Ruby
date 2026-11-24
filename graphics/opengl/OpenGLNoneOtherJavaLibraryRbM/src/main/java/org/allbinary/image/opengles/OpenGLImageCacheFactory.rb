@@ -15,6 +15,8 @@
 # package org.allbinary.image.opengles
 
 
+module ::Org; module Allbinary; module Image; module Opengles
+
 #OpenGLNoneOtherJavaLibrary
 class OpenGLImageCacheFactory
     
@@ -33,7 +35,7 @@ class OpenGLImageCacheFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:IMAGE_CACHE, ImageCache::NULL_IMAGE_CACHE)
+            const_set(:IMAGE_CACHE, ::Org::Allbinary::Image::ImageCache::NULL_IMAGE_CACHE)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -50,11 +52,13 @@ class OpenGLImageCacheFactory
     end
 end
 
-autoload :ImageCache, "org/allbinary/image/ImageCache"
+module ::Org; module Allbinary; module Image; autoload :ImageCache, "org/allbinary/image/ImageCache" unless const_defined?(:ImageCache, false); end; end; end
 
 begin
     OpenGLImageCacheFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

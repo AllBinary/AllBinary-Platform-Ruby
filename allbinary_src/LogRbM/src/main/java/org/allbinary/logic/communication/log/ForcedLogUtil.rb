@@ -15,6 +15,8 @@
 # package org.allbinary.logic.communication.log
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Log
+
 class ForcedLogUtil
     
 
@@ -22,11 +24,13 @@ class ForcedLogUtil
         begin
             raise StandardError.new(message)
         rescue StandardError => e
-            PreLogUtil.putOE(CommonStrings.getInstance().EXCEPTION, anyType, "log", e)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(::Org::Allbinary::StringPackage::CommonStrings.getInstance().EXCEPTION, anyType, "log", e)
         end
     end
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+
+end; end; end; end; end
 

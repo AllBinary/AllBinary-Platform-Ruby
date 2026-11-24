@@ -14,32 +14,38 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.info
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info
+
 class TransformInfoInterfaceView
-    include DomNodeInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     attr_accessor :transformInfoInterface
 
-    def initialize_fields
-        @transformInfoInterface = nil
+    def jfields_org_allbinary_logic_visual_transform_info_TransformInfoInterfaceView
+        @transformInfoInterface = nil unless instance_variable_defined?(:@transformInfoInterface)
     end
     
 
     def initialize(transformInfoInterface)
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_info_TransformInfoInterfaceView
         @transformInfoInterface = transformInfoInterface
     end
     
 
     # throws Exception
     def toXmlNode(document)
-        return ModDomHelper.createNameValueNodes(document, TransformInfoData.getInstance().NAME, @transformInfoInterface.toHashMap())
+        return ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, TransformInfoData.getInstance().NAME, @transformInfoInterface.toHashMap())
     end
+    java_overload :toXmlNode, 1
 end
 
-autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
-autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; autoload :ModDomHelper, "org/allbinary/data/tree/dom/ModDomHelper" unless const_defined?(:ModDomHelper, false); end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :TransformInfoData, "org/allbinary/logic/visual/transform/info/TransformInfoData" unless const_defined?(:TransformInfoData, false)
+autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false)
+
+end; end; end; end; end; end
 

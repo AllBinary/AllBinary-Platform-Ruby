@@ -14,39 +14,47 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/HighScoresFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Score
 
 class HighScoresBase
     include HighScoresFactoryInterface
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_game_score_HighScoresBase
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_score_HighScoresBase
     end
     
 
     def fetchHighScores(gameInfo, highScoresResultsListener)
         raise RuntimeError.new()
     end
+    java_overload :fetchHighScores, 2
     
 
     def fetchHighScoresPreload(gameInfo, highScoresResultsListener, preload)
         raise RuntimeError.new()
     end
+    java_overload :fetchHighScoresPreload, 3
     
 
     def createHighScoresHelper()
         raise RuntimeError.new()
     end
+    java_overload :createHighScoresHelper, 0
 end
 
-autoload :GameInfo, "org/allbinary/game/GameInfo"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
-autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener"
+module ::Org; module Allbinary; module Game; autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface" unless const_defined?(:HighScoresHelperBaseInterface, false)
+autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener" unless const_defined?(:HighScoresResultsListener, false)
+
+end; end; end; end
 

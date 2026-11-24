@@ -15,13 +15,18 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 module VehiclePropertiesCompositeInterface
     
 
     def getVehicleProperties()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/game/layer/VehicleProperties"
+autoload :VehicleProperties, "org/allbinary/game/layer/VehicleProperties" unless const_defined?(:VehicleProperties, false)
+
+end; end; end; end
 

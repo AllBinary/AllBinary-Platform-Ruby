@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.input.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Input; module Event
+
 module VirtualKeyboardEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module VirtualKeyboardEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onVirtualKeyboardEvent, 1
 end
 
-autoload :VirtualKeyboardEvent, "org/allbinary/input/event/VirtualKeyboardEvent"
+autoload :VirtualKeyboardEvent, "org/allbinary/input/event/VirtualKeyboardEvent" unless const_defined?(:VirtualKeyboardEvent, false)
+
+end; end; end; end
 

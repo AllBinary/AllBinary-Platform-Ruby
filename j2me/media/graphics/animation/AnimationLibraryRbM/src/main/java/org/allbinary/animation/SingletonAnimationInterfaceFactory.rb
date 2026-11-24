@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class SingletonAnimationInterfaceFactory
     include AnimationInterfaceFactoryInterface
     include ProceduralAnimationInterfaceFactoryInterface
     attr_accessor :animationInterface
 
-    def initialize_fields
-        @animationInterface = nil
+    def jfields_org_allbinary_animation_SingletonAnimationInterfaceFactory
+        @animationInterface = nil unless instance_variable_defined?(:@animationInterface)
     end
     
 
     def initialize(animationInterface)
-        initialize_fields
+        jfields_org_allbinary_animation_SingletonAnimationInterfaceFactory
         @animationInterface = animationInterface
     end
     
@@ -37,18 +40,23 @@ class SingletonAnimationInterfaceFactory
     def getInstance(instanceId)
         return @animationInterface
     end
+    java_overload :getInstance, 1
     
 
     # throws Exception
     def getInstanceAnimation(animationInterface)
         return @animationInterface
     end
+    java_overload :getInstanceAnimation, 1
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
 end
 
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :Animation, "org/allbinary/animation/Animation"
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
+
+end; end; end
 

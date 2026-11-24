@@ -15,10 +15,12 @@
 # package org.allbinary.media.graphics.geography.map.topview
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Topview
+
 class BasicTopViewGeographicMapStrings
     attr_accessor :DEFAULT, :OTHER, :WALL, :OFF_MAP, :FLOOR, :DOOR, :STAIRS_UP, :STAIRS_DOWN
 
-    def initialize_fields
+    def jfields_org_allbinary_media_graphics_geography_map_topview_BasicTopViewGeographicMapStrings
         @DEFAULT = "Default"
         @OTHER = "Other"
         @WALL = "Wall"
@@ -30,7 +32,7 @@ class BasicTopViewGeographicMapStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_topview_BasicTopViewGeographicMapStrings
     end
     
 
@@ -39,15 +41,41 @@ class BasicTopViewGeographicMapStrings
     end
 
     def self.instance()
+        BasicTopViewGeographicMapStrings.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        BasicTopViewGeographicMapStrings.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = BasicTopViewGeographicMapStrings.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicTopViewGeographicMapStrings"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class BasicTopViewGeographicMapStrings
-    @@instance = BasicTopViewGeographicMapStrings.new()
+begin
+    BasicTopViewGeographicMapStrings.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

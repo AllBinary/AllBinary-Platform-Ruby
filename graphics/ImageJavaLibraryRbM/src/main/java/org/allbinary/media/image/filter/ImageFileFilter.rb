@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.filter
 
+require "java/lang/Object"
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 # require "java/io/File"
 # require "javax/swing/filechooser/FileFilter"
+
+module ::Org; module Allbinary; module Media; module Image; module Filter
 
 #TWB - replace with file visitor version
 class ImageFileFilter < FileFilter
@@ -35,10 +40,14 @@ class ImageFileFilter < FileFilter
         end
         return false
     end
+    java_overload :accept, 1
     
 
     def getDescription()
         return "Accepts .jpg and .jpeg files"
     end
+    java_overload :getDescription, 0
 end
+
+end; end; end; end; end
 

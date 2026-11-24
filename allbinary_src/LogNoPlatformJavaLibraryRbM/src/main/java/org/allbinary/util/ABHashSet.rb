@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 require "java/util/HashSet"
 
-class ABHashSet < HashSet
+module ::Org; module Allbinary; module Util
+
+class ABHashSet < ::Java::Util::HashSet
 end
+
+end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class SmallLongFactory
     attr_accessor :NEGATIVE_MAX, :POSITIVE_MAX, :INTEGER_ARRAY, :STRING_ARRAY, :MIN, :lastMin, :lastNegativeMin
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_math_SmallLongFactory
         @NEGATIVE_MAX = 500
         @POSITIVE_MAX = 0x2D1
         @INTEGER_ARRAY = Array.new(@NEGATIVE_MAX + @POSITIVE_MAX, nil)
@@ -68,7 +70,7 @@ class SmallLongFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_math_SmallLongFactory
     end
     
 
@@ -124,4 +126,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

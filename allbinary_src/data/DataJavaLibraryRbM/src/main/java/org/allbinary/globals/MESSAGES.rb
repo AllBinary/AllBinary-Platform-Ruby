@@ -15,14 +15,40 @@
 # package org.allbinary.globals
 
 
+module ::Org; module Allbinary; module Globals
+
 class MESSAGES
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:CONTACTADMIN, "Please contact the administrator.")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "MESSAGES"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:CONTACTADMIN].include?(name)
+        end
+        super
+    end
 end
 
-class MESSAGES
-    CONTACTADMIN = "Please contact the administrator."
+begin
+    MESSAGES.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

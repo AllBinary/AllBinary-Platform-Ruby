@@ -15,6 +15,8 @@
 # package org.allbinary.logic.math
 
 
+module ::Org; module Allbinary; module Logic; module MathPackage
+
 class PrimitiveFloatUtil
     
 
@@ -23,7 +25,9 @@ class PrimitiveFloatUtil
     
 
     def self.getArrayInstance()
-        return Array.new(0, 0.0)
+        return (Array.new(0, 0.0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :F) }
     end
 end
+
+end; end; end; end
 

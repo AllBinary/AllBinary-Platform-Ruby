@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai.scroller
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ai/BasicAI"
 
-class FlockingAI < BasicAI
+module ::Org; module Allbinary; module Game; module Ag; module Ai; module Scroller
+
+class FlockingAI < ::Org::Allbinary::Game::Ai::BasicAI
     attr_accessor :allowedDistance
 
-    def initialize_fields
-        @allowedDistance = nil
+    def jfields_org_allbinary_game_ag_ai_scroller_FlockingAI
+        @allowedDistance = nil unless instance_variable_defined?(:@allowedDistance)
     end
     
 
     def initialize(hashtable, ownerLayerInterface, gameInput)
         super(ownerLayerInterface, gameInput)
-        initialize_fields
+        jfields_org_allbinary_game_ag_ai_scroller_FlockingAI
         allowedDistance = hashtable.get(BasePatrolAI::MAX_DISTANCE)
         @allowedDistance = allowedDistance.to_i
     end
@@ -35,15 +38,15 @@ class FlockingAI < BasicAI
     # throws Exception
     def processAI(allBinaryLayerManager)
         maxDistance = 0
-        farAllbinaryLayer = AllBinaryLayer::NULL_ALLBINARY_LAYER
-        groupLayerManagerListener = GroupLayerManagerListener.getInstance()
-        list = groupLayerManagerListener.getList(BasicGroupFactory.getInstance().ENEMY)
+        farAllbinaryLayer = ::Org::Allbinary::Layer::AllBinaryLayer::NULL_ALLBINARY_LAYER
+        groupLayerManagerListener = ::Org::Allbinary::Game::Layer::Identification::GroupLayerManagerListener.getInstance()
+        list = groupLayerManagerListener.getList(::Org::Allbinary::Game::Identification::BasicGroupFactory.getInstance().ENEMY)
         size = list.size()
         allBinaryLayer = nil
         ownerLayerInterface = nil
         (0...size).each do |index|
             allBinaryLayer = list.get(index)
-            if allBinaryLayer.getType() != WeaponLayer.getStaticType()
+            if allBinaryLayer.getType() != ::Org::Allbinary::Game::Layer::Weapon::WeaponLayer.getStaticType()
                 distance = self.getXYDistance(allBinaryLayer)
                 if distance > maxDistance
                     maxDistance = distance
@@ -55,41 +58,45 @@ class FlockingAI < BasicAI
             end
         end
         if maxDistance > @allowedDistance
-            if farAllbinaryLayer != AllBinaryLayer::NULL_ALLBINARY_LAYER
+            if farAllbinaryLayer != ::Org::Allbinary::Layer::AllBinaryLayer::NULL_ALLBINARY_LAYER
                 ownerLayerInterface = self.getOwnerLayerInterface()
                 if farAllbinaryLayer.getXP() < ownerLayerInterface.getXP()
-                    self.processKeyAI(Canvas::LEFT)
+                    self.processKeyAI(::Javax::Microedition::Lcdui::Canvas::LEFT)
                 elsif farAllbinaryLayer.getXP() > ownerLayerInterface.getXP()
-                    self.processKeyAI(Canvas::RIGHT)
+                    self.processKeyAI(::Javax::Microedition::Lcdui::Canvas::RIGHT)
                 elsif farAllbinaryLayer.getYP() > ownerLayerInterface.getYP()
-                    self.processKeyAI(Canvas::UP)
+                    self.processKeyAI(::Javax::Microedition::Lcdui::Canvas::UP)
                 elsif farAllbinaryLayer.getYP() < ownerLayerInterface.getYP()
-                    self.processKeyAI(Canvas::DOWN)
+                    self.processKeyAI(::Javax::Microedition::Lcdui::Canvas::DOWN)
                 end
             end
         end
     end
+    java_overload :processAI, 1
     
 
     def getXYDistance(allBinaryLayer)
         ownerLayerInterface = self.getOwnerLayerInterface()
         xTotalDistance = (allBinaryLayer.getXP() + allBinaryLayer.getHalfWidth()) - (ownerLayerInterface.getXP() + ownerLayerInterface.getHalfWidth())
         yTotalDistance = (allBinaryLayer.getYP() + allBinaryLayer.getHalfHeight()) - (ownerLayerInterface.getYP() + ownerLayerInterface.getHalfHeight())
-        mathUtil = MathUtil.getInstance()
+        mathUtil = ::Org::Allbinary::Logic::MathPackage::MathUtil.getInstance()
         totalDistance = mathUtil.abs(xTotalDistance) + mathUtil.abs(yTotalDistance)
         return totalDistance
     end
+    java_overload :getXYDistance, 1
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :BasicGroupFactory, "org/allbinary/game/identification/BasicGroupFactory"
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :GroupLayerManagerListener, "org/allbinary/game/layer/identification/GroupLayerManagerListener"
-autoload :WeaponLayer, "org/allbinary/game/layer/weapon/WeaponLayer"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasePatrolAI, "org/allbinary/game/ag/ai/scroller/BasePatrolAI"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Identification; autoload :BasicGroupFactory, "org/allbinary/game/identification/BasicGroupFactory" unless const_defined?(:BasicGroupFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Identification; autoload :GroupLayerManagerListener, "org/allbinary/game/layer/identification/GroupLayerManagerListener" unless const_defined?(:GroupLayerManagerListener, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Weapon; autoload :WeaponLayer, "org/allbinary/game/layer/weapon/WeaponLayer" unless const_defined?(:WeaponLayer, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :BasePatrolAI, "org/allbinary/game/ag/ai/scroller/BasePatrolAI" unless const_defined?(:BasePatrolAI, false)
+
+end; end; end; end; end; end
 

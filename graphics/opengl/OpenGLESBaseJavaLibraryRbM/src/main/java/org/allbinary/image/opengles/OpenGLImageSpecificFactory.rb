@@ -15,16 +15,18 @@
 # package org.allbinary.image.opengles
 
 
+module ::Org; module Allbinary; module Image; module Opengles
+
 class OpenGLImageSpecificFactory
     attr_accessor :imageFactory, :updating
 
-    def initialize_fields
+    def jfields_org_allbinary_image_opengles_OpenGLImageSpecificFactory
         @imageFactory = OpenGLImageFactory::NULL_OPENGL_IMAGE_FACTORY
         @updating = false
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_image_opengles_OpenGLImageSpecificFactory
     end
     
 
@@ -35,7 +37,7 @@ class OpenGLImageSpecificFactory
 
     def setImageFactory(imageFactory)
         @imageFactory = imageFactory
-        PreLogUtil.put(StringMaker.new().append("Selected Image Factory: ").append(StringUtil.getInstance().toString(@imageFactory)).to_s, self, "setImageFactory")
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Selected Image Factory: ").append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(@imageFactory)).to_s, self, "setImageFactory")
     end
     
 
@@ -74,14 +76,16 @@ class OpenGLImageSpecificFactory
     end
 end
 
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :OpenGLImageFactory, "org/allbinary/image/opengles/OpenGLImageFactory"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :OpenGLImageFactory, "org/allbinary/image/opengles/OpenGLImageFactory" unless const_defined?(:OpenGLImageFactory, false)
 
 begin
     OpenGLImageSpecificFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

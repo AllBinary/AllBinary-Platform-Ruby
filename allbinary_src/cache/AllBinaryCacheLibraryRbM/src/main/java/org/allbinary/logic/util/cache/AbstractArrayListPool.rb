@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.cache
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/cache/PoolInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Cache
 
 class AbstractArrayListPool
     include PoolInterface
     attr_accessor :commonStrings, :buffers, :cacheableInterfaceFactoryInterface
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
-        @buffers = BasicArrayListD.new()
-        @cacheableInterfaceFactoryInterface = nil
+    def jfields_org_allbinary_logic_util_cache_AbstractArrayListPool
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @buffers = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @cacheableInterfaceFactoryInterface = nil unless instance_variable_defined?(:@cacheableInterfaceFactoryInterface)
     end
     
 
     def initialize(cacheableInterfaceFactoryInterface)
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_AbstractArrayListPool
         @cacheableInterfaceFactoryInterface = cacheableInterfaceFactoryInterface
     end
     
@@ -37,18 +40,21 @@ class AbstractArrayListPool
     def clear()
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :clear, 0
     
 
     # throws Exception
     def remove(key)
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :remove, 1
     
 
     # throws Exception
     def add(cacheableInterface)
         @buffers.add(cacheableInterface)
     end
+    java_overload :add, 1
     
 
     # throws Exception
@@ -57,11 +63,14 @@ class AbstractArrayListPool
             @buffers.add(cacheableInterfaces[index])
         end
     end
+    java_overload :addArray, 1
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface"
-autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :CacheableInterface, "org/allbinary/logic/util/cache/CacheableInterface" unless const_defined?(:CacheableInterface, false)
+autoload :CacheableInterfaceFactoryInterface, "org/allbinary/logic/util/cache/CacheableInterfaceFactoryInterface" unless const_defined?(:CacheableInterfaceFactoryInterface, false)
+
+end; end; end; end; end
 

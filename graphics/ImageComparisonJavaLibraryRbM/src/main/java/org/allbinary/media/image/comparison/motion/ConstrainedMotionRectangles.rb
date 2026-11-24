@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.media.image.comparison.motion
 
+require "java/lang/JavaOverload"
 # require "java/awt/Rectangle"
 # require "java/awt/image/BufferedImage"
 require "org/allbinary/media/image/comparison/motion/MotionRectangles"
 
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Motion
+
 class ConstrainedMotionRectangles < MotionRectangles
     attr_accessor :logUtil, :motionRectangleConstraintsInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @motionRectangleConstraintsInterface = nil
+    def jfields_org_allbinary_media_image_comparison_motion_ConstrainedMotionRectangles
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @motionRectangleConstraintsInterface = nil unless instance_variable_defined?(:@motionRectangleConstraintsInterface)
     end
     
 
     def initialize(motionRectangleConstraintsInterface, motionRectangles)
         super(NAME, motionRectangles.getImageComparisonResult())
-        initialize_fields
+        jfields_org_allbinary_media_image_comparison_motion_ConstrainedMotionRectangles
         self.setMotionRectangleConstraintsInterface(motionRectangleConstraintsInterface)
     end
     
@@ -39,7 +42,7 @@ class ConstrainedMotionRectangles < MotionRectangles
         @logUtil.putF("Start - Size Before: " + (motionRectangles.getVector().size()).to_s, self, "applyMotionRectangleConstraints")
         bufferedImageArray = motionRectangles.getImageComparisonResult().getBufferedImages()
         bufferedImage = bufferedImageArray[1]
-        vector = BasicArrayListD.new()
+        vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         vector2 = motionRectangles.getVector()
         size = vector2.size()
         (0...size).each do |index|
@@ -67,16 +70,19 @@ class ConstrainedMotionRectangles < MotionRectangles
         end
         self.setVector(vector)
     end
+    java_overload :applyMotionRectangleConstraints, 1
     
 
     def getMotionRectangleConstraintsInterface()
         return @motionRectangleConstraintsInterface
     end
+    java_overload :getMotionRectangleConstraintsInterface, 0
     
 
     def setMotionRectangleConstraintsInterface(motionRectangleConstraintsInterface)
         @motionRectangleConstraintsInterface = motionRectangleConstraintsInterface
     end
+    java_overload :setMotionRectangleConstraintsInterface, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -99,16 +105,18 @@ class ConstrainedMotionRectangles < MotionRectangles
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle"
-autoload :MotionRectangleConstraintsInterface, "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :MotionRectangle, "org/allbinary/media/image/comparison/motion/MotionRectangle" unless const_defined?(:MotionRectangle, false)
+autoload :MotionRectangleConstraintsInterface, "org/allbinary/media/image/comparison/motion/MotionRectangleConstraintsInterface" unless const_defined?(:MotionRectangleConstraintsInterface, false)
 
 begin
     ConstrainedMotionRectangles.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

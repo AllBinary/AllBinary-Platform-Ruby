@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.vector
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/color/ColorCompositeInterface"
 require "org/allbinary/animation/vector/RectangleFilledAnimation"
 
+module ::Org; module Allbinary; module Animation; module Vector
+
 class RectangleFilledAdjustedAnimation < RectangleFilledAnimation
-    include ColorCompositeInterface
+    include ::Org::Allbinary::Graphics::Color::ColorCompositeInterface
     attr_accessor :offsetX, :offsetY
 
-    def initialize_fields
-        @offsetX = nil
-        @offsetY = nil
+    def jfields_org_allbinary_animation_vector_RectangleFilledAdjustedAnimation
+        @offsetX = nil unless instance_variable_defined?(:@offsetX)
+        @offsetY = nil unless instance_variable_defined?(:@offsetY)
     end
     
 
     def initialize(width, height, offsetX, offsetY, basicColor)
         super(width, height, basicColor)
-        initialize_fields
+        jfields_org_allbinary_animation_vector_RectangleFilledAdjustedAnimation
         @offsetX = offsetX
         @offsetY = offsetY
         self.setBasicColorP(basicColor)
@@ -38,34 +41,42 @@ class RectangleFilledAdjustedAnimation < RectangleFilledAnimation
 
     def nextFrame()
     end
+    java_overload :nextFrame, 0
     
 
     def paintXY(graphics, x, y)
         @basicSetColorUtil.setBasicColorP3(graphics, self.getBasicColorP(), self.getColor())
-        super(graphics, x + @offsetX, y + @offsetY)
+        RectangleFilledAdjustedAnimation.superclass.java_super_method(:paintXY, 3).bind(self).call(graphics, x + @offsetX, y + @offsetY)
     end
+    java_overload :paintXY, 3
     
 
     def setOffsetX(offsetX)
         @offsetX = offsetX
     end
+    java_overload :setOffsetX, 1
     
 
     def setOffsetY(offsetY)
         @offsetY = offsetY
     end
+    java_overload :setOffsetY, 1
     
 
     def getBasicColorP()
-        return super()
+        return RectangleFilledAdjustedAnimation.superclass.java_super_method(:getBasicColorP, 0).bind(self).call()
     end
+    java_overload :getBasicColorP, 0
     
 
     def setBasicColorP(basicColor)
-        super(basicColor)
+        RectangleFilledAdjustedAnimation.superclass.java_super_method(:setBasicColorP, 1).bind(self).call(basicColor)
     end
+    java_overload :setBasicColorP, 1
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+
+end; end; end; end
 

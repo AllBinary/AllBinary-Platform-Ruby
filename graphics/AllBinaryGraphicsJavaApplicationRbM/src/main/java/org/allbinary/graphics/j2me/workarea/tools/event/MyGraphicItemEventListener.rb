@@ -15,34 +15,43 @@
 # package org.allbinary.graphics.j2me.workarea.tools.event
 
 
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools; module Event
+
 module MyGraphicItemEventListener
     
 
     def delete(evt)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def duplicate(evt)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def rotate(evt)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def highlight(evt)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def deselect(evt)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEvent"
+autoload :MyGraphicItemEvent, "org/allbinary/graphics/j2me/workarea/tools/event/MyGraphicItemEvent" unless const_defined?(:MyGraphicItemEvent, false)
+
+end; end; end; end; end; end; end
 

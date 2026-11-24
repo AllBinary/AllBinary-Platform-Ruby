@@ -14,8 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 require "java/util/PriorityQueue"
 
-class ABPriorityQueue < PriorityQueue
+module ::Org; module Allbinary; module Util
+
+class ABPriorityQueue < ::Java::Util::PriorityQueue
 end
+
+end; end; end
 

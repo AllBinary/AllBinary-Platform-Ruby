@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.security.licensing
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
 
 class LicenseTypeFactory
     attr_accessor :UNKNOWN, :DEMO, :NORMAL
 
-    def initialize_fields
-        @UNKNOWN = LicenseType.new(CommonStrings.getInstance().UNKNOWN)
+    def jfields_org_allbinary_logic_system_security_licensing_LicenseTypeFactory
+        @UNKNOWN = LicenseType.new(::Org::Allbinary::StringPackage::CommonStrings.getInstance().UNKNOWN)
         @DEMO = LicenseType.new("Demo")
         @NORMAL = LicenseType.new("Normal")
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_LicenseTypeFactory
     end
     
 
@@ -34,7 +37,6 @@ class LicenseTypeFactory
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(name)
         if @DEMO.getName().compareTo(name) == 0
             return @DEMO
@@ -45,18 +47,44 @@ class LicenseTypeFactory
     end
 
     def self.instance()
+        LicenseTypeFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        LicenseTypeFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = LicenseTypeFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "LicenseTypeFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/system/security/licensing/LicenseType"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :LicenseType, "org/allbinary/logic/system/security/licensing/LicenseType" unless const_defined?(:LicenseType, false)
 
-class LicenseTypeFactory
-    @@instance = LicenseTypeFactory.new()
+begin
+    LicenseTypeFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

@@ -15,19 +15,21 @@
 # package org.allbinary.game.layer.weapon
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Weapon
+
 class WeaponLayerArrayLayerCircularStaticPool
     attr_accessor :MAX, :circularIndexUtil, :WEAPONLAYER_ARRAY, :TWO_WEAPONLAYER_ARRAY, :THREE_WEAPONLAYER_ARRAY
 
-    def initialize_fields
+    def jfields_org_allbinary_game_layer_weapon_WeaponLayerArrayLayerCircularStaticPool
         @MAX = 5
-        @circularIndexUtil = CircularIndexUtil.createInstance(@MAX)
-        @WEAPONLAYER_ARRAY = nil
-        @TWO_WEAPONLAYER_ARRAY = nil
-        @THREE_WEAPONLAYER_ARRAY = nil
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(@MAX)
+        @WEAPONLAYER_ARRAY = Array.new(@MAX * 2, nil)
+        @TWO_WEAPONLAYER_ARRAY = Array.new(@MAX, nil)
+        @THREE_WEAPONLAYER_ARRAY = Array.new(@MAX, nil)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_weapon_WeaponLayerArrayLayerCircularStaticPool
     end
     
 
@@ -37,17 +39,14 @@ class WeaponLayerArrayLayerCircularStaticPool
     
 
     def init()
-        _WEAPONLAYER_ARRAY = Array.new(@MAX * 2, nil)
-        _TWO_WEAPONLAYER_ARRAY = Array.new(@MAX, nil)
-        _THREE_WEAPONLAYER_ARRAY = Array.new(@MAX, nil)
         (0...@MAX).each do |index|
-            _WEAPONLAYER_ARRAY[index] = Array.new(1, nil)
-            _TWO_WEAPONLAYER_ARRAY[index] = Array.new(2, nil)
-            _THREE_WEAPONLAYER_ARRAY[index] = Array.new(3, nil)
+            @WEAPONLAYER_ARRAY[index] = Array.new(1, nil)
+            @TWO_WEAPONLAYER_ARRAY[index] = Array.new(2, nil)
+            @THREE_WEAPONLAYER_ARRAY[index] = Array.new(3, nil)
         end
-        @WEAPONLAYER_ARRAY = _WEAPONLAYER_ARRAY
-        @TWO_WEAPONLAYER_ARRAY = _TWO_WEAPONLAYER_ARRAY
-        @THREE_WEAPONLAYER_ARRAY = _THREE_WEAPONLAYER_ARRAY
+        @WEAPONLAYER_ARRAY = @WEAPONLAYER_ARRAY
+        @TWO_WEAPONLAYER_ARRAY = @TWO_WEAPONLAYER_ARRAY
+        @THREE_WEAPONLAYER_ARRAY = @THREE_WEAPONLAYER_ARRAY
     end
     
 
@@ -101,12 +100,14 @@ class WeaponLayerArrayLayerCircularStaticPool
     end
 end
 
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :WeaponLayer, "org/allbinary/game/layer/weapon/WeaponLayer"
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :WeaponLayer, "org/allbinary/game/layer/weapon/WeaponLayer" unless const_defined?(:WeaponLayer, false)
 
 begin
     WeaponLayerArrayLayerCircularStaticPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

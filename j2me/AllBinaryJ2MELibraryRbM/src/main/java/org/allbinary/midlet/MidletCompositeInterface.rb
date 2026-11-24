@@ -15,6 +15,8 @@
 # package org.allbinary.midlet
 
 
+module ::Org; module Allbinary; module Midlet
+
 module MidletCompositeInterface
     
 
@@ -36,7 +38,9 @@ module MidletCompositeInterface
     end
 end
 
-autoload :Displayable, "javax/microedition/lcdui/Displayable"
-autoload :MIDlet, "javax/microedition/midlet/MIDlet"
-autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet"
+module ::Javax; module Microedition; module Lcdui; autoload :Displayable, "javax/microedition/lcdui/Displayable" unless const_defined?(:Displayable, false); end; end; end
+module ::Javax; module Microedition; module Midlet; autoload :MIDlet, "javax/microedition/midlet/MIDlet" unless const_defined?(:MIDlet, false); end; end; end
+autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet" unless const_defined?(:AllBinaryMidlet, false)
+
+end; end; end
 

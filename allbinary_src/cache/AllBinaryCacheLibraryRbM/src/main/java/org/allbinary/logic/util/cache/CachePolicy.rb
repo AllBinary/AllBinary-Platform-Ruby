@@ -15,18 +15,20 @@
 # package org.allbinary.logic.util.cache
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Cache
+
 class CachePolicy
     attr_accessor :name, :maxTime, :maxSize
 
-    def initialize_fields
-        @name = nil
-        @maxTime = 0
-        @maxSize = 0
+    def jfields_org_allbinary_logic_util_cache_CachePolicy
+        @name = nil unless instance_variable_defined?(:@name)
+        @maxTime = 0 unless instance_variable_defined?(:@maxTime)
+        @maxSize = 0 unless instance_variable_defined?(:@maxSize)
     end
     
 
     def initialize(name, maxTime, maxSize)
-        initialize_fields
+        jfields_org_allbinary_logic_util_cache_CachePolicy
         @name = name
         self.setMaxTime(maxTime)
         self.setMaxSize(maxSize)
@@ -57,4 +59,6 @@ class CachePolicy
         return @name
     end
 end
+
+end; end; end; end; end
 

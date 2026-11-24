@@ -15,17 +15,19 @@
 # package org.allbinary.media.image
 
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageUnifierCell
     attr_accessor :width, :height
 
-    def initialize_fields
-        @width = nil
-        @height = nil
+    def jfields_org_allbinary_media_image_ImageUnifierCell
+        @width = nil unless instance_variable_defined?(:@width)
+        @height = nil unless instance_variable_defined?(:@height)
     end
     
 
     def initialize(width, height)
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageUnifierCell
         self.setWidth(width)
         self.setHeight(height)
     end
@@ -50,4 +52,6 @@ class ImageUnifierCell
         @height = height
     end
 end
+
+end; end; end; end
 

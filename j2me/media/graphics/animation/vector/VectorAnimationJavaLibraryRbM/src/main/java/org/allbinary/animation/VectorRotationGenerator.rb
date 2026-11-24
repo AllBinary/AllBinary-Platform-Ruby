@@ -15,13 +15,15 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class VectorRotationGenerator
     attr_accessor :logUtil, :vectorAnimationUtil, :angleFactory
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_animation_VectorRotationGenerator
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @vectorAnimationUtil = VectorAnimationUtil.getInstance()
-        @angleFactory = AngleFactory.getInstance()
+        @angleFactory = ::Org::Allbinary::MathPackage::AngleFactory.getInstance()
     end
     
 
@@ -31,11 +33,10 @@ class VectorRotationGenerator
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_animation_VectorRotationGenerator
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(vectorRotationInfo)
         return self.getInstanceFrames(vectorRotationInfo.getWidth(), vectorRotationInfo.getHeight(), vectorRotationInfo.getPoints(), vectorRotationInfo.getTotalFrames())
     end
@@ -45,9 +46,9 @@ class VectorRotationGenerator
         begin
             totalAngle = @angleFactory.TOTAL_ANGLE
             angleIncrement = totalAngle / frames
-            pointsBasicArrayList = BasicArrayListS.new(totalAngle / angleIncrement)
-            pointBasicArrayList = BasicArrayListS.new(points.length)
-            pointFactory = PointFactory.getInstance()
+            pointsBasicArrayList = ::Org::Allbinary::Util::BasicArrayListS.new(totalAngle / angleIncrement)
+            pointBasicArrayList = ::Org::Allbinary::Util::BasicArrayListS.new(points.length)
+            pointFactory = ::Org::Allbinary::Graphics::PointFactory.getInstance()
             size = points.length
             (0...size).each do |index|
                 pointBasicArrayList.add(pointFactory.createXY(points[index][0], points[index][1]))
@@ -60,18 +61,18 @@ class VectorRotationGenerator
             newPoints = @vectorAnimationUtil.toAnimationArrayFromListOfPointListWithPointsPerFrame(pointsBasicArrayList, pointBasicArrayList.size())
             return newPoints
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
-            return NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
+            return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
         end
     end
     
 
     # throws Exception
     def getListAtAngle(width, height, pointBasicArrayList, angle)
-        graphicsPipe = BasicGraphicsPipeline.new(pointBasicArrayList)
+        graphicsPipe = ::Org::Allbinary::Graphics::Pipeline::BasicGraphicsPipeline.new(pointBasicArrayList)
         graphicsPipe.createMatrix()
-        graphicsPipe.translate(-(width >> 1), -(height >> 1))
+        graphicsPipe.translate(-width >> 1, -height >> 1)
         graphicsPipe.rotateToAngle(angle)
         graphicsPipe.translate((width >> 1), (height >> 1))
         return graphicsPipe.getMatrix()
@@ -108,21 +109,23 @@ class VectorRotationGenerator
     end
 end
 
-autoload :PointFactory, "org/allbinary/graphics/PointFactory"
-autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :Angle, "org/allbinary/math/Angle"
-autoload :AngleFactory, "org/allbinary/math/AngleFactory"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS"
-autoload :VectorInfo, "org/allbinary/vector/VectorInfo"
-autoload :VectorAnimationUtil, "org/allbinary/animation/VectorAnimationUtil"
+module ::Org; module Allbinary; module Graphics; autoload :PointFactory, "org/allbinary/graphics/PointFactory" unless const_defined?(:PointFactory, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Pipeline; autoload :BasicGraphicsPipeline, "org/allbinary/graphics/pipeline/BasicGraphicsPipeline" unless const_defined?(:BasicGraphicsPipeline, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :Angle, "org/allbinary/math/Angle" unless const_defined?(:Angle, false); end; end; end
+module ::Org; module Allbinary; module MathPackage; autoload :AngleFactory, "org/allbinary/math/AngleFactory" unless const_defined?(:AngleFactory, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListS, "org/allbinary/util/BasicArrayListS" unless const_defined?(:BasicArrayListS, false); end; end; end
+module ::Org; module Allbinary; module Vector; autoload :VectorInfo, "org/allbinary/vector/VectorInfo" unless const_defined?(:VectorInfo, false); end; end; end
+autoload :VectorAnimationUtil, "org/allbinary/animation/VectorAnimationUtil" unless const_defined?(:VectorAnimationUtil, false)
 
 begin
     VectorRotationGenerator.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

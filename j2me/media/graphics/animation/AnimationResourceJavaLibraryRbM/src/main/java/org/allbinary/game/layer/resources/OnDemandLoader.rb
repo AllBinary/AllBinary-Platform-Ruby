@@ -15,18 +15,20 @@
 # package org.allbinary.game.layer.resources
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Resources
+
 class OnDemandLoader
     attr_accessor :onDemandResourcesFactory, :gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory, :resourceAnimationInterfaceFactoryInterfaceFactory
 
-    def initialize_fields
-        @onDemandResourcesFactory = nil
-        @gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory = nil
-        @resourceAnimationInterfaceFactoryInterfaceFactory = nil
+    def jfields_org_allbinary_game_layer_resources_OnDemandLoader
+        @onDemandResourcesFactory = nil unless instance_variable_defined?(:@onDemandResourcesFactory)
+        @gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory = nil unless instance_variable_defined?(:@gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory)
+        @resourceAnimationInterfaceFactoryInterfaceFactory = nil unless instance_variable_defined?(:@resourceAnimationInterfaceFactoryInterfaceFactory)
     end
     
 
     def initialize(onDemandResourcesFactory, gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory, resourceAnimationInterfaceFactoryInterfaceFactory)
-        initialize_fields
+        jfields_org_allbinary_game_layer_resources_OnDemandLoader
         @onDemandResourcesFactory = onDemandResourcesFactory
         @gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory = gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory
         @resourceAnimationInterfaceFactoryInterfaceFactory = resourceAnimationInterfaceFactoryInterfaceFactory
@@ -35,8 +37,8 @@ class OnDemandLoader
 
     # throws Exception
     def init(imageCache, level, loadingString)
-        resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        if Features.getInstance().isFeature(MainFeatureFactory.getInstance().LOAD_ALL)
+        resourceLoadingLevelFactory = ::Org::Allbinary::Game::Resource::ResourceLoadingLevelFactory.getInstance()
+        if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance().LOAD_ALL)
             if @resourceAnimationInterfaceFactoryInterfaceFactory.isInitialized()
                 return
             end
@@ -65,11 +67,11 @@ class OnDemandLoader
 
     # throws Exception
     def initLevel(layerPlacementInterfaceBasicArrayListFactoryInterface, imageCache, level, loadingString)
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         portion = 120
         index = 0
         onDemandArray = layerPlacementInterfaceBasicArrayListFactoryInterface.getOnDemandResources()
-        PreLogUtil.put(StringMaker.new().append(commonStrings.START).appendint(onDemandArray.length).to_s, self, "initLevel")
+        ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(commonStrings.START).appendint(onDemandArray.length).to_s, self, "initLevel")
         onDemandResources = nil
         onDemandIndex = onDemandArray.length
         while (onDemandIndex -= 1) >= 0
@@ -81,16 +83,18 @@ class OnDemandLoader
     end
 end
 
-autoload :BaseResourceAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/resource/BaseResourceAnimationInterfaceFactoryInterfaceFactory"
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory"
-autoload :GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory, "org/allbinary/game/layer/GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory"
-autoload :LayerPlacementInterfaceBasicArrayListFactoryInterface, "org/allbinary/game/layer/LayerPlacementInterfaceBasicArrayListFactoryInterface"
-autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
-autoload :ImageCache, "org/allbinary/image/ImageCache"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :OnDemandResources, "org/allbinary/game/layer/resources/OnDemandResources"
-autoload :OnDemandResourcesFactory, "org/allbinary/game/layer/resources/OnDemandResourcesFactory"
+module ::Org; module Allbinary; module Animation; module Resource; autoload :BaseResourceAnimationInterfaceFactoryInterfaceFactory, "org/allbinary/animation/resource/BaseResourceAnimationInterfaceFactoryInterfaceFactory" unless const_defined?(:BaseResourceAnimationInterfaceFactoryInterfaceFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :MainFeatureFactory, "org/allbinary/game/configuration/feature/MainFeatureFactory" unless const_defined?(:MainFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory, "org/allbinary/game/layer/GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory" unless const_defined?(:GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :LayerPlacementInterfaceBasicArrayListFactoryInterface, "org/allbinary/game/layer/LayerPlacementInterfaceBasicArrayListFactoryInterface" unless const_defined?(:LayerPlacementInterfaceBasicArrayListFactoryInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Resource; autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory" unless const_defined?(:ResourceLoadingLevelFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Image; autoload :ImageCache, "org/allbinary/image/ImageCache" unless const_defined?(:ImageCache, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :OnDemandResources, "org/allbinary/game/layer/resources/OnDemandResources" unless const_defined?(:OnDemandResources, false)
+autoload :OnDemandResourcesFactory, "org/allbinary/game/layer/resources/OnDemandResourcesFactory" unless const_defined?(:OnDemandResourcesFactory, false)
+
+end; end; end; end; end
 

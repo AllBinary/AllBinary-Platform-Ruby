@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.layer.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/event/LayerManagerEventListenerInterface"
+
+module ::Org; module Allbinary; module Layer; module Event
 
 class LayerManagerEventListener
     include LayerManagerEventListenerInterface
@@ -22,18 +25,23 @@ class LayerManagerEventListener
 
     def onEvent(eventObject)
     end
+    java_overload :onEvent, 1
     
 
     # throws Exception
     def onCreateLayerManagerEvent(layerManagerEvent)
     end
+    java_overload :onCreateLayerManagerEvent, 1
     
 
     # throws Exception
     def onDeleteLayerManagerEvent(layerManagerEvent)
     end
+    java_overload :onDeleteLayerManagerEvent, 1
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+autoload :LayerManagerEvent, "org/allbinary/layer/event/LayerManagerEvent" unless const_defined?(:LayerManagerEvent, false)
+
+end; end; end; end
 

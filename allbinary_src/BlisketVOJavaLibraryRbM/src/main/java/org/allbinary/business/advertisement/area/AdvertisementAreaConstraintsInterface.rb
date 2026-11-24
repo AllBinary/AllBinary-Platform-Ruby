@@ -15,19 +15,25 @@
 # package org.allbinary.business.advertisement.area
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Area
+
 module AdvertisementAreaConstraintsInterface
     
 
     def getDisplayInBrowserContraints()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getTwoDimensionContraints()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :DisplayInBrowserContraintsInterface, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface"
-autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Display; module Browser; autoload :DisplayInBrowserContraintsInterface, "org/allbinary/logic/control/contraints/display/browser/DisplayInBrowserContraintsInterface" unless const_defined?(:DisplayInBrowserContraintsInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Size; autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface" unless const_defined?(:TwoDimensionalConstraintInterface, false); end; end; end; end; end; end
+
+end; end; end; end; end
 

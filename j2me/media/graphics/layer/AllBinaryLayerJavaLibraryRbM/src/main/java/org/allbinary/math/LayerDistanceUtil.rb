@@ -15,15 +15,17 @@
 # package org.allbinary.math
 
 
+module ::Org; module Allbinary; module MathPackage
+
 class LayerDistanceUtil
     attr_accessor :mathUtil
 
-    def initialize_fields
-        @mathUtil = MathUtil.getInstance()
+    def jfields_org_allbinary_math_LayerDistanceUtil
+        @mathUtil = ::Org::Allbinary::Logic::MathPackage::MathUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_math_LayerDistanceUtil
     end
     
 
@@ -35,7 +37,7 @@ class LayerDistanceUtil
     def getDistance(layerInterface, layerInterface2)
         dx = (layerInterface.getXP() + layerInterface.getHalfWidth()) - (layerInterface2.getXP() + layerInterface2.getHalfWidth())
         dy = (layerInterface.getYP() + layerInterface.getHalfHeight()) - (layerInterface2.getYP() + layerInterface2.getHalfHeight())
-        return (@mathUtil.sqrt((dx * dx) + (dy * dy))).to_i
+        return ((@mathUtil.sqrt((dx * dx) + (dy * dy))).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
     end
     
 
@@ -43,14 +45,14 @@ class LayerDistanceUtil
         dx = (layerInterface.getXP() + layerInterface.getHalfWidth()) - (layerInterface2.getXP() + layerInterface2.getHalfWidth())
         dy = (layerInterface.getYP() + layerInterface.getHalfHeight()) - (layerInterface2.getYP() + layerInterface2.getHalfHeight())
         dz = (layerInterface.getZP() + layerInterface.getHalfDepth()) - (layerInterface2.getZP() + layerInterface2.getHalfDepth())
-        return (@mathUtil.sqrt((dx * dx) + (dy * dy) + (dz * dz))).to_i
+        return ((@mathUtil.sqrt((dx * dx) + (dy * dy) + (dz * dz))).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
     end
     
 
     def getDistanceAt(layerInterface, point)
         dx = layerInterface.getXP() - point.getX()
         dy = layerInterface.getYP() - point.getY()
-        return (@mathUtil.sqrt((dx * dx) + (dy * dy))).to_i
+        return ((@mathUtil.sqrt((dx * dx) + (dy * dy))).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
     end
 
     def self.instance()
@@ -84,13 +86,15 @@ class LayerDistanceUtil
     end
 end
 
-autoload :GPoint, "org/allbinary/graphics/GPoint"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
+module ::Org; module Allbinary; module Graphics; autoload :GPoint, "org/allbinary/graphics/GPoint" unless const_defined?(:GPoint, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false); end; end; end; end
 
 begin
     LayerDistanceUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

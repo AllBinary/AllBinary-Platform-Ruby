@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/configuration/event/BaseChangedGameFeatureListener"
+
+module ::Org; module Allbinary; module Game; module Configuration; module Event
 
 class ChangedGameFeatureListener < BaseChangedGameFeatureListener
     
@@ -27,6 +30,7 @@ class ChangedGameFeatureListener < BaseChangedGameFeatureListener
     def isChangedGameConfiguration(gameConfiguration)
         return @list.contains(gameConfiguration)
     end
+    java_overload :isChangedGameConfiguration, 1
 
     def self.gameFeatureListener()
         ChangedGameFeatureListener.java_static_fields unless @java_static_fields_started
@@ -59,11 +63,13 @@ class ChangedGameFeatureListener < BaseChangedGameFeatureListener
     end
 end
 
-autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration"
+module ::Org; module Allbinary; module Game; module Configuration; autoload :GameConfiguration, "org/allbinary/game/configuration/GameConfiguration" unless const_defined?(:GameConfiguration, false); end; end; end; end
 
 begin
     ChangedGameFeatureListener.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

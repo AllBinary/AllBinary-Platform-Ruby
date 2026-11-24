@@ -3,6 +3,8 @@
 # package org.allbinary.image.opengles
 
 
+module ::Org; module Allbinary; module Image; module Opengles
+
 module OpenGLSurfaceChangedInterface
     
 
@@ -13,5 +15,7 @@ module OpenGLSurfaceChangedInterface
     end
 end
 
-autoload :GL, "javax/microedition/khronos/opengles/GL"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL, "javax/microedition/khronos/opengles/GL" unless const_defined?(:GL, false); end; end; end; end
+
+end; end; end; end
 

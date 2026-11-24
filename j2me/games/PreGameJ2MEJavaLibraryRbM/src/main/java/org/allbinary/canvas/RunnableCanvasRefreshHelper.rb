@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/Processor"
+
+module ::Org; module Allbinary; module Canvas
 
 class RunnableCanvasRefreshHelper < Processor
     attr_accessor :runnableCanvas
 
-    def initialize_fields
-        @runnableCanvas = nil
+    def jfields_org_allbinary_canvas_RunnableCanvasRefreshHelper
+        @runnableCanvas = nil unless instance_variable_defined?(:@runnableCanvas)
     end
     
 
     def initialize(runnableCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_canvas_RunnableCanvasRefreshHelper
         @runnableCanvas = runnableCanvas
     end
     
@@ -34,7 +37,10 @@ class RunnableCanvasRefreshHelper < Processor
     def process()
         @runnableCanvas.repaint()
     end
+    java_overload :process, 0
 end
 
-autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas"
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas" unless const_defined?(:MyCanvas, false); end; end; end; end
+
+end; end; end
 

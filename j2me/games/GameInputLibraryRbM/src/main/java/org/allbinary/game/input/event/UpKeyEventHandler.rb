@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/event/UpKeyEventHandlerBase"
+
+module ::Org; module Allbinary; module Game; module Input; module Event
 
 class UpKeyEventHandler < UpKeyEventHandlerBase
     attr_accessor :playerInputIdFactory
 
-    def initialize_fields
-        @playerInputIdFactory = LocalPlayerInputIdFactory.getInstance()
+    def jfields_org_allbinary_game_input_event_UpKeyEventHandler
+        @playerInputIdFactory = ::Org::Allbinary::Game::Input::LocalPlayerInputIdFactory.getInstance()
     end
     
 
@@ -33,41 +36,46 @@ class UpKeyEventHandler < UpKeyEventHandlerBase
         playerInputId = @playerInputIdFactory.getPlayerForDevice(deviceId)
         return UpKeyEventHandler.instanceArray[playerInputId]
     end
+    java_overload :getInstanceForDevice, 1
     
 
     def getInstanceForPlayer(playerInputId)
         return UpKeyEventHandler.instanceArray[playerInputId]
     end
+    java_overload :getInstanceForPlayer, 1
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_input_event_UpKeyEventHandler
     end
     
 
     def removeAllListeners()
-        super()
+        UpKeyEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
         (UpKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
             UpKeyEventHandler.instanceArray[index].removeAllListeners()
         end
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListenerSingleThreaded(eventListenerInterface)
-        super(eventListenerInterface)
+        UpKeyEventHandler.superclass.java_super_method(:removeListenerSingleThreaded, 1).bind(self).call(eventListenerInterface)
         (UpKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
             UpKeyEventHandler.instanceArray[index].removeListenerSingleThreaded(eventListenerInterface)
         end
     end
+    java_overload :removeListenerSingleThreaded, 1
     
 
     def removeListener(eventListenerInterface)
-        super(eventListenerInterface)
+        UpKeyEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
         (UpKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
             UpKeyEventHandler.instanceArray[index].removeListener(eventListenerInterface)
         end
     end
+    java_overload :removeListener, 1
 
     def self.instance()
         UpKeyEventHandler.java_static_fields unless @java_static_fields_started
@@ -111,12 +119,14 @@ class UpKeyEventHandler < UpKeyEventHandlerBase
     end
 end
 
-autoload :LocalPlayerInputIdFactory, "org/allbinary/game/input/LocalPlayerInputIdFactory"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
+module ::Org; module Allbinary; module Game; module Input; autoload :LocalPlayerInputIdFactory, "org/allbinary/game/input/LocalPlayerInputIdFactory" unless const_defined?(:LocalPlayerInputIdFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
 
 begin
     UpKeyEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

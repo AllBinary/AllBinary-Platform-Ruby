@@ -15,10 +15,12 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class AbeClientInformationData
     attr_accessor :KEY, :NAME, :VERSION, :SPECIALNAME, :LICENSEID, :LICENSE_TYPE, :PREVIOUSLICENSEID, :OSNAME, :OSARCH, :OSVERSION, :OS, :HARDWARE, :LICENSESERVERS, :NEWLICENSE, :ISNEW, :SPECIAL
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_security_licensing_AbeClientInformationData
         @KEY = "KEY"
         @NAME = "NAME"
         @VERSION = "VERSION"
@@ -44,7 +46,7 @@ class AbeClientInformationData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_AbeClientInformationData
     end
 
     def self.instance()
@@ -83,4 +85,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

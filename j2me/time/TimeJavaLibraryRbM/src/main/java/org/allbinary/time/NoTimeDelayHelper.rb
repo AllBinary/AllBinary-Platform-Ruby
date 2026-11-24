@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.time
 
+require "java/lang/JavaOverload"
 require "org/allbinary/time/TimeDelayHelper"
+
+module ::Org; module Allbinary; module TimePackage
 
 class NoTimeDelayHelper < TimeDelayHelper
     
@@ -27,21 +30,25 @@ class NoTimeDelayHelper < TimeDelayHelper
     def isTimeTNT()
         return true
     end
+    java_overload :isTimeTNT, 0
     
 
     def isTimeSinceTNT(delay)
         return true
     end
+    java_overload :isTimeSinceTNT, 1
     
 
     def isTime(currentTime)
         return true
     end
+    java_overload :isTime, 1
     
 
     def isTimeSince(delay, currentTime)
         return true
     end
+    java_overload :isTimeSince, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -69,4 +76,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

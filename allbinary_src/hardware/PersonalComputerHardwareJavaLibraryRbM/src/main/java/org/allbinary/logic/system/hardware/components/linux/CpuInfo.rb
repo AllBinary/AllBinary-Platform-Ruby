@@ -15,16 +15,18 @@
 # package org.allbinary.logic.system.hardware.components.linux
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux
+
 class CpuInfo
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_logic_system_hardware_components_linux_CpuInfo
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_logic_system_hardware_components_linux_CpuInfo
         @name = name
     end
     
@@ -33,26 +35,50 @@ class CpuInfo
         return @name
     end
     alias_method :to_s, :toString
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:PROCESSOR, CpuInfo.new("processor"))
+            const_set(:VENDORID, CpuInfo.new("vendor_id"))
+            const_set(:CPUFAMILY, CpuInfo.new("cpu family"))
+            const_set(:MODEL, CpuInfo.new("model"))
+            const_set(:MODELNAME, CpuInfo.new("model name"))
+            const_set(:STEPPING, CpuInfo.new("stepping"))
+            const_set(:CPUMHZ, CpuInfo.new("cpu MHz"))
+            const_set(:CACHESIZE, CpuInfo.new("cache size"))
+            const_set(:FDIVBUG, CpuInfo.new("fdiv_bug"))
+            const_set(:HLTBUG, CpuInfo.new("hlt_bug"))
+            const_set(:F00FBUG, CpuInfo.new("f00f_bug"))
+            const_set(:COMABUG, CpuInfo.new("coma_bug"))
+            const_set(:FPU, CpuInfo.new("fpu"))
+            const_set(:FPUEXCEPTION, CpuInfo.new("fpu_exception"))
+            const_set(:CPUIDLEVEL, CpuInfo.new("cache size"))
+            const_set(:WP, CpuInfo.new("yes"))
+            const_set(:FLAGS, CpuInfo.new("flags"))
+            const_set(:BOGOMIPS, CpuInfo.new("bogomips"))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "CpuInfo"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:PROCESSOR, :VENDORID, :CPUFAMILY, :MODEL, :MODELNAME, :STEPPING, :CPUMHZ, :CACHESIZE, :FDIVBUG, :HLTBUG, :F00FBUG, :COMABUG, :FPU, :FPUEXCEPTION, :CPUIDLEVEL, :WP, :FLAGS, :BOGOMIPS].include?(name)
+        end
+        super
+    end
 end
 
-class CpuInfo
-    PROCESSOR = CpuInfo.new("processor")
-    VENDORID = CpuInfo.new("vendor_id")
-    CPUFAMILY = CpuInfo.new("cpu family")
-    MODEL = CpuInfo.new("model")
-    MODELNAME = CpuInfo.new("model name")
-    STEPPING = CpuInfo.new("stepping")
-    CPUMHZ = CpuInfo.new("cpu MHz")
-    CACHESIZE = CpuInfo.new("cache size")
-    FDIVBUG = CpuInfo.new("fdiv_bug")
-    HLTBUG = CpuInfo.new("hlt_bug")
-    F00FBUG = CpuInfo.new("f00f_bug")
-    COMABUG = CpuInfo.new("coma_bug")
-    FPU = CpuInfo.new("fpu")
-    FPUEXCEPTION = CpuInfo.new("fpu_exception")
-    CPUIDLEVEL = CpuInfo.new("cache size")
-    WP = CpuInfo.new("yes")
-    FLAGS = CpuInfo.new("flags")
-    BOGOMIPS = CpuInfo.new("bogomips")
+begin
+    CpuInfo.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

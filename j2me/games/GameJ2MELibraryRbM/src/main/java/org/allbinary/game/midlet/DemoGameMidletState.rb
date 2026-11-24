@@ -15,10 +15,14 @@
 # package org.allbinary.game.midlet
 
 
+module ::Org; module Allbinary; module Game; module Midlet
+
 class DemoGameMidletState
     
 
     def initialize()
     end
 end
+
+end; end; end; end
 

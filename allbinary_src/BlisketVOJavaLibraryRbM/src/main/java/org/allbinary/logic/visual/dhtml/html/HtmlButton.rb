@@ -15,10 +15,14 @@
 # package org.allbinary.logic.visual.dhtml.html
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html
+
 class HtmlButton
     
 
     def initialize()
     end
 end
+
+end; end; end; end; end; end
 

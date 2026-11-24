@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.util.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
+
+module ::Org; module Allbinary; module Logic; module Util; module Event
 
 module BasicEventListenerInterface
     include EventListenerInterface
 end
+
+end; end; end; end; end
 

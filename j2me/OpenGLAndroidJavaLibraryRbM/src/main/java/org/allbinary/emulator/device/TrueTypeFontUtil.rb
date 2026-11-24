@@ -14,21 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.emulator.device
 
+require "java/lang/JavaOverload"
 # require "java/io/File"
-# require "java/io/FileOutputStream"
-# require "javax/microedition/khronos/opengles/GL10"
-# require "javax/microedition/lcdui/Image"
 require "org/allbinary/emulator/device/TrueTypeFontUtilBase"
+
+module ::Org; module Allbinary; module Emulator; module Device
 
 #TTF
 class TrueTypeFontUtil < TrueTypeFontUtilBase
     attr_accessor :logUtil, :preResourceImageUtil, :realFontSize, :fontImage
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @preResourceImageUtil = PreResourceImageUtil.getInstance()
+    def jfields_org_allbinary_emulator_device_TrueTypeFontUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @preResourceImageUtil = ::Org::Allbinary::Image::PreResourceImageUtil.getInstance()
         @realFontSize = 18
-        @fontImage = OpenGLESImage::NULL_OPENGL_IMAGE
+        @fontImage = ::Org::Allbinary::Image::Opengles::OpenGLESImage::NULL_OPENGL_IMAGE
     end
     
 
@@ -39,45 +39,46 @@ class TrueTypeFontUtil < TrueTypeFontUtilBase
 
     def initialize()
         super(1)
-        initialize_fields
+        jfields_org_allbinary_emulator_device_TrueTypeFontUtil
     end
     
 
     def saveFontAtlasAsFile()
         begin
-            commonStrings = CommonStrings.getInstance()
-            file = ResourceUtil.getInstance().getContext().getFilesDir()
-            path = file.getAbsolutePath() + CanvasStrings.getInstance().FONT_ATLAS
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            file = ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance().getContext().getFilesDir()
+            path = file.getAbsolutePath() + ::Org::Allbinary::Graphics::Displayable::CanvasStrings.getInstance().FONT_ATLAS
             @logUtil.putF(path, self, commonStrings.CONSTRUCTOR)
-            fos = FileOutputStream.new(path)
+            fos = ::Java::Io::FileOutputStream.new(path)
             bitmap = (@fontImage.openGLBitmap.getImage()).getBitmap()
-            bitmap.compress(Bitmap::CompressFormat.PNG, 100, fos)
+            bitmap.compress(::Android::Graphics::Bitmap::CompressFormat.PNG, 100, fos)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putOE(commonStrings.EXCEPTION, self, commonStrings.EXCEPTION, e)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(commonStrings.EXCEPTION, self, commonStrings.EXCEPTION, e)
         end
     end
+    java_overload :saveFontAtlasAsFile, 0
     
 
     def getFontBitmapGL(gl, filename, cellSize, basicColor)
-        if @fontImage == OpenGLESImage::NULL_OPENGL_IMAGE
+        if @fontImage == ::Org::Allbinary::Image::Opengles::OpenGLESImage::NULL_OPENGL_IMAGE
             cellsPerRow2 = @CELLS_PER_ROW * 2
             cellsPerRow3 = @CELLS_PER_ROW * 3
             cellsPerRow4 = @CELLS_PER_ROW * 4
             cellsPerRow5 = @CELLS_PER_ROW * 5
             cellsPerRow6 = @CELLS_PER_ROW * 6
             cellsPerRow7 = @CELLS_PER_ROW * 7
-            typeface = Typeface::DEFAULT
+            typeface = ::Android::Graphics::Typeface::DEFAULT
             textureSize = self.getAsTextureSize(@CELLS_PER_ROW * cellSize)
-            bitmap = Bitmap.createBitmap(textureSize, textureSize, Bitmap::Config.ARGB_8888)
-            canvas = Canvas.new(bitmap)
-            paint = Paint.new()
+            bitmap = ::Android::Graphics::Bitmap.createBitmap(textureSize, textureSize, ::Android::Graphics::Bitmap::Config.ARGB_8888)
+            canvas = ::Android::Graphics::Canvas.new(bitmap)
+            paint = ::Android::Graphics::Paint.new()
             paint.setTypeface(typeface)
             paint.setTextSize((@realFontSize).to_f)
-            paint.setAlpha((basicColor.alpha).to_i)
+            paint.setAlpha(((basicColor.alpha).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
             paint.setColor(basicColor.to_i)
             biggestHeight = 0
-            bounds = Rect.new()
+            bounds = ::Android::Graphics::Rect.new()
             x = 0
             y = 0
             (0...@size).each do |index|
@@ -117,22 +118,23 @@ class TrueTypeFontUtil < TrueTypeFontUtilBase
                 canvas.drawText(@characterArray, 0, 1, (x).to_f - 3.0, (y).to_f - 6.0, paint)
             end
             canvas.save()
-            image = AndroidImmutableImage.create(bitmap)
+            image = ::Org::Microemu::Android::Device::AndroidImmutableImage.create(bitmap)
             @fontImage = @preResourceImageUtil.encapsulate(image)
             return @fontImage
         else
             return @fontImage
         end
     end
+    java_overload :getFontBitmapGL, 4
     
 
     def getFontWidths(filename, fontSize)
-        typeface = Typeface::DEFAULT
-        paint = Paint.new()
+        typeface = ::Android::Graphics::Typeface::DEFAULT
+        paint = ::Android::Graphics::Paint.new()
         paint.setTypeface(typeface)
         paint.setTextSize((fontSize).to_f)
         paint.setARGB(255, 255, 255, 255)
-        bounds = Rect.new()
+        bounds = ::Android::Graphics::Rect.new()
         (0...@size).each do |index|
             @characterArray[0] = @pattern.charAt(index)
             paint.getTextBounds(@characterArray, 0, 1, bounds)
@@ -177,33 +179,63 @@ class TrueTypeFontUtil < TrueTypeFontUtilBase
         @_characterWidth[0] = (fontSize >> 1) - 2
         return @_characterWidth
     end
+    java_overload :getFontWidths, 2
 
     def self.instance()
+        TrueTypeFontUtil.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TrueTypeFontUtil.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TrueTypeFontUtil.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TrueTypeFontUtil"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "android/graphics/Bitmap"
-require "android/graphics/Canvas"
-require "android/graphics/Paint"
-require "android/graphics/Rect"
-require "android/graphics/Typeface"
-require "org/allbinary/data/resource/ResourceUtil"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/graphics/displayable/CanvasStrings"
-require "org/allbinary/image/PreResourceImageUtil"
-require "org/allbinary/image/opengles/OpenGLESImage"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/PreLogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/microemu/android/device/AndroidImageInterface"
-require "org/microemu/android/device/AndroidImmutableImage"
+module ::Java; module Io; autoload :FileOutputStream, "java/io/FileOutputStream" unless const_defined?(:FileOutputStream, false); end; end
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Android; module Graphics; autoload :Bitmap, "android/graphics/Bitmap" unless const_defined?(:Bitmap, false); end; end
+module ::Android; module Graphics; autoload :Canvas, "android/graphics/Canvas" unless const_defined?(:Canvas, false); end; end
+module ::Android; module Graphics; autoload :Paint, "android/graphics/Paint" unless const_defined?(:Paint, false); end; end
+module ::Android; module Graphics; autoload :Rect, "android/graphics/Rect" unless const_defined?(:Rect, false); end; end
+module ::Android; module Graphics; autoload :Typeface, "android/graphics/Typeface" unless const_defined?(:Typeface, false); end; end
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :CanvasStrings, "org/allbinary/graphics/displayable/CanvasStrings" unless const_defined?(:CanvasStrings, false); end; end; end; end
+module ::Org; module Allbinary; module Image; autoload :PreResourceImageUtil, "org/allbinary/image/PreResourceImageUtil" unless const_defined?(:PreResourceImageUtil, false); end; end; end
+module ::Org; module Allbinary; module Image; module Opengles; autoload :OpenGLESImage, "org/allbinary/image/opengles/OpenGLESImage" unless const_defined?(:OpenGLESImage, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Microemu; module Android; module Device; autoload :AndroidImageInterface, "org/microemu/android/device/AndroidImageInterface" unless const_defined?(:AndroidImageInterface, false); end; end; end; end
+module ::Org; module Microemu; module Android; module Device; autoload :AndroidImmutableImage, "org/microemu/android/device/AndroidImmutableImage" unless const_defined?(:AndroidImmutableImage, false); end; end; end; end
 
-class TrueTypeFontUtil
-    @@instance = TrueTypeFontUtil.new()
+begin
+    TrueTypeFontUtil.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

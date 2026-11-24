@@ -15,6 +15,8 @@
 # package org.allbinary.game.multiplayer.layer
 
 
+module ::Org; module Allbinary; module Game; module Multiplayer; module Layer
+
 class MultiplayerBehavior
     
 
@@ -38,7 +40,7 @@ class MultiplayerBehavior
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_MULTIPLAYER_BEHAVIOR, MultiplayerBehavior.new(StringUtil.getInstance().EMPTY_STRING))
+            const_set(:NULL_MULTIPLAYER_BEHAVIOR, MultiplayerBehavior.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -55,11 +57,13 @@ class MultiplayerBehavior
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     MultiplayerBehavior.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,21 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.actions.script
 
+require "java/lang/JavaOverload"
 # require "javax/swing/tree/MutableTreeNode"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script
+
 module ProfileActionScriptNodeInterface
-    include DomNodeInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     include MutableTreeNode
     
 
     def addCondition(profileActionConditionInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :addCondition, 1
     
 
     def removeCondition(profileActionConditionInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :removeCondition, 1
 end
+
+end; end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.pickup
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
 
 class PickedUpLayerInterfaceFactoryBase
     include PickedUpLayerInterfaceFactoryInterface
@@ -23,16 +26,19 @@ class PickedUpLayerInterfaceFactoryBase
     def getIconLayer()
         raise RuntimeError.new()
     end
+    java_overload :getIconLayer, 0
     
 
     def getAnimationInterface()
         raise RuntimeError.new()
     end
+    java_overload :getAnimationInterface, 0
     
 
     def getPickedUpLayerType()
         raise RuntimeError.new()
     end
+    java_overload :getPickedUpLayerType, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -55,13 +61,15 @@ class PickedUpLayerInterfaceFactoryBase
     end
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType"
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType" unless const_defined?(:PickedUpLayerType, false)
 
 begin
     PickedUpLayerInterfaceFactoryBase.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

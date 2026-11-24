@@ -15,12 +15,14 @@
 # package org.allbinary.logic.io
 
 
+module ::Org; module Allbinary; module Logic; module Io
+
 class FileStreamFactory
     
 
     def self.getInstance()
-        if FileStreamFactory::SINGLETON == NullUtil.getInstance().NULL_OBJECT
-            (FileStreamFactory.send(:remove_const, :SINGLETON) if FileStreamFactory.const_defined?(:SINGLETON, false); FileStreamFactory.const_set(:SINGLETON, FileStreamFactory.new()))
+        if FileStreamFactory::SINGLETON == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            (FileStreamFactory.instance_exec(FileStreamFactory.new()) { |java_value| remove_const(:SINGLETON) if const_defined?(:SINGLETON, false); const_set(:SINGLETON, java_value) })
         end
         return FileStreamFactory::SINGLETON
     end
@@ -32,16 +34,16 @@ class FileStreamFactory
 
     # throws Exception
     def getFileInputStreamInstance(path, fileName)
-        _FILEABPATH = AbPath.new(path, fileName)
-        file = AbFile.createAbFileFromAbPath(_FILEABPATH)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(path, fileName)
+        file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
         return AbFileInputStream.createFromAbFile(file)
     end
     
 
     # throws Exception
     def getFileOutputStreamInstance(path, fileName)
-        _FILEABPATH = AbPath.new(path, fileName)
-        file = AbFile.createAbFileFromAbPath(_FILEABPATH)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(path, fileName)
+        file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
         if file.exists()
             file.delete()
             file.createNewFile()
@@ -52,8 +54,8 @@ class FileStreamFactory
 
     # throws Exception
     def delete(path, fileName)
-        _FILEABPATH = AbPath.new(path, fileName)
-        file = AbFile.createAbFileFromAbPath(_FILEABPATH)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(path, fileName)
+        file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
         file.delete()
     end
 
@@ -61,7 +63,7 @@ class FileStreamFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:SINGLETON, NullUtil.getInstance().NULL_OBJECT)
+            const_set(:SINGLETON, ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -78,15 +80,17 @@ class FileStreamFactory
     end
 end
 
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
-autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream"
-autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false)
+autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream" unless const_defined?(:AbFileOutputStream, false)
 
 begin
     FileStreamFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

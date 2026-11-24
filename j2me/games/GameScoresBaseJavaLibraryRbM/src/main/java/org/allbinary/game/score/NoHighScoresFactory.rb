@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/HighScoresBase"
+
+module ::Org; module Allbinary; module Game; module Score
 
 class NoHighScoresFactory < HighScoresBase
     attr_accessor :logUtil, :NO_HIGH_SCORES
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_score_NoHighScoresFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @NO_HIGH_SCORES = Array.new(0, nil)
     end
     
@@ -32,7 +35,7 @@ class NoHighScoresFactory < HighScoresBase
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_game_score_NoHighScoresFactory
     end
     
 
@@ -40,11 +43,13 @@ class NoHighScoresFactory < HighScoresBase
         @logUtil.putF("Getting No HighScores", self, "fetchHighScores")
         highScoresResultsListener.setHighScoresArray(@NO_HIGH_SCORES)
     end
+    java_overload :fetchHighScores, 2
     
 
     def createHighScoresHelper()
         return HighScoresHelperBase.new()
     end
+    java_overload :createHighScoresHelper, 0
 
     def self.instance()
         NoHighScoresFactory.java_static_fields unless @java_static_fields_started
@@ -77,16 +82,18 @@ class NoHighScoresFactory < HighScoresBase
     end
 end
 
-autoload :GameInfo, "org/allbinary/game/GameInfo"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :HighScores, "org/allbinary/game/score/HighScores"
-autoload :HighScoresHelperBase, "org/allbinary/game/score/HighScoresHelperBase"
-autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface"
-autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener"
+module ::Org; module Allbinary; module Game; autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false)
+autoload :HighScoresHelperBase, "org/allbinary/game/score/HighScoresHelperBase" unless const_defined?(:HighScoresHelperBase, false)
+autoload :HighScoresHelperBaseInterface, "org/allbinary/game/score/HighScoresHelperBaseInterface" unless const_defined?(:HighScoresHelperBaseInterface, false)
+autoload :HighScoresResultsListener, "org/allbinary/game/score/HighScoresResultsListener" unless const_defined?(:HighScoresResultsListener, false)
 
 begin
     NoHighScoresFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

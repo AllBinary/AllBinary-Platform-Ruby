@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.input.gyro
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/gyro/SensorGameUpdateProcessor"
+
+module ::Org; module Allbinary; module Input; module Gyro
 
 class SingleSensorGameUpdateProcessor < SensorGameUpdateProcessor
     attr_accessor :accelerometerSensorUpdateProcessor, :gyroSensorUpdateProcessor
 
-    def initialize_fields
+    def jfields_org_allbinary_input_gyro_SingleSensorGameUpdateProcessor
         @accelerometerSensorUpdateProcessor = AccelerometerSensorUpdateProcessor.new()
         @gyroSensorUpdateProcessor = GyroSensorUpdateProcessor.new()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_input_gyro_SingleSensorGameUpdateProcessor
     end
     
 
@@ -34,14 +37,18 @@ class SingleSensorGameUpdateProcessor < SensorGameUpdateProcessor
     def process(anyType)
         self.setNoSensors()
     end
+    java_overload :process, 1
     
 
     # throws Exception
     def sendNotifications(anyType)
     end
+    java_overload :sendNotifications, 1
 end
 
-autoload :Processor, "org/allbinary/canvas/Processor"
-autoload :AccelerometerSensorUpdateProcessor, "org/allbinary/input/gyro/AccelerometerSensorUpdateProcessor"
-autoload :GyroSensorUpdateProcessor, "org/allbinary/input/gyro/GyroSensorUpdateProcessor"
+module ::Org; module Allbinary; module Canvas; autoload :Processor, "org/allbinary/canvas/Processor" unless const_defined?(:Processor, false); end; end; end
+autoload :AccelerometerSensorUpdateProcessor, "org/allbinary/input/gyro/AccelerometerSensorUpdateProcessor" unless const_defined?(:AccelerometerSensorUpdateProcessor, false)
+autoload :GyroSensorUpdateProcessor, "org/allbinary/input/gyro/GyroSensorUpdateProcessor" unless const_defined?(:GyroSensorUpdateProcessor, false)
+
+end; end; end; end
 

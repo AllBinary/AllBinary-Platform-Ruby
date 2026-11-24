@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.drop
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerInterface"
 
+module ::Org; module Allbinary; module Game; module Layer; module Drop
+
 module DropLayerInterface
-    include LayerInterface
+    include ::Org::Allbinary::Layer::LayerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module DropLayerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getDroppedLayer, 0
 end
 
-autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface"
+module ::Org; module Allbinary; module Game; module Layer; module Pickup; autoload :PickedUpLayerInterface, "org/allbinary/game/layer/pickup/PickedUpLayerInterface" unless const_defined?(:PickedUpLayerInterface, false); end; end; end; end; end
+
+end; end; end; end; end
 

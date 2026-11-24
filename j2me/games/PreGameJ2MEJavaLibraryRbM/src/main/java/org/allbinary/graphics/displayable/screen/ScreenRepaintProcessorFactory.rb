@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.displayable.screen
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen
+
 class ScreenRepaintProcessorFactory
     
 
@@ -28,10 +30,10 @@ class ScreenRepaintProcessorFactory
     
 
     def create(displayable)
-        if !J2MEUtil.isJ2ME()
+        if !::Org::Allbinary::J2MEUtil.isJ2ME()
             return ScreenRepaintProcessor.new(displayable)
         else
-            return Processor.getInstance()
+            return ::Org::Allbinary::Canvas::Processor.getInstance()
         end
     end
 
@@ -66,14 +68,16 @@ class ScreenRepaintProcessorFactory
     end
 end
 
-autoload :Displayable, "javax/microedition/lcdui/Displayable"
-autoload :J2MEUtil, "org/allbinary/J2MEUtil"
-autoload :Processor, "org/allbinary/canvas/Processor"
-autoload :ScreenRepaintProcessor, "org/allbinary/graphics/displayable/screen/ScreenRepaintProcessor"
+module ::Javax; module Microedition; module Lcdui; autoload :Displayable, "javax/microedition/lcdui/Displayable" unless const_defined?(:Displayable, false); end; end; end
+module ::Org; module Allbinary; autoload :J2MEUtil, "org/allbinary/J2MEUtil" unless const_defined?(:J2MEUtil, false); end; end
+module ::Org; module Allbinary; module Canvas; autoload :Processor, "org/allbinary/canvas/Processor" unless const_defined?(:Processor, false); end; end; end
+autoload :ScreenRepaintProcessor, "org/allbinary/graphics/displayable/screen/ScreenRepaintProcessor" unless const_defined?(:ScreenRepaintProcessor, false)
 
 begin
     ScreenRepaintProcessorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

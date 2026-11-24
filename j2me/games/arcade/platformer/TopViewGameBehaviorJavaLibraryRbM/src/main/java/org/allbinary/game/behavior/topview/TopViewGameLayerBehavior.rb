@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.behavior.topview
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/behavior/GameLayerBehavior"
 
-class TopViewGameLayerBehavior < GameLayerBehavior
+module ::Org; module Allbinary; module Game; module Behavior; module Topview
+
+class TopViewGameLayerBehavior < ::Org::Allbinary::Game::Layer::Behavior::GameLayerBehavior
     attr_accessor :maxGravityActionIndex, :isJumpAction, :isJumpOver, :isFallingWithoutJumpAttempt, :gravityActionIndex
 
-    def initialize_fields
-        @maxGravityActionIndex = nil
+    def jfields_org_allbinary_game_behavior_topview_TopViewGameLayerBehavior
+        @maxGravityActionIndex = nil unless instance_variable_defined?(:@maxGravityActionIndex)
         @isJumpAction = true
         @isJumpOver = false
         @isFallingWithoutJumpAttempt = false
@@ -30,7 +33,7 @@ class TopViewGameLayerBehavior < GameLayerBehavior
 
     def initialize(maxGravityActionIndex)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_behavior_topview_TopViewGameLayerBehavior
         @maxGravityActionIndex = maxGravityActionIndex
     end
     
@@ -41,12 +44,14 @@ class TopViewGameLayerBehavior < GameLayerBehavior
             @isFallingWithoutJumpAttempt = true
         end
     end
+    java_overload :gravity, 0
     
 
     def land(velocityProperties)
         velocityProperties.getVelocityYBasicDecimalP().setint(0)
         self.landReset()
     end
+    java_overload :land, 1
     
 
     def landReset()
@@ -55,6 +60,7 @@ class TopViewGameLayerBehavior < GameLayerBehavior
         @isJumpAction = true
         @isJumpOver = false
     end
+    java_overload :landReset, 0
     
 
     def up(velocityProperties, acceleration, jumpBehavior, accelerationMultiplier)
@@ -73,6 +79,7 @@ class TopViewGameLayerBehavior < GameLayerBehavior
             @isJumpAction = false
         end
     end
+    java_overload :up, 4
     
 
     def inputFrames(velocityProperties)
@@ -80,9 +87,12 @@ class TopViewGameLayerBehavior < GameLayerBehavior
             @isJumpOver = true
         end
     end
+    java_overload :inputFrames, 1
 end
 
-require "org/allbinary/game/physics/acceleration/BasicAccelerationProperties"
-require "org/allbinary/game/physics/velocity/VelocityProperties"
-require "org/allbinary/game/behavior/topview/InitialJumpBehavior"
+module ::Org; module Allbinary; module Game; module Physics; module Acceleration; autoload :BasicAccelerationProperties, "org/allbinary/game/physics/acceleration/BasicAccelerationProperties" unless const_defined?(:BasicAccelerationProperties, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :VelocityProperties, "org/allbinary/game/physics/velocity/VelocityProperties" unless const_defined?(:VelocityProperties, false); end; end; end; end; end
+autoload :InitialJumpBehavior, "org/allbinary/game/behavior/topview/InitialJumpBehavior" unless const_defined?(:InitialJumpBehavior, false)
+
+end; end; end; end; end
 

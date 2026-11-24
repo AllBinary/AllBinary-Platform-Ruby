@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.hud.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Layer; module Hud; module Event
+
 module GameNotificationListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module GameNotificationListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onGameNotificationEvent, 1
 end
 
-autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
+autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent" unless const_defined?(:GameNotificationEvent, false)
+
+end; end; end; end; end; end
 

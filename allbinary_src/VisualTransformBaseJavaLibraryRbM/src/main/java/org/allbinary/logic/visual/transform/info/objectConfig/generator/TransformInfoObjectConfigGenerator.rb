@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform.info.objectConfig.generator
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/transform/info/objectConfig/generator/TransformInfoObjectConfigGeneratorInterface"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module ObjectConfig; module Generator
 
 class TransformInfoObjectConfigGenerator
     include TransformInfoObjectConfigGeneratorInterface
     attr_accessor :commonStrings
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_logic_visual_transform_info_objectConfig_generator_TransformInfoObjectConfigGenerator
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_visual_transform_info_objectConfig_generator_TransformInfoObjectConfigGenerator
     end
     
 
@@ -33,7 +36,10 @@ class TransformInfoObjectConfigGenerator
     def process(input)
         raise RuntimeError.new()
     end
+    java_overload :process, 1
 end
 
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end; end; end; end
 

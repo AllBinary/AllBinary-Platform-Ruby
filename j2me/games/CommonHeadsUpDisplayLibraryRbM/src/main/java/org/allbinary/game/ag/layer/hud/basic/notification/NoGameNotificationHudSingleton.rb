@@ -14,22 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.layer.hud.basic.notification
 
-require "org/allbinary/game/ag/layer/hud/basic/notification/GameNotificationHud"
+
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Hud; module Basic; module Notification
 
 class NoGameNotificationHudSingleton
     attr_accessor :logUtil, :gameNotificationHud
-    class NoGameGameNotificationHud < GameNotificationHud
-        
 
-        def initialize()
-            super(BasicHudFactory.getInstance().TOPCENTER, BasicHudFactory.getInstance().HORIZONTAL, 2, BasicColorFactory.getInstance().RED)
-            @updateMaxWidth = 40
-            @updateMaxHeight = 14
-        end
-    end
-
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_ag_layer_hud_basic_notification_NoGameNotificationHudSingleton
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @gameNotificationHud = GameNotificationHud::NULL_GAME_NOTIFICATION
     end
     
@@ -40,12 +32,12 @@ class NoGameNotificationHudSingleton
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_ag_layer_hud_basic_notification_NoGameNotificationHudSingleton
         begin
-            basicHudFactory = BasicHudFactory.getInstance()
+            basicHudFactory = ::Org::Allbinary::Game::Graphics::Hud::BasicHudFactory.getInstance()
             @gameNotificationHud = NoGameGameNotificationHud.new()
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
         end
     end
@@ -86,14 +78,18 @@ class NoGameNotificationHudSingleton
     end
 end
 
-autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Game; module Graphics; module Hud; autoload :BasicHudFactory, "org/allbinary/game/graphics/hud/BasicHudFactory" unless const_defined?(:BasicHudFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :GameNotificationHud, "org/allbinary/game/ag/layer/hud/basic/notification/GameNotificationHud" unless const_defined?(:GameNotificationHud, false)
+autoload :NoGameGameNotificationHud, "org/allbinary/game/ag/layer/hud/basic/notification/NoGameGameNotificationHud" unless const_defined?(:NoGameGameNotificationHud, false)
 
 begin
     NoGameNotificationHudSingleton.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

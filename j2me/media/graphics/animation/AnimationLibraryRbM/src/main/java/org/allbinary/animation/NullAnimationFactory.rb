@@ -14,28 +14,32 @@
 # frozen_string_literal: false
 # package org.allbinary.animation
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
+
+module ::Org; module Allbinary; module Animation
 
 class NullAnimationFactory
     include AnimationInterfaceFactoryInterface
     include ProceduralAnimationInterfaceFactoryInterface
     attr_accessor :NULL_ANIMATION, :EMPTY_ARRAY
 
-    def initialize_fields
+    def jfields_org_allbinary_animation_NullAnimationFactory
         @NULL_ANIMATION = Class.new(Animation.is_a?(Class) ? Animation : Object) do
         include(Animation) unless Animation.is_a?(Class)
         
 
         def paintXY(graphics, x, y)
         end
+        java_overload :paintXY, 3
     end.new()
         @EMPTY_ARRAY = Array.new(0, nil)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_animation_NullAnimationFactory
     end
     
 
@@ -47,16 +51,19 @@ class NullAnimationFactory
     def getInstance(instanceId)
         return @NULL_ANIMATION
     end
+    java_overload :getInstance, 1
     
 
     # throws Exception
     def getInstanceAnimation(animationInterface)
         return @NULL_ANIMATION
     end
+    java_overload :getInstanceAnimation, 1
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -80,13 +87,15 @@ class NullAnimationFactory
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :Animation, "org/allbinary/animation/Animation"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false)
 
 begin
     NullAnimationFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

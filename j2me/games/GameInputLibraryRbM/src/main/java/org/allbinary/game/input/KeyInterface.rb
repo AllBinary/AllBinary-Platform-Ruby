@@ -15,6 +15,8 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 module KeyInterface
     
 
@@ -41,4 +43,6 @@ module KeyInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

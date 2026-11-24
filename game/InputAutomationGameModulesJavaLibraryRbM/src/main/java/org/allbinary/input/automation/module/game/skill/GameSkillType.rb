@@ -14,18 +14,21 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.game.skill
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game; module Skill
 
 class GameSkillType
     attr_accessor :SPELL_GAME_SKILL_TYPE, :name
 
-    def initialize_fields
+    def jfields_org_allbinary_input_automation_module_game_skill_GameSkillType
         @SPELL_GAME_SKILL_TYPE = "SpellGameSkillType: "
-        @name = nil
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_input_automation_module_game_skill_GameSkillType
         self.setName(name)
     end
     
@@ -75,4 +78,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

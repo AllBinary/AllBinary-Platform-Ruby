@@ -15,15 +15,17 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class LockedResources
     attr_accessor :LOCKED_DEMO_GAME_FEATURE_RESOURCE
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_security_licensing_LockedResources
         @LOCKED_DEMO_GAME_FEATURE_RESOURCE = "/locked_demo_game_feature_64_by_64.png"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_LockedResources
     end
     
 
@@ -67,4 +69,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

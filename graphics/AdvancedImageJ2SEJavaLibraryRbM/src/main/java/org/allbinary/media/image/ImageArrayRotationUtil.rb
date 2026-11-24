@@ -17,17 +17,19 @@
 # require "java/awt/image/BufferedImage"
 # require "java/io/IOException"
 
+module ::Org; module Allbinary; module Media; module Image
+
 class ImageArrayRotationUtil
     attr_accessor :logUtil, :commonStrings, :TOTAL_ANGLE
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_media_image_ImageArrayRotationUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @TOTAL_ANGLE = "totalAngle: "
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_image_ImageArrayRotationUtil
     end
     
 
@@ -86,15 +88,17 @@ class ImageArrayRotationUtil
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :ImageJ2SERotationUtil, "org/allbinary/media/image/ImageJ2SERotationUtil"
-autoload :ImageProcessedVisitor, "org/allbinary/media/image/ImageProcessedVisitor"
-autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :ImageJ2SERotationUtil, "org/allbinary/media/image/ImageJ2SERotationUtil" unless const_defined?(:ImageJ2SERotationUtil, false)
+autoload :ImageProcessedVisitor, "org/allbinary/media/image/ImageProcessedVisitor" unless const_defined?(:ImageProcessedVisitor, false)
+autoload :ImageProcessorInput, "org/allbinary/media/image/ImageProcessorInput" unless const_defined?(:ImageProcessorInput, false)
 
 begin
     ImageArrayRotationUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -18,6 +18,8 @@
 # require "java/io/IOException"
 # require "java/net/URI"
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 module AbFileInterface
     
 
@@ -168,4 +170,6 @@ module AbFileInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

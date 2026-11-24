@@ -14,28 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html.table
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/HtmlTag"
 
-class HtmlRow < HtmlTag
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Table
+
+class HtmlRow < ::Org::Allbinary::Logic::Visual::Dhtml::Html::HtmlTag
     attr_accessor :END, :START, :ENDTAG, :numberOfColumns, :before, :after, :htmlCellsVector
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_table_HtmlRow
         @END = ">"
         @START = "<tr "
         @ENDTAG = "</tr>"
         @numberOfColumns = 0
-        @before = nil
-        @after = nil
-        @htmlCellsVector = nil
+        @before = nil unless instance_variable_defined?(:@before)
+        @after = nil unless instance_variable_defined?(:@after)
+        @htmlCellsVector = nil unless instance_variable_defined?(:@htmlCellsVector)
     end
     
 
     def initialize(before, after)
         super()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_table_HtmlRow
         @before = String.new(before)
         @after = String.new(after)
-        @htmlCellsVector = BasicArrayListD.new()
+        @htmlCellsVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -43,15 +46,17 @@ class HtmlRow < HtmlTag
         @htmlCellsVector.add(htmlCell)
         @numberOfColumns += 1
     end
+    java_overload :addCell, 1
     
 
     def getNumberOfColumns()
         return @numberOfColumns
     end
+    java_overload :getNumberOfColumns, 0
     
 
     def toString()
-        stringUtil = StringUtil.getInstance()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         result = stringUtil.EMPTY_STRING
         attributeKeys = @otherAttributes.keySet().toArray()
         attributeSize = attributeKeys.length
@@ -78,12 +83,15 @@ class HtmlRow < HtmlTag
         result += (@after).to_s
         return result
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :HtmlCell, "org/allbinary/logic/visual/dhtml/html/table/HtmlCell"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :HtmlCell, "org/allbinary/logic/visual/dhtml/html/table/HtmlCell" unless const_defined?(:HtmlCell, false)
+
+end; end; end; end; end; end; end
 

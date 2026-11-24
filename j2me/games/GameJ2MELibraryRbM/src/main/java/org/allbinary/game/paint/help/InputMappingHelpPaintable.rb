@@ -14,48 +14,35 @@
 # frozen_string_literal: false
 # package org.allbinary.game.paint.help
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/game/paint/help/HelpPaintable"
+
+module ::Org; module Allbinary; module Game; module Paint; module Help
 
 class InputMappingHelpPaintable < HelpPaintable
     attr_accessor :logUtil, :commonStrings, :commonSeps, :stringUtil, :basicColorFactory, :NONE, :EMPTY_STRING, :gameInputMappingArray, :keyMappingArray, :actionBasicColor, :inputBasicColorArray, :selectedBasicColor, :updateMyFontProperties
-    class UpdateMyFontProperties
-        attr_accessor :actionStringArray, :keymappingBeginWidthArray, :actionStringDeltaXArray, :inputDeltaXArray, :sepArray, :sepWidthArray, :charHeight
 
-        def initialize_fields
-            @actionStringArray = StringUtil.getInstance().getArrayInstance()
-            @keymappingBeginWidthArray = NullUtil.getInstance().NULL_INT_ARRAY
-            @actionStringDeltaXArray = NullUtil.getInstance().NULL_INT_ARRAY
-            @inputDeltaXArray = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
-            @sepArray = StringUtil.getInstance().ONE_EMPTY_STRING_ARRAY_OF_ARRAYS
-            @sepWidthArray = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
-            @charHeight = 0
-        end
-
-        def initialize
-            initialize_fields
-        end
-    end
-
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @commonSeps = CommonSeps.getInstance()
-        @stringUtil = StringUtil.getInstance()
-        @basicColorFactory = BasicColorFactory.getInstance()
-        @NONE = GameKeyFactory.getInstance().NONE
-        @EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
-        @gameInputMappingArray = nil
+    def jfields_org_allbinary_game_paint_help_InputMappingHelpPaintable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
+        @stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
+        @basicColorFactory = ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance()
+        @NONE = ::Org::Allbinary::Game::Input::GameKeyFactory.getInstance().NONE
+        @EMPTY_STRING = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @gameInputMappingArray = nil unless instance_variable_defined?(:@gameInputMappingArray)
         @keyMappingArray = Array.new(0, nil)
-        @actionBasicColor = BasicColorUtil.getInstance().ZERO_ARRAY
+        @actionBasicColor = ::Org::Allbinary::Graphics::Color::BasicColorUtil.getInstance().ZERO_ARRAY
         @inputBasicColorArray = Array.new(0) { Array.new(0, nil) }
-        @selectedBasicColor = nil
+        @selectedBasicColor = nil unless instance_variable_defined?(:@selectedBasicColor)
         @updateMyFontProperties = UpdateMyFontProperties.new()
     end
     
 
     def initialize(gameInputMappingArray, backgroundBasicColor, basicColor)
         super("Input Mapping", backgroundBasicColor, basicColor)
-        initialize_fields
+        jfields_org_allbinary_game_paint_help_InputMappingHelpPaintable
         @gameInputMappingArray = gameInputMappingArray
         self.update(@NONE, @NONE)
         if backgroundBasicColor == @basicColorFactory.WHITE || basicColor == @basicColorFactory.WHITE
@@ -70,12 +57,12 @@ class InputMappingHelpPaintable < HelpPaintable
         font = graphics.getFont()
         updateMyFontProperties = UpdateMyFontProperties.new()
         updateMyFontProperties.charHeight = font.getHeight()
-        stringMaker = StringMaker.new()
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         inputInfo = @inputInfo
         size = inputInfo.length
         updateMyFontProperties.actionStringArray = Array.new(size, nil)
-        updateMyFontProperties.keymappingBeginWidthArray = Array.new(size, 0)
-        updateMyFontProperties.actionStringDeltaXArray = Array.new(size, 0)
+        updateMyFontProperties.keymappingBeginWidthArray = (Array.new(size, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
+        updateMyFontProperties.actionStringDeltaXArray = (Array.new(size, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         updateMyFontProperties.inputDeltaXArray = Array.new(size) { Array.new(0, 0) }
         updateMyFontProperties.sepArray = Array.new(size) { Array.new(0, nil) }
         updateMyFontProperties.sepWidthArray = Array.new(size) { Array.new(0, 0) }
@@ -94,9 +81,9 @@ class InputMappingHelpPaintable < HelpPaintable
             updateMyFontProperties.keymappingBeginWidthArray[index] = (font.stringWidth(stringMaker.append(updateMyFontProperties.actionStringArray[index]).append(keyMappings).to_s) >> 1)
             updateMyFontProperties.actionStringDeltaXArray[index] = font.stringWidth(actionString)
             size2 = list.size()
-            updateMyFontProperties.inputDeltaXArray[index] = Array.new(size2, 0)
+            updateMyFontProperties.inputDeltaXArray[index] = (Array.new(size2, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
             updateMyFontProperties.sepArray[index] = Array.new(size2, nil)
-            updateMyFontProperties.sepWidthArray[index] = Array.new(size2, 0)
+            updateMyFontProperties.sepWidthArray[index] = (Array.new(size2, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
             (0...size2).each do |index2|
                 input = list.objectArray[index2]
                 updateMyFontProperties.inputDeltaXArray[index][index2] = font.stringWidth(input.getName())
@@ -118,14 +105,15 @@ class InputMappingHelpPaintable < HelpPaintable
             end
         end
         @updateMyFontProperties = updateMyFontProperties
-        super(graphics)
+        InputMappingHelpPaintable.superclass.java_super_method(:updateMeasurement, 1).bind(self).call(graphics)
     end
+    java_overload :updateMeasurement, 1
     
 
     def update(selectedGameKey, selectedInput)
-        stringMaker = StringMaker.new()
-        @logUtil.putF(stringMaker.append(CommonLabels.getInstance().START_LABEL).append("selected GameKey: ").append(@stringUtil.toString(selectedGameKey)).append(" Input: ").append(@stringUtil.toString(selectedInput)).to_s, self, @commonStrings.UPDATE)
-        gameKeyMapping = PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance()
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
+        @logUtil.putF(stringMaker.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).append("selected GameKey: ").append(@stringUtil.toString(selectedGameKey)).append(" Input: ").append(@stringUtil.toString(selectedInput)).to_s, self, @commonStrings.UPDATE)
+        gameKeyMapping = ::Org::Allbinary::Game::Input::PlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance()
         size = @gameInputMappingArray.length
         keyInfo = Array.new(size, nil)
         keyMappingArray = Array.new(size, nil)
@@ -162,13 +150,14 @@ class InputMappingHelpPaintable < HelpPaintable
         @keyMappingArray = keyMappingArray
         @actionBasicColor = actionBasicColor
         @inputBasicColorArray = inputBasicColorArray
-        InputMappingHelpPaintable.superclass.instance_method(:setInputInfoP).bind(self).call(keyInfo)
+        InputMappingHelpPaintable.superclass.java_super_method(:setInputInfoP, 1).bind(self).call(keyInfo)
         @myFontProcessor = @updateMyFontProcessor
     end
+    java_overload :update, 2
     
 
     def get(keyList)
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         key = nil
         size = keyList.size()
         (0...size).each do |index|
@@ -188,6 +177,7 @@ class InputMappingHelpPaintable < HelpPaintable
         end
         return stringBuffer.to_s
     end
+    java_overload :get, 1
     
 
     def paint(graphics)
@@ -227,6 +217,7 @@ class InputMappingHelpPaintable < HelpPaintable
             end
         end
     end
+    java_overload :paint, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -251,29 +242,32 @@ class InputMappingHelpPaintable < HelpPaintable
     end
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory"
-autoload :GameInputMapping, "org/allbinary/game/input/mapping/GameInputMapping"
-autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :PlatformInputMappingFactory, "org/allbinary/game/input/PlatformInputMappingFactory" unless const_defined?(:PlatformInputMappingFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :GameInputMapping, "org/allbinary/game/input/mapping/GameInputMapping" unless const_defined?(:GameInputMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping" unless const_defined?(:PersistentInputMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorUtil, "org/allbinary/graphics/color/BasicColorUtil" unless const_defined?(:BasicColorUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :UpdateMyFontProperties, "org/allbinary/game/paint/help/UpdateMyFontProperties" unless const_defined?(:UpdateMyFontProperties, false)
 
 begin
     InputMappingHelpPaintable.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

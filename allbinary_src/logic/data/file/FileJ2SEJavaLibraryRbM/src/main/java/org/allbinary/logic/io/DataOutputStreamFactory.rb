@@ -15,6 +15,8 @@
 # package org.allbinary.logic.io
 
 
+module ::Org; module Allbinary; module Logic; module Io
+
 class DataOutputStreamFactory
     
 
@@ -32,7 +34,6 @@ class DataOutputStreamFactory
     
 
     # throws Exception
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(filePath, fileName)
         fileStreamFactory = FileStreamFactory.getInstance()
         fileOutputStream = fileStreamFactory.getFileOutputStreamInstance(filePath, fileName)
@@ -71,14 +72,16 @@ class DataOutputStreamFactory
     end
 end
 
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream"
-autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream"
-autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false)
+autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream" unless const_defined?(:AbFileOutputStream, false)
+autoload :FileStreamFactory, "org/allbinary/logic/io/FileStreamFactory" unless const_defined?(:FileStreamFactory, false)
 
 begin
     DataOutputStreamFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

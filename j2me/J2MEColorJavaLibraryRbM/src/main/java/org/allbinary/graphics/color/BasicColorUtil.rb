@@ -15,18 +15,20 @@
 # package org.allbinary.graphics.color
 
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class BasicColorUtil
     attr_accessor :ZERO_ARRAY, :ALPHA, :isAlpha, :ffOpaque
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_color_BasicColorUtil
         @ZERO_ARRAY = Array.new(0, nil)
-        @ALPHA = 0xFF000000
+        @ALPHA = (0xFF000000 - 0x100000000)
         @isAlpha = true
         @ffOpaque = true
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_color_BasicColorUtil
     end
     
 
@@ -94,11 +96,13 @@ class BasicColorUtil
     end
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
 
 begin
     BasicColorUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

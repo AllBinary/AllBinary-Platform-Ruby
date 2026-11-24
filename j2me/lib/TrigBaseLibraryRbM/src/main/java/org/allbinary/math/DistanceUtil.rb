@@ -15,15 +15,17 @@
 # package org.allbinary.math
 
 
+module ::Org; module Allbinary; module MathPackage
+
 class DistanceUtil
     attr_accessor :mathUtil
 
-    def initialize_fields
-        @mathUtil = MathUtil.getInstance()
+    def jfields_org_allbinary_math_DistanceUtil
+        @mathUtil = ::Org::Allbinary::Logic::MathPackage::MathUtil.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_math_DistanceUtil
     end
     
 
@@ -35,7 +37,7 @@ class DistanceUtil
     def getDistance(x1, y1, x2, y2)
         dx = x1 - x2
         dy = y1 - y2
-        return (@mathUtil.sqrt((dx * dx) + (dy * dy))).to_i
+        return ((@mathUtil.sqrt((dx * dx) + (dy * dy))).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
     end
 
     def self.instance()
@@ -69,11 +71,13 @@ class DistanceUtil
     end
 end
 
-autoload :MathUtil, "org/allbinary/logic/math/MathUtil"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false); end; end; end; end
 
 begin
     DistanceUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

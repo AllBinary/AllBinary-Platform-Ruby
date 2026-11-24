@@ -14,17 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.game
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Game
 
 class GameMode
     attr_accessor :name
 
-    def initialize_fields
-        @name = StringUtil.getInstance().EMPTY_STRING
+    def jfields_org_allbinary_game_GameMode
+        @name = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
     
 
     def initialize(name)
-        initialize_fields
+        jfields_org_allbinary_game_GameMode
         self.setName(name)
     end
     
@@ -48,7 +51,7 @@ class GameMode
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NONE, GameMode.new(StringUtil.getInstance().NULL_STRING))
+            const_set(:NONE, GameMode.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING))
             const_set(:SERVER, GameMode.new("Server"))
             const_set(:CLIENT, GameMode.new("Client"))
         rescue StandardError
@@ -67,11 +70,13 @@ class GameMode
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     GameMode.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

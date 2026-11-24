@@ -3,6 +3,8 @@
 # package org.allbinary.logic.control.crypt
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Crypt
+
 class Encoder
     
 
@@ -19,4 +21,6 @@ class Encoder
         return nil
     end
 end
+
+end; end; end; end; end
 

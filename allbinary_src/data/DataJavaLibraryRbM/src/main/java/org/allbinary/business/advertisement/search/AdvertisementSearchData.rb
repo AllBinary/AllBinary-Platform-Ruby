@@ -15,10 +15,12 @@
 # package org.allbinary.business.advertisement.search
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Search
+
 class AdvertisementSearchData
     attr_accessor :TITLE, :PRICE, :RELEVANCY, :POPULARITY
 
-    def initialize_fields
+    def jfields_org_allbinary_business_advertisement_search_AdvertisementSearchData
         @TITLE = "AFFILIATE_TITLE"
         @PRICE = "AFFILIATE_PRICE"
         @RELEVANCY = "AFFILIATE_RELEVANCY"
@@ -32,19 +34,45 @@ class AdvertisementSearchData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_advertisement_search_AdvertisementSearchData
     end
 
     def self.instance()
+        AdvertisementSearchData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        AdvertisementSearchData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = AdvertisementSearchData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "AdvertisementSearchData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class AdvertisementSearchData
-    @@instance = AdvertisementSearchData.new()
+begin
+    AdvertisementSearchData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

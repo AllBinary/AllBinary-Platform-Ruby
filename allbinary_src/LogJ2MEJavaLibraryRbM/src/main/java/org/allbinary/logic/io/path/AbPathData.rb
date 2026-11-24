@@ -15,13 +15,15 @@
 # package org.allbinary.logic.io.path
 
 
+module ::Org; module Allbinary; module Logic; module Io; module Path
+
 class AbPathData
     attr_accessor :EXTENSION_SEP, :SEPARATORCHAR, :SEPARATOR
 
-    def initialize_fields
-        @EXTENSION_SEP = CommonSeps.getInstance().PERIOD
+    def jfields_org_allbinary_logic_io_path_AbPathData
+        @EXTENSION_SEP = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().PERIOD
         @SEPARATORCHAR = "/"
-        @SEPARATOR = CommonSeps.getInstance().FORWARD_SLASH
+        @SEPARATOR = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().FORWARD_SLASH
     end
     
 
@@ -31,7 +33,7 @@ class AbPathData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_io_path_AbPathData
     end
 
     def self.instance()
@@ -65,13 +67,15 @@ class AbPathData
     end
 end
 
-autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :FilePathData, "org/allbinary/logic/io/file/FilePathData" unless const_defined?(:FilePathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 
 begin
     AbPathData.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

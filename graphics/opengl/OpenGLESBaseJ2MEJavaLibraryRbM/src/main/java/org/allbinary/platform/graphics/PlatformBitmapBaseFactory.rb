@@ -15,6 +15,8 @@
 # package org.allbinary.platform.graphics
 
 
+module ::Org; module Allbinary; module Platform; module Graphics
+
 class PlatformBitmapBaseFactory
     
 
@@ -43,12 +45,14 @@ class PlatformBitmapBaseFactory
     end
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :PlatformBitmapBase, "org/allbinary/platform/graphics/PlatformBitmapBase"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+autoload :PlatformBitmapBase, "org/allbinary/platform/graphics/PlatformBitmapBase" unless const_defined?(:PlatformBitmapBase, false)
 
 begin
     PlatformBitmapBaseFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.input.gyro
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/AllBinarySensorListener"
 require "org/allbinary/input/gyro/AllBinaryOrientationSensor"
 
+module ::Org; module Allbinary; module Input; module Gyro
+
 class NoGyroSensor < AllBinaryOrientationSensor
-    include AllBinarySensorListener
+    include ::Org::Allbinary::Input::AllBinarySensorListener
     
 
     def initialize()
@@ -29,14 +32,18 @@ class NoGyroSensor < AllBinaryOrientationSensor
 
     # throws Exception
     def getOrientation()
-        return Orientation::NONE
+        return ::Org::Allbinary::Logic::MathPackage::Orientation::NONE
     end
+    java_overload :getOrientation, 0
     
 
     def onSensorChange()
     end
+    java_overload :onSensorChange, 0
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :Orientation, "org/allbinary/logic/math/Orientation"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :Orientation, "org/allbinary/logic/math/Orientation" unless const_defined?(:Orientation, false); end; end; end; end
+
+end; end; end; end
 

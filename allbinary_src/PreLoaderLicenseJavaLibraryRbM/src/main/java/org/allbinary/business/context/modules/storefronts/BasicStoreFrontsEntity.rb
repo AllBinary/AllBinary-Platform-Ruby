@@ -14,44 +14,52 @@
 # frozen_string_literal: false
 # package org.allbinary.business.context.modules.storefronts
 
+require "java/lang/JavaOverload"
 require "org/allbinary/business/init/InitSql"
 
-class BasicStoreFrontsEntity < InitSql
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefronts
+
+class BasicStoreFrontsEntity < ::Org::Allbinary::Business::Init::InitSql
     attr_accessor :logUtil, :tableName
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_business_context_modules_storefronts_BasicStoreFrontsEntity
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @tableName = "storefronts"
     end
     
 
     def initialize()
-        super(UserDbInitInfo.new())
-        initialize_fields
+        super(::Org::Allbinary::Business::Init::Db::UserDbInitInfo.new())
+        jfields_org_allbinary_business_context_modules_storefronts_BasicStoreFrontsEntity
         self.setTable(@tableName)
     end
     
 
     # throws Exception
     def getStoreFrontInterface(name)
-        keysAndValues = StdUtil.getInstance().createHashMap()
-        keysAndValues.put(StoreFrontData.getInstance().NAME, name)
-        storeHashMap = self.class.superclass.instance_method(:getRow).bind(self).call(keysAndValues)
+        keysAndValues = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
+        keysAndValues.put(::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontData.getInstance().NAME, name)
+        storeHashMap = BasicStoreFrontsEntity.superclass.java_super_method(:getRow, 1).bind(self).call(keysAndValues)
         if storeHashMap == nil
             raise StandardError.new("No Such Store: " + name)
         end
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().FACTORYERROR)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().FACTORYERROR)
             @logUtil.putF("StoreFront: " + storeHashMap.to_s, self, "getStore()")
         end
         return BasicStoreFront.new(storeHashMap)
     end
+    java_overload :getStoreFrontInterface, 1
 end
 
-require "java/util/HashMap"
-require "org/allbinary/business/context/modules/storefront/StoreFrontData"
-require "org/allbinary/business/init/db/UserDbInitInfo"
-require "org/allbinary/logic/StdUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/business/context/modules/storefronts/BasicStoreFront"
-require "org/allbinary/business/context/modules/storefronts/BasicStoreFrontInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; autoload :StoreFrontData, "org/allbinary/business/context/modules/storefront/StoreFrontData" unless const_defined?(:StoreFrontData, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :UserDbInitInfo, "org/allbinary/business/init/db/UserDbInitInfo" unless const_defined?(:UserDbInitInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :BasicStoreFront, "org/allbinary/business/context/modules/storefronts/BasicStoreFront" unless const_defined?(:BasicStoreFront, false)
+autoload :BasicStoreFrontInterface, "org/allbinary/business/context/modules/storefronts/BasicStoreFrontInterface" unless const_defined?(:BasicStoreFrontInterface, false)
+
+end; end; end; end; end; end
 

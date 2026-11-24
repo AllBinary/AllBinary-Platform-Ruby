@@ -15,6 +15,8 @@
 # package org.allbinary.image
 
 
+module ::Org; module Allbinary; module Image
+
 class ImageCacheFactory
     
 
@@ -47,11 +49,13 @@ class ImageCacheFactory
     end
 end
 
-autoload :ImageCache, "org/allbinary/image/ImageCache"
+autoload :ImageCache, "org/allbinary/image/ImageCache" unless const_defined?(:ImageCache, false)
 
 begin
     ImageCacheFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

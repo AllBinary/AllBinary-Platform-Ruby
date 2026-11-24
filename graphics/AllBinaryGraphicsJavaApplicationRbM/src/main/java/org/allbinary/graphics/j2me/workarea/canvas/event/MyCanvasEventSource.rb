@@ -16,32 +16,35 @@
 
 # require "javax/swing/tree/MutableTreeNode"
 
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Canvas; module Event
+
 class MyCanvasEventSource
     attr_accessor :command, :treeNode, :angle
 
-    def initialize_fields
-        @command = nil
-        @treeNode = nil
+    def jfields_org_allbinary_graphics_j2me_workarea_canvas_event_MyCanvasEventSource
+        @command = nil unless instance_variable_defined?(:@command)
+        @treeNode = nil unless instance_variable_defined?(:@treeNode)
         @angle = 0.0
     end
 
     def initialize(*args)
         case args.length
-        when 2 then constructor2(*args)
-        when 3 then constructor3(*args)
+        when 2 then jnew_org_allbinary_graphics_j2me_workarea_canvas_event_MyCanvasEventSource_2(*args)
+        when 3 then jnew_org_allbinary_graphics_j2me_workarea_canvas_event_MyCanvasEventSource_3(*args)
+        else raise ArgumentError, "No constructor of MyCanvasEventSource takes #{args.length} arguments"
         end
     end
     
 
-    def constructor2(command, treeNode)
-        initialize_fields
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_event_MyCanvasEventSource_2(command, treeNode)
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_event_MyCanvasEventSource
         @command = command
         @treeNode = treeNode
     end
     
 
-    def constructor3(command, angle, treeNode)
-        initialize_fields
+    def jnew_org_allbinary_graphics_j2me_workarea_canvas_event_MyCanvasEventSource_3(command, angle, treeNode)
+        jfields_org_allbinary_graphics_j2me_workarea_canvas_event_MyCanvasEventSource
         @command = command
         @treeNode = treeNode
         self.setAngle(angle)
@@ -67,4 +70,6 @@ class MyCanvasEventSource
         @angle = angle
     end
 end
+
+end; end; end; end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.game.graphics.hud
 
 
+module ::Org; module Allbinary; module Game; module Graphics; module Hud
+
 class BasicHudFactory
     attr_accessor :DIRECTION_EXCEPTION, :VERTICAL, :HORIZONTAL, :BOTTOMLEFT, :BOTTOMRIGHT, :TOPLEFT, :TOPRIGHT, :BOTTOMCENTER, :TOPCENTER, :ABSOLUTE
 
-    def initialize_fields
+    def jfields_org_allbinary_game_graphics_hud_BasicHudFactory
         @DIRECTION_EXCEPTION = "Only Horizontal Direction is Allowed Currently"
         @VERTICAL = 0
         @HORIZONTAL = 1
@@ -38,7 +40,7 @@ class BasicHudFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_graphics_hud_BasicHudFactory
     end
 
     def self.instance()
@@ -77,4 +79,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

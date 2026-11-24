@@ -14,15 +14,19 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.persistance
 
+require "java/lang/JavaOverload"
 require "javax/microedition/rms/RecordFilter"
 
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance
+
 class NullRecordFilter
-    include RecordFilter
+    include ::Javax::Microedition::Rms::RecordFilter
     
 
     def matches(candidate)
         return true
     end
+    java_overload :matches, 1
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -50,4 +54,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

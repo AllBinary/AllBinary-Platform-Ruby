@@ -15,6 +15,8 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 class AnimationBehaviorFactory
     
 
@@ -58,11 +60,13 @@ class AnimationBehaviorFactory
     end
 end
 
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
+autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false)
 
 begin
     AnimationBehaviorFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

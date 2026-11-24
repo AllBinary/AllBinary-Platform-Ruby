@@ -15,6 +15,8 @@
 # package org.allbinary.game.ag.vector
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Vector
+
 class MineVectorData
     
 
@@ -57,4 +59,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

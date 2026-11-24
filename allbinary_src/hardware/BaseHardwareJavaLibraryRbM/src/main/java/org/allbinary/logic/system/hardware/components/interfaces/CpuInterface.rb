@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.hardware.components.interfaces
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Interfaces
+
 module CpuInterface
     
 
@@ -71,4 +73,6 @@ module CpuInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end; end
 

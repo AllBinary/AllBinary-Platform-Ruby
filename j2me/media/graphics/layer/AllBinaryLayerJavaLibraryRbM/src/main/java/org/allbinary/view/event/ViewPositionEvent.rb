@@ -14,13 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.view.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class ViewPositionEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module View; module Event
+
+class ViewPositionEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     
 
     def initialize(anyType)
         super(anyType)
     end
 end
+
+end; end; end; end
 

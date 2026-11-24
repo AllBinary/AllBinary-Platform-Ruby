@@ -3,11 +3,13 @@
 # package org.allbinary.game.input.analog
 
 
+module ::Org; module Allbinary; module Game; module Input; module Analog
+
 class AnalogLocationInputFactory
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_game_input_analog_AnalogLocationInputFactory
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -17,7 +19,7 @@ class AnalogLocationInputFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_input_analog_AnalogLocationInputFactory
     end
     
 
@@ -73,13 +75,15 @@ class AnalogLocationInputFactory
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :AnalogLocationInput, "org/allbinary/game/input/analog/AnalogLocationInput" unless const_defined?(:AnalogLocationInput, false)
 
 begin
     AnalogLocationInputFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,17 +15,19 @@
 # package org.allbinary.business.init
 
 
+module ::Org; module Allbinary; module Business; module Init
+
 class LicenseInitInfo
     attr_accessor :id, :serverVector
 
-    def initialize_fields
-        @id = StringUtil.getInstance().EMPTY_STRING
-        @serverVector = BasicArrayListD.new()
+    def jfields_org_allbinary_business_init_LicenseInitInfo
+        @id = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @serverVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_init_LicenseInitInfo
     end
     
 
@@ -50,7 +52,7 @@ class LicenseInitInfo
     
 
     def clearServers()
-        @serverVector = BasicArrayListD.new()
+        @serverVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -70,15 +72,17 @@ class LicenseInitInfo
     
 
     def setServerList(servers)
-        if DebugFactory.getInstance() == NoDebug.getInstance()
+        if ::Org::Allbinary::Debug::DebugFactory.getInstance() == ::Org::Allbinary::Debug::NoDebug.getInstance()
             @serverVector = servers
         end
     end
 end
 
-autoload :DebugFactory, "org/allbinary/debug/DebugFactory"
-autoload :NoDebug, "org/allbinary/debug/NoDebug"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Debug; autoload :DebugFactory, "org/allbinary/debug/DebugFactory" unless const_defined?(:DebugFactory, false); end; end; end
+module ::Org; module Allbinary; module Debug; autoload :NoDebug, "org/allbinary/debug/NoDebug" unless const_defined?(:NoDebug, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end
 

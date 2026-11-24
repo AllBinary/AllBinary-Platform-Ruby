@@ -15,10 +15,12 @@
 # package org.allbinary.game.configuration.feature
 
 
+module ::Org; module Allbinary; module Game; module Configuration; module Feature
+
 class TouchFeatureFactory
     attr_accessor :TOUCH_ENABLED, :SHOW_SCREEN_BUTTONS, :AUTO_HIDE_SHOW_SCREEN_BUTTONS, :HIDE_SCREEN_BUTTONS
 
-    def initialize_fields
+    def jfields_org_allbinary_game_configuration_feature_TouchFeatureFactory
         @TOUCH_ENABLED = TouchFeature.new("Touch Enabled")
         @SHOW_SCREEN_BUTTONS = TouchFeature.new("Show")
         @AUTO_HIDE_SHOW_SCREEN_BUTTONS = TouchFeature.new("Auto Hide (One Level)")
@@ -32,7 +34,7 @@ class TouchFeatureFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_configuration_feature_TouchFeatureFactory
     end
 
     def self.instance()
@@ -66,11 +68,13 @@ class TouchFeatureFactory
     end
 end
 
-autoload :TouchFeature, "org/allbinary/game/configuration/feature/TouchFeature"
+autoload :TouchFeature, "org/allbinary/game/configuration/feature/TouchFeature" unless const_defined?(:TouchFeature, false)
 
 begin
     TouchFeatureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -13,16 +13,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.rts.technology.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Rts; module Technology; module Event
+
 module TechEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     def onTechEvent(event)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onTechEvent, 1
 end
 
-require "org/allbinary/logic/util/event/AllBinaryEventObject"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

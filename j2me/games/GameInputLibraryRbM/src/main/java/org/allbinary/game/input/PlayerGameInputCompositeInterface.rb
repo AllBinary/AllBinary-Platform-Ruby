@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/GameInputInterface"
+
+module ::Org; module Allbinary; module Game; module Input
 
 module PlayerGameInputCompositeInterface
     include GameInputInterface
@@ -24,7 +27,10 @@ module PlayerGameInputCompositeInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getPlayerGameInput, 0
 end
 
-autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput"
+autoload :PlayerGameInput, "org/allbinary/game/input/PlayerGameInput" unless const_defined?(:PlayerGameInput, false)
+
+end; end; end; end
 

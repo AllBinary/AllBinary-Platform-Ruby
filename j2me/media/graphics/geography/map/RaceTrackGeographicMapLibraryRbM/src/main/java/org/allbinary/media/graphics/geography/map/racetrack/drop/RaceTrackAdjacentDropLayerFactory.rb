@@ -15,17 +15,19 @@
 # package org.allbinary.media.graphics.geography.map.racetrack.drop
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack; module Drop
+
 class RaceTrackAdjacentDropLayerFactory
     attr_accessor :list, :basicArrayListUtil
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
-        @basicArrayListUtil = BasicArrayListUtil.getInstance()
+    def jfields_org_allbinary_media_graphics_geography_map_racetrack_drop_RaceTrackAdjacentDropLayerFactory
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @basicArrayListUtil = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance()
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_racetrack_drop_RaceTrackAdjacentDropLayerFactory
     end
     
 
@@ -52,14 +54,38 @@ class RaceTrackAdjacentDropLayerFactory
     def add(layerInterfaceFactoryInterface)
         @list.add(layerInterfaceFactoryInterface)
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:DROP_LAYER_FACTORY, RaceTrackAdjacentDropLayerFactory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "RaceTrackAdjacentDropLayerFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:DROP_LAYER_FACTORY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/util/BasicArrayListUtil"
-require "org/allbinary/layer/LayerInterfaceFactoryInterface"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :LayerInterfaceFactoryInterface, "org/allbinary/layer/LayerInterfaceFactoryInterface" unless const_defined?(:LayerInterfaceFactoryInterface, false); end; end; end
 
-class RaceTrackAdjacentDropLayerFactory
-    DROP_LAYER_FACTORY = RaceTrackAdjacentDropLayerFactory.new()
+begin
+    RaceTrackAdjacentDropLayerFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

@@ -18,10 +18,12 @@
 # require "javax/crypto/spec/DESKeySpec"
 # require "javax/crypto/spec/DESedeKeySpec"
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Crypt; module Jcehelper
+
 class KeySpecFactory
     attr_accessor :DES, :DESEDE, :BLOWFISH
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_security_crypt_jcehelper_KeySpecFactory
         @DES = "DES"
         @DESEDE = "DESede"
         @BLOWFISH = "Blowfish"
@@ -34,14 +36,13 @@ class KeySpecFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_crypt_jcehelper_KeySpecFactory
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(algorithm, keyData)
         begin
-            tsUtil = TsUtil.getInstance()
+            tsUtil = ::Org::Allbinary::TsUtil.getInstance()
             if tsUtil.compareTo(algorithm, @DES) == 0
                 return DESKeySpec.new(keyData)
             elsif tsUtil.compareTo(algorithm, @DESEDE) == 0
@@ -50,8 +51,8 @@ class KeySpecFactory
                 raise RuntimeError.new()
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putOE(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.putOE(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
             raise RuntimeError.new()
         end
     end
@@ -87,13 +88,15 @@ class KeySpecFactory
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     KeySpecFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end
 

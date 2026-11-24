@@ -15,13 +15,15 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class Anchor
 
     def self.java_static_fields
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:TOP_LEFT, Graphics::TOP & Graphics::LEFT)
+            const_set(:TOP_LEFT, ::Javax::Microedition::Lcdui::Graphics::TOP & ::Javax::Microedition::Lcdui::Graphics::LEFT)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -38,11 +40,13 @@ class Anchor
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
 
 begin
     Anchor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

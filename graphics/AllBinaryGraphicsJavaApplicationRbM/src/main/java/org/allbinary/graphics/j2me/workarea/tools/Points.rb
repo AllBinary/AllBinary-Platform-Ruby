@@ -14,36 +14,42 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.j2me.workarea.tools
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/j2me/workarea/tools/PointsInterface"
+
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools
 
 class Points
     include PointsInterface
     attr_accessor :pointVector
 
-    def initialize_fields
-        @pointVector = nil
+    def jfields_org_allbinary_graphics_j2me_workarea_tools_Points
+        @pointVector = nil unless instance_variable_defined?(:@pointVector)
     end
     
 
     def initialize()
-        initialize_fields
-        @pointVector = BasicArrayListD.new()
+        jfields_org_allbinary_graphics_j2me_workarea_tools_Points
+        @pointVector = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def init()
         @pointVector.clear()
     end
+    java_overload :init, 0
     
 
     def getPoints()
         return @pointVector
     end
+    java_overload :getPoints, 0
     
 
     def addPoints(vector)
         @pointVector.addAll2(vector)
     end
+    java_overload :addPoints, 1
     
 
     def isValid()
@@ -53,13 +59,17 @@ class Points
             return false
         end
     end
+    java_overload :isValid, 0
     
 
     def getSize()
         return @pointVector.size()
     end
+    java_overload :getSize, 0
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end; end; end
 

@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerProcessor"
 
-class OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer < LayerProcessor
+module ::Org; module Allbinary; module Game; module Collision
+
+class OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer < ::Org::Allbinary::Layer::LayerProcessor
     
 
     def initialize()
@@ -43,6 +46,7 @@ class OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer < LayerProcess
             end
         end
     end
+    java_overload :processAt, 3
     
 
     def isProcessorLayer(layerInterface)
@@ -52,12 +56,15 @@ class OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer < LayerProcess
             return false
         end
     end
+    java_overload :isProcessorLayer, 1
 end
 
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :LayerManager, "org/allbinary/layer/LayerManager"
-autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
-autoload :OptimizedAllBinaryCollisionLayerManager, "org/allbinary/game/collision/OptimizedAllBinaryCollisionLayerManager"
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :LayerManager, "org/allbinary/layer/LayerManager" unless const_defined?(:LayerManager, false); end; end; end
+autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior" unless const_defined?(:CollidableBaseBehavior, false)
+autoload :OptimizedAllBinaryCollisionLayerManager, "org/allbinary/game/collision/OptimizedAllBinaryCollisionLayerManager" unless const_defined?(:OptimizedAllBinaryCollisionLayerManager, false)
+
+end; end; end; end
 

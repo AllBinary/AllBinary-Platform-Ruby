@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.apache.xmlrpc
 
+require "java/lang/JavaOverload"
 require "org/apache/xmlrpc/XmlRpcHandler"
+
+module ::Org; module Apache; module Xmlrpc
 
 class NullXmlRpcHandler
     include XmlRpcHandler
@@ -22,8 +25,9 @@ class NullXmlRpcHandler
 
     # throws Exception
     def execute(method, params)
-        return NullUtil.getInstance().NULL_OBJECT
+        return ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
     end
+    java_overload :execute, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -46,13 +50,15 @@ class NullXmlRpcHandler
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
 
 begin
     NullXmlRpcHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

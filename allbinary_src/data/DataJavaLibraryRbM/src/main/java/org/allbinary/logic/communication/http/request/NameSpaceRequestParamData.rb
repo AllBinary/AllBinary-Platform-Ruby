@@ -15,19 +15,45 @@
 # package org.allbinary.logic.communication.http.request
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request
+
 class NameSpaceRequestParamData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "NAMESPACE_REQUESTDATA_NAME")
+        const_set(:VALUE, "INPUT_VALUE")
+        const_set(:PROPERTIES, "_PROPERTIES_")
+        const_set(:SEP, "_DOT_")
+        const_set(:PROPERTIESSEPARATOR, "_PROPDOT_")
+        const_set(:DOCUMENT, "NAMESPACE_REQUESTDATA_DOCUMENT")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "NameSpaceRequestParamData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME, :VALUE, :PROPERTIES, :SEP, :PROPERTIESSEPARATOR, :DOCUMENT].include?(name)
+        end
+        super
+    end
 end
 
-class NameSpaceRequestParamData
-    NAME = "NAMESPACE_REQUESTDATA_NAME"
-    VALUE = "INPUT_VALUE"
-    PROPERTIES = "_PROPERTIES_"
-    SEP = "_DOT_"
-    PROPERTIESSEPARATOR = "_PROPDOT_"
-    DOCUMENT = "NAMESPACE_REQUESTDATA_DOCUMENT"
+begin
+    NameSpaceRequestParamData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

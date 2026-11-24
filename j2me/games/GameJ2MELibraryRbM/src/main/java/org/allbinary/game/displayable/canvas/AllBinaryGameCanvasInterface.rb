@@ -14,17 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/displayable/DisplayableInterface"
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 module AllBinaryGameCanvasInterface
-    include DisplayableInterface
+    include ::Org::Allbinary::Graphics::Displayable::DisplayableInterface
     
 
     def getLayerManager()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getLayerManager, 0
 end
 
-autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager"
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryGameLayerManager, "org/allbinary/game/layer/AllBinaryGameLayerManager" unless const_defined?(:AllBinaryGameLayerManager, false); end; end; end; end
+
+end; end; end; end; end
 

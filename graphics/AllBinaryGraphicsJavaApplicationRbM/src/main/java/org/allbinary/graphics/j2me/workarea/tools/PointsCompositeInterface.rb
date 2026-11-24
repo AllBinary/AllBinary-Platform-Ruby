@@ -15,13 +15,18 @@
 # package org.allbinary.graphics.j2me.workarea.tools
 
 
+module ::Org; module Allbinary; module Graphics; module J2me; module Workarea; module Tools
+
 module PointsCompositeInterface
     
 
     def getPointsInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-require "org/allbinary/graphics/j2me/workarea/tools/PointsInterface"
+autoload :PointsInterface, "org/allbinary/graphics/j2me/workarea/tools/PointsInterface" unless const_defined?(:PointsInterface, false)
+
+end; end; end; end; end; end
 

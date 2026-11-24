@@ -15,6 +15,8 @@
 # package org.allbinary.debug
 
 
+module ::Org; module Allbinary; module Debug
+
 class DebugFactory
     
 
@@ -23,6 +25,8 @@ class DebugFactory
     end
 end
 
-autoload :DebugInterface, "org/allbinary/debug/DebugInterface"
-autoload :NoDebug, "org/allbinary/debug/NoDebug"
+autoload :DebugInterface, "org/allbinary/debug/DebugInterface" unless const_defined?(:DebugInterface, false)
+autoload :NoDebug, "org/allbinary/debug/NoDebug" unless const_defined?(:NoDebug, false)
+
+end; end; end
 

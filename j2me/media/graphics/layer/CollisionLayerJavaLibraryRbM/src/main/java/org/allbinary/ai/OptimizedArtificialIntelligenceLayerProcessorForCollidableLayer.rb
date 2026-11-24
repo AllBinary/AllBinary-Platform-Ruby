@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/LayerProcessor"
 
-class OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer < LayerProcessor
+module ::Org; module Allbinary; module Ai
+
+class OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer < ::Org::Allbinary::Layer::LayerProcessor
     
 
     def initialize()
@@ -29,6 +32,7 @@ class OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer < LayerPro
         artificialIntelligenceCompositeInterface = layerInterface
         artificialIntelligenceCompositeInterface.getArtificialIntelligenceInterface().processAI(allBinaryLayerManager)
     end
+    java_overload :processAt, 3
     
 
     # throws Exception
@@ -39,10 +43,13 @@ class OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer < LayerPro
             return false
         end
     end
+    java_overload :isProcessorLayer, 1
 end
 
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :OptimizedArtificialIntelligenceLayerManager, "org/allbinary/ai/OptimizedArtificialIntelligenceLayerManager"
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+autoload :OptimizedArtificialIntelligenceLayerManager, "org/allbinary/ai/OptimizedArtificialIntelligenceLayerManager" unless const_defined?(:OptimizedArtificialIntelligenceLayerManager, false)
+
+end; end; end
 

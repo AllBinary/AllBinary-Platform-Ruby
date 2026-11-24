@@ -14,23 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.math
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsProperty"
 # require "jsinterop/annotations/JsConstructor"
 require "org/allbinary/math/Angle"
 
+module ::Org; module Allbinary; module MathPackage
+
 class NamedAngle < Angle
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_math_NamedAngle
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(angle, name)
         super(angle)
-        initialize_fields
+        jfields_org_allbinary_math_NamedAngle
         @name = name
     end
 end
+
+end; end; end
 

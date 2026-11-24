@@ -14,25 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.data.tree.dom
 
+require "java/lang/JavaOverload"
 # require "javax/xml/transform/Source"
 # require "javax/xml/transform/TransformerException"
 # require "javax/xml/transform/URIResolver"
 # require "javax/xml/transform/stream/StreamSource"
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
+
 class StoreUriResolver
     include URIResolver
     attr_accessor :logUtil, :uriResolverStrings, :basicURIResolver, :parentTransformInfoInterface
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_data_tree_dom_StoreUriResolver
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @uriResolverStrings = URIResolverStrings.getInstance()
-        @basicURIResolver = nil
-        @parentTransformInfoInterface = nil
+        @basicURIResolver = nil unless instance_variable_defined?(:@basicURIResolver)
+        @parentTransformInfoInterface = nil unless instance_variable_defined?(:@parentTransformInfoInterface)
     end
     
 
     def initialize(parentTransformInfoInterface, basicURIResolver)
-        initialize_fields
+        jfields_org_allbinary_data_tree_dom_StoreUriResolver
         @parentTransformInfoInterface = parentTransformInfoInterface
         @basicURIResolver = basicURIResolver
     end
@@ -41,11 +44,11 @@ class StoreUriResolver
     # throws TransformerException
     def resolve(href, base)
         begin
-            stringBuffer = StringMaker.new()
+            stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             transformInfoHttpStoreInterface = @parentTransformInfoInterface
-            stringBuffer.append(URLGLOBALS.getMainPath()).append(FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH).append(transformInfoHttpStoreInterface.getStoreName()).append(AbPathData.getInstance().SEPARATOR).append(href)
-            fileAbPath = AbFilePath.new(stringBuffer.to_s)
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().XMLLOGGING)
+            stringBuffer.append(::Org::Allbinary::Globals::URLGLOBALS.getMainPath()).append(::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH).append(transformInfoHttpStoreInterface.getStoreName()).append(::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATOR).append(href)
+            fileAbPath = ::Org::Allbinary::Logic::Io::Path::AbFilePath.new(stringBuffer.to_s)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().XMLLOGGING)
                 stringBuffer.delete(0, stringBuffer.length())
                 stringBuffer.append(@uriResolverStrings.ATTEMPT)
                 stringBuffer.append(href)
@@ -54,42 +57,48 @@ class StoreUriResolver
                 stringBuffer.append(@uriResolverStrings.NEW_PATH)
                 stringBuffer.append(fileAbPath.to_s)
                 stringBuffer.append(@uriResolverStrings.NOTE)
-                stringBuffer.append(FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH)
+                stringBuffer.append(::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH)
                 stringBuffer.append(@uriResolverStrings.URL_GLOBAL)
                 stringBuffer.append(@uriResolverStrings.REQUIRED_EXTENSION)
                 stringBuffer.append(@basicURIResolver.getExtension())
                 @logUtil.putF(stringBuffer.to_s, self, @uriResolverStrings.RESOLVE)
             end
-            return StreamSource.new(CryptFileReader.new(TransformInfoTemplateData.getInstance().UNCRYPTED_EXTENSION, TransformInfoTemplateData.getInstance().ENCRYPTED_EXTENSION).getInputStream(fileAbPath))
+            return StreamSource.new(::Org::Allbinary::Logic::ControlPackage::Crypt::FilePackage::CryptFileReader.new(::Org::Allbinary::Logic::Visual::Transform::Info::Template::TransformInfoTemplateData.getInstance().UNCRYPTED_EXTENSION, ::Org::Allbinary::Logic::Visual::Transform::Info::Template::TransformInfoTemplateData.getInstance().ENCRYPTED_EXTENSION).getInputStream(fileAbPath))
         rescue TransformerException => e
             raise e
         rescue StandardError => e
             raise TransformerException.new(e)
         end
     end
+    java_overload :resolve, 2
     
 
     def toString()
         begin
-            return (URLGLOBALS.getMainPath() + FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH).to_s + "{Store Name if Any}/{import url}"
+            return (::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + ::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH).to_s + "{Store Name if Any}/{import url}"
         rescue StandardError => e
             return "StoreUriResolver - Does not work without webapp path should be changed"
         end
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS"
-autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader"
-autoload :AbFilePath, "org/allbinary/logic/io/path/AbFilePath"
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
-autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :TransformInfoHttpStoreInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStoreInterface"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :TransformInfoTemplateData, "org/allbinary/logic/visual/transform/info/template/TransformInfoTemplateData"
-autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver"
-autoload :URIResolverStrings, "org/allbinary/data/tree/dom/URIResolverStrings"
+module ::Org; module Allbinary; module Globals; autoload :FREEBLISKET_PATH_GLOBALS, "org/allbinary/globals/FREEBLISKET_PATH_GLOBALS" unless const_defined?(:FREEBLISKET_PATH_GLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Globals; autoload :URLGLOBALS, "org/allbinary/globals/URLGLOBALS" unless const_defined?(:URLGLOBALS, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Crypt; module FilePackage; autoload :CryptFileReader, "org/allbinary/logic/control/crypt/file/CryptFileReader" unless const_defined?(:CryptFileReader, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbFilePath, "org/allbinary/logic/io/path/AbFilePath" unless const_defined?(:AbFilePath, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPathData, "org/allbinary/logic/io/path/AbPathData" unless const_defined?(:AbPathData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoHttpStoreInterface, "org/allbinary/logic/visual/transform/info/TransformInfoHttpStoreInterface" unless const_defined?(:TransformInfoHttpStoreInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; module Template; autoload :TransformInfoTemplateData, "org/allbinary/logic/visual/transform/info/template/TransformInfoTemplateData" unless const_defined?(:TransformInfoTemplateData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+autoload :BasicUriResolver, "org/allbinary/data/tree/dom/BasicUriResolver" unless const_defined?(:BasicUriResolver, false)
+autoload :URIResolverStrings, "org/allbinary/data/tree/dom/URIResolverStrings" unless const_defined?(:URIResolverStrings, false)
+
+end; end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.logic.io.file
 
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 class FilePathData
     attr_accessor :SEPARATORCHAR, :PATH_START
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_io_file_FilePathData
         @SEPARATORCHAR = "\\"
         @PATH_START = "\\\\"
     end
@@ -30,7 +32,7 @@ class FilePathData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_io_file_FilePathData
     end
 
     def self.instance()
@@ -69,4 +71,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

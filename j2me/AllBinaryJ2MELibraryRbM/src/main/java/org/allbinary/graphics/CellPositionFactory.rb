@@ -15,15 +15,17 @@
 # package org.allbinary.graphics
 
 
+module ::Org; module Allbinary; module Graphics
+
 class CellPositionFactory
     attr_accessor :logUtil, :NONE, :cellPositionArray, :columns, :rows
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_graphics_CellPositionFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @NONE = CellPosition.new(-1, -1, -1, -1)
         @cellPositionArray = Array.new(0) { Array.new(0, nil) }
-        @columns = 0
-        @rows = 0
+        @columns = 0 unless instance_variable_defined?(:@columns)
+        @rows = 0 unless instance_variable_defined?(:@rows)
     end
     
 
@@ -33,13 +35,13 @@ class CellPositionFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_graphics_CellPositionFactory
     end
     
 
     def init(columns, rows)
-        commonStrings = CommonStrings.getInstance()
-        stringBuffer = StringMaker.new()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Init: columns: ")
         stringBuffer.appendint(columns)
         stringBuffer.append(" rows: ")
@@ -60,8 +62,8 @@ class CellPositionFactory
         begin
             return @cellPositionArray[i_column][i_row]
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            @logUtil.put(StringMaker.new().append("columns: ").appendint(self.getColumns()).append(" rows: ").appendint(self.getRows()).append(" col: ").appendint(i_column).append(" row: ").appendint(i_row).to_s, self, commonStrings.GET_INSTANCE, e)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            @logUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("columns: ").appendint(self.getColumns()).append(" rows: ").appendint(self.getRows()).append(" col: ").appendint(i_column).append(" row: ").appendint(i_row).to_s, self, commonStrings.GET_INSTANCE, e)
             return @NONE
         end
     end
@@ -107,14 +109,16 @@ class CellPositionFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :CellPosition, "org/allbinary/graphics/CellPosition"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :CellPosition, "org/allbinary/graphics/CellPosition" unless const_defined?(:CellPosition, false)
 
 begin
     CellPositionFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

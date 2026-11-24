@@ -15,6 +15,8 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 module IntermissionInterface
     
 
@@ -42,6 +44,8 @@ module IntermissionInterface
     end
 end
 
-autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
-autoload :IntermissionEnableListenerInterface, "org/allbinary/game/IntermissionEnableListenerInterface"
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+autoload :IntermissionEnableListenerInterface, "org/allbinary/game/IntermissionEnableListenerInterface" unless const_defined?(:IntermissionEnableListenerInterface, false)
+
+end; end; end
 

@@ -15,18 +15,20 @@
 # package org.allbinary.game.combat
 
 
+module ::Org; module Allbinary; module Game; module Combat
+
 class CombatBaseBehavior
     attr_accessor :damageableBaseBehavior, :destroyableBaseBehavior, :readyForExplosion
 
-    def initialize_fields
-        @damageableBaseBehavior = nil
-        @destroyableBaseBehavior = nil
-        @readyForExplosion = false
+    def jfields_org_allbinary_game_combat_CombatBaseBehavior
+        @damageableBaseBehavior = nil unless instance_variable_defined?(:@damageableBaseBehavior)
+        @destroyableBaseBehavior = nil unless instance_variable_defined?(:@destroyableBaseBehavior)
+        @readyForExplosion = false unless instance_variable_defined?(:@readyForExplosion)
     end
     
 
     def initialize(damageableBaseBehavior, destroyableBaseBehavior)
-        initialize_fields
+        jfields_org_allbinary_game_combat_CombatBaseBehavior
         @damageableBaseBehavior = damageableBaseBehavior
         @destroyableBaseBehavior = destroyableBaseBehavior
     end
@@ -55,7 +57,7 @@ class CombatBaseBehavior
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_COMBAT_BEHAVIOR, CombatBaseBehavior.new(DamageableBaseBehavior.getInstance(), DestroyableBaseBehavior.getInstance()))
+            const_set(:NULL_COMBAT_BEHAVIOR, CombatBaseBehavior.new(::Org::Allbinary::Game::Combat::Damage::DamageableBaseBehavior.getInstance(), ::Org::Allbinary::Game::Combat::Destroy::DestroyableBaseBehavior.getInstance()))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -72,12 +74,14 @@ class CombatBaseBehavior
     end
 end
 
-autoload :DamageableBaseBehavior, "org/allbinary/game/combat/damage/DamageableBaseBehavior"
-autoload :DestroyableBaseBehavior, "org/allbinary/game/combat/destroy/DestroyableBaseBehavior"
+module ::Org; module Allbinary; module Game; module Combat; module Damage; autoload :DamageableBaseBehavior, "org/allbinary/game/combat/damage/DamageableBaseBehavior" unless const_defined?(:DamageableBaseBehavior, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Combat; module Destroy; autoload :DestroyableBaseBehavior, "org/allbinary/game/combat/destroy/DestroyableBaseBehavior" unless const_defined?(:DestroyableBaseBehavior, false); end; end; end; end; end
 
 begin
     CombatBaseBehavior.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

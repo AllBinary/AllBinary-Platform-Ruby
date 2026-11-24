@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.paint
 
 
+module ::Org; module Allbinary; module Graphics; module Paint
+
 module PaintableInterface
     
 
@@ -30,5 +32,7 @@ module PaintableInterface
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+
+end; end; end; end
 

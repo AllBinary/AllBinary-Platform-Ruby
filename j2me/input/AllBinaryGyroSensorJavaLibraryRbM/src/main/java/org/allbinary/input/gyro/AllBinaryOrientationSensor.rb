@@ -14,25 +14,29 @@
 # frozen_string_literal: false
 # package org.allbinary.input.gyro
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/AllBinarySensor"
 
-class AllBinaryOrientationSensor < AllBinarySensor
+module ::Org; module Allbinary; module Input; module Gyro
+
+class AllBinaryOrientationSensor < ::Org::Allbinary::Input::AllBinarySensor
     attr_accessor :sensorDataFloatArray, :listener
 
-    def initialize_fields
-        @sensorDataFloatArray = PrimitiveFloatUtil.getArrayInstance()
-        @listener = NoCompleteMotionGestureInputEventListener.getInstance()
+    def jfields_org_allbinary_input_gyro_AllBinaryOrientationSensor
+        @sensorDataFloatArray = ::Org::Allbinary::Logic::MathPackage::PrimitiveFloatUtil.getArrayInstance()
+        @listener = ::Org::Allbinary::Game::Input::Motion::Action::NoCompleteMotionGestureInputEventListener.getInstance()
     end
     
 
     def setCompleteMotionGestureInputEventListener(completeMotionGestureInputEventListenerInterface)
         @listener = completeMotionGestureInputEventListenerInterface
     end
+    java_overload :setCompleteMotionGestureInputEventListener, 1
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_input_gyro_AllBinaryOrientationSensor
     end
     
 
@@ -40,6 +44,7 @@ class AllBinaryOrientationSensor < AllBinarySensor
     def getOrientation()
         raise StandardError.new(@commonStrings.NOT_IMPLEMENTED)
     end
+    java_overload :getOrientation, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -62,14 +67,16 @@ class AllBinaryOrientationSensor < AllBinarySensor
     end
 end
 
-autoload :CompleteMotionGestureInputEventListenerInterface, "org/allbinary/game/input/CompleteMotionGestureInputEventListenerInterface"
-autoload :NoCompleteMotionGestureInputEventListener, "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener"
-autoload :Orientation, "org/allbinary/logic/math/Orientation"
-autoload :PrimitiveFloatUtil, "org/allbinary/logic/math/PrimitiveFloatUtil"
+module ::Org; module Allbinary; module Game; module Input; autoload :CompleteMotionGestureInputEventListenerInterface, "org/allbinary/game/input/CompleteMotionGestureInputEventListenerInterface" unless const_defined?(:CompleteMotionGestureInputEventListenerInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Motion; module Action; autoload :NoCompleteMotionGestureInputEventListener, "org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener" unless const_defined?(:NoCompleteMotionGestureInputEventListener, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :Orientation, "org/allbinary/logic/math/Orientation" unless const_defined?(:Orientation, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :PrimitiveFloatUtil, "org/allbinary/logic/math/PrimitiveFloatUtil" unless const_defined?(:PrimitiveFloatUtil, false); end; end; end; end
 
 begin
     AllBinaryOrientationSensor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

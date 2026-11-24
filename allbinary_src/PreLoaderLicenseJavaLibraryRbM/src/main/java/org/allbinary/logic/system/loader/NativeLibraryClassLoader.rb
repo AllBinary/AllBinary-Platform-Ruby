@@ -14,18 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.loader
 
+require "java/lang/JavaOverload"
+require "java/lang/ClassLoader"
 
-class NativeLibraryClassLoader < ClassLoader
+module ::Org; module Allbinary; module Logic; module System; module Loader
+
+class NativeLibraryClassLoader < ::Java::Lang::ClassLoader
     attr_accessor :message
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_system_loader_NativeLibraryClassLoader
         @message = "This Class Loader Does Not Load Classes - Only For Loading and Unloading of Native Libraries"
     end
     
 
     def initialize(parent)
         super(parent)
-        initialize_fields
+        jfields_org_allbinary_logic_system_loader_NativeLibraryClassLoader
     end
 end
+
+end; end; end; end; end
 

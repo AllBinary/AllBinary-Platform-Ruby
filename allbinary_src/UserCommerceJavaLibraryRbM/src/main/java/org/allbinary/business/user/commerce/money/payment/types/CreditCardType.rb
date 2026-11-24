@@ -15,16 +15,18 @@
 # package org.allbinary.business.user.commerce.money.payment.types
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
+
 class CreditCardType
     attr_accessor :name
 
-    def initialize_fields
-        @name = nil
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_CreditCardType
+        @name = nil unless instance_variable_defined?(:@name)
     end
     
 
     def initialize(cardType)
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_types_CreditCardType
         @name = cardType
     end
     
@@ -60,4 +62,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

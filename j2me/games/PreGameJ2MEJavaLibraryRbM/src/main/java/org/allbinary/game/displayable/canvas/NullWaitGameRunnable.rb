@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/displayable/canvas/GameRunnable"
+
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
 
 class NullWaitGameRunnable < GameRunnable
     
@@ -59,4 +62,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

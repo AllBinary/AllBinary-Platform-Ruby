@@ -15,45 +15,50 @@
 # package org.allbinary.data.generator
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 # require "java/io/IOException"
 require "org/allbinary/data/generator/IdGeneratorInterface"
+
+module ::Org; module Allbinary; module DataPackage; module Generator
 
 class UniqueIdGenerator
     include IdGeneratorInterface
     attr_accessor :logUtil, :newFile, :id
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @newFile = nil
+    def jfields_org_allbinary_data_generator_UniqueIdGenerator
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @newFile = nil unless instance_variable_defined?(:@newFile)
         @id = 0
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_data_generator_UniqueIdGenerator
     end
     
 
     def initialize(value)
         begin
             @newFile.createNewFile()
-            idData = DataOutputStreamFactory.getInstance().getInstanceForAbFile(@newFile)
+            idData = ::Org::Allbinary::Logic::Io::DataOutputStreamFactory.getInstance().getInstanceForAbFile(@newFile)
             idData.writeLong(value)
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().IDLOGGING)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().IDLOGGING)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(commonStrings.EXCEPTION, self, "initialize", e)
             end
         end
     end
+    java_overload :initialize, 1
     
 
     # throws Exception
     def setFile(filePathName, name)
         java_monitor.synchronize do
-        @newFile = AbFile.createAbFile(filePathName)
+        @newFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(filePathName)
         end
     end
+    java_overload :setFile, 2
     
 
     # throws IOException
@@ -62,26 +67,27 @@ class UniqueIdGenerator
         idData = nil
         idOutData = nil
         begin
-            idFile = AbFileInputStream.new(@newFile)
-            idData = AbDataInputStream.new(idFile)
+            idFile = ::Org::Allbinary::Logic::Io::AbFileInputStream.createFromAbFile(@newFile)
+            idData = ::Org::Allbinary::Logic::Io::AbDataInputStream.new(idFile)
             @id = idData.readLong()
-            idOutFile = AbFileOutputStream.createFromAbFile(@newFile)
-            idOutData = AbDataOutputStream.new(idOutFile)
+            idOutFile = ::Org::Allbinary::Logic::Io::AbFileOutputStream.createFromAbFile(@newFile)
+            idOutData = ::Org::Allbinary::Logic::Io::AbDataOutputStream.new(idOutFile)
             idOutData.writeLong(@id + 1)
             idLong = @id
             return idLong.to_s
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().IDLOGGING)
-                commonStrings = CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().IDLOGGING)
+                commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(commonStrings.EXCEPTION, self, "getNext", e)
             end
             return "Error"
         ensure
-            StreamUtil.getInstance().close(idData)
-            StreamUtil.getInstance().close(idOutData)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(idData)
+            ::Org::Allbinary::Logic::Io::StreamUtil.getInstance().close(idOutData)
         end
         end
     end
+    java_overload :getNext, 0
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -104,19 +110,23 @@ class UniqueIdGenerator
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :AbDataInputStream, "org/allbinary/logic/io/AbDataInputStream"
-autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream"
-autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream"
-autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream"
-autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory"
-autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil"
-autoload :AbFile, "org/allbinary/logic/io/file/AbFile"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataInputStream, "org/allbinary/logic/io/AbDataInputStream" unless const_defined?(:AbDataInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbDataOutputStream, "org/allbinary/logic/io/AbDataOutputStream" unless const_defined?(:AbDataOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileInputStream, "org/allbinary/logic/io/AbFileInputStream" unless const_defined?(:AbFileInputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :AbFileOutputStream, "org/allbinary/logic/io/AbFileOutputStream" unless const_defined?(:AbFileOutputStream, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :DataOutputStreamFactory, "org/allbinary/logic/io/DataOutputStreamFactory" unless const_defined?(:DataOutputStreamFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :StreamUtil, "org/allbinary/logic/io/StreamUtil" unless const_defined?(:StreamUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :AbFile, "org/allbinary/logic/io/file/AbFile" unless const_defined?(:AbFile, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
 begin
     UniqueIdGenerator.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

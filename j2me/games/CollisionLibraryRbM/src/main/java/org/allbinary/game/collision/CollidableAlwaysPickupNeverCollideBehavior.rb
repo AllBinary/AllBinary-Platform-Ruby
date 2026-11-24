@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.collision
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/collision/CollidableNeverCollideBehavior"
+
+module ::Org; module Allbinary; module Game; module Collision
 
 class CollidableAlwaysPickupNeverCollideBehavior < CollidableNeverCollideBehavior
     
@@ -27,9 +30,12 @@ class CollidableAlwaysPickupNeverCollideBehavior < CollidableNeverCollideBehavio
     def getCollisionTypeWith(layerInterface)
         return CollisionTypeFactory.getInstance().PICKUP
     end
+    java_overload :getCollisionTypeWith, 1
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
-autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType" unless const_defined?(:CollisionType, false)
+autoload :CollisionTypeFactory, "org/allbinary/game/collision/CollisionTypeFactory" unless const_defined?(:CollisionTypeFactory, false)
+
+end; end; end; end
 

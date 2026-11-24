@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.displayable.screen
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen
+
 class ScreenRepaintUtil
     
 
@@ -22,5 +24,7 @@ class ScreenRepaintUtil
     end
 end
 
-autoload :Displayable, "javax/microedition/lcdui/Displayable"
+module ::Javax; module Microedition; module Lcdui; autoload :Displayable, "javax/microedition/lcdui/Displayable" unless const_defined?(:Displayable, false); end; end; end
+
+end; end; end; end; end
 

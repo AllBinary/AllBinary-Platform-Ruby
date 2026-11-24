@@ -14,27 +14,33 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.dhtml.html.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/visual/dhtml/html/input/HtmlValueInput"
+
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Input
 
 class HtmlRadioInput < HtmlValueInput
     attr_accessor :CHECKED
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlRadioInput
         @CHECKED = "checked"
     end
     
 
     def initialize(before, name, value, after)
         super(before, HtmlInputData.getInstance().RADIO, name, value, after)
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_input_HtmlRadioInput
     end
     
 
     def setSelected()
-        self.class.superclass.instance_method(:addAttribute).bind(self).call(@CHECKED, BooleanFactory.getInstance().TRUE_STRING)
+        HtmlRadioInput.superclass.java_super_method(:addAttribute, 2).bind(self).call(@CHECKED, ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE_STRING)
     end
+    java_overload :setSelected, 0
 end
 
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :HtmlInputData, "org/allbinary/logic/visual/dhtml/html/input/HtmlInputData"
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+autoload :HtmlInputData, "org/allbinary/logic/visual/dhtml/html/input/HtmlInputData" unless const_defined?(:HtmlInputData, false)
+
+end; end; end; end; end; end; end
 

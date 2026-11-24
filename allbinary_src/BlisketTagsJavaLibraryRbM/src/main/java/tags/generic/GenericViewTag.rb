@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package tags.generic
 
+require "java/lang/JavaOverload"
 require "tags/TransformTag"
 
-class GenericViewTag < TransformTag
+module ::Tags; module Generic
+
+class GenericViewTag < ::Tags::TransformTag
     attr_accessor :logUtil, :output, :file
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @output = nil
-        @file = nil
+    def jfields_tags_generic_GenericViewTag
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @output = nil unless instance_variable_defined?(:@output)
+        @file = nil unless instance_variable_defined?(:@file)
     end
     
 
     def initialize()
         super()
-        initialize_fields
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+        jfields_tags_generic_GenericViewTag
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
             @logUtil.putF(@commonStrings.START, self, @commonStrings.CONSTRUCTOR)
         end
     end
@@ -37,16 +40,22 @@ class GenericViewTag < TransformTag
 
     def setOutput(value)
         @output = value
-        self.getPropertiesHashMap().put(InputOutputTypeData.getInstance().NAME, @output)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Io::InputOutputTypeData.getInstance().NAME, @output)
     end
+    java_overload :setOutput, 1
     
 
     def setFile(value)
         @file = value
-        self.getPropertiesHashMap().put(InputOutputTypeData.getInstance().FILE, @file)
+        self.getPropertiesHashMap().put(::Org::Allbinary::Logic::Io::InputOutputTypeData.getInstance().FILE, @file)
     end
+    java_overload :setFile, 1
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :InputOutputTypeData, "org/allbinary/logic/io/InputOutputTypeData"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Io; autoload :InputOutputTypeData, "org/allbinary/logic/io/InputOutputTypeData" unless const_defined?(:InputOutputTypeData, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end
 

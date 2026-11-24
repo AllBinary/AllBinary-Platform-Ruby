@@ -14,16 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.android.activity
 
+require "java/lang/JavaOverload"
 require "org/allbinary/android/activity/ViewCompositeInterface"
+
+module ::Org; module Allbinary; module Android; module Activity
 
 module KeyInputViewCompositeInterface
     include ViewCompositeInterface
     
 
     def setKeyInputView(keyInputView)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setKeyInputView, 1
 end
 
-require "android/view/View"
+module ::Android; module View; autoload :View, "android/view/View" unless const_defined?(:View, false); end; end
+
+end; end; end; end
 

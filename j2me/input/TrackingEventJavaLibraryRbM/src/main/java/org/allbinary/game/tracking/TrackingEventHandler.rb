@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.tracking
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class TrackingEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Game; module Tracking
+
+class TrackingEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     
 
     def self.getInstance()
@@ -34,6 +37,7 @@ class TrackingEventHandler < BasicEventHandler
         trackingEventListenerInterface = eventListenerInterface
         trackingEventListenerInterface.onMovement(eventObject)
     end
+    java_overload :process, 2
 
     def self.instance()
         TrackingEventHandler.java_static_fields unless @java_static_fields_started
@@ -66,14 +70,16 @@ class TrackingEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent"
-autoload :TrackingEventListenerInterface, "org/allbinary/game/tracking/TrackingEventListenerInterface"
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent" unless const_defined?(:TrackingEvent, false)
+autoload :TrackingEventListenerInterface, "org/allbinary/game/tracking/TrackingEventListenerInterface" unless const_defined?(:TrackingEventListenerInterface, false)
 
 begin
     TrackingEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

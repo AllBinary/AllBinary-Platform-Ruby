@@ -16,15 +16,17 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Game; module Tracking
+
 class TrackingEventCircularStaticPool
     attr_accessor :EVENT_POOL
 
-    def initialize_fields
-        @EVENT_POOL = AllBinaryEventCircularPool.new(20)
+    def jfields_org_allbinary_game_tracking_TrackingEventCircularStaticPool
+        @EVENT_POOL = ::Org::Allbinary::Logic::Util::Event::AllBinaryEventCircularPool.new(20)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_tracking_TrackingEventCircularStaticPool
     end
     
 
@@ -78,14 +80,16 @@ class TrackingEventCircularStaticPool
     end
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool"
-autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent"
-autoload :TrackingEventFactory, "org/allbinary/game/tracking/TrackingEventFactory"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventCircularPool, "org/allbinary/logic/util/event/AllBinaryEventCircularPool" unless const_defined?(:AllBinaryEventCircularPool, false); end; end; end; end; end
+autoload :TrackingEvent, "org/allbinary/game/tracking/TrackingEvent" unless const_defined?(:TrackingEvent, false)
+autoload :TrackingEventFactory, "org/allbinary/game/tracking/TrackingEventFactory" unless const_defined?(:TrackingEventFactory, false)
 
 begin
     TrackingEventCircularStaticPool.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

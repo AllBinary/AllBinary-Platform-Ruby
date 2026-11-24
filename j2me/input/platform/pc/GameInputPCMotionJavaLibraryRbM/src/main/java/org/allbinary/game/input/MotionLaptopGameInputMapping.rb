@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/PCGameInputMapping"
+
+module ::Org; module Allbinary; module Game; module Input
 
 class MotionLaptopGameInputMapping < PCGameInputMapping
     
@@ -22,8 +25,11 @@ class MotionLaptopGameInputMapping < PCGameInputMapping
     def getDefault()
         return MotionLaptopDefaultGameInputMapping.new().getInputMapping()
     end
+    java_overload :getDefault, 0
 end
 
-autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-autoload :MotionLaptopDefaultGameInputMapping, "org/allbinary/game/input/MotionLaptopDefaultGameInputMapping"
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping" unless const_defined?(:InputToGameKeyMapping, false); end; end; end; end; end
+autoload :MotionLaptopDefaultGameInputMapping, "org/allbinary/game/input/MotionLaptopDefaultGameInputMapping" unless const_defined?(:MotionLaptopDefaultGameInputMapping, false)
+
+end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.input.gyro
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/gyro/SensorGameUpdateProcessor"
+
+module ::Org; module Allbinary; module Input; module Gyro
 
 class SingleSensorGameUpdateProcessor < SensorGameUpdateProcessor
     
@@ -22,10 +25,14 @@ class SingleSensorGameUpdateProcessor < SensorGameUpdateProcessor
     # throws Exception
     def process(anyType)
     end
+    java_overload :process, 1
     
 
     # throws Exception
     def sendNotifications(anyType)
     end
+    java_overload :sendNotifications, 1
 end
+
+end; end; end; end
 

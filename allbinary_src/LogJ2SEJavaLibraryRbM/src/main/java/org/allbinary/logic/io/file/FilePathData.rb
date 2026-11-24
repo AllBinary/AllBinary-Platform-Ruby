@@ -16,12 +16,14 @@
 
 # require "java/io/File"
 
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
+
 class FilePathData
     attr_accessor :SEPARATORCHAR, :PATH_START
 
-    def initialize_fields
-        @SEPARATORCHAR = File::SEPARATOR
-        @PATH_START = File::SEPARATOR
+    def jfields_org_allbinary_logic_io_file_FilePathData
+        @SEPARATORCHAR = ::File::SEPARATOR
+        @PATH_START = ::File::SEPARATOR
     end
     
 
@@ -31,9 +33,9 @@ class FilePathData
     
 
     def initialize()
-        initialize_fields
-        if File::SEPARATOR == "\\"
-            @PATH_START = File::SEPARATOR + File::SEPARATOR
+        jfields_org_allbinary_logic_io_file_FilePathData
+        if ::File::SEPARATOR == "\\"
+            @PATH_START = ::File::SEPARATOR + ::File::SEPARATOR
         end
     end
 
@@ -73,4 +75,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

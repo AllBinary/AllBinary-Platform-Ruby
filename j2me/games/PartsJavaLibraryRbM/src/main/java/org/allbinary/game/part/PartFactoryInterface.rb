@@ -15,6 +15,8 @@
 # package org.allbinary.game.part
 
 
+module ::Org; module Allbinary; module Game; module Part
+
 module PartFactoryInterface
     
 
@@ -25,7 +27,9 @@ module PartFactoryInterface
     end
 end
 
-autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :PartInterface, "org/allbinary/game/part/PartInterface"
+module ::Org; module Allbinary; module Graphics; autoload :RelativeRelationship, "org/allbinary/graphics/RelativeRelationship" unless const_defined?(:RelativeRelationship, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :PartInterface, "org/allbinary/game/part/PartInterface" unless const_defined?(:PartInterface, false)
+
+end; end; end; end
 

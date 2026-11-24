@@ -15,18 +15,24 @@
 # package bundle.input.automation.module.configuration
 
 
+module ::Bundle; module Input; module Automation; module ModulePackage; module Configuration
+
 module InputAutomationConfigurationModuleChangeListener
     
 
     def onAdd(inputAutomationConfigurationChangeEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def onRemove(inputAutomationConfigurationChangeEvent)
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :InputAutomationConfigurationModuleChangeEvent, "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent"
+module ::Org; module Allbinary; module Input; module Automation; module Configuration; autoload :InputAutomationConfigurationModuleChangeEvent, "org/allbinary/input/automation/configuration/InputAutomationConfigurationModuleChangeEvent" unless const_defined?(:InputAutomationConfigurationModuleChangeEvent, false); end; end; end; end; end
+
+end; end; end; end; end
 

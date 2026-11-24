@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.canvas.transition.progress
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/canvas/transition/progress/ProgressRunnable"
+
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress
 
 class DismissTitleProgressBarRunnable < ProgressRunnable
     attr_accessor :logUtil, :ZOOM_OUT_AND_IN
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @ZOOM_OUT_AND_IN = [TransistionTypes.getInstance().ZOOM_OUT, TransistionTypes.getInstance().ZOOM_IN]
+    def jfields_org_allbinary_graphics_canvas_transition_progress_DismissTitleProgressBarRunnable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @ZOOM_OUT_AND_IN = [::Org::Allbinary::Animation::Transition::TransistionTypes.getInstance().ZOOM_OUT, ::Org::Allbinary::Animation::Transition::TransistionTypes.getInstance().ZOOM_IN]
     end
     
 
     def initialize(midletActivity, progressCanvas)
         super(midletActivity, progressCanvas)
-        initialize_fields
+        jfields_org_allbinary_graphics_canvas_transition_progress_DismissTitleProgressBarRunnable
     end
     
 
@@ -35,15 +38,18 @@ class DismissTitleProgressBarRunnable < ProgressRunnable
         begin
             @midletActivity.onDismissProgress(@ZOOM_OUT_AND_IN)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
         end
     end
+    java_overload :run, 0
 end
 
-require "org/allbinary/animation/transition/TransistionTypes"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "android/app/Activity"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+module ::Org; module Allbinary; module Animation; module Transition; autoload :TransistionTypes, "org/allbinary/animation/transition/TransistionTypes" unless const_defined?(:TransistionTypes, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Android; module App; autoload :Activity, "android/app/Activity" unless const_defined?(:Activity, false); end; end
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false)
+
+end; end; end; end; end; end
 

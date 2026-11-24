@@ -15,10 +15,14 @@
 # package org.allbinary.game.behavior.topview
 
 
+module ::Org; module Allbinary; module Game; module Behavior; module Topview
+
 class InitialJumpBehavior
     
 
     def process()
     end
 end
+
+end; end; end; end; end
 

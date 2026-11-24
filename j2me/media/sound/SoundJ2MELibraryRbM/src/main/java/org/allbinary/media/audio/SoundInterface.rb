@@ -15,6 +15,8 @@
 # package org.allbinary.media.audio
 
 
+module ::Org; module Allbinary; module Media; module Audio
+
 module SoundInterface
     
 
@@ -37,5 +39,7 @@ module SoundInterface
     end
 end
 
-autoload :Player, "javax/microedition/media/Player"
+module ::Javax; module Microedition; module Media; autoload :Player, "javax/microedition/media/Player" unless const_defined?(:Player, false); end; end; end
+
+end; end; end; end
 

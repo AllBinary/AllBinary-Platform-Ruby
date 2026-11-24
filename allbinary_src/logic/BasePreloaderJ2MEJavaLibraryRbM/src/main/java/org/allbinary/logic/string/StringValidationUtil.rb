@@ -15,12 +15,14 @@
 # package org.allbinary.logic.string
 
 
+module ::Org; module Allbinary; module Logic; module StringPackage
+
 class StringValidationUtil
     attr_accessor :stringUtil, :tsUtil
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_string_StringValidationUtil
         @stringUtil = StringUtil.getInstance()
-        @tsUtil = TsUtil.getInstance()
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
     end
     
 
@@ -30,7 +32,7 @@ class StringValidationUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_string_StringValidationUtil
     end
     
 
@@ -149,12 +151,14 @@ class StringValidationUtil
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false)
 
 begin
     StringValidationUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

@@ -15,19 +15,21 @@
 # package org.allbinary.graphics.draw
 
 
+module ::Org; module Allbinary; module Graphics; module Draw
+
 class DrawVerticalStringUtil
     attr_accessor :EMPTY_STRING, :anchor, :charHeight, :offsetY, :offsetXArray
 
-    def initialize_fields
-        @EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
-        @anchor = Anchor::TOP_LEFT
-        @charHeight = 0
-        @offsetY = 0
-        @offsetXArray = NullUtil.getInstance().NULL_INT_ARRAY
+    def jfields_org_allbinary_graphics_draw_DrawVerticalStringUtil
+        @EMPTY_STRING = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
+        @charHeight = 0 unless instance_variable_defined?(:@charHeight)
+        @offsetY = 0 unless instance_variable_defined?(:@offsetY)
+        @offsetXArray = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_draw_DrawVerticalStringUtil
     end
     
 
@@ -37,22 +39,22 @@ class DrawVerticalStringUtil
     
 
     def updateMeasurement(graphics, string)
-        openGLFeatureUtil = OpenGLFeatureUtil.getInstance()
+        openGLFeatureUtil = ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureUtil.getInstance()
         font = graphics.getFont()
         @charHeight = font.getHeight()
         @offsetY = 0
-        if J2MEUtil.isHTML()
+        if ::Org::Allbinary::J2MEUtil.isHTML()
             @charHeight += 1
         elsif openGLFeatureUtil.isAnyThreed()
             @charHeight += 2
-            if AndroidUtil.isAndroid()
+            if ::Org::Allbinary::AndroidUtil.isAndroid()
             else
                 @offsetY = 2 + (@charHeight * 2 / 3)
             end
         end
         size = string.length
         aChar = "\0"
-        offsetXArray = Array.new(size, 0)
+        offsetXArray = (Array.new(size, 0)).tap { |java_array| java_array.instance_variable_set(:@java_component, :I) }
         (size - 1).step(0, -(1)) do |index|
             aChar = string[index]
             if openGLFeatureUtil.isAnyThreed()
@@ -78,7 +80,7 @@ class DrawVerticalStringUtil
         begin
             graphics.drawSubstring(string, offset, length, x - width, y, @anchor)
         rescue StandardError => e
-            PreLogUtil.put(StringMaker.new().append("Exception: stringLength: ").appendint(string.length).append(" offset: ").appendint(offset).append(" currentLength: ").appendint(length).to_s, self, "drawCenterString")
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Exception: stringLength: ").appendint(string.length).append(" offset: ").appendint(offset).append(" currentLength: ").appendint(length).to_s, self, "drawCenterString")
         end
     end
     
@@ -149,20 +151,22 @@ class DrawVerticalStringUtil
     end
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
-autoload :AndroidUtil, "org/allbinary/AndroidUtil"
-autoload :J2MEUtil, "org/allbinary/J2MEUtil"
-autoload :Anchor, "org/allbinary/graphics/Anchor"
-autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; autoload :AndroidUtil, "org/allbinary/AndroidUtil" unless const_defined?(:AndroidUtil, false); end; end
+module ::Org; module Allbinary; autoload :J2MEUtil, "org/allbinary/J2MEUtil" unless const_defined?(:J2MEUtil, false); end; end
+module ::Org; module Allbinary; module Graphics; autoload :Anchor, "org/allbinary/graphics/Anchor" unless const_defined?(:Anchor, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Opengles; autoload :OpenGLFeatureUtil, "org/allbinary/graphics/opengles/OpenGLFeatureUtil" unless const_defined?(:OpenGLFeatureUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
 
 begin
     DrawVerticalStringUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

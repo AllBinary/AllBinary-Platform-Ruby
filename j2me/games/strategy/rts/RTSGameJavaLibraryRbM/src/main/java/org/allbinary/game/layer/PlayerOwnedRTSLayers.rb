@@ -15,20 +15,22 @@
 # package org.allbinary.game.layer
 
 
+module ::Org; module Allbinary; module Game; module Layer
+
 class PlayerOwnedRTSLayers
     attr_accessor :rtsLayerList
 
-    def initialize_fields
-        @rtsLayerList = BasicArrayListD.new()
+    def jfields_org_allbinary_game_layer_PlayerOwnedRTSLayers
+        @rtsLayerList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_PlayerOwnedRTSLayers
     end
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("All: ")
         stringBuffer.appendint(@rtsLayerList.size())
         return stringBuffer.to_s
@@ -36,7 +38,9 @@ class PlayerOwnedRTSLayers
     alias_method :to_s, :toString
 end
 
-require "org/allbinary/logic/string/StringMaker"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+
+end; end; end; end
 

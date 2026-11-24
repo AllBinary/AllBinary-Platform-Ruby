@@ -15,12 +15,14 @@
 # package org.allbinary.logic.system.hardware.linux
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Linux
+
 class PCComponentFactory
     attr_accessor :logUtil, :componentFactory
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @componentFactory = ComponentFactory.getInstance()
+    def jfields_org_allbinary_logic_system_hardware_linux_PCComponentFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @componentFactory = ::Org::Allbinary::Logic::System::Hardware::Components::ComponentFactory.getInstance()
     end
     
 
@@ -30,39 +32,38 @@ class PCComponentFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_hardware_linux_PCComponentFactory
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
     def getInstance(component, componentData)
         begin
             if component != nil
                 if (component <=> @componentFactory.ETHERNET.to_s) == 0
-                    return Ethernet.new(componentData)
+                    return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::Ethernet.new(componentData)
                 elsif (component <=> @componentFactory.BRIDGE.to_s) == 0
-                    return Bridge.new(componentData)
+                    return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::Bridge.new(componentData)
                 elsif (component <=> @componentFactory.IDE.to_s) == 0
-                    return HardDriveController.new(componentData)
+                    return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::HardDriveController.new(componentData)
                 elsif (component <=> @componentFactory.MULTIMEDIA.to_s) == 0
-                    return Media.new(componentData)
+                    return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::Media.new(componentData)
                 elsif (component <=> @componentFactory.SCSI.to_s) == 0
-                    return HardDriveController.new(componentData)
+                    return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::HardDriveController.new(componentData)
                 elsif (component <=> @componentFactory.USB.to_s) == 0
-                    return Usb.new(componentData)
+                    return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::Usb.new(componentData)
                 elsif (component <=> @componentFactory.VGA.to_s) == 0
-                    return Video.new(componentData)
+                    return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::Video.new(componentData)
                 elsif (component <=> @componentFactory.PCI.to_s) == 0
-                    return PCI.new(componentData)
+                    return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::PCI.new(componentData)
                 end
             end
-            return Unknown.new(componentData)
+            return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::Unknown.new(componentData)
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
-            if LogConfigTypes::LOGGING.contains(LogConfigTypeFactory.getInstance().FACTORYERROR)
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().FACTORYERROR)
                 @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
             end
-            return Unknown.new(commonStrings.EXCEPTION)
+            return ::Org::Allbinary::Logic::System::Hardware::Components::Linux::Unknown.new(commonStrings.EXCEPTION)
         end
     end
     
@@ -89,30 +90,56 @@ class PCComponentFactory
     end
 
     def self.instance()
+        PCComponentFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PCComponentFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PCComponentFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PCComponentFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory"
-require "org/allbinary/logic/communication/log/config/type/LogConfigTypes"
-require "org/allbinary/logic/system/hardware/components/ComponentFactory"
-require "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
-require "org/allbinary/logic/system/hardware/components/linux/Bridge"
-require "org/allbinary/logic/system/hardware/components/linux/Ethernet"
-require "org/allbinary/logic/system/hardware/components/linux/HardDriveController"
-require "org/allbinary/logic/system/hardware/components/linux/Media"
-require "org/allbinary/logic/system/hardware/components/linux/PCI"
-require "org/allbinary/logic/system/hardware/components/linux/Unknown"
-require "org/allbinary/logic/system/hardware/components/linux/Usb"
-require "org/allbinary/logic/system/hardware/components/linux/Video"
-require "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; autoload :ComponentFactory, "org/allbinary/logic/system/hardware/components/ComponentFactory" unless const_defined?(:ComponentFactory, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Interfaces; autoload :HardwareComponentInterface, "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface" unless const_defined?(:HardwareComponentInterface, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux; autoload :Bridge, "org/allbinary/logic/system/hardware/components/linux/Bridge" unless const_defined?(:Bridge, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux; autoload :Ethernet, "org/allbinary/logic/system/hardware/components/linux/Ethernet" unless const_defined?(:Ethernet, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux; autoload :HardDriveController, "org/allbinary/logic/system/hardware/components/linux/HardDriveController" unless const_defined?(:HardDriveController, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux; autoload :Media, "org/allbinary/logic/system/hardware/components/linux/Media" unless const_defined?(:Media, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux; autoload :PCI, "org/allbinary/logic/system/hardware/components/linux/PCI" unless const_defined?(:PCI, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux; autoload :Unknown, "org/allbinary/logic/system/hardware/components/linux/Unknown" unless const_defined?(:Unknown, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux; autoload :Usb, "org/allbinary/logic/system/hardware/components/linux/Usb" unless const_defined?(:Usb, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Linux; autoload :Video, "org/allbinary/logic/system/hardware/components/linux/Video" unless const_defined?(:Video, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
-class PCComponentFactory
-    @@instance = PCComponentFactory.new()
+begin
+    PCComponentFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

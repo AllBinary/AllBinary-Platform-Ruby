@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.game.midlet
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/AllBinaryEventObject"
 
-class DemoGameMidletEvent < AllBinaryEventObject
+module ::Org; module Allbinary; module Game; module Midlet
+
+class DemoGameMidletEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventObject
     attr_accessor :demoGameMidletState
 
-    def initialize_fields
-        @demoGameMidletState = nil
+    def jfields_org_allbinary_game_midlet_DemoGameMidletEvent
+        @demoGameMidletState = nil unless instance_variable_defined?(:@demoGameMidletState)
     end
     
 
     def initialize(anyType, demoGameMidletState)
         super(anyType)
-        initialize_fields
+        jfields_org_allbinary_game_midlet_DemoGameMidletEvent
         @demoGameMidletState = demoGameMidletState
     end
     
@@ -34,17 +37,22 @@ class DemoGameMidletEvent < AllBinaryEventObject
     def init(anyType)
         self.setSource(anyType)
     end
+    java_overload :init, 1
     
 
     def setDemoGameMidletState(demoGameMidletState)
         @demoGameMidletState = demoGameMidletState
     end
+    java_overload :setDemoGameMidletState, 1
     
 
     def getDemoGameMidletState()
         return @demoGameMidletState
     end
+    java_overload :getDemoGameMidletState, 0
 end
 
-autoload :DemoGameMidletState, "org/allbinary/game/midlet/DemoGameMidletState"
+autoload :DemoGameMidletState, "org/allbinary/game/midlet/DemoGameMidletState" unless const_defined?(:DemoGameMidletState, false)
+
+end; end; end; end
 

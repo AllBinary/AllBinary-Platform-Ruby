@@ -14,21 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.business.context.modules.storefront.statistics.inventory
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tables/TableMappingInterface"
 
+module ::Org; module Allbinary; module Business; module Context; module Modules; module Storefront; module Statistics; module Inventory
+
 module StoreFrontInventoryStatisticsInterface
-    include TableMappingInterface
+    include ::Org::Allbinary::DataPackage::Tables::TableMappingInterface
     
 
     def getNumber()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getNumber, 0
     
 
     def getTotal()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getTotal, 0
 end
 
-autoload :Money, "org/allbinary/business/user/commerce/money/Money"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; autoload :Money, "org/allbinary/business/user/commerce/money/Money" unless const_defined?(:Money, false); end; end; end; end; end; end
+
+end; end; end; end; end; end; end; end
 

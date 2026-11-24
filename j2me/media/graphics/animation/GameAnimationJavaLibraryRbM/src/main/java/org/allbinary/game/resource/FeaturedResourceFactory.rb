@@ -15,13 +15,15 @@
 # package org.allbinary.game.resource
 
 
+module ::Org; module Allbinary; module Game; module Resource
+
 class FeaturedResourceFactory
     attr_accessor :logUtil, :list, :commonStrings, :ANIMATION_FEATURES, :IMAGE_LABEL, :IMAGE_GRAPHICS_ARRAY, :IMAGE_GRAPHICS_ROTATION, :SPRITE_QUARTER, :SPRITE_FULL, :IS_LOADING_LEVEL_LABEL, :IS_FEATURE, :GAME_FEATURE_CONTROLLED
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @list = BasicArrayListD.new()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_game_resource_FeaturedResourceFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @ANIMATION_FEATURES = "Animation Features: Vector: "
         @IMAGE_LABEL = " Image: "
         @IMAGE_GRAPHICS_ARRAY = "Image Array: "
@@ -35,7 +37,7 @@ class FeaturedResourceFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_resource_FeaturedResourceFactory
     end
     
 
@@ -46,14 +48,14 @@ class FeaturedResourceFactory
             featureInterface = @list.objectArray[index]
             isLoadingLevel = featureInterface.isLoadingLevel(level)
             isFeature = featureInterface.isFeature()
-            @logUtil.putF(StringMaker.new().append(@GAME_FEATURE_CONTROLLED).append(featureInterface.to_s).append(@IS_LOADING_LEVEL_LABEL).append(ResourceLoadingLevelFactory.getInstance().getLevelString(level)).append(CommonSeps.getInstance().COLON_SEP).appendboolean(isLoadingLevel).append(@IS_FEATURE).appendboolean(isFeature).to_s, self, @commonStrings.INIT)
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@GAME_FEATURE_CONTROLLED).append(featureInterface.to_s).append(@IS_LOADING_LEVEL_LABEL).append(ResourceLoadingLevelFactory.getInstance().getLevelString(level)).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON_SEP).appendboolean(isLoadingLevel).append(@IS_FEATURE).appendboolean(isFeature).to_s, self, @commonStrings.INIT)
             if isLoadingLevel && isFeature
                 featureInterface.init(level)
             end
         end
-        features = Features.getInstance()
-        graphicsFeatureFactory = GraphicsFeatureFactory.getInstance()
-        stringBuffer = StringMaker.new()
+        features = ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance()
+        graphicsFeatureFactory = ::Org::Allbinary::Game::Configuration::Feature::GraphicsFeatureFactory.getInstance()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(@ANIMATION_FEATURES)
         stringBuffer.appendboolean(features.isFeature(graphicsFeatureFactory.VECTOR_GRAPHICS))
         stringBuffer.append(@IMAGE_LABEL)
@@ -80,7 +82,7 @@ class FeaturedResourceFactory
     
 
     def add(featureInterface)
-        @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().START_LABEL).append(StringUtil.getInstance().toString(featureInterface)).to_s, self, @commonStrings.ADD)
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(featureInterface)).to_s, self, @commonStrings.ADD)
         @list.add(featureInterface)
     end
     
@@ -90,16 +92,18 @@ class FeaturedResourceFactory
     end
 end
 
-autoload :Features, "org/allbinary/game/configuration/feature/Features"
-autoload :GameFeatureControlledInterface, "org/allbinary/game/configuration/feature/GameFeatureControlledInterface"
-autoload :GraphicsFeatureFactory, "org/allbinary/game/configuration/feature/GraphicsFeatureFactory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :Features, "org/allbinary/game/configuration/feature/Features" unless const_defined?(:Features, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GameFeatureControlledInterface, "org/allbinary/game/configuration/feature/GameFeatureControlledInterface" unless const_defined?(:GameFeatureControlledInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :GraphicsFeatureFactory, "org/allbinary/game/configuration/feature/GraphicsFeatureFactory" unless const_defined?(:GraphicsFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :ResourceLoadingLevelFactory, "org/allbinary/game/resource/ResourceLoadingLevelFactory" unless const_defined?(:ResourceLoadingLevelFactory, false)
+
+end; end; end; end
 

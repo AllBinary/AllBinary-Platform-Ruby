@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.control.sort
 
+require "java/lang/JavaOverload"
 # require "java/util/Comparator"
+
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Sort
 
 class StringComparator
     include Comparator
@@ -29,5 +32,8 @@ class StringComparator
         string2 = object2
         return (string <=> string2)
     end
+    java_overload :compare, 2
 end
+
+end; end; end; end; end
 

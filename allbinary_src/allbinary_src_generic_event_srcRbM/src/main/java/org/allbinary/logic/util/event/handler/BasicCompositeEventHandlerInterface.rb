@@ -15,6 +15,8 @@
 # package org.allbinary.logic.util.event.handler
 
 
+module ::Org; module Allbinary; module Logic; module Util; module Event; module Handler
+
 module BasicCompositeEventHandlerInterface
     
 
@@ -30,5 +32,7 @@ module BasicCompositeEventHandlerInterface
     end
 end
 
-autoload :BasicEventHandlerInterface, "org/allbinary/logic/util/event/handler/BasicEventHandlerInterface"
+autoload :BasicEventHandlerInterface, "org/allbinary/logic/util/event/handler/BasicEventHandlerInterface" unless const_defined?(:BasicEventHandlerInterface, false)
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.business.user
 
 
+module ::Org; module Allbinary; module Business; module User
+
 class CreateUserFactory
     
 
@@ -25,9 +27,9 @@ class CreateUserFactory
     # throws Exception
     def self.getInstance(hashMap)
         if hashMap != nil
-            roleString = hashMap.get(UserRoleData::NAME.to_s)
-            if !StringValidationUtil.getInstance().isEmpty(roleString)
-                role = UserRoleB.getRole(roleString)
+            roleString = hashMap.get(::Org::Allbinary::Business::User::Role::UserRoleData::NAME.to_s)
+            if !::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(roleString)
+                role = ::Org::Allbinary::Business::User::Role::UserRoleB.getRole(roleString)
                 return role.getUserFactory().getInstance(hashMap)
             else
                 raise StandardError.new("No Role Specified")
@@ -38,10 +40,12 @@ class CreateUserFactory
     end
 end
 
-autoload :HashMap, "java/util/HashMap"
-autoload :UserRole, "org/allbinary/business/user/role/UserRole"
-autoload :UserRoleB, "org/allbinary/business/user/role/UserRoleB"
-autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :UserInterface, "org/allbinary/business/user/UserInterface"
+module ::Java; module Util; autoload :HashMap, "java/util/HashMap" unless const_defined?(:HashMap, false); end; end
+module ::Org; module Allbinary; module Business; module User; module Role; autoload :UserRole, "org/allbinary/business/user/role/UserRole" unless const_defined?(:UserRole, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Role; autoload :UserRoleB, "org/allbinary/business/user/role/UserRoleB" unless const_defined?(:UserRoleB, false); end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Role; autoload :UserRoleData, "org/allbinary/business/user/role/UserRoleData" unless const_defined?(:UserRoleData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+autoload :UserInterface, "org/allbinary/business/user/UserInterface" unless const_defined?(:UserInterface, false)
+
+end; end; end; end
 

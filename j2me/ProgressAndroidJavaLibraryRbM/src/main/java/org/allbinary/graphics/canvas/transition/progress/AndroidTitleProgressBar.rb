@@ -14,215 +14,233 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.canvas.transition.progress
 
-# require "javax/microedition/lcdui/Graphics"
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
 require "java/lang/Runnable"
+
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress
 
 class AndroidTitleProgressBar < ProgressCanvas
     attr_accessor :showTitleProgressBarRunnable, :dismissTitleProgressBarRunnable, :progressDialogPortionSetProgressRunnable, :progressDialogSetProgressRunnable, :progressActivity, :portion
     class TitleProgressBarSetProgressRunnable
-        include Runnable
+        include ::Java::Lang::Runnable
         attr_accessor :androidTitleProgressBar
 
-        def initialize_fields
-            @androidTitleProgressBar = nil
+        def jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar_TitleProgressBarSetProgressRunnable
+            @androidTitleProgressBar = nil unless instance_variable_defined?(:@androidTitleProgressBar)
         end
         
 
         def initialize(androidTitleProgressBar)
-            initialize_fields
+            jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar_TitleProgressBarSetProgressRunnable
             @androidTitleProgressBar = androidTitleProgressBar
         end
         
 
         def run()
-            logUtil = LogUtil.getInstance()
-            commonStrings = CommonStrings.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             begin
-                value = (@androidTitleProgressBar.getValue()).to_i
+                value = ((@androidTitleProgressBar.getValue()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
                 @androidTitleProgressBar.progressActivity.onTitleProgressBarSetProgress(value)
             rescue StandardError => e
                 logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             end
         end
+        java_overload :run, 0
     end
     class TitleProgressBarPortionSetProgressRunnable
-        include Runnable
+        include ::Java::Lang::Runnable
         attr_accessor :androidTitleProgressBar
 
-        def initialize_fields
-            @androidTitleProgressBar = nil
+        def jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar_TitleProgressBarPortionSetProgressRunnable
+            @androidTitleProgressBar = nil unless instance_variable_defined?(:@androidTitleProgressBar)
         end
         
 
         def initialize(androidTitleProgressBar)
-            initialize_fields
+            jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar_TitleProgressBarPortionSetProgressRunnable
             @androidTitleProgressBar = androidTitleProgressBar
         end
         
 
         def run()
-            logUtil = LogUtil.getInstance()
-            commonStrings = CommonStrings.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             begin
-                value = ((@androidTitleProgressBar.getValue() + @androidTitleProgressBar.getMaxValue() / @androidTitleProgressBar.portion)).to_i
+                value = (((@androidTitleProgressBar.getValue() + @androidTitleProgressBar.getMaxValue() / @androidTitleProgressBar.portion)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
                 @androidTitleProgressBar.progressActivity.onTitleProgressBarSetProgress(value)
             rescue StandardError => e
                 logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             end
         end
+        java_overload :run, 0
     end
     class ShowTitleProgressBarRunnable
-        include Runnable
+        include ::Java::Lang::Runnable
         attr_accessor :androidTitleProgressBar
 
-        def initialize_fields
-            @androidTitleProgressBar = nil
+        def jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar_ShowTitleProgressBarRunnable
+            @androidTitleProgressBar = nil unless instance_variable_defined?(:@androidTitleProgressBar)
         end
         
 
         def initialize(androidTitleProgressBar)
-            initialize_fields
+            jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar_ShowTitleProgressBarRunnable
             @androidTitleProgressBar = androidTitleProgressBar
         end
         
 
         def run()
-            logUtil = LogUtil.getInstance()
-            commonStrings = CommonStrings.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             begin
-                maxValue = (@androidTitleProgressBar.getMaxValue()).to_i
+                maxValue = ((@androidTitleProgressBar.getMaxValue()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
                 @androidTitleProgressBar.progressActivity.onShowTitleProgressBar(maxValue, false)
             rescue StandardError => e
                 logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             end
         end
+        java_overload :run, 0
     end
     class DismissTitleProgressBarRunnable
-        include Runnable
+        include ::Java::Lang::Runnable
         attr_accessor :androidTitleProgressBar
 
-        def initialize_fields
-            @androidTitleProgressBar = nil
+        def jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar_DismissTitleProgressBarRunnable
+            @androidTitleProgressBar = nil unless instance_variable_defined?(:@androidTitleProgressBar)
         end
         
 
         def initialize(androidTitleProgressBar)
-            initialize_fields
+            jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar_DismissTitleProgressBarRunnable
             @androidTitleProgressBar = androidTitleProgressBar
         end
         
 
         def run()
-            logUtil = LogUtil.getInstance()
-            commonStrings = CommonStrings.getInstance()
+            logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             begin
                 @androidTitleProgressBar.progressActivity.onDismissTitleProgressBar()
             rescue StandardError => e
                 logUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
             end
         end
+        java_overload :run, 0
     end
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar
         @showTitleProgressBarRunnable = ShowTitleProgressBarRunnable.new(self)
         @dismissTitleProgressBarRunnable = DismissTitleProgressBarRunnable.new(self)
         @progressDialogPortionSetProgressRunnable = TitleProgressBarPortionSetProgressRunnable.new(self)
         @progressDialogSetProgressRunnable = TitleProgressBarSetProgressRunnable.new(self)
-        @progressActivity = NullProgressActivity::NULL_PROGRESS_ACTIVITY
+        @progressActivity = ::Org::Allbinary::Android::Activity::NullProgressActivity::NULL_PROGRESS_ACTIVITY
         @portion = 0
     end
     
 
     def initialize(title, backgroundBasicColor, foregroundBasicColor)
         super(title, backgroundBasicColor, foregroundBasicColor)
-        initialize_fields
+        jfields_org_allbinary_graphics_canvas_transition_progress_AndroidTitleProgressBar
     end
     
 
     def init(activity)
         @progressActivity = activity
     end
+    java_overload :init, 1
     
 
     def isInitialized()
-        if @progressActivity != NullProgressActivity::NULL_PROGRESS_ACTIVITY
+        if @progressActivity != ::Org::Allbinary::Android::Activity::NullProgressActivity::NULL_PROGRESS_ACTIVITY
             return true
         else
             return false
         end
     end
+    java_overload :isInitialized, 0
     
 
     def start()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.START_METHOD_NAME)
-            super()
+            AndroidTitleProgressBar.superclass.java_super_method(:start, 0).bind(self).call()
             @progressActivity.runOnUiThread(@showTitleProgressBarRunnable)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.START_METHOD_NAME, e)
         end
     end
+    java_overload :start, 0
     
 
     def end_()
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.END_METHOD_NAME)
             @progressActivity.runOnUiThread(@dismissTitleProgressBarRunnable)
-            super()
+            AndroidTitleProgressBar.superclass.java_super_method(:end_, 0).bind(self).call()
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.END_METHOD_NAME, e)
         end
     end
+    java_overload :end_, 0
     
 
     def addPortion(value, text, index)
         begin
-            super(value, text, index)
+            AndroidTitleProgressBar.superclass.java_super_method(:addPortion, 3).bind(self).call(value, text, index)
             @portion = value
             @progressActivity.runOnUiThread(@progressDialogPortionSetProgressRunnable)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @ADD_PORTION, e)
         end
     end
+    java_overload :addPortion, 3
     
 
     def addNormalPortion(value, text)
         begin
-            super(value, text)
+            AndroidTitleProgressBar.superclass.java_super_method(:addNormalPortion, 2).bind(self).call(value, text)
             @portion = value
             @progressActivity.runOnUiThread(@progressDialogPortionSetProgressRunnable)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @ADD_PORTION, e)
         end
     end
+    java_overload :addNormalPortion, 2
     
 
     def setValue(value)
         begin
-            super(value)
+            AndroidTitleProgressBar.superclass.java_super_method(:setValue, 1).bind(self).call(value)
             @progressActivity.runOnUiThread(@progressDialogSetProgressRunnable)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "setValue", e)
         end
     end
+    java_overload :setValue, 1
     
 
     def waitUntilDisplayed()
     end
+    java_overload :waitUntilDisplayed, 0
     
 
     def paint(graphics)
     end
+    java_overload :paint, 1
 end
 
-require "org/allbinary/android/activity/NullProgressActivity"
-require "org/allbinary/android/activity/ProgressActivityInterface"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/graphics/canvas/transition/progress/DismissTitleProgressBarRunnable"
-require "org/allbinary/graphics/canvas/transition/progress/ShowTitleProgressBarRunnable"
-require "org/allbinary/graphics/canvas/transition/progress/TitleProgressBarPortionSetProgressRunnable"
-require "org/allbinary/graphics/canvas/transition/progress/TitleProgressBarSetProgressRunnable"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+module ::Org; module Allbinary; module Android; module Activity; autoload :NullProgressActivity, "org/allbinary/android/activity/NullProgressActivity" unless const_defined?(:NullProgressActivity, false); end; end; end; end
+module ::Org; module Allbinary; module Android; module Activity; autoload :ProgressActivityInterface, "org/allbinary/android/activity/ProgressActivityInterface" unless const_defined?(:ProgressActivityInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :DismissTitleProgressBarRunnable, "org/allbinary/graphics/canvas/transition/progress/DismissTitleProgressBarRunnable" unless const_defined?(:DismissTitleProgressBarRunnable, false)
+autoload :ShowTitleProgressBarRunnable, "org/allbinary/graphics/canvas/transition/progress/ShowTitleProgressBarRunnable" unless const_defined?(:ShowTitleProgressBarRunnable, false)
+autoload :TitleProgressBarPortionSetProgressRunnable, "org/allbinary/graphics/canvas/transition/progress/TitleProgressBarPortionSetProgressRunnable" unless const_defined?(:TitleProgressBarPortionSetProgressRunnable, false)
+autoload :TitleProgressBarSetProgressRunnable, "org/allbinary/graphics/canvas/transition/progress/TitleProgressBarSetProgressRunnable" unless const_defined?(:TitleProgressBarSetProgressRunnable, false)
+
+end; end; end; end; end; end
 

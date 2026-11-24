@@ -15,6 +15,8 @@
 # package org.allbinary.init.crypt.jcehelper
 
 
+module ::Org; module Allbinary; module Init; module Crypt; module Jcehelper
+
 module CryptInterface
     
 
@@ -29,4 +31,6 @@ module CryptInterface
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end
 

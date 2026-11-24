@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.os.windows
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/os/GenericOperatingSystem"
 
-class WindowsOS < GenericOperatingSystem
+module ::Org; module Allbinary; module Logic; module System; module Os; module Windows
+
+class WindowsOS < ::Org::Allbinary::Logic::System::Os::GenericOperatingSystem
     
 
     def initialize()
@@ -28,5 +31,8 @@ class WindowsOS < GenericOperatingSystem
     def isAutoHide()
         return true
     end
+    java_overload :isAutoHide, 0
 end
+
+end; end; end; end; end; end
 

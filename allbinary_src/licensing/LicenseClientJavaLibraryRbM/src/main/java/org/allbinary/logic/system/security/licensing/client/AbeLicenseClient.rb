@@ -16,18 +16,20 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; module Client
+
 class AbeLicenseClient
     attr_accessor :logUtil, :commonStrings, :MINSERVERS
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_logic_system_security_licensing_client_AbeLicenseClient
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @MINSERVERS = 3
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_client_AbeLicenseClient
     end
     
 
@@ -42,7 +44,7 @@ class AbeLicenseClient
             servers = abeLicenseInterface.getServers()
             isNewLicenseId = false
             isBetterServerList = false
-            stringValidationUtil = StringValidationUtil.getInstance()
+            stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
             if stringValidationUtil.isEmpty(abeClientInformation.getLicenseId()) && !abeClientInformation.isSameId(licenseId)
                 isNewLicenseId = true
             end
@@ -50,10 +52,10 @@ class AbeLicenseClient
                 isBetterServerList = true
             end
             if isBetterServerList || isNewLicenseId
-                initInfo = LicenseInitInfoUtil.getInstance().read()
+                initInfo = ::Org::Allbinary::Business::Init::LicenseInitInfoUtil.getInstance().read()
                 initInfo.setLicenseId(licenseId)
                 initInfo.setServerList(servers)
-                LicenseInitInfoUtil.getInstance().write(initInfo)
+                ::Org::Allbinary::Business::Init::LicenseInitInfoUtil.getInstance().write(initInfo)
                 abeClientInformation.init()
             end
             @logUtil.putF(@commonStrings.END_, self, @commonStrings.GET)
@@ -65,14 +67,16 @@ class AbeLicenseClient
     end
 end
 
-require "org/allbinary/business/init/LicenseInitInfo"
-require "org/allbinary/business/init/LicenseInitInfoUtil"
-require "org/allbinary/logic/communication/log/LogUtil"
-require "org/allbinary/logic/communication/xmlrpc/XmlRpcAbeClient"
-require "org/allbinary/logic/string/StringValidationUtil"
-require "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface"
-require "org/allbinary/logic/system/security/licensing/AbeLicenseInterface"
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/logic/system/security/licensing/client/XmlRpcAbeLicenseRetrievalClient"
+module ::Org; module Allbinary; module Business; module Init; autoload :LicenseInitInfo, "org/allbinary/business/init/LicenseInitInfo" unless const_defined?(:LicenseInitInfo, false); end; end; end; end
+module ::Org; module Allbinary; module Business; module Init; autoload :LicenseInitInfoUtil, "org/allbinary/business/init/LicenseInitInfoUtil" unless const_defined?(:LicenseInitInfoUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Xmlrpc; autoload :XmlRpcAbeClient, "org/allbinary/logic/communication/xmlrpc/XmlRpcAbeClient" unless const_defined?(:XmlRpcAbeClient, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeClientInformationInterface, "org/allbinary/logic/system/security/licensing/AbeClientInformationInterface" unless const_defined?(:AbeClientInformationInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :AbeLicenseInterface, "org/allbinary/logic/system/security/licensing/AbeLicenseInterface" unless const_defined?(:AbeLicenseInterface, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :XmlRpcAbeLicenseRetrievalClient, "org/allbinary/logic/system/security/licensing/client/XmlRpcAbeLicenseRetrievalClient" unless const_defined?(:XmlRpcAbeLicenseRetrievalClient, false)
+
+end; end; end; end; end; end; end
 

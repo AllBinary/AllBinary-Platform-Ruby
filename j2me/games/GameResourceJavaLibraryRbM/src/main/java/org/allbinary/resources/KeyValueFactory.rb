@@ -15,15 +15,17 @@
 # package org.allbinary.resources
 
 
+module ::Org; module Allbinary; module Resources
+
 class KeyValueFactory
     attr_accessor :MAP
 
-    def initialize_fields
-        @MAP = StdUtil.getInstance().createHashtable()
+    def jfields_org_allbinary_resources_KeyValueFactory
+        @MAP = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_resources_KeyValueFactory
     end
     
 
@@ -70,12 +72,14 @@ class KeyValueFactory
     end
 end
 
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
 
 begin
     KeyValueFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

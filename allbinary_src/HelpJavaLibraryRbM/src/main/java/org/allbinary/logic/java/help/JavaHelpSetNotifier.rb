@@ -17,6 +17,8 @@
 # require "java/net/URL"
 # require "javax/help/HelpSet"
 
+module ::Org; module Allbinary; module Logic; module Java; module Help
+
 class JavaHelpSetNotifier
     
 
@@ -58,7 +60,7 @@ class JavaHelpSetNotifier
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@vector = BasicArrayListD.new()
+            @@vector = ::Org::Allbinary::Util::BasicArrayListD.new()
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -75,12 +77,14 @@ class JavaHelpSetNotifier
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     JavaHelpSetNotifier.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

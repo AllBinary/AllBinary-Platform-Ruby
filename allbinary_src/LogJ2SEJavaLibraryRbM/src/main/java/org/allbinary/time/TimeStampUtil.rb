@@ -15,12 +15,14 @@
 # package org.allbinary.time
 
 
+module ::Org; module Allbinary; module TimePackage
+
 #ActualPlatform
 class TimeStampUtil
     attr_accessor :simpleDataFormat
 
-    def initialize_fields
-        @simpleDataFormat = SimpleDateFormat.new("yyyy-MM-dd HH:mm:ss.SSS")
+    def jfields_org_allbinary_time_TimeStampUtil
+        @simpleDataFormat = ::Java::Text::SimpleDateFormat.new("yyyy-MM-dd HH:mm:ss.SSS")
     end
     
 
@@ -30,12 +32,12 @@ class TimeStampUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_time_TimeStampUtil
     end
     
 
     def getAsString()
-        calendar = Calendar.getInstance()
+        calendar = ::Java::Util::Calendar.getInstance()
         date = calendar.getTime()
         return @simpleDataFormat.format(date)
     end
@@ -71,13 +73,15 @@ class TimeStampUtil
     end
 end
 
-autoload :SimpleDateFormat, "java/text/SimpleDateFormat"
-autoload :Calendar, "java/util/Calendar"
-autoload :Date, "java/util/Date"
+module ::Java; module Text; autoload :SimpleDateFormat, "java/text/SimpleDateFormat" unless const_defined?(:SimpleDateFormat, false); end; end
+module ::Java; module Util; autoload :Calendar, "java/util/Calendar" unless const_defined?(:Calendar, false); end; end
+module ::Java; module Util; autoload :Date, "java/util/Date" unless const_defined?(:Date, false); end; end
 
 begin
     TimeStampUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

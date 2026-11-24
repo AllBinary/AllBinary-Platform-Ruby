@@ -15,17 +15,19 @@
 # package org.allbinary.game.ag.layer.hud.basic.notification
 
 
+module ::Org; module Allbinary; module Game; module Ag; module Layer; module Hud; module Basic; module Notification
+
 class GameNotification
     attr_accessor :stringList, :timeList, :colorList
 
-    def initialize_fields
-        @stringList = BasicArrayListD.new()
-        @timeList = BasicArrayListD.new()
-        @colorList = BasicArrayListD.new()
+    def jfields_org_allbinary_game_ag_layer_hud_basic_notification_GameNotification
+        @stringList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @timeList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @colorList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_ag_layer_hud_basic_notification_GameNotification
     end
     
 
@@ -53,7 +55,7 @@ class GameNotification
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            const_set(:NULL_GAME_NOTIFICATION_EVENT, GameNotificationEvent.new(NullUtil.getInstance().NULL_OBJECT, StringUtil.getInstance().EMPTY_STRING, 0, BasicColorFactory.getInstance().RED, BooleanFactory.getInstance().FALSE))
+            const_set(:NULL_GAME_NOTIFICATION_EVENT, ::Org::Allbinary::Game::Layer::Hud::Event::GameNotificationEvent.new(::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, 0, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().RED, ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().FALSE))
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -70,18 +72,20 @@ class GameNotification
     end
 end
 
-autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
+module ::Org; module Allbinary; module Game; module Layer; module Hud; module Event; autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent" unless const_defined?(:GameNotificationEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
 
 begin
     GameNotification.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

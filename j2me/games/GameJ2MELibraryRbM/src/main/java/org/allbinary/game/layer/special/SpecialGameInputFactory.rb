@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer.special
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Special
+
 class SpecialGameInputFactory
 
     def self.java_static_fields
@@ -38,11 +40,13 @@ class SpecialGameInputFactory
     end
 end
 
-autoload :SpecialGameInput, "org/allbinary/game/layer/special/SpecialGameInput"
+autoload :SpecialGameInput, "org/allbinary/game/layer/special/SpecialGameInput" unless const_defined?(:SpecialGameInput, false)
 
 begin
     SpecialGameInputFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

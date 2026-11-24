@@ -15,10 +15,12 @@
 # package org.allbinary.game.collision
 
 
+module ::Org; module Allbinary; module Game; module Collision
+
 class CollisionTypeFactory
     attr_accessor :NONE, :DAMAGE, :PICKUP, :COLLISION
 
-    def initialize_fields
+    def jfields_org_allbinary_game_collision_CollisionTypeFactory
         @NONE = CollisionType.new("None")
         @DAMAGE = CollisionType.new("Damage")
         @PICKUP = CollisionType.new("Pickup")
@@ -26,7 +28,7 @@ class CollisionTypeFactory
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_collision_CollisionTypeFactory
     end
     
 
@@ -55,11 +57,13 @@ class CollisionTypeFactory
     end
 end
 
-autoload :CollisionType, "org/allbinary/game/collision/CollisionType"
+autoload :CollisionType, "org/allbinary/game/collision/CollisionType" unless const_defined?(:CollisionType, false)
 
 begin
     CollisionTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

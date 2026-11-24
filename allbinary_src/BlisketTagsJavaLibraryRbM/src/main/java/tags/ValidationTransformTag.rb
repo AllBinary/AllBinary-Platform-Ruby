@@ -14,24 +14,28 @@
 # frozen_string_literal: false
 # package tags
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 # require "java/lang/reflect/Method"
 # require "javax/servlet/http/HttpServletRequest"
 # require "javax/servlet/jsp/JspTagException"
 require "tags/TransformTag"
 
+module ::Tags
+
 class ValidationTransformTag < TransformTag
     attr_accessor :logUtil, :xslFile, :logic
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @xslFile = nil
-        @logic = nil
+    def jfields_tags_ValidationTransformTag
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @xslFile = nil unless instance_variable_defined?(:@xslFile)
+        @logic = nil unless instance_variable_defined?(:@logic)
     end
     
 
     def initialize()
-        super(ValidatedViewHelperFactory.new())
-        initialize_fields
+        super(::Taghelpers::ValidatedViewHelperFactory.new())
+        jfields_tags_ValidationTransformTag
         @logic = true
     end
     
@@ -40,11 +44,13 @@ class ValidationTransformTag < TransformTag
         @xslFile = value
         self.setTemplateFile(@xslFile)
     end
+    java_overload :setXsl, 1
     
 
     def setLogic(logic)
         @logic = logic
     end
+    java_overload :setLogic, 1
     
 
     # throws Exception
@@ -55,12 +61,13 @@ class ValidationTransformTag < TransformTag
             result = method.invoke(self.getHelper(), nil)
             return result
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.IS_VALID, e)
             end
             raise e
         end
     end
+    java_overload :isValid, 0
     
 
     # throws Exception
@@ -71,19 +78,20 @@ class ValidationTransformTag < TransformTag
             result = method.invoke(self.getHelper(), nil)
             return result
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().SQLTAGSERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().SQLTAGSERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "validationInfo()", e)
             end
             raise e
         end
     end
+    java_overload :validationInfo, 0
     
 
     # throws JspTagException
     def doStartTag()
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
-                stringBuffer = StringMaker.new()
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
+                stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                 request = @pageContext.getRequest()
                 stringBuffer.append("ValidationViewTag Start For: ")
                 stringBuffer.append(self.getName())
@@ -95,9 +103,9 @@ class ValidationTransformTag < TransformTag
             end
             self.setHelper()
             if self.isValid()
-                super()
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
-                    stringBuffer = StringMaker.new()
+                ValidationTransformTag.superclass.java_super_method(:doStartTag, 0).bind(self).call()
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
+                    stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     stringBuffer.append("View File: ")
                     stringBuffer.append(self.getObjectFile())
                     stringBuffer.append("\nLogic includes body if true=")
@@ -111,8 +119,8 @@ class ValidationTransformTag < TransformTag
                 end
             else
                 @pageContext.getOut().print(self.validationInfo())
-                if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
-                    stringBuffer = StringMaker.new()
+                if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
+                    stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     stringBuffer.append("View File: ")
                     stringBuffer.append(self.getObjectFile())
                     stringBuffer.append("\nisValid()=false")
@@ -126,28 +134,34 @@ class ValidationTransformTag < TransformTag
                     return EVAL_BODY_INCLUDE
                 end
             end
-        rescue LicensingException => e
-            AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
+        rescue ::Org::Allbinary::Logic::System::Security::Licensing::LicensingException => e
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagLicensingRedirect(@pageContext, e)
             return SKIP_BODY
         rescue StandardError => e
-            AbResponseHandler.sendJspTagRedirect(@pageContext, e)
+            ::Org::Allbinary::Logic::Communication::Http::Request::AbResponseHandler.sendJspTagRedirect(@pageContext, e)
             return SKIP_BODY
         end
     end
+    java_overload :doStartTag, 0
     
 
     def doEndTag()
-        if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().JSPTAG)
+        if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().JSPTAG)
             @logUtil.putF("Tag Ended", self, "doEndTag")
         end
         @logic = true
-        return super()
+        return ValidationTransformTag.superclass.java_super_method(:doEndTag, 0).bind(self).call()
     end
+    java_overload :doEndTag, 0
 end
 
-autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException"
-autoload :ValidatedViewHelperFactory, "taghelpers/ValidatedViewHelperFactory"
+module ::Org; module Allbinary; module Logic; module Communication; module Http; module Request; autoload :AbResponseHandler, "org/allbinary/logic/communication/http/request/AbResponseHandler" unless const_defined?(:AbResponseHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+module ::Taghelpers; autoload :ValidatedViewHelperFactory, "taghelpers/ValidatedViewHelperFactory" unless const_defined?(:ValidatedViewHelperFactory, false); end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end
 

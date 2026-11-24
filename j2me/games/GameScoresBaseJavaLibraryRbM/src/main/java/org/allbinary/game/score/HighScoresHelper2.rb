@@ -14,37 +14,43 @@
 # frozen_string_literal: false
 # package org.allbinary.game.score
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/score/HighScoresHelperBase"
+
+module ::Org; module Allbinary; module Game; module Score
 
 class HighScoresHelper2 < HighScoresHelperBase
     attr_accessor :circularIndexUtil, :selectedHighScores
 
-    def initialize_fields
-        @circularIndexUtil = CircularIndexUtil.createInstanceAt(0, 0)
+    def jfields_org_allbinary_game_score_HighScoresHelper2
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstanceAt(0, 0)
         @selectedHighScores = NullHighScoresSingletonFactory.getInstance()
     end
 
     def initialize
         super()
-        initialize_fields
+        jfields_org_allbinary_game_score_HighScoresHelper2
     end
     
 
     def setSelectedHighScores(selectedHighScores)
         @selectedHighScores = selectedHighScores
     end
+    java_overload :setSelectedHighScores, 1
     
 
     def getSelectedHighScores()
         return @selectedHighScores
     end
+    java_overload :getSelectedHighScores, 0
     
 
     def setHighScoresArray(highScoresArrayP)
-        super(highScoresArrayP)
+        HighScoresHelper2.superclass.java_super_method(:setHighScoresArray, 1).bind(self).call(highScoresArrayP)
         @circularIndexUtil.setSize(@highScoresArrayP.length)
         self.selectHighScores()
     end
+    java_overload :setHighScoresArray, 1
     
 
     def selectHighScores()
@@ -61,9 +67,12 @@ class HighScoresHelper2 < HighScoresHelperBase
         end
         self.setSelectedHighScores(highScores)
     end
+    java_overload :selectHighScores, 0
 end
 
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :HighScores, "org/allbinary/game/score/HighScores"
-autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false)
+autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory" unless const_defined?(:NullHighScoresSingletonFactory, false)
+
+end; end; end; end
 

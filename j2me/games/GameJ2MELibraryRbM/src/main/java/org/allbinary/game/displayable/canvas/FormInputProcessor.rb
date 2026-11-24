@@ -14,33 +14,36 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/InputProcessor"
 
-class FormInputProcessor < InputProcessor
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class FormInputProcessor < ::Org::Allbinary::Game::Input::InputProcessor
     attr_accessor :logUtil, :commonStrings, :gameKeyEventFactory, :downKeyEventHandler, :upGameKeyEventHandler, :inputFactory, :platformKeyFactory, :allBinaryGameCanvas
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @gameKeyEventFactory = GameKeyEventFactory.getInstance()
-        @downKeyEventHandler = DownKeyEventHandler.getInstance()
-        @upGameKeyEventHandler = UpGameKeyEventHandler.getInstance()
-        @inputFactory = InputFactory.getInstance()
-        @platformKeyFactory = PlatformKeyFactory.getInstance()
-        @allBinaryGameCanvas = nil
+    def jfields_org_allbinary_game_displayable_canvas_FormInputProcessor
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @gameKeyEventFactory = ::Org::Allbinary::Game::Input::Event::GameKeyEventFactory.getInstance()
+        @downKeyEventHandler = ::Org::Allbinary::Game::Input::Event::DownKeyEventHandler.getInstance()
+        @upGameKeyEventHandler = ::Org::Allbinary::Game::Input::Event::UpGameKeyEventHandler.getInstance()
+        @inputFactory = ::Org::Allbinary::Game::Input::InputFactory.getInstance()
+        @platformKeyFactory = ::Org::Allbinary::Game::Input::PlatformKeyFactory.getInstance()
+        @allBinaryGameCanvas = nil unless instance_variable_defined?(:@allBinaryGameCanvas)
     end
     
 
     def initialize(allBinaryGameCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_FormInputProcessor
         @allBinaryGameCanvas = allBinaryGameCanvas
     end
     
 
     def keyPressedByDevice(keyCode, deviceId)
         begin
-            PreLogUtil.put(StringMaker.new().append(@inputFactory.KEY_CODE_LABEL).appendint(keyCode).append(CommonSeps.getInstance().SPACE).append(@inputFactory.DEVICE_ID_LABEL).appendint(deviceId).to_s, self, @gameInputStrings.KEY_PRESSED)
+            ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@inputFactory.KEY_CODE_LABEL).appendint(keyCode).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(@inputFactory.DEVICE_ID_LABEL).appendint(deviceId).to_s, self, @gameInputStrings.KEY_PRESSED)
             input = @inputFactory.getInstanceById(keyCode)
             gameKeyEvent = @gameKeyEventFactory.getInstanceForInput(@allBinaryGameCanvas, input)
             @downKeyEventHandler.fireEventForGameKeyEvent(gameKeyEvent)
@@ -48,14 +51,15 @@ class FormInputProcessor < InputProcessor
             @logUtil.put(@commonStrings.EXCEPTION, self, @gameInputStrings.ADD_KEY_EVENT, e)
         end
     end
+    java_overload :keyPressedByDevice, 2
     
 
     def keyReleasedByDevice(canvas, keyCode, deviceId)
         begin
             input = @inputFactory.getInstanceById(keyCode)
             if @platformKeyFactory.isEnter(input)
-                PreLogUtil.put(StringMaker.new().append(@inputFactory.KEY_CODE_LABEL).appendint(keyCode).append(CommonSeps.getInstance().SPACE).append(@inputFactory.DEVICE_ID_LABEL).appendint(deviceId).to_s, self, @gameInputStrings.KEY_RELEASED)
-                gameKey = GameKeyFactory.getInstance().KEY_NUM0
+                ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@inputFactory.KEY_CODE_LABEL).appendint(keyCode).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(@inputFactory.DEVICE_ID_LABEL).appendint(deviceId).to_s, self, @gameInputStrings.KEY_RELEASED)
+                gameKey = ::Org::Allbinary::Game::Input::GameKeyFactory.getInstance().KEY_NUM0
                 gameKeyEventSourceInterface = canvas
                 gameKeyEvent = @gameKeyEventFactory.getInstanceForInput(gameKeyEventSourceInterface, gameKey)
                 @upGameKeyEventHandler.fireEvent(gameKeyEvent)
@@ -65,23 +69,26 @@ class FormInputProcessor < InputProcessor
             @logUtil.put(@commonStrings.EXCEPTION, self, @gameInputStrings.ADD_KEY_EVENT, e)
         end
     end
+    java_overload :keyReleasedByDevice, 3
 end
 
-autoload :Canvas, "javax/microedition/lcdui/Canvas"
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :GameKeyEventSourceInterface, "org/allbinary/game/input/GameKeyEventSourceInterface"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :PlatformKeyFactory, "org/allbinary/game/input/PlatformKeyFactory"
-autoload :DownKeyEventHandler, "org/allbinary/game/input/event/DownKeyEventHandler"
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
-autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory"
-autoload :UpGameKeyEventHandler, "org/allbinary/game/input/event/UpGameKeyEventHandler"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKeyEventSourceInterface, "org/allbinary/game/input/GameKeyEventSourceInterface" unless const_defined?(:GameKeyEventSourceInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :PlatformKeyFactory, "org/allbinary/game/input/PlatformKeyFactory" unless const_defined?(:PlatformKeyFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :DownKeyEventHandler, "org/allbinary/game/input/event/DownKeyEventHandler" unless const_defined?(:DownKeyEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEventFactory, "org/allbinary/game/input/event/GameKeyEventFactory" unless const_defined?(:GameKeyEventFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :UpGameKeyEventHandler, "org/allbinary/game/input/event/UpGameKeyEventHandler" unless const_defined?(:UpGameKeyEventHandler, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :PreLogUtil, "org/allbinary/logic/communication/log/PreLogUtil" unless const_defined?(:PreLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
+
+end; end; end; end; end
 

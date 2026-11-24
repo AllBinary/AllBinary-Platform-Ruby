@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/canvas/Processor"
 
-class EndGameProcessor < Processor
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
+class EndGameProcessor < ::Org::Allbinary::Canvas::Processor
     attr_accessor :gameStateFactory, :gameCanvas, :WAIT
 
-    def initialize_fields
-        @gameStateFactory = GameStateFactory.getInstance()
-        @gameCanvas = nil
+    def jfields_org_allbinary_game_displayable_canvas_EndGameProcessor
+        @gameStateFactory = ::Org::Allbinary::Game::State::GameStateFactory.getInstance()
+        @gameCanvas = nil unless instance_variable_defined?(:@gameCanvas)
         @WAIT = 5000
     end
     
 
     def initialize(gameCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_game_displayable_canvas_EndGameProcessor
         @gameCanvas = gameCanvas
     end
     
@@ -40,7 +43,7 @@ class EndGameProcessor < Processor
                 if @gameCanvas.getGameState() == @gameStateFactory.SHOW_END_RESULT_GAME_STATE
                     highScoresBase = @gameCanvas.highScoresHelper
                     highScores = highScoresBase.getSelectedHighScores()
-                    if highScores != NullHighScoresSingletonFactory.getInstance()
+                    if highScores != ::Org::Allbinary::Game::Score::NullHighScoresSingletonFactory.getInstance()
                         highScoresBase.selectHighScores()
                         @gameCanvas.getRealHighScoresPaintable().setHighScores(highScores)
                         @gameCanvas.setGameState(@gameStateFactory.SHOW_HIGH_SCORE_GAME_STATE)
@@ -48,17 +51,20 @@ class EndGameProcessor < Processor
                     end
                 elsif @gameCanvas.getGameState() == @gameStateFactory.SHOW_HIGH_SCORE_GAME_STATE
                     @gameCanvas.setGameState(@gameStateFactory.SHOW_END_RESULT_GAME_STATE)
-                    @gameCanvas.setHighScoresPaintable(NullPaintable.getInstance())
+                    @gameCanvas.setHighScoresPaintable(::Org::Allbinary::Graphics::Paint::NullPaintable.getInstance())
                 end
             end
         end
     end
+    java_overload :process, 0
 end
 
-autoload :HighScores, "org/allbinary/game/score/HighScores"
-autoload :HighScoresHelperBase, "org/allbinary/game/score/HighScoresHelperBase"
-autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory"
-autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory"
-autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable"
-autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas"
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScores, "org/allbinary/game/score/HighScores" unless const_defined?(:HighScores, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :HighScoresHelperBase, "org/allbinary/game/score/HighScoresHelperBase" unless const_defined?(:HighScoresHelperBase, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Score; autoload :NullHighScoresSingletonFactory, "org/allbinary/game/score/NullHighScoresSingletonFactory" unless const_defined?(:NullHighScoresSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module State; autoload :GameStateFactory, "org/allbinary/game/state/GameStateFactory" unless const_defined?(:GameStateFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :NullPaintable, "org/allbinary/graphics/paint/NullPaintable" unless const_defined?(:NullPaintable, false); end; end; end; end
+autoload :AllBinaryGameCanvas, "org/allbinary/game/displayable/canvas/AllBinaryGameCanvas" unless const_defined?(:AllBinaryGameCanvas, false)
+
+end; end; end; end; end
 

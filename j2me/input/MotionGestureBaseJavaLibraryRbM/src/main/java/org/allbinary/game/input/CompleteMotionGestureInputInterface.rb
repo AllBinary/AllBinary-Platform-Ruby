@@ -14,9 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/layer/NamedInterface"
 
+module ::Org; module Allbinary; module Game; module Input
+
 module CompleteMotionGestureInputInterface
-    include NamedInterface
+    include ::Org::Allbinary::Layer::NamedInterface
 end
+
+end; end; end; end
 

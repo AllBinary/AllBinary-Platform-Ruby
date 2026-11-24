@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.control.validate
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/control/validate/ValidatorBaseInterface"
+
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Validate
 
 class ValidatorBase
     include ValidatorBaseInterface
@@ -30,23 +33,27 @@ class ValidatorBase
     
 
     def isValid()
-        return BooleanFactory.getInstance().TRUE
+        return ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE
     end
+    java_overload :isValid, 0
     
 
     def validationInfo()
-        return StringUtil.getInstance().EMPTY_STRING
+        return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
     end
+    java_overload :validationInfo, 0
     
 
     def toHashtable()
-        return StdUtil.getInstance().NULL_TABLE
+        return ::Org::Allbinary::Logic::StdUtil.getInstance().NULL_TABLE
     end
+    java_overload :toHashtable, 0
     
 
     def toList()
-        return BasicArrayListUtil.getInstance().getImmutableInstance()
+        return ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
     end
+    java_overload :toList, 0
 
     def self.instance()
         ValidatorBase.java_static_fields unless @java_static_fields_started
@@ -79,16 +86,18 @@ class ValidatorBase
     end
 end
 
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
 
 begin
     ValidatorBase.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
+require "java/lang/JavaOverload"
 require "org/allbinary/graphics/opengles/shader/ShaderUpdater"
+
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
 
 class CompositeShaderUpdater < ShaderUpdater
     attr_accessor :commonSeps
 
-    def initialize_fields
-        @commonSeps = CommonSeps.getInstance()
+    def jfields_org_allbinary_graphics_opengles_shader_CompositeShaderUpdater
+        @commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
     end
     
 
@@ -31,16 +34,18 @@ class CompositeShaderUpdater < ShaderUpdater
 
     def initialize(uniformBlockArray, uniformArray, attributeArray, attributeHandleArray)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_shader_CompositeShaderUpdater
     end
     
 
     def onSurfaceCreated(gl, eglConfig, programHandle)
     end
+    java_overload :onSurfaceCreated, 3
     
 
     def onSurfaceDestroyed(gl)
     end
+    java_overload :onSurfaceDestroyed, 1
 
     def self.instanceC()
         CompositeShaderUpdater.java_static_fields unless @java_static_fields_started
@@ -56,7 +61,7 @@ class CompositeShaderUpdater < ShaderUpdater
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instanceC = CompositeShaderUpdater.new(StringUtil.getInstance().getArrayInstance(), StringUtil.getInstance().getArrayInstance(), StringUtil.getInstance().getArrayInstance(), NullUtil.getInstance().NULL_INT_ARRAY)
+            @@instanceC = CompositeShaderUpdater.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().getArrayInstance(), ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().getArrayInstance(), ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().getArrayInstance(), ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_INT_ARRAY)
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -73,15 +78,17 @@ class CompositeShaderUpdater < ShaderUpdater
     end
 end
 
-autoload :EGLConfig, "javax/microedition/khronos/egl/EGLConfig"
-autoload :GL10, "javax/microedition/khronos/opengles/GL10"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
+module ::Javax; module Microedition; module Khronos; module Egl; autoload :EGLConfig, "javax/microedition/khronos/egl/EGLConfig" unless const_defined?(:EGLConfig, false); end; end; end; end
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
 
 begin
     CompositeShaderUpdater.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

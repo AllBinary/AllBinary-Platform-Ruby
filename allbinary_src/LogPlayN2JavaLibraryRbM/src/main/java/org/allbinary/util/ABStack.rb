@@ -14,39 +14,50 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 require "java/util/Stack"
 # require "jsinterop/annotations/JsType"
 
-class ABStack < Stack
+module ::Org; module Allbinary; module Util
+
+class ABStack < ::Java::Util::Stack
     
 
     def push(item)
-        return super(item)
+        return ABStack.superclass.java_super_method(:push, 1).bind(self).call(item)
     end
+    java_overload :push, 1
     
 
     def pop()
-        return super()
+        return ABStack.superclass.java_super_method(:pop, 0).bind(self).call()
     end
+    java_overload :pop, 0
     
 
     def peek()
-        return super()
+        return ABStack.superclass.java_super_method(:peek, 0).bind(self).call()
     end
+    java_overload :peek, 0
     
 
     def empty()
-        return super()
+        return ABStack.superclass.java_super_method(:empty, 0).bind(self).call()
     end
+    java_overload :empty, 0
     
 
     def search(obj)
-        return super(obj)
+        return ABStack.superclass.java_super_method(:search, 1).bind(self).call(obj)
     end
+    java_overload :search, 1
     
 
     def removeElement(obj)
-        return super(obj)
+        return ABStack.superclass.java_super_method(:removeElement, 1).bind(self).call(obj)
     end
+    java_overload :removeElement, 1
 end
+
+end; end; end
 

@@ -15,14 +15,18 @@
 # package org.allbinary.input.motion.button
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class TouchButtonsPaintableFactory
     
 
     def self.getInstance(basicColor)
-        return Paintable.new()
+        return ::Org::Allbinary::Graphics::Paint::Paintable.new()
     end
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :Paintable, "org/allbinary/graphics/paint/Paintable"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Paint; autoload :Paintable, "org/allbinary/graphics/paint/Paintable" unless const_defined?(:Paintable, false); end; end; end; end
+
+end; end; end; end; end
 

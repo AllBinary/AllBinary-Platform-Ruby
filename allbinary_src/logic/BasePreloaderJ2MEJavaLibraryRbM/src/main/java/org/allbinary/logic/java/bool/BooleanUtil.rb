@@ -15,11 +15,13 @@
 # package org.allbinary.logic.java.bool
 
 
+module ::Org; module Allbinary; module Logic; module Java; module Bool
+
 class BooleanUtil
     attr_accessor :tsUtil
 
-    def initialize_fields
-        @tsUtil = TsUtil.getInstance()
+    def jfields_org_allbinary_logic_java_bool_BooleanUtil
+        @tsUtil = ::Org::Allbinary::TsUtil.getInstance()
     end
     
 
@@ -29,13 +31,13 @@ class BooleanUtil
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_java_bool_BooleanUtil
     end
     
 
     # throws Exception
     def getFromString(booleanString)
-        stringValidationUtil = StringValidationUtil.getInstance()
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
         booleanFactory = BooleanFactory.getInstance()
         if stringValidationUtil.isEmpty(booleanString)
             return false
@@ -63,7 +65,7 @@ class BooleanUtil
     
 
     def toStringFromBooleanArray(booleanArray)
-        stringMaker = StringMaker.new()
+        stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         size = booleanArray.length
         (0...size).each do |index|
             stringMaker.appendboolean(booleanArray[index])
@@ -102,14 +104,16 @@ class BooleanUtil
     end
 end
 
-autoload :TsUtil, "org/allbinary/TsUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
+module ::Org; module Allbinary; autoload :TsUtil, "org/allbinary/TsUtil" unless const_defined?(:TsUtil, false); end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false)
 
 begin
     BooleanUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

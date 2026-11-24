@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.opengles.shader
 
 
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
+
 class NullOpenGLTextureProcessor
     
 
@@ -53,11 +55,13 @@ class NullOpenGLTextureProcessor
     end
 end
 
-autoload :OpenGLObject3dProcessor, "org/allbinary/graphics/opengles/shader/OpenGLObject3dProcessor"
+autoload :OpenGLObject3dProcessor, "org/allbinary/graphics/opengles/shader/OpenGLObject3dProcessor" unless const_defined?(:OpenGLObject3dProcessor, false)
 
 begin
     NullOpenGLTextureProcessor.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

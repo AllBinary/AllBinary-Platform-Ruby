@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer.geological.resources
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/layer/waypoint/WaypointLayer"
 
-class ResourceWaypointLayer < WaypointLayer
+module ::Org; module Allbinary; module Game; module Layer; module Geological; module Resources
+
+class ResourceWaypointLayer < ::Org::Allbinary::Game::Layer::Waypoint::WaypointLayer
     
 
     def initialize(remoteInfo, parentLayer, groupInterface, rootName, name, animationInterfaceFactoryInterface, proceduralAnimationInterfaceFactoryInterface, rectangle, x, y)
@@ -30,21 +33,25 @@ class ResourceWaypointLayer < WaypointLayer
         rtsLayerHudPaintable.setRtsLayer(self)
         return rtsLayerHudPaintable
     end
+    java_overload :createHudPaintable, 0
     
 
     def getHudPaintable()
         rtsLayerHudPaintable = GeologicalResourceInfoHudPaintableSingleton.getInstance()
         return rtsLayerHudPaintable
     end
+    java_overload :getHudPaintable, 0
 end
 
-require "org/allbinary/game/layer/SelectionHudPaintable"
-require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
-require "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface"
-require "org/allbinary/game/identification/Group"
-require "org/allbinary/game/layer/PathFindingLayerInterface"
-require "org/allbinary/graphics/Rectangle"
-require "org/allbinary/game/multiplayer/layer/RemoteInfo"
-require "org/allbinary/game/layer/geological/resources/GeologicalResourceInfoHudPaintable"
-require "org/allbinary/game/layer/geological/resources/GeologicalResourceInfoHudPaintableSingleton"
+module ::Org; module Allbinary; module Game; module Layer; autoload :SelectionHudPaintable, "org/allbinary/game/layer/SelectionHudPaintable" unless const_defined?(:SelectionHudPaintable, false); end; end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationInterfaceFactoryInterface, "org/allbinary/animation/AnimationInterfaceFactoryInterface" unless const_defined?(:AnimationInterfaceFactoryInterface, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :ProceduralAnimationInterfaceFactoryInterface, "org/allbinary/animation/ProceduralAnimationInterfaceFactoryInterface" unless const_defined?(:ProceduralAnimationInterfaceFactoryInterface, false); end; end; end
+module ::Org; module Allbinary; module Game; module Identification; autoload :Group, "org/allbinary/game/identification/Group" unless const_defined?(:Group, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :PathFindingLayerInterface, "org/allbinary/game/layer/PathFindingLayerInterface" unless const_defined?(:PathFindingLayerInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :Rectangle, "org/allbinary/graphics/Rectangle" unless const_defined?(:Rectangle, false); end; end; end
+module ::Org; module Allbinary; module Game; module Multiplayer; module Layer; autoload :RemoteInfo, "org/allbinary/game/multiplayer/layer/RemoteInfo" unless const_defined?(:RemoteInfo, false); end; end; end; end; end
+autoload :GeologicalResourceInfoHudPaintable, "org/allbinary/game/layer/geological/resources/GeologicalResourceInfoHudPaintable" unless const_defined?(:GeologicalResourceInfoHudPaintable, false)
+autoload :GeologicalResourceInfoHudPaintableSingleton, "org/allbinary/game/layer/geological/resources/GeologicalResourceInfoHudPaintableSingleton" unless const_defined?(:GeologicalResourceInfoHudPaintableSingleton, false)
+
+end; end; end; end; end; end
 

@@ -15,20 +15,26 @@
 # package org.allbinary.business.category.properties.root
 
 
+module ::Org; module Allbinary; module Business; module Category; module Properties; module Root
+
 module RootCategoryPropertiesInterface
     
 
     # throws Exception
     def setRootFilePath(value)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def getRootFilePath()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :AbPath, "org/allbinary/logic/io/path/AbPath"
+module ::Org; module Allbinary; module Logic; module Io; module Path; autoload :AbPath, "org/allbinary/logic/io/path/AbPath" unless const_defined?(:AbPath, false); end; end; end; end; end
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.displayable
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable
+
 module ScalableListener
     
 
@@ -41,4 +43,6 @@ module ScalableListener
         raise NotImplementedError
     end
 end
+
+end; end; end; end
 

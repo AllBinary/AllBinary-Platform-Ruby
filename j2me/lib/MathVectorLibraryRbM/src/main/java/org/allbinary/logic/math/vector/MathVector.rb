@@ -14,21 +14,24 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.math.vector
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/math/vector/MathVectorInterface"
+
+module ::Org; module Allbinary; module Logic; module MathPackage; module Vector
 
 class MathVector
     include MathVectorInterface
     attr_accessor :magnitudeBasicDecimal, :direction, :resultBasicDecimal
 
-    def initialize_fields
-        @magnitudeBasicDecimal = nil
-        @direction = nil
-        @resultBasicDecimal = nil
+    def jfields_org_allbinary_logic_math_vector_MathVector
+        @magnitudeBasicDecimal = nil unless instance_variable_defined?(:@magnitudeBasicDecimal)
+        @direction = nil unless instance_variable_defined?(:@direction)
+        @resultBasicDecimal = nil unless instance_variable_defined?(:@resultBasicDecimal)
     end
     
 
     def initialize(magnitudeBasicDecimal, direction)
-        initialize_fields
+        jfields_org_allbinary_logic_math_vector_MathVector
         @magnitudeBasicDecimal = magnitudeBasicDecimal
         @direction = direction
     end
@@ -37,17 +40,22 @@ class MathVector
     def getMagnitude()
         return @magnitudeBasicDecimal
     end
+    java_overload :getMagnitude, 0
     
 
     def getDirection()
         return @direction
     end
+    java_overload :getDirection, 0
     
 
     def getResult()
         return @resultBasicDecimal
     end
+    java_overload :getResult, 0
 end
 
-require "org/allbinary/logic/math/BasicDecimal"
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false); end; end; end; end
+
+end; end; end; end; end
 

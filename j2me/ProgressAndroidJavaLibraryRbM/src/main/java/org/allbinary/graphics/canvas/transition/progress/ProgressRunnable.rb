@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.canvas.transition.progress
 
+require "java/lang/JavaOverload"
 require "org/allbinary/thread/ARunnable"
 
-class ProgressRunnable < ARunnable
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress
+
+class ProgressRunnable < ::Org::Allbinary::ThreadPackage::ARunnable
     attr_accessor :midletActivity, :progressCanvas
 
-    def initialize_fields
-        @midletActivity = nil
-        @progressCanvas = nil
+    def jfields_org_allbinary_graphics_canvas_transition_progress_ProgressRunnable
+        @midletActivity = nil unless instance_variable_defined?(:@midletActivity)
+        @progressCanvas = nil unless instance_variable_defined?(:@progressCanvas)
     end
     
 
     def initialize(midletActivity, progressCanvas)
         super()
-        initialize_fields
+        jfields_org_allbinary_graphics_canvas_transition_progress_ProgressRunnable
         midletActivity2 = midletActivity
         @midletActivity = midletActivity2
         @progressCanvas = progressCanvas
@@ -36,10 +39,13 @@ class ProgressRunnable < ARunnable
 
     def run()
     end
+    java_overload :run, 0
 end
 
-require "android/app/Activity"
-require "org/allbinary/android/activity/MidletActivityBase"
-require "org/allbinary/android/activity/SimpleProgressActivityInterface"
-require "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas"
+module ::Android; module App; autoload :Activity, "android/app/Activity" unless const_defined?(:Activity, false); end; end
+module ::Org; module Allbinary; module Android; module Activity; autoload :MidletActivityBase, "org/allbinary/android/activity/MidletActivityBase" unless const_defined?(:MidletActivityBase, false); end; end; end; end
+module ::Org; module Allbinary; module Android; module Activity; autoload :SimpleProgressActivityInterface, "org/allbinary/android/activity/SimpleProgressActivityInterface" unless const_defined?(:SimpleProgressActivityInterface, false); end; end; end; end
+autoload :ProgressCanvas, "org/allbinary/graphics/canvas/transition/progress/ProgressCanvas" unless const_defined?(:ProgressCanvas, false)
+
+end; end; end; end; end; end
 

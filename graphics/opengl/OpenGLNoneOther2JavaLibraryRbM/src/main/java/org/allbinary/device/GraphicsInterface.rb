@@ -15,6 +15,8 @@
 # package org.allbinary.device
 
 
+module ::Org; module Allbinary; module Device
+
 module GraphicsInterface
     
 
@@ -24,6 +26,8 @@ module GraphicsInterface
     end
 end
 
-autoload :Font, "javax/microedition/lcdui/Font"
-autoload :FontDebugBase, "org/allbinary/graphics/font/FontDebugBase"
+module ::Javax; module Microedition; module Lcdui; autoload :Font, "javax/microedition/lcdui/Font" unless const_defined?(:Font, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Font; autoload :FontDebugBase, "org/allbinary/graphics/font/FontDebugBase" unless const_defined?(:FontDebugBase, false); end; end; end; end
+
+end; end; end
 

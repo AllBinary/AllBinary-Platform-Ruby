@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/RTSPlayerGameInputProcessor"
+
+module ::Org; module Allbinary; module Game; module Input
 
 class RTSPlayerLeftGameInputProcessor < RTSPlayerGameInputProcessor
     
@@ -28,9 +31,12 @@ class RTSPlayerLeftGameInputProcessor < RTSPlayerGameInputProcessor
     def processEvent(allbinaryLayerManager, gameKeyEvent)
         @rtsPlayerGameInput.left()
     end
+    java_overload :processEvent, 2
 end
 
-require "org/allbinary/game/input/event/GameKeyEvent"
-require "org/allbinary/layer/AllBinaryLayerManager"
-require "org/allbinary/game/input/RTSPlayerGameInput"
+module ::Org; module Allbinary; module Game; module Input; module Event; autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+autoload :RTSPlayerGameInput, "org/allbinary/game/input/RTSPlayerGameInput" unless const_defined?(:RTSPlayerGameInput, false)
+
+end; end; end; end
 

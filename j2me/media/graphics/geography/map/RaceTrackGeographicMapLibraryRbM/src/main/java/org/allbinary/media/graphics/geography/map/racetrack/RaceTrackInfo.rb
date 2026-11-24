@@ -15,23 +15,25 @@
 # package org.allbinary.media.graphics.geography.map.racetrack
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
+
 class RaceTrackInfo
     attr_accessor :id, :name, :raceTrackFrictionProperties, :foregroundBasicColor, :backgroundBasicColor, :qualifyTime, :worstContinuePosition, :totalLaps
 
-    def initialize_fields
-        @id = nil
-        @name = nil
-        @raceTrackFrictionProperties = nil
-        @foregroundBasicColor = nil
-        @backgroundBasicColor = nil
-        @qualifyTime = nil
-        @worstContinuePosition = nil
-        @totalLaps = nil
+    def jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackInfo
+        @id = nil unless instance_variable_defined?(:@id)
+        @name = nil unless instance_variable_defined?(:@name)
+        @raceTrackFrictionProperties = nil unless instance_variable_defined?(:@raceTrackFrictionProperties)
+        @foregroundBasicColor = nil unless instance_variable_defined?(:@foregroundBasicColor)
+        @backgroundBasicColor = nil unless instance_variable_defined?(:@backgroundBasicColor)
+        @qualifyTime = nil unless instance_variable_defined?(:@qualifyTime)
+        @worstContinuePosition = nil unless instance_variable_defined?(:@worstContinuePosition)
+        @totalLaps = nil unless instance_variable_defined?(:@totalLaps)
     end
     
 
     def initialize(id, name, raceTrackFrictionProperties, foregroundBasicColor, backgroundBasicColor, qualifyTime, worstContinuePosition, totalLaps)
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_racetrack_RaceTrackInfo
         @id = id
         @name = name
         @raceTrackFrictionProperties = raceTrackFrictionProperties
@@ -123,6 +125,8 @@ class RaceTrackInfo
     end
 end
 
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackFrictionProperties"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+autoload :RaceTrackFrictionProperties, "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackFrictionProperties" unless const_defined?(:RaceTrackFrictionProperties, false)
+
+end; end; end; end; end; end; end
 

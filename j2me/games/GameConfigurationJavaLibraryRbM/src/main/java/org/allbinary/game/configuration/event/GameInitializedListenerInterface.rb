@@ -14,17 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.configuration.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Game; module Configuration; module Event
+
 module GameInitializedListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     def onGameInitialized(gameInitializedEvent)
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onGameInitialized, 1
 end
 
-autoload :GameInitializedEvent, "org/allbinary/game/configuration/event/GameInitializedEvent"
+autoload :GameInitializedEvent, "org/allbinary/game/configuration/event/GameInitializedEvent" unless const_defined?(:GameInitializedEvent, false)
+
+end; end; end; end; end
 

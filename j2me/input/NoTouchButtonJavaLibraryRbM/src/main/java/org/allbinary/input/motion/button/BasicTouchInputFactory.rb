@@ -16,33 +16,35 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class BasicTouchInputFactory
     attr_accessor :logUtil, :SPECIAL_BUTTON_SIX, :SPECIAL_BUTTON_FIVE, :SPECIAL_BUTTON_FOUR, :SPECIAL_BUTTON_THREE, :SPECIAL_BUTTON_TWO, :SPECIAL_BUTTON_ONE, :UP, :LEFT, :RIGHT, :DOWN, :NONE, :initialized, :list
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @SPECIAL_BUTTON_SIX = TouchButtonInput.new(InputFactory.getInstance().MAX - 30, "Button 6")
-        @SPECIAL_BUTTON_FIVE = TouchButtonInput.new(InputFactory.getInstance().MAX - 31, "Button 5")
-        @SPECIAL_BUTTON_FOUR = TouchButtonInput.new(InputFactory.getInstance().MAX - 32, "Button 4")
-        @SPECIAL_BUTTON_THREE = TouchButtonInput.new(InputFactory.getInstance().MAX - 33, "Button 3")
-        @SPECIAL_BUTTON_TWO = TouchButtonInput.new(InputFactory.getInstance().MAX - 34, "Button 2")
-        @SPECIAL_BUTTON_ONE = TouchButtonInput.new(InputFactory.getInstance().MAX - 35, "Button 1")
-        @UP = TouchButtonInput.new(InputFactory.getInstance().MAX - 36, "Up Button")
-        @LEFT = TouchButtonInput.new(InputFactory.getInstance().MAX - 37, "Left Button")
-        @RIGHT = TouchButtonInput.new(InputFactory.getInstance().MAX - 38, "Right Button")
-        @DOWN = TouchButtonInput.new(InputFactory.getInstance().MAX - 39, "Down Button")
-        @NONE = TouchButtonInput.new(InputFactory.getInstance().MAX - 40, "No Button")
+    def jfields_org_allbinary_input_motion_button_BasicTouchInputFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @SPECIAL_BUTTON_SIX = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 30, "Button 6")
+        @SPECIAL_BUTTON_FIVE = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 31, "Button 5")
+        @SPECIAL_BUTTON_FOUR = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 32, "Button 4")
+        @SPECIAL_BUTTON_THREE = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 33, "Button 3")
+        @SPECIAL_BUTTON_TWO = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 34, "Button 2")
+        @SPECIAL_BUTTON_ONE = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 35, "Button 1")
+        @UP = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 36, "Up Button")
+        @LEFT = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 37, "Left Button")
+        @RIGHT = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 38, "Right Button")
+        @DOWN = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 39, "Down Button")
+        @NONE = TouchButtonInput.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX - 40, "No Button")
         @initialized = false
-        @list = BasicArrayListD.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_input_motion_button_BasicTouchInputFactory
     end
     
 
     def self.getInstance()
-        if BasicTouchInputFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if BasicTouchInputFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             BasicTouchInputFactory.instance = BasicTouchInputFactory.new()
         end
         return BasicTouchInputFactory.instance
@@ -75,7 +77,7 @@ class BasicTouchInputFactory
     
 
     def updateAllList(list, inputToGameKeyMapping)
-        @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().START).appendint(list.size()).to_s, self, "updateAll")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START).appendint(list.size()).to_s, self, "updateAll")
         (list.size() - 1).step(0, -(1)) do |index|
             touchButtonInput = list.get(index)
             touchButtonInput.update(inputToGameKeyMapping)
@@ -101,7 +103,7 @@ class BasicTouchInputFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -118,19 +120,21 @@ class BasicTouchInputFactory
     end
 end
 
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput"
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping" unless const_defined?(:InputToGameKeyMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput" unless const_defined?(:TouchButtonInput, false)
 
 begin
     BasicTouchInputFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

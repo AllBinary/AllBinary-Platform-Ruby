@@ -15,6 +15,8 @@
 # package org.allbinary.game.layer.pickup
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Pickup
+
 module PickedUpLayerInterfaceFactoryInterface
     
 
@@ -36,7 +38,9 @@ module PickedUpLayerInterfaceFactoryInterface
     end
 end
 
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType"
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+autoload :PickedUpLayerType, "org/allbinary/game/layer/pickup/PickedUpLayerType" unless const_defined?(:PickedUpLayerType, false)
+
+end; end; end; end; end
 

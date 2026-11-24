@@ -15,6 +15,8 @@
 # package org.allbinary
 
 
+module ::Org; module Allbinary
+
 class AvianUtil
     
 
@@ -22,4 +24,6 @@ class AvianUtil
         return false
     end
 end
+
+end; end
 

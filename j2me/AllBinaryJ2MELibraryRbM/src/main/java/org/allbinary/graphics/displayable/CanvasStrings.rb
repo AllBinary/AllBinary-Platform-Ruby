@@ -15,10 +15,12 @@
 # package org.allbinary.graphics.displayable
 
 
+module ::Org; module Allbinary; module Graphics; module Displayable
+
 class CanvasStrings
     attr_accessor :CONSTRUCTOR, :PAUSE, :UN_PAUSE, :SET_FULL_SCREEN_MODE, :SIZE_CHANGED, :SCALED_IMAGES, :PAINT, :ON_DISPLAY_CHANGE_EVENT, :UPDATE_MEASUREMENT, :FD_WIDTH, :FD_HEIGHT, :EMPTY_CHILD_NAME_LIST, :ABOUT, :OPTIONS, :FONT_ATLAS, :OBJ_MODEL, :MD2_MODEL, :_PNG
 
-    def initialize_fields
+    def jfields_org_allbinary_graphics_displayable_CanvasStrings
         @CONSTRUCTOR = "MyCanvas::MyCanvas"
         @PAUSE = "MyCanvas::pause"
         @UN_PAUSE = "MyCanvas::unPause"
@@ -30,7 +32,7 @@ class CanvasStrings
         @UPDATE_MEASUREMENT = "updateMeasurement"
         @FD_WIDTH = " font/display width: "
         @FD_HEIGHT = " font/display height: "
-        @EMPTY_CHILD_NAME_LIST = BasicArrayListUtil.getInstance().getImmutableInstance()
+        @EMPTY_CHILD_NAME_LIST = ::Org::Allbinary::Util::BasicArrayListUtil.getInstance().getImmutableInstance()
         @ABOUT = "About"
         @OPTIONS = "Options"
         @FONT_ATLAS = "/font.png"
@@ -40,7 +42,7 @@ class CanvasStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_graphics_displayable_CanvasStrings
     end
     
 
@@ -79,12 +81,14 @@ class CanvasStrings
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListUtil, "org/allbinary/util/BasicArrayListUtil" unless const_defined?(:BasicArrayListUtil, false); end; end; end
 
 begin
     CanvasStrings.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

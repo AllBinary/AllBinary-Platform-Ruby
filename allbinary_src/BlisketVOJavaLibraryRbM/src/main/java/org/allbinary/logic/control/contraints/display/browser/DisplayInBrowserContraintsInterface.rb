@@ -15,46 +15,58 @@
 # package org.allbinary.logic.control.contraints.display.browser
 
 
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Display; module Browser
+
 module DisplayInBrowserContraintsInterface
     
 
     def isMountable()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isFrameable()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isQuickFrameable()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setMountable(canBeMounted)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setFrameable(canBeFramed)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setQuickFrameable(canBeQuickFramed)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def setMountedLink(mountedLink)
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getMountedLink()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end; end
 

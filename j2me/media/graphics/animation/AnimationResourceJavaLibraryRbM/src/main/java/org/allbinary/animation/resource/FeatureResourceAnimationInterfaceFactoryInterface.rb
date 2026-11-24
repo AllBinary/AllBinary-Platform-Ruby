@@ -14,21 +14,27 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.resource
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/configuration/feature/GameFeatureControlledInterface"
 require "org/allbinary/game/resource/RectangleResourceFactoryInterface"
 require "org/allbinary/animation/resource/ResourceAnimationInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Animation; module Resource
+
 module FeatureResourceAnimationInterfaceFactoryInterface
     include ResourceAnimationInterfaceFactoryInterface
-    include RectangleResourceFactoryInterface
-    include GameFeatureControlledInterface
+    include ::Org::Allbinary::Game::Resource::RectangleResourceFactoryInterface
+    include ::Org::Allbinary::Game::Configuration::Feature::GameFeatureControlledInterface
     
 
     def getHashtable()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getHashtable, 0
 end
 
-autoload :ABHashtable, "org/allbinary/util/ABHashtable"
+module ::Org; module Allbinary; module Util; autoload :ABHashtable, "org/allbinary/util/ABHashtable" unless const_defined?(:ABHashtable, false); end; end; end
+
+end; end; end; end
 

@@ -15,16 +15,18 @@
 # package org.allbinary.game.layer.waypoint
 
 
+module ::Org; module Allbinary; module Game; module Layer; module Waypoint
+
 class WaypointCellPositionHistory
     attr_accessor :positionList, :layerList
 
-    def initialize_fields
-        @positionList = BasicArrayListD.new()
-        @layerList = BasicArrayListD.new()
+    def jfields_org_allbinary_game_layer_waypoint_WaypointCellPositionHistory
+        @positionList = ::Org::Allbinary::Util::BasicArrayListD.new()
+        @layerList = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_layer_waypoint_WaypointCellPositionHistory
     end
     
 
@@ -93,17 +95,41 @@ class WaypointCellPositionHistory
         if index >= 0
             return @layerList.get(index)
         else
-            return AllBinaryLayer::NULL_ALLBINARY_LAYER
+            return ::Org::Allbinary::Layer::AllBinaryLayer::NULL_ALLBINARY_LAYER
         end
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:SINGLETON, WaypointCellPositionHistory.new())
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "WaypointCellPositionHistory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:SINGLETON].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/util/BasicArrayListD"
-require "org/allbinary/graphics/CellPosition"
-require "org/allbinary/layer/AllBinaryLayer"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Graphics; autoload :CellPosition, "org/allbinary/graphics/CellPosition" unless const_defined?(:CellPosition, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
 
-class WaypointCellPositionHistory
-    SINGLETON = WaypointCellPositionHistory.new()
+begin
+    WaypointCellPositionHistory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

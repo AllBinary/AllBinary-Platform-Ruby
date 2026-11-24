@@ -15,20 +15,22 @@
 # package org.allbinary.game.input.event
 
 
+module ::Org; module Allbinary; module Game; module Input; module Event
+
 class GameKeyEventFactory
     attr_accessor :logUtil, :TOUCH_BUTTON_SOURCE_ID, :MOTION_GESTURE_SOURCE_ID, :MAX_SOURCES, :ARRAY
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_game_input_event_GameKeyEventFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @TOUCH_BUTTON_SOURCE_ID = 2
         @MOTION_GESTURE_SOURCE_ID = 3
         @MAX_SOURCES = 4
-        @ARRAY = Array.new(@MAX_SOURCES) { Array.new(InputFactory.getInstance().MAX, nil) }
+        @ARRAY = Array.new(@MAX_SOURCES) { Array.new(::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX, nil) }
     end
     
 
     def self.getInstance()
-        if GameKeyEventFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if GameKeyEventFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             GameKeyEventFactory.instance = GameKeyEventFactory.new()
         end
         return GameKeyEventFactory.instance
@@ -36,13 +38,13 @@ class GameKeyEventFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_game_input_event_GameKeyEventFactory
     end
     
 
     def init()
-        nullUtil = NullUtil.getInstance()
-        size = InputFactory.getInstance().MAX
+        nullUtil = ::Org::Allbinary::Logic::NullUtil.getInstance()
+        size = ::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX
         index = @MAX_SOURCES
         while (index -= 1) >= 0
             index2 = size
@@ -80,7 +82,7 @@ class GameKeyEventFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -97,16 +99,18 @@ class GameKeyEventFactory
     end
 end
 
-autoload :GameKeyEventSourceInterface, "org/allbinary/game/input/GameKeyEventSourceInterface"
-autoload :Input, "org/allbinary/game/input/Input"
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent"
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKeyEventSourceInterface, "org/allbinary/game/input/GameKeyEventSourceInterface" unless const_defined?(:GameKeyEventSourceInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+autoload :GameKeyEvent, "org/allbinary/game/input/event/GameKeyEvent" unless const_defined?(:GameKeyEvent, false)
 
 begin
     GameKeyEventFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

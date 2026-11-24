@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input.resource
 
+require "java/lang/JavaOverload"
 require "org/allbinary/input/motion/button/TouchButtonResource"
 
-class TouchButtonUpgradeResource < TouchButtonResource
+module ::Org; module Allbinary; module Game; module Input; module Resource
+
+class TouchButtonUpgradeResource < ::Org::Allbinary::Input::Motion::Button::TouchButtonResource
     
 
     def self.getInstance()
@@ -29,15 +32,41 @@ class TouchButtonUpgradeResource < TouchButtonResource
     end
 
     def self.instance()
+        TouchButtonUpgradeResource.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        TouchButtonUpgradeResource.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = TouchButtonUpgradeResource.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "TouchButtonUpgradeResource"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class TouchButtonUpgradeResource
-    @@instance = TouchButtonUpgradeResource.new()
+begin
+    TouchButtonUpgradeResource.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

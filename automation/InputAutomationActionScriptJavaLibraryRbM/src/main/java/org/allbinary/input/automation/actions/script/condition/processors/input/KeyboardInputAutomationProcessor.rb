@@ -15,6 +15,8 @@
 # package org.allbinary.input.automation.actions.script.condition.processors.input
 
 
+module ::Org; module Allbinary; module Input; module Automation; module Actions; module Script; module Condition; module Processors; module Input
+
 class KeyboardInputAutomationProcessor
     
 
@@ -24,9 +26,9 @@ class KeyboardInputAutomationProcessor
 
     # throws Exception
     def self.process(keyActionScriptInputInterface)
-        logUtil = LogUtil.getInstance()
-        commonStrings = CommonStrings.getInstance()
-        logUtil.putF((CommonLabels.getInstance().START).to_s + keyActionScriptInputInterface.to_s, "KeyInputAutomationProcessor", commonStrings.PROCESS)
+        logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        logUtil.putF((::Org::Allbinary::StringPackage::CommonLabels.getInstance().START).to_s + keyActionScriptInputInterface.to_s, "KeyInputAutomationProcessor", commonStrings.PROCESS)
         inputRobotInterface = keyActionScriptInputInterface.getInputRobotInterface()
         integer = keyActionScriptInputInterface.getKeyArray()
         if keyActionScriptInputInterface.getDelayBetweenKeys() == 0
@@ -50,7 +52,7 @@ class KeyboardInputAutomationProcessor
                 if keyActionScriptInputInterface.isRelease()
                     inputRobotInterface.keyRelease(integer[index])
                 end
-                timeHelper = TimeDelayHelper.new(keyActionScriptInputInterface.getDelayBetweenKeys())
+                timeHelper = ::Org::Allbinary::TimePackage::TimeDelayHelper.new(keyActionScriptInputInterface.getDelayBetweenKeys())
                 toLong = 0
                 while !timeHelper.isTimeTNT() || toLong > 6000
                     toLong += 1
@@ -61,11 +63,13 @@ class KeyboardInputAutomationProcessor
     end
 end
 
-autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper"
-autoload :KeyboardActionScriptInputInterface, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputInterface"
+module ::Org; module Allbinary; module Input; module Automation; module Robot; autoload :InputRobotInterface, "org/allbinary/input/automation/robot/InputRobotInterface" unless const_defined?(:InputRobotInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module TimePackage; autoload :TimeDelayHelper, "org/allbinary/time/TimeDelayHelper" unless const_defined?(:TimeDelayHelper, false); end; end; end
+autoload :KeyboardActionScriptInputInterface, "org/allbinary/input/automation/actions/script/condition/processors/input/KeyboardActionScriptInputInterface" unless const_defined?(:KeyboardActionScriptInputInterface, false)
 require "java/lang/Thread"
+
+end; end; end; end; end; end; end; end; end
 

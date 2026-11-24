@@ -15,6 +15,8 @@
 # package org.allbinary.logic
 
 
+module ::Org; module Allbinary; module Logic
+
 class VectorUtil
     
 
@@ -65,11 +67,13 @@ class VectorUtil
     end
 end
 
-autoload :Vector, "java/util/Vector"
+module ::Java; module Util; autoload :Vector, "java/util/Vector" unless const_defined?(:Vector, false); end; end
 
 begin
     VectorUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

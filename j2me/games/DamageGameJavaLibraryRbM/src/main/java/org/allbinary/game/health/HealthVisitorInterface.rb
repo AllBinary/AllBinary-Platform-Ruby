@@ -15,6 +15,8 @@
 # package org.allbinary.game.health
 
 
+module ::Org; module Allbinary; module Game; module Health
+
 module HealthVisitorInterface
     
 
@@ -24,5 +26,7 @@ module HealthVisitorInterface
     end
 end
 
-autoload :HealthInterface, "org/allbinary/game/health/HealthInterface"
+autoload :HealthInterface, "org/allbinary/game/health/HealthInterface" unless const_defined?(:HealthInterface, false)
+
+end; end; end; end
 

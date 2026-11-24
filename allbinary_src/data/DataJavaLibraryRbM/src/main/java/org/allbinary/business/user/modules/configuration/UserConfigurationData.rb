@@ -15,18 +15,44 @@
 # package org.allbinary.business.user.modules.configuration
 
 
+module ::Org; module Allbinary; module Business; module User; module Modules; module Configuration
+
 class UserConfigurationData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:NAME, "USER_CONFIGURATION_NAME")
+        begin
+            const_set(:UNCRYPTED_EXTENSION, ::Org::Allbinary::Logic::Io::FilePackage::CommonDataFileStrings.getInstance().UNCRYPTED_EXTENSION)
+            const_set(:ENCRYPTED_EXTENSION, ::Org::Allbinary::Logic::Io::FilePackage::CommonDataFileStrings.getInstance().ENCRYPTED_EXTENSION)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "UserConfigurationData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NAME, :UNCRYPTED_EXTENSION, :ENCRYPTED_EXTENSION].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/logic/io/file/CommonDataFileStrings"
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage; autoload :CommonDataFileStrings, "org/allbinary/logic/io/file/CommonDataFileStrings" unless const_defined?(:CommonDataFileStrings, false); end; end; end; end; end
 
-class UserConfigurationData
-    NAME = "USER_CONFIGURATION_NAME"
-    UNCRYPTED_EXTENSION = CommonDataFileStrings.getInstance().UNCRYPTED_EXTENSION
-    ENCRYPTED_EXTENSION = CommonDataFileStrings.getInstance().ENCRYPTED_EXTENSION
+begin
+    UserConfigurationData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

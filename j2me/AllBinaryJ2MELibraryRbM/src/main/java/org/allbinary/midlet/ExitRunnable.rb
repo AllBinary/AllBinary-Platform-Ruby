@@ -14,23 +14,26 @@
 # frozen_string_literal: false
 # package org.allbinary.midlet
 
+require "java/lang/JavaOverload"
 require "java/lang/Runnable"
 
+module ::Org; module Allbinary; module Midlet
+
 class ExitRunnable
-    include Runnable
+    include ::Java::Lang::Runnable
     attr_accessor :logUtil, :commonStrings, :midlet, :processor, :isProgress
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @midlet = nil
-        @processor = nil
-        @isProgress = nil
+    def jfields_org_allbinary_midlet_ExitRunnable
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @midlet = nil unless instance_variable_defined?(:@midlet)
+        @processor = nil unless instance_variable_defined?(:@processor)
+        @isProgress = nil unless instance_variable_defined?(:@isProgress)
     end
     
 
     def initialize(midlet, processor, isProgress)
-        initialize_fields
+        jfields_org_allbinary_midlet_ExitRunnable
         @midlet = midlet
         @isProgress = isProgress
         @processor = processor
@@ -41,7 +44,7 @@ class ExitRunnable
         begin
             @logUtil.putF(@commonStrings.START_RUNNABLE, self, @commonStrings.RUN)
             @midlet.destroyAppInRunnable(false, @isProgress)
-            @midlet.setDisplay(NullCanvas::NULL_CANVAS)
+            @midlet.setDisplay(::Javax::Microedition::Lcdui::NullCanvas::NULL_CANVAS)
             @midlet.notifyDestroyed()
             @logUtil.putF(@commonStrings.END_RUNNABLE, self, @commonStrings.RUN)
             @processor.process()
@@ -54,11 +57,14 @@ class ExitRunnable
             end
         end
     end
+    java_overload :run, 0
 end
 
-autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas"
-autoload :Processor, "org/allbinary/canvas/Processor"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet"
+module ::Javax; module Microedition; module Lcdui; autoload :NullCanvas, "javax/microedition/lcdui/NullCanvas" unless const_defined?(:NullCanvas, false); end; end; end
+module ::Org; module Allbinary; module Canvas; autoload :Processor, "org/allbinary/canvas/Processor" unless const_defined?(:Processor, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :AllBinaryMidlet, "org/allbinary/midlet/AllBinaryMidlet" unless const_defined?(:AllBinaryMidlet, false)
+
+end; end; end
 

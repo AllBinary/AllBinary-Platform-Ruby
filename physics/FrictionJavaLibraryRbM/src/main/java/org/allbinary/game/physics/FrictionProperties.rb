@@ -15,6 +15,8 @@
 # package org.allbinary.game.physics
 
 
+module ::Org; module Allbinary; module Game; module Physics
+
 class FrictionProperties
     
 
@@ -23,11 +25,13 @@ class FrictionProperties
     
 
     def friction(velocityProperties, nominator)
-        DragVelocityBehavior.instance.reduce(velocityProperties, nominator, FrictionData.getFrictionDenominator())
+        ::Org::Allbinary::Game::Physics::Velocity::DragVelocityBehavior.instance.reduce(velocityProperties, nominator, ::Org::Allbinary::Game::Physics::Friction::FrictionData.getFrictionDenominator())
     end
 end
 
-autoload :FrictionData, "org/allbinary/game/physics/friction/FrictionData"
-autoload :DragVelocityBehavior, "org/allbinary/game/physics/velocity/DragVelocityBehavior"
-autoload :VelocityProperties, "org/allbinary/game/physics/velocity/VelocityProperties"
+module ::Org; module Allbinary; module Game; module Physics; module Friction; autoload :FrictionData, "org/allbinary/game/physics/friction/FrictionData" unless const_defined?(:FrictionData, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :DragVelocityBehavior, "org/allbinary/game/physics/velocity/DragVelocityBehavior" unless const_defined?(:DragVelocityBehavior, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :VelocityProperties, "org/allbinary/game/physics/velocity/VelocityProperties" unless const_defined?(:VelocityProperties, false); end; end; end; end; end
+
+end; end; end; end
 

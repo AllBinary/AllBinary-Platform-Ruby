@@ -15,19 +15,21 @@
 # package org.allbinary.game
 
 
+module ::Org; module Allbinary; module Game
+
 class GameTypeFactory
     attr_accessor :NULL_GAME_TYPE_ARRAY, :NONE, :SINGLE_PLAYER, :MULTI_PLAYER, :BOT
 
-    def initialize_fields
+    def jfields_org_allbinary_game_GameTypeFactory
         @NULL_GAME_TYPE_ARRAY = Array.new(0, nil)
-        @NONE = GameType.new(StringUtil.getInstance().NULL_STRING)
+        @NONE = GameType.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING)
         @SINGLE_PLAYER = GameType.new("Single Player")
         @MULTI_PLAYER = GameType.new("Multi Player")
         @BOT = GameType.new("Artificial Player")
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_GameTypeFactory
     end
     
 
@@ -66,12 +68,14 @@ class GameTypeFactory
     end
 end
 
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :GameType, "org/allbinary/game/GameType"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+autoload :GameType, "org/allbinary/game/GameType" unless const_defined?(:GameType, false)
 
 begin
     GameTypeFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

@@ -14,10 +14,13 @@
 # frozen_string_literal: false
 # package org.allbinary.android.input.motion.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/EventListenerInterface"
 
+module ::Org; module Allbinary; module Android; module Input; module Motion; module Event
+
 module AnalogControllerConfigurationEventListenerInterface
-    include EventListenerInterface
+    include ::Org::Allbinary::Logic::Util::Event::EventListenerInterface
     
 
     # throws Exception
@@ -25,7 +28,10 @@ module AnalogControllerConfigurationEventListenerInterface
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :onAnalogControllerConfigurationEvent, 1
 end
 
-autoload :AnalogControllerConfigurationEvent, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent"
+autoload :AnalogControllerConfigurationEvent, "org/allbinary/android/input/motion/event/AnalogControllerConfigurationEvent" unless const_defined?(:AnalogControllerConfigurationEvent, false)
+
+end; end; end; end; end; end
 

@@ -14,16 +14,20 @@
 # frozen_string_literal: false
 # package org.allbinary.game.displayable.canvas
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/GameKeyEventSourceInterface"
 
+module ::Org; module Allbinary; module Game; module Displayable; module Canvas
+
 module MenuListener
-    include GameKeyEventSourceInterface
+    include ::Org::Allbinary::Game::Input::GameKeyEventSourceInterface
     
 
     def open()
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :open, 0
     
 
     # throws Exception
@@ -31,5 +35,8 @@ module MenuListener
         return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :close, 0
 end
+
+end; end; end; end; end
 

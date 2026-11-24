@@ -15,6 +15,8 @@
 # package org.allbinary.animation
 
 
+module ::Org; module Allbinary; module Animation
+
 module VectorAnimationFactoryInterface
     
 
@@ -24,6 +26,8 @@ module VectorAnimationFactoryInterface
     end
 end
 
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
-autoload :VectorAnimation, "org/allbinary/animation/VectorAnimation"
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+autoload :VectorAnimation, "org/allbinary/animation/VectorAnimation" unless const_defined?(:VectorAnimation, false)
+
+end; end; end
 

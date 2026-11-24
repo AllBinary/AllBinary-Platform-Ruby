@@ -15,23 +15,30 @@
 # package org.allbinary.business.advertisement.image
 
 
+module ::Org; module Allbinary; module Business; module Advertisement; module Image
+
 module AdvertisementImageInterface
     
 
     def getFileName()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getUrl()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def getTwoDimensionalConstraint()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
 
-autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface"
+module ::Org; module Allbinary; module Logic; module ControlPackage; module Contraints; module Size; autoload :TwoDimensionalConstraintInterface, "org/allbinary/logic/control/contraints/size/TwoDimensionalConstraintInterface" unless const_defined?(:TwoDimensionalConstraintInterface, false); end; end; end; end; end; end
+
+end; end; end; end; end
 

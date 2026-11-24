@@ -16,11 +16,13 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Logic; module System; module Os
+
 class OperatingSystemFactory
     attr_accessor :logUtil, :genericOperatingSystem
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_system_os_OperatingSystemFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @genericOperatingSystem = NoOperatingSystem::NO_OPERATING_SYSTEM
     end
     
@@ -31,15 +33,15 @@ class OperatingSystemFactory
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_os_OperatingSystemFactory
     end
     
 
     def getOperatingSystemInstance()
         java_monitor.synchronize do
-        commonStrings = CommonStrings.getInstance()
+        commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         begin
-            osString = StringMaker.new().append("OperatingSystem Info: ").append(@genericOperatingSystem.to_s).to_s
+            osString = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("OperatingSystem Info: ").append(@genericOperatingSystem.to_s).to_s
             puts(osString)
             @logUtil.putF(osString, self, commonStrings.GET_INSTANCE)
         rescue StandardError => e
@@ -80,11 +82,11 @@ class OperatingSystemFactory
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem"
-autoload :NoOperatingSystem, "org/allbinary/logic/system/os/NoOperatingSystem"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :GenericOperatingSystem, "org/allbinary/logic/system/os/GenericOperatingSystem" unless const_defined?(:GenericOperatingSystem, false)
+autoload :NoOperatingSystem, "org/allbinary/logic/system/os/NoOperatingSystem" unless const_defined?(:NoOperatingSystem, false)
 require "java/lang/System"
 
 begin
@@ -92,4 +94,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

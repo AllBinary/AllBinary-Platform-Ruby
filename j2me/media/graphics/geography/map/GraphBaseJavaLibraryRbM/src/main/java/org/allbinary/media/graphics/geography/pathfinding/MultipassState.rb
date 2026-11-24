@@ -15,17 +15,21 @@
 # package org.allbinary.media.graphics.geography.pathfinding
 
 
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Pathfinding
+
 class MultipassState
     attr_accessor :step, :iteration, :iteration2
 
-    def initialize_fields
-        @step = 0
-        @iteration = 0
-        @iteration2 = 0
+    def jfields_org_allbinary_media_graphics_geography_pathfinding_MultipassState
+        @step = 0 unless instance_variable_defined?(:@step)
+        @iteration = 0 unless instance_variable_defined?(:@iteration)
+        @iteration2 = 0 unless instance_variable_defined?(:@iteration2)
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_pathfinding_MultipassState
     end
 end
+
+end; end; end; end; end; end
 

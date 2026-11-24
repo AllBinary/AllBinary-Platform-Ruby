@@ -3,20 +3,22 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class PlatformKeyFactory
     attr_accessor :androidKeyFactory
 
-    def initialize_fields
+    def jfields_org_allbinary_game_input_PlatformKeyFactory
         @androidKeyFactory = ActivityFractureControllerUtilFactory.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_PlatformKeyFactory
     end
     
 
     def self.getInstance()
-        if PlatformKeyFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if PlatformKeyFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             PlatformKeyFactory.instance = PlatformKeyFactory.new()
         end
         return PlatformKeyFactory.instance
@@ -68,20 +70,47 @@ class PlatformKeyFactory
     end
 
     def self.instance()
+        PlatformKeyFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PlatformKeyFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PlatformKeyFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/logic/NullUtil"
-require "org/allbinary/game/input/ActivityFractureControllerUtilFactory"
-require "org/allbinary/game/input/AndroidGameKey"
-require "org/allbinary/game/input/AndroidKeyFactory"
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :ActivityFractureControllerUtilFactory, "org/allbinary/game/input/ActivityFractureControllerUtilFactory" unless const_defined?(:ActivityFractureControllerUtilFactory, false)
+autoload :AndroidGameKey, "org/allbinary/game/input/AndroidGameKey" unless const_defined?(:AndroidGameKey, false)
+autoload :AndroidKeyFactory, "org/allbinary/game/input/AndroidKeyFactory" unless const_defined?(:AndroidKeyFactory, false)
+autoload :Input, "org/allbinary/game/input/Input" unless const_defined?(:Input, false)
 
-class PlatformKeyFactory
-    @@instance = NullUtil.getInstance().NULL_OBJECT
+begin
+    PlatformKeyFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

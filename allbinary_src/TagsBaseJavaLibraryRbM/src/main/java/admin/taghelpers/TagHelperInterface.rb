@@ -15,6 +15,10 @@
 # package admin.taghelpers
 
 
+module ::Admin; module Taghelpers
+
 module TagHelperInterface
 end
+
+end; end
 

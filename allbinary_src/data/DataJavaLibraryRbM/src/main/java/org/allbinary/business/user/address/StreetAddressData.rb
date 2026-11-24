@@ -15,27 +15,53 @@
 # package org.allbinary.business.user.address
 
 
+module ::Org; module Allbinary; module Business; module User; module Address
+
 class StreetAddressData
     
 
     def initialize()
     end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        const_set(:MAX, 255)
+        const_set(:MIN, 0)
+        const_set(:FORM, "FORM")
+        const_set(:STATES, "STATES")
+        const_set(:NUMBEROFADDRESSES, "STREETADDRESS_NUMBEROFADDRESSES")
+        const_set(:ID, "STREETADDRESS_ID")
+        const_set(:DEFAULT, "STREETADDRESS_DEFAULT_ADDRESS")
+        const_set(:ADDRESS, "STREETADDRESS_ADDRESS")
+        const_set(:NAME, "STREETADDRESS_NAME")
+        const_set(:STREET, "STREETADDRESS_STREET")
+        const_set(:CITY, "STREETADDRESS_CITY")
+        const_set(:STATE, "STREETADDRESS_STATE")
+        const_set(:CODE, "STREETADDRESS_CODE")
+        const_set(:COUNTRY, "STREETADDRESS_COUNTRY")
+        begin
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "StreetAddressData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:MAX, :MIN, :FORM, :STATES, :NUMBEROFADDRESSES, :ID, :DEFAULT, :ADDRESS, :NAME, :STREET, :CITY, :STATE, :CODE, :COUNTRY].include?(name)
+        end
+        super
+    end
 end
 
-class StreetAddressData
-    MAX = 255
-    MIN = 0
-    FORM = "FORM"
-    STATES = "STATES"
-    NUMBEROFADDRESSES = "STREETADDRESS_NUMBEROFADDRESSES"
-    ID = "STREETADDRESS_ID"
-    DEFAULT = "STREETADDRESS_DEFAULT_ADDRESS"
-    ADDRESS = "STREETADDRESS_ADDRESS"
-    NAME = "STREETADDRESS_NAME"
-    STREET = "STREETADDRESS_STREET"
-    CITY = "STREETADDRESS_CITY"
-    STATE = "STREETADDRESS_STATE"
-    CODE = "STREETADDRESS_CODE"
-    COUNTRY = "STREETADDRESS_COUNTRY"
+begin
+    StreetAddressData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -15,18 +15,22 @@
 # package org.allbinary.logic.communication.smtp.queue
 
 
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module QueuePackage
+
 class FileEmailQueue
     attr_accessor :domDocumentQueueInterface
 
-    def initialize_fields
-        @domDocumentQueueInterface = nil
+    def jfields_org_allbinary_logic_communication_smtp_queue_FileEmailQueue
+        @domDocumentQueueInterface = nil unless instance_variable_defined?(:@domDocumentQueueInterface)
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_smtp_queue_FileEmailQueue
     end
 end
 
-autoload :DomDocumentQueueInterface, "org/allbinary/data/tree/dom/document/DomDocumentQueueInterface"
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom; module Document; autoload :DomDocumentQueueInterface, "org/allbinary/data/tree/dom/document/DomDocumentQueueInterface" unless const_defined?(:DomDocumentQueueInterface, false); end; end; end; end; end; end
+
+end; end; end; end; end; end
 

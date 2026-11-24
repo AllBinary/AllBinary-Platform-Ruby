@@ -14,9 +14,12 @@
 # frozen_string_literal: false
 # package org.allbinary.util
 
+require "java/lang/JavaOverload"
 # require "jsinterop/annotations/JsType"
 # require "jsinterop/annotations/JsConstructor"
 require "org/allbinary/util/BasicArrayListS"
+
+module ::Org; module Allbinary; module Util
 
 class BasicArrayListD < BasicArrayListS
     
@@ -25,4 +28,6 @@ class BasicArrayListD < BasicArrayListS
         super(7)
     end
 end
+
+end; end; end
 

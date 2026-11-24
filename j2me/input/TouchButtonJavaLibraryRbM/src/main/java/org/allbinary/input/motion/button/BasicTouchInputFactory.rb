@@ -16,31 +16,33 @@
 
 require "java/lang/Object"
 
+module ::Org; module Allbinary; module Input; module Motion; module Button
+
 class BasicTouchInputFactory
     attr_accessor :logUtil, :SPECIAL_BUTTON_SEVEN_TESTING_ONLY, :SPECIAL_BUTTON_EIGHT_TESTING_ONLY, :SPECIAL_BUTTON_SIX, :SPECIAL_BUTTON_FIVE, :SPECIAL_BUTTON_FOUR, :SPECIAL_BUTTON_THREE, :SPECIAL_BUTTON_TWO, :SPECIAL_BUTTON_ONE, :UP, :LEFT, :RIGHT, :DOWN, :NONE, :initialized, :list
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @SPECIAL_BUTTON_SEVEN_TESTING_ONLY = nil
-        @SPECIAL_BUTTON_EIGHT_TESTING_ONLY = nil
-        @SPECIAL_BUTTON_SIX = nil
-        @SPECIAL_BUTTON_FIVE = nil
-        @SPECIAL_BUTTON_FOUR = nil
-        @SPECIAL_BUTTON_THREE = nil
-        @SPECIAL_BUTTON_TWO = nil
-        @SPECIAL_BUTTON_ONE = nil
-        @UP = nil
-        @LEFT = nil
-        @RIGHT = nil
-        @DOWN = nil
-        @NONE = nil
+    def jfields_org_allbinary_input_motion_button_BasicTouchInputFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @SPECIAL_BUTTON_SEVEN_TESTING_ONLY = nil unless instance_variable_defined?(:@SPECIAL_BUTTON_SEVEN_TESTING_ONLY)
+        @SPECIAL_BUTTON_EIGHT_TESTING_ONLY = nil unless instance_variable_defined?(:@SPECIAL_BUTTON_EIGHT_TESTING_ONLY)
+        @SPECIAL_BUTTON_SIX = nil unless instance_variable_defined?(:@SPECIAL_BUTTON_SIX)
+        @SPECIAL_BUTTON_FIVE = nil unless instance_variable_defined?(:@SPECIAL_BUTTON_FIVE)
+        @SPECIAL_BUTTON_FOUR = nil unless instance_variable_defined?(:@SPECIAL_BUTTON_FOUR)
+        @SPECIAL_BUTTON_THREE = nil unless instance_variable_defined?(:@SPECIAL_BUTTON_THREE)
+        @SPECIAL_BUTTON_TWO = nil unless instance_variable_defined?(:@SPECIAL_BUTTON_TWO)
+        @SPECIAL_BUTTON_ONE = nil unless instance_variable_defined?(:@SPECIAL_BUTTON_ONE)
+        @UP = nil unless instance_variable_defined?(:@UP)
+        @LEFT = nil unless instance_variable_defined?(:@LEFT)
+        @RIGHT = nil unless instance_variable_defined?(:@RIGHT)
+        @DOWN = nil unless instance_variable_defined?(:@DOWN)
+        @NONE = nil unless instance_variable_defined?(:@NONE)
         @initialized = false
-        @list = BasicArrayListD.new()
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
     def self.getInstance()
-        if BasicTouchInputFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if BasicTouchInputFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             BasicTouchInputFactory.instance = BasicTouchInputFactory.new()
         end
         return BasicTouchInputFactory.instance
@@ -48,8 +50,8 @@ class BasicTouchInputFactory
     
 
     def initialize()
-        initialize_fields
-        _MAX = InputFactory.getInstance().MAX
+        jfields_org_allbinary_input_motion_button_BasicTouchInputFactory
+        _MAX = ::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX
         @SPECIAL_BUTTON_SEVEN_TESTING_ONLY = TouchButtonInput.new(_MAX - 41, "Button 7 - Testing Only May Cross Over Key Values")
         @SPECIAL_BUTTON_EIGHT_TESTING_ONLY = TouchButtonInput.new(_MAX - 42, "Button 8 - Testing Only May Cross Over Key Values")
         @SPECIAL_BUTTON_SIX = TouchButtonInput.new(_MAX - 30, "Button 6")
@@ -95,7 +97,7 @@ class BasicTouchInputFactory
     
 
     def updateAllFromList(list, inputToGameKeyMapping)
-        @logUtil.putF(StringMaker.new().append(CommonLabels.getInstance().START_LABEL).appendint(list.size()).to_s, self, "updateAll")
+        @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().START_LABEL).appendint(list.size()).to_s, self, "updateAll")
         touchButtonInput = nil
         (list.size() - 1).step(0, -(1)) do |index|
             touchButtonInput = list.objectArray[index]
@@ -122,7 +124,7 @@ class BasicTouchInputFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -139,19 +141,21 @@ class BasicTouchInputFactory
     end
 end
 
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :CommonLabels, "org/allbinary/string/CommonLabels"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput"
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping" unless const_defined?(:InputToGameKeyMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonLabels, "org/allbinary/string/CommonLabels" unless const_defined?(:CommonLabels, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :TouchButtonInput, "org/allbinary/input/motion/button/TouchButtonInput" unless const_defined?(:TouchButtonInput, false)
 
 begin
     BasicTouchInputFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

@@ -14,17 +14,18 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.opengles.shader
 
-# require "javax/microedition/khronos/opengles/GL10"
+
+module ::Org; module Allbinary; module Graphics; module Opengles; module Shader
 
 class ShaderManager
     attr_accessor :commonStrings, :LOAD_SHADER, :__VERSION__, :GL_VERTEX_SHADER, :GL_FRAGMENT_SHADER
 
-    def initialize_fields
-        @commonStrings = CommonStrings.getInstance()
+    def jfields_org_allbinary_graphics_opengles_shader_ShaderManager
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         @LOAD_SHADER = "loadShader"
         @__VERSION__ = "__VERSION__"
-        @GL_VERTEX_SHADER = nil
-        @GL_FRAGMENT_SHADER = nil
+        @GL_VERTEX_SHADER = nil unless instance_variable_defined?(:@GL_VERTEX_SHADER)
+        @GL_FRAGMENT_SHADER = nil unless instance_variable_defined?(:@GL_FRAGMENT_SHADER)
     end
     
 
@@ -34,7 +35,7 @@ class ShaderManager
     
 
     def initialize(_GL_VERTEX_SHADER, _GL_FRAGMENT_SHADER)
-        initialize_fields
+        jfields_org_allbinary_graphics_opengles_shader_ShaderManager
         @GL_VERTEX_SHADER = _GL_VERTEX_SHADER
         @GL_FRAGMENT_SHADER = _GL_FRAGMENT_SHADER
     end
@@ -50,18 +51,45 @@ class ShaderManager
     end
 
     def self.instance()
+        ShaderManager.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        ShaderManager.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = ShaderManager.new(-1, -1)
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "ShaderManager"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/string/CommonStrings"
-require "org/allbinary/util/BasicArrayList"
+module ::Javax; module Microedition; module Khronos; module Opengles; autoload :GL10, "javax/microedition/khronos/opengles/GL10" unless const_defined?(:GL10, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
 
-class ShaderManager
-    @@instance = ShaderManager.new(-1, -1)
+begin
+    ShaderManager.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

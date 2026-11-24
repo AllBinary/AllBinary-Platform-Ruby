@@ -14,26 +14,30 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.os
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/logic/system/os/OperatingSystemInterface"
+
+module ::Org; module Allbinary; module Logic; module System; module Os
 
 class GenericOperatingSystem
     include OperatingSystemInterface
     attr_accessor :osName, :osArch, :osVersion, :characterSet, :scalable
 
-    def initialize_fields
-        @osName = nil
-        @osArch = nil
-        @osVersion = nil
-        @characterSet = CharacterSet.new()
+    def jfields_org_allbinary_logic_system_os_GenericOperatingSystem
+        @osName = nil unless instance_variable_defined?(:@osName)
+        @osArch = nil unless instance_variable_defined?(:@osArch)
+        @osVersion = nil unless instance_variable_defined?(:@osVersion)
+        @characterSet = ::Org::Allbinary::Logic::Java::Character::CharacterSet.new()
         @scalable = false
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_system_os_GenericOperatingSystem
         systemProperties = SystemProperties.getInstance()
-        stringValidationUtil = StringValidationUtil.getInstance()
-        _EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
+        stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
+        _EMPTY_STRING = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         if stringValidationUtil.isEmpty(systemProperties.getName())
             @osName = _EMPTY_STRING
         else
@@ -55,51 +59,60 @@ class GenericOperatingSystem
     def getName()
         return @osName
     end
+    java_overload :getName, 0
     
 
     def getVersion()
         return @osVersion
     end
+    java_overload :getVersion, 0
     
 
     def getArch()
         return @osArch
     end
+    java_overload :getArch, 0
     
 
     def getCharacterSet()
         return @characterSet
     end
+    java_overload :getCharacterSet, 0
     
 
     def isOverScan()
         return false
     end
+    java_overload :isOverScan, 0
     
 
     def getOverScanXPercent()
         return 100
     end
+    java_overload :getOverScanXPercent, 0
     
 
     def getOverScanYPercent()
         return 100
     end
+    java_overload :getOverScanYPercent, 0
     
 
     def isScalable()
         return @scalable
     end
+    java_overload :isScalable, 0
     
 
     def isAutoHide()
         return false
     end
+    java_overload :isAutoHide, 0
     
 
     def toString()
-        _NEW_LINE = CommonSeps.getInstance().NEW_LINE
-        osBuffer = StringMaker.new()
+        _NEW_LINE = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE
+        osBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         osBuffer.append("Operating System Info: \n")
         osBuffer.append(self.getName())
         osBuffer.append(_NEW_LINE)
@@ -107,17 +120,20 @@ class GenericOperatingSystem
         osBuffer.append(_NEW_LINE)
         osBuffer.append(self.getVersion())
         osBuffer.append(_NEW_LINE)
-        osBuffer.append(StringUtil.getInstance().toString(self.getCharacterSet()))
+        osBuffer.append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(self.getCharacterSet()))
         osBuffer.append(_NEW_LINE)
         return osBuffer.to_s
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
 
-autoload :CharacterSet, "org/allbinary/logic/java/character/CharacterSet"
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil"
-autoload :CommonSeps, "org/allbinary/string/CommonSeps"
-autoload :SystemProperties, "org/allbinary/logic/system/os/SystemProperties"
+module ::Org; module Allbinary; module Logic; module Java; module Character; autoload :CharacterSet, "org/allbinary/logic/java/character/CharacterSet" unless const_defined?(:CharacterSet, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringValidationUtil, "org/allbinary/logic/string/StringValidationUtil" unless const_defined?(:StringValidationUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonSeps, "org/allbinary/string/CommonSeps" unless const_defined?(:CommonSeps, false); end; end; end
+autoload :SystemProperties, "org/allbinary/logic/system/os/SystemProperties" unless const_defined?(:SystemProperties, false)
+
+end; end; end; end; end
 

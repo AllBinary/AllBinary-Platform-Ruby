@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.view.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class ViewPositionEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module View; module Event
+
+class ViewPositionEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :list
 
-    def initialize_fields
-        @list = BasicArrayListD.new()
+    def jfields_org_allbinary_view_event_ViewPositionEventHandler
+        @list = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -31,7 +34,7 @@ class ViewPositionEventHandler < BasicEventHandler
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_view_event_ViewPositionEventHandler
     end
     
 
@@ -40,18 +43,21 @@ class ViewPositionEventHandler < BasicEventHandler
             @list.add(layerInterface)
         end
     end
+    java_overload :addListener, 1
     
 
     def removeAllListeners()
         @list.clear()
-        super()
+        ViewPositionEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
     end
+    java_overload :removeAllListeners, 0
     
 
     def removeListener(eventListenerInterface)
         @list.remove(eventListenerInterface)
-        super(eventListenerInterface)
+        ViewPositionEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
     end
+    java_overload :removeListener, 1
     
 
     # throws Exception
@@ -62,11 +68,12 @@ class ViewPositionEventHandler < BasicEventHandler
                 layerInterface = @list.objectArray[index]
                 layerInterface.onChangeEvent(eventObject)
             rescue StandardError => e
-                @logUtil.put(@commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
+                @logUtil.put(@commonStrings.EXCEPTION, self, ::Org::Allbinary::Logic::Util::Event::EventStrings.getInstance().FIRE_EVENT, e)
             end
         end
-        super(eventObject)
+        ViewPositionEventHandler.superclass.java_super_method(:fireEvent, 1).bind(self).call(eventObject)
     end
+    java_overload :fireEvent, 1
     
 
     # throws Exception
@@ -74,6 +81,7 @@ class ViewPositionEventHandler < BasicEventHandler
         viewPositionEventListenerInterface = (eventListenerInterface)
         viewPositionEventListenerInterface.onChangeEvent(eventObject)
     end
+    java_overload :process, 2
 
     def self.java_static_fields
         return if @java_static_fields_started
@@ -96,18 +104,20 @@ class ViewPositionEventHandler < BasicEventHandler
     end
 end
 
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings"
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :ViewPositionEvent, "org/allbinary/view/event/ViewPositionEvent"
-autoload :ViewPositionEventListenerInterface, "org/allbinary/view/event/ViewPositionEventListenerInterface"
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventStrings, "org/allbinary/logic/util/event/EventStrings" unless const_defined?(:EventStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+autoload :ViewPositionEvent, "org/allbinary/view/event/ViewPositionEvent" unless const_defined?(:ViewPositionEvent, false)
+autoload :ViewPositionEventListenerInterface, "org/allbinary/view/event/ViewPositionEventListenerInterface" unless const_defined?(:ViewPositionEventListenerInterface, false)
 
 begin
     ViewPositionEventHandler.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

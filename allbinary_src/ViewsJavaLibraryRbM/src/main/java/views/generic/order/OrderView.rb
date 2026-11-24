@@ -14,26 +14,29 @@
 # frozen_string_literal: false
 # package views.generic.order
 
+require "java/lang/JavaOverload"
 # require "javax/servlet/http/HttpServletRequest"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 require "views/business/context/modules/storefront/HttpStoreComponentView"
 
-class OrderView < HttpStoreComponentView
-    include DomNodeInterface
+module ::Views; module Generic; module Order
+
+class OrderView < ::Views::Business::Context::Modules::Storefront::HttpStoreComponentView
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     attr_accessor :logUtil, :request, :order, :orderHistory, :basketReview
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @request = nil
-        @order = nil
-        @orderHistory = nil
-        @basketReview = nil
+    def jfields_views_generic_order_OrderView
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @request = nil unless instance_variable_defined?(:@request)
+        @order = nil unless instance_variable_defined?(:@order)
+        @orderHistory = nil unless instance_variable_defined?(:@orderHistory)
+        @basketReview = nil unless instance_variable_defined?(:@basketReview)
     end
     
 
     def initialize(transformInfoInterface)
         super(transformInfoInterface)
-        initialize_fields
+        jfields_views_generic_order_OrderView
         @request = self.getPageContext().getRequest()
         self.getFormData()
     end
@@ -41,13 +44,14 @@ class OrderView < HttpStoreComponentView
 
     # throws Exception
     def getFormData()
-        id = @request.getParameter(OrderData::ID)
+        id = @request.getParameter(::Org::Allbinary::Business::User::Commerce::Inventory::Order::OrderData::ID)
         if id == nil
             id = self.getWeblisketSession().getOrder().getId()
         end
-        @order = Order.new(Basket.new())
+        @order = ::Org::Allbinary::Business::User::Commerce::Inventory::Order::Order.new(::Org::Allbinary::Business::User::Commerce::Inventory::Basket::Basket.new())
         @order.setId(id)
     end
+    java_overload :getFormData, 0
     
 
     def toXmlNode(document)
@@ -58,40 +62,47 @@ class OrderView < HttpStoreComponentView
             node.appendChild(orderHistoryNode)
             return node
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().XSLLOGGINGERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().XSLLOGGINGERROR)
                 @logUtil.put(@commonStrings.FAILURE, self, "toXmlNode", e)
             end
             return nil
         end
     end
+    java_overload :toXmlNode, 1
     
 
     def addDomNodeInterfaces()
         self.addDomNodeInterface(self)
     end
+    java_overload :addDomNodeInterfaces, 0
     
 
     # throws Exception
     def view()
         begin
             self.addDomNodeInterfaces()
-            return super()
+            return OrderView.superclass.java_super_method(:view, 0).bind(self).call()
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().TAGHELPERERROR)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().TAGHELPERERROR)
                 @logUtil.put(@commonStrings.EXCEPTION, self, "view()", e)
             end
             raise e
         end
     end
+    java_overload :view, 0
 end
 
-autoload :Basket, "org/allbinary/business/user/commerce/inventory/basket/Basket"
-autoload :BasketReview, "org/allbinary/business/user/commerce/inventory/basket/BasketReview"
-autoload :Order, "org/allbinary/business/user/commerce/inventory/order/Order"
-autoload :OrderData, "org/allbinary/business/user/commerce/inventory/order/OrderData"
-autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Node, "org/w3c/dom/Node"
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Basket; autoload :Basket, "org/allbinary/business/user/commerce/inventory/basket/Basket" unless const_defined?(:Basket, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Basket; autoload :BasketReview, "org/allbinary/business/user/commerce/inventory/basket/BasketReview" unless const_defined?(:BasketReview, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Order; autoload :Order, "org/allbinary/business/user/commerce/inventory/order/Order" unless const_defined?(:Order, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Order; autoload :OrderData, "org/allbinary/business/user/commerce/inventory/order/OrderData" unless const_defined?(:OrderData, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Inventory; module Order; autoload :OrderHistory, "org/allbinary/business/user/commerce/inventory/order/OrderHistory" unless const_defined?(:OrderHistory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module Info; autoload :TransformInfoInterface, "org/allbinary/logic/visual/transform/info/TransformInfoInterface" unless const_defined?(:TransformInfoInterface, false); end; end; end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
+
+end; end; end
 

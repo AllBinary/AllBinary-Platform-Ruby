@@ -15,6 +15,8 @@
 # package org.allbinary.graphics.canvas.transition.progress
 
 
+module ::Org; module Allbinary; module Graphics; module Canvas; module Transition; module Progress
+
 class ProgressEndListener
     
 
@@ -57,4 +59,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

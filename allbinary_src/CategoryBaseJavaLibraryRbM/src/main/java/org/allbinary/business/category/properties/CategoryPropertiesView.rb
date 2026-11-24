@@ -14,35 +14,41 @@
 # frozen_string_literal: false
 # package org.allbinary.business.category.properties
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tree/dom/DomNodeInterface"
 
+module ::Org; module Allbinary; module Business; module Category; module Properties
+
 class CategoryPropertiesView
-    include DomNodeInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeInterface
     attr_accessor :categoryPropertiesInterface
 
-    def initialize_fields
-        @categoryPropertiesInterface = nil
+    def jfields_org_allbinary_business_category_properties_CategoryPropertiesView
+        @categoryPropertiesInterface = nil unless instance_variable_defined?(:@categoryPropertiesInterface)
     end
     
 
     def initialize(categoryPropertiesInterface)
-        initialize_fields
+        jfields_org_allbinary_business_category_properties_CategoryPropertiesView
         @categoryPropertiesInterface = categoryPropertiesInterface
     end
     
 
     # throws Exception
     def toXmlNode(document)
-        categoryNode = document.createElement(CategoryData.getInstance().NAME)
+        categoryNode = document.createElement(::Org::Allbinary::Business::Category::CategoryData.getInstance().NAME)
         newCategoryNode = categoryNode
-        newCategoryNode.setAttribute(CategoryData.getInstance().LABEL, @categoryPropertiesInterface.getValue())
+        newCategoryNode.setAttribute(::Org::Allbinary::Business::Category::CategoryData.getInstance().LABEL, @categoryPropertiesInterface.getValue())
         return categoryNode
     end
+    java_overload :toXmlNode, 1
 end
 
-autoload :CategoryData, "org/allbinary/business/category/CategoryData"
-autoload :Document, "org/w3c/dom/Document"
-autoload :Element, "org/w3c/dom/Element"
-autoload :Node, "org/w3c/dom/Node"
-autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface"
+module ::Org; module Allbinary; module Business; module Category; autoload :CategoryData, "org/allbinary/business/category/CategoryData" unless const_defined?(:CategoryData, false); end; end; end; end
+module ::Org; module W3c; module Dom; autoload :Document, "org/w3c/dom/Document" unless const_defined?(:Document, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Element, "org/w3c/dom/Element" unless const_defined?(:Element, false); end; end; end
+module ::Org; module W3c; module Dom; autoload :Node, "org/w3c/dom/Node" unless const_defined?(:Node, false); end; end; end
+autoload :CategoryPropertiesInterface, "org/allbinary/business/category/properties/CategoryPropertiesInterface" unless const_defined?(:CategoryPropertiesInterface, false)
+
+end; end; end; end; end
 

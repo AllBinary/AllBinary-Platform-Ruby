@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.direction
 
+require "java/lang/JavaClass"
+
+module ::Org; module Allbinary; module Direction
 
 class Direction
     attr_accessor :name, :otherName, :value, :frameFactor
 
-    def initialize_fields
-        @name = nil
-        @otherName = nil
-        @value = nil
-        @frameFactor = nil
+    def jfields_org_allbinary_direction_Direction
+        @name = nil unless instance_variable_defined?(:@name)
+        @otherName = nil unless instance_variable_defined?(:@otherName)
+        @value = nil unless instance_variable_defined?(:@value)
+        @frameFactor = nil unless instance_variable_defined?(:@frameFactor)
     end
     
 
     def initialize(name, otherName, value, frameFactor)
-        initialize_fields
+        jfields_org_allbinary_direction_Direction
         @name = name
         @otherName = otherName
         @value = value
@@ -62,7 +65,7 @@ class Direction
     
 
     def toString()
-        stringBuffer = StringMaker.new()
+        stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append("Direction: ")
         stringBuffer.append(self.getName())
         stringBuffer.append(" Or: ")
@@ -104,11 +107,13 @@ class Direction
     end
 end
 
-autoload :StringMaker, "org/allbinary/logic/string/StringMaker"
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringMaker, "org/allbinary/logic/string/StringMaker" unless const_defined?(:StringMaker, false); end; end; end; end
 
 begin
     Direction.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end
 

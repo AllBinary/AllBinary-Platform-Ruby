@@ -14,6 +14,9 @@
 # frozen_string_literal: false
 # package org.allbinary.business.user.commerce.money.payment
 
+require "java/lang/JavaOverload"
+
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment
 
 class PaymentException < StandardError
     
@@ -22,4 +25,6 @@ class PaymentException < StandardError
         super(error)
     end
 end
+
+end; end; end; end; end; end; end
 

@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.dhtml.html.head.meta
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Head; module Meta
+
 class HtmlMetaAttributeValuesData
     attr_accessor :ABSTRACT, :DESCRIPTION, :KEYWORDS
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_head_meta_HtmlMetaAttributeValuesData
         @ABSTRACT = "abstract"
         @DESCRIPTION = "description"
         @KEYWORDS = "keywords"
@@ -31,19 +33,45 @@ class HtmlMetaAttributeValuesData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_head_meta_HtmlMetaAttributeValuesData
     end
 
     def self.instance()
+        HtmlMetaAttributeValuesData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        HtmlMetaAttributeValuesData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = HtmlMetaAttributeValuesData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "HtmlMetaAttributeValuesData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class HtmlMetaAttributeValuesData
-    @@instance = HtmlMetaAttributeValuesData.new()
+begin
+    HtmlMetaAttributeValuesData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end; end; end
 

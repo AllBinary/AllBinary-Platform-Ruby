@@ -15,6 +15,8 @@
 # package org.allbinary.logic.system.hardware.components.interfaces
 
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Interfaces
+
 module HardwareComponentInterface
     
 
@@ -30,4 +32,6 @@ module HardwareComponentInterface
     end
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end; end; end
 

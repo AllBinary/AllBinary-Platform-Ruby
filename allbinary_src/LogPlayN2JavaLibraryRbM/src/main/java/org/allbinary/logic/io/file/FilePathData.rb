@@ -14,11 +14,14 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.io.file
 
+# require "jsinterop/annotations/JsType"
+
+module ::Org; module Allbinary; module Logic; module Io; module FilePackage
 
 class FilePathData
     attr_accessor :SEPARATORCHAR, :PATH_START
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_io_file_FilePathData
         @SEPARATORCHAR = "\\"
         @PATH_START = "\\\\"
     end
@@ -30,19 +33,45 @@ class FilePathData
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_logic_io_file_FilePathData
     end
 
     def self.instance()
+        FilePathData.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        FilePathData.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = FilePathData.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "FilePathData"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-class FilePathData
-    @@instance = FilePathData.new()
+begin
+    FilePathData.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

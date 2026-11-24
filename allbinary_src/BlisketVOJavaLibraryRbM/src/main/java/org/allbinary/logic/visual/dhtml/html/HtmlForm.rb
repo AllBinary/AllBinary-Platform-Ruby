@@ -15,10 +15,12 @@
 # package org.allbinary.logic.visual.dhtml.html
 
 
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html
+
 class HtmlForm
     attr_accessor :FORMBEGIN, :END, :FORMEND, :ACTION, :GET, :POST, :METHODS, :METHOD, :method, :action, :inputs
 
-    def initialize_fields
+    def jfields_org_allbinary_logic_visual_dhtml_html_HtmlForm
         @FORMBEGIN = "<form "
         @END = ">"
         @FORMEND = "</form>"
@@ -27,16 +29,16 @@ class HtmlForm
         @POST = "POST\""
         @METHODS = [@GET, @POST]
         @METHOD = "METHOD=\""
-        @method = nil
-        @action = nil
-        @inputs = nil
+        @method = nil unless instance_variable_defined?(:@method)
+        @action = nil unless instance_variable_defined?(:@action)
+        @inputs = nil unless instance_variable_defined?(:@inputs)
     end
     
 
     def initialize(action)
-        initialize_fields
+        jfields_org_allbinary_logic_visual_dhtml_html_HtmlForm
         @action = action
-        @inputs = BasicArrayListD.new()
+        @inputs = ::Org::Allbinary::Util::BasicArrayListD.new()
     end
     
 
@@ -61,7 +63,7 @@ class HtmlForm
     
 
     def toString()
-        stringUtil = StringUtil.getInstance()
+        stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
         result = stringUtil.EMPTY_STRING
         inputArray = @inputs.toArray()
         inputSize = inputArray.length
@@ -83,10 +85,12 @@ class HtmlForm
     alias_method :to_s, :toString
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :HtmlInput, "org/allbinary/logic/visual/dhtml/html/input/HtmlInput"
-autoload :HtmlTable, "org/allbinary/logic/visual/dhtml/html/table/HtmlTable"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Input; autoload :HtmlInput, "org/allbinary/logic/visual/dhtml/html/input/HtmlInput" unless const_defined?(:HtmlInput, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Visual; module Dhtml; module Html; module Table; autoload :HtmlTable, "org/allbinary/logic/visual/dhtml/html/table/HtmlTable" unless const_defined?(:HtmlTable, false); end; end; end; end; end; end; end
+
+end; end; end; end; end; end
 

@@ -15,6 +15,8 @@
 # package org.allbinary.game.tracking
 
 
+module ::Org; module Allbinary; module Game; module Tracking
+
 class Tracking
     
 
@@ -26,5 +28,7 @@ class Tracking
     end
 end
 
-autoload :Graphics, "javax/microedition/lcdui/Graphics"
+module ::Javax; module Microedition; module Lcdui; autoload :Graphics, "javax/microedition/lcdui/Graphics" unless const_defined?(:Graphics, false); end; end; end
+
+end; end; end; end
 

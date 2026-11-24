@@ -15,6 +15,8 @@
 # package org.allbinary.image
 
 
+module ::Org; module Allbinary; module Image
+
 class GameFeatureImageCacheFactory
     
 
@@ -33,6 +35,8 @@ class GameFeatureImageCacheFactory
     end
 end
 
-autoload :ImageCache, "org/allbinary/image/ImageCache"
-autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory"
+autoload :ImageCache, "org/allbinary/image/ImageCache" unless const_defined?(:ImageCache, false)
+autoload :ImageCacheFactory, "org/allbinary/image/ImageCacheFactory" unless const_defined?(:ImageCacheFactory, false)
+
+end; end; end
 

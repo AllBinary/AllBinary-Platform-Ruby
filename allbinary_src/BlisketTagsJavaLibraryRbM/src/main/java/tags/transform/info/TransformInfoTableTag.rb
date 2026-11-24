@@ -14,16 +14,21 @@
 # frozen_string_literal: false
 # package tags.transform.info
 
+require "java/lang/JavaOverload"
 require "admin/tags/TableTag"
 
-class TransformInfoTableTag < TableTag
+module ::Tags; module Transform; module Info
+
+class TransformInfoTableTag < ::Admin::Tags::TableTag
     
 
     def initialize()
         super()
-        self.setTagHelperFactory(TransformInfoHelperFactory.new())
+        self.setTagHelperFactory(::Taghelpers::Transform::Info::TransformInfoHelperFactory.new())
     end
 end
 
-autoload :TransformInfoHelperFactory, "taghelpers/transform/info/TransformInfoHelperFactory"
+module ::Taghelpers; module Transform; module Info; autoload :TransformInfoHelperFactory, "taghelpers/transform/info/TransformInfoHelperFactory" unless const_defined?(:TransformInfoHelperFactory, false); end; end; end
+
+end; end; end
 

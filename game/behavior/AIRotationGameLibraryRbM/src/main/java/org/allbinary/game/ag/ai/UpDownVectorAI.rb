@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.game.ag.ai
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/ai/BasicAI"
 
-class UpDownVectorAI < BasicAI
+module ::Org; module Allbinary; module Game; module Ag; module Ai
+
+class UpDownVectorAI < ::Org::Allbinary::Game::Ai::BasicAI
     attr_accessor :velocityInterface, :index
 
-    def initialize_fields
-        @velocityInterface = nil
+    def jfields_org_allbinary_game_ag_ai_UpDownVectorAI
+        @velocityInterface = nil unless instance_variable_defined?(:@velocityInterface)
         @index = 0
     end
     
 
     def initialize(ownerLayerInterface, gameInput)
         super(ownerLayerInterface, gameInput)
-        initialize_fields
+        jfields_org_allbinary_game_ag_ai_UpDownVectorAI
         velocityInterfaceCompositeInterface = self.getOwnerLayerInterface()
         @velocityInterface = velocityInterfaceCompositeInterface.getVelocityProperties()
         @velocityInterface.getVelocityYBasicDecimalP().setint(0)
@@ -52,12 +55,15 @@ class UpDownVectorAI < BasicAI
             self.processAI(allBinaryLayerManager)
         end
     end
+    java_overload :processAI, 1
 end
 
-autoload :GameInput, "org/allbinary/game/input/GameInput"
-autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties"
-autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface"
-autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer"
-autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager"
-autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal"
+module ::Org; module Allbinary; module Game; module Input; autoload :GameInput, "org/allbinary/game/input/GameInput" unless const_defined?(:GameInput, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :BasicVelocityProperties, "org/allbinary/game/physics/velocity/BasicVelocityProperties" unless const_defined?(:BasicVelocityProperties, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Physics; module Velocity; autoload :VelocityInterfaceCompositeInterface, "org/allbinary/game/physics/velocity/VelocityInterfaceCompositeInterface" unless const_defined?(:VelocityInterfaceCompositeInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayer, "org/allbinary/layer/AllBinaryLayer" unless const_defined?(:AllBinaryLayer, false); end; end; end
+module ::Org; module Allbinary; module Layer; autoload :AllBinaryLayerManager, "org/allbinary/layer/AllBinaryLayerManager" unless const_defined?(:AllBinaryLayerManager, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :BasicDecimal, "org/allbinary/logic/math/BasicDecimal" unless const_defined?(:BasicDecimal, false); end; end; end; end
+
+end; end; end; end; end
 

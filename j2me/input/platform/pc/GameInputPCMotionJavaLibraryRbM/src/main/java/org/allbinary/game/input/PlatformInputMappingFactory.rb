@@ -15,16 +15,18 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class PlatformInputMappingFactory
     attr_accessor :logUtil, :inputToGameKeyMapping
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @inputToGameKeyMapping = PersistentInputMapping.getNullInstance()
+    def jfields_org_allbinary_game_input_PlatformInputMappingFactory
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @inputToGameKeyMapping = ::Org::Allbinary::Game::Input::Mapping::PersistentInputMapping.getNullInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_PlatformInputMappingFactory
     end
     
 
@@ -35,11 +37,11 @@ class PlatformInputMappingFactory
 
     def getPersistentInputMappingInstance()
         begin
-            if @inputToGameKeyMapping == PersistentInputMapping.getNullInstance()
+            if @inputToGameKeyMapping == ::Org::Allbinary::Game::Input::Mapping::PersistentInputMapping.getNullInstance()
                 @inputToGameKeyMapping = MotionLaptopGameInputMapping.new()
             end
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
         end
         return @inputToGameKeyMapping
@@ -76,14 +78,16 @@ class PlatformInputMappingFactory
     end
 end
 
-autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
-autoload :MotionLaptopGameInputMapping, "org/allbinary/game/input/MotionLaptopGameInputMapping"
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :PersistentInputMapping, "org/allbinary/game/input/mapping/PersistentInputMapping" unless const_defined?(:PersistentInputMapping, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+autoload :MotionLaptopGameInputMapping, "org/allbinary/game/input/MotionLaptopGameInputMapping" unless const_defined?(:MotionLaptopGameInputMapping, false)
 
 begin
     PlatformInputMappingFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

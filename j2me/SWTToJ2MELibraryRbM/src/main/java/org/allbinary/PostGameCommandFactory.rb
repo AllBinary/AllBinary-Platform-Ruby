@@ -15,6 +15,8 @@
 # package org.allbinary
 
 
+module ::Org; module Allbinary
+
 class PostGameCommandFactory
     
 
@@ -24,22 +26,48 @@ class PostGameCommandFactory
     
 
     def addCommands(canvas)
-        MultiPlayerGameFeatureFactory.getInstance().addCommands(canvas)
+        ::Org::Allbinary::Game::Configuration::Feature::MultiPlayerGameFeatureFactory.getInstance().addCommands(canvas)
     end
 
     def self.instance()
+        PostGameCommandFactory.java_static_fields unless @java_static_fields_started
         return defined?(@@instance) ? @@instance : nil
     end
 
     def self.instance=(value)
+        PostGameCommandFactory.java_static_fields unless @java_static_fields_started
         @@instance = value
+    end
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            @@instance = PostGameCommandFactory.new()
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "PostGameCommandFactory"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [].include?(name)
+        end
+        super
     end
 end
 
-require "org/allbinary/game/configuration/feature/MultiPlayerGameFeatureFactory"
-require "org/allbinary/graphics/displayable/MyCanvas"
+module ::Org; module Allbinary; module Game; module Configuration; module Feature; autoload :MultiPlayerGameFeatureFactory, "org/allbinary/game/configuration/feature/MultiPlayerGameFeatureFactory" unless const_defined?(:MultiPlayerGameFeatureFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Displayable; autoload :MyCanvas, "org/allbinary/graphics/displayable/MyCanvas" unless const_defined?(:MyCanvas, false); end; end; end; end
 
-class PostGameCommandFactory
-    @@instance = PostGameCommandFactory.new()
+begin
+    PostGameCommandFactory.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end
 

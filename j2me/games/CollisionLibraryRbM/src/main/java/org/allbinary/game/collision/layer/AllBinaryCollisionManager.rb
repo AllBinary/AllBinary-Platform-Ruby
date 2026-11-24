@@ -15,6 +15,8 @@
 # package org.allbinary.game.collision.layer
 
 
+module ::Org; module Allbinary; module Game; module Collision; module Layer
+
 class AllBinaryCollisionManager
     
 
@@ -80,14 +82,16 @@ class AllBinaryCollisionManager
     end
 end
 
-autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior"
-autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface"
-autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer"
-autoload :LayerManager, "org/allbinary/layer/LayerManager"
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollidableBaseBehavior, "org/allbinary/game/collision/CollidableBaseBehavior" unless const_defined?(:CollidableBaseBehavior, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Collision; autoload :CollidableInterfaceCompositeInterface, "org/allbinary/game/collision/CollidableInterfaceCompositeInterface" unless const_defined?(:CollidableInterfaceCompositeInterface, false); end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; autoload :CollidableCompositeLayer, "org/allbinary/game/layer/CollidableCompositeLayer" unless const_defined?(:CollidableCompositeLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :LayerManager, "org/allbinary/layer/LayerManager" unless const_defined?(:LayerManager, false); end; end; end
 
 begin
     AllBinaryCollisionManager.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

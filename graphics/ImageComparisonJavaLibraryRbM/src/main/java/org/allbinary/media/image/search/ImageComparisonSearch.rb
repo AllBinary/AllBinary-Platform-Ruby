@@ -16,28 +16,30 @@
 
 # require "java/awt/image/BufferedImage"
 
+module ::Org; module Allbinary; module Media; module Image; module Search
+
 class ImageComparisonSearch
     attr_accessor :logUtil, :commonStrings, :isSameHeight, :isSameWidth, :pixelsThatMatch, :pixelsIgnored, :imageHeight, :imageWidth, :tolerance, :nonMatchingPixelVector, :bufferedImages, :matchingPercent
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
-        @commonStrings = CommonStrings.getInstance()
-        @isSameHeight = false
-        @isSameWidth = false
-        @pixelsThatMatch = 0
-        @pixelsIgnored = 0
-        @imageHeight = nil
-        @imageWidth = nil
-        @tolerance = 0
-        @nonMatchingPixelVector = nil
-        @bufferedImages = nil
+    def jfields_org_allbinary_media_image_search_ImageComparisonSearch
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
+        @commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
+        @isSameHeight = false unless instance_variable_defined?(:@isSameHeight)
+        @isSameWidth = false unless instance_variable_defined?(:@isSameWidth)
+        @pixelsThatMatch = 0 unless instance_variable_defined?(:@pixelsThatMatch)
+        @pixelsIgnored = 0 unless instance_variable_defined?(:@pixelsIgnored)
+        @imageHeight = nil unless instance_variable_defined?(:@imageHeight)
+        @imageWidth = nil unless instance_variable_defined?(:@imageWidth)
+        @tolerance = 0 unless instance_variable_defined?(:@tolerance)
+        @nonMatchingPixelVector = nil unless instance_variable_defined?(:@nonMatchingPixelVector)
+        @bufferedImages = nil unless instance_variable_defined?(:@bufferedImages)
         @matchingPercent = (-1).to_f
     end
     
 
     def initialize(bufferedImage, bufferedImage2, tolerance)
-        initialize_fields
-        @nonMatchingPixelVector = BasicArrayListD.new()
+        jfields_org_allbinary_media_image_search_ImageComparisonSearch
+        @nonMatchingPixelVector = ::Org::Allbinary::Util::BasicArrayListD.new()
         self.setBufferedImages(Array.new(2, nil))
         self.getBufferedImages()[0] = bufferedImage
         self.getBufferedImages()[1] = bufferedImage2
@@ -60,7 +62,7 @@ class ImageComparisonSearch
             @isSameWidth = true
         end
         if !@isSameWidth || !@isSameHeight
-            imageUtil = ImageUtil.getInstance()
+            imageUtil = ::Org::Allbinary::Media::Image::ImageUtil.getInstance()
             @logUtil.putF("Images were not the same size? Most likely a resolution change.", self, @commonStrings.CONSTRUCTOR)
             @logUtil.putF("1: " + imageUtil.toString(bufferedImage), self, @commonStrings.CONSTRUCTOR)
             @logUtil.putF("2: " + imageUtil.toString(bufferedImage2), self, @commonStrings.CONSTRUCTOR)
@@ -112,11 +114,13 @@ class ImageComparisonSearch
     end
 end
 
-autoload :BasicArrayList, "org/allbinary/util/BasicArrayList"
-autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD"
-autoload :StdUtil, "org/allbinary/logic/StdUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :ImageUtil, "org/allbinary/media/image/ImageUtil"
-autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayListD, "org/allbinary/util/BasicArrayListD" unless const_defined?(:BasicArrayListD, false); end; end; end
+module ::Org; module Allbinary; module Logic; autoload :StdUtil, "org/allbinary/logic/StdUtil" unless const_defined?(:StdUtil, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; autoload :ImageUtil, "org/allbinary/media/image/ImageUtil" unless const_defined?(:ImageUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Image; module Comparison; module Pixel; autoload :PixelDelta, "org/allbinary/media/image/comparison/pixel/PixelDelta" unless const_defined?(:PixelDelta, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
+
+end; end; end; end; end
 

@@ -18,19 +18,21 @@
 # require "jsinterop/annotations/JsMethod"
 # require "jsinterop/annotations/JsConstructor"
 
+module ::Org; module Allbinary; module Graphics; module Color
+
 class BasicColorArrayIndexer
     attr_accessor :basicColorArray, :circularIndexUtil
 
-    def initialize_fields
-        @basicColorArray = nil
-        @circularIndexUtil = nil
+    def jfields_org_allbinary_graphics_color_BasicColorArrayIndexer
+        @basicColorArray = nil unless instance_variable_defined?(:@basicColorArray)
+        @circularIndexUtil = nil unless instance_variable_defined?(:@circularIndexUtil)
     end
     
 
     def initialize(basicColorArray)
-        initialize_fields
+        jfields_org_allbinary_graphics_color_BasicColorArrayIndexer
         @basicColorArray = basicColorArray
-        @circularIndexUtil = CircularIndexUtil.createInstance(@basicColorArray.length)
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(@basicColorArray.length)
     end
     
 
@@ -49,6 +51,8 @@ class BasicColorArrayIndexer
     end
 end
 
-autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil"
-autoload :BasicColor, "org/allbinary/graphics/color/BasicColor"
+module ::Org; module Allbinary; module Util; autoload :CircularIndexUtil, "org/allbinary/util/CircularIndexUtil" unless const_defined?(:CircularIndexUtil, false); end; end; end
+autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false)
+
+end; end; end; end
 

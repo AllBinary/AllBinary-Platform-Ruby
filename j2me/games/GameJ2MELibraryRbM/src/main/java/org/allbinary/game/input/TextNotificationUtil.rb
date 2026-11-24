@@ -15,17 +15,19 @@
 # package org.allbinary.game.input
 
 
+module ::Org; module Allbinary; module Game; module Input
+
 class TextNotificationUtil
     attr_accessor :TWO, :FALSE, :gameNotificationEventHandler
 
-    def initialize_fields
-        @TWO = SmallIntegerSingletonFactory.getInstance().getAt(2)
-        @FALSE = BooleanFactory.getInstance().FALSE
-        @gameNotificationEventHandler = GameNotificationEventHandler.getInstance()
+    def jfields_org_allbinary_game_input_TextNotificationUtil
+        @TWO = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(2)
+        @FALSE = ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().FALSE
+        @gameNotificationEventHandler = ::Org::Allbinary::Game::Layer::Hud::Event::GameNotificationEventHandler.getInstance()
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_game_input_TextNotificationUtil
     end
     
 
@@ -36,28 +38,28 @@ class TextNotificationUtil
 
     # throws Exception
     def fireError(message)
-        PrimaryPlayerQueueFactory.getInstance().add(ErrorSound.getInstance())
+        ::Org::Allbinary::Media::Audio::PrimaryPlayerQueueFactory.getInstance().add(::Org::Allbinary::Media::Audio::ErrorSound.getInstance())
         self.fire(message)
     end
     
 
     # throws Exception
     def fireNew(message)
-        PrimaryPlayerQueueFactory.getInstance().add(SelectSound.getInstance())
+        ::Org::Allbinary::Media::Audio::PrimaryPlayerQueueFactory.getInstance().add(::Org::Allbinary::Media::Audio::SelectSound.getInstance())
         self.fire(message)
     end
     
 
     # throws Exception
     def fireSuccess(message)
-        PrimaryPlayerQueueFactory.getInstance().add(SelectSound.getInstance())
+        ::Org::Allbinary::Media::Audio::PrimaryPlayerQueueFactory.getInstance().add(::Org::Allbinary::Media::Audio::SelectSound.getInstance())
         self.fire(message)
     end
     
 
     # throws Exception
     def fire(message)
-        gameNotificationEvent = GameNotificationEvent.new(self, message, @TWO, BasicColorFactory.getInstance().RED, @FALSE)
+        gameNotificationEvent = ::Org::Allbinary::Game::Layer::Hud::Event::GameNotificationEvent.new(self, message, @TWO, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().RED, @FALSE)
         @gameNotificationEventHandler.fireEvent(gameNotificationEvent)
     end
 
@@ -92,18 +94,20 @@ class TextNotificationUtil
     end
 end
 
-autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent"
-autoload :GameNotificationEventHandler, "org/allbinary/game/layer/hud/event/GameNotificationEventHandler"
-autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory"
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory"
-autoload :ErrorSound, "org/allbinary/media/audio/ErrorSound"
-autoload :PrimaryPlayerQueueFactory, "org/allbinary/media/audio/PrimaryPlayerQueueFactory"
-autoload :SelectSound, "org/allbinary/media/audio/SelectSound"
+module ::Org; module Allbinary; module Game; module Layer; module Hud; module Event; autoload :GameNotificationEvent, "org/allbinary/game/layer/hud/event/GameNotificationEvent" unless const_defined?(:GameNotificationEvent, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Layer; module Hud; module Event; autoload :GameNotificationEventHandler, "org/allbinary/game/layer/hud/event/GameNotificationEventHandler" unless const_defined?(:GameNotificationEventHandler, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :SmallIntegerSingletonFactory, "org/allbinary/logic/math/SmallIntegerSingletonFactory" unless const_defined?(:SmallIntegerSingletonFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Audio; autoload :ErrorSound, "org/allbinary/media/audio/ErrorSound" unless const_defined?(:ErrorSound, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Audio; autoload :PrimaryPlayerQueueFactory, "org/allbinary/media/audio/PrimaryPlayerQueueFactory" unless const_defined?(:PrimaryPlayerQueueFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Audio; autoload :SelectSound, "org/allbinary/media/audio/SelectSound" unless const_defined?(:SelectSound, false); end; end; end; end
 
 begin
     TextNotificationUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

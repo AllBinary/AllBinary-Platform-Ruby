@@ -15,18 +15,24 @@
 # package bundle.input.automation
 
 
+module ::Bundle; module Input; module Automation
+
 module InputAutomationBundleActivatorListenerInterface
     
 
     # throws Exception
     def registerAsService()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     # throws Exception
     def useServices()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end
 

@@ -14,19 +14,22 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.system.hardware.components.android
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/system/hardware/components/interfaces/HardwareComponentInterface"
 
+module ::Org; module Allbinary; module Logic; module System; module Hardware; module Components; module Android
+
 class UnknownHardware
-    include HardwareComponentInterface
+    include ::Org::Allbinary::Logic::System::Hardware::Components::Interfaces::HardwareComponentInterface
     attr_accessor :data
 
-    def initialize_fields
-        @data = nil
+    def jfields_org_allbinary_logic_system_hardware_components_android_UnknownHardware
+        @data = nil unless instance_variable_defined?(:@data)
     end
     
 
     def initialize(data)
-        initialize_fields
+        jfields_org_allbinary_logic_system_hardware_components_android_UnknownHardware
         @data = data
     end
     
@@ -34,11 +37,15 @@ class UnknownHardware
     def compareTo(componentInterface)
         return true
     end
+    java_overload :compareTo, 1
     
 
     def toString()
         return @data
     end
+    java_overload :toString, 0
     alias_method :to_s, :toString
 end
+
+end; end; end; end; end; end; end
 

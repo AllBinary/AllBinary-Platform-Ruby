@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.game.input
 
+require "java/lang/JavaOverload"
 require "org/allbinary/game/input/mapping/PersistentInputMapping"
 
-class NormalJ2MEDefaultGameInputMapping < PersistentInputMapping
+module ::Org; module Allbinary; module Game; module Input
+
+class NormalJ2MEDefaultGameInputMapping < ::Org::Allbinary::Game::Input::Mapping::PersistentInputMapping
     
 
     def initialize()
-        super(GamePersistanceStrings.getInstance().DEFAULT_INPUT_MAPPING_RECORD_ID)
+        super(::Org::Allbinary::Game::Configuration::Persistance::GamePersistanceStrings.getInstance().DEFAULT_INPUT_MAPPING_RECORD_ID)
         inputToGameKeyMapping = self.getInputMapping()
         gameKeyFactory = GameKeyFactory.getInstance()
         inputToGameKeyMapping.add(gameKeyFactory.UP, gameKeyFactory.KEY_NUM2)
@@ -49,7 +52,9 @@ class NormalJ2MEDefaultGameInputMapping < PersistentInputMapping
     end
 end
 
-autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings"
-autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping"
-autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory"
+module ::Org; module Allbinary; module Game; module Configuration; module Persistance; autoload :GamePersistanceStrings, "org/allbinary/game/configuration/persistance/GamePersistanceStrings" unless const_defined?(:GamePersistanceStrings, false); end; end; end; end; end
+module ::Org; module Allbinary; module Game; module Input; module Mapping; autoload :InputToGameKeyMapping, "org/allbinary/game/input/mapping/InputToGameKeyMapping" unless const_defined?(:InputToGameKeyMapping, false); end; end; end; end; end
+autoload :GameKeyFactory, "org/allbinary/game/input/GameKeyFactory" unless const_defined?(:GameKeyFactory, false)
+
+end; end; end; end
 

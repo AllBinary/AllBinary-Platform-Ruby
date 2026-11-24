@@ -15,6 +15,8 @@
 # package org.allbinary.media.audio.music
 
 
+module ::Org; module Allbinary; module Media; module Audio; module Music
+
 class MusicManagerFactory
     
 
@@ -23,7 +25,9 @@ class MusicManagerFactory
     end
 end
 
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/media/audio/music/MusicManager"
-require "org/allbinary/media/audio/music/MusicService"
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :MusicManager, "org/allbinary/media/audio/music/MusicManager" unless const_defined?(:MusicManager, false)
+autoload :MusicService, "org/allbinary/media/audio/music/MusicService" unless const_defined?(:MusicService, false)
+
+end; end; end; end; end
 

@@ -14,7 +14,10 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map.racetrack
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/graphics/geography/map/racetrack/CustomMapGeneratorBaseFactory"
+
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; module Racetrack
 
 class CustomMapGeneratorFactory < CustomMapGeneratorBaseFactory
     
@@ -23,9 +26,12 @@ class CustomMapGeneratorFactory < CustomMapGeneratorBaseFactory
     def create(raceTrackGeographicMap)
         return CustomMapGenerator.new(raceTrackGeographicMap)
     end
+    java_overload :create, 1
 end
 
-require "org/allbinary/media/graphics/geography/map/racetrack/CustomMapGenerator"
-require "org/allbinary/media/graphics/geography/map/racetrack/CustomMapGeneratorBase"
-require "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMap"
+autoload :CustomMapGenerator, "org/allbinary/media/graphics/geography/map/racetrack/CustomMapGenerator" unless const_defined?(:CustomMapGenerator, false)
+autoload :CustomMapGeneratorBase, "org/allbinary/media/graphics/geography/map/racetrack/CustomMapGeneratorBase" unless const_defined?(:CustomMapGeneratorBase, false)
+autoload :RaceTrackGeographicMap, "org/allbinary/media/graphics/geography/map/racetrack/RaceTrackGeographicMap" unless const_defined?(:RaceTrackGeographicMap, false)
+
+end; end; end; end; end; end; end
 

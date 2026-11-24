@@ -14,8 +14,8 @@
 # frozen_string_literal: false
 # package org.allbinary.graphics.displayable.screen
 
-# require "javax/microedition/lcdui/Canvas"
-# require "javax/microedition/lcdui/Displayable"
+
+module ::Org; module Allbinary; module Graphics; module Displayable; module Screen
 
 class ScreenRepaintUtil
     
@@ -25,4 +25,9 @@ class ScreenRepaintUtil
         canvas.repaint()
     end
 end
+
+module ::Javax; module Microedition; module Lcdui; autoload :Canvas, "javax/microedition/lcdui/Canvas" unless const_defined?(:Canvas, false); end; end; end
+module ::Javax; module Microedition; module Lcdui; autoload :Displayable, "javax/microedition/lcdui/Displayable" unless const_defined?(:Displayable, false); end; end; end
+
+end; end; end; end; end
 

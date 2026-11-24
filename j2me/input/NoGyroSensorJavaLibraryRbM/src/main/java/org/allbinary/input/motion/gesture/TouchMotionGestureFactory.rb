@@ -15,29 +15,31 @@
 # package org.allbinary.input.motion.gesture
 
 
+module ::Org; module Allbinary; module Input; module Motion; module Gesture
+
 class TouchMotionGestureFactory
     attr_accessor :LEFT, :RIGHT, :UP, :DOWN, :PRESSED, :RELEASED, :DIAGONAL_DOWN_RIGHT, :DIAGONAL_DOWN_LEFT, :DIAGONAL_UP_RIGHT, :DIAGONAL_UP_LEFT, :SCROLL_UP, :SCROLL_DOWN, :NO_MOTION, :LAST_MOTION
 
-    def initialize_fields
-        @LEFT = nil
-        @RIGHT = nil
-        @UP = nil
-        @DOWN = nil
-        @PRESSED = nil
-        @RELEASED = nil
-        @DIAGONAL_DOWN_RIGHT = nil
-        @DIAGONAL_DOWN_LEFT = nil
-        @DIAGONAL_UP_RIGHT = nil
-        @DIAGONAL_UP_LEFT = nil
-        @SCROLL_UP = nil
-        @SCROLL_DOWN = nil
-        @NO_MOTION = nil
-        @LAST_MOTION = nil
+    def jfields_org_allbinary_input_motion_gesture_TouchMotionGestureFactory
+        @LEFT = nil unless instance_variable_defined?(:@LEFT)
+        @RIGHT = nil unless instance_variable_defined?(:@RIGHT)
+        @UP = nil unless instance_variable_defined?(:@UP)
+        @DOWN = nil unless instance_variable_defined?(:@DOWN)
+        @PRESSED = nil unless instance_variable_defined?(:@PRESSED)
+        @RELEASED = nil unless instance_variable_defined?(:@RELEASED)
+        @DIAGONAL_DOWN_RIGHT = nil unless instance_variable_defined?(:@DIAGONAL_DOWN_RIGHT)
+        @DIAGONAL_DOWN_LEFT = nil unless instance_variable_defined?(:@DIAGONAL_DOWN_LEFT)
+        @DIAGONAL_UP_RIGHT = nil unless instance_variable_defined?(:@DIAGONAL_UP_RIGHT)
+        @DIAGONAL_UP_LEFT = nil unless instance_variable_defined?(:@DIAGONAL_UP_LEFT)
+        @SCROLL_UP = nil unless instance_variable_defined?(:@SCROLL_UP)
+        @SCROLL_DOWN = nil unless instance_variable_defined?(:@SCROLL_DOWN)
+        @NO_MOTION = nil unless instance_variable_defined?(:@NO_MOTION)
+        @LAST_MOTION = nil unless instance_variable_defined?(:@LAST_MOTION)
     end
     
 
     def self.getInstance()
-        if TouchMotionGestureFactory.instance == NullUtil.getInstance().NULL_OBJECT
+        if TouchMotionGestureFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             TouchMotionGestureFactory.instance = TouchMotionGestureFactory.new()
         end
         return TouchMotionGestureFactory.instance
@@ -45,8 +47,8 @@ class TouchMotionGestureFactory
     
 
     def initialize()
-        initialize_fields
-        _MAX = InputFactory.getInstance().MAX
+        jfields_org_allbinary_input_motion_gesture_TouchMotionGestureFactory
+        _MAX = ::Org::Allbinary::Game::Input::InputFactory.getInstance().MAX
         @LEFT = MotionGestureInput.new(_MAX - 3, "Left Touch")
         @RIGHT = MotionGestureInput.new(_MAX - 4, "Right Touch")
         @UP = MotionGestureInput.new(_MAX - 5, "Up Touch")
@@ -77,7 +79,7 @@ class TouchMotionGestureFactory
         return if @java_static_fields_started
         @java_static_fields_started = true
         begin
-            @@instance = NullUtil.getInstance().NULL_OBJECT
+            @@instance = ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
         rescue StandardError
             @java_static_fields_started = false
             raise
@@ -94,13 +96,15 @@ class TouchMotionGestureFactory
     end
 end
 
-autoload :InputFactory, "org/allbinary/game/input/InputFactory"
-autoload :NullUtil, "org/allbinary/logic/NullUtil"
-autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput"
+module ::Org; module Allbinary; module Game; module Input; autoload :InputFactory, "org/allbinary/game/input/InputFactory" unless const_defined?(:InputFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; autoload :NullUtil, "org/allbinary/logic/NullUtil" unless const_defined?(:NullUtil, false); end; end; end
+autoload :MotionGestureInput, "org/allbinary/input/motion/gesture/MotionGestureInput" unless const_defined?(:MotionGestureInput, false)
 
 begin
     TouchMotionGestureFactory.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

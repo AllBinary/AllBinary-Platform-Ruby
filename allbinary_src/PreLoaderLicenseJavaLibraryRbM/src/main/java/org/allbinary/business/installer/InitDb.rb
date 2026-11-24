@@ -16,12 +16,14 @@
 
 # require "java/lang/reflect/Method"
 
+module ::Org; module Allbinary; module Business; module Installer
+
 #Warning you must have sql root access
 class InitDb
     attr_accessor :anyType, :METHOD_CALL_GET_HOST_NAME, :METHOD_CALL_ADD_USERS, :METHOD_CALL_ADD_DATABASES, :METHOD_CALL_ADD_TABLES, :METHOD_CALL_TEMP_MAIN_PATH, :METHOD_CALL_MAIN_PATH
 
-    def initialize_fields
-        @anyType = nil
+    def jfields_org_allbinary_business_installer_InitDb
+        @anyType = nil unless instance_variable_defined?(:@anyType)
         @METHOD_CALL_GET_HOST_NAME = "getHostName"
         @METHOD_CALL_ADD_USERS = "addUsers"
         @METHOD_CALL_ADD_DATABASES = "addDatabases"
@@ -32,19 +34,20 @@ class InitDb
 
     def initialize(*args)
         case args.length
-        when 0 then constructor0(*args)
-        when 1 then constructor1(*args)
+        when 0 then jnew_org_allbinary_business_installer_InitDb_0(*args)
+        when 1 then jnew_org_allbinary_business_installer_InitDb_1(*args)
+        else raise ArgumentError, "No constructor of InitDb takes #{args.length} arguments"
         end
     end
     
 
-    def constructor0()
-        initialize_fields
+    def jnew_org_allbinary_business_installer_InitDb_0()
+        jfields_org_allbinary_business_installer_InitDb
     end
     
 
-    def constructor1(dbConnectionInfo)
-        initialize_fields
+    def jnew_org_allbinary_business_installer_InitDb_1(dbConnectionInfo)
+        jfields_org_allbinary_business_installer_InitDb
     end
     
 
@@ -130,6 +133,8 @@ class InitDb
     end
 end
 
-require "org/allbinary/business/init/db/DbConnectionInfo"
-require "org/allbinary/logic/system/security/licensing/LicensingException"
+module ::Org; module Allbinary; module Business; module Init; module Db; autoload :DbConnectionInfo, "org/allbinary/business/init/db/DbConnectionInfo" unless const_defined?(:DbConnectionInfo, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing; autoload :LicensingException, "org/allbinary/logic/system/security/licensing/LicensingException" unless const_defined?(:LicensingException, false); end; end; end; end; end; end
+
+end; end; end; end
 

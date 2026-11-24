@@ -14,34 +14,47 @@
 # frozen_string_literal: false
 # package org.allbinary.logic.visual.transform
 
+require "java/lang/JavaOverload"
 require "org/allbinary/data/tree/dom/document/mapping/DomDocumentMappingInterface"
 require "org/allbinary/logic/visual/transform/info/CompositeTransformInfoInterface"
 
+module ::Org; module Allbinary; module Logic; module Visual; module Transform
+
 module TransformInterface
-    include DomDocumentMappingInterface
-    include CompositeTransformInfoInterface
+    include ::Org::Allbinary::DataPackage::Tree::Dom::Document::Mapping::DomDocumentMappingInterface
+    include ::Org::Allbinary::Logic::Visual::Transform::Info::CompositeTransformInfoInterface
     
 
     def getTypeId()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getTypeId, 0
     
 
     def setTransformDocumentInterface(viewDocumentInterface)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :setTransformDocumentInterface, 1
     
 
     def getTransformDocumentInterface()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :getTransformDocumentInterface, 0
     
 
     # throws Exception
     def view()
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :view, 0
 end
 
-autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface"
+module ::Org; module Allbinary; module Logic; module Visual; module Transform; module DataPackage; autoload :TransformDocumentInterface, "org/allbinary/logic/visual/transform/data/TransformDocumentInterface" unless const_defined?(:TransformDocumentInterface, false); end; end; end; end; end; end
+
+end; end; end; end; end
 

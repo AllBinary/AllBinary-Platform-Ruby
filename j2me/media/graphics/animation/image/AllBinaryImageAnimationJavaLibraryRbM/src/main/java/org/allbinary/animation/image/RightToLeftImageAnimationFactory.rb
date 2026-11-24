@@ -14,13 +14,16 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/image/BaseImageAnimationFactory"
+
+module ::Org; module Allbinary; module Animation; module Image
 
 class RightToLeftImageAnimationFactory < BaseImageAnimationFactory
     
 
     def initialize(image, dx, dy, animationBehaviorFactory)
-        super(image, PrimitiveIntUtil.getArrayInstance(), image.getWidth(), image.getHeight(), dx, dy, animationBehaviorFactory)
+        super(image, ::Org::Allbinary::Logic::MathPackage::PrimitiveIntUtil.getArrayInstance(), image.getWidth(), image.getHeight(), dx, dy, animationBehaviorFactory)
     end
     
 
@@ -34,12 +37,15 @@ class RightToLeftImageAnimationFactory < BaseImageAnimationFactory
             return RightToLeftImageAnimation.new(scaledImage, @animationBehaviorFactory.getOrCreateInstance())
         end
     end
+    java_overload :getInstance, 1
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
-autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil"
-autoload :AdjustedRightToLeftImageAnimation, "org/allbinary/animation/image/AdjustedRightToLeftImageAnimation"
-autoload :RightToLeftImageAnimation, "org/allbinary/animation/image/RightToLeftImageAnimation"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory" unless const_defined?(:AnimationBehaviorFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :PrimitiveIntUtil, "org/allbinary/logic/math/PrimitiveIntUtil" unless const_defined?(:PrimitiveIntUtil, false); end; end; end; end
+autoload :AdjustedRightToLeftImageAnimation, "org/allbinary/animation/image/AdjustedRightToLeftImageAnimation" unless const_defined?(:AdjustedRightToLeftImageAnimation, false)
+autoload :RightToLeftImageAnimation, "org/allbinary/animation/image/RightToLeftImageAnimation" unless const_defined?(:RightToLeftImageAnimation, false)
+
+end; end; end; end
 

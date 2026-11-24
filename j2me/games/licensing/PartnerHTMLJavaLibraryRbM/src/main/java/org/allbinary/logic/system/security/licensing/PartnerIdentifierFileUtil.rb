@@ -15,16 +15,18 @@
 # package org.allbinary.logic.system.security.licensing
 
 
+module ::Org; module Allbinary; module Logic; module System; module Security; module Licensing
+
 class PartnerIdentifierFileUtil
     attr_accessor :logUtil, :FILE_NAME
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_system_security_licensing_PartnerIdentifierFileUtil
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         @FILE_NAME = "partner.txt"
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_logic_system_security_licensing_PartnerIdentifierFileUtil
     end
     
 
@@ -35,13 +37,13 @@ class PartnerIdentifierFileUtil
 
     def get()
         begin
-            resourceUtil = ResourceUtil.getInstance()
-            partnerString = StringUtil.getInstance().EMPTY_STRING
+            resourceUtil = ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance()
+            partnerString = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
             return partnerString
         rescue StandardError => e
-            commonStrings = CommonStrings.getInstance()
+            commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             @logUtil.put(commonStrings.EXCEPTION, self, commonStrings.GET, e)
-            return StringUtil.getInstance().NULL_STRING
+            return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().NULL_STRING
         end
     end
 
@@ -76,14 +78,16 @@ class PartnerIdentifierFileUtil
     end
 end
 
-autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil"
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
-autoload :CommonStrings, "org/allbinary/string/CommonStrings"
+module ::Org; module Allbinary; module DataPackage; module Resource; autoload :ResourceUtil, "org/allbinary/data/resource/ResourceUtil" unless const_defined?(:ResourceUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+module ::Org; module Allbinary; module StringPackage; autoload :CommonStrings, "org/allbinary/string/CommonStrings" unless const_defined?(:CommonStrings, false); end; end; end
 
 begin
     PartnerIdentifierFileUtil.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

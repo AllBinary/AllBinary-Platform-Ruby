@@ -14,20 +14,23 @@
 # frozen_string_literal: false
 # package org.allbinary.input.event
 
+require "java/lang/JavaOverload"
 require "org/allbinary/logic/util/event/handler/BasicEventHandler"
 
-class VirtualKeyboardEventHandler < BasicEventHandler
+module ::Org; module Allbinary; module Input; module Event
+
+class VirtualKeyboardEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEventHandler
     attr_accessor :SHOW_EVENT, :HIDE_EVENT
 
-    def initialize_fields
-        @SHOW_EVENT = VirtualKeyboardEvent.new(BooleanFactory.getInstance().TRUE)
-        @HIDE_EVENT = VirtualKeyboardEvent.new(BooleanFactory.getInstance().FALSE)
+    def jfields_org_allbinary_input_event_VirtualKeyboardEventHandler
+        @SHOW_EVENT = VirtualKeyboardEvent.new(::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE)
+        @HIDE_EVENT = VirtualKeyboardEvent.new(::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().FALSE)
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_input_event_VirtualKeyboardEventHandler
     end
     
 
@@ -41,6 +44,7 @@ class VirtualKeyboardEventHandler < BasicEventHandler
         virtualKeyboardEventListenerInterface = eventListenerInterface
         virtualKeyboardEventListenerInterface.onVirtualKeyboardEvent(eventObject)
     end
+    java_overload :process, 2
     
 
     def open()
@@ -51,6 +55,7 @@ class VirtualKeyboardEventHandler < BasicEventHandler
             @logUtil.put(@commonStrings.EXCEPTION, self, "open", e)
         end
     end
+    java_overload :open, 0
     
 
     # throws Exception
@@ -62,6 +67,7 @@ class VirtualKeyboardEventHandler < BasicEventHandler
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.CLOSE, e)
         end
     end
+    java_overload :close, 0
 
     def self.gameKeyEventHandler()
         VirtualKeyboardEventHandler.java_static_fields unless @java_static_fields_started
@@ -94,11 +100,11 @@ class VirtualKeyboardEventHandler < BasicEventHandler
     end
 end
 
-autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory"
-autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject"
-autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface"
-autoload :VirtualKeyboardEvent, "org/allbinary/input/event/VirtualKeyboardEvent"
-autoload :VirtualKeyboardEventListenerInterface, "org/allbinary/input/event/VirtualKeyboardEventListenerInterface"
+module ::Org; module Allbinary; module Logic; module Java; module Bool; autoload :BooleanFactory, "org/allbinary/logic/java/bool/BooleanFactory" unless const_defined?(:BooleanFactory, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :AllBinaryEventObject, "org/allbinary/logic/util/event/AllBinaryEventObject" unless const_defined?(:AllBinaryEventObject, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Util; module Event; autoload :EventListenerInterface, "org/allbinary/logic/util/event/EventListenerInterface" unless const_defined?(:EventListenerInterface, false); end; end; end; end; end
+autoload :VirtualKeyboardEvent, "org/allbinary/input/event/VirtualKeyboardEvent" unless const_defined?(:VirtualKeyboardEvent, false)
+autoload :VirtualKeyboardEventListenerInterface, "org/allbinary/input/event/VirtualKeyboardEventListenerInterface" unless const_defined?(:VirtualKeyboardEventListenerInterface, false)
 require "java/lang/Thread"
 
 begin
@@ -106,4 +112,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end
 

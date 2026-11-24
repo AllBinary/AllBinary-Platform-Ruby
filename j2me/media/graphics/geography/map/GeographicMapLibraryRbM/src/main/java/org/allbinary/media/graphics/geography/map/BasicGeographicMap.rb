@@ -14,24 +14,28 @@
 # frozen_string_literal: false
 # package org.allbinary.media.graphics.geography.map
 
+require "java/lang/JavaOverload"
+require "java/lang/JavaClass"
 require "org/allbinary/media/graphics/geography/map/GeographicMapInterface"
 require "org/allbinary/media/graphics/geography/map/SimpleGeographicMap"
+
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map
 
 class BasicGeographicMap < SimpleGeographicMap
     include GeographicMapInterface
     attr_accessor :mathUtil, :geographicMapCellPositionFactory, :geographicMapCellPositionFactoryInterface, :geographicMapCellTypeFactory
 
-    def initialize_fields
-        @mathUtil = MathUtil.getInstance()
-        @geographicMapCellPositionFactory = nil
-        @geographicMapCellPositionFactoryInterface = nil
-        @geographicMapCellTypeFactory = nil
+    def jfields_org_allbinary_media_graphics_geography_map_BasicGeographicMap
+        @mathUtil = ::Org::Allbinary::Logic::MathPackage::MathUtil.getInstance()
+        @geographicMapCellPositionFactory = nil unless instance_variable_defined?(:@geographicMapCellPositionFactory)
+        @geographicMapCellPositionFactoryInterface = nil unless instance_variable_defined?(:@geographicMapCellPositionFactoryInterface)
+        @geographicMapCellTypeFactory = nil unless instance_variable_defined?(:@geographicMapCellTypeFactory)
     end
     
 
     def initialize(id, name, cellTypeIdToGeographicMapCellType, tiledLayer, foregroundBasicColor, backgroundBasicColor, geographicMapCellPositionFactoryInterface, geographicMapCellPositionBaseFactory, geographicMapCellTypeFactory)
         super(id, name, cellTypeIdToGeographicMapCellType, tiledLayer, foregroundBasicColor, backgroundBasicColor)
-        initialize_fields
+        jfields_org_allbinary_media_graphics_geography_map_BasicGeographicMap
         @geographicMapCellPositionFactoryInterface = geographicMapCellPositionFactoryInterface
         @geographicMapCellPositionFactory = geographicMapCellPositionBaseFactory.getInstance(self)
         @geographicMapCellTypeFactory = geographicMapCellTypeFactory
@@ -53,6 +57,7 @@ class BasicGeographicMap < SimpleGeographicMap
                 raise StandardError.new("Only Four Directions")
         end
     end
+    java_overload :getCellPosition, 2
     
 
     # throws Exception
@@ -64,28 +69,63 @@ class BasicGeographicMap < SimpleGeographicMap
                 else
                     return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
                 end
+                if oldGeographicMapCellPosition.getColumn() + 1 < self.getAllBinaryTiledLayer().getColumns()
+                    return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn() + 1, oldGeographicMapCellPosition.getRow())
+                else
+                    return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+                end
+                if oldGeographicMapCellPosition.getRow() - 1 >= 0
+                    return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn(), oldGeographicMapCellPosition.getRow() - 1)
+                else
+                    return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+                end
+                if oldGeographicMapCellPosition.getRow() + 1 < self.getAllBinaryTiledLayer().getRows()
+                    return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn(), oldGeographicMapCellPosition.getRow() + 1)
+                else
+                    return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+                end
+                return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
         when 1
                 if oldGeographicMapCellPosition.getColumn() + 1 < self.getAllBinaryTiledLayer().getColumns()
                     return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn() + 1, oldGeographicMapCellPosition.getRow())
                 else
                     return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
                 end
+                if oldGeographicMapCellPosition.getRow() - 1 >= 0
+                    return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn(), oldGeographicMapCellPosition.getRow() - 1)
+                else
+                    return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+                end
+                if oldGeographicMapCellPosition.getRow() + 1 < self.getAllBinaryTiledLayer().getRows()
+                    return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn(), oldGeographicMapCellPosition.getRow() + 1)
+                else
+                    return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+                end
+                return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
         when 2
                 if oldGeographicMapCellPosition.getRow() - 1 >= 0
                     return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn(), oldGeographicMapCellPosition.getRow() - 1)
                 else
                     return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
                 end
+                if oldGeographicMapCellPosition.getRow() + 1 < self.getAllBinaryTiledLayer().getRows()
+                    return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn(), oldGeographicMapCellPosition.getRow() + 1)
+                else
+                    return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
+                end
+                return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
         when 3
                 if oldGeographicMapCellPosition.getRow() + 1 < self.getAllBinaryTiledLayer().getRows()
                     return @geographicMapCellPositionFactory.getAt(oldGeographicMapCellPosition.getColumn(), oldGeographicMapCellPosition.getRow() + 1)
                 else
                     return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
                 end
+                return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
         else
                 return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
         end
     end
+    java_overload :getCellPositionNoThrow, 2
     
 
     # throws Exception
@@ -97,6 +137,7 @@ class BasicGeographicMap < SimpleGeographicMap
         end
         return false
     end
+    java_overload :isOfFourDirections, 2
     
 
     # throws Exception
@@ -106,6 +147,7 @@ class BasicGeographicMap < SimpleGeographicMap
         i_row = @mathUtil.abs(y / allBinaryTiledLayer.getCellWidth())
         return @geographicMapCellPositionFactory.getAt(i_column, i_row)
     end
+    java_overload :getCellPositionAtXY, 2
     
 
     def getCellPositionAtXYNoThrow(x, y)
@@ -122,6 +164,7 @@ class BasicGeographicMap < SimpleGeographicMap
             return SimpleGeographicMapCellPositionFactory::NULL_GEOGRAPHIC_MAP_CELL_POSITION
         end
     end
+    java_overload :getCellPositionAtXYNoThrow, 2
     
 
     # throws Exception
@@ -135,6 +178,7 @@ class BasicGeographicMap < SimpleGeographicMap
             return false
         end
     end
+    java_overload :isOnMap, 1
     
 
     # throws Exception
@@ -154,6 +198,7 @@ class BasicGeographicMap < SimpleGeographicMap
         end
         return geographicMapCellPositionList
     end
+    java_overload :getCellPositionAtNoThrow, 5
     
 
     # throws Exception
@@ -175,6 +220,7 @@ class BasicGeographicMap < SimpleGeographicMap
         end
         return hasChanged
     end
+    java_overload :getCellPositionsAt, 3
     
 
     # throws Exception
@@ -182,37 +228,114 @@ class BasicGeographicMap < SimpleGeographicMap
         cellPosition = self.getCellPositionAtXY(x, y)
         return self.getCellTypeAt(cellPosition)
     end
+    java_overload :getCellTypeAtXY, 2
     
 
     def getGeographicMapCellPositionFactory()
         return @geographicMapCellPositionFactory
     end
+    java_overload :getGeographicMapCellPositionFactory, 0
     
 
     def getGeographicMapCellPositionFactoryInterface()
         return @geographicMapCellPositionFactoryInterface
     end
+    java_overload :getGeographicMapCellPositionFactoryInterface, 0
     
 
     def getGeographicMapCellTypeFactory()
         return @geographicMapCellTypeFactory
     end
+    java_overload :getGeographicMapCellTypeFactory, 0
+    
+
+    def getId()
+        return BasicGeographicMap.superclass.java_super_method(:getId, 0).bind(self).call()
+    end
+    java_overload :getId, 0
+    
+
+    def getName()
+        return BasicGeographicMap.superclass.java_super_method(:getName, 0).bind(self).call()
+    end
+    java_overload :getName, 0
+    
+
+    def reset()
+        BasicGeographicMap.superclass.java_super_method(:reset, 0).bind(self).call()
+    end
+    java_overload :reset, 0
+    
+
+    def getAllBinaryTiledLayer()
+        return BasicGeographicMap.superclass.java_super_method(:getAllBinaryTiledLayer, 0).bind(self).call()
+    end
+    java_overload :getAllBinaryTiledLayer, 0
+    
+
+    def getCellTypeFromMapCellTypeInt(cellTypeId)
+        return BasicGeographicMap.superclass.java_super_method(:getCellTypeFromMapCellTypeInt, 1).bind(self).call(cellTypeId)
+    end
+    java_overload :getCellTypeFromMapCellTypeInt, 1
+    
+
+    # throws Exception
+    def getCellTypeAt(cellPosition)
+        return BasicGeographicMap.superclass.java_super_method(:getCellTypeAt, 1).bind(self).call(cellPosition)
+    end
+    java_overload :getCellTypeAt, 1
+    
+
+    def getForegroundBasicColor()
+        return BasicGeographicMap.superclass.java_super_method(:getForegroundBasicColor, 0).bind(self).call()
+    end
+    java_overload :getForegroundBasicColor, 0
+    
+
+    def getBackgroundBasicColor()
+        return BasicGeographicMap.superclass.java_super_method(:getBackgroundBasicColor, 0).bind(self).call()
+    end
+    java_overload :getBackgroundBasicColor, 0
+
+    def self.java_static_fields
+        return if @java_static_fields_started
+        @java_static_fields_started = true
+        begin
+            const_set(:NULL_BASIC_GEOGRAPHIC_MAP_ARRAY, Array.new(0, nil))
+        rescue StandardError
+            @java_static_fields_started = false
+            raise
+        end
+    end
+
+    def self.const_missing(name)
+        if name == "BasicGeographicMap"
+            java_static_fields unless @java_static_fields_started
+            return const_get(name, false) if const_defined?(name, false)
+            return nil if [:NULL_BASIC_GEOGRAPHIC_MAP_ARRAY].include?(name)
+        end
+        super
+    end
 end
 
-require "org/allbinary/game/layer/AllBinaryTiledLayer"
-require "org/allbinary/graphics/color/BasicColor"
-require "org/allbinary/layer/Layer"
-require "org/allbinary/logic/math/MathUtil"
-require "org/allbinary/util/BasicArrayList"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPositionBaseFactory"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellPositionFactoryInterface"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellTypeFactory"
-require "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory"
+module ::Org; module Allbinary; module Game; module Layer; autoload :AllBinaryTiledLayer, "org/allbinary/game/layer/AllBinaryTiledLayer" unless const_defined?(:AllBinaryTiledLayer, false); end; end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColor, "org/allbinary/graphics/color/BasicColor" unless const_defined?(:BasicColor, false); end; end; end; end
+module ::Org; module Allbinary; module Layer; autoload :Layer, "org/allbinary/layer/Layer" unless const_defined?(:Layer, false); end; end; end
+module ::Org; module Allbinary; module Logic; module MathPackage; autoload :MathUtil, "org/allbinary/logic/math/MathUtil" unless const_defined?(:MathUtil, false); end; end; end; end
+module ::Org; module Allbinary; module Util; autoload :BasicArrayList, "org/allbinary/util/BasicArrayList" unless const_defined?(:BasicArrayList, false); end; end; end
+autoload :BasicGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/BasicGeographicMapCellPositionFactory" unless const_defined?(:BasicGeographicMapCellPositionFactory, false)
+autoload :GeographicMapCellPosition, "org/allbinary/media/graphics/geography/map/GeographicMapCellPosition" unless const_defined?(:GeographicMapCellPosition, false)
+autoload :GeographicMapCellPositionBaseFactory, "org/allbinary/media/graphics/geography/map/GeographicMapCellPositionBaseFactory" unless const_defined?(:GeographicMapCellPositionBaseFactory, false)
+autoload :GeographicMapCellPositionFactoryInterface, "org/allbinary/media/graphics/geography/map/GeographicMapCellPositionFactoryInterface" unless const_defined?(:GeographicMapCellPositionFactoryInterface, false)
+autoload :GeographicMapCellType, "org/allbinary/media/graphics/geography/map/GeographicMapCellType" unless const_defined?(:GeographicMapCellType, false)
+autoload :GeographicMapCellTypeFactory, "org/allbinary/media/graphics/geography/map/GeographicMapCellTypeFactory" unless const_defined?(:GeographicMapCellTypeFactory, false)
+autoload :SimpleGeographicMapCellPositionFactory, "org/allbinary/media/graphics/geography/map/SimpleGeographicMapCellPositionFactory" unless const_defined?(:SimpleGeographicMapCellPositionFactory, false)
 
-class BasicGeographicMap
-    NULL_BASIC_GEOGRAPHIC_MAP_ARRAY = Array.new(0, nil)
+begin
+    BasicGeographicMap.java_static_fields
+rescue StandardError
+    # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

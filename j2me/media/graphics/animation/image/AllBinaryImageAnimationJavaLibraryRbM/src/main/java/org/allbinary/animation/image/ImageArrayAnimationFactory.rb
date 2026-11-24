@@ -14,22 +14,25 @@
 # frozen_string_literal: false
 # package org.allbinary.animation.image
 
+require "java/lang/JavaOverload"
 require "org/allbinary/animation/AnimationInterfaceFactoryInterface"
 
+module ::Org; module Allbinary; module Animation; module Image
+
 class ImageArrayAnimationFactory
-    include AnimationInterfaceFactoryInterface
+    include ::Org::Allbinary::Animation::AnimationInterfaceFactoryInterface
     attr_accessor :dx, :dy, :imageArray, :animationBehaviorFactory
 
-    def initialize_fields
+    def jfields_org_allbinary_animation_image_ImageArrayAnimationFactory
         @dx = 0
         @dy = 0
-        @imageArray = nil
-        @animationBehaviorFactory = nil
+        @imageArray = nil unless instance_variable_defined?(:@imageArray)
+        @animationBehaviorFactory = nil unless instance_variable_defined?(:@animationBehaviorFactory)
     end
     
 
     def initialize(imageArray, dx, dy, animationBehaviorFactory)
-        initialize_fields
+        jfields_org_allbinary_animation_image_ImageArrayAnimationFactory
         @imageArray = imageArray
         @animationBehaviorFactory = animationBehaviorFactory
         @dx = dx
@@ -42,21 +45,25 @@ class ImageArrayAnimationFactory
         if @dx != 0 || @dy != 0
             return AdjustedImageArrayAnimation.new(@imageArray, @dx, @dy, @animationBehaviorFactory.getOrCreateInstance())
         else
-            return ImageArrayAnimation.new(@imageArray, AnimationBehavior.getInstance())
+            return ImageArrayAnimation.new(@imageArray, ::Org::Allbinary::Animation::AnimationBehavior.getInstance())
         end
     end
+    java_overload :getInstance, 1
     
 
     def setInitialScale(scaleProperties)
     end
+    java_overload :setInitialScale, 1
 end
 
-autoload :Image, "javax/microedition/lcdui/Image"
-autoload :Animation, "org/allbinary/animation/Animation"
-autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior"
-autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory"
-autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil"
-autoload :ScaleProperties, "org/allbinary/media/ScaleProperties"
-autoload :AdjustedImageArrayAnimation, "org/allbinary/animation/image/AdjustedImageArrayAnimation"
-autoload :ImageArrayAnimation, "org/allbinary/animation/image/ImageArrayAnimation"
+module ::Javax; module Microedition; module Lcdui; autoload :Image, "javax/microedition/lcdui/Image" unless const_defined?(:Image, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :Animation, "org/allbinary/animation/Animation" unless const_defined?(:Animation, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehavior, "org/allbinary/animation/AnimationBehavior" unless const_defined?(:AnimationBehavior, false); end; end; end
+module ::Org; module Allbinary; module Animation; autoload :AnimationBehaviorFactory, "org/allbinary/animation/AnimationBehaviorFactory" unless const_defined?(:AnimationBehaviorFactory, false); end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :ForcedLogUtil, "org/allbinary/logic/communication/log/ForcedLogUtil" unless const_defined?(:ForcedLogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Media; autoload :ScaleProperties, "org/allbinary/media/ScaleProperties" unless const_defined?(:ScaleProperties, false); end; end; end
+autoload :AdjustedImageArrayAnimation, "org/allbinary/animation/image/AdjustedImageArrayAnimation" unless const_defined?(:AdjustedImageArrayAnimation, false)
+autoload :ImageArrayAnimation, "org/allbinary/animation/image/ImageArrayAnimation" unless const_defined?(:ImageArrayAnimation, false)
+
+end; end; end; end
 

@@ -15,17 +15,19 @@
 # package org.allbinary.game.input.mapping
 
 
+module ::Org; module Allbinary; module Game; module Input; module Mapping
+
 class GameInputMapping
     attr_accessor :name, :gameKey
 
-    def initialize_fields
-        @name = StringUtil.getInstance().EMPTY_STRING
-        @gameKey = GameKey::NULL_GAME_KEY
+    def jfields_org_allbinary_game_input_mapping_GameInputMapping
+        @name = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
+        @gameKey = ::Org::Allbinary::Game::Input::GameKey::NULL_GAME_KEY
     end
     
 
     def initialize(name, gameKey)
-        initialize_fields
+        jfields_org_allbinary_game_input_mapping_GameInputMapping
         self.setName(name)
         self.setGameKey(gameKey)
     end
@@ -51,6 +53,8 @@ class GameInputMapping
     end
 end
 
-autoload :GameKey, "org/allbinary/game/input/GameKey"
-autoload :StringUtil, "org/allbinary/logic/string/StringUtil"
+module ::Org; module Allbinary; module Game; module Input; autoload :GameKey, "org/allbinary/game/input/GameKey" unless const_defined?(:GameKey, false); end; end; end; end
+module ::Org; module Allbinary; module Logic; module StringPackage; autoload :StringUtil, "org/allbinary/logic/string/StringUtil" unless const_defined?(:StringUtil, false); end; end; end; end
+
+end; end; end; end; end
 

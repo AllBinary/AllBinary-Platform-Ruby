@@ -13,43 +13,51 @@
 # frozen_string_literal: false
 # package org.allbinary.game.layer
 
+require "java/lang/JavaOverload"
 require "org/allbinary/media/graphics/geography/map/GeographicMapCompositeInterface"
 require "org/allbinary/game/layer/AllBinaryGameLayerManager"
 
-class FakeLayerManager < AllBinaryGameLayerManager
-    include GeographicMapCompositeInterface
-    attr_accessor :geographicMapInterfaceArray, :geographicMapCellTypeArray
+module ::Org; module Allbinary; module Game; module Layer
 
-    def initialize_fields
-        @geographicMapInterfaceArray = BasicGeographicMap::NULL_BASIC_GEOGRAPHIC_MAP_ARRAY
-        @geographicMapCellTypeArray = GeographicMapCellType::NULL_GEOGRAPHIC_MAP_CELL_TYPE_ARRAY
+class FakeLayerManager < AllBinaryGameLayerManager
+    include ::Org::Allbinary::Media::Graphics::Geography::Map::GeographicMapCompositeInterface
+    attr_accessor :geographicMapInterfaceArray, :cachedGeographicMapCellTypes
+
+    def jfields_org_allbinary_game_layer_FakeLayerManager
+        @geographicMapInterfaceArray = ::Org::Allbinary::Media::Graphics::Geography::Map::BasicGeographicMap::NULL_BASIC_GEOGRAPHIC_MAP_ARRAY
+        @cachedGeographicMapCellTypes = ::Org::Allbinary::Media::Graphics::Geography::Map::GeographicMapCellType::NULL_GEOGRAPHIC_MAP_CELL_TYPE_ARRAY
     end
     
 
     def initialize(gameInfo)
-        super(BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE, gameInfo)
-        initialize_fields
+        super(::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE, gameInfo)
+        jfields_org_allbinary_game_layer_FakeLayerManager
     end
     
 
     def getGeographicMapInterface()
         return @geographicMapInterfaceArray
     end
+    java_overload :getGeographicMapInterface, 0
     
 
     def setGeographicMapInterface(geographicMapInterfaceArray)
         @geographicMapInterfaceArray = geographicMapInterfaceArray
-        @geographicMapCellTypeArray = Array.new(@geographicMapInterfaceArray.length, nil)
+        @cachedGeographicMapCellTypes = Array.new(@geographicMapInterfaceArray.length, nil)
     end
+    java_overload :setGeographicMapInterface, 1
     
 
     def geographicMapCellTypeArray()
-        return @geographicMapCellTypeArray
+        return @cachedGeographicMapCellTypes
     end
+    java_overload :geographicMapCellTypeArray, 0
 end
 
-require "org/allbinary/game/GameInfo"
-require "org/allbinary/graphics/color/BasicColorFactory"
-require "org/allbinary/media/graphics/geography/map/BasicGeographicMap"
-require "org/allbinary/media/graphics/geography/map/GeographicMapCellType"
+module ::Org; module Allbinary; module Game; autoload :GameInfo, "org/allbinary/game/GameInfo" unless const_defined?(:GameInfo, false); end; end; end
+module ::Org; module Allbinary; module Graphics; module Color; autoload :BasicColorFactory, "org/allbinary/graphics/color/BasicColorFactory" unless const_defined?(:BasicColorFactory, false); end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :BasicGeographicMap, "org/allbinary/media/graphics/geography/map/BasicGeographicMap" unless const_defined?(:BasicGeographicMap, false); end; end; end; end; end; end
+module ::Org; module Allbinary; module Media; module Graphics; module Geography; module Map; autoload :GeographicMapCellType, "org/allbinary/media/graphics/geography/map/GeographicMapCellType" unless const_defined?(:GeographicMapCellType, false); end; end; end; end; end; end
+
+end; end; end; end
 

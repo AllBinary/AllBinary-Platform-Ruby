@@ -15,21 +15,28 @@
 # package org.allbinary.input.automation.module.game
 
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game
+
 module MeteredGameObjectInterface
     
 
     def getRatios()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isGood()
+        return super if defined?(super)
         raise NotImplementedError
     end
     
 
     def isDropping()
+        return super if defined?(super)
         raise NotImplementedError
     end
 end
+
+end; end; end; end; end; end
 

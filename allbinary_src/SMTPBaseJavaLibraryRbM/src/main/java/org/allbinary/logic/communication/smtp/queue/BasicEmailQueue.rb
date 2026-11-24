@@ -15,22 +15,25 @@
 # package org.allbinary.logic.communication.smtp.queue
 
 require "java/lang/Object"
+require "java/lang/JavaOverload"
 # require "javax/mail/Transport"
 require "org/allbinary/logic/util/queue/BasicQueue"
 require "org/allbinary/logic/communication/smtp/queue/EmailQueueInterface"
 
-class BasicEmailQueue < BasicQueue
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; module QueuePackage
+
+class BasicEmailQueue < ::Org::Allbinary::Logic::Util::QueuePackage::BasicQueue
     include EmailQueueInterface
     attr_accessor :logUtil
 
-    def initialize_fields
-        @logUtil = LogUtil.getInstance()
+    def jfields_org_allbinary_logic_communication_smtp_queue_BasicEmailQueue
+        @logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
     end
     
 
     def initialize()
         super()
-        initialize_fields
+        jfields_org_allbinary_logic_communication_smtp_queue_BasicEmailQueue
     end
     
 
@@ -52,20 +55,26 @@ class BasicEmailQueue < BasicQueue
         return true
         end
     end
+    java_overload :offer, 1
     
 
-    def remove(emailInterface)
+    def remove_j1(emailInterface)
         java_monitor.synchronize do
         self.remove(emailInterface)
         end
     end
     
 
-    # Java overloaded method: Ruby keeps the last definition
-    def remove()
+    def remove_j0()
         java_monitor.synchronize do
         return nil
         end
+    end
+
+    def remove(*java_overload_args)
+        return remove_j1(*java_overload_args) if java_overload_args.length == 1
+        return remove_j0(*java_overload_args) if java_overload_args.length == 0
+        raise ArgumentError, "No method remove takes #{java_overload_args.length} arguments"
     end
     
 
@@ -78,6 +87,7 @@ class BasicEmailQueue < BasicQueue
         end
         end
     end
+    java_overload :post, 1
     
 
     # throws Exception
@@ -93,27 +103,29 @@ class BasicEmailQueue < BasicQueue
         end
         end
     end
+    java_overload :processAllUnsent, 0
     
 
     def send(emailInterface)
         java_monitor.synchronize do
         begin
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
                 @logUtil.putF("Sending: " + (emailInterface.log()).to_s, self, "send")
             end
             Transport.send(emailInterface.getMimeMessage())
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
                 @logUtil.putF("Email Send Debug: " + (emailInterface.getDebugInfo()).to_s, self, "send")
             end
             return true
         rescue StandardError => e
-            if org.allbinary.logic.communication.log.config.type.LogConfigTypes.LOGGING.contains(org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory.getInstance().EMAILLOGGING)
+            if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGING)
                 @logUtil.put("Failed Email Send Debug: " + (emailInterface.getDebugInfo()).to_s, self, "send", e)
             end
             return false
         end
         end
     end
+    java_overload :send, 1
 
     def self.instance()
         BasicEmailQueue.java_static_fields unless @java_static_fields_started
@@ -157,12 +169,16 @@ class BasicEmailQueue < BasicQueue
     end
 end
 
-autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil"
-autoload :EmailInterface, "org/allbinary/logic/communication/smtp/EmailInterface"
+module ::Org; module Allbinary; module Logic; module Communication; module Log; autoload :LogUtil, "org/allbinary/logic/communication/log/LogUtil" unless const_defined?(:LogUtil, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Smtp; autoload :EmailInterface, "org/allbinary/logic/communication/smtp/EmailInterface" unless const_defined?(:EmailInterface, false); end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypeFactory, "org/allbinary/logic/communication/log/config/type/LogConfigTypeFactory" unless const_defined?(:LogConfigTypeFactory, false); end; end; end; end; end; end; end
+module ::Org; module Allbinary; module Logic; module Communication; module Log; module Config; module Type; autoload :LogConfigTypes, "org/allbinary/logic/communication/log/config/type/LogConfigTypes" unless const_defined?(:LogConfigTypes, false); end; end; end; end; end; end; end
 
 begin
     BasicEmailQueue.java_static_fields
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end; end
 

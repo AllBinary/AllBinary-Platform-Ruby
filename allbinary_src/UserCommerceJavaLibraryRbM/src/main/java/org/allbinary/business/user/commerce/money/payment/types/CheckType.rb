@@ -15,16 +15,20 @@
 # package org.allbinary.business.user.commerce.money.payment.types
 
 
+module ::Org; module Allbinary; module Business; module User; module Commerce; module Money; module Payment; module Types
+
 class CheckType
     attr_accessor :types
 
-    def initialize_fields
+    def jfields_org_allbinary_business_user_commerce_money_payment_types_CheckType
         @types = ["Check", "Money Order", "Cashiers Check"]
     end
     
 
     def initialize()
-        initialize_fields
+        jfields_org_allbinary_business_user_commerce_money_payment_types_CheckType
     end
 end
+
+end; end; end; end; end; end; end; end
 

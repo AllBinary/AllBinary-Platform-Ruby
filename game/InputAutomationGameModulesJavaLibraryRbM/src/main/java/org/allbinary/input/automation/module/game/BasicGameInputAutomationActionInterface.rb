@@ -14,22 +14,31 @@
 # frozen_string_literal: false
 # package org.allbinary.input.automation.module.game
 
-# require "java/awt"
+require "java/lang/JavaOverload"
+# require "java/awt/Rectangle"
 require "org/allbinary/input/automation/module/InputAutomationActionInterface"
 
+module ::Org; module Allbinary; module Input; module Automation; module ModulePackage; module Game
+
 module BasicGameInputAutomationActionInterface
-    include InputAutomationActionInterface
+    include ::Org::Allbinary::Input::Automation::ModulePackage::InputAutomationActionInterface
     
 
     # throws Exception
     def attack(rectangle)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :attack, 1
     
 
     # throws Exception
     def target(rectangle)
+        return super if defined?(super)
         raise NotImplementedError
     end
+    java_overload :target, 1
 end
+
+end; end; end; end; end; end
 

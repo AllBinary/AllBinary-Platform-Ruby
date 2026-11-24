@@ -15,10 +15,12 @@
 # package org.allbinary.data.tree.dom
 
 
+module ::Org; module Allbinary; module DataPackage; module Tree; module Dom
+
 class URIResolverStrings
     attr_accessor :IMPORT_URL, :ATTEMPT, :BASE, :NEW_PATH, :NOTE, :URL_GLOBAL, :REQUIRED_EXTENSION, :RESOLVE
 
-    def initialize_fields
+    def jfields_org_allbinary_data_tree_dom_URIResolverStrings
         @IMPORT_URL = "/{import url}"
         @ATTEMPT = "attempt to use xsl:import: href="
         @BASE = "\nBase= "
@@ -30,7 +32,7 @@ class URIResolverStrings
     end
 
     def initialize
-        initialize_fields
+        jfields_org_allbinary_data_tree_dom_URIResolverStrings
     end
     
 
@@ -74,4 +76,6 @@ begin
 rescue StandardError
     # Like Java the class is initialized again when it is used
 end
+
+end; end; end; end; end
 

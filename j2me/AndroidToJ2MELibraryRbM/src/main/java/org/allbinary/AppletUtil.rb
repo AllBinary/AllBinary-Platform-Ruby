@@ -15,6 +15,8 @@
 # package org.allbinary
 
 
+module ::Org; module Allbinary
+
 class AppletUtil
     
 
@@ -26,4 +28,6 @@ class AppletUtil
         return false
     end
 end
+
+end; end
 
