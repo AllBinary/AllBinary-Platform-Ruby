@@ -24,7 +24,7 @@ class EnumerationUtil
     
 
     def self.getInstance()
-        return EnumerationUtil.instance
+        return @@instance
     end
     
 

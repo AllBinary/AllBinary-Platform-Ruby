@@ -24,7 +24,7 @@ class NoPlayerGameInput < PlayerGameInput
     
 
     def self.getInstance()
-        return NoPlayerGameInput::SINGLETON
+        return SINGLETON
     end
     
 

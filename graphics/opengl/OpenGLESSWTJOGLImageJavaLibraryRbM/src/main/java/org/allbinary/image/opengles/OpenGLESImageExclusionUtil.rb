@@ -28,7 +28,7 @@ class OpenGLESImageExclusionUtil
     
 
     def self.getInstance()
-        return OpenGLESImageExclusionUtil.instance
+        return @@instance
     end
     
 

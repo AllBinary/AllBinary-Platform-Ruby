@@ -19,7 +19,7 @@ class FontDebugBase
     
 
     def self.getInstance()
-        return FontDebugBase.instanceBase
+        return @@instanceBase
     end
     
 

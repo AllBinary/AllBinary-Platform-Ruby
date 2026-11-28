@@ -23,7 +23,7 @@ class ParentInventoryTagHelper
     
 
     def self.getInstance()
-        return ParentInventoryTagHelper.instance
+        return @@instance
     end
     
 

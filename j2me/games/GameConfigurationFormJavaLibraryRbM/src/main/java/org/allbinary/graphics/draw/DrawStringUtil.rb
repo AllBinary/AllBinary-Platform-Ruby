@@ -31,7 +31,7 @@ class DrawStringUtil
     
 
     def self.getInstance()
-        return DrawStringUtil.instance
+        return @@instance
     end
     
 

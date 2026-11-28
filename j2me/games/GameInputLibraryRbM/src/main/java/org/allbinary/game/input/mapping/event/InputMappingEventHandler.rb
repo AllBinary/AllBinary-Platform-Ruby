@@ -28,7 +28,7 @@ class InputMappingEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::
     
 
     def self.getInstance()
-        return InputMappingEventHandler.gameKeyEventHandler
+        return @@gameKeyEventHandler
     end
     
 

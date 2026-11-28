@@ -39,7 +39,7 @@ class NoCompleteMotionGestureInputEventListener
     
 
     def self.getInstance()
-        return NoCompleteMotionGestureInputEventListener.instance
+        return @@instance
     end
 
     def self.instance()

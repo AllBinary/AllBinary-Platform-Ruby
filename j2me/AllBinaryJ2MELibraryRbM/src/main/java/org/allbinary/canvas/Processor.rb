@@ -21,7 +21,7 @@ class Processor
     
 
     def self.getInstance()
-        return Processor::SINGLETON
+        return SINGLETON
     end
     
 

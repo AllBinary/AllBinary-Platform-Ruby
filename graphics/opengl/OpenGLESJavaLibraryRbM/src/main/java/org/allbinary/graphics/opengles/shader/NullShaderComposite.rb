@@ -23,7 +23,7 @@ class NullShaderComposite < ShaderComposite
     
 
     def self.getInstance()
-        return NullShaderComposite.instance
+        return @@instance
     end
     
 

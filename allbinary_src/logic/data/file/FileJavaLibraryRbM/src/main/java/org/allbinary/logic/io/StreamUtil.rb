@@ -26,7 +26,7 @@ class StreamUtil
     
 
     def self.getInstance()
-        return StreamUtil.instance
+        return @@instance
     end
     
 

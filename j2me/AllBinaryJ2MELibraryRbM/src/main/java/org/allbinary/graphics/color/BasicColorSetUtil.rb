@@ -21,7 +21,7 @@ class BasicColorSetUtil
     
 
     def self.getInstance()
-        return BasicColorSetUtil.instance
+        return @@instance
     end
     
 

@@ -21,7 +21,7 @@ class DisposalUtil
     
 
     def self.getInstance()
-        return DisposalUtil.instance
+        return @@instance
     end
     
 

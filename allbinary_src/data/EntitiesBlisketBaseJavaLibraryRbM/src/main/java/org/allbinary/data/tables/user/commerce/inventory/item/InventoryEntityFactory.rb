@@ -26,7 +26,7 @@ class InventoryEntityFactory
     
 
     def self.getInstance()
-        return InventoryEntityFactory.instance
+        return @@instance
     end
     
 

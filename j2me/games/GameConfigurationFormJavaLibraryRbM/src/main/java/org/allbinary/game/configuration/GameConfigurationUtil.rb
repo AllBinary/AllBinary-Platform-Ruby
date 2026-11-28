@@ -36,7 +36,7 @@ class GameConfigurationUtil
     
 
     def self.getInstance()
-        return GameConfigurationUtil.instance
+        return @@instance
     end
     
 

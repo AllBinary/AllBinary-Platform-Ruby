@@ -33,7 +33,7 @@ class InputAutomationConfigurationFactory
     
 
     def self.getInstance()
-        return InputAutomationConfigurationFactory.instance
+        return @@instance
     end
     
 

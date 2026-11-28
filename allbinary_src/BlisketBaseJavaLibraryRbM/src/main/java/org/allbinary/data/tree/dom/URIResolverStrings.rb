@@ -37,7 +37,7 @@ class URIResolverStrings
     
 
     def self.getInstance()
-        return URIResolverStrings.instance
+        return @@instance
     end
 
     def self.instance()

@@ -51,10 +51,10 @@ class RecordStoreHighScores < HighScores
 
     def self.getInstance(abeClientInformation, gameInfo, highScoreName, heading, columnTwoHeading, recordComparatorInterface)
         java_monitor.synchronize do
-        highScoresCanBeNull = RecordStoreHighScores.hashTable.get(highScoreName)
+        highScoresCanBeNull = @@hashTable.get(highScoreName)
         if highScoresCanBeNull == nil
             highScores = RecordStoreHighScores.new(abeClientInformation, gameInfo, highScoreName, heading, columnTwoHeading, recordComparatorInterface)
-            RecordStoreHighScores.hashTable.put(highScores.getName(), highScores)
+            @@hashTable.put(highScores.getName(), highScores)
             return highScores
         end
         return highScoresCanBeNull

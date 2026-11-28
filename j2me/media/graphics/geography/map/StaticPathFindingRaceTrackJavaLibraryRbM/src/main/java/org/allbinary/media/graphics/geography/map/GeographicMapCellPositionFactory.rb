@@ -36,11 +36,11 @@ class GeographicMapCellPositionFactory < GeographicMapCellPositionBaseFactory
     def getInstance(geographicMapInterface)
         commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         allBinaryTiledLayer = geographicMapInterface.getAllBinaryTiledLayer()
-        geographicMapCellPositionFactoryCanBeNull = GeographicMapCellPositionFactory.hashtable.get(allBinaryTiledLayer.getDataId())
+        geographicMapCellPositionFactoryCanBeNull = @@hashtable.get(allBinaryTiledLayer.getDataId())
         if geographicMapCellPositionFactoryCanBeNull == nil
             @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Creating GeographicMapCellPositionFactory for TileLayer: ").appendint(((allBinaryTiledLayer.getDataId().to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s, self, commonStrings.GET_INSTANCE)
             geographicMapCellPositionFactoryCanBeNull = BasicGeographicMapCellPositionFactory.new(geographicMapInterface)
-            GeographicMapCellPositionFactory.hashtable.put(allBinaryTiledLayer.getDataId(), geographicMapCellPositionFactoryCanBeNull)
+            @@hashtable.put(allBinaryTiledLayer.getDataId(), geographicMapCellPositionFactoryCanBeNull)
             return geographicMapCellPositionFactoryCanBeNull
         else
             @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Reusing GeographicMapCellPositionFactory for TileLayer: ").appendint(((allBinaryTiledLayer.getDataId().to_i).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s, self, commonStrings.GET_INSTANCE)
@@ -51,7 +51,7 @@ class GeographicMapCellPositionFactory < GeographicMapCellPositionBaseFactory
     
 
     def self.getHashtable()
-        return GeographicMapCellPositionFactory.hashtable
+        return @@hashtable
     end
 
     def self.hashtable()

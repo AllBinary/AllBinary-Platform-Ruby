@@ -34,7 +34,7 @@ class ImageModifierUtil
     
 
     def self.getInstanceOrCreate()
-        return ImageModifierUtil.instance
+        return @@instance
     end
     
 

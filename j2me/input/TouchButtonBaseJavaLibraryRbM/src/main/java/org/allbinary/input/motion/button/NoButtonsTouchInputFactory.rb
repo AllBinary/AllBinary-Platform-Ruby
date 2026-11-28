@@ -21,7 +21,7 @@ class NoButtonsTouchInputFactory
     
 
     def self.getInstance()
-        return NoButtonsTouchInputFactory.instance
+        return @@instance
     end
 
     def self.instance()

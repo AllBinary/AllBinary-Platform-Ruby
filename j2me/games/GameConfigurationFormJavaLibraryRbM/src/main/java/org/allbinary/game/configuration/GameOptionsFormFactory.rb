@@ -31,7 +31,7 @@ class GameOptionsFormFactory
     
 
     def self.getInstance()
-        return GameOptionsFormFactory.instance
+        return @@instance
     end
     
 

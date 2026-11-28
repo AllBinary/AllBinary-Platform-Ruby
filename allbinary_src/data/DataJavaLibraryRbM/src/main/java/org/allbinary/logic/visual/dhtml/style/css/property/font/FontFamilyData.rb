@@ -27,7 +27,7 @@ class FontFamilyData
     
 
     def self.getInstance()
-        return FontFamilyData.instance
+        return @@instance
     end
     
 

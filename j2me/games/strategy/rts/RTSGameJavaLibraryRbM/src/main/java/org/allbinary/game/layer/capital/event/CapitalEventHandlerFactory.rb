@@ -21,21 +21,21 @@ class CapitalEventHandlerFactory
     
 
     def self.static_init
-        (CapitalEventHandlerFactory.capitalEventHandlerArray.length - 1).step(0, -(1)) do |index|
-            CapitalEventHandlerFactory.capitalEventHandlerArray[index] = CapitalEventHandler.new()
+        (@@capitalEventHandlerArray.length - 1).step(0, -(1)) do |index|
+            @@capitalEventHandlerArray[index] = CapitalEventHandler.new()
         end
     end
     
 
     def self.getInstance(groupInterface)
         groupId = ((groupInterface.getGroupId()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
-        return CapitalEventHandlerFactory.capitalEventHandlerArray[groupId]
+        return @@capitalEventHandlerArray[groupId]
     end
     
 
     def self.removeAll()
-        (CapitalEventHandlerFactory.capitalEventHandlerArray.length - 1).step(0, -(1)) do |index|
-            CapitalEventHandlerFactory.capitalEventHandlerArray[index].removeAllListeners()
+        (@@capitalEventHandlerArray.length - 1).step(0, -(1)) do |index|
+            @@capitalEventHandlerArray[index].removeAllListeners()
         end
     end
 

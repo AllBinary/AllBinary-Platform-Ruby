@@ -35,12 +35,12 @@ class Feature
     
 
     def self.getInstance(name)
-        return Feature.hashtable.get(name)
+        return @@hashtable.get(name)
     end
     
 
     def self.add(name, gameFeature)
-        Feature.hashtable.put(name, gameFeature)
+        @@hashtable.put(name, gameFeature)
     end
     
 

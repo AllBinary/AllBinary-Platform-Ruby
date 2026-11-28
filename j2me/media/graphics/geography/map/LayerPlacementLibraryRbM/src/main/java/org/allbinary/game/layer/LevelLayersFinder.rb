@@ -30,7 +30,7 @@ class LevelLayersFinder
     
 
     def self.getInstance()
-        return LevelLayersFinder.instance
+        return @@instance
     end
     
 

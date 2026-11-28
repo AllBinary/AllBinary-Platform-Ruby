@@ -33,7 +33,7 @@ class GraphicsAnalysisUtil
             automaticCacheInterface = ::Org::Allbinary::Graphics::Color::ColorCacheFactory.getInstance()
             colorCacheable = automaticCacheInterface.get(colorInteger)
             color = colorCacheable.getColor()
-            if color.getRed() < GraphicsAnalysisUtil::MAX && color.getGreen() < GraphicsAnalysisUtil::MAX && color.getBlue() < GraphicsAnalysisUtil::MAX
+            if color.getRed() < MAX && color.getGreen() < MAX && color.getBlue() < MAX
             else
                 return index - min_x.to_i
             end

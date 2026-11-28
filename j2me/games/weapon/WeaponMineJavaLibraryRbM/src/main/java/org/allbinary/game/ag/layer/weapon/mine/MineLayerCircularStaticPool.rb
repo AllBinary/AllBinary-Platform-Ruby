@@ -23,12 +23,12 @@ class MineLayerCircularStaticPool
     # throws Exception
     def self.init(viewPositionFactoryInterface)
         MineCountedPickedUpLayerInterfaceFactory.init()
-        MineLayerCircularStaticPool::WEAPON_LAYER_CIRCULAR_STATIC_POOL.initAllBinaryLayerCircularPool(MineLayerFactory.new(viewPositionFactoryInterface), 20)
+        WEAPON_LAYER_CIRCULAR_STATIC_POOL.initAllBinaryLayerCircularPool(MineLayerFactory.new(viewPositionFactoryInterface), 20)
     end
     
 
     def self.getInstance()
-        return MineLayerCircularStaticPool::WEAPON_LAYER_CIRCULAR_STATIC_POOL
+        return WEAPON_LAYER_CIRCULAR_STATIC_POOL
     end
 
     def self.java_static_fields

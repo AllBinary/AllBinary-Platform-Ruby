@@ -28,10 +28,10 @@ class Orientation
     
 
     def self.getInstance(yaw, pitch, roll)
-        Orientation::SINGLETON.yaw.setint(yaw)
-        Orientation::SINGLETON.pitch.setint(pitch)
-        Orientation::SINGLETON.roll.setint(roll)
-        return Orientation::SINGLETON
+        SINGLETON.yaw.setint(yaw)
+        SINGLETON.pitch.setint(pitch)
+        SINGLETON.roll.setint(roll)
+        return SINGLETON
     end
     
 

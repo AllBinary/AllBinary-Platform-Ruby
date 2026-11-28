@@ -37,7 +37,7 @@ class RTSLayerSelectedLogHelper < RTSLayerLogHelper
     
 
     def self.getInstance()
-        return RTSLayerSelectedLogHelper.instanceC
+        return @@instanceC
     end
     
 

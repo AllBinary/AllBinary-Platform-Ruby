@@ -18,10 +18,10 @@ class PlatformKeyFactory
     
 
     def self.getInstance()
-        if PlatformKeyFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            PlatformKeyFactory.instance = PlatformKeyFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = PlatformKeyFactory.new()
         end
-        return PlatformKeyFactory.instance
+        return @@instance
     end
     
 

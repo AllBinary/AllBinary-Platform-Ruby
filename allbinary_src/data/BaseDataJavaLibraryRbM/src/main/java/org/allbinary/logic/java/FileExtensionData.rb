@@ -27,7 +27,7 @@ class FileExtensionData
     
 
     def self.getInstance()
-        return FileExtensionData.instance
+        return @@instance
     end
     
 

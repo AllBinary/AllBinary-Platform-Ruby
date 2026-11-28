@@ -26,7 +26,7 @@ class StylesData
     
 
     def self.getInstance()
-        return StylesData.instance
+        return @@instance
     end
     
 

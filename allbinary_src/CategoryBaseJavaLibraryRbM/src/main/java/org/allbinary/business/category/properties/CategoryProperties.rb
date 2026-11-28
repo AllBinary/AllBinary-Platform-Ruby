@@ -107,7 +107,7 @@ class CategoryProperties
                 end
                 nextParentCategoryInterface = nextParentCategoryInterface.getHierarchy().getParent()
                 depthIndex += 1
-                if depthIndex > CategoryProperties::MAXDEPTH
+                if depthIndex > MAXDEPTH
                     raise StandardError.new("Probably Major Error")
                 end
             end

@@ -47,7 +47,7 @@ class AllBinaryMediaManager
     def self.init(soundsFactoryInterface)
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-        logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, commonString.INIT)
+        logUtil.putF(commonString.START, THIS, commonString.INIT)
         ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
         Sounds.new(soundsFactoryInterface).init()
     end
@@ -73,7 +73,7 @@ class AllBinaryMediaManager
             rescue StandardError => e
                 logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
                 commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-                logUtil.put(commonString.EXCEPTION, AllBinaryMediaManager::THIS, CREATE_PLAYER, e)
+                logUtil.put(commonString.EXCEPTION, THIS, CREATE_PLAYER, e)
                 return NoPlayer::NO_PLAYER
             end
         else

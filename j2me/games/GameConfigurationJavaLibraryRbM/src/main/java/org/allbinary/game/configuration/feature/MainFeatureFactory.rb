@@ -34,7 +34,7 @@ class MainFeatureFactory
     
 
     def self.getInstance()
-        return MainFeatureFactory.instance
+        return @@instance
     end
 
     def self.instance()

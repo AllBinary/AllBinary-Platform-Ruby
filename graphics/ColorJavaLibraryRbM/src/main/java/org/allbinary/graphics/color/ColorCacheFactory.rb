@@ -26,7 +26,7 @@ class ColorCacheFactory
         _STATIC_BLOCK = "Static Block"
         begin
             logUtil.putF(commonStrings.START, ColorCacheFactory, _STATIC_BLOCK)
-            ColorCacheFactory.cacheInterface = ::Org::Allbinary::Logic::Util::Cache::AutomaticCacheInterfaceFactory.getInstance(ColorCacheableFactory.new(), ::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
+            @@cacheInterface = ::Org::Allbinary::Logic::Util::Cache::AutomaticCacheInterfaceFactory.getInstance(ColorCacheableFactory.new(), ::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
             logUtil.putF(commonStrings.END_, ColorCacheFactory, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, ColorCacheFactory, _STATIC_BLOCK, e)
@@ -39,7 +39,7 @@ class ColorCacheFactory
     
 
     def self.getInstance()
-        return ColorCacheFactory.cacheInterface
+        return @@cacheInterface
     end
 
     def self.cacheInterface()

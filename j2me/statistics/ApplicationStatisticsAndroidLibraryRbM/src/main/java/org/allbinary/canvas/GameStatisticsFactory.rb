@@ -34,7 +34,7 @@ class GameStatisticsFactory < AndroidGameStatistics
     
 
     def self.getInstance()
-        return GameStatisticsFactory::SINGLETON
+        return SINGLETON
     end
     
 

@@ -27,7 +27,7 @@ class NewWorkFlowFactory
     
 
     def self.getInstance()
-        return NewWorkFlowFactory.instance
+        return @@instance
     end
     
 

@@ -30,7 +30,7 @@ class NullSpecialAnimationFactory
     
 
     def self.getFactoryInstance()
-        return NullSpecialAnimationFactory::NULL_SPECIAL_ANIMATION_FACTORY
+        return NULL_SPECIAL_ANIMATION_FACTORY
     end
     
 

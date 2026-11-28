@@ -21,7 +21,7 @@ class GameTickTimeDelayHelperFactory
     
 
     def self.getInstance()
-        return GameTickTimeDelayHelperFactory.instance
+        return @@instance
     end
     
 

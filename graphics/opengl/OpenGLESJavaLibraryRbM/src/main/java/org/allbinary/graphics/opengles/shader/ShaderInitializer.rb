@@ -30,7 +30,7 @@ class ShaderInitializer
     
 
     def self.getInstance()
-        return ShaderInitializer.instance
+        return @@instance
     end
     
 

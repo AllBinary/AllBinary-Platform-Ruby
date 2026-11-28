@@ -21,7 +21,7 @@ class ImageCacheFactory
     
 
     def self.getInstance()
-        return ImageCacheFactory::IMAGE_CACHE
+        return IMAGE_CACHE
     end
     
 

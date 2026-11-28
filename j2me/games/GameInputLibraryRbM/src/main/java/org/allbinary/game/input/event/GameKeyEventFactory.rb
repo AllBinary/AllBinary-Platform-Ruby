@@ -30,10 +30,10 @@ class GameKeyEventFactory
     
 
     def self.getInstance()
-        if GameKeyEventFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GameKeyEventFactory.instance = GameKeyEventFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GameKeyEventFactory.new()
         end
-        return GameKeyEventFactory.instance
+        return @@instance
     end
     
 

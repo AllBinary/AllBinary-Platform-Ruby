@@ -26,7 +26,7 @@ class LogTableEntityFactory
     
 
     def self.getInstance()
-        return LogTableEntityFactory.instance
+        return @@instance
     end
     
 

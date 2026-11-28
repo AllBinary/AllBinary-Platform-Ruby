@@ -30,7 +30,7 @@ class ImageCopyUtil
     
 
     def self.getInstance()
-        return ImageCopyUtil.instance
+        return @@instance
     end
     
 

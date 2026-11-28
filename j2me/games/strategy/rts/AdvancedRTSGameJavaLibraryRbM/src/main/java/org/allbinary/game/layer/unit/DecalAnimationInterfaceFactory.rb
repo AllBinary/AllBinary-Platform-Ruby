@@ -21,7 +21,7 @@ class DecalAnimationInterfaceFactory
     
 
     def self.getInstance()
-        return DecalAnimationInterfaceFactory.instance
+        return @@instance
     end
     
 

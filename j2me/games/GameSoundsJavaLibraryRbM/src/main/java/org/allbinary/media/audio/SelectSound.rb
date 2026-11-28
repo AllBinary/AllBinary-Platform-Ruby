@@ -29,7 +29,7 @@ class SelectSound < CompositeSound
     
 
     def self.getInstance()
-        return SelectSound.soundInterface
+        return @@soundInterface
     end
 
     def self.soundInterface()

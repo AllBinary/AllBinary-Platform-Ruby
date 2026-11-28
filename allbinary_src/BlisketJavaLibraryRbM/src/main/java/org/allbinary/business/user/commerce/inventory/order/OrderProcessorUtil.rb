@@ -30,7 +30,7 @@ class OrderProcessorUtil
     
 
     def self.getInstance()
-        return OrderProcessorUtil.instance
+        return @@instance
     end
     
 

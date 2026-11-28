@@ -26,7 +26,7 @@ class BasicOptionItemsEntityFactory
     
 
     def self.getInstance()
-        return BasicOptionItemsEntityFactory.instance
+        return @@instance
     end
     
 

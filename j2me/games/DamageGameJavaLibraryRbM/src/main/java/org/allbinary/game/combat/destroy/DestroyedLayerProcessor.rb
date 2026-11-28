@@ -33,7 +33,7 @@ class DestroyedLayerProcessor < ::Org::Allbinary::Layer::BasicLayerProcessor
     
 
     def self.getInstance()
-        return DestroyedLayerProcessor::DESTROYED_LAYER_PROCESSOR
+        return DESTROYED_LAYER_PROCESSOR
     end
     
 

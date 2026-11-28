@@ -28,7 +28,7 @@ class AbPathData
     
 
     def self.getInstance()
-        return AbPathData.instance
+        return @@instance
     end
     
 

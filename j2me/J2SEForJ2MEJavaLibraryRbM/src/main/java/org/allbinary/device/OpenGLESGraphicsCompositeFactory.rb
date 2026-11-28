@@ -30,7 +30,7 @@ class OpenGLESGraphicsCompositeFactory
     
 
     def self.getInstance()
-        return OpenGLESGraphicsCompositeFactory.instance
+        return @@instance
     end
     
 

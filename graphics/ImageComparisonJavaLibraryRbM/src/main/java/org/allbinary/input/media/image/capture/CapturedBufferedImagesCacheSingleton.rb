@@ -31,7 +31,7 @@ class CapturedBufferedImagesCacheSingleton
     
 
     def self.getInstance()
-        return CapturedBufferedImagesCacheSingleton.cacheInterface
+        return @@cacheInterface
     end
     
 
@@ -42,7 +42,7 @@ class CapturedBufferedImagesCacheSingleton
         instance = "CapturedBufferedImagesCacheSingleton"
         begin
             logUtil.putF(commonStrings.START, instance, _STATIC_BLOCK)
-            CapturedBufferedImagesCacheSingleton.cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance((::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().SET), (::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().ONE_MINUTE_FIVE_MAX))
+            @@cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance((::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().SET), (::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().ONE_MINUTE_FIVE_MAX))
             logUtil.putF(commonStrings.END_, instance, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, instance, _STATIC_BLOCK, e)

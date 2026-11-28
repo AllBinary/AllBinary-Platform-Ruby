@@ -29,10 +29,10 @@ class GameInputMotionEventProcessorAPI1 < ::Org::Allbinary::Android::Input::Moti
     
 
     def self.getInstance()
-        if GameInputMotionEventProcessorAPI1.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GameInputMotionEventProcessorAPI1.instance = GameInputMotionEventProcessorAPI1.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GameInputMotionEventProcessorAPI1.new()
         end
-        return GameInputMotionEventProcessorAPI1.instance
+        return @@instance
     end
     
 

@@ -30,7 +30,7 @@ class ThreedObjResources
     
 
     def self.getInstance()
-        return ThreedObjResources.instance
+        return @@instance
     end
     
 

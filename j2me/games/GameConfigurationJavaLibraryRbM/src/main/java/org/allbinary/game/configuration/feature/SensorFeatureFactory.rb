@@ -33,7 +33,7 @@ class SensorFeatureFactory
     
 
     def self.getInstance()
-        return SensorFeatureFactory.instance
+        return @@instance
     end
     
 

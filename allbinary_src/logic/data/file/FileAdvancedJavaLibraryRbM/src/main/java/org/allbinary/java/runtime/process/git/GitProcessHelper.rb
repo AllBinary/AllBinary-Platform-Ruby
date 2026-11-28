@@ -32,7 +32,7 @@ class GitProcessHelper
     
 
     def self.getInstance()
-        return GitProcessHelper.instance
+        return @@instance
     end
     
 

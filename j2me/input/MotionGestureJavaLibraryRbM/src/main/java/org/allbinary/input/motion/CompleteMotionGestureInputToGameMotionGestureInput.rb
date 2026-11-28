@@ -30,7 +30,7 @@ class CompleteMotionGestureInputToGameMotionGestureInput
     
 
     def self.getInstance()
-        return CompleteMotionGestureInputToGameMotionGestureInput.instance
+        return @@instance
     end
     
 

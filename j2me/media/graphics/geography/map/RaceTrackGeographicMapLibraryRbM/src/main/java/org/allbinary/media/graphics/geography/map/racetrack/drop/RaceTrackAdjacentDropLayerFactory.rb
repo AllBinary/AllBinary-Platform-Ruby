@@ -37,7 +37,7 @@ class RaceTrackAdjacentDropLayerFactory
     
 
     def self.getInstance()
-        return RaceTrackAdjacentDropLayerFactory::DROP_LAYER_FACTORY
+        return DROP_LAYER_FACTORY
     end
     
 

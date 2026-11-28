@@ -16,7 +16,7 @@ class OpenGLTextureFactory < ::Org::Allbinary::Platform::Opengles::PlatformTextu
     
 
     def self.getInstance()
-        return OpenGLTextureFactory.instance
+        return @@instance
     end
     
 

@@ -27,7 +27,7 @@ class BufferedImagePoolSingleton
         instance = "BufferedImagePoolSingleton"
         begin
             logUtil.putF(commonStrings.START, instance, _STATIC_BLOCK)
-            BufferedImagePoolSingleton.poolInterface = ::Org::Allbinary::Logic::Util::Cache::PoolInterfaceFactory.getInstance(BufferedImageCacheableFactory.new(), ::Org::Allbinary::Logic::Util::Cache::PoolTypeFactory.getInstance().VECTOR_POOL, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().MAX_TIME_THOUSAND_MAX)
+            @@poolInterface = ::Org::Allbinary::Logic::Util::Cache::PoolInterfaceFactory.getInstance(BufferedImageCacheableFactory.new(), ::Org::Allbinary::Logic::Util::Cache::PoolTypeFactory.getInstance().VECTOR_POOL, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().MAX_TIME_THOUSAND_MAX)
             logUtil.putF(commonStrings.END_, instance, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, instance, _STATIC_BLOCK, e)
@@ -40,7 +40,7 @@ class BufferedImagePoolSingleton
     
 
     def self.getInstance()
-        return BufferedImagePoolSingleton.poolInterface
+        return @@poolInterface
     end
 
     def self.poolInterface()

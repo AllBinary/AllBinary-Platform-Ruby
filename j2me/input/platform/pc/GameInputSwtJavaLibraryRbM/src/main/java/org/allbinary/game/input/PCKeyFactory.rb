@@ -109,7 +109,7 @@ class PCKeyFactory
     
 
     def self.getInstance()
-        return PCKeyFactory::SINGLETON
+        return SINGLETON
     end
     
 

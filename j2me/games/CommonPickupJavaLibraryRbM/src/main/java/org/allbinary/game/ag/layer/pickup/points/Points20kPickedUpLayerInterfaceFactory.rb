@@ -31,7 +31,7 @@ class Points20kPickedUpLayerInterfaceFactory < ::Org::Allbinary::Game::Layer::Pi
 
     # throws Exception
     def self.init()
-        Points20kPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = Points20kPickedUpLayerInterfaceFactory.new()
+        @@pickedUpLayerInterfaceFactoryInterface = Points20kPickedUpLayerInterfaceFactory.new()
     end
     
 
@@ -48,7 +48,7 @@ class Points20kPickedUpLayerInterfaceFactory < ::Org::Allbinary::Game::Layer::Pi
     
 
     def self.getInstance()
-        return Points20kPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface
+        return @@pickedUpLayerInterfaceFactoryInterface
     end
     
 

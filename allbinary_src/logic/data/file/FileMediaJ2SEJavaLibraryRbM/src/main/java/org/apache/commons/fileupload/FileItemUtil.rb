@@ -20,7 +20,7 @@ class FileItemUtil
     
 
     def self.getInstance()
-        return FileItemUtil.instance
+        return @@instance
     end
     
 

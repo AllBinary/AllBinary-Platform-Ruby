@@ -24,7 +24,7 @@ class J2SEUtil
     
 
     def self.getInstance()
-        return J2SEUtil.instance
+        return @@instance
     end
     
 

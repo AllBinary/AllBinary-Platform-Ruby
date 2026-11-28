@@ -23,7 +23,7 @@ class DisplayChangeEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler:
     
 
     def self.getInstance()
-        return DisplayChangeEventHandler::SINGLETON
+        return SINGLETON
     end
     
 

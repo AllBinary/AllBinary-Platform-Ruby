@@ -33,7 +33,7 @@ class BasicTouchButtonsBuilder < BaseTouchInput
     
 
     def self.getInstance()
-        return BasicTouchButtonsBuilder::SINGLETON
+        return SINGLETON
     end
     
 

@@ -30,7 +30,7 @@ class ScreenListenerHandler
     
 
     def self.getInstance()
-        return ScreenListenerHandler.instance
+        return @@instance
     end
     
 

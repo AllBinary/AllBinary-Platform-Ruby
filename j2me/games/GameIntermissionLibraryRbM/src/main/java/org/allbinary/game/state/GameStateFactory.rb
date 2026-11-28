@@ -30,10 +30,10 @@ class GameStateFactory
     
 
     def self.getInstance()
-        if GameStateFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GameStateFactory.instance = GameStateFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GameStateFactory.new()
         end
-        return GameStateFactory.instance
+        return @@instance
     end
     
 

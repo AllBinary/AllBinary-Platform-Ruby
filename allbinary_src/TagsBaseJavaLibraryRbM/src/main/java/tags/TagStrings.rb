@@ -30,7 +30,7 @@ class TagStrings
     
 
     def self.getInstance()
-        return TagStrings.instance
+        return @@instance
     end
 
     def self.instance()

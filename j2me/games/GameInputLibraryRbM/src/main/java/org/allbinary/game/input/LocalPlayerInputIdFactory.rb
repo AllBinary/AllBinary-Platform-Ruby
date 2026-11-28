@@ -40,7 +40,7 @@ class LocalPlayerInputIdFactory
     
 
     def self.getInstance()
-        return LocalPlayerInputIdFactory.instance
+        return @@instance
     end
     
 

@@ -35,7 +35,7 @@ class AppRendererShaderUpdaterFactory < ShaderUpdater
     
 
     def self.getInstance()
-        return AppRendererShaderUpdaterFactory.instanceC
+        return @@instanceC
     end
     
 

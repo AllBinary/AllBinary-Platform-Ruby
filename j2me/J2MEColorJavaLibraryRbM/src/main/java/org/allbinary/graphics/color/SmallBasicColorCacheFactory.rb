@@ -29,7 +29,7 @@ class SmallBasicColorCacheFactory
     
 
     def self.getInstance()
-        return SmallBasicColorCacheFactory.instance
+        return @@instance
     end
     
 

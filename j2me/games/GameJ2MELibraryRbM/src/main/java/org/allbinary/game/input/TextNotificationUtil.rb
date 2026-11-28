@@ -32,7 +32,7 @@ class TextNotificationUtil
     
 
     def self.getInstance()
-        return TextNotificationUtil.instance
+        return @@instance
     end
     
 

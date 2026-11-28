@@ -50,7 +50,7 @@ class BasicUserRoleFactory
     
 
     def self.getInstance()
-        return BasicUserRoleFactory.instance
+        return @@instance
     end
 
     def self.instance()

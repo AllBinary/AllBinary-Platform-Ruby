@@ -30,7 +30,7 @@ class FileListFetcher
     
 
     def self.getInstance()
-        return FileListFetcher.instance
+        return @@instance
     end
     
 

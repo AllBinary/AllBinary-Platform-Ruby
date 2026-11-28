@@ -30,7 +30,7 @@ class ImagesRatioUtil
     
 
     def self.getInstance()
-        return ImagesRatioUtil.instance
+        return @@instance
     end
     
 

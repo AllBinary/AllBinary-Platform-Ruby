@@ -29,7 +29,7 @@ class LogoData
     
 
     def self.getInstance()
-        return LogoData.instance
+        return @@instance
     end
     
 

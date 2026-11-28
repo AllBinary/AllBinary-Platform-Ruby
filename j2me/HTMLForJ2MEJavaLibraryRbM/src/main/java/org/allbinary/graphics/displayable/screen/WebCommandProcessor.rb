@@ -32,7 +32,7 @@ class WebCommandProcessor
     
 
     def self.getInstance()
-        return WebCommandProcessor.instance
+        return @@instance
     end
     
 

@@ -34,7 +34,7 @@ class GraphicsFeatureFactory
     
 
     def self.getInstance()
-        return GraphicsFeatureFactory.instance
+        return @@instance
     end
     
 

@@ -36,7 +36,7 @@ class AllMotionRecognizer < MotionRecognizer
     def initialize()
         super()
         jfields_org_allbinary_input_motion_AllMotionRecognizer
-        @id = ((AllMotionRecognizer.index += 1) - 1)
+        @id = ((@@index += 1) - 1)
         @motionGestureRecognizer = ::Org::Allbinary::Input::Motion::Gesture::MotionGestureRecognizer.new(@id)
         @touchButtonRecognizer = ::Org::Allbinary::Input::Motion::Button::TouchButtonRecognizer.new()
     end
@@ -48,7 +48,7 @@ class AllMotionRecognizer < MotionRecognizer
             @touchButtonProcessing = true
         end
         if !@touchButtonProcessing
-            point = AllMotionRecognizer.pointCircularPool.getNextInstance()
+            point = @@pointCircularPool.getNextInstance()
             point.setX(x)
             point.setY(y)
             @motionGestureRecognizer.processPressedMotionEvent(point, deviceId, modifiers)
@@ -62,7 +62,7 @@ class AllMotionRecognizer < MotionRecognizer
         if @touchButtonRecognizer.releaseTouchButtonInput(x, y, deviceId)
         end
         if !@touchButtonProcessing
-            point = AllMotionRecognizer.pointCircularPool.getNextInstance()
+            point = @@pointCircularPool.getNextInstance()
             point.setX(x)
             point.setY(y)
             @motionGestureRecognizer.processReleasedMotionEvent(point, deviceId, modifiers)
@@ -80,7 +80,7 @@ class AllMotionRecognizer < MotionRecognizer
             @touchButtonRecognizer.pressTouchButtonInput(x, y, deviceId)
         end
         if !@touchButtonProcessing
-            point = AllMotionRecognizer.pointCircularPool.getNextInstance()
+            point = @@pointCircularPool.getNextInstance()
             point.setX(x)
             point.setY(y)
             @motionGestureRecognizer.processDraggedMotionEvent(point, deviceId, modifiers)
@@ -94,7 +94,7 @@ class AllMotionRecognizer < MotionRecognizer
         if x != @lastX || y != @lastY
             @lastX = x
             @lastY = y
-            point = AllMotionRecognizer.pointCircularPool.getNextInstance()
+            point = @@pointCircularPool.getNextInstance()
             point.setX(x)
             point.setY(y)
             @motionGestureRecognizer.processMovedMotionEvent(point, deviceId, modifiers)
@@ -105,7 +105,7 @@ class AllMotionRecognizer < MotionRecognizer
 
     # throws Exception
     def processScrolledMotionEvent(x, y, deviceId, modifiers)
-        point = AllMotionRecognizer.pointCircularPool.getNextInstance()
+        point = @@pointCircularPool.getNextInstance()
         point.setX(x)
         point.setY(y)
         @motionGestureRecognizer.processScrolledMotionEvent(point, deviceId, modifiers)

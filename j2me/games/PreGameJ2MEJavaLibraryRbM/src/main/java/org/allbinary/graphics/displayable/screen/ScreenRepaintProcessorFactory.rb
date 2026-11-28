@@ -21,7 +21,7 @@ class ScreenRepaintProcessorFactory
     
 
     def self.getInstance()
-        return ScreenRepaintProcessorFactory.instance
+        return @@instance
     end
     
 

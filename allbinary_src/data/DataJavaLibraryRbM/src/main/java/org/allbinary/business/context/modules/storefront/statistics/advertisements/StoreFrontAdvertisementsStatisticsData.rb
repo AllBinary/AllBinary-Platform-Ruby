@@ -26,7 +26,7 @@ class StoreFrontAdvertisementsStatisticsData
     
 
     def self.getInstance()
-        return StoreFrontAdvertisementsStatisticsData.instance
+        return @@instance
     end
     
 

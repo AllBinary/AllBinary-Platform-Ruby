@@ -23,7 +23,7 @@ class NoSound < Sound
     
 
     def self.getInstance()
-        return NoSound.instance
+        return @@instance
     end
     
 

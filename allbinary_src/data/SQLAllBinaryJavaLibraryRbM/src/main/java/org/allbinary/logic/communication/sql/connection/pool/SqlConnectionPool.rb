@@ -42,7 +42,7 @@ class SqlConnectionPool
     
 
     def self.getInstance()
-        return SqlConnectionPool.instance
+        return @@instance
     end
     
 

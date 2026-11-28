@@ -46,12 +46,12 @@ class AllBinaryMediaManager
     def self.init(soundsFactoryInterface)
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-        logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, commonString.INIT)
+        logUtil.putF(commonString.START, THIS, commonString.INIT)
         AllBinaryMediaManager.shutdown(soundsFactoryInterface)
         ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
         ::Org::Allbinary::TsUtil.getInstance().gc()
         Sounds.new(soundsFactoryInterface).init()
-        logUtil.putF(commonString.END_, AllBinaryMediaManager::THIS, commonString.INIT)
+        logUtil.putF(commonString.END_, THIS, commonString.INIT)
     end
     
 
@@ -59,7 +59,7 @@ class AllBinaryMediaManager
     def self.shutdown(soundsFactoryInterface)
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-        logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, "shutdown")
+        logUtil.putF(commonString.START, THIS, "shutdown")
         if soundsFactoryInterface.isInitialized()
             Sounds.new(soundsFactoryInterface).stopAll()
             soundInterfaceArray = soundsFactoryInterface.getSoundInterfaceArray()
@@ -83,21 +83,21 @@ class AllBinaryMediaManager
             Sounds.new(soundsFactoryInterface).closeAll()
             ::Org::Allbinary::TsUtil.getInstance().gc()
             soundsFactoryInterface.setInitialized(false)
-            AllBinaryMediaManager.mostUsedTotal = 0
+            @@mostUsedTotal = 0
         end
-        logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, "shutdown")
+        logUtil.putF(commonString.START, THIS, "shutdown")
     end
     
 
     # throws Exception
     def self.createPlayer(resource)
-        AllBinaryMediaManager.mostUsedTotal += 1
+        @@mostUsedTotal += 1
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         if ::Org::Allbinary::Game::Configuration::Feature::Features.getInstance().isFeature(::Org::Allbinary::Game::Configuration::Feature::GameFeatureFactory.getInstance().SOUND)
             begin
                 return AndroidMediaPlayerWrapper.new(resource)
             rescue StandardError => e
-                logUtil.put("Could not create AndroidMediaPlayerWrapper using NoPlayer at " + (::Org::Allbinary::StringPackage::CommonLabels.getInstance().TOTAL_LABEL).to_s + (AllBinaryMediaManager.mostUsedTotal).to_s, AllBinaryMediaManager::THIS, "createPlayer", e)
+                logUtil.put("Could not create AndroidMediaPlayerWrapper using NoPlayer at " + (::Org::Allbinary::StringPackage::CommonLabels.getInstance().TOTAL_LABEL).to_s + (@@mostUsedTotal).to_s, THIS, "createPlayer", e)
                 return NoPlayer::NO_PLAYER
             end
         else

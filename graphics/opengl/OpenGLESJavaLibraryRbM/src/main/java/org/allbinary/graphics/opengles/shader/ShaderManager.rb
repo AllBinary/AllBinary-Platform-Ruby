@@ -30,7 +30,7 @@ class ShaderManager
     
 
     def self.getInstance()
-        return ShaderManager.instance
+        return @@instance
     end
     
 

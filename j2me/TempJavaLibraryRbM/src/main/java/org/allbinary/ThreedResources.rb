@@ -21,7 +21,7 @@ class ThreedResources
     
 
     def self.getThreedResources()
-        return ThreedResources.threedResources
+        return @@threedResources
     end
     
 

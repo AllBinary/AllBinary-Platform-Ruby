@@ -27,7 +27,7 @@ class AllMotionRecognizer
 
     def initialize()
         jfields_org_allbinary_input_motion_AllMotionRecognizer
-        @id = ((AllMotionRecognizer.index += 1) - 1)
+        @id = ((@@index += 1) - 1)
     end
     
 

@@ -28,7 +28,7 @@ class FeaturedAnimationInterfaceFactoryInterfaceFactory < ::Org::Allbinary::Game
     
 
     def self.getInstance()
-        return FeaturedAnimationInterfaceFactoryInterfaceFactory::INSTANCE
+        return INSTANCE
     end
     
 

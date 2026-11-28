@@ -27,14 +27,14 @@ class WebappClassLoaderInfo
 
     def self.setLoader(classLoader)
         java_monitor.synchronize do
-        WebappClassLoaderInfo.classLoader = classLoader
+        @@classLoader = classLoader
         end
     end
     
 
     def self.getLoader()
         java_monitor.synchronize do
-        return WebappClassLoaderInfo.classLoader
+        return @@classLoader
         end
     end
 

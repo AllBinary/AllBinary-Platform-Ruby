@@ -52,7 +52,7 @@ class OperatingSystems
     
 
     def self.getInstance()
-        return OperatingSystems.instance
+        return @@instance
     end
 
     def self.instance()

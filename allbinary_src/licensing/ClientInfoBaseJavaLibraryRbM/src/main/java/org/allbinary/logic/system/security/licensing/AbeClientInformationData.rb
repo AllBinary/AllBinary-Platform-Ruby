@@ -41,7 +41,7 @@ class AbeClientInformationData
     
 
     def self.getInstance()
-        return AbeClientInformationData.instance
+        return @@instance
     end
     
 

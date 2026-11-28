@@ -28,7 +28,7 @@ class HtmlMetaAttributeDataFactory
     
 
     def self.getInstance()
-        return HtmlMetaAttributeDataFactory.instance
+        return @@instance
     end
     
 

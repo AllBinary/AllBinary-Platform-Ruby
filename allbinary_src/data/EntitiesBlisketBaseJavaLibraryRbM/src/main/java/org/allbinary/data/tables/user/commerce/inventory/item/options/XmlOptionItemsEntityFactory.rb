@@ -26,7 +26,7 @@ class XmlOptionItemsEntityFactory
     
 
     def self.getInstance()
-        return XmlOptionItemsEntityFactory.instance
+        return @@instance
     end
     
 

@@ -32,7 +32,7 @@ class OrientationData
     
 
     def self.getInstance()
-        return OrientationData::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

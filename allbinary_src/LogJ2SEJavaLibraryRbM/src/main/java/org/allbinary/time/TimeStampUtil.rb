@@ -27,7 +27,7 @@ class TimeStampUtil
     
 
     def self.getInstance()
-        return TimeStampUtil.instance
+        return @@instance
     end
     
 

@@ -22,7 +22,7 @@ class HardwareFactory
     
 
     def self.getInstance_j0()
-        return HardwareFactory.instance
+        return @@instance
     end
     
 

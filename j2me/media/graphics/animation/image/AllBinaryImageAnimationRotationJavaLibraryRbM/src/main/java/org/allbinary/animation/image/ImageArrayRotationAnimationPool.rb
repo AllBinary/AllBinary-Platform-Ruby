@@ -28,7 +28,7 @@ class ImageArrayRotationAnimationPool < ::Org::Allbinary::Logic::Util::Cache::Ba
     
 
     def self.getInstance()
-        return ImageArrayRotationAnimationPool::IMAGE_ROTATION_ANIMATION_POOL
+        return IMAGE_ROTATION_ANIMATION_POOL
     end
     
 

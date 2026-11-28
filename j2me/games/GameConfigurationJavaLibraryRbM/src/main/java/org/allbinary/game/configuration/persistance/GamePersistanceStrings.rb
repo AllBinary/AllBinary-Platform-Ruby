@@ -33,7 +33,7 @@ class GamePersistanceStrings
     
 
     def self.getInstance()
-        return GamePersistanceStrings.instance
+        return @@instance
     end
 
     def self.instance()

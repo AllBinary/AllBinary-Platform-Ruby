@@ -27,7 +27,7 @@ class GameConfigurationSingleton
     
 
     def self.getInstance()
-        return GameConfigurationSingleton::SINGLETON
+        return SINGLETON
     end
     
 

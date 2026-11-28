@@ -241,7 +241,7 @@ class RTSLayer < ::Org::Allbinary::Game::Multiplayer::Layer::MultiPlayerGameLaye
     
 
     def getSourceId()
-        return RTSLayer.id
+        return @@id
     end
     java_overload :getSourceId, 0
     

@@ -29,10 +29,10 @@ class CollidableWeaponBehavior < ::Org::Allbinary::Game::Layer::Special::Collida
     
 
     def self.getNullInstance()
-        if CollidableWeaponBehavior::NULL_COLLIDABLE_WEAPON_BEHAVIOR == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_COLLIDABLE_WEAPON_BEHAVIOR == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (CollidableWeaponBehavior.instance_exec(CollidableWeaponBehavior.new(false)) { |java_value| remove_const(:NULL_COLLIDABLE_WEAPON_BEHAVIOR) if const_defined?(:NULL_COLLIDABLE_WEAPON_BEHAVIOR, false); const_set(:NULL_COLLIDABLE_WEAPON_BEHAVIOR, java_value) })
         end
-        return CollidableWeaponBehavior::NULL_COLLIDABLE_WEAPON_BEHAVIOR
+        return NULL_COLLIDABLE_WEAPON_BEHAVIOR
     end
     
 

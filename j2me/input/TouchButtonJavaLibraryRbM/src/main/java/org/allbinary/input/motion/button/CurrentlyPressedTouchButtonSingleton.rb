@@ -26,7 +26,7 @@ class CurrentlyPressedTouchButtonSingleton
     
 
     def self.getInstance()
-        return CurrentlyPressedTouchButtonSingleton.instance
+        return @@instance
     end
     
 

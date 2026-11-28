@@ -24,7 +24,7 @@ class SelectRTSLayerVisitorFactory
     
 
     def self.getInstance()
-        return SelectRTSLayerVisitorFactory.instance
+        return @@instance
     end
     
 

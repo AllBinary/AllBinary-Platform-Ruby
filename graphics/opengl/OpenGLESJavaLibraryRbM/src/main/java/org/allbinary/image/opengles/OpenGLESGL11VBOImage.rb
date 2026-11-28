@@ -40,8 +40,8 @@ class OpenGLESGL11VBOImage < OpenGLESImage
         super(image, bitmapFactory, textureFactory)
         jfields_org_allbinary_image_opengles_OpenGLESGL11VBOImage
         self.initVertices()
-        @regionRectangleVertexFloatBuffer.put(@regionRectangleFloatArray)
-        @regionTextureVertexFloatBuffer.put(@regionTextureRectangleFloatArray)
+        @regionRectangleVertexFloatBuffer.put(FloatBuffer.wrap(@regionRectangleFloatArray))
+        @regionTextureVertexFloatBuffer.put(FloatBuffer.wrap(@regionTextureRectangleFloatArray))
     end
     
 

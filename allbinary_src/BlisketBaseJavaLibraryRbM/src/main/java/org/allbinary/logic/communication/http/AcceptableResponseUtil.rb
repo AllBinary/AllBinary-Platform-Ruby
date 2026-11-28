@@ -32,7 +32,7 @@ class AcceptableResponseUtil
     
 
     def self.getInstance()
-        return AcceptableResponseUtil.instance
+        return @@instance
     end
     
 

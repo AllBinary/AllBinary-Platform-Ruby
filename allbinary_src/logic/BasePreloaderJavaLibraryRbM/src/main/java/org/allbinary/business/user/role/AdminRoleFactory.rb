@@ -36,7 +36,7 @@ class AdminRoleFactory
     
 
     def self.getInstance()
-        return AdminRoleFactory.instance
+        return @@instance
     end
     
 

@@ -28,7 +28,7 @@ class LoggingInitInfo
     # throws Exception
     def self.getDoc()
         java_monitor.synchronize do
-        path = ::Org::Allbinary::Globals::URLGLOBALS.getWebappPath() + LoggingInitInfo::PACKAGE
+        path = ::Org::Allbinary::Globals::URLGLOBALS.getWebappPath() + PACKAGE
         _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(path, INITFILENAME)
         file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
         document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create(::Org::Allbinary::Logic::Io::AbFileLocalInputStream.new(file))
@@ -41,7 +41,7 @@ class LoggingInitInfo
     def self.write()
         java_monitor.synchronize do
         begin
-            LoggingInitInfo.hasRead = false
+            @@hasRead = false
         rescue StandardError => e
             raise e
         end
@@ -57,12 +57,12 @@ class LoggingInitInfo
             logConfigsNodeList = document.getElementsByTagName(LogConfigsData.getInstance().NAME)
             logConfigsNode = logConfigsNodeList.item(0)
             logConfigNodeVector = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getAllNodes(LogConfigData.getInstance().NAME, logConfigsNode.getChildNodes())
-            LoggingInitInfo.logConfigInfoList = ::Org::Allbinary::Util::BasicArrayListD.new()
+            @@logConfigInfoList = ::Org::Allbinary::Util::BasicArrayListD.new()
             size = logConfigNodeVector.size()
             (0...size).each do |i|
                 node = logConfigNodeVector.get(i)
                 logConfigInfo = LogConfig.new(node)
-                LoggingInitInfo.logConfigInfoList.add(logConfigInfo)
+                @@logConfigInfoList.add(logConfigInfo)
             end
         rescue StandardError => e
             raise e
@@ -73,7 +73,7 @@ class LoggingInitInfo
 
     def self.setHasRead(value)
         java_monitor.synchronize do
-        LoggingInitInfo.hasRead = value
+        @@hasRead = value
         end
     end
     
@@ -81,10 +81,10 @@ class LoggingInitInfo
     # throws Exception
     def self.updateIfNeeded()
         java_monitor.synchronize do
-        if !LoggingInitInfo.hasRead
+        if !@@hasRead
             LoggingInitInfo.read()
-            LoggingInitInfo.hasRead = true
-            if LoggingInitInfo.logConfigInfoList == nil
+            @@hasRead = true
+            if @@logConfigInfoList == nil
                 raise StandardError.new("Read Failed")
             end
         end
@@ -103,7 +103,7 @@ class LoggingInitInfo
 
     def self.set(logConfigInfoVector)
         java_monitor.synchronize do
-        LoggingInitInfo.logConfigInfoList = logConfigInfoVector
+        @@logConfigInfoList = logConfigInfoVector
         end
     end
     
@@ -111,7 +111,7 @@ class LoggingInitInfo
     # throws Exception
     def self.get()
         LoggingInitInfo.updateIfNeeded()
-        return LoggingInitInfo.logConfigInfoList
+        return @@logConfigInfoList
     end
     
 
@@ -119,9 +119,9 @@ class LoggingInitInfo
     def self.getTypeNameList()
         LoggingInitInfo.updateIfNeeded()
         allLogTypeVector = ::Org::Allbinary::Util::BasicArrayListD.new()
-        size = LoggingInitInfo.logConfigInfoList.size()
+        size = @@logConfigInfoList.size()
         (0...size).each do |index|
-            logConfigInfo = LoggingInitInfo.logConfigInfoList.objectArray[index]
+            logConfigInfo = @@logConfigInfoList.objectArray[index]
             logTypeVector = logConfigInfo.getTypeVector()
             if logConfigInfo.isEnabled()
                 allLogTypeVector.addAllList(logTypeVector)
@@ -135,9 +135,9 @@ class LoggingInitInfo
     def self.getTypeList()
         LoggingInitInfo.updateIfNeeded()
         allLogTypeVector = ::Org::Allbinary::Util::BasicArrayListD.new()
-        size = LoggingInitInfo.logConfigInfoList.size()
+        size = @@logConfigInfoList.size()
         (0...size).each do |index|
-            logConfigInfo = LoggingInitInfo.logConfigInfoList.objectArray[index]
+            logConfigInfo = @@logConfigInfoList.objectArray[index]
             logTypeVector = logConfigInfo.getTypeVector()
             if logConfigInfo.isEnabled()
                 allLogTypeVector.addAllList(logTypeVector)
@@ -149,7 +149,7 @@ class LoggingInitInfo
 
     # throws Exception
     def getNumberOfLogConfigs()
-        return LoggingInitInfo.logConfigInfoList.size()
+        return @@logConfigInfoList.size()
     end
     
 

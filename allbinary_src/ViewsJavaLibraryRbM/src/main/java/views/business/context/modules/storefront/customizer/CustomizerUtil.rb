@@ -27,7 +27,7 @@ class CustomizerUtil
     
 
     def self.getInstance()
-        return CustomizerUtil.instance
+        return @@instance
     end
     
 

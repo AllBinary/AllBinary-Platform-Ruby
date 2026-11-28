@@ -36,7 +36,7 @@ class StoreFrontsData
     
 
     def self.getInstance()
-        return StoreFrontsData.instance
+        return @@instance
     end
 
     def self.instance()

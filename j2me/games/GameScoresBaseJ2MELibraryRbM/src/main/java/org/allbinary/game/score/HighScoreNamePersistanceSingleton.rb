@@ -36,7 +36,7 @@ class HighScoreNamePersistanceSingleton
     
 
     def self.getInstance()
-        return HighScoreNamePersistanceSingleton::SINGLETON
+        return SINGLETON
     end
     
 

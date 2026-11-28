@@ -35,51 +35,51 @@ class PaymentGatewayPageData
 
     def initialize(location, paymentMethod)
         jfields_org_allbinary_business_user_commerce_money_payment_gateway_PaymentGatewayPageData
-        paymentMethodString = (PaymentGatewayPageData::NAME).to_s + paymentMethod
+        paymentMethodString = (NAME).to_s + paymentMethod
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(location)
         stringBuffer.append("MakePayment")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @MAKEPAYMENT = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(paymentMethodString)
         stringBuffer.append("Checkout")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @CHECKOUT = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(paymentMethodString)
         stringBuffer.append("Shipping")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @SHIPPING = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(paymentMethodString)
         stringBuffer.append("ShippingAddress")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @SHIPPINGADDRESS = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(paymentMethodString)
         stringBuffer.append("ShippingAddressAction")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @SHIPPINGADDRESSACTION = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(paymentMethodString)
         stringBuffer.append("BillingAddress")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @BILLINGADDRESS = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(paymentMethodString)
         stringBuffer.append("Payment")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @PAYMENT = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(paymentMethodString)
         stringBuffer.append("Authorize")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @AUTHORIZE = stringBuffer.to_s
         stringBuffer.delete(0, stringBuffer.length())
         stringBuffer.append(paymentMethodString)
         stringBuffer.append("PaymentFinish")
-        stringBuffer.append(PaymentGatewayPageData::EXTENSION)
+        stringBuffer.append(EXTENSION)
         @FINISH = stringBuffer.to_s
     end
 
@@ -90,8 +90,8 @@ class PaymentGatewayPageData
         const_set(:FORWARDMAKEPAYMENT, "MakePayment.jsp")
         begin
             const_set(:NAME, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
-            const_set(:PAYMENTOPTIONS, "PaymentOptions" + (PaymentGatewayPageData::EXTENSION).to_s)
-            const_set(:STARTCHECKOUT, "StartCheckout" + (PaymentGatewayPageData::EXTENSION).to_s)
+            const_set(:PAYMENTOPTIONS, "PaymentOptions" + (EXTENSION).to_s)
+            const_set(:STARTCHECKOUT, "StartCheckout" + (EXTENSION).to_s)
         rescue StandardError
             @java_static_fields_started = false
             raise

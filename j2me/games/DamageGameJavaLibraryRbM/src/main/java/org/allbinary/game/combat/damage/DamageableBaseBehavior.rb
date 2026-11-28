@@ -25,7 +25,7 @@ class DamageableBaseBehavior
     
 
     def self.getInstance()
-        return DamageableBaseBehavior.instance
+        return @@instance
     end
     
 

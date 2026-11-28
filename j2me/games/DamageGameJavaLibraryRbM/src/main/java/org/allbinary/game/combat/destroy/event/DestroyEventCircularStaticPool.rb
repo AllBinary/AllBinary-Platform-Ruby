@@ -26,7 +26,7 @@ class DestroyEventCircularStaticPool
     
 
     def self.getInstance()
-        return DestroyEventCircularStaticPool.instance
+        return @@instance
     end
     
 

@@ -63,9 +63,9 @@ class PtsDamageFloaters < DamageFloaters
         (@lastDamage.length - 1).step(0, -(1)) do |index|
             if @lastDamage[index] != 0
                 delta = 10 * (index + 2)
-                @basicSetColorUtil.setBasicColorP(graphics, PtsDamageFloaters.basicColorArrayIndexer.get())
+                @basicSetColorUtil.setBasicColorP(graphics, @@basicColorArrayIndexer.get())
                 graphics.drawChars(@lastDamageString[index], 0, @lastDamageStringSizeArray[index], x - @myRandomFactory.getNextInt(delta), y - delta, 0)
-                PtsDamageFloaters.basicColorArrayIndexer.next_()
+                @@basicColorArrayIndexer.next_()
             end
             @lastDamage[index] = 0
         end

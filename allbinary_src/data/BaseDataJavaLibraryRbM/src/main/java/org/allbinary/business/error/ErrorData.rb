@@ -27,7 +27,7 @@ class ErrorData
     
 
     def self.getInstance()
-        return ErrorData.instance
+        return @@instance
     end
     
 

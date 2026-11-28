@@ -32,7 +32,7 @@ class RTSLayerUtil
     
 
     def self.getInstance()
-        return RTSLayerUtil.instance
+        return @@instance
     end
     
 

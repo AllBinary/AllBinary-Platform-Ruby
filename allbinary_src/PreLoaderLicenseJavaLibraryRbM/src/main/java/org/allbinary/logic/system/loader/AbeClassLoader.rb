@@ -43,7 +43,7 @@ class AbeClassLoader < ::Java::Lang::ClassLoader
     
 
     def findLoadedClass1(name)
-        return AbeClassLoader.classes.get(name)
+        return @@classes.get(name)
     end
     java_overload :findLoadedClass1, 1
     
@@ -85,7 +85,7 @@ class AbeClassLoader < ::Java::Lang::ClassLoader
                 if myClass == nil
                     raise NameError.new("My Class Not Defineable for: " + name + "\nwith: " + "loadClassBytes")
                 end
-                AbeClassLoader.classes.put(name, myClass)
+                @@classes.put(name, myClass)
             else
                 logBuffer.add(::Org::Allbinary::Logic::Communication::Log::LogFactory.getInstanceF("Already Loaded: " + name + "\nwith: " + loadedWith, self, @LOAD_CLASS))
             end
@@ -112,7 +112,7 @@ class AbeClassLoader < ::Java::Lang::ClassLoader
         in_ = nil
         cname = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         begin
-            cname = (AbeClassLoader::PATH).to_s + name.gsub(".", ::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATORCHAR) + @ENCRYPTED_EXTENSION
+            cname = (PATH).to_s + name.gsub(".", ::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().SEPARATORCHAR) + @ENCRYPTED_EXTENSION
             in_ = ::Java::Io::FileInputStream.new(cname)
             decrypted = @abCryptUtil.decrypt(in_, @key)
             return decrypted
@@ -172,7 +172,7 @@ class AbeClassLoader < ::Java::Lang::ClassLoader
                 if myClass == nil
                     raise NameError.new("Class Not Defineable for: " + name)
                 end
-                AbeClassLoader.classes.put(name, myClass)
+                @@classes.put(name, myClass)
             else
                 if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().LOADER)
                     @logUtil.putF("Already Loaded: " + name + " with: " + loadedWith, self, @LOAD_CLASS)

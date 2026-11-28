@@ -30,7 +30,7 @@ class TouchButtonFactory
     
 
     def self.getInstance()
-        return TouchButtonFactory::SINGLETON
+        return SINGLETON
     end
     
 

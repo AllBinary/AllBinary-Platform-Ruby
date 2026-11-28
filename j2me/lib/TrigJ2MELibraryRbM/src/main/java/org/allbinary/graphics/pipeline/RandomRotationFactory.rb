@@ -31,7 +31,7 @@ class RandomRotationFactory
     
 
     def self.getInstance()
-        return RandomRotationFactory.instance
+        return @@instance
     end
     
 

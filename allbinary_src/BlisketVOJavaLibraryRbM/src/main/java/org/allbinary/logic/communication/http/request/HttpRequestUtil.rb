@@ -21,7 +21,7 @@ class HttpRequestUtil
     
 
     def self.getInstance()
-        return HttpRequestUtil.instance
+        return @@instance
     end
     
 

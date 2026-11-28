@@ -36,7 +36,7 @@ class InputOutputTypeData
     
 
     def self.getInstance()
-        return InputOutputTypeData.instance
+        return @@instance
     end
     
 

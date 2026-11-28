@@ -32,7 +32,7 @@ class TestingInputSingleton < ::Org::Allbinary::Game::Layer::AllBinaryGameLayer
     
 
     def self.getInstance()
-        return TestingInputSingleton.instance
+        return @@instance
     end
     
 

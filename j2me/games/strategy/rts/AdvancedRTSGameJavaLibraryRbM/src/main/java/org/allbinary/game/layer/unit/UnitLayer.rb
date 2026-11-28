@@ -135,7 +135,7 @@ class UnitLayer < ::Org::Allbinary::Game::Layer::AdvancedRTSGameLayer
             currentGeographicMapCellPosition = self.getCurrentGeographicMapCellPosition()
             @sensorGeographicMapCellPositionList.clear()
             @sensorGeographicMapCellPositionList.add(currentGeographicMapCellPosition)
-            sensorRange = @weaponRange * UnitLayer::SENSOR_RANGE_MULTIPLIER
+            sensorRange = @weaponRange * SENSOR_RANGE_MULTIPLIER
             geographicMapCompositeInterface = @allBinaryGameLayerManagerP
             geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0]
             tiledLayer = geographicMapInterface.getAllBinaryTiledLayer()
@@ -269,7 +269,7 @@ class UnitLayer < ::Org::Allbinary::Game::Layer::AdvancedRTSGameLayer
         weaponProperties = basicWeaponPart.getWeaponProperties()
         @weaponRange = weaponProperties.getRange()
         @initRangeAnimation = ::Org::Allbinary::Animation::Vector::AdjustedCircleAnimation.createW(@weaponRange, @weaponRange, self.getWidth(), @basicColorFactory.GREEN)
-        sensorRange = @weaponRange * UnitLayer::SENSOR_RANGE_MULTIPLIER
+        sensorRange = @weaponRange * SENSOR_RANGE_MULTIPLIER
         @initSensorRangeAnimation = ::Org::Allbinary::Animation::Vector::AdjustedCircleAnimation.createW(sensorRange, sensorRange, self.getWidth(), @basicColorFactory.RED)
         self.getUnitWaypointBehavior().initRange(@weaponRange)
         @fireTimeHelper.delay = (((weaponProperties.getReloadTime()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
@@ -587,7 +587,7 @@ class UnitLayer < ::Org::Allbinary::Game::Layer::AdvancedRTSGameLayer
         if self.getUnitWaypointBehavior().needToMove()
             @rtsLayer2LogHelper.steeringUp(self)
             if @showMoreCaptionStates && !@captionAnimationHelper.isShowing()
-                @captionAnimationHelper.update(UnitLayer::MOVE, @basicColorFactory.GREEN)
+                @captionAnimationHelper.update(MOVE, @basicColorFactory.GREEN)
             end
             self.getGameKeyEventList().add(gameKeyEventFactory.getInstanceForKey(self, ::Javax::Microedition::Lcdui::Canvas::UP))
         else
@@ -830,7 +830,7 @@ class UnitLayer < ::Org::Allbinary::Game::Layer::AdvancedRTSGameLayer
     
 
     def self.getPartialpositionlist()
-        return UnitLayer.partialPositionList
+        return @@partialPositionList
     end
 
     def self.partialPositionList()

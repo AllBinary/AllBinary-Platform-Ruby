@@ -34,7 +34,7 @@ class EntryData
     
 
     def self.getInstance()
-        return EntryData.instance
+        return @@instance
     end
     
 

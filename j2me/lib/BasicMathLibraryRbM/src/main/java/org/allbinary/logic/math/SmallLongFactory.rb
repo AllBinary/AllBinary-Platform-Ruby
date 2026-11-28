@@ -32,7 +32,7 @@ class SmallLongFactory
     
 
     def self.getInstance()
-        return SmallLongFactory.instance
+        return @@instance
     end
     
 

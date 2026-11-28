@@ -23,10 +23,10 @@ class RollRightOrientationInputToGameKeyEventAction < ::Org::Allbinary::Game::In
     
 
     def self.getInstance()
-        if RollRightOrientationInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            RollRightOrientationInputToGameKeyEventAction.instance = RollRightOrientationInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = RollRightOrientationInputToGameKeyEventAction.new()
         end
-        return RollRightOrientationInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

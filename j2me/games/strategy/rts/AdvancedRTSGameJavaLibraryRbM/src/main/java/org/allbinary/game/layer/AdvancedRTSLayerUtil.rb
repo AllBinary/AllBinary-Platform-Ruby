@@ -20,7 +20,7 @@ class AdvancedRTSLayerUtil
     
 
     def self.getInstance()
-        return AdvancedRTSLayerUtil.instance
+        return @@instance
     end
     
 

@@ -34,7 +34,7 @@ class PointsResources
     
 
     def self.getInstance()
-        return PointsResources::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

@@ -30,7 +30,7 @@ class MediaPlayerUtil
     
 
     def self.getInstance()
-        return MediaPlayerUtil.instance
+        return @@instance
     end
     
 

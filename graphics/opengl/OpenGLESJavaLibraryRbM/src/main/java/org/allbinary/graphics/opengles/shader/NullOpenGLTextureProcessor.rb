@@ -21,7 +21,7 @@ class NullOpenGLTextureProcessor
     
 
     def self.getInstance()
-        return NullOpenGLTextureProcessor.instance
+        return @@instance
     end
 
     def self.instance()

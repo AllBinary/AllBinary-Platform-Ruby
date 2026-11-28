@@ -32,7 +32,7 @@ class ImageModifierUtil
     
 
     def self.getInstanceOrCreate()
-        return ImageModifierUtil.instance
+        return @@instance
     end
     
 
@@ -218,6 +218,7 @@ module ::Org; module Eclipse; module Swt; module Graphics; autoload :ImageData, 
 module ::Org; module Microemu; module Device; module Swt; autoload :SwtImmutableImage, "org/microemu/device/swt/SwtImmutableImage" unless const_defined?(:SwtImmutableImage, false); end; end; end; end
 module ::Org; module Microemu; module Device; module Swt; autoload :SwtMutableImage, "org/microemu/device/swt/SwtMutableImage" unless const_defined?(:SwtMutableImage, false); end; end; end; end
 autoload :ImageCopyUtil, "org/allbinary/media/image/ImageCopyUtil" unless const_defined?(:ImageCopyUtil, false)
+autoload :SwtOpenGLESImageBridge, "org/allbinary/media/image/SwtOpenGLESImageBridge" unless const_defined?(:SwtOpenGLESImageBridge, false)
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end

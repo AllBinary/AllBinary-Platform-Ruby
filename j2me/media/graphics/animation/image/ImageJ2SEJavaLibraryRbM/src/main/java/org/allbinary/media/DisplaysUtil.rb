@@ -26,7 +26,7 @@ class DisplaysUtil
     
 
     def self.getInstance()
-        return DisplaysUtil.instance
+        return @@instance
     end
     
 

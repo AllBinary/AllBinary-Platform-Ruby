@@ -26,7 +26,7 @@ class StaticPagesEntityFactory
     
 
     def self.getInstance()
-        return StaticPagesEntityFactory.instance
+        return @@instance
     end
     
 

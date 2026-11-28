@@ -42,10 +42,10 @@ class BasicTouchInputFactory
     
 
     def self.getInstance()
-        if BasicTouchInputFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            BasicTouchInputFactory.instance = BasicTouchInputFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = BasicTouchInputFactory.new()
         end
-        return BasicTouchInputFactory.instance
+        return @@instance
     end
     
 

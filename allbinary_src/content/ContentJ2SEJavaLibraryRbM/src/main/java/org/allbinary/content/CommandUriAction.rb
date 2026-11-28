@@ -32,7 +32,7 @@ class CommandUriAction
     
 
     def self.getInstance()
-        return CommandUriAction.instance
+        return @@instance
     end
     
 

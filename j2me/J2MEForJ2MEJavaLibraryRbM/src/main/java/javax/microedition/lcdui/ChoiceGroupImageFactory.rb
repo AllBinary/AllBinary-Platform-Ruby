@@ -43,7 +43,7 @@ class ChoiceGroupImageFactory
     
 
     def self.getInstance()
-        return ChoiceGroupImageFactory.instance
+        return @@instance
     end
     
 

@@ -27,7 +27,7 @@ class HttpFileUploadUtil
     
 
     def self.getInstance()
-        return HttpFileUploadUtil.instance
+        return @@instance
     end
     
 

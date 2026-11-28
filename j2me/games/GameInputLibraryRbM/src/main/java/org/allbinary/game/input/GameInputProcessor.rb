@@ -21,7 +21,7 @@ class GameInputProcessor
     
 
     def self.getInstance()
-        return GameInputProcessor.instance
+        return @@instance
     end
     
 

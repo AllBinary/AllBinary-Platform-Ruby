@@ -31,7 +31,7 @@ class MathData
     
 
     def self.getInstance()
-        return MathData.instance
+        return @@instance
     end
     
 

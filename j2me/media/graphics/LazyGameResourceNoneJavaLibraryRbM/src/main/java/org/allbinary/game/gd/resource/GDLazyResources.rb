@@ -32,7 +32,7 @@ class GDLazyResources
     
 
     def self.getInstance()
-        return GDLazyResources.instance
+        return @@instance
     end
 
     def self.instance()

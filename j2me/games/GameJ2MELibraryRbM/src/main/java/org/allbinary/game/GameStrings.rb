@@ -39,7 +39,7 @@ class GameStrings
     
 
     def self.getInstance()
-        return GameStrings.instance
+        return @@instance
     end
 
     def self.instance()

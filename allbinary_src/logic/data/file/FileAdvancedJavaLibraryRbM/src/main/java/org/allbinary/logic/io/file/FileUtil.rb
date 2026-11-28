@@ -37,7 +37,7 @@ class FileUtil
     
 
     def self.getInstance()
-        return FileUtil.instance
+        return @@instance
     end
     
 

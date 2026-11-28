@@ -26,7 +26,7 @@ class StoreFrontStatisticsData
     
 
     def self.getInstance()
-        return StoreFrontStatisticsData.instance
+        return @@instance
     end
     
 

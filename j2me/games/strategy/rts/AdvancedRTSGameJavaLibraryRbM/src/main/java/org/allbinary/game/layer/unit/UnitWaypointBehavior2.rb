@@ -124,7 +124,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
     # throws Exception
     def processTick(allBinaryLayerManager)
         if @waypointPathRunnable.isRunning()
-            if @waypointPathsListP != UnitWaypointBehavior2.runningWaypointPathList
+            if @waypointPathsListP != @@runningWaypointPathList
                 @waypointPathRunnable.setRunning(false)
                 if @waitingOnTargetPath
                     self.setTargetPath()
@@ -431,7 +431,7 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
 
     # throws Exception
     def runWaypointPathTask(waypointLayer)
-        self.setWaypointPathsList(UnitWaypointBehavior2.runningWaypointPathList)
+        self.setWaypointPathsList(@@runningWaypointPathList)
         if @waypointPathRunnable.isRunning()
             raise StandardError.new("Should never be running here")
         end
@@ -499,11 +499,11 @@ class UnitWaypointBehavior2 < UnitWaypointBehavior
     def getCurrentTargetingStateString()
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         if @currentTargetLayerInterfaceP != ::Org::Allbinary::Game::Layer::Special::CollidableDestroyableDamageableLayer.getNullInstance()
-            stringBuffer.append(UnitWaypointBehavior2::TARGET_LAYER)
+            stringBuffer.append(TARGET_LAYER)
             stringBuffer.append(@commonSeps.SPACE)
             stringBuffer.append(@currentTargetLayerInterfaceP.getName())
             stringBuffer.append(" with ")
-            stringBuffer.append(UnitWaypointBehavior2::TARGET_DISTANCE)
+            stringBuffer.append(TARGET_DISTANCE)
             stringBuffer.append(@commonSeps.SPACE)
             stringBuffer.appendint(((self.getCurrentTargetDistance()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         end

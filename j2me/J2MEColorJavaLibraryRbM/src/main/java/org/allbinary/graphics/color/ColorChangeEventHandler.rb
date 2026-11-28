@@ -30,7 +30,7 @@ class ColorChangeEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::B
 
     def self.getInstance()
         java_monitor.synchronize do
-        return ColorChangeEventHandler.eventHandler
+        return @@eventHandler
         end
     end
 

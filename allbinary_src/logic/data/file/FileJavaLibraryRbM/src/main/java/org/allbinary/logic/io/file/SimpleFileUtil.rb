@@ -35,7 +35,7 @@ class SimpleFileUtil
     
 
     def self.getInstance()
-        return SimpleFileUtil.instance
+        return @@instance
     end
     
 

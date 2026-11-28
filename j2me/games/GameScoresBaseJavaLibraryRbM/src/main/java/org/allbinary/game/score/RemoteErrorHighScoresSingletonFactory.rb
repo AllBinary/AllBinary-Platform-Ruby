@@ -21,7 +21,7 @@ class RemoteErrorHighScoresSingletonFactory
     
 
     def self.getInstance()
-        return RemoteErrorHighScoresSingletonFactory::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

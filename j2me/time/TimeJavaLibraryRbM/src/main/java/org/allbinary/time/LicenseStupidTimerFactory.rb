@@ -21,7 +21,7 @@ class LicenseStupidTimerFactory
     
 
     def self.getInstance()
-        return LicenseStupidTimerFactory.instance
+        return @@instance
     end
 
     def self.instance()

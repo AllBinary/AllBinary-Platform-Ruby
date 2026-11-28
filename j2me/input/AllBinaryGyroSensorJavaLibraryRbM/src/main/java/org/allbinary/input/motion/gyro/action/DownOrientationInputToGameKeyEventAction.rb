@@ -23,10 +23,10 @@ class DownOrientationInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::
     
 
     def self.getInstance()
-        if DownOrientationInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            DownOrientationInputToGameKeyEventAction.instance = DownOrientationInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = DownOrientationInputToGameKeyEventAction.new()
         end
-        return DownOrientationInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

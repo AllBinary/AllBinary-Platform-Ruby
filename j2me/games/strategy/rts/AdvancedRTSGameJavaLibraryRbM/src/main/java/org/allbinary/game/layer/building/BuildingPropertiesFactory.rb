@@ -30,7 +30,7 @@ class BuildingPropertiesFactory
     
 
     def self.getInstance()
-        return BuildingPropertiesFactory.instance
+        return @@instance
     end
     
 

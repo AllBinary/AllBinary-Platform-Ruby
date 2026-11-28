@@ -23,7 +23,7 @@ class EmptyRaceRaceTrackGeographicMapCellTypeFactory < RaceTrackGeographicMapCel
     
 
     def self.getInstance()
-        return EmptyRaceRaceTrackGeographicMapCellTypeFactory.instanceC
+        return @@instanceC
     end
     
 

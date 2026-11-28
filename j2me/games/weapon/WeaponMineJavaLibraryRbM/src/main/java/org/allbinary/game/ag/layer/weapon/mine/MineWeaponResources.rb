@@ -30,10 +30,10 @@ class MineWeaponResources < ::Org::Allbinary::Game::Layer::Resources::BasicGameR
     
 
     def self.getInstance()
-        if MineWeaponResources.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            MineWeaponResources.instance = MineWeaponResources.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = MineWeaponResources.new()
         end
-        return MineWeaponResources.instance
+        return @@instance
     end
     
 

@@ -34,7 +34,7 @@ class NoDecimalTrigTable
     
 
     def self.getInstance()
-        return NoDecimalTrigTable.instance
+        return @@instance
     end
     
 

@@ -41,7 +41,7 @@ class CurrentlyPressedTouchButtonSingletonDebug < CurrentlyPressedTouchButtonSin
     
 
     def self.getInstance()
-        return CurrentlyPressedTouchButtonSingletonDebug.instanceC
+        return @@instanceC
     end
     
 

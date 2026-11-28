@@ -26,7 +26,7 @@ class OpenGLFeatureUtil
     
 
     def self.getInstance()
-        return OpenGLFeatureUtil.instance
+        return @@instance
     end
     
 

@@ -32,7 +32,7 @@ class RaceTrackAdjacentDropCellPositionGenerator < RaceTrackDropCellPositionGene
     
 
     def self.getInstance()
-        return RaceTrackAdjacentDropCellPositionGenerator::SINGLETON
+        return SINGLETON
     end
     
 

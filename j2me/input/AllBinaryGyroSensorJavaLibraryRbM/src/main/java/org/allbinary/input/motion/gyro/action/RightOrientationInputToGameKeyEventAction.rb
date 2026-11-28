@@ -23,10 +23,10 @@ class RightOrientationInputToGameKeyEventAction < ::Org::Allbinary::Game::Input:
     
 
     def self.getInstance()
-        if RightOrientationInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            RightOrientationInputToGameKeyEventAction.instance = RightOrientationInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = RightOrientationInputToGameKeyEventAction.new()
         end
-        return RightOrientationInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

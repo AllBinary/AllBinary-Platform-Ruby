@@ -32,7 +32,7 @@ class GameGlobalsFactory
     
 
     def self.getInstance()
-        return GameGlobalsFactory.instance
+        return @@instance
     end
 
     def self.instance()

@@ -31,7 +31,7 @@ class TableDataFactory
     
 
     def self.getInstance()
-        return TableDataFactory.instance
+        return @@instance
     end
 
     def self.instance()

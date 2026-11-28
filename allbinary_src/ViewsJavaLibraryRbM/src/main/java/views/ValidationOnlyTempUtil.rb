@@ -28,7 +28,7 @@ class ValidationOnlyTempUtil
     
 
     def self.getInstance()
-        return ValidationOnlyTempUtil.instance
+        return @@instance
     end
     
 

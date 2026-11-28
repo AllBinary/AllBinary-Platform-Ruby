@@ -24,7 +24,7 @@ class PostLoadPlatformImage < PlatformImage
     
 
     def self.getInstance()
-        return PostLoadPlatformImage.instance
+        return @@instance
     end
 
     def self.instance()

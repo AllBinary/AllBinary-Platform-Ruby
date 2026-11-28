@@ -28,7 +28,7 @@ class WeblisketFinder
     
 
     def self.getInstance()
-        return WeblisketFinder.instance
+        return @@instance
     end
     
 
@@ -40,7 +40,7 @@ class WeblisketFinder
     def findAll(path)
         begin
             @logUtil.putF(@commonStrings.START, self, "findAll")
-            return @subDirectory.search(WeblisketFinder::KEY, ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(path))
+            return @subDirectory.search(KEY, ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFile(path))
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "findAll", e)
             if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADERERROR)

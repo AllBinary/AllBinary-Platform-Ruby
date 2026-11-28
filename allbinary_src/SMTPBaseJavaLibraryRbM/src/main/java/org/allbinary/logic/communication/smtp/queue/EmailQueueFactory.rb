@@ -25,7 +25,7 @@ class EmailQueueFactory
     
 
     def self.getInstance()
-        return EmailQueueFactory.emailQueueInterface
+        return @@emailQueueInterface
     end
 
     def self.emailQueueInterface()

@@ -204,13 +204,13 @@ class SelectionTool
     
 
     def getName()
-        return SelectionTool::NAME
+        return NAME
     end
     java_overload :getName, 0
     
 
     def self.getStaticName()
-        return SelectionTool::NAME
+        return NAME
     end
     
 

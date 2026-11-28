@@ -37,7 +37,7 @@ class InputAutomationBundleActivator
     
 
     def self.getBundleContext()
-        return InputAutomationBundleActivator.bundleContext
+        return @@bundleContext
     end
     
 
@@ -46,8 +46,8 @@ class InputAutomationBundleActivator
         begin
             @logUtil.putF(@commonStrings.START, self, @commonStrings.START)
             @@bundleContext = bundleContext
-            InputAutomationBundleActivator.moduleManagementThread = ::Java::Lang::JavaThread.new(::Org::Allbinary::Input::Automation::ModulePackage::Osgi::InputAutomationNewBundleRunnable.new(self))
-            InputAutomationBundleActivator.moduleManagementThread.start()
+            @@moduleManagementThread = ::Java::Lang::JavaThread.new(::Org::Allbinary::Input::Automation::ModulePackage::Osgi::InputAutomationNewBundleRunnable.new(self))
+            @@moduleManagementThread.start()
             ::Org::Allbinary::Input::Automation::InputAutomationJFrame.create(self)
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.START, e)

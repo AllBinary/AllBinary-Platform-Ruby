@@ -33,7 +33,7 @@ class GroupFactory
     
 
     def self.getInstance()
-        return GroupFactory.instance
+        return @@instance
     end
     
 

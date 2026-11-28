@@ -29,7 +29,7 @@ class NoHighScoresFactory < HighScoresBase
     
 
     def self.getInstance()
-        return NoHighScoresFactory.instance
+        return @@instance
     end
     
 

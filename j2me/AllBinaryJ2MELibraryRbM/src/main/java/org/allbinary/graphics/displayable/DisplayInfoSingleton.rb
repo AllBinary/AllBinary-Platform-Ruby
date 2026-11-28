@@ -63,7 +63,7 @@ class DisplayInfoSingleton
     
 
     def self.getInstance()
-        return DisplayInfoSingleton::SINGLETON
+        return SINGLETON
     end
     
 

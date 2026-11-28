@@ -30,10 +30,10 @@ class LastFetchHighScoresFactory
     
 
     def self.getInstance()
-        if LastFetchHighScoresFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            LastFetchHighScoresFactory.instance = LastFetchHighScoresFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = LastFetchHighScoresFactory.new()
         end
-        return LastFetchHighScoresFactory.instance
+        return @@instance
     end
 
     def self.instance()

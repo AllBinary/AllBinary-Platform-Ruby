@@ -23,7 +23,7 @@ class BaseGameBehavior < DemoGameBehavior
     
 
     def self.getInstance()
-        return BaseGameBehavior.instanceC
+        return @@instanceC
     end
     
 

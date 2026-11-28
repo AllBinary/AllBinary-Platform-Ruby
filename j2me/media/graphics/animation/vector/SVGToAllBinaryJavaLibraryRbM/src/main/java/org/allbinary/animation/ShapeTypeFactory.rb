@@ -32,7 +32,7 @@ class ShapeTypeFactory
     
 
     def self.getInstance()
-        return ShapeTypeFactory.instance
+        return @@instance
     end
     
 

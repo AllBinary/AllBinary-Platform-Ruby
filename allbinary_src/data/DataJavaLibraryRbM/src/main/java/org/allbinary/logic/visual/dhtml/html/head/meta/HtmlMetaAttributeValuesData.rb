@@ -28,7 +28,7 @@ class HtmlMetaAttributeValuesData
     
 
     def self.getInstance()
-        return HtmlMetaAttributeValuesData.instance
+        return @@instance
     end
     
 

@@ -31,7 +31,7 @@ class PartnerIdentifierFileUtil
     
 
     def self.getInstance()
-        return PartnerIdentifierFileUtil.instance
+        return @@instance
     end
     
 

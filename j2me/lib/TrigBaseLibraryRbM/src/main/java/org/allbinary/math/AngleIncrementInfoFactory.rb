@@ -30,7 +30,7 @@ class AngleIncrementInfoFactory
     
 
     def self.getInstance()
-        return AngleIncrementInfoFactory.instance
+        return @@instance
     end
     
 

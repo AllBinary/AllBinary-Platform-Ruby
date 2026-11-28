@@ -33,7 +33,7 @@ class CollidableAlwaysPickupNeverCollideBehaviorFactory < CollidableBaseBehavior
     
 
     def self.getInstance()
-        return CollidableAlwaysPickupNeverCollideBehaviorFactory.instanceC
+        return @@instanceC
     end
     
 

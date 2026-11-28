@@ -31,7 +31,7 @@ class GeologicalResourceInfoHudPaintable < ::Org::Allbinary::Game::Layer::Waypoi
     def initialize()
         super()
         jfields_org_allbinary_game_layer_geological_resources_GeologicalResourceInfoHudPaintable
-        @keyvalueDrawString = ::Org::Allbinary::Graphics::Draw::KeyValueDrawCharArray.new(GeologicalResourceInfoHudPaintable::RESOURCES, @textX)
+        @keyvalueDrawString = ::Org::Allbinary::Graphics::Draw::KeyValueDrawCharArray.new(RESOURCES, @textX)
     end
     
 

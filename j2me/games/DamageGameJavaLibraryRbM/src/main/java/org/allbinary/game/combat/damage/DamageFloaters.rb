@@ -23,7 +23,7 @@ class DamageFloaters < ::Org::Allbinary::Graphics::Paint::Paintable
     
 
     def self.getInstance()
-        return DamageFloaters::SINGLETON
+        return SINGLETON
     end
     
 

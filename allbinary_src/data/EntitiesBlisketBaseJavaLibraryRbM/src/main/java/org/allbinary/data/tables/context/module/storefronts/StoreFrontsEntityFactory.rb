@@ -26,7 +26,7 @@ class StoreFrontsEntityFactory
     
 
     def self.getInstance()
-        return StoreFrontsEntityFactory.instance
+        return @@instance
     end
     
 

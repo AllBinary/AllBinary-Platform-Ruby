@@ -28,7 +28,7 @@ class VectorRotationGenerator
     
 
     def self.getInstance()
-        return VectorRotationGenerator.instance
+        return @@instance
     end
     
 

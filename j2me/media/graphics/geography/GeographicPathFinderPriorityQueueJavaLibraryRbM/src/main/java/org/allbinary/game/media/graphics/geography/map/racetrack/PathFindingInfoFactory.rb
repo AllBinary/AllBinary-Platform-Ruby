@@ -30,7 +30,7 @@ class PathFindingInfoFactory < ::Org::Allbinary::Media::Graphics::Geography::Map
     
 
     def self.getInstance()
-        return PathFindingInfoFactory.instance
+        return @@instance
     end
     
 
@@ -42,7 +42,7 @@ class PathFindingInfoFactory < ::Org::Allbinary::Media::Graphics::Geography::Map
     def initialize()
         super()
         jfields_org_allbinary_game_media_graphics_geography_map_racetrack_PathFindingInfoFactory
-        @pathFindingInfo = ::Org::Allbinary::Media::Graphics::Geography::Pathfinding::PathFindingInfo.new(::Org::Allbinary::Media::Graphics::Geography::Pathfinding::PathFindingNodeCostInfoFactory.new(PathFindingInfoFactory::MAX), ::Org::Allbinary::Util::BasicArrayListS.new(1), ::Org::Allbinary::Util::BasicArrayListS.new(1))
+        @pathFindingInfo = ::Org::Allbinary::Media::Graphics::Geography::Pathfinding::PathFindingInfo.new(::Org::Allbinary::Media::Graphics::Geography::Pathfinding::PathFindingNodeCostInfoFactory.new(MAX), ::Org::Allbinary::Util::BasicArrayListS.new(1), ::Org::Allbinary::Util::BasicArrayListS.new(1))
         @pathFinder = ::Org::Allbinary::Media::Graphics::Geography::Pathfinding::PathFinder.new()
     end
     

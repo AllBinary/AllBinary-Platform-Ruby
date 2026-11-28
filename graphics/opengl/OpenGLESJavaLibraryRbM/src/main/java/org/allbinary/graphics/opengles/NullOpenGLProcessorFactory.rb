@@ -9,7 +9,7 @@ class NullOpenGLProcessorFactory
     
 
     def self.getInstance()
-        return NullOpenGLProcessorFactory.instance
+        return @@instance
     end
 
     def self.instance()

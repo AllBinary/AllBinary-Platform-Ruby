@@ -30,7 +30,7 @@ class NoMovementFactory
     
 
     def self.getInstance()
-        return NoMovementFactory.instance
+        return @@instance
     end
     
 

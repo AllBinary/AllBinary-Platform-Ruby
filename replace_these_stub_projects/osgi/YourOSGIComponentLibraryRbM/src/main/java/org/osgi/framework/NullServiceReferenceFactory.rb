@@ -30,7 +30,7 @@ class NullServiceReferenceFactory
     
 
     def self.getInstance()
-        return NullServiceReferenceFactory.instance
+        return @@instance
     end
 
     def self.instance()

@@ -21,7 +21,7 @@ class AndroidImageUtil
     
 
     def self.getInstance()
-        return AndroidImageUtil.instance
+        return @@instance
     end
     
 

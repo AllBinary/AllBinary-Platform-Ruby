@@ -34,7 +34,7 @@ class AnimationFactorySpriteScaleUtil
     
 
     def self.getInstance()
-        return AnimationFactorySpriteScaleUtil.instance
+        return @@instance
     end
     
 

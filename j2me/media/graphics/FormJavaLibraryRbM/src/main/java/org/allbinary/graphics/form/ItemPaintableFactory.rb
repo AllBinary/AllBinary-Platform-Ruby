@@ -23,13 +23,13 @@ class ItemPaintableFactory < ItemPaintable
     
 
     def self.getInstance()
-        return ItemPaintableFactory.instance
+        return @@instance
     end
     
 
     # throws Exception
     def getInstanceItemPaintable(paintableForm)
-        return ItemPaintableFactory.instance
+        return @@instance
     end
     java_overload :getInstanceItemPaintable, 1
 

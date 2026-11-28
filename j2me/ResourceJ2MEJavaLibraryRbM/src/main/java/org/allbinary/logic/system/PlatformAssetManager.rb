@@ -21,7 +21,7 @@ class PlatformAssetManager
     
 
     def self.getInstance()
-        return PlatformAssetManager.instance
+        return @@instance
     end
     
 

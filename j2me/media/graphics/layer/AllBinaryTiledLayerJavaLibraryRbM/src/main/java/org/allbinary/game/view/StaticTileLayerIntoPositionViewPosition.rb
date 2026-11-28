@@ -28,25 +28,25 @@ class StaticTileLayerIntoPositionViewPosition < ::Org::Allbinary::View::ViewPosi
     
 
     def getX()
-        return StaticTileLayerIntoPositionViewPosition.superclass.java_super_method(:getX, 0).bind(self).call() - StaticTileLayerIntoPositionViewPosition.tiledLayer.getXP()
+        return StaticTileLayerIntoPositionViewPosition.superclass.java_super_method(:getX, 0).bind(self).call() - @@tiledLayer.getXP()
     end
     java_overload :getX, 0
     
 
     def getY()
-        return StaticTileLayerIntoPositionViewPosition.superclass.java_super_method(:getY, 0).bind(self).call() - StaticTileLayerIntoPositionViewPosition.tiledLayer.getYP()
+        return StaticTileLayerIntoPositionViewPosition.superclass.java_super_method(:getY, 0).bind(self).call() - @@tiledLayer.getYP()
     end
     java_overload :getY, 0
     
 
     def getZ()
-        return StaticTileLayerIntoPositionViewPosition.superclass.java_super_method(:getZ, 0).bind(self).call() - StaticTileLayerIntoPositionViewPosition.tiledLayer.getZP()
+        return StaticTileLayerIntoPositionViewPosition.superclass.java_super_method(:getZ, 0).bind(self).call() - @@tiledLayer.getZP()
     end
     java_overload :getZ, 0
     
 
     def self.setTiledLayer(tiledLayer)
-        StaticTileLayerIntoPositionViewPosition.tiledLayer = tiledLayer
+        @@tiledLayer = tiledLayer
     end
 
     def self.tiledLayer()

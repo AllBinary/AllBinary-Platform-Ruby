@@ -31,7 +31,7 @@ class BasicPaymentTypeUtil
     
 
     def self.getInstance()
-        return BasicPaymentTypeUtil.instance
+        return @@instance
     end
     
 

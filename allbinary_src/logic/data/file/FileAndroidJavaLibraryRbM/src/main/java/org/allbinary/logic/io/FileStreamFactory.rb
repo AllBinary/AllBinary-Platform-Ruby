@@ -26,10 +26,10 @@ class FileStreamFactory
     
 
     def self.getInstance()
-        if FileStreamFactory::SINGLETON == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if SINGLETON == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (FileStreamFactory.instance_exec(FileStreamFactory.new(::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance().getContext())) { |java_value| remove_const(:SINGLETON) if const_defined?(:SINGLETON, false); const_set(:SINGLETON, java_value) })
         end
-        return FileStreamFactory::SINGLETON
+        return SINGLETON
     end
     
 

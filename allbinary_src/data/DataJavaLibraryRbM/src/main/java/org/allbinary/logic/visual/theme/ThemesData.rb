@@ -26,7 +26,7 @@ class ThemesData
     
 
     def self.getInstance()
-        return ThemesData.instance
+        return @@instance
     end
     
 

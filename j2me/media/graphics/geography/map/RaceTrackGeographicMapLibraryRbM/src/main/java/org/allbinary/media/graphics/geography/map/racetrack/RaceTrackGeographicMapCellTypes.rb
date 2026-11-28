@@ -33,7 +33,7 @@ class RaceTrackGeographicMapCellTypes
     
 
     def self.getInstance()
-        return RaceTrackGeographicMapCellTypes.instance
+        return @@instance
     end
     
 

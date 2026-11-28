@@ -35,7 +35,7 @@ class BufferedWriterUtil
     
 
     def self.getInstance()
-        return BufferedWriterUtil.instance
+        return @@instance
     end
     
 

@@ -35,7 +35,7 @@ class RTSLayerHudPaintable < SelectionHudPaintable
     
 
     def self.getInstance()
-        return RTSLayerHudPaintable.instance
+        return @@instance
     end
     
 

@@ -37,7 +37,7 @@ class NullRotationAnimationFactory
     
 
     def self.getFactoryInstance()
-        return NullRotationAnimationFactory::NULL_ROTATION_ANIMATION_FACTORY
+        return NULL_ROTATION_ANIMATION_FACTORY
     end
     
 

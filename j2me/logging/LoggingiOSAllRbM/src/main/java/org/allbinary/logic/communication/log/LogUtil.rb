@@ -29,7 +29,7 @@ class LogUtil
     
 
     def self.getInstance()
-        return LogUtil.instance
+        return @@instance
     end
     
 
@@ -53,7 +53,7 @@ class LogUtil
             className = String.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(anyType.class.java_name).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append((::Org::Allbinary::Logic::TsUtil.getInstance().hashCode(anyType)).to_s(16)).to_s)
         end
         message = @logFormatUtil.getS(className, functionName, specialMessage)
-        print(LogUtil::LOG_SUCCESS)
+        print(LOG_SUCCESS)
         puts(message)
     end
     
@@ -61,7 +61,7 @@ class LogUtil
     def putFS(specialMessage, className, functionName)
         className = String.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(className).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append((::Org::Allbinary::Logic::TsUtil.getInstance().hashCode(@anyType)).to_s(16)).to_s)
         message = @logFormatUtil.getS(className, functionName, specialMessage)
-        print(LogUtil::LOG_SUCCESS)
+        print(LOG_SUCCESS)
         puts(message)
     end
     
@@ -72,7 +72,7 @@ class LogUtil
             className = String.new(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(anyType.class.java_name).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().COLON).append((::Org::Allbinary::Logic::TsUtil.getInstance().hashCode(anyType)).to_s(16)).to_s)
         end
         message = @logFormatUtil.get(className, functionName, specialMessage, exception)
-        print(LogUtil::LOG_SUCCESS)
+        print(LOG_SUCCESS)
         puts(message)
     end
 

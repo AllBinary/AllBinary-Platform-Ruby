@@ -28,7 +28,7 @@ class ErrorSound < CompositeSound
     
 
     def self.getInstance()
-        return ErrorSound.soundInterface
+        return @@soundInterface
     end
 
     def self.soundInterface()

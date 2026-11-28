@@ -28,7 +28,7 @@ class AnalogControllerConfigurationEventHandler < ::Org::Allbinary::Logic::Util:
     
 
     def self.getInstance()
-        return AnalogControllerConfigurationEventHandler.instance
+        return @@instance
     end
     
 

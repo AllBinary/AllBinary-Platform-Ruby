@@ -24,7 +24,7 @@ class PathFindingThreadPool < ThreadPool
     
 
     def self.getInstance()
-        return PathFindingThreadPool.instance
+        return @@instance
     end
     
 

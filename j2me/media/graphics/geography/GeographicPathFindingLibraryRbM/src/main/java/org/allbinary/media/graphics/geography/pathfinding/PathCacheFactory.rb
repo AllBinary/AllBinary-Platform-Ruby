@@ -32,7 +32,7 @@ class PathCacheFactory
     
 
     def self.getInstance()
-        return PathCacheFactory.pathFactory
+        return @@pathFactory
     end
     
 

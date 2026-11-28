@@ -28,7 +28,7 @@ class ViewPositionEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::
     
 
     def self.getInstance()
-        return ViewPositionEventHandler::SINGLETON
+        return SINGLETON
     end
     
 

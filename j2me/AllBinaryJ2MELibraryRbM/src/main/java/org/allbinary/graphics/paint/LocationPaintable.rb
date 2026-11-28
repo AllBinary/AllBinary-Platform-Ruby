@@ -24,7 +24,7 @@ class LocationPaintable
     
 
     def self.getInstance()
-        return LocationPaintable.instance
+        return @@instance
     end
     
 

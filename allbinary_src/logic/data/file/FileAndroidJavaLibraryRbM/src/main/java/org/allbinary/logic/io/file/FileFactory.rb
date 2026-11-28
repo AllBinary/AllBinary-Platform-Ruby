@@ -33,7 +33,7 @@ class FileFactory
     
 
     def self.getInstance()
-        return FileFactory::SINGLETON
+        return SINGLETON
     end
     
 

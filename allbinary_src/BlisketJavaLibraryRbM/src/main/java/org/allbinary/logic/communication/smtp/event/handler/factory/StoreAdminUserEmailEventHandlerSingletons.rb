@@ -28,7 +28,7 @@ class StoreAdminUserEmailEventHandlerSingletons
     
 
     def self.getInstance()
-        return StoreAdminUserEmailEventHandlerSingletons.instance
+        return @@instance
     end
     
 

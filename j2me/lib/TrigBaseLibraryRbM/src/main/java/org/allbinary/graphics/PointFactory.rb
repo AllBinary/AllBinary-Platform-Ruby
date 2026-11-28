@@ -30,7 +30,7 @@ class PointFactory
     
 
     def self.getInstance()
-        return PointFactory.instance
+        return @@instance
     end
     
 

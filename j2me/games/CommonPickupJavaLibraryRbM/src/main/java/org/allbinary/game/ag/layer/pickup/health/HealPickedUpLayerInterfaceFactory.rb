@@ -31,7 +31,7 @@ class HealPickedUpLayerInterfaceFactory < ::Org::Allbinary::Game::Layer::Pickup:
 
     # throws Exception
     def self.init()
-        HealPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = HealPickedUpLayerInterfaceFactory.new()
+        @@pickedUpLayerInterfaceFactoryInterface = HealPickedUpLayerInterfaceFactory.new()
     end
     
 
@@ -48,7 +48,7 @@ class HealPickedUpLayerInterfaceFactory < ::Org::Allbinary::Game::Layer::Pickup:
     
 
     def self.getInstance()
-        return HealPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface
+        return @@pickedUpLayerInterfaceFactoryInterface
     end
     
 

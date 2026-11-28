@@ -31,7 +31,7 @@ class ImageSwtRotationUtil
     
 
     def self.getInstance()
-        return ImageSwtRotationUtil.instance
+        return @@instance
     end
     
 

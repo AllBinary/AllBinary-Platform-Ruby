@@ -30,7 +30,7 @@ class PathData
     
 
     def self.getInstance()
-        return PathData.instance
+        return @@instance
     end
 
     def self.instance()

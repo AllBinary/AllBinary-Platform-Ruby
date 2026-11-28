@@ -27,7 +27,7 @@ class RawKeyEventHandler
     
 
     def self.getInstance()
-        return RawKeyEventHandler.instance
+        return @@instance
     end
     
 
@@ -106,14 +106,14 @@ class RawKeyEventHandler
 
     def toString()
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
-        stringBuffer.append(RawKeyEventHandler::TOTAL_LISTENERS)
+        stringBuffer.append(TOTAL_LISTENERS)
         stringBuffer.appendint(@eventListenerInterfaceList.size())
         eventListenerInterface = nil
         index = 0
         while index < @eventListenerInterfaceList.size()
             begin
                 eventListenerInterface = @eventListenerInterfaceList.get(index)
-                stringBuffer.append(RawKeyEventHandler::LISTENER_LABEL)
+                stringBuffer.append(LISTENER_LABEL)
                 stringBuffer.append(eventListenerInterface.to_s)
             rescue StandardError => e
                 commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()

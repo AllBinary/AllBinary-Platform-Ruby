@@ -27,7 +27,7 @@ class PathFindingNodeCostInfoData
     
 
     def self.getInstance()
-        return PathFindingNodeCostInfoData.instance
+        return @@instance
     end
     
 

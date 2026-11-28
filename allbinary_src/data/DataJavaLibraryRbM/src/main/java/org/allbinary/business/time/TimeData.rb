@@ -28,7 +28,7 @@ class TimeData
     
 
     def self.getInstance()
-        return TimeData.instance
+        return @@instance
     end
     
 

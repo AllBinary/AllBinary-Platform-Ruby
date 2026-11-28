@@ -27,7 +27,7 @@ class LinuxOperatingSystemFactory
     
 
     def self.getInstance()
-        return LinuxOperatingSystemFactory.instance
+        return @@instance
     end
     
 

@@ -21,7 +21,7 @@ class TiledLayerUtil
     
 
     def self.getInstance()
-        return TiledLayerUtil.instance
+        return @@instance
     end
     
 

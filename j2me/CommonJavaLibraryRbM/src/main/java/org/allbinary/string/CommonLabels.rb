@@ -47,7 +47,7 @@ class CommonLabels
     
 
     def self.getInstance()
-        return CommonLabels.instance
+        return @@instance
     end
 
     def self.instance()

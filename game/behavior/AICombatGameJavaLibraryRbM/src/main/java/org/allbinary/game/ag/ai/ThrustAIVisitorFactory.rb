@@ -21,7 +21,7 @@ class ThrustAIVisitorFactory
     
 
     def self.getInstance()
-        return ThrustAIVisitorFactory.instance
+        return @@instance
     end
 
     def self.instance()

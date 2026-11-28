@@ -120,10 +120,10 @@ class InitializerDatabase
             isValid = false
         end
         stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
-        if !stringValidationUtil.isValidRequired(@adminDbUserName, InitializerDatabase::MIN, InitializerDatabase::MAX)
+        if !stringValidationUtil.isValidRequired(@adminDbUserName, MIN, MAX)
             isValid = false
         end
-        if !stringValidationUtil.isValidNotRequired(@adminDbPassword, InitializerDatabase::MINPASSWORD, InitializerDatabase::MAX)
+        if !stringValidationUtil.isValidNotRequired(@adminDbPassword, MINPASSWORD, MAX)
             isValid = false
         end
         return isValid
@@ -148,11 +148,11 @@ class InitializerDatabase
             stringBuffer.append(self.getJdbcDriverValidationInfo(self.getAdminJdbcDriver()))
         end
         stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
-        if !stringValidationUtil.isValidRequired(@adminDbUserName, InitializerDatabase::MIN, InitializerDatabase::MAX)
-            stringBuffer.append("Admin username should be < " + (InitializerDatabase::MAX).to_s + " and > " + (InitializerDatabase::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@adminDbUserName, MIN, MAX)
+            stringBuffer.append("Admin username should be < " + (MAX).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidNotRequired(@adminDbPassword, InitializerDatabase::MINPASSWORD, InitializerDatabase::MAX)
-            stringBuffer.append("Admin password should be < " + (InitializerDatabase::MAX).to_s + " and > " + (InitializerDatabase::MINPASSWORD).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidNotRequired(@adminDbPassword, MINPASSWORD, MAX)
+            stringBuffer.append("Admin password should be < " + (MAX).to_s + " and > " + (MINPASSWORD).to_s + " characters in length.<br />")
         end
         if !isJdbcDriversValid
             stringBuffer.append(InitializerData.getInstance().getJdbcDriverSolutionInfo())

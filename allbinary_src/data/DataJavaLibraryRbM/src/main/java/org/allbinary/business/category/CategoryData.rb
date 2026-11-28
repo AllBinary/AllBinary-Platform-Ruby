@@ -35,7 +35,7 @@ class CategoryData
     
 
     def self.getInstance()
-        return CategoryData.instance
+        return @@instance
     end
     
 

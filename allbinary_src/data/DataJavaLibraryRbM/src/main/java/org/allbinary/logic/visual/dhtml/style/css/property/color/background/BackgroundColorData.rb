@@ -26,7 +26,7 @@ class BackgroundColorData
     
 
     def self.getInstance()
-        return BackgroundColorData.instance
+        return @@instance
     end
     
 

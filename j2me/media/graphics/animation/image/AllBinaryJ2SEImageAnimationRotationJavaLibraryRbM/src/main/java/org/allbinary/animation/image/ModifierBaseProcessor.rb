@@ -21,7 +21,7 @@ class ModifierBaseProcessor
     
 
     def self.getInstance()
-        return ModifierBaseProcessor.instance
+        return @@instance
     end
     
 

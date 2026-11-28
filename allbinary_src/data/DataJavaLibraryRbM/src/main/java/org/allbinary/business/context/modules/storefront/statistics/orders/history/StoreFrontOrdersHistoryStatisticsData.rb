@@ -31,7 +31,7 @@ class StoreFrontOrdersHistoryStatisticsData
     
 
     def self.getInstance()
-        return StoreFrontOrdersHistoryStatisticsData.instance
+        return @@instance
     end
     
 

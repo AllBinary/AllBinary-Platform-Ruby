@@ -19,7 +19,7 @@ class MathUtil
     
 
     def self.getInstance()
-        return MathUtil.instance
+        return @@instance
     end
     
 

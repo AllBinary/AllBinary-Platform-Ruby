@@ -29,7 +29,7 @@ class WorkFlowData
     
 
     def self.getInstance()
-        return WorkFlowData.instance
+        return @@instance
     end
     
 

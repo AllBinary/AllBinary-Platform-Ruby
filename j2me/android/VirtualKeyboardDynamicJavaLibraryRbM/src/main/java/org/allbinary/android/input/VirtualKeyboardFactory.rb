@@ -23,15 +23,15 @@ class VirtualKeyboardFactory
     def self.init(activity)
         _SDK_VERSION = ::Org::Allbinary::Android::AndroidInfoFactory.getInstance().getVersion()
         if _SDK_VERSION <= 2
-            VirtualKeyboardFactory.virtualKeyboard = ::Org::Allbinary::Android::Input::Api1::VirtualKeyboardAPI1.new(activity)
+            @@virtualKeyboard = ::Org::Allbinary::Android::Input::Api1::VirtualKeyboardAPI1.new(activity)
         else
-            VirtualKeyboardFactory.virtualKeyboard = ::Org::Allbinary::Android::Input::Api3::VirtualKeyboardAPI3.new(activity)
+            @@virtualKeyboard = ::Org::Allbinary::Android::Input::Api3::VirtualKeyboardAPI3.new(activity)
         end
     end
     
 
     def self.getInstance()
-        return VirtualKeyboardFactory.virtualKeyboard
+        return @@virtualKeyboard
     end
 
     def self.virtualKeyboard()

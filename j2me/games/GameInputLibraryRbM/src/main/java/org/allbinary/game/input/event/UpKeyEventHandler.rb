@@ -28,19 +28,19 @@ class UpKeyEventHandler < UpKeyEventHandlerBase
     
 
     def self.getInstance()
-        return UpKeyEventHandler.instance
+        return @@instance
     end
     
 
     def getInstanceForDevice(deviceId)
         playerInputId = @playerInputIdFactory.getPlayerForDevice(deviceId)
-        return UpKeyEventHandler.instanceArray[playerInputId]
+        return @@instanceArray[playerInputId]
     end
     java_overload :getInstanceForDevice, 1
     
 
     def getInstanceForPlayer(playerInputId)
-        return UpKeyEventHandler.instanceArray[playerInputId]
+        return @@instanceArray[playerInputId]
     end
     java_overload :getInstanceForPlayer, 1
     
@@ -53,8 +53,8 @@ class UpKeyEventHandler < UpKeyEventHandlerBase
 
     def removeAllListeners()
         UpKeyEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
-        (UpKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            UpKeyEventHandler.instanceArray[index].removeAllListeners()
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeAllListeners()
         end
     end
     java_overload :removeAllListeners, 0
@@ -62,8 +62,8 @@ class UpKeyEventHandler < UpKeyEventHandlerBase
 
     def removeListenerSingleThreaded(eventListenerInterface)
         UpKeyEventHandler.superclass.java_super_method(:removeListenerSingleThreaded, 1).bind(self).call(eventListenerInterface)
-        (UpKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            UpKeyEventHandler.instanceArray[index].removeListenerSingleThreaded(eventListenerInterface)
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeListenerSingleThreaded(eventListenerInterface)
         end
     end
     java_overload :removeListenerSingleThreaded, 1
@@ -71,8 +71,8 @@ class UpKeyEventHandler < UpKeyEventHandlerBase
 
     def removeListener(eventListenerInterface)
         UpKeyEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
-        (UpKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            UpKeyEventHandler.instanceArray[index].removeListener(eventListenerInterface)
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeListener(eventListenerInterface)
         end
     end
     java_overload :removeListener, 1

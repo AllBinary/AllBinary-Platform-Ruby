@@ -33,7 +33,7 @@ class BasicColorUtil
     
 
     def self.getInstance()
-        return BasicColorUtil.instance
+        return @@instance
     end
     
 

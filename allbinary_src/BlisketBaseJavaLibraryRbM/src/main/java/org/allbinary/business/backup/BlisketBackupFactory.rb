@@ -33,7 +33,7 @@ class BlisketBackupFactory
     
 
     def self.getInstance()
-        return BlisketBackupFactory.instance
+        return @@instance
     end
     
 

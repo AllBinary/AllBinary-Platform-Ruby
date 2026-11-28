@@ -40,7 +40,7 @@ class TimeIntervalActionScriptCondition < BasicProfileActionScriptCondition
     
 
     def jnew_org_allbinary_input_automation_actions_script_condition_TimeIntervalActionScriptCondition_1(node)
-        TimeIntervalActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(TimeIntervalActionScriptCondition::NAME, node)
+        TimeIntervalActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(NAME, node)
         jfields_org_allbinary_input_automation_actions_script_condition_TimeIntervalActionScriptCondition
         actionNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(TimeIntervalActionScriptConditionData::NAME, node.getChildNodes())
         if actionNode != nil
@@ -62,7 +62,7 @@ class TimeIntervalActionScriptCondition < BasicProfileActionScriptCondition
     
 
     def jnew_org_allbinary_input_automation_actions_script_condition_TimeIntervalActionScriptCondition_0()
-        TimeIntervalActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(TimeIntervalActionScriptCondition::NAME)
+        TimeIntervalActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(NAME)
         jfields_org_allbinary_input_automation_actions_script_condition_TimeIntervalActionScriptCondition
         self.setTimeDelayHelper(::Org::Allbinary::TimePackage::TimeDelayHelper.new(0))
         self.init()

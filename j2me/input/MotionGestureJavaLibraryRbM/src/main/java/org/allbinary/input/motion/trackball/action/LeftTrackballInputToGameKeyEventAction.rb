@@ -23,10 +23,10 @@ class LeftTrackballInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Mo
     
 
     def self.getInstance()
-        if LeftTrackballInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            LeftTrackballInputToGameKeyEventAction.instance = LeftTrackballInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = LeftTrackballInputToGameKeyEventAction.new()
         end
-        return LeftTrackballInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

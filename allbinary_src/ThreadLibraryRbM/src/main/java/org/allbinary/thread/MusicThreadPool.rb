@@ -23,7 +23,7 @@ class MusicThreadPool < ThreadPool
     
 
     def self.getInstance()
-        return MusicThreadPool::THREAD_POOL
+        return THREAD_POOL
     end
     
 

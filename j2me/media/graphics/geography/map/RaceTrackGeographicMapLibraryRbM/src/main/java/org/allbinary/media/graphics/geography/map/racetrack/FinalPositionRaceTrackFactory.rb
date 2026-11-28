@@ -27,14 +27,14 @@ class FinalPositionRaceTrackFactory
 
     def self.getInstance()
         java_monitor.synchronize do
-        return ((FinalPositionRaceTrackFactory.index += 1) - 1)
+        return ((@@index += 1) - 1)
         end
     end
     
 
     def self.reset()
         java_monitor.synchronize do
-        FinalPositionRaceTrackFactory.index = FinalPositionRaceTrackFactory::FIRST_POSITION
+        @@index = FinalPositionRaceTrackFactory::FIRST_POSITION
         end
     end
 

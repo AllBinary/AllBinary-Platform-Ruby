@@ -90,12 +90,12 @@ class InputMappingHelpPaintable < HelpPaintable
                 updateMyFontProperties.sepArray[index][index2] = @EMPTY_STRING
                 if index2 + 1 < list.size()
                     if list.size() == 2
-                        updateMyFontProperties.sepArray[index][index2] = InputMappingHelpPaintable::AND
+                        updateMyFontProperties.sepArray[index][index2] = AND
                     else
                         if index2 + 2 == list.size()
-                            updateMyFontProperties.sepArray[index][index2] = InputMappingHelpPaintable::MORE_THAN_TWO_IN_LIST_AND
+                            updateMyFontProperties.sepArray[index][index2] = MORE_THAN_TWO_IN_LIST_AND
                         else
-                            updateMyFontProperties.sepArray[index][index2] = InputMappingHelpPaintable::SEP
+                            updateMyFontProperties.sepArray[index][index2] = SEP
                         end
                     end
                 end
@@ -165,12 +165,12 @@ class InputMappingHelpPaintable < HelpPaintable
             stringBuffer.append(key.getName())
             if index + 1 < keyList.size()
                 if keyList.size() == 2
-                    stringBuffer.append(InputMappingHelpPaintable::AND)
+                    stringBuffer.append(AND)
                 else
                     if index + 2 == keyList.size()
-                        stringBuffer.append(InputMappingHelpPaintable::MORE_THAN_TWO_IN_LIST_AND)
+                        stringBuffer.append(MORE_THAN_TWO_IN_LIST_AND)
                     else
-                        stringBuffer.append(InputMappingHelpPaintable::SEP)
+                        stringBuffer.append(SEP)
                     end
                 end
             end

@@ -23,7 +23,7 @@ class ColorAttributePointerVBOOpenGLProcessor < ::Org::Allbinary::Graphics::Thre
     
 
     def self.getInstance()
-        return ColorAttributePointerVBOOpenGLProcessor.instance
+        return @@instance
     end
     
 

@@ -35,7 +35,7 @@ class BooleanFactory
     
 
     def self.getInstance()
-        return BooleanFactory.instance
+        return @@instance
     end
     
 

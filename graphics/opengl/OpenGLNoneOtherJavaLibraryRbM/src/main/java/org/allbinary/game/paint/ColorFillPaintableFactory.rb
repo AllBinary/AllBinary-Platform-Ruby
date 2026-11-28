@@ -21,7 +21,7 @@ class ColorFillPaintableFactory
     
 
     def self.getInstance()
-        return ColorFillPaintableFactory.instance
+        return @@instance
     end
     
 

@@ -29,7 +29,7 @@ class AdvertisementSearchData
     
 
     def self.getInstance()
-        return AdvertisementSearchData.instance
+        return @@instance
     end
     
 

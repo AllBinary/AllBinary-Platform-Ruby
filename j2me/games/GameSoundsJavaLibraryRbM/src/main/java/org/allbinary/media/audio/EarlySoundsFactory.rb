@@ -34,7 +34,7 @@ class EarlySoundsFactory < BaseSoundsFactory
     
 
     def self.getInstance()
-        return EarlySoundsFactory.instance
+        return @@instance
     end
 
     def self.instance()

@@ -39,7 +39,7 @@ class UpdateFileValidationView < InventoryItemView
     def isValid_j0()
         begin
             command = self.getRequestHashMap().get(::Org::Allbinary::Globals::GLOBALS2::ADMINCOMMAND)
-            if command == nil || (command <=> UpdateFileValidationView::UPDATEPRODUCT) != 0
+            if command == nil || (command <=> UPDATEPRODUCT) != 0
                 if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
                     @logUtil.putF("Invalid AdminCommand=" + command, self, @commonStrings.IS_VALID)
                 end
@@ -104,7 +104,7 @@ class UpdateFileValidationView < InventoryItemView
     def validationInfo_j0()
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         command = self.getRequestHashMap().get(::Org::Allbinary::Globals::GLOBALS2::ADMINCOMMAND)
-        if command == nil || (command <=> UpdateFileValidationView::UPDATEPRODUCT) != 0
+        if command == nil || (command <=> UPDATEPRODUCT) != 0
             return ::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE
         end
         stringBuffer.append(::Org::Allbinary::Business::User::Commerce::Inventory::Item::BasicItemValidation.new(@itemInterface).validationInfo())

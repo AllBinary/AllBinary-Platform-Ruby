@@ -21,7 +21,7 @@ class CustomMapGeneratorBaseFactory
     
 
     def self.getInstance()
-        return CustomMapGeneratorBaseFactory.instance
+        return @@instance
     end
     
 

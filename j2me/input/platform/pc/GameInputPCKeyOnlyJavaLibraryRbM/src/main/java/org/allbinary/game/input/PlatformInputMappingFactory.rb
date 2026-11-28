@@ -31,7 +31,7 @@ class PlatformInputMappingFactory
     
 
     def self.getInstance()
-        return PlatformInputMappingFactory.instance
+        return @@instance
     end
     
 

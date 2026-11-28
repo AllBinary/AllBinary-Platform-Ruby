@@ -33,7 +33,7 @@ class InventorySearchUtil
     
 
     def self.getInstance()
-        return InventorySearchUtil.instance
+        return @@instance
     end
     
 

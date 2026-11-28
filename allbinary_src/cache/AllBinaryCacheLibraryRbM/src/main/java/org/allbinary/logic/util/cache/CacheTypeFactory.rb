@@ -21,7 +21,7 @@ class CacheTypeFactory
     
 
     def self.getInstance()
-        return CacheTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

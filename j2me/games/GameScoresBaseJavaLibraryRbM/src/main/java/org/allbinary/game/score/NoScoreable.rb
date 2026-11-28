@@ -23,7 +23,7 @@ class NoScoreable < Scoreable
     
 
     def self.getInstance()
-        return NoScoreable::SINGLETON
+        return SINGLETON
     end
     
 

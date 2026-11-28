@@ -20,7 +20,7 @@ class ArrayUtil
     
 
     def self.getInstance()
-        return ArrayUtil.instance
+        return @@instance
     end
     
 

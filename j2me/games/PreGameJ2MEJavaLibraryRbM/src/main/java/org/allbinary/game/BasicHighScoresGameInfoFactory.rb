@@ -31,7 +31,7 @@ class BasicHighScoresGameInfoFactory
     
 
     def self.getInstance()
-        return BasicHighScoresGameInfoFactory::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

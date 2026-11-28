@@ -37,7 +37,7 @@ class ResourceLoadingLevelFactory
     
 
     def self.getInstance()
-        return ResourceLoadingLevelFactory.instance
+        return @@instance
     end
     
 

@@ -24,7 +24,7 @@ class PreLoadPlatformImage < PlatformImage
     
 
     def self.getInstance()
-        return PreLoadPlatformImage.instance
+        return @@instance
     end
 
     def self.instance()

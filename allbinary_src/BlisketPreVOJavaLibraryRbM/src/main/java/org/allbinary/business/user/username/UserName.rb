@@ -35,7 +35,7 @@ class UserName
     
 
     def self.getInstance()
-        return UserName.instance
+        return @@instance
     end
     
 

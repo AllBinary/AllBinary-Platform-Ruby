@@ -29,7 +29,7 @@ class ResourceUtil
     
 
     def self.getInstance()
-        return ResourceUtil.instance
+        return @@instance
     end
     
 

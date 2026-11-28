@@ -56,7 +56,7 @@ class OpenGLCapabilities
     
 
     def self.getInstance()
-        return OpenGLCapabilities.instance
+        return @@instance
     end
     
 

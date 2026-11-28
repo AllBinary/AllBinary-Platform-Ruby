@@ -23,7 +23,7 @@ class SimpleShaderInitializer < ShaderInitializer
     
 
     def self.getInstance()
-        return SimpleShaderInitializer.instanceC
+        return @@instanceC
     end
 
     def self.instanceC()

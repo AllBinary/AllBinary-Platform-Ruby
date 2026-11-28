@@ -32,7 +32,7 @@ class PlayerTypesFactory
     
 
     def self.getInstance()
-        return PlayerTypesFactory::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

@@ -27,7 +27,7 @@ class CssPropertyData
     
 
     def self.getInstance()
-        return CssPropertyData.instance
+        return @@instance
     end
     
 

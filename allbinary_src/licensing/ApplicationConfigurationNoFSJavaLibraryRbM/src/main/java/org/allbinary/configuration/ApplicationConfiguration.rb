@@ -17,10 +17,10 @@ class ApplicationConfiguration
     
 
     def self.getInstance()
-        if ApplicationConfiguration.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            ApplicationConfiguration.instance = ApplicationConfiguration.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = ApplicationConfiguration.new()
         end
-        return ApplicationConfiguration.instance
+        return @@instance
     end
     
 

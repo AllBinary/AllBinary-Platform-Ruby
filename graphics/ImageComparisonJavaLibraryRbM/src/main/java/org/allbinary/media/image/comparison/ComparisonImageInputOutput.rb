@@ -57,7 +57,7 @@ class ComparisonImageInputOutput
         filePathStringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         filePathStringBuffer.append(::Org::Allbinary::Input::Automation::ImageOutputData::SAVE_PATH)
         filePathStringBuffer.append(::Org::Allbinary::Logic::Java::Number::LongUtil.fillIn(frame.to_s))
-        filePathStringBuffer.append(ComparisonImageInputOutput::ROOT_NAME)
+        filePathStringBuffer.append(ROOT_NAME)
         filePathStringBuffer1 = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         filePathStringBuffer1.append(filePathStringBuffer.to_s)
         filePathStringBuffer1.append("_1")

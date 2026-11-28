@@ -21,7 +21,7 @@ class OpenGLESImageProcessor
     
 
     def self.getInstance()
-        return OpenGLESImageProcessor.instance
+        return @@instance
     end
     
 

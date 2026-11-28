@@ -31,7 +31,7 @@ class LifePickedUpLayerInterfaceFactory < ::Org::Allbinary::Game::Layer::Pickup:
 
     # throws Exception
     def self.init()
-        LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = LifePickedUpLayerInterfaceFactory.new()
+        @@pickedUpLayerInterfaceFactoryInterface = LifePickedUpLayerInterfaceFactory.new()
     end
     
 
@@ -48,7 +48,7 @@ class LifePickedUpLayerInterfaceFactory < ::Org::Allbinary::Game::Layer::Pickup:
     
 
     def self.getInstance()
-        return LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface
+        return @@pickedUpLayerInterfaceFactoryInterface
     end
     
 

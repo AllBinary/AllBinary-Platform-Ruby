@@ -95,23 +95,23 @@ class Email
     # throws MessagingException
     def init_j8(server, authenticator, addresses_from, addresses_to, addresses_cc, addresses_bcc, subject, mimeBodyParts)
         @properties = Properties.new()
-        @properties.put(Email::SMTP_HOST, server)
+        @properties.put(SMTP_HOST, server)
         begin
             hostName = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
             if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(hostName)
                 if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
                     @logUtil.putF("Unable to get HostName so using fake", self, "init()")
                 end
-                @properties.put(Email::SMTP_LOCAL_HOST, "FakeHostName")
+                @properties.put(SMTP_LOCAL_HOST, "FakeHostName")
             end
         rescue StandardError => e
             if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().EMAILLOGGINGERROR)
                 @logUtil.put("Continuing on Exception: Unable to get HostName", self, "init()", e)
             end
-            @properties.put(Email::SMTP_LOCAL_HOST, "FakeHostName")
+            @properties.put(SMTP_LOCAL_HOST, "FakeHostName")
         end
         if @isDebug
-            @properties.put(Email::DEBUG, "true")
+            @properties.put(DEBUG, "true")
         end
         session = Session.getInstance(@properties, authenticator)
         if @isDebug
@@ -167,7 +167,7 @@ class Email
     def toHashMap()
         begin
             hashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
-            hashMap.put(EmailData::SERVER, @properties.get(Email::SMTP_HOST))
+            hashMap.put(EmailData::SERVER, @properties.get(SMTP_HOST))
             addresses = @msg.getFrom()
             if addresses != nil
                 (0...addresses.length).each do |index|

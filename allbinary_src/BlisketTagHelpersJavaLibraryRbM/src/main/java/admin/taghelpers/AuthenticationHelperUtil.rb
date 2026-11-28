@@ -30,7 +30,7 @@ class AuthenticationHelperUtil
     
 
     def self.getInstance()
-        return AuthenticationHelperUtil.instance
+        return @@instance
     end
     
 

@@ -31,7 +31,7 @@ class AssignWaypointsUtil
     
 
     def self.getInstance()
-        return AssignWaypointsUtil.instance
+        return @@instance
     end
     
 

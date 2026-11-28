@@ -27,7 +27,7 @@ class NoGameNotificationHudSingleton
     
 
     def self.getInstance()
-        return NoGameNotificationHudSingleton.instance
+        return @@instance
     end
     
 

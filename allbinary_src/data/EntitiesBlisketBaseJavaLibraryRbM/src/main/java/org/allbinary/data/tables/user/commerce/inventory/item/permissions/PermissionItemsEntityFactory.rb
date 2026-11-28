@@ -26,7 +26,7 @@ class PermissionItemsEntityFactory
     
 
     def self.getInstance()
-        return PermissionItemsEntityFactory.instance
+        return @@instance
     end
     
 

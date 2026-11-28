@@ -31,7 +31,7 @@ class ImageJ2SERotationUtil
     
 
     def self.getInstance()
-        return ImageJ2SERotationUtil.instance
+        return @@instance
     end
     
 

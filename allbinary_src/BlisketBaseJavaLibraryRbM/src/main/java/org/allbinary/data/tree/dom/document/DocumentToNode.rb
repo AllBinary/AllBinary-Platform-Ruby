@@ -26,8 +26,8 @@ class DocumentToNode
 
     # throws Exception
     def self.convertDocumentToNodeString(documentString)
-        documentString = DocumentToNode.remove(documentString, DocumentToNode::XMLJSPROOTSTART, DocumentToNode::XMLEND)
-        documentString = DocumentToNode.remove(documentString, DocumentToNode::XMLJSPROOTENDSTART, DocumentToNode::XMLEND)
+        documentString = DocumentToNode.remove(documentString, XMLJSPROOTSTART, XMLEND)
+        documentString = DocumentToNode.remove(documentString, XMLJSPROOTENDSTART, XMLEND)
         replaceXmlRoot = ::Org::Allbinary::Logic::StringPackage::Regex::Replace::Replace.new(XMLROOT, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
         return replaceXmlRoot.all(documentString)
     end

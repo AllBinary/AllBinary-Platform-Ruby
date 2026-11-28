@@ -28,7 +28,7 @@ class ContextConfigurationData
     
 
     def self.getInstance()
-        return ContextConfigurationData.instance
+        return @@instance
     end
     
 

@@ -70,7 +70,7 @@ class InitializerData
     
 
     def self.getInstance()
-        return InitializerData.instance
+        return @@instance
     end
     
 

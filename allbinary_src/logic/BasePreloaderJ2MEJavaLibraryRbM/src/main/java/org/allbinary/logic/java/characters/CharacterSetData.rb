@@ -31,7 +31,7 @@ class CharacterSetData
     
 
     def self.getInstance()
-        return CharacterSetData.instance
+        return @@instance
     end
     
 

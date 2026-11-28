@@ -54,18 +54,18 @@ class ScrollSelectionForm < PaintableForm
     
 
     def self.getNullScrollSelectionForm()
-        if ScrollSelectionForm::NULL_SCROLL_SELECTION_FORM == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_SCROLL_SELECTION_FORM == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (ScrollSelectionForm.instance_exec(ScrollSelectionForm.createForm(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), ItemPaintableFactory.getInstance(), 0, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE)) { |java_value| remove_const(:NULL_SCROLL_SELECTION_FORM) if const_defined?(:NULL_SCROLL_SELECTION_FORM, false); const_set(:NULL_SCROLL_SELECTION_FORM, java_value) })
         end
-        return ScrollSelectionForm::NULL_SCROLL_SELECTION_FORM
+        return NULL_SCROLL_SELECTION_FORM
     end
     
 
     def self.getNullScrollSelectionFormHorizontal()
-        if ScrollSelectionForm::NULL_SCROLL_SELECTION_HORIZONTAL_FORM == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_SCROLL_SELECTION_HORIZONTAL_FORM == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (ScrollSelectionForm.instance_exec(ScrollSelectionForm.createForm(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), ItemPaintableFactory.getInstance(), 0, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE)) { |java_value| remove_const(:NULL_SCROLL_SELECTION_HORIZONTAL_FORM) if const_defined?(:NULL_SCROLL_SELECTION_HORIZONTAL_FORM, false); const_set(:NULL_SCROLL_SELECTION_HORIZONTAL_FORM, java_value) })
         end
-        return ScrollSelectionForm::NULL_SCROLL_SELECTION_HORIZONTAL_FORM
+        return NULL_SCROLL_SELECTION_HORIZONTAL_FORM
     end
     
 
@@ -192,7 +192,7 @@ class ScrollSelectionForm < PaintableForm
         stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(commonLabels.TOTAL_LABEL)
         stringBuffer.appendint(size)
-        @logUtil.putF(stringBuffer.to_s, self, ScrollSelectionForm::GET_SELECTED_INDEX)
+        @logUtil.putF(stringBuffer.to_s, self, GET_SELECTED_INDEX)
         item = nil
         width = 0
         height = 0
@@ -209,7 +209,7 @@ class ScrollSelectionForm < PaintableForm
                 stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
                 stringBuffer.append(commonLabels.INDEX_LABEL)
                 stringBuffer.appendint(index)
-                @logUtil.putF(stringBuffer.to_s, self, ScrollSelectionForm::GET_SELECTED_INDEX)
+                @logUtil.putF(stringBuffer.to_s, self, GET_SELECTED_INDEX)
                 return index
             end
             if @formType == formTypeFactory.HORIZONTAL_FORM
@@ -270,7 +270,7 @@ class ScrollSelectionForm < PaintableForm
 
     def isInForm(point)
         if @rectangleCollisionUtil.isInside(@x, @y - @halfBorder, @rectangle.getMaxX() + @border, @rectangle.getMaxY() + @border, point.getX(), point.getY())
-            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(point)).append(ScrollSelectionForm::INSIDE_FORM).to_s, self, ScrollSelectionForm::IS_IN_FORM)
+            @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(point)).append(INSIDE_FORM).to_s, self, IS_IN_FORM)
             return true
         end
         return false

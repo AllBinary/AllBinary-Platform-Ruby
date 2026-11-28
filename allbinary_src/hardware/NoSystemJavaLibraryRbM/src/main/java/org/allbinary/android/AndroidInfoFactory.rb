@@ -30,7 +30,7 @@ class AndroidInfoFactory
     
 
     def self.getInstance()
-        return AndroidInfoFactory.instance
+        return @@instance
     end
     
 

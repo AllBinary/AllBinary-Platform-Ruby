@@ -33,7 +33,7 @@ class ShakeEventFactory
     
 
     def self.getInstance()
-        return ShakeEventFactory.instance
+        return @@instance
     end
     
 

@@ -24,7 +24,7 @@ class ArtificialIntelligence
     
 
     def self.getInstance()
-        return ArtificialIntelligence.instance
+        return @@instance
     end
     
 

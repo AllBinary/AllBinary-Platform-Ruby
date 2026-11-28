@@ -31,14 +31,14 @@ class GestureOnlyMotionRecognizer < MotionRecognizer
     def initialize()
         super()
         jfields_org_allbinary_input_motion_GestureOnlyMotionRecognizer
-        @id = ((GestureOnlyMotionRecognizer.index += 1) - 1)
+        @id = ((@@index += 1) - 1)
         @motionGestureRecognizer = ::Org::Allbinary::Input::Motion::Gesture::MotionGestureRecognizer.new(@id)
     end
     
 
     # throws Exception
     def processStartMotionEvent(x, y, deviceId, modifiers)
-        point = GestureOnlyMotionRecognizer.pointCircularPool.getNextInstance()
+        point = @@pointCircularPool.getNextInstance()
         point.setX(x)
         point.setY(y)
         @motionGestureRecognizer.processPressedMotionEvent(point, deviceId, modifiers)
@@ -48,7 +48,7 @@ class GestureOnlyMotionRecognizer < MotionRecognizer
 
     # throws Exception
     def processEndMotionEvent(x, y, deviceId, modifiers)
-        point = GestureOnlyMotionRecognizer.pointCircularPool.getNextInstance()
+        point = @@pointCircularPool.getNextInstance()
         point.setX(x)
         point.setY(y)
         @motionGestureRecognizer.processReleasedMotionEvent(point, deviceId, modifiers)
@@ -58,7 +58,7 @@ class GestureOnlyMotionRecognizer < MotionRecognizer
 
     # throws Exception
     def processDraggedMotionEvent(x, y, deviceId, modifiers)
-        point = GestureOnlyMotionRecognizer.pointCircularPool.getNextInstance()
+        point = @@pointCircularPool.getNextInstance()
         point.setX(x)
         point.setY(y)
         @motionGestureRecognizer.processDraggedMotionEvent(point, deviceId, modifiers)

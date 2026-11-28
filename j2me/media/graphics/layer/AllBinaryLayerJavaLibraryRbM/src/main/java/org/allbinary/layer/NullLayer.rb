@@ -23,7 +23,7 @@ class NullLayer < Layer
     
 
     def self.getInstance()
-        return NullLayer.instance
+        return @@instance
     end
     
 

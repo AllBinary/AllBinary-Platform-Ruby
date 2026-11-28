@@ -30,7 +30,7 @@ class AnimationEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::Bas
 
     def self.getInstance()
         java_monitor.synchronize do
-        return AnimationEventHandler.eventHandler
+        return @@eventHandler
         end
     end
 

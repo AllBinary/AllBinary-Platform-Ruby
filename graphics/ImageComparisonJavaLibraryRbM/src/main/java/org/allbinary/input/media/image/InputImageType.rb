@@ -31,8 +31,8 @@ class InputImageType
         jfields_org_allbinary_input_media_image_InputImageType
         @name = name
         @index = index
-        InputImageType::TYPE_VECTOR.add(self)
-        InputImageType.hashMap.put(self.getName(), self)
+        TYPE_VECTOR.add(self)
+        @@hashMap.put(self.getName(), self)
     end
     
 
@@ -48,12 +48,12 @@ class InputImageType
     
 
     def self.getInstance(imageTypeString)
-        return InputImageType.hashMap.get(imageTypeString)
+        return @@hashMap.get(imageTypeString)
     end
     
 
     def self.getAllAsVector()
-        return InputImageType::TYPE_VECTOR
+        return TYPE_VECTOR
     end
     
 

@@ -51,8 +51,8 @@ class AndroidBasicTitleProgressBar < ProgressCanvas
 
     def init()
         begin
-            if AndroidBasicTitleProgressBar.background != 0
-                ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance().addResource(AndroidBasicTitleProgressBar::RESOURCE, AndroidBasicTitleProgressBar.background)
+            if @@background != 0
+                ::Org::Allbinary::DataPackage::Resource::ResourceUtil.getInstance().addResource(AndroidBasicTitleProgressBar::RESOURCE, @@background)
                 ::Org::Allbinary::Image::GameFeatureImageCacheFactory.init()
                 @image = ::Org::Allbinary::Image::ImageCacheFactory.getInstance().getWithKey(AndroidBasicTitleProgressBar::RESOURCE)
             end
@@ -85,7 +85,7 @@ class AndroidBasicTitleProgressBar < ProgressCanvas
         begin
             if !self.isBackground()
                 @animation = ::Org::Allbinary::Animation::NullAnimationFactory.getFactoryInstance().getInstance(0)
-            elsif AndroidBasicTitleProgressBar.background != 0
+            elsif @@background != 0
                 displayInfo = ::Org::Allbinary::Graphics::Displayable::DisplayInfoSingleton.getInstance()
                 currentImage = nil
                 if displayInfo.isPortrait()
@@ -309,7 +309,7 @@ class AndroidBasicTitleProgressBar < ProgressCanvas
     
 
     def self.setBackgroundResource(background)
-        AndroidBasicTitleProgressBar.background = background
+        @@background = background
     end
     
 

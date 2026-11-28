@@ -32,7 +32,7 @@ class TrueTypeFontUtil < TrueTypeFontUtilBase
     
 
     def self.getInstance()
-        return TrueTypeFontUtil.instance
+        return @@instance
     end
     
 

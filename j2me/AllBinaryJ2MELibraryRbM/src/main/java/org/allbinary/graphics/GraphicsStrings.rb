@@ -37,7 +37,7 @@ class GraphicsStrings
     
 
     def self.getInstance()
-        return GraphicsStrings.instance
+        return @@instance
     end
 
     def self.instance()

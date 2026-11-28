@@ -29,7 +29,7 @@ class TitleData
     
 
     def self.getInstance()
-        return TitleData.instance
+        return @@instance
     end
     
 

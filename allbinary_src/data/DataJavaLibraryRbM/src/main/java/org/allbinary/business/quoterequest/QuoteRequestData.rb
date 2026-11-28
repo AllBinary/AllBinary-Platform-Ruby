@@ -31,7 +31,7 @@ class QuoteRequestData
     
 
     def self.getInstance()
-        return QuoteRequestData.instance
+        return @@instance
     end
     
 

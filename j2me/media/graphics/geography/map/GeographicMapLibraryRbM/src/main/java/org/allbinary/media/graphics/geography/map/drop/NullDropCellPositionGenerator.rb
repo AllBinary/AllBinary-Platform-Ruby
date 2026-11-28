@@ -23,7 +23,7 @@ class NullDropCellPositionGenerator < BaseDropCellPositionGenerator
     
 
     def self.getInstance()
-        return NullDropCellPositionGenerator.instance
+        return @@instance
     end
 
     def self.instance()

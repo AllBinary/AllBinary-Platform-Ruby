@@ -44,7 +44,7 @@ class AllBinaryMediaManager
     def self.init(soundsFactoryInterface)
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-        logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, commonString.INIT)
+        logUtil.putF(commonString.START, THIS, commonString.INIT)
         ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
         Sounds.new(soundsFactoryInterface).init()
     end
@@ -61,7 +61,7 @@ class AllBinaryMediaManager
     def self.createPlayerFromInputStream(stream, type)
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-        logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, "creatPlayer(InputStream)")
+        logUtil.putF(commonString.START, THIS, "creatPlayer(InputStream)")
         return NoPlayer::NO_PLAYER
     end
     
@@ -69,7 +69,7 @@ class AllBinaryMediaManager
     def self.createPlayer(locator)
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-        logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, "creatPlayer(locator)")
+        logUtil.putF(commonString.START, THIS, "creatPlayer(locator)")
         return NoPlayer::NO_PLAYER
     end
     

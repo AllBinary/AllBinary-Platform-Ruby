@@ -35,7 +35,7 @@ class StringUtil
     
 
     def self.getInstance()
-        return StringUtil.instance
+        return @@instance
     end
     
 

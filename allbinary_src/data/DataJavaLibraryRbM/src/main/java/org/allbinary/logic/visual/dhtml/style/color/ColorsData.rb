@@ -26,7 +26,7 @@ class ColorsData
     
 
     def self.getInstance()
-        return ColorsData.instance
+        return @@instance
     end
     
 

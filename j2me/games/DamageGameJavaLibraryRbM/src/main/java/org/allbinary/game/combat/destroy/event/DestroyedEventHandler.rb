@@ -30,7 +30,7 @@ class DestroyedEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::Bas
 
     def self.getInstance()
         java_monitor.synchronize do
-        return DestroyedEventHandler.instance
+        return @@instance
         end
     end
     

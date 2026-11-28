@@ -21,7 +21,7 @@ class ModelViewProjection
     
 
     def self.getInstance()
-        return ModelViewProjection.instance
+        return @@instance
     end
     
 

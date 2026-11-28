@@ -30,7 +30,7 @@ class CamelCaseUtil
     
 
     def self.getInstance()
-        return CamelCaseUtil.instance
+        return @@instance
     end
     
 

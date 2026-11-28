@@ -27,7 +27,7 @@ class SubDirectory
     
 
     def self.getInstance()
-        return SubDirectory.instance
+        return @@instance
     end
     
 

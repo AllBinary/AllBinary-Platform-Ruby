@@ -30,7 +30,7 @@ class KeyValueFactory
     
 
     def self.getInstance()
-        return KeyValueFactory.instance
+        return @@instance
     end
     
 

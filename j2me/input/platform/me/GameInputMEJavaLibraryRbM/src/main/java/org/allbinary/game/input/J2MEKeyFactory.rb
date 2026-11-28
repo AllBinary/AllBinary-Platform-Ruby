@@ -26,7 +26,7 @@ class J2MEKeyFactory
     
 
     def self.getInstance()
-        return J2MEKeyFactory.instance
+        return @@instance
     end
     
 

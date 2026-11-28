@@ -23,7 +23,7 @@ class NormalRaceTrackGeographicMapCellTypeFactory < RaceTrackGeographicMapCellTy
     
 
     def self.getInstance()
-        return NormalRaceTrackGeographicMapCellTypeFactory.instanceC
+        return @@instanceC
     end
     
 

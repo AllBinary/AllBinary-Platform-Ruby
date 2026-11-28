@@ -30,7 +30,7 @@ class PaymentTransactionInterfaceRequestFactory
     
 
     def self.getInstance()
-        return PaymentTransactionInterfaceRequestFactory.instance
+        return @@instance
     end
     
 

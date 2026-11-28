@@ -10,7 +10,7 @@ class OpenGLGLUUtils
     
 
     def self.getInstance()
-        return OpenGLGLUUtils.instance
+        return @@instance
     end
     
 

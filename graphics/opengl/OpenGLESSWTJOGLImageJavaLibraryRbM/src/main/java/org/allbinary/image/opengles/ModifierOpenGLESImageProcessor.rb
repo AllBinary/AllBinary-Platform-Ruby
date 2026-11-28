@@ -23,7 +23,7 @@ class ModifierOpenGLESImageProcessor < OpenGLESImageProcessor
     
 
     def self.getInstance()
-        return ModifierOpenGLESImageProcessor.instanceC
+        return @@instanceC
     end
     
 

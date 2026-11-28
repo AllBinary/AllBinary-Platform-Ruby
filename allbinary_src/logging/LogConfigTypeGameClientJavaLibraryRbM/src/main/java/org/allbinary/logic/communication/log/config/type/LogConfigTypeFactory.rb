@@ -28,7 +28,7 @@ class LogConfigTypeFactory
     
 
     def self.getInstance()
-        return LogConfigTypeFactory.instance
+        return @@instance
     end
     
 

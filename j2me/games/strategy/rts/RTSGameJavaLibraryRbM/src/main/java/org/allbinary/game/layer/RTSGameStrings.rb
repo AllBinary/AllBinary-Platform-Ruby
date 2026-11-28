@@ -45,7 +45,7 @@ class RTSGameStrings
     
 
     def self.getInstance()
-        return RTSGameStrings.instance
+        return @@instance
     end
 
     def self.instance()

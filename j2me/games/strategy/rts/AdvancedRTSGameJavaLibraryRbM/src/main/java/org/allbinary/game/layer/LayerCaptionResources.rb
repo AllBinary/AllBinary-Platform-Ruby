@@ -26,7 +26,7 @@ class LayerCaptionResources
     
 
     def self.getInstance()
-        return LayerCaptionResources.instance
+        return @@instance
     end
     
 

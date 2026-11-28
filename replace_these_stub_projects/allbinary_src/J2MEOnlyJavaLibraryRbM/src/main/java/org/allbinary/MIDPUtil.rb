@@ -23,7 +23,7 @@ class MIDPUtil
     
 
     def self.getInstance()
-        return MIDPUtil.instance
+        return @@instance
     end
     
 

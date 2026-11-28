@@ -34,7 +34,7 @@ class DrawVerticalStringUtil
     
 
     def self.getInstance()
-        return DrawVerticalStringUtil.instance
+        return @@instance
     end
     
 

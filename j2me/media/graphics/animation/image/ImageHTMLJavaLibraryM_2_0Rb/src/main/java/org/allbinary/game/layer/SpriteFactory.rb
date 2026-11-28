@@ -33,7 +33,7 @@ class SpriteFactory
     
 
     def self.getInstance()
-        return SpriteFactory.instance
+        return @@instance
     end
     
 

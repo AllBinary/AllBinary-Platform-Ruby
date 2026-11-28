@@ -10,7 +10,7 @@ class MediaIOUtil
     
 
     def self.getInstance()
-        return MediaIOUtil.instance
+        return @@instance
     end
     
 

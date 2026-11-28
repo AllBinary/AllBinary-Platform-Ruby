@@ -40,7 +40,7 @@ class JavaHelpUtil
     
 
     def self.getInstance()
-        return JavaHelpUtil.instance
+        return @@instance
     end
     
 

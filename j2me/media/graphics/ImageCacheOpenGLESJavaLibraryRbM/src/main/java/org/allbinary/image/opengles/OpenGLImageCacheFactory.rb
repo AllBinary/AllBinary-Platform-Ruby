@@ -22,7 +22,7 @@ class OpenGLImageCacheFactory
     
 
     def self.getInstance()
-        return OpenGLImageCacheFactory::IMAGE_CACHE
+        return IMAGE_CACHE
     end
     
 

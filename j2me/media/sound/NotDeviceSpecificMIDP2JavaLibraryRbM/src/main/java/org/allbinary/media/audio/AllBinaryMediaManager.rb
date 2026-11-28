@@ -45,7 +45,7 @@ class AllBinaryMediaManager
     def self.init(soundsFactoryInterface)
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         commonString = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-        logUtil.putF(commonString.START, AllBinaryMediaManager::THIS, commonString.INIT)
+        logUtil.putF(commonString.START, THIS, commonString.INIT)
         ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance().addNormalPortion(50, "Media Manager")
         Sounds.new(soundsFactoryInterface).init()
     end

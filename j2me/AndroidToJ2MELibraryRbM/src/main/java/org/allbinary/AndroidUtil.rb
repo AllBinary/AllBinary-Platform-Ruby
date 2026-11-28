@@ -21,7 +21,7 @@ class AndroidUtil
     
 
     def self.isMemoryRestrictive()
-        if AndroidUtil.version < 30
+        if @@version < 30
             return true
         end
         return false

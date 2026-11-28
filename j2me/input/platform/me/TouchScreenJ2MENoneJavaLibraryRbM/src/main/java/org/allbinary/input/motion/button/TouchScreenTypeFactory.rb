@@ -21,7 +21,7 @@ class TouchScreenTypeFactory
     
 
     def self.getInstance()
-        return TouchScreenTypeFactory.instance
+        return @@instance
     end
     
 

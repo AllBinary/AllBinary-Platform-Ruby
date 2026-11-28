@@ -30,7 +30,7 @@ class HtmlNameMathData
     
 
     def self.getInstance()
-        return HtmlNameMathData.instance
+        return @@instance
     end
     
 

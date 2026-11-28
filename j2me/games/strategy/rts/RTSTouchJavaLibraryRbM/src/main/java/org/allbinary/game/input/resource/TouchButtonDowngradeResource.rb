@@ -23,7 +23,7 @@ class TouchButtonDowngradeResource < ::Org::Allbinary::Input::Motion::Button::To
     
 
     def self.getInstance()
-        return TouchButtonDowngradeResource.instance
+        return @@instance
     end
     
 

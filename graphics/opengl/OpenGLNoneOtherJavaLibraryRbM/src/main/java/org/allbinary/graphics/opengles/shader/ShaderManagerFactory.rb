@@ -21,7 +21,7 @@ class ShaderManagerFactory
     
 
     def self.getInstance()
-        return ShaderManagerFactory.instance
+        return @@instance
     end
     
 

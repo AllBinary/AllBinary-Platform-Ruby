@@ -24,7 +24,7 @@ class GameConfiguration
     def jfields_org_allbinary_game_configuration_GameConfiguration
         @name = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
         @defaultValue = ::Org::Allbinary::Logic::MathPackage::SmallIntegerSingletonFactory.getInstance().getAt(0)
-        @value = GameConfiguration::MIN_VALUE
+        @value = MIN_VALUE
         @minValue = @defaultValue
         @maxValue = @defaultValue
         @modifiable = ::Org::Allbinary::Logic::Java::Bool::BooleanFactory.getInstance().TRUE

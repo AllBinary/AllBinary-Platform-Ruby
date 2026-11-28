@@ -21,7 +21,7 @@ class PostGameCommandFactory
     
 
     def self.getInstance()
-        return PostGameCommandFactory.instance
+        return @@instance
     end
     
 

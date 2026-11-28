@@ -21,7 +21,7 @@ class LinePathAnimation
     
 
     def self.getInstance()
-        return LinePathAnimation.instance
+        return @@instance
     end
     
 

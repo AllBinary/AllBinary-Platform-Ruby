@@ -76,7 +76,7 @@ class InputAutomationNewBundleRunnable
         (0...size).each do |index|
             bundle = self.install(list.get(index))
             if bundle != nil
-                bundle.start(InputAutomationNewBundleRunnable::MODULES_START_LEVEL)
+                bundle.start(MODULES_START_LEVEL)
             end
         end
     end
@@ -101,7 +101,7 @@ class InputAutomationNewBundleRunnable
                 else
                     symbolicName = manifest.getMainAttributes().getValue(::Org::Osgi::Framework::Constants::BUNDLE_SYMBOLICNAME)
                     if symbolicName != nil
-                        hashMap.put(symbolicName, URL.new(InputAutomationNewBundleRunnable::FILE + file.getAbsolutePath()))
+                        hashMap.put(symbolicName, URL.new(FILE + file.getAbsolutePath()))
                     end
                 end
             end
@@ -114,11 +114,11 @@ class InputAutomationNewBundleRunnable
     def getJarModuleFileBasicArrayList()
         @logUtil.putF(@commonStrings.START, self, "getJarModuleFileBasicArrayList")
         baseJarPath = ::Java::Lang::System.getProperty(JAR_DIR_PROP)
-        if baseJarPath.start_with?(InputAutomationNewBundleRunnable::FILE)
-            baseJarPath = baseJarPath[InputAutomationNewBundleRunnable::FILE.length()..]
+        if baseJarPath.start_with?(FILE)
+            baseJarPath = baseJarPath[FILE.length()..]
         end
         jarFileFilter = ::Org::Allbinary::Logic::Io::FilePackage::Filter::BasicFileFilterUtil.getInstance(".jar")
-        path = baseJarPath + (InputAutomationNewBundleRunnable::INPUT_AUTMATION_MODULE_BUNDLE_JAR_PATH).to_s
+        path = baseJarPath + (INPUT_AUTMATION_MODULE_BUNDLE_JAR_PATH).to_s
         @logUtil.putF("Path: " + path, self, "getJarModuleFileBasicArrayList")
         file = File.new(path)
         @logUtil.putF("File: " + (file.getAbsolutePath()).to_s + " isDirectory: " + (file.isDirectory()).to_s, self, "getJarModuleFileBasicArrayList")

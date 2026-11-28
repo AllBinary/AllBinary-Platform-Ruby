@@ -23,7 +23,7 @@ class GameInputMotionInfoAPI1 < ::Org::Allbinary::Android::Input::Motion::GameIn
     
 
     def self.getInstance()
-        return GameInputMotionInfoAPI1.instance
+        return @@instance
     end
     
 

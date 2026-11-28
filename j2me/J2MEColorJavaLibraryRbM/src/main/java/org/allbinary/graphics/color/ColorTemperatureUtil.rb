@@ -30,7 +30,7 @@ class ColorTemperatureUtil
     
 
     def self.getInstance()
-        return ColorTemperatureUtil.instance
+        return @@instance
     end
     
 

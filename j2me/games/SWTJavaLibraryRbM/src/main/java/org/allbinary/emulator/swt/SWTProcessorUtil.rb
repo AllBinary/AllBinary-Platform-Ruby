@@ -30,7 +30,7 @@ class SWTProcessorUtil
     
 
     def self.getInstance()
-        return SWTProcessorUtil.instance
+        return @@instance
     end
 
     def self.instance()

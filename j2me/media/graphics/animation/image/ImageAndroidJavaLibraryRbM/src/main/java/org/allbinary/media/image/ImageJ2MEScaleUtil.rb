@@ -21,7 +21,7 @@ class ImageJ2MEScaleUtil
     
 
     def self.getInstance()
-        return ImageJ2MEScaleUtil.instance
+        return @@instance
     end
     
 

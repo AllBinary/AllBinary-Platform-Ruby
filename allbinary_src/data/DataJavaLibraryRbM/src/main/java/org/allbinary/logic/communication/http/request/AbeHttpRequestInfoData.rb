@@ -31,7 +31,7 @@ class AbeHttpRequestInfoData
     
 
     def self.getInstance()
-        return AbeHttpRequestInfoData.instance
+        return @@instance
     end
     
 

@@ -26,7 +26,7 @@ class ImageScaleUtil
     
 
     def self.getInstance()
-        return ImageScaleUtil.instance
+        return @@instance
     end
     
 

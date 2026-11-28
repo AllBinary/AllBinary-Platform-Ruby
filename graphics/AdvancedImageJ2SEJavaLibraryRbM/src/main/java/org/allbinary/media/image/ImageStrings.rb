@@ -31,7 +31,7 @@ class ImageStrings
     
 
     def self.getInstance()
-        return ImageStrings.instance
+        return @@instance
     end
 
     def self.instance()

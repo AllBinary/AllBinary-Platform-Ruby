@@ -21,7 +21,7 @@ class TextChangeListener
     
 
     def self.getInstance()
-        return TextChangeListener.instance
+        return @@instance
     end
     
 

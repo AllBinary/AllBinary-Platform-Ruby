@@ -23,7 +23,7 @@ class TouchButtonTurnRightResource < TouchButtonResource
     
 
     def self.getInstance()
-        return TouchButtonTurnRightResource.instance
+        return @@instance
     end
     
 

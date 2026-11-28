@@ -27,7 +27,7 @@ class AcceptableResponseGenerator
     
 
     def self.getInstance()
-        return AcceptableResponseGenerator.instance
+        return @@instance
     end
     
 

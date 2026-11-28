@@ -32,7 +32,7 @@ class BasicCryptUtil
     
 
     def self.getInstance()
-        return BasicCryptUtil.instance
+        return @@instance
     end
     
 

@@ -24,7 +24,7 @@ class GameStatisticsFactory < BaseGameStatistics
     
 
     def self.getInstance()
-        return GameStatisticsFactory.instance
+        return @@instance
     end
     
 

@@ -33,7 +33,7 @@ class CreditCardTypeFactory
     
 
     def self.getInstance()
-        return CreditCardTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

@@ -27,7 +27,7 @@ class VectorMirrorGenerator
     
 
     def self.getInstance()
-        return VectorMirrorGenerator.instance
+        return @@instance
     end
     
 

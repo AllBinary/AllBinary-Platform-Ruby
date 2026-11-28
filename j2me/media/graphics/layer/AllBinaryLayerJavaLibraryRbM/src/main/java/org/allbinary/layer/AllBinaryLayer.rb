@@ -241,7 +241,7 @@ class AllBinaryLayer < Layer
         commonLabels = ::Org::Allbinary::StringPackage::CommonLabels.getInstance()
         stringBuffer.append(self.getName())
         stringBuffer.append(commonSeps.COLON)
-        stringBuffer.append(AllBinaryLayer::TYPE)
+        stringBuffer.append(TYPE)
         stringBuffer.appendint(self.getType())
         stringBuffer.append(commonSeps.SPACE)
         stringBuffer.append(positionStrings.X_LABEL)

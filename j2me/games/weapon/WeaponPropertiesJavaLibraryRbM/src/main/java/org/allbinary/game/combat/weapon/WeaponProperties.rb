@@ -34,11 +34,11 @@ class WeaponProperties < SimpleWeaponProperties
     def initialize(reloadTime, targetingTime, speed, damage, dissipation)
         super()
         jfields_org_allbinary_game_combat_weapon_WeaponProperties
-        if speed < @MAX && speed != 0 && !WeaponProperties.messageSent
+        if speed < @MAX && speed != 0 && !@@messageSent
             _MESSAGE = "Danger Danger Danger: Speed probably to slow if using 1 degree calculations as velocity for a single axis could be below 1024: "
             commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
             ::Org::Allbinary::Logic::Communication::Log::PreLogUtil.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(_MESSAGE).appendlong(speed).to_s, self, commonStrings.CONSTRUCTOR)
-            WeaponProperties.messageSent = true
+            @@messageSent = true
         end
         self.setReloadTime(reloadTime)
         self.setTargetingTime(targetingTime)
@@ -100,11 +100,11 @@ class WeaponProperties < SimpleWeaponProperties
         index = 0
         stringArray = Array.new(3, nil)
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
-        stringArray[((index += 1) - 1)] = stringBuffer.append(WeaponProperties::DAMAGE).appendint(((self.getDamage()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s
+        stringArray[((index += 1) - 1)] = stringBuffer.append(DAMAGE).appendint(((self.getDamage()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s
         stringBuffer.delete(0, stringBuffer.length())
-        stringArray[((index += 1) - 1)] = stringBuffer.append(WeaponProperties::RANGE).appendint(((self.getRange()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s
+        stringArray[((index += 1) - 1)] = stringBuffer.append(RANGE).appendint(((self.getRange()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).to_s
         stringBuffer.delete(0, stringBuffer.length())
-        stringArray[((index += 1) - 1)] = stringBuffer.append(WeaponProperties::RELOAD).appendlong(self.getReloadTime()).to_s
+        stringArray[((index += 1) - 1)] = stringBuffer.append(RELOAD).appendlong(self.getReloadTime()).to_s
         return stringArray
     end
     java_overload :toStringArray, 0
@@ -112,11 +112,11 @@ class WeaponProperties < SimpleWeaponProperties
 
     def toString()
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
-        stringBuffer.append(WeaponProperties::DAMAGE).appendint(((self.getDamage()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
+        stringBuffer.append(DAMAGE).appendint(((self.getDamage()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
-        stringBuffer.append(WeaponProperties::RANGE).appendint(((self.getRange()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
+        stringBuffer.append(RANGE).appendint(((self.getRange()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
-        stringBuffer.append(WeaponProperties::RELOAD).appendlong(self.getReloadTime())
+        stringBuffer.append(RELOAD).appendlong(self.getReloadTime())
         return stringBuffer.to_s
     end
     java_overload :toString, 0

@@ -32,7 +32,7 @@ class MyFormUtil
     
 
     def self.getInstance()
-        return MyFormUtil.instance
+        return @@instance
     end
     
 

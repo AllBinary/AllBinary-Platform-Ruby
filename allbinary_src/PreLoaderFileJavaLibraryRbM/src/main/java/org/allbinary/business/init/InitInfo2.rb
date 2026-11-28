@@ -30,7 +30,7 @@ class InitInfo2
     
 
     def self.getInstance()
-        return InitInfo2.instance
+        return @@instance
     end
     
 

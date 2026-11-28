@@ -31,7 +31,7 @@ class MirrorImageUtil
     
 
     def self.getInstance()
-        return MirrorImageUtil.instance
+        return @@instance
     end
     
 

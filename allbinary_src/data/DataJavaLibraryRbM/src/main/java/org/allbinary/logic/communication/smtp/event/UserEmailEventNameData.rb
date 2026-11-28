@@ -31,27 +31,27 @@ class UserEmailEventNameData
         jfields_org_allbinary_logic_communication_smtp_event_UserEmailEventNameData
         @eventHandlerName = eventHandlerName
         self.initNextId()
-        UserEmailEventNameData.userNameEvenNameHashMap.put(@eventHandlerName, self)
+        @@userNameEvenNameHashMap.put(@eventHandlerName, self)
     end
     
 
     def initNextId()
         java_monitor.synchronize do
-        @eventNameId = UserEmailEventNameData.nextId
-        UserEmailEventNameData.nextId += 1
+        @eventNameId = @@nextId
+        @@nextId += 1
         end
     end
     
 
     def isEvent(userEmailEventNameString)
-        return UserEmailEventNameData.userNameEvenNameHashMap.containsKey(userEmailEventNameString)
+        return @@userNameEvenNameHashMap.containsKey(userEmailEventNameString)
     end
     
 
     # throws Exception
     def self.getInstance(userEmailEventNameString)
         java_monitor.synchronize do
-        userEmailEventNameData = UserEmailEventNameData.userNameEvenNameHashMap.get(userEmailEventNameString)
+        userEmailEventNameData = @@userNameEvenNameHashMap.get(userEmailEventNameString)
         if userEmailEventNameData == nil
             raise StandardError.new()
         else

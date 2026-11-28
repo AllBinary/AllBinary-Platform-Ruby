@@ -26,7 +26,7 @@ class InputTypeData
     
 
     def self.getInstance()
-        return InputTypeData.instance
+        return @@instance
     end
     
 

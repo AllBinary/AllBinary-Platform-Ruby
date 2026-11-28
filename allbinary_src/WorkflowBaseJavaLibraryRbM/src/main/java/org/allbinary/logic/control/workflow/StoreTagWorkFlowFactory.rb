@@ -28,7 +28,7 @@ class StoreTagWorkFlowFactory
     
 
     def self.getInstance()
-        return StoreTagWorkFlowFactory.instance
+        return @@instance
     end
     
 
@@ -46,7 +46,7 @@ class StoreTagWorkFlowFactory
                 stringBuffer.append("Creating WorkFlow: ")
                 stringBuffer.append(workFlowClassName)
                 stringBuffer.append("->")
-                stringBuffer.append(StoreTagWorkFlowFactory.instance.class.java_name)
+                stringBuffer.append(@@instance.class.java_name)
                 commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.putF(stringBuffer.to_s, self, commonStrings.GET_INSTANCE)
             end
@@ -64,7 +64,7 @@ class StoreTagWorkFlowFactory
                 stringBuffer.append("Error Creating WorkFlow: ")
                 stringBuffer.append(workFlowClassName)
                 stringBuffer.append("->")
-                stringBuffer.append(StoreTagWorkFlowFactory.instance.class.java_name)
+                stringBuffer.append(@@instance.class.java_name)
                 commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(stringBuffer.to_s, self, commonStrings.GET_INSTANCE, e)
             end
@@ -76,7 +76,7 @@ class StoreTagWorkFlowFactory
                 stringBuffer.append("Error Creating WorkFlow: ")
                 stringBuffer.append(workFlowClassName)
                 stringBuffer.append("->")
-                stringBuffer.append(StoreTagWorkFlowFactory.instance.class.java_name)
+                stringBuffer.append(@@instance.class.java_name)
                 commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(stringBuffer.to_s, self, commonStrings.GET_INSTANCE, e)
             end

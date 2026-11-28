@@ -131,9 +131,9 @@ class Health
 
     def toString()
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
-        stringBuffer.append(Health::HEALTH_LABEL)
+        stringBuffer.append(HEALTH_LABEL)
         stringBuffer.appendint(@health)
-        stringBuffer.append(Health::MAX_HEALTH_LABEL)
+        stringBuffer.append(MAX_HEALTH_LABEL)
         stringBuffer.appendint(@maxHealth)
         return stringBuffer.to_s
     end

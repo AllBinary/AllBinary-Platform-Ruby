@@ -27,7 +27,7 @@ class TransformInfoTemplateData
     
 
     def self.getInstance()
-        return TransformInfoTemplateData.instance
+        return @@instance
     end
     
 

@@ -30,7 +30,7 @@ class OpenGLVersionValidator
     
 
     def self.getInstance()
-        return OpenGLVersionValidator.instance
+        return @@instance
     end
     
 

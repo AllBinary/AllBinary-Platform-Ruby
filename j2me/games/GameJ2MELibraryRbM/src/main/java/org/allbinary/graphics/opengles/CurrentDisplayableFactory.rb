@@ -40,7 +40,7 @@ class CurrentDisplayableFactory
     
 
     def self.getInstance()
-        return CurrentDisplayableFactory.instance
+        return @@instance
     end
     
 

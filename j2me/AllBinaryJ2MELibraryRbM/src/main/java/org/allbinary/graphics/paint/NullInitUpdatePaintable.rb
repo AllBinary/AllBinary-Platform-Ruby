@@ -28,7 +28,7 @@ class NullInitUpdatePaintable < InitUpdatePaintable
     
 
     def self.getInstance()
-        return NullInitUpdatePaintable::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

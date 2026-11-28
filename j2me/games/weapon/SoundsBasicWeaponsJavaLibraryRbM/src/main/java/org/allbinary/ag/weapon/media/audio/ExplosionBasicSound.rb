@@ -28,7 +28,7 @@ class ExplosionBasicSound < ::Org::Allbinary::Media::Audio::CompositeSound
     
 
     def self.getInstance()
-        return ExplosionBasicSound.soundInterface
+        return @@soundInterface
     end
 
     def self.soundInterface()

@@ -26,7 +26,7 @@ class TransformInfoObjectConfigNoManipulationFactory
     
 
     def self.getInstance()
-        return TransformInfoObjectConfigNoManipulationFactory.instance
+        return @@instance
     end
     
 

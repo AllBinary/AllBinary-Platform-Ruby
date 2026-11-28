@@ -30,10 +30,10 @@ class BufferedImageInfoFactory
         stringbuffer.appendint(height)
         stringbuffer.appendint(type)
         key = stringbuffer.to_s
-        bufferedImageInfo = BufferedImageInfoFactory.hashMap.get(key)
+        bufferedImageInfo = @@hashMap.get(key)
         if bufferedImageInfo == nil
             bufferedImageInfo = BufferedImageInfo.new(width, height, type)
-            BufferedImageInfoFactory.hashMap.put(key, bufferedImageInfo)
+            @@hashMap.put(key, bufferedImageInfo)
         end
         return bufferedImageInfo
     end

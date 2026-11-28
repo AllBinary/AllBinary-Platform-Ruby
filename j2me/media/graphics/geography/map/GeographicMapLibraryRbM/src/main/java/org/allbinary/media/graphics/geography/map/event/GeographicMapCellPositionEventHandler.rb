@@ -29,7 +29,7 @@ class GeographicMapCellPositionEventHandler < ::Org::Allbinary::Logic::Util::Eve
     
 
     def self.getInstance()
-        return GeographicMapCellPositionEventHandler.instance
+        return @@instance
     end
     
 

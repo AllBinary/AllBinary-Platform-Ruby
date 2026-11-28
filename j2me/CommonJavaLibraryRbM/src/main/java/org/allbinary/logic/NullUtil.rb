@@ -41,7 +41,7 @@ class NullUtil
     
 
     def self.getInstance()
-        return NullUtil.instance
+        return @@instance
     end
 
     def self.instance()

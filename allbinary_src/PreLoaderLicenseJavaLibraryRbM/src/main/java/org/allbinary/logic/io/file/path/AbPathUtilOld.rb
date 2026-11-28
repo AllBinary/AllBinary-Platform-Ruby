@@ -30,7 +30,7 @@ class AbPathUtilOld
     
 
     def self.getInstance()
-        return AbPathUtilOld.instance
+        return @@instance
     end
     
 
@@ -53,10 +53,10 @@ class AbPathUtilOld
 
     # throws Exception
     def getExtension_j1_3(filePath)
-        if filePath.length < AbPathUtilOld::MIN
+        if filePath.length < MIN
             raise StandardError.new("Could not be a file path since its less that 4 characters")
         end
-        beginIndex = filePath.length - AbPathUtilOld::MIN
+        beginIndex = filePath.length - MIN
         extension = filePath[beginIndex + 1..]
         if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
             @logUtil.putF("FileExtension: " + extension, self, "getExtension()")
@@ -90,10 +90,10 @@ class AbPathUtilOld
 
     # throws Exception
     def getWithoutExtension_j1_3(filePath)
-        if filePath.length < AbPathUtilOld::MIN
+        if filePath.length < MIN
             raise StandardError.new("Could not be a file path since its less that 4 characters")
         end
-        endIndex = filePath.length - AbPathUtilOld::MIN
+        endIndex = filePath.length - MIN
         pathWithoutExtension = filePath[0...endIndex]
         if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
             @logUtil.putF("FileWithoutExtension: " + pathWithoutExtension, self, "getWithoutExtension()")

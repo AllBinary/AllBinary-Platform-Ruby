@@ -28,7 +28,7 @@ class ExceptionUtil
     
 
     def self.getInstance()
-        return ExceptionUtil.instance
+        return @@instance
     end
     
 

@@ -29,7 +29,7 @@ class VectorExplosionGenerator
     
 
     def self.getInstance()
-        return VectorExplosionGenerator.instance
+        return @@instance
     end
     
 

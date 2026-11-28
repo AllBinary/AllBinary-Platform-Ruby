@@ -34,7 +34,7 @@ class RendererStrings
     
 
     def self.getInstance()
-        return RendererStrings.instance
+        return @@instance
     end
 
     def self.instance()

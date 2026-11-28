@@ -49,7 +49,7 @@ class MediaDataFactory
     
 
     def self.getInstance()
-        return MediaDataFactory.instance
+        return @@instance
     end
 
     def self.instance()

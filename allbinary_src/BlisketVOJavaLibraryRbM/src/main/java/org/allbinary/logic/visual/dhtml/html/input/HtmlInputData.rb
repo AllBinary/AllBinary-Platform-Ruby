@@ -38,7 +38,7 @@ class HtmlInputData
     
 
     def self.getInstance()
-        return HtmlInputData.instance
+        return @@instance
     end
 
     def self.instance()

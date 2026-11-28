@@ -33,7 +33,7 @@ class GameSpeed
     
 
     def self.getInstance()
-        return GameSpeed.instance
+        return @@instance
     end
 
     def self.instance()

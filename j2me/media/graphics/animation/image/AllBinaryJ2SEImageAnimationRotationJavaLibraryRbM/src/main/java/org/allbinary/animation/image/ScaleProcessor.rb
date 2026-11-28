@@ -35,7 +35,7 @@ class ScaleProcessor < ScaleBaseProcessor
     
 
     def self.getInstance()
-        return ScaleProcessor.instanceC
+        return @@instanceC
     end
     
 

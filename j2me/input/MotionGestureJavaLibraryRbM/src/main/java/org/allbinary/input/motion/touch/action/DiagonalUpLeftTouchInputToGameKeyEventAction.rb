@@ -23,10 +23,10 @@ class DiagonalUpLeftTouchInputToGameKeyEventAction < ::Org::Allbinary::Game::Inp
     
 
     def self.getInstance()
-        if DiagonalUpLeftTouchInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            DiagonalUpLeftTouchInputToGameKeyEventAction.instance = DiagonalUpLeftTouchInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = DiagonalUpLeftTouchInputToGameKeyEventAction.new()
         end
-        return DiagonalUpLeftTouchInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

@@ -30,7 +30,7 @@ class FeatureResourceInitializationUtil
     
 
     def self.getInstance()
-        return FeatureResourceInitializationUtil.instance
+        return @@instance
     end
     
 

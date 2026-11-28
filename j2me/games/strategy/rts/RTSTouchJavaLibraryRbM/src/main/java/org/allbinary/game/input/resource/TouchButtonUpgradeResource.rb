@@ -23,7 +23,7 @@ class TouchButtonUpgradeResource < ::Org::Allbinary::Input::Motion::Button::Touc
     
 
     def self.getInstance()
-        return TouchButtonUpgradeResource.instance
+        return @@instance
     end
     
 

@@ -34,7 +34,7 @@ class AbeNoLicense
     
 
     def self.getInstance()
-        return AbeNoLicense.abeNoLicense
+        return @@abeNoLicense
     end
     
 

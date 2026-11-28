@@ -32,7 +32,7 @@ class ItemColorFactory
     
 
     def self.getInstance()
-        return ItemColorFactory.instance
+        return @@instance
     end
 
     def self.instance()

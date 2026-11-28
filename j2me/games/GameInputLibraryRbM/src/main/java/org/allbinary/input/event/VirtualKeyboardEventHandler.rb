@@ -35,7 +35,7 @@ class VirtualKeyboardEventHandler < ::Org::Allbinary::Logic::Util::Event::Handle
     
 
     def self.getInstance()
-        return VirtualKeyboardEventHandler.gameKeyEventHandler
+        return @@gameKeyEventHandler
     end
     
 

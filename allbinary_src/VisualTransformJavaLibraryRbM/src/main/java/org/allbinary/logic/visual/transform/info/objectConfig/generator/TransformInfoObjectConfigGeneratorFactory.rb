@@ -29,7 +29,7 @@ class TransformInfoObjectConfigGeneratorFactory
     
 
     def self.getInstance()
-        return TransformInfoObjectConfigGeneratorFactory.instance
+        return @@instance
     end
     
 

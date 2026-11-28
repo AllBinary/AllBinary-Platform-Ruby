@@ -30,7 +30,7 @@ class LockableFeatureFactory
     
 
     def self.getInstance()
-        return LockableFeatureFactory.instance
+        return @@instance
     end
     
 

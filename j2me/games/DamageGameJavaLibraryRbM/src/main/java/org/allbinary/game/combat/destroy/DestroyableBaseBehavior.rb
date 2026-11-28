@@ -25,7 +25,7 @@ class DestroyableBaseBehavior
     
 
     def self.getInstance()
-        return DestroyableBaseBehavior.instance
+        return @@instance
     end
     
 

@@ -31,10 +31,10 @@ class InputToGameKeyMapping < InputMapping
     
 
     def self.getNullInstance()
-        if InputToGameKeyMapping.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            InputToGameKeyMapping.instance = InputToGameKeyMapping.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = InputToGameKeyMapping.new()
         end
-        return InputToGameKeyMapping.instance
+        return @@instance
     end
     
 

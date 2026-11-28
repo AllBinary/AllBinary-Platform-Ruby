@@ -35,10 +35,10 @@ class CommandForm < ::Javax::Microedition::Lcdui::Form
     
 
     def self.getNullCommandForm()
-        if CommandForm::NULL_COMMAND_FORM == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_COMMAND_FORM == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (CommandForm.instance_exec(CommandForm.new(::Javax::Microedition::Lcdui::NullCommandListener::NULL_COMMAND_LISTENER, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE)) { |java_value| remove_const(:NULL_COMMAND_FORM) if const_defined?(:NULL_COMMAND_FORM, false); const_set(:NULL_COMMAND_FORM, java_value) })
         end
-        return CommandForm::NULL_COMMAND_FORM
+        return NULL_COMMAND_FORM
     end
     
 

@@ -24,7 +24,7 @@ class FrameUtil
     
 
     def self.getInstance()
-        return FrameUtil.instance
+        return @@instance
     end
     
 

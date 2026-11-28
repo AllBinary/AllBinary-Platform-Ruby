@@ -24,10 +24,10 @@ class BufferedGameCanvasPaintHelper < ::Org::Allbinary::Graphics::Paint::Process
 
     def jfields_org_allbinary_game_displayable_canvas_BufferedGameCanvasPaintHelper
         @gameCanvas = ::Javax::Microedition::Lcdui::NullCanvas::NULL_CANVAS
-        @offScreenImage = Array.new(BufferedGameCanvasPaintHelper::MAX_IMAGES, nil)
+        @offScreenImage = Array.new(MAX_IMAGES, nil)
         @previousImage = ::Javax::Microedition::Lcdui::NullImage::NULL_IMAGE
-        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(BufferedGameCanvasPaintHelper::MAX_IMAGES)
-        @drawCircularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstanceAt(BufferedGameCanvasPaintHelper::MAX_IMAGES - 1, BufferedGameCanvasPaintHelper::MAX_IMAGES)
+        @circularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstance(MAX_IMAGES)
+        @drawCircularIndexUtil = ::Org::Allbinary::Util::CircularIndexUtil.createInstanceAt(MAX_IMAGES - 1, MAX_IMAGES)
         @anchor = ::Org::Allbinary::Graphics::Anchor::TOP_LEFT
     end
     

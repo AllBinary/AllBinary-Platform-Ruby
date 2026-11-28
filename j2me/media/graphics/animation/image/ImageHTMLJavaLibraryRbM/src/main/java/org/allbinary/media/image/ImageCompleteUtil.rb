@@ -31,7 +31,7 @@ class ImageCompleteUtil
     
 
     def self.getInstance()
-        return ImageCompleteUtil.instance
+        return @@instance
     end
     
 

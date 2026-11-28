@@ -31,7 +31,7 @@ class GeographicMapCellTypeFactory
     
 
     def self.getInstance()
-        return GeographicMapCellTypeFactory.instance
+        return @@instance
     end
     
 

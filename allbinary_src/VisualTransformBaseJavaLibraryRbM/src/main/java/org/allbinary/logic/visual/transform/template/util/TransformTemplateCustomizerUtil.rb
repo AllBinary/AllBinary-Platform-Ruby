@@ -34,7 +34,7 @@ class TransformTemplateCustomizerUtil
     
 
     def self.getInstance()
-        return TransformTemplateCustomizerUtil.instance
+        return @@instance
     end
     
 

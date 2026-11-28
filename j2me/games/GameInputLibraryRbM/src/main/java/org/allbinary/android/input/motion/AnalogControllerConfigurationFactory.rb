@@ -29,7 +29,7 @@ class AnalogControllerConfigurationFactory
     
 
     def self.getInstance()
-        return AnalogControllerConfigurationFactory.instance
+        return @@instance
     end
     
 

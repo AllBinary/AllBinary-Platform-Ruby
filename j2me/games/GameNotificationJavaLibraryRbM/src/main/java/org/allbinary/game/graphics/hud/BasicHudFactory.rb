@@ -35,7 +35,7 @@ class BasicHudFactory
     
 
     def self.getInstance()
-        return BasicHudFactory.instance
+        return @@instance
     end
     
 

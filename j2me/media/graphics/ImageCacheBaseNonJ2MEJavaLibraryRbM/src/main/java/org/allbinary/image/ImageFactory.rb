@@ -22,7 +22,7 @@ class ImageFactory
     
 
     def self.getInstance()
-        return ImageFactory.instance
+        return @@instance
     end
     
 

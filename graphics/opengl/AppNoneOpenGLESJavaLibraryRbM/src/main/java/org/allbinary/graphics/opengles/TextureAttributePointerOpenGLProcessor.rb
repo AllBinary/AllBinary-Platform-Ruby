@@ -23,7 +23,7 @@ class TextureAttributePointerOpenGLProcessor < ::Org::Allbinary::Graphics::Three
     
 
     def self.getInstance()
-        return TextureAttributePointerOpenGLProcessor.instance
+        return @@instance
     end
     
 

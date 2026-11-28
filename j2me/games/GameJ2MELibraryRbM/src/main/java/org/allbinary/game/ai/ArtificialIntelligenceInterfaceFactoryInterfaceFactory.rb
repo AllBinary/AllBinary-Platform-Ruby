@@ -35,7 +35,7 @@ class ArtificialIntelligenceInterfaceFactoryInterfaceFactory
     
 
     def self.getInstance()
-        return ArtificialIntelligenceInterfaceFactoryInterfaceFactory::SINGLETON
+        return SINGLETON
     end
     
 

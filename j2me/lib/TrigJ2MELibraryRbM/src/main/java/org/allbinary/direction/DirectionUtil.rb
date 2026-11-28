@@ -27,7 +27,7 @@ class DirectionUtil
     
 
     def self.getInstance()
-        return DirectionUtil.instance
+        return @@instance
     end
     
 

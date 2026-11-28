@@ -21,7 +21,7 @@ class InputAutomationClientInformationFactory
     
 
     def self.getInstance()
-        return InputAutomationClientInformationFactory.instance
+        return @@instance
     end
 
     def self.instance()

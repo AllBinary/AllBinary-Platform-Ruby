@@ -41,7 +41,7 @@ class FileData
     
 
     def self.getInstance()
-        return FileData.instance
+        return @@instance
     end
     
 

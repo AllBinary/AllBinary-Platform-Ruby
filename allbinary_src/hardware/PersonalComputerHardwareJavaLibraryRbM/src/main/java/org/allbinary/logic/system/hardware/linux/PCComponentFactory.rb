@@ -27,7 +27,7 @@ class PCComponentFactory
     
 
     def self.getInstance()
-        return PCComponentFactory.instance
+        return @@instance
     end
     
 

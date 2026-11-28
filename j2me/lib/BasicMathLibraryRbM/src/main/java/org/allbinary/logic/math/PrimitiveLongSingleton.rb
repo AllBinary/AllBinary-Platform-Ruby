@@ -34,7 +34,7 @@ class PrimitiveLongSingleton
     
 
     def self.getInstance()
-        return PrimitiveLongSingleton.instance
+        return @@instance
     end
     
 

@@ -29,7 +29,7 @@ class FireworksSound < CompositeSound
     
 
     def self.getInstance()
-        return FireworksSound.soundInterface
+        return @@soundInterface
     end
 
     def self.soundInterface()

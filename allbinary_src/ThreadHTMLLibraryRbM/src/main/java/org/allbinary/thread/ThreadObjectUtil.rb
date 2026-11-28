@@ -18,7 +18,7 @@ class ThreadObjectUtil
     
 
     def self.getInstance()
-        return ThreadObjectUtil.instance
+        return @@instance
     end
     
 

@@ -16,7 +16,7 @@ class BasicGameInfoFactory
     
 
     def self.getInstance()
-        return BasicGameInfoFactory::SINGLETON
+        return SINGLETON
     end
     
 

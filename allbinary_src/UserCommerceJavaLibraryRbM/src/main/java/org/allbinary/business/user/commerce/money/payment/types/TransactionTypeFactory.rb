@@ -35,7 +35,7 @@ class TransactionTypeFactory
     
 
     def self.getInstance()
-        return TransactionTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

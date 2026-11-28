@@ -21,7 +21,7 @@ class LastKeyAIVisitorFactory
     
 
     def self.getInstance()
-        return LastKeyAIVisitorFactory.instance
+        return @@instance
     end
 
     def self.instance()

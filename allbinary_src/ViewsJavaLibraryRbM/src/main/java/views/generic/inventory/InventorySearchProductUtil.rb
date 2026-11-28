@@ -32,7 +32,7 @@ class InventorySearchProductUtil
     
 
     def self.getInstance()
-        return InventorySearchProductUtil.instance
+        return @@instance
     end
     
 

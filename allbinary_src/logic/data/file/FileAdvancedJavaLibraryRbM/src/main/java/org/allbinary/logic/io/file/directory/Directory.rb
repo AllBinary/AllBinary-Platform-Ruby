@@ -22,7 +22,7 @@ class Directory
     
 
     def self.getInstance()
-        return Directory.instance
+        return @@instance
     end
     
 

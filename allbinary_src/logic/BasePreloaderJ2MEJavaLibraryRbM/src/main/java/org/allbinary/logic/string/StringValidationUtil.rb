@@ -27,7 +27,7 @@ class StringValidationUtil
     
 
     def self.getInstance()
-        return StringValidationUtil.instance
+        return @@instance
     end
     
 

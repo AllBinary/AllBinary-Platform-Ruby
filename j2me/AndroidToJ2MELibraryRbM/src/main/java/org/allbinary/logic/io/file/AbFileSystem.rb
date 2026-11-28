@@ -33,7 +33,7 @@ class AbFileSystem
     
 
     def self.getInstance()
-        return AbFileSystem.instance
+        return @@instance
     end
     
 

@@ -23,7 +23,7 @@ class ActivityFractureUtilAPI19 < ::Org::Allbinary::Android::Api5::ActivityFract
     
 
     def self.getInstance()
-        return ActivityFractureUtilAPI19.instance19
+        return @@instance19
     end
     
 

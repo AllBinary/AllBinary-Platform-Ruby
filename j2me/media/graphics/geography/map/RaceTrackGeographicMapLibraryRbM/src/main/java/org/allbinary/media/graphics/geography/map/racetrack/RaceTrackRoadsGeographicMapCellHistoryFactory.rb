@@ -25,7 +25,7 @@ class RaceTrackRoadsGeographicMapCellHistoryFactory
     
 
     def self.getInstance()
-        return RaceTrackRoadsGeographicMapCellHistoryFactory.geographicMapCellHistory
+        return @@geographicMapCellHistory
     end
 
     def self.geographicMapCellHistory()

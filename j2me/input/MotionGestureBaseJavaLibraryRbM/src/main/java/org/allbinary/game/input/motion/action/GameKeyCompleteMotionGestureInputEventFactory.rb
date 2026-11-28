@@ -31,7 +31,7 @@ class GameKeyCompleteMotionGestureInputEventFactory
     
 
     def self.getInstance()
-        return GameKeyCompleteMotionGestureInputEventFactory::SINGLETON
+        return SINGLETON
     end
     
 

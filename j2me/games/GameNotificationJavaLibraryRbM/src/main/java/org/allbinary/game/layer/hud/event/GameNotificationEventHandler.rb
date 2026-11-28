@@ -51,7 +51,7 @@ class GameNotificationEventHandler < ::Org::Allbinary::Logic::Util::Event::Handl
     
 
     def self.getInstance()
-        return GameNotificationEventHandler.instance
+        return @@instance
     end
     
 

@@ -30,10 +30,10 @@ class AllBinarySensorManager
     
 
     def self.getInstance()
-        if AllBinarySensorManager.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            AllBinarySensorManager.instance = AllBinarySensorManager.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = AllBinarySensorManager.new()
         end
-        return AllBinarySensorManager.instance
+        return @@instance
     end
     
 

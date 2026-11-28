@@ -21,7 +21,7 @@ class AboutCommandProcessor
     
 
     def self.getInstance()
-        return AboutCommandProcessor.instance
+        return @@instance
     end
     
 

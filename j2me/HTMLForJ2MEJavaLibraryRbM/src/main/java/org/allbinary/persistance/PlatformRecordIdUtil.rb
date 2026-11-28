@@ -30,7 +30,7 @@ class PlatformRecordIdUtil
     
 
     def self.getInstance()
-        return PlatformRecordIdUtil.instance
+        return @@instance
     end
     
 

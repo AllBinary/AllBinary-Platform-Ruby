@@ -25,7 +25,7 @@ class FallingPickupLayer < ::Org::Allbinary::Game::Layer::Pickup::PickupLayer
     
 
     def initialize(remoteInfo)
-        super(FallingPickupLayer::NAME, remoteInfo, 0, ::Org::Allbinary::Game::Layer::Pickup::CountedPickedUpLayerInterfaceFactory::NULL_COUNTED_PICKUP_LAYER_FACTORY, ::Org::Allbinary::Animation::NullAnimationFactory.getFactoryInstance().getInstance(0), ::Org::Allbinary::Graphics::Rectangle.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, 0, 0), ::Org::Allbinary::View::ViewPosition.getInstanceD())
+        super(NAME, remoteInfo, 0, ::Org::Allbinary::Game::Layer::Pickup::CountedPickedUpLayerInterfaceFactory::NULL_COUNTED_PICKUP_LAYER_FACTORY, ::Org::Allbinary::Animation::NullAnimationFactory.getFactoryInstance().getInstance(0), ::Org::Allbinary::Graphics::Rectangle.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, 0, 0), ::Org::Allbinary::View::ViewPosition.getInstanceD())
     end
     
 

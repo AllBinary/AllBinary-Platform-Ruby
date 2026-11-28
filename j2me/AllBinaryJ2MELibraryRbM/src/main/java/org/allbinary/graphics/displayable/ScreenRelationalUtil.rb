@@ -9,7 +9,7 @@ class ScreenRelationalUtil
     
 
     def self.getInstance()
-        return ScreenRelationalUtil.instance
+        return @@instance
     end
     
 

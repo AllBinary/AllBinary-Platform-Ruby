@@ -21,7 +21,7 @@ class ChoiceGroupImageUtil
     
 
     def self.getInstance()
-        return ChoiceGroupImageUtil.instance
+        return @@instance
     end
     
 

@@ -21,7 +21,7 @@ class StatePaintableFactory
     
 
     def self.getInstance()
-        return StatePaintableFactory.instance
+        return @@instance
     end
 
     def self.instance()

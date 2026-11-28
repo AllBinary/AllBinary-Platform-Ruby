@@ -29,10 +29,10 @@ class TrackballMotionGestureFactory
     
 
     def self.getInstance()
-        if TrackballMotionGestureFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            TrackballMotionGestureFactory.instance = TrackballMotionGestureFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = TrackballMotionGestureFactory.new()
         end
-        return TrackballMotionGestureFactory.instance
+        return @@instance
     end
     
 

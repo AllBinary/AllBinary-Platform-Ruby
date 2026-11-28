@@ -35,7 +35,7 @@ class CompositeShaderUpdater < ShaderUpdater
     
 
     def self.getInstance()
-        return CompositeShaderUpdater.instanceC
+        return @@instanceC
     end
     
 

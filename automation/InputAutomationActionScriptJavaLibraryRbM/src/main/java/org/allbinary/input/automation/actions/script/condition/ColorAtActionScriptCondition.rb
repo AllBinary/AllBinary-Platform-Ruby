@@ -44,7 +44,7 @@ class ColorAtActionScriptCondition < BasicProfileActionScriptCondition
     
 
     def jnew_org_allbinary_input_automation_actions_script_condition_ColorAtActionScriptCondition_1(node)
-        ColorAtActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(ColorAtActionScriptCondition::NAME, node)
+        ColorAtActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(NAME, node)
         jfields_org_allbinary_input_automation_actions_script_condition_ColorAtActionScriptCondition
         @point = Point.new(0, 0)
         actionNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(ColorAtActionScriptConditionData::NAME, node.getChildNodes())
@@ -86,7 +86,7 @@ class ColorAtActionScriptCondition < BasicProfileActionScriptCondition
     
 
     def jnew_org_allbinary_input_automation_actions_script_condition_ColorAtActionScriptCondition_0()
-        ColorAtActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(ColorAtActionScriptCondition::NAME)
+        ColorAtActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(NAME)
         jfields_org_allbinary_input_automation_actions_script_condition_ColorAtActionScriptCondition
         @point = Point.new(0, 0)
         self.init()

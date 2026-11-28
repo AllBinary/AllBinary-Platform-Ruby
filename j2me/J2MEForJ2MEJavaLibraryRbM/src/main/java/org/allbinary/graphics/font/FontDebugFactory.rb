@@ -21,7 +21,7 @@ class FontDebugFactory
     
 
     def self.getInstance()
-        return FontDebugFactory.instance
+        return @@instance
     end
     
 

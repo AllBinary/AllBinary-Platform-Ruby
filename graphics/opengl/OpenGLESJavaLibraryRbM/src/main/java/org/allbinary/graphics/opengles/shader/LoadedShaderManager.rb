@@ -21,7 +21,7 @@ class LoadedShaderManager
     
 
     def self.getInstance()
-        return LoadedShaderManager.instance
+        return @@instance
     end
 
     def self.instance()

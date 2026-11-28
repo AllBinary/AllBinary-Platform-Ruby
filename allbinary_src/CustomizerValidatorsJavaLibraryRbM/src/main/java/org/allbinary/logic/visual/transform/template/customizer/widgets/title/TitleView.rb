@@ -45,7 +45,7 @@ class TitleView
 
     def jnew_org_allbinary_logic_visual_transform_template_customizer_widgets_title_TitleView_0()
         jfields_org_allbinary_logic_visual_transform_template_customizer_widgets_title_TitleView
-        @title = TitleView::NAME
+        @title = NAME
     end
     
 
@@ -55,7 +55,7 @@ class TitleView
         valueNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(::Org::Allbinary::DataPackage::Tree::Dom::DomData::VALUE, titleTextNode.getChildNodes())
         @title = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(valueNode)
         if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(@title)
-            @title = TitleView::NAME
+            @title = NAME
         end
         if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
             @logUtil.putF("Title: " + (self.getTitle()).to_s, self, "Consructor()")
@@ -81,7 +81,7 @@ class TitleView
     def getFormData(hashMap)
         @title = hashMap.get(TitleData.getInstance().TEXT)
         if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(@title)
-            @title = TitleView::NAME
+            @title = NAME
         end
     end
     java_overload :getFormData, 1

@@ -31,7 +31,7 @@ class MineCountedPickedUpLayerInterfaceFactory < ::Org::Allbinary::Game::Layer::
 
     # throws Exception
     def self.init()
-        MineCountedPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = MineCountedPickedUpLayerInterfaceFactory.new()
+        @@pickedUpLayerInterfaceFactoryInterface = MineCountedPickedUpLayerInterfaceFactory.new()
     end
     
 
@@ -42,7 +42,7 @@ class MineCountedPickedUpLayerInterfaceFactory < ::Org::Allbinary::Game::Layer::
     
 
     def self.getInstance()
-        return MineCountedPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface
+        return @@pickedUpLayerInterfaceFactoryInterface
     end
     
 

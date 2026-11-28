@@ -22,13 +22,13 @@ class AnimationFrameToImageUtil
     
 
     def self.getInstance()
-        return AnimationFrameToImageUtil.instance
+        return @@instance
     end
     
 
     # throws Exception
     def getInstanceTranslate(width, height, animationInterface)
-        image = GameFeatureImageCacheFactory.getInstance().get(AnimationFrameToImageUtil.instance.class.java_name, ((width * 3) >> 1), ((height * 3) >> 1))
+        image = GameFeatureImageCacheFactory.getInstance().get(@@instance.class.java_name, ((width * 3) >> 1), ((height * 3) >> 1))
         graphics = image.getGraphics()
         tranlateX = (width >> 2)
         tranlateY = (height >> 2)
@@ -41,7 +41,7 @@ class AnimationFrameToImageUtil
 
     # throws Exception
     def getInstanceWH(width, height, animationInterface)
-        image = GameFeatureImageCacheFactory.getInstance().get(AnimationFrameToImageUtil.instance.class.java_name, width, height)
+        image = GameFeatureImageCacheFactory.getInstance().get(@@instance.class.java_name, width, height)
         graphics = image.getGraphics()
         animationInterface.paintXY(graphics, 0, 0)
         return image

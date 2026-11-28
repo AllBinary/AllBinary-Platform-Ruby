@@ -21,7 +21,7 @@ class ScaleBaseProcessor
     
 
     def self.getInstance()
-        return ScaleBaseProcessor.instance
+        return @@instance
     end
     
 

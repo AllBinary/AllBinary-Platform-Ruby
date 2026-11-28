@@ -28,15 +28,15 @@ class TerrainEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::Basic
     
 
     def self.init()
-        TerrainEventHandler.hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
+        @@hashtable = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
     end
     
 
     def self.getInstance(anyType)
-        eventHandlerCanBeNull = TerrainEventHandler.hashtable.get(anyType)
+        eventHandlerCanBeNull = @@hashtable.get(anyType)
         if eventHandlerCanBeNull == nil
             eventHandlerCanBeNull = TerrainEventHandler.new()
-            TerrainEventHandler.hashtable.put(anyType, eventHandlerCanBeNull)
+            @@hashtable.put(anyType, eventHandlerCanBeNull)
         end
         return eventHandlerCanBeNull
     end

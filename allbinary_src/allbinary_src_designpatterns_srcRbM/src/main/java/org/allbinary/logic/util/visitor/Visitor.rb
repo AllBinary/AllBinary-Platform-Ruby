@@ -39,7 +39,7 @@ class Visitor
     
 
     def self.getInstance()
-        return Visitor.instance
+        return @@instance
     end
 
     def self.instance()

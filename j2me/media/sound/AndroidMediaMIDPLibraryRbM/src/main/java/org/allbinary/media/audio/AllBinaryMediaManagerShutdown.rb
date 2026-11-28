@@ -23,7 +23,7 @@ class AllBinaryMediaManagerShutdown
     # throws Exception
     def self.shutdown(soundsFactoryInterface)
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
-        logUtil.putF("No Media Shutdown for Android Process", AllBinaryMediaManagerShutdown.instance, "shutdown")
+        logUtil.putF("No Media Shutdown for Android Process", @@instance, "shutdown")
     end
 
     def self.instance()

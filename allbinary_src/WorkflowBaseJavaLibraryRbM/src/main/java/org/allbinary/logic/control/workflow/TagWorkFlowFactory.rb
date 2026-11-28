@@ -28,7 +28,7 @@ class TagWorkFlowFactory
     
 
     def self.getInstance()
-        return TagWorkFlowFactory.instance
+        return @@instance
     end
     
 
@@ -55,7 +55,7 @@ class TagWorkFlowFactory
                 stringBuffer.append("Failed To Get Instance: ")
                 stringBuffer.append(workFlowClassName)
                 stringBuffer.append("->")
-                stringBuffer.append(TagWorkFlowFactory.instance.class.java_name)
+                stringBuffer.append(@@instance.class.java_name)
                 commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(stringBuffer.to_s, self, commonStrings.GET_INSTANCE, e)
             end
@@ -67,7 +67,7 @@ class TagWorkFlowFactory
                 stringBuffer.append("Failed To Get Instance: ")
                 stringBuffer.append(workFlowClassName)
                 stringBuffer.append("->")
-                stringBuffer.append(TagWorkFlowFactory.instance.class.java_name)
+                stringBuffer.append(@@instance.class.java_name)
                 commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
                 @logUtil.put(stringBuffer.to_s, self, commonStrings.GET_INSTANCE, e)
             end

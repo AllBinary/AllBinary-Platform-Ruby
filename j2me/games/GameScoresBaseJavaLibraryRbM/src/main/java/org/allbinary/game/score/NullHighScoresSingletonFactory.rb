@@ -21,7 +21,7 @@ class NullHighScoresSingletonFactory
     
 
     def self.getInstance()
-        return NullHighScoresSingletonFactory::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

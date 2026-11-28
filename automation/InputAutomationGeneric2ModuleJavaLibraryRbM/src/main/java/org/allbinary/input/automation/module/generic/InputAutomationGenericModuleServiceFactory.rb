@@ -41,7 +41,7 @@ class InputAutomationGenericModuleServiceFactory < ::Org::Allbinary::Input::Auto
     
 
     def self.getInstance()
-        return InputAutomationGenericModuleServiceFactory.inputAutomationGenericModuleServiceFactory
+        return @@inputAutomationGenericModuleServiceFactory
     end
 
     def self.inputAutomationGenericModuleServiceFactory()

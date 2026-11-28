@@ -26,12 +26,12 @@ class AppletUtil
     
 
     def self.setApplet()
-        AppletUtil.applet = true
+        @@applet = true
     end
     
 
     def self.isAppletLoader(anyType)
-        return AppletUtil.applet
+        return @@applet
     end
 
     def self.applet()

@@ -37,7 +37,7 @@ class DropLayerFactory
     
 
     def self.getInstance()
-        return DropLayerFactory::DROP_LAYER_FACTORY
+        return DROP_LAYER_FACTORY
     end
     
 

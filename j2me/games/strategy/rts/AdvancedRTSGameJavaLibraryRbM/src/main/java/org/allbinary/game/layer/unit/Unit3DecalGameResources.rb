@@ -23,10 +23,10 @@ class Unit3DecalGameResources < ::Org::Allbinary::Game::Layer::Resources::BasicG
     
 
     def self.getInstance()
-        if Unit3DecalGameResources.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            Unit3DecalGameResources.instance = Unit3DecalGameResources.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = Unit3DecalGameResources.new()
         end
-        return Unit3DecalGameResources.instance
+        return @@instance
     end
     
 

@@ -30,7 +30,7 @@ class CloudStreamUtil
     
 
     def self.getInstance()
-        return CloudStreamUtil.instance
+        return @@instance
     end
     
 

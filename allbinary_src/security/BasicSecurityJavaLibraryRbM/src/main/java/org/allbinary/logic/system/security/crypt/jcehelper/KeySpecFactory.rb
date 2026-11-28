@@ -31,7 +31,7 @@ class KeySpecFactory
     
 
     def self.getInstance()
-        return KeySpecFactory.instance
+        return @@instance
     end
     
 

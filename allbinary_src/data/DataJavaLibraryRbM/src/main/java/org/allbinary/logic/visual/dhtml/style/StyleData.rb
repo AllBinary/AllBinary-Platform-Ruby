@@ -27,7 +27,7 @@ class StyleData
     
 
     def self.getInstance()
-        return StyleData.instance
+        return @@instance
     end
     
 

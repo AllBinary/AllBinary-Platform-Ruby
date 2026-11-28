@@ -28,7 +28,7 @@ class FilePathData
     
 
     def self.getInstance()
-        return FilePathData.instance
+        return @@instance
     end
     
 

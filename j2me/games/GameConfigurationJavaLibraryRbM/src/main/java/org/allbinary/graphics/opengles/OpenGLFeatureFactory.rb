@@ -47,7 +47,7 @@ class OpenGLFeatureFactory
     
 
     def self.getInstance()
-        return OpenGLFeatureFactory.instance
+        return @@instance
     end
     
 

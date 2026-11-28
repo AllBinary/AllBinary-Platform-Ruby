@@ -40,7 +40,7 @@ class PositionStrings
     
 
     def self.getInstance()
-        return PositionStrings.instance
+        return @@instance
     end
 
     def self.instance()

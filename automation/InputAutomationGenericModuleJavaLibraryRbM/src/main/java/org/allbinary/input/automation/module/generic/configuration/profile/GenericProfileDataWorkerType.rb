@@ -32,7 +32,7 @@ class GenericProfileDataWorkerType
     def initialize(name)
         jfields_org_allbinary_input_automation_module_generic_configuration_profile_GenericProfileDataWorkerType
         self.setName(name)
-        GenericProfileDataWorkerType.hashMap.put(self.getName(), self)
+        @@hashMap.put(self.getName(), self)
     end
     
 
@@ -65,7 +65,7 @@ class GenericProfileDataWorkerType
 
     def self.getInstance(node)
         name = ::Org::Allbinary::DataPackage::Tree::Dom::DomNodeHelper.getTextNodeValue(node)
-        return GenericProfileDataWorkerType.hashMap.get(name)
+        return @@hashMap.get(name)
     end
 
     def self.hashMap()

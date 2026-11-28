@@ -49,7 +49,7 @@ class GenericBodyCustomizerView < ::Views::Business::Context::Modules::Storefron
     def toXmlNode(document)
         pageName = ::Org::Allbinary::Logic::Visual::Transform::Template::Util::TransformTemplateCustomizerUtil.getInstance().getPageNameHack(self.getTransformInfoInterface().getName(), self.getWeblisketSession().getStoreName())
         if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(pageName)
-            pageName = GenericBodyCustomizerView::NAME
+            pageName = NAME
         end
         return ::Org::Allbinary::DataPackage::Tree::Dom::ModDomHelper.createNameValueNodes(document, ::Org::Allbinary::Business::Page::PageData.getInstance().NAME, pageName)
     end

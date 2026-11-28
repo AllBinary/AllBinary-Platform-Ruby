@@ -27,7 +27,7 @@ class XslData
     
 
     def self.getInstance()
-        return XslData.instance
+        return @@instance
     end
     
 

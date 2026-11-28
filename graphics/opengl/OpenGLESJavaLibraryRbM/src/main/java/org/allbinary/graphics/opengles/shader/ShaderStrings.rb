@@ -33,7 +33,7 @@ class ShaderStrings
     
 
     def self.getInstance()
-        return ShaderStrings.instance
+        return @@instance
     end
 
     def self.instance()

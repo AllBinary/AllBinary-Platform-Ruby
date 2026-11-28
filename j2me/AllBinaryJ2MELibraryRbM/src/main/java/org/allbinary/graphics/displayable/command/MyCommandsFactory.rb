@@ -30,7 +30,7 @@ class MyCommandsFactory
     
 
     def self.getInstance()
-        return MyCommandsFactory.instance
+        return @@instance
     end
     
 

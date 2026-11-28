@@ -43,10 +43,10 @@ class GameConfigurationCentral
     
 
     def self.getInstance()
-        if GameConfigurationCentral::SINGLETON == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if SINGLETON == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (GameConfigurationCentral.instance_exec(GameConfigurationCentral.new()) { |java_value| remove_const(:SINGLETON) if const_defined?(:SINGLETON, false); const_set(:SINGLETON, java_value) })
         end
-        return GameConfigurationCentral::SINGLETON
+        return SINGLETON
     end
     
 

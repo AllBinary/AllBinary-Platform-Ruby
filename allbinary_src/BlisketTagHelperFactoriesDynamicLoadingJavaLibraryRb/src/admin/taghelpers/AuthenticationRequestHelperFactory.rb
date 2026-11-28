@@ -30,13 +30,13 @@ class AuthenticationRequestHelperFactory
 
     # throws LicensingException
     def getInstance_j2_1(hashMap, pageContext)
-        return HelperFactory.getInstance(AuthenticationRequestHelperFactory::FACTORYNAME, AuthenticationRequestHelperFactory::CLASSNAME, hashMap, pageContext)
+        return HelperFactory.getInstance(FACTORYNAME, CLASSNAME, hashMap, pageContext)
     end
     
 
     # throws LicensingException
     def getInstance_j2_2(hashMap, httpServletRequest)
-        return HelperFactory.getInstance(AuthenticationRequestHelperFactory::FACTORYNAME, AuthenticationRequestHelperFactory::CLASSNAME, hashMap, httpServletRequest)
+        return HelperFactory.getInstance(FACTORYNAME, CLASSNAME, hashMap, httpServletRequest)
     end
 
     def getInstance(*java_overload_args)

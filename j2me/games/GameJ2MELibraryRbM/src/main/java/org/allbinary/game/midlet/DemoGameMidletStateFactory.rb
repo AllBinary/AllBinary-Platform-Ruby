@@ -34,7 +34,7 @@ class DemoGameMidletStateFactory
     
 
     def self.getInstance()
-        return DemoGameMidletStateFactory::STATE
+        return STATE
     end
 
     def self.java_static_fields

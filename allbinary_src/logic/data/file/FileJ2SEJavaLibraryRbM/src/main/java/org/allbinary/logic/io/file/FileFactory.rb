@@ -21,7 +21,7 @@ class FileFactory
     
 
     def self.getInstance()
-        return FileFactory.instance
+        return @@instance
     end
     
 

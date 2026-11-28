@@ -26,7 +26,7 @@ class CategoryEntityFactory
     
 
     def self.getInstance()
-        return CategoryEntityFactory.instance
+        return @@instance
     end
     
 

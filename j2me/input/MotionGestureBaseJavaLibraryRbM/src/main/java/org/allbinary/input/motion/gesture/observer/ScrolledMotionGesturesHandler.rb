@@ -23,7 +23,7 @@ class ScrolledMotionGesturesHandler < ::Org::Allbinary::Logic::Util::Event::Hand
     
 
     def self.getInstance()
-        return ScrolledMotionGesturesHandler::SINGLETON
+        return SINGLETON
     end
     
 

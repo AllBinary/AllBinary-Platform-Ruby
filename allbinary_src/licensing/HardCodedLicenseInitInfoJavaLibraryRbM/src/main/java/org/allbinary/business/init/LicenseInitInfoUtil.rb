@@ -30,7 +30,7 @@ class LicenseInitInfoUtil
     
 
     def self.getInstance()
-        return LicenseInitInfoUtil.instance
+        return @@instance
     end
     
 

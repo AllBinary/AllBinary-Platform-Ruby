@@ -29,7 +29,7 @@ class TransformInfoObjectConfigAndManipulatorFactory < TransformInfoObjectConfig
     
 
     def self.getInstance()
-        return TransformInfoObjectConfigAndManipulatorFactory.instance
+        return @@instance
     end
     
 

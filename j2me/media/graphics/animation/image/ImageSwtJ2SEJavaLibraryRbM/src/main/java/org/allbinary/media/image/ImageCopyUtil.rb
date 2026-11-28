@@ -37,7 +37,7 @@ class ImageCopyUtil
     
 
     def self.getInstance()
-        return ImageCopyUtil.instance
+        return @@instance
     end
     
 
@@ -320,6 +320,7 @@ module ::Org; module Microemu; module Device; module Swt; autoload :PostLoadSwtI
 module ::Org; module Microemu; module Device; module Swt; autoload :PostLoadSwtMutableImageProcessor, "org/microemu/device/swt/PostLoadSwtMutableImageProcessor" unless const_defined?(:PostLoadSwtMutableImageProcessor, false); end; end; end; end
 module ::Org; module Microemu; module Device; module Swt; autoload :SwtImmutableImage, "org/microemu/device/swt/SwtImmutableImage" unless const_defined?(:SwtImmutableImage, false); end; end; end; end
 module ::Org; module Microemu; module Device; module Swt; autoload :SwtMutableImage, "org/microemu/device/swt/SwtMutableImage" unless const_defined?(:SwtMutableImage, false); end; end; end; end
+autoload :SwtOpenGLESImageBridge, "org/allbinary/media/image/SwtOpenGLESImageBridge" unless const_defined?(:SwtOpenGLESImageBridge, false)
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end

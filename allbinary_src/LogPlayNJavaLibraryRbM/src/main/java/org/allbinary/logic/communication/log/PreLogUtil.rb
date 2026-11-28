@@ -33,7 +33,7 @@ class PreLogUtil
         end
         className = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(className).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().FORWARD_SLASH).append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(anyType)).to_s
         message = LogFormatUtil.getInstance().getS(className, functionName, specialMessage)
-        ::Playn::Core::PlayN.log().debug((PreLogUtil::LOG_SUCCESS).to_s + message)
+        ::Playn::Core::PlayN.log().debug((LOG_SUCCESS).to_s + message)
     end
     
 
@@ -44,19 +44,19 @@ class PreLogUtil
         end
         className = ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(className).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().FORWARD_SLASH).append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(anyType)).to_s
         message = LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-        ::Playn::Core::PlayN.log().error((PreLogUtil::LOG_SUCCESS).to_s + message, exception)
+        ::Playn::Core::PlayN.log().error((LOG_SUCCESS).to_s + message, exception)
     end
     
 
     def self.putS(specialMessage, className, functionName)
         message = LogFormatUtil.getInstance().getS(className, functionName, specialMessage)
-        ::Playn::Core::PlayN.log().debug((PreLogUtil::LOG_SUCCESS).to_s + message)
+        ::Playn::Core::PlayN.log().debug((LOG_SUCCESS).to_s + message)
     end
     
 
     def self.putSE(specialMessage, className, functionName, exception)
         message = LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-        ::Playn::Core::PlayN.log().error((PreLogUtil::LOG_SUCCESS).to_s + message, exception)
+        ::Playn::Core::PlayN.log().error((LOG_SUCCESS).to_s + message, exception)
     end
     
 

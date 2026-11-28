@@ -30,7 +30,7 @@ class LockedResources
     
 
     def self.getInstance()
-        return LockedResources.instance
+        return @@instance
     end
 
     def self.instance()

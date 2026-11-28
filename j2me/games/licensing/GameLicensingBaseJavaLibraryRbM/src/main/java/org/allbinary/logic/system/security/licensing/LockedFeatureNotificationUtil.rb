@@ -30,7 +30,7 @@ class LockedFeatureNotificationUtil
     
 
     def self.getInstance()
-        return LockedFeatureNotificationUtil.instance
+        return @@instance
     end
     
 

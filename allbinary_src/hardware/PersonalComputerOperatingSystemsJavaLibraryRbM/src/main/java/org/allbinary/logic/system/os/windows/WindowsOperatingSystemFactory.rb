@@ -27,7 +27,7 @@ class WindowsOperatingSystemFactory
     
 
     def self.getInstance()
-        return WindowsOperatingSystemFactory.instance
+        return @@instance
     end
     
 

@@ -21,7 +21,7 @@ class MidletExitProcessorFactory
     
 
     def self.getInstance()
-        return MidletExitProcessorFactory.instance
+        return @@instance
     end
     
 

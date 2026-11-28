@@ -31,7 +31,7 @@ class CellPositionsUtil
     
 
     def self.getInstance()
-        return CellPositionsUtil.instance
+        return @@instance
     end
     
 

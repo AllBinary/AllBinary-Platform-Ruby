@@ -23,7 +23,7 @@ class TsUtil
     
 
     def self.getInstance()
-        return TsUtil.instance
+        return @@instance
     end
     
 

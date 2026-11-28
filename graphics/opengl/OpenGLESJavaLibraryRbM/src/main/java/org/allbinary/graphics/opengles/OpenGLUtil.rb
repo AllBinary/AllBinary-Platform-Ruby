@@ -30,7 +30,7 @@ class OpenGLUtil
     
 
     def self.getInstance()
-        return OpenGLUtil.instance
+        return @@instance
     end
     
 

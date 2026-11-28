@@ -27,7 +27,7 @@ class AbKeys
     
 
     def self.getInstance()
-        return AbKeys.instance
+        return @@instance
     end
     
 

@@ -35,7 +35,7 @@ class ChangedPixelsUtil
         (0...bufferedImageCacheables.length).each do |index|
             bufferedImageCacheable = poolInterface.remove(bufferedImageInfo)
             bufferedImageCacheables[index] = bufferedImageCacheable
-            bufferedImageCacheables[index].getBufferedImage().setRGB(ChangedPixelsUtil::START_X, ChangedPixelsUtil::START_Y, bufferedImageInfo.getWidth(), bufferedImageInfo.getHeight(), ChangedPixelsUtil::CLEAR_INT_ARRAY, ChangedPixelsUtil::OFFSET, ChangedPixelsUtil::SCAN_SIZE)
+            bufferedImageCacheables[index].getBufferedImage().setRGB(START_X, START_Y, bufferedImageInfo.getWidth(), bufferedImageInfo.getHeight(), CLEAR_INT_ARRAY, OFFSET, SCAN_SIZE)
         end
         vector = imageComparisonInfo.getNonMatchingPixelVector()
         size = vector.size()

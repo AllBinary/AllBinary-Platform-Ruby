@@ -21,7 +21,7 @@ class RTSLayerLogHelper
     
 
     def self.getInstance()
-        return RTSLayerLogHelper.instance
+        return @@instance
     end
     
 

@@ -28,7 +28,7 @@ class MineLayer < ::Org::Allbinary::Game::Layer::Weapon::SimpleWeaponLayer
     
 
     def initialize(viewPosition)
-        super(MineLayer::NAME, ::Org::Allbinary::Game::Multiplayer::Layer::RemoteInfo::REMOTE_INFO, -1, ::Org::Allbinary::Physics::Movement::NoMovementFactory.getInstance().getMovmentInstance(), ::Org::Allbinary::Animation::FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance().get(MineWeaponResources.getInstance().RESOURCE).getInstance(0), ::Org::Allbinary::Game::Layer::Weapon::SimpleWeaponLayer.createDestroyed(), ::Org::Allbinary::Graphics::Rectangle.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, 10, 10), viewPosition)
+        super(NAME, ::Org::Allbinary::Game::Multiplayer::Layer::RemoteInfo::REMOTE_INFO, -1, ::Org::Allbinary::Physics::Movement::NoMovementFactory.getInstance().getMovmentInstance(), ::Org::Allbinary::Animation::FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance().get(MineWeaponResources.getInstance().RESOURCE).getInstance(0), ::Org::Allbinary::Game::Layer::Weapon::SimpleWeaponLayer.createDestroyed(), ::Org::Allbinary::Graphics::Rectangle.new(::Org::Allbinary::Graphics::PointFactory.getInstance().ZERO_ZERO, 10, 10), viewPosition)
         jfields_org_allbinary_game_ag_layer_weapon_mine_MineLayer
     end
     

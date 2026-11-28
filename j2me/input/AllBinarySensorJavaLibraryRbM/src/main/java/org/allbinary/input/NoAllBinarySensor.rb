@@ -23,7 +23,7 @@ class NoAllBinarySensor < AllBinarySensor
     
 
     def self.getInstance()
-        return NoAllBinarySensor.instance
+        return @@instance
     end
     
 

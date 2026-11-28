@@ -26,7 +26,7 @@ class OSGIServiceUtil
     
 
     def self.getInstance()
-        return OSGIServiceUtil.instance
+        return @@instance
     end
     
 

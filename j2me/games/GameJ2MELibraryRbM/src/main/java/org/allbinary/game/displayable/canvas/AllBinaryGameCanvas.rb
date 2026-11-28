@@ -1268,7 +1268,7 @@ class AllBinaryGameCanvas < ::Org::Allbinary::Canvas::RunnableCanvas
     
 
     def getSourceId()
-        return AllBinaryGameCanvas.id
+        return @@id
     end
     java_overload :getSourceId, 0
     

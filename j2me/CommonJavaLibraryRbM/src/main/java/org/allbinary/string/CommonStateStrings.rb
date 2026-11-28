@@ -41,7 +41,7 @@ class CommonStateStrings
     
 
     def self.getInstance()
-        return CommonStateStrings.instance
+        return @@instance
     end
 
     def self.instance()

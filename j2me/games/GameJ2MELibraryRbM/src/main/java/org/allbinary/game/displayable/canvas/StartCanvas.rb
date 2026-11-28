@@ -200,7 +200,7 @@ class StartCanvas < ::Org::Allbinary::Canvas::RunnableCanvas
     
 
     def getSourceId()
-        return StartCanvas.id
+        return @@id
     end
     java_overload :getSourceId, 0
     
@@ -529,7 +529,7 @@ class StartCanvas < ::Org::Allbinary::Canvas::RunnableCanvas
     # throws Exception
     def end_()
         progressCanvas = ::Org::Allbinary::Graphics::Canvas::Transition::Progress::ProgressCanvasFactory.getInstance()
-        @baseGameStatistics.add(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(StartCanvas::BOT_GAME_STATS).append(@baseGameStatistics.to_s).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE).to_s)
+        @baseGameStatistics.add(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(BOT_GAME_STATS).append(@baseGameStatistics.to_s).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().NEW_LINE).to_s)
         @baseGameStatistics.init()
         if @features.isFeature(::Org::Allbinary::Game::Configuration::Feature::MainFeatureFactory.getInstance().LOAD_ONDEMAND)
             progressCanvas.start()

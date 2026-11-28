@@ -32,7 +32,7 @@ class AcceptableResponseFactory
     
 
     def self.getInstance()
-        return AcceptableResponseFactory.instance
+        return @@instance
     end
 
     def self.instance()

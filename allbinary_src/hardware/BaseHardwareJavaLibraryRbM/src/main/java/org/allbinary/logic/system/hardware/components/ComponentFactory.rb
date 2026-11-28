@@ -42,7 +42,7 @@ class ComponentFactory
     
 
     def self.getInstance()
-        return ComponentFactory.instance
+        return @@instance
     end
 
     def self.instance()

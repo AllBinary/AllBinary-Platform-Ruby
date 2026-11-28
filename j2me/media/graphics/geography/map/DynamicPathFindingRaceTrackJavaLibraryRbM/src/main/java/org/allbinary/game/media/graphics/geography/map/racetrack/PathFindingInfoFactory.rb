@@ -32,12 +32,12 @@ class PathFindingInfoFactory < ::Org::Allbinary::Media::Graphics::Geography::Map
     
 
     def self.getInstance()
-        return PathFindingInfoFactory.instance
+        return @@instance
     end
     
 
     def self.initMax(max)
-        PathFindingInfoFactory.instance = PathFindingInfoFactory.new(SimplePathFinderGraphVisitorFactory.new(1, 1, 2147483647), max)
+        @@instance = PathFindingInfoFactory.new(SimplePathFinderGraphVisitorFactory.new(1, 1, 2147483647), max)
     end
     
 

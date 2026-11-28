@@ -34,7 +34,7 @@ class FeaturedResourceRelativeRelationshipFactory < FeaturedResourceFactory
     
 
     def self.getInstance()
-        return FeaturedResourceRelativeRelationshipFactory::INSTANCE
+        return INSTANCE
     end
     
 

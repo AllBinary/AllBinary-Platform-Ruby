@@ -31,7 +31,7 @@ class GameFeatureFormUtil
     
 
     def self.getInstance()
-        return GameFeatureFormUtil.instance
+        return @@instance
     end
     
 

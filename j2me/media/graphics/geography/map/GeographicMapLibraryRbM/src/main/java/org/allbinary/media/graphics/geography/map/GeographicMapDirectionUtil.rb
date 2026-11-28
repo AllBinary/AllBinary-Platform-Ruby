@@ -28,7 +28,7 @@ class GeographicMapDirectionUtil
     
 
     def self.getInstance()
-        return GeographicMapDirectionUtil.instance
+        return @@instance
     end
     
 

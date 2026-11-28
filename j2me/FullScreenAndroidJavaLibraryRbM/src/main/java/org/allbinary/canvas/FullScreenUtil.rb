@@ -21,7 +21,7 @@ class FullScreenUtil
     
 
     def self.getInstance()
-        return FullScreenUtil.instance
+        return @@instance
     end
     
 

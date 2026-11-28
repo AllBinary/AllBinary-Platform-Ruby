@@ -31,10 +31,10 @@ class PlatformFormInputMappingFactory
     
 
     def self.getInstance()
-        if PlatformFormInputMappingFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            PlatformFormInputMappingFactory.instance = PlatformFormInputMappingFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = PlatformFormInputMappingFactory.new()
         end
-        return PlatformFormInputMappingFactory.instance
+        return @@instance
     end
     
 

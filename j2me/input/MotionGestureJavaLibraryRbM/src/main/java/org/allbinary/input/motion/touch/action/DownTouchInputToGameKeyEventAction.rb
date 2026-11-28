@@ -23,10 +23,10 @@ class DownTouchInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Motion
     
 
     def self.getInstance()
-        if DownTouchInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            DownTouchInputToGameKeyEventAction.instance = DownTouchInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = DownTouchInputToGameKeyEventAction.new()
         end
-        return DownTouchInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

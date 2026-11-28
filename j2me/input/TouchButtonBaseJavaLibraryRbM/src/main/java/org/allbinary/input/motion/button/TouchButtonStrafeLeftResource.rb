@@ -23,7 +23,7 @@ class TouchButtonStrafeLeftResource < TouchButtonResource
     
 
     def self.getInstance()
-        return TouchButtonStrafeLeftResource.instance
+        return @@instance
     end
     
 

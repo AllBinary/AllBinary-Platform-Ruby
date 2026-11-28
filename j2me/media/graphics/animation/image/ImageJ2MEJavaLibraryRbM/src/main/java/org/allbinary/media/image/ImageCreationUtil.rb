@@ -22,7 +22,7 @@ class ImageCreationUtil
     
 
     def self.getInstance()
-        return ImageCreationUtil.instance
+        return @@instance
     end
     
 

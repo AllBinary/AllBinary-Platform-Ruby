@@ -32,7 +32,7 @@ class StoreFrontUsersStatisticsData
     
 
     def self.getInstance()
-        return StoreFrontUsersStatisticsData.instance
+        return @@instance
     end
 
     def self.instance()

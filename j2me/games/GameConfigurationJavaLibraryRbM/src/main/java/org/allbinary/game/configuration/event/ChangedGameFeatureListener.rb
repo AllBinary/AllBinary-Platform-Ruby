@@ -23,7 +23,7 @@ class ChangedGameFeatureListener < BaseChangedGameFeatureListener
     
 
     def self.getInstance()
-        return ChangedGameFeatureListener.gameFeatureListener
+        return @@gameFeatureListener
     end
     
 

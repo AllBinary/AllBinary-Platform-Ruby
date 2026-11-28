@@ -57,7 +57,7 @@ class AngleIncrementInfo
     
 
     def toString()
-        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(AngleIncrementInfo::INCREMENT).appendshort(@angleIncrement).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(INCREMENT).appendshort(@angleIncrement).to_s
     end
     alias_method :to_s, :toString
     

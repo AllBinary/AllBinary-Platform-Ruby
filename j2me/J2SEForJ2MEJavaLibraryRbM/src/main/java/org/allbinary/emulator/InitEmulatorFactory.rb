@@ -30,7 +30,7 @@ class InitEmulatorFactory
     
 
     def self.getInstance()
-        return InitEmulatorFactory.instance
+        return @@instance
     end
     
 

@@ -32,7 +32,7 @@ class StatusFactory
     
 
     def self.getInstance()
-        return StatusFactory.instance
+        return @@instance
     end
     
 

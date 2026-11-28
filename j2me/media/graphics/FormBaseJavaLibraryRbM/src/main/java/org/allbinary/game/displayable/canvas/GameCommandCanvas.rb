@@ -167,7 +167,7 @@ class GameCommandCanvas < ::Org::Allbinary::Graphics::Displayable::MyCanvas
     
 
     def getSourceId()
-        return GameCommandCanvas.id
+        return @@id
     end
     java_overload :getSourceId, 0
     

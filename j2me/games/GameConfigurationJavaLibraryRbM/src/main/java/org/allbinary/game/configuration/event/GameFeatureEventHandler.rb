@@ -28,7 +28,7 @@ class GameFeatureEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::B
     
 
     def self.getInstance()
-        return GameFeatureEventHandler.gameKeyEventHandler
+        return @@gameKeyEventHandler
     end
     
 

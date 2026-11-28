@@ -20,7 +20,7 @@ class TimeTypeUtil
     
 
     def self.getInstance()
-        return TimeTypeUtil.instance
+        return @@instance
     end
     
 

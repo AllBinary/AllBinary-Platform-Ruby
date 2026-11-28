@@ -9,7 +9,7 @@ class E
     
 
     def newInstance()
-        return E.e
+        return @@e
     end
 
     def self.e()

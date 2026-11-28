@@ -29,7 +29,7 @@ class TaxFactory
     
 
     def self.getInstance()
-        return TaxFactory.instance
+        return @@instance
     end
     
 

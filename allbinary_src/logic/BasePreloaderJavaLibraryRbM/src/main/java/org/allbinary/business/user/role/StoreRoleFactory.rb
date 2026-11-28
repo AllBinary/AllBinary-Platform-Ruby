@@ -28,7 +28,7 @@ class StoreRoleFactory
     
 
     def self.getInstance()
-        return StoreRoleFactory.instance
+        return @@instance
     end
     
 

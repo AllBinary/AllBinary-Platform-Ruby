@@ -32,10 +32,10 @@ class InputFactory
     
 
     def self.getInstance()
-        if InputFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            InputFactory.instance = InputFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = InputFactory.new()
         end
-        return InputFactory.instance
+        return @@instance
     end
     
 

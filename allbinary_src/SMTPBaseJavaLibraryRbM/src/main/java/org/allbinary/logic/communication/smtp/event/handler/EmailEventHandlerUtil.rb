@@ -26,7 +26,7 @@ class EmailEventHandlerUtil
     
 
     def self.getInstance()
-        return EmailEventHandlerUtil.instance
+        return @@instance
     end
     
 

@@ -33,7 +33,7 @@ class AbeLicenseInterfaceFactory
     
 
     def self.getInstance()
-        return AbeLicenseInterfaceFactory::SINGLETON
+        return SINGLETON
     end
     
 

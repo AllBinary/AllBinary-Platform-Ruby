@@ -34,7 +34,7 @@ class InstallerInfo
     # throws Exception
     def write()
         java_monitor.synchronize do
-        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + InstallerInfo::PACKAGE, InstallerInfo::INITFILENAME)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + PACKAGE, INITFILENAME)
         begin
             newFile = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
             newFile.createNewFile()
@@ -43,7 +43,7 @@ class InstallerInfo
             cryptedPassword = ::Org::Allbinary::Logic::System::Security::Crypt::WeakCrypt.new(2).encrypt(self.getPassword()).getBytes()
             dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedUserName))
             dataOutputStream.writeUTF(::Org::Allbinary::Logic::System::Security::Crypt::DatabaseEncoder.encode(cryptedPassword))
-            InstallerInfo.hasRead = false
+            @@hasRead = false
         rescue StandardError => e
             if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADERERROR)
                 @logUtil.putF("Failed", self, "write")
@@ -57,7 +57,7 @@ class InstallerInfo
     # throws Exception
     def read()
         java_monitor.synchronize do
-        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + InstallerInfo::PACKAGE, InstallerInfo::INITFILENAME)
+        _FILEABPATH = ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + PACKAGE, INITFILENAME)
         begin
             file = ::Org::Allbinary::Logic::Io::FilePackage::AbFile.createAbFileFromAbPath(_FILEABPATH)
             if file.isFile()
@@ -83,28 +83,28 @@ class InstallerInfo
 
     def self.setHasRead(value)
         java_monitor.synchronize do
-        InstallerInfo.hasRead = value
+        @@hasRead = value
         end
     end
     
 
     def setUserName(userName)
-        InstallerInfo.userName = userName
+        @@userName = userName
     end
     
 
     def setPassword(password)
-        InstallerInfo.password = password
+        @@password = password
     end
     
 
     # throws Exception
     def updateIfNeeded()
         java_monitor.synchronize do
-        if !InstallerInfo.hasRead
-            InstallerInfo.hasRead = true
+        if !@@hasRead
+            @@hasRead = true
             self.read()
-            if InstallerInfo.userName == nil || InstallerInfo.password == nil
+            if @@userName == nil || @@password == nil
                 if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().PRELOADER)
                     @logUtil.putF("Failed", self, "updateIfNeeded")
                 end
@@ -117,14 +117,14 @@ class InstallerInfo
     # throws Exception
     def getUserName()
         self.updateIfNeeded()
-        return InstallerInfo.userName
+        return @@userName
     end
     
 
     # throws Exception
     def getPassword()
         self.updateIfNeeded()
-        return InstallerInfo.password
+        return @@password
     end
     
 

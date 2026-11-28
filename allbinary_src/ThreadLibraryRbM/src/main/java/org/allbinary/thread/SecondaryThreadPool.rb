@@ -24,7 +24,7 @@ class SecondaryThreadPool < ThreadPool
     
 
     def self.getInstance()
-        return SecondaryThreadPool.instance
+        return @@instance
     end
     
 

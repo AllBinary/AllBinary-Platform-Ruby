@@ -26,7 +26,7 @@ class PageData
     
 
     def self.getInstance()
-        return PageData.instance
+        return @@instance
     end
     
 

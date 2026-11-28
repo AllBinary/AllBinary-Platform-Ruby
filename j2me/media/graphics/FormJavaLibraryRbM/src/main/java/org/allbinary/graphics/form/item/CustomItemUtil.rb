@@ -30,7 +30,7 @@ class CustomItemUtil
     
 
     def self.getInstance()
-        return CustomItemUtil.instance
+        return @@instance
     end
 
     def self.instance()

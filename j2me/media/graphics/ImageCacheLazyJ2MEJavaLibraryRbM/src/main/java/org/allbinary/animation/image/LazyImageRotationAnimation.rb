@@ -107,7 +107,7 @@ class ActualRotationAnimation < ::Org::Allbinary::Animation::RotationAnimation
             @animation = @animationInterfaceFactoryInterface.getInstance(@instanceId)
             @animation.setState(animation)
         rescue StandardError => e
-            @logUtil.put(@commonStrings.EXCEPTION, self, LazyImageRotationAnimation::SET_REAL_ANIMATION, e)
+            @logUtil.put(@commonStrings.EXCEPTION, self, SET_REAL_ANIMATION, e)
         end
     end
     java_overload :setRealAnimation, 0

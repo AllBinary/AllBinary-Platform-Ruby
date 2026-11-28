@@ -33,7 +33,7 @@ class TouchScreenFactory
     
 
     def self.getInstance()
-        return TouchScreenFactory::SINGLETON
+        return SINGLETON
     end
     
 

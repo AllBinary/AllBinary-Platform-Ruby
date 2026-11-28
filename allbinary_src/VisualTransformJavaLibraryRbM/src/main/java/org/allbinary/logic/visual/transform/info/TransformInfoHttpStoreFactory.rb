@@ -25,7 +25,7 @@ class TransformInfoHttpStoreFactory
     
 
     def self.getInstance()
-        return TransformInfoHttpStoreFactory.instance
+        return @@instance
     end
     
 

@@ -27,7 +27,7 @@ class MediaTypeData
     
 
     def self.getInstance()
-        return MediaTypeData.instance
+        return @@instance
     end
     
 

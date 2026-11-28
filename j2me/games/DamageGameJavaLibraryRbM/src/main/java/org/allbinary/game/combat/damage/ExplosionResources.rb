@@ -29,7 +29,7 @@ class ExplosionResources
     
 
     def self.getInstance()
-        return ExplosionResources.instance
+        return @@instance
     end
     
 

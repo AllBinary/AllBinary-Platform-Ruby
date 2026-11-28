@@ -22,12 +22,12 @@ class GyroSensorFactory
 
     # throws Exception
     def self.init()
-        GyroSensorFactory.allBinaryGyroSensor = NoGyroSensor.new()
+        @@allBinaryGyroSensor = NoGyroSensor.new()
     end
     
 
     def self.getInstance()
-        return GyroSensorFactory.allBinaryGyroSensor
+        return @@allBinaryGyroSensor
     end
 
     def self.allBinaryGyroSensor()

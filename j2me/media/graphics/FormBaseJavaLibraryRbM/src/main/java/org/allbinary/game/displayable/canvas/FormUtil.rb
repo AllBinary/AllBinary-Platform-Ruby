@@ -21,7 +21,7 @@ class FormUtil
     
 
     def self.getInstance()
-        return FormUtil.instance
+        return @@instance
     end
     
 

@@ -112,9 +112,9 @@ class CanvasJPanel < JPanel
 
     # throws Exception
     def initMyComponents()
-        @frameLabel = CanvasTreeLabel.new("FrameLabel" + CanvasJPanel.frame.to_s)
+        @frameLabel = CanvasTreeLabel.new("FrameLabel" + @@frame.to_s)
         @canvasTreeNode = DefaultMutableTreeNode.new(@frameLabel)
-        CanvasJPanel.frame += 1
+        @@frame += 1
         @workAreaJTreeJPanel.add(self.getTreeNode())
         @graphicItemHashMap = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashMap()
         @grid.grid = ::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(0, 0)
@@ -384,7 +384,7 @@ class CanvasJPanel < JPanel
         yUpper = yAdjust
         xRight = self.getWidth() - xAdjust
         yLower = self.getHeight() - yAdjust
-        graphics.setColor(CanvasJPanel.gridColor)
+        graphics.setColor(@@gridColor)
         (yAdjust..self.getHeight() - yAdjust).step(self.getYPixelsPerWorkAreaPixel()) do |value|
             graphics.drawLine(xLeft, value, xRight, value)
         end
@@ -398,7 +398,7 @@ class CanvasJPanel < JPanel
     def paint(graphics)
         begin
             if self.getGrid().isChanged
-                graphics.setColor(CanvasJPanel.backgroundColor)
+                graphics.setColor(@@backgroundColor)
                 graphics.fillRect(0, 0, getWidth(), getHeight())
                 if self.getGrid().getZoom() > 2 && self.getGrid().isGridOn && self.getGrid().isGridPossible
                     self.setDefaultGrid()

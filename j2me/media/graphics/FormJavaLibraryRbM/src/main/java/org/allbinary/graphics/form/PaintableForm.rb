@@ -20,10 +20,10 @@ class PaintableForm < ABCustomForm
     
 
     def self.getNullPaintableForm()
-        if PaintableForm::NULL_PAINTABLE_FORM == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_PAINTABLE_FORM == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (PaintableForm.instance_exec(PaintableForm.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, Array.new(0, nil), ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE)) { |java_value| remove_const(:NULL_PAINTABLE_FORM) if const_defined?(:NULL_PAINTABLE_FORM, false); const_set(:NULL_PAINTABLE_FORM, java_value) })
         end
-        return PaintableForm::NULL_PAINTABLE_FORM
+        return NULL_PAINTABLE_FORM
     end
     
 

@@ -23,7 +23,7 @@ class AlphaProcessor < AlphaBaseProcessor
     
 
     def self.getInstance()
-        return AlphaProcessor.instanceC
+        return @@instanceC
     end
     
 

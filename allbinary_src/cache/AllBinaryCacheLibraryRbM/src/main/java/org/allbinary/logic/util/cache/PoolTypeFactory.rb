@@ -18,7 +18,7 @@ class PoolTypeFactory
     
 
     def self.getInstance()
-        return PoolTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

@@ -218,7 +218,7 @@ class CommonDataFileStrings
     
 
     def self.getInstance()
-        return CommonDataFileStrings.instance
+        return @@instance
     end
 
     def self.instance()

@@ -31,7 +31,7 @@ class RepaintBehavior
     
 
     def self.getInstance()
-        return RepaintBehavior.instance
+        return @@instance
     end
     
 

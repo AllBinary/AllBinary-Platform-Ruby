@@ -25,7 +25,7 @@ class ProcessPaintableSingletonFactory
     
 
     def self.getInstance()
-        return ProcessPaintableSingletonFactory::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

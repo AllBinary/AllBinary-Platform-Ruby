@@ -31,7 +31,7 @@ class HealthResources
     
 
     def self.getInstance()
-        return HealthResources::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

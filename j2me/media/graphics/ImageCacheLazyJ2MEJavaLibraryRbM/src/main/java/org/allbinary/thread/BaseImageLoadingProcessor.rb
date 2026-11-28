@@ -21,7 +21,7 @@ class BaseImageLoadingProcessor
     
 
     def self.getInstance()
-        return BaseImageLoadingProcessor.instance
+        return @@instance
     end
     
 

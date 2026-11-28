@@ -470,12 +470,12 @@ class InputAutomationJFrame < JFrame
     
 
     def self.getInstance()
-        return InputAutomationJFrame::INPUTAUTOMATION_JFRAME
+        return INPUTAUTOMATION_JFRAME
     end
     
 
     def self.destroy()
-        InputAutomationJFrame::INPUTAUTOMATION_JFRAME.setVisible(false)
+        INPUTAUTOMATION_JFRAME.setVisible(false)
     end
     
 

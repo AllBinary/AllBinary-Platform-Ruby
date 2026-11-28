@@ -32,7 +32,7 @@ class TenderTypeFactory
     
 
     def self.getInstance()
-        return TenderTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

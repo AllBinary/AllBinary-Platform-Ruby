@@ -35,7 +35,7 @@ class GameKeyEventHandler
     
 
     def self.getInstance()
-        return GameKeyEventHandler.instance
+        return @@instance
     end
     
 

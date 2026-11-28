@@ -70,7 +70,7 @@ class SequenceAI < ::Org::Allbinary::Game::Ag::Ai::ArrayAI
     
 
     def getName()
-        return SequenceAI::SEQUENCE_AI
+        return SEQUENCE_AI
     end
     java_overload :getName, 0
     

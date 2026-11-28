@@ -27,7 +27,7 @@ class OrderedIntArrayPermutationUtil
     
 
     def self.getInstance()
-        return OrderedIntArrayPermutationUtil.instance
+        return @@instance
     end
     
 

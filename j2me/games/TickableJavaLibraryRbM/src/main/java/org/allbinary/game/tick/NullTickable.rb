@@ -33,7 +33,7 @@ class NullTickable
     
 
     def self.getInstance()
-        return NullTickable::SINGLETON
+        return SINGLETON
     end
     
 

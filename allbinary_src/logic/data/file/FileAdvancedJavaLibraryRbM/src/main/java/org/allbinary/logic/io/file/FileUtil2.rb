@@ -28,7 +28,7 @@ class FileUtil2
     
 
     def self.getInstance()
-        return FileUtil2.instance
+        return @@instance
     end
     
 

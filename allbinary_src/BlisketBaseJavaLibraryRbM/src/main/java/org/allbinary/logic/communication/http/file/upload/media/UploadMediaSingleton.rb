@@ -67,10 +67,10 @@ class UploadMediaSingleton
 
     def self.getInstance()
         java_monitor.synchronize do
-        if UploadMediaSingleton.uploadMedia == nil
-            UploadMediaSingleton.uploadMedia = UploadMediaSingleton.new()
+        if @@uploadMedia == nil
+            @@uploadMedia = UploadMediaSingleton.new()
         end
-        return UploadMediaSingleton.uploadMedia
+        return @@uploadMedia
         end
     end
     

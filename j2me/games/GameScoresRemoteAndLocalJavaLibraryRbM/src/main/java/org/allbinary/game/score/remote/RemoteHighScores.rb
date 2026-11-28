@@ -56,10 +56,10 @@ class RemoteHighScores < ::Org::Allbinary::Game::Score::HighScores
         java_monitor.synchronize do
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         begin
-            highScores = RemoteHighScores.hashTable.get(gameInfo)
+            highScores = @@hashTable.get(gameInfo)
             if highScores == nil
                 highScores = RemoteHighScores.new(abeClientInformation, softwareInformation, gameInfo, heading, columnTwoHeading, isAscending, preload)
-                RemoteHighScores.hashTable.put(gameInfo, highScores)
+                @@hashTable.put(gameInfo, highScores)
             end
             return highScores
         rescue StandardError => e

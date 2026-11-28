@@ -35,7 +35,7 @@ class PlayerStateUtil
     
 
     def self.getInstance()
-        return PlayerStateUtil.instance
+        return @@instance
     end
     
 

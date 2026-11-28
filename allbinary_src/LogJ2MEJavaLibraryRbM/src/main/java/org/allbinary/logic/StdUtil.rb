@@ -32,7 +32,7 @@ class StdUtil
     
 
     def self.getInstance()
-        return StdUtil.instance
+        return @@instance
     end
     
 

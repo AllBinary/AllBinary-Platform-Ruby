@@ -29,10 +29,10 @@ class Features
     
 
     def self.getInstance()
-        if Features::SINGLETON == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if SINGLETON == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (Features.instance_exec(Features.new()) { |java_value| remove_const(:SINGLETON) if const_defined?(:SINGLETON, false); const_set(:SINGLETON, java_value) })
         end
-        return Features::SINGLETON
+        return SINGLETON
     end
     
 

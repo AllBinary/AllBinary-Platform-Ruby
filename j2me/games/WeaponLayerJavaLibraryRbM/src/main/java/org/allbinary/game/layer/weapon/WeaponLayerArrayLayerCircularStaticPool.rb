@@ -34,7 +34,7 @@ class WeaponLayerArrayLayerCircularStaticPool
     
 
     def self.getInstance()
-        return WeaponLayerArrayLayerCircularStaticPool.instance
+        return @@instance
     end
     
 

@@ -26,7 +26,7 @@ class CssElementData
     
 
     def self.getInstance()
-        return CssElementData.instance
+        return @@instance
     end
     
 

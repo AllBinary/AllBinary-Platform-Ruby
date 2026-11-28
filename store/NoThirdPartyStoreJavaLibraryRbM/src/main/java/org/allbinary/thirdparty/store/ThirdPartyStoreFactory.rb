@@ -21,7 +21,7 @@ class ThirdPartyStoreFactory
     
 
     def self.getInstance()
-        return ThirdPartyStoreFactory.instance
+        return @@instance
     end
     
 

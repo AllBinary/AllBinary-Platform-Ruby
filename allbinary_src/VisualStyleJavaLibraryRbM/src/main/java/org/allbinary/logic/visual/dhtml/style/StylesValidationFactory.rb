@@ -26,7 +26,7 @@ class StylesValidationFactory
     
 
     def self.getInstance_j0()
-        return StylesValidationFactory.instance
+        return @@instance
     end
     
 

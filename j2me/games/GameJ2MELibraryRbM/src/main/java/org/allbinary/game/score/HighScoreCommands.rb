@@ -32,7 +32,7 @@ class HighScoreCommands
     
 
     def self.getInstance()
-        return HighScoreCommands.instance
+        return @@instance
     end
 
     def self.instance()

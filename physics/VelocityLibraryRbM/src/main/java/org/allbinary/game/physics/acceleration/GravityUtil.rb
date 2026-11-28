@@ -31,7 +31,7 @@ class GravityUtil
     
 
     def self.getInstance()
-        return GravityUtil.instance
+        return @@instance
     end
     
 

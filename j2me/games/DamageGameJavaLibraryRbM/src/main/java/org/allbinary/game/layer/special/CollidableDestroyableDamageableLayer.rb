@@ -48,10 +48,10 @@ class CollidableDestroyableDamageableLayer < ::Org::Allbinary::Game::Layer::Coll
     
 
     def self.getNullInstance()
-        if CollidableDestroyableDamageableLayer::NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (CollidableDestroyableDamageableLayer.instance_exec(CollidableDestroyableDamageableLayer.new(::Org::Allbinary::Game::Identification::BasicGroupFactory.getInstance().NONE_ARRAY, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Graphics::RectangleFactory::SINGLETON, ::Org::Allbinary::View::ViewPositionBase::NULL_VIEW_POSITION)) { |java_value| remove_const(:NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) if const_defined?(:NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER, false); const_set(:NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER, java_value) })
         end
-        return CollidableDestroyableDamageableLayer::NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER
+        return NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER
     end
     
 
@@ -326,7 +326,7 @@ class CollidableDestroyableDamageableLayer < ::Org::Allbinary::Game::Layer::Coll
             stringBuffer.append(pickupBehavior.to_s)
         end
         stringBuffer.append(commonSeps.NEW_LINE)
-        stringBuffer.append(CollidableDestroyableDamageableLayer::READYFOREXPLOSION)
+        stringBuffer.append(READYFOREXPLOSION)
         stringBuffer.appendboolean(@readyForExplosion)
         stringBuffer.append(commonSeps.NEW_LINE)
         stringBuffer.append(@commonStrings.INIT)

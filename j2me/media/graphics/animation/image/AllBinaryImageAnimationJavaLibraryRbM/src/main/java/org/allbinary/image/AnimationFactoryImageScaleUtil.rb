@@ -30,7 +30,7 @@ class AnimationFactoryImageScaleUtil
     
 
     def self.getInstance()
-        return AnimationFactoryImageScaleUtil.instance
+        return @@instance
     end
     
 

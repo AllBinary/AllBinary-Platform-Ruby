@@ -23,7 +23,7 @@ class LayerManagerNoDebug < LayerManagerLoggingBase
     
 
     def self.getInstance()
-        return LayerManagerNoDebug.instance
+        return @@instance
     end
 
     def self.instance()

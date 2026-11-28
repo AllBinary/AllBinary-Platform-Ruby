@@ -22,7 +22,7 @@ class ABSystemWrapper
     
 
     def self.getInstance()
-        return ABSystemWrapper.instance
+        return @@instance
     end
     
 

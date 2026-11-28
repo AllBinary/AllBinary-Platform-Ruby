@@ -34,7 +34,7 @@ class RaceTrackRandomDropCellPositionGenerator < RaceTrackDropCellPositionGenera
     
 
     def self.getInstance()
-        return RaceTrackRandomDropCellPositionGenerator::SINGLETON
+        return SINGLETON
     end
     
 

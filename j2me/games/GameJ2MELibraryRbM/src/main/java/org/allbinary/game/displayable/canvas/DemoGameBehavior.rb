@@ -30,7 +30,7 @@ class DemoGameBehavior
     
 
     def self.getInstance()
-        return DemoGameBehavior.instance
+        return @@instance
     end
     
 

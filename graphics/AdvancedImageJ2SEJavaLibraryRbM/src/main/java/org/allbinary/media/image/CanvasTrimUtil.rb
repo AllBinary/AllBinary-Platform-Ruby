@@ -33,7 +33,7 @@ class CanvasTrimUtil
     
 
     def self.getInstance()
-        return CanvasTrimUtil.instance
+        return @@instance
     end
     
 

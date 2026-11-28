@@ -34,10 +34,10 @@ class GroupCommonFactory
     
 
     def self.getInstance()
-        if GroupCommonFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GroupCommonFactory.instance = GroupCommonFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GroupCommonFactory.new()
         end
-        return GroupCommonFactory.instance
+        return @@instance
     end
 
     def self.instance()

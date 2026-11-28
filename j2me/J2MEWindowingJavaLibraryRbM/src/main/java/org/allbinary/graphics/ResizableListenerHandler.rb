@@ -22,7 +22,7 @@ class ResizableListenerHandler
     
 
     def self.getInstance()
-        return ResizableListenerHandler.instance
+        return @@instance
     end
     
 

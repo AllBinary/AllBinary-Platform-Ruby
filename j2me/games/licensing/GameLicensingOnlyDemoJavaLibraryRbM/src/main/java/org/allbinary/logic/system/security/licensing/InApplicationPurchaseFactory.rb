@@ -13,7 +13,7 @@ class InApplicationPurchaseFactory
     
 
     def self.getInstance()
-        return InApplicationPurchaseFactory.instance
+        return @@instance
     end
     
 

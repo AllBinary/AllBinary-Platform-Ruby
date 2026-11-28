@@ -45,7 +45,7 @@ class GameInputStrings
     
 
     def self.getInstance()
-        return GameInputStrings.instance
+        return @@instance
     end
 
     def self.instance()

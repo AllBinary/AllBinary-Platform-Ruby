@@ -36,7 +36,7 @@ class AuthorizationTypeFactory
     
 
     def self.getInstance()
-        return AuthorizationTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

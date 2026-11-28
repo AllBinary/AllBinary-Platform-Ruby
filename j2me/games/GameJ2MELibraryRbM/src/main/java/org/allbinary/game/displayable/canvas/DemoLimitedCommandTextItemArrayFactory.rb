@@ -30,7 +30,7 @@ class DemoLimitedCommandTextItemArrayFactory
     
 
     def self.getInstance()
-        return DemoLimitedCommandTextItemArrayFactory.instance
+        return @@instance
     end
     
 

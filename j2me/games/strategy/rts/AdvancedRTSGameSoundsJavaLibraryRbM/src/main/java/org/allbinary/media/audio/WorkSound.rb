@@ -27,7 +27,7 @@ class WorkSound < CompositeSound
     
 
     def self.getInstance()
-        return WorkSound.soundInterface
+        return @@soundInterface
     end
 
     def self.soundInterface()

@@ -9,7 +9,7 @@ class OpenGLESNullGraphicsFactory
     
 
     def self.getInstance()
-        return OpenGLESNullGraphicsFactory.instance
+        return @@instance
     end
 
     def self.instance()

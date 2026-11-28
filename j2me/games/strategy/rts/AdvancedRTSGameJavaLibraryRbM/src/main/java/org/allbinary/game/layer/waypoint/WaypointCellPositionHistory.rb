@@ -31,7 +31,7 @@ class WaypointCellPositionHistory
     
 
     def self.getInstance()
-        return WaypointCellPositionHistory::SINGLETON
+        return SINGLETON
     end
     
 

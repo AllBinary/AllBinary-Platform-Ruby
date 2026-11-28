@@ -47,7 +47,7 @@ class UserRoleFactory
     
 
     def self.getInstance()
-        return UserRoleFactory.instance
+        return @@instance
     end
 
     def self.instance()

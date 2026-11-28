@@ -28,7 +28,7 @@ class BuildingEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::Basi
     
 
     def self.getInstance()
-        return BuildingEventHandler.eventHandler
+        return @@eventHandler
     end
     
 

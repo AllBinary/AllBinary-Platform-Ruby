@@ -23,7 +23,7 @@ class PaintableToImageUtil
 
     # throws Exception
     def self.getImage(paintableInterface, width, height)
-        image = GameFeatureImageCacheFactory.getInstance().get(PaintableToImageUtil.instance.class.java_name, width, height)
+        image = GameFeatureImageCacheFactory.getInstance().get(@@instance.class.java_name, width, height)
         graphics = image.getGraphics()
         paintableInterface.paint(graphics)
         return image

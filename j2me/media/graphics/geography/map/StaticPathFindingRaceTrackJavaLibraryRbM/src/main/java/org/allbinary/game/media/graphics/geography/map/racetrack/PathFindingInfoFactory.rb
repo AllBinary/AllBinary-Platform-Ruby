@@ -23,7 +23,7 @@ class PathFindingInfoFactory < ::Org::Allbinary::Media::Graphics::Geography::Map
     
 
     def self.getInstance()
-        return PathFindingInfoFactory.instance
+        return @@instance
     end
     
 

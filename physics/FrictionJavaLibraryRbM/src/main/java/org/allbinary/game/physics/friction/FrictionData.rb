@@ -25,7 +25,7 @@ class FrictionData
     
 
     def self.getFrictionDenominator()
-        return FrictionData::FRICTION_DENOMINATOR
+        return FRICTION_DENOMINATOR
     end
 
     def self.java_static_fields

@@ -23,7 +23,7 @@ class LastDisplayChangeEventHandler < ::Org::Allbinary::Logic::Util::Event::Hand
     
 
     def self.getInstance()
-        return LastDisplayChangeEventHandler::SINGLETON
+        return SINGLETON
     end
     
 

@@ -26,7 +26,7 @@ class PaymentEntityFactory
     
 
     def self.getInstance()
-        return PaymentEntityFactory.instance
+        return @@instance
     end
     
 

@@ -33,7 +33,7 @@ class DomHelper
     
 
     def self.getInstance()
-        return DomHelper.instance
+        return @@instance
     end
     
 

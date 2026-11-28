@@ -34,7 +34,7 @@ class LayerPlacementTypeFactory
     
 
     def self.getInstance()
-        return LayerPlacementTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

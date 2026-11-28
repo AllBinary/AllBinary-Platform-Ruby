@@ -40,15 +40,15 @@ class AddFileValidationView < InventoryItemView
     def isValid_j0()
         begin
             command = self.getRequestHashMap().get(::Org::Allbinary::Globals::GLOBALS2::ADMINCOMMAND)
-            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(command) || ((command <=> AddFileValidationView::ADDPRODUCT) != 0 && (command <=> NEXTSTEP) != 0)
+            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(command) || ((command <=> ADDPRODUCT) != 0 && (command <=> NEXTSTEP) != 0)
                 if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
                     stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
                     stringBuffer.append("Invalid AdminCommand: ")
                     stringBuffer.append(command)
                     stringBuffer.append(" must be: ")
-                    stringBuffer.append(AddFileValidationView::ADDPRODUCT)
+                    stringBuffer.append(ADDPRODUCT)
                     stringBuffer.append(" or ")
-                    stringBuffer.append(AddFileValidationView::NEXTSTEP)
+                    stringBuffer.append(NEXTSTEP)
                     @logUtil.putF(stringBuffer.to_s, self, @commonStrings.IS_VALID)
                 end
                 return false
@@ -112,7 +112,7 @@ class AddFileValidationView < InventoryItemView
         begin
             stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             command = self.getRequestHashMap().get(::Org::Allbinary::Globals::GLOBALS2::ADMINCOMMAND)
-            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(command) || ((command <=> AddFileValidationView::ADDPRODUCT) != 0 && (command <=> NEXTSTEP) != 0)
+            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(command) || ((command <=> ADDPRODUCT) != 0 && (command <=> NEXTSTEP) != 0)
                 return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
             end
             basicItemValidation = ::Org::Allbinary::Business::User::Commerce::Inventory::Item::BasicItemValidation.new(@itemInterface)

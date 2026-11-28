@@ -21,7 +21,7 @@ class PointsUtil
     
 
     def self.getInstance()
-        return PointsUtil.instance
+        return @@instance
     end
     
 

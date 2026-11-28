@@ -27,7 +27,7 @@ class TechEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::BasicEve
     
 
     def self.getInstance()
-        return TechEventHandler.eventHandler
+        return @@eventHandler
     end
     
 

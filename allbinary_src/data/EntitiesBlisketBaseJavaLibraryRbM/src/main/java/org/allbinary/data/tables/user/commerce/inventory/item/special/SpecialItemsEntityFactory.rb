@@ -26,7 +26,7 @@ class SpecialItemsEntityFactory
     
 
     def self.getInstance()
-        return SpecialItemsEntityFactory.instance
+        return @@instance
     end
     
 

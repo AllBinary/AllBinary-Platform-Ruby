@@ -28,7 +28,7 @@ class GameMidletEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::Ba
     
 
     def self.getInstance()
-        return GameMidletEventHandler.gameKeyEventHandler
+        return @@gameKeyEventHandler
     end
     
 

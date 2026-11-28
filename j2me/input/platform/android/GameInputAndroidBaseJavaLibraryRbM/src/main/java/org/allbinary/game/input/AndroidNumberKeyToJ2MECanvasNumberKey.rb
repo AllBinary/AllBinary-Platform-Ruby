@@ -9,16 +9,16 @@ class AndroidNumberKeyToJ2MECanvasNumberKey
     
 
     def self.init()
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_0] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM0
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_1] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM1
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_2] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM2
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_3] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM3
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_4] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM4
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_5] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM5
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_6] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM6
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_7] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM7
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_8] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM8
-        AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_9] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM9
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_0] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM0
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_1] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM1
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_2] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM2
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_3] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM3
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_4] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM4
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_5] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM5
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_6] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM6
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_7] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM7
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_8] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM8
+        @@androidtoJavaMicroEditionKeyMap[::Android::View::KeyEvent::KEYCODE_9] = ::Javax::Microedition::Lcdui::Canvas::KEY_NUM9
     end
     
 
@@ -27,8 +27,8 @@ class AndroidNumberKeyToJ2MECanvasNumberKey
     
 
     def self.getKey(key)
-        if key < AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap.length
-            value = AndroidNumberKeyToJ2MECanvasNumberKey.androidtoJavaMicroEditionKeyMap[key]
+        if key < @@androidtoJavaMicroEditionKeyMap.length
+            value = @@androidtoJavaMicroEditionKeyMap[key]
             if value != 0
                 return value
             end

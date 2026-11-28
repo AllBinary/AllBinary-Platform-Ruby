@@ -29,7 +29,7 @@ class TransformFactory
     
 
     def self.getInstance()
-        return TransformFactory.instance
+        return @@instance
     end
     
 

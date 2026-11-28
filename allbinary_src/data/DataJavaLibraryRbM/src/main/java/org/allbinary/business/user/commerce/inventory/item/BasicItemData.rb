@@ -58,7 +58,7 @@ class BasicItemData
     
 
     def self.getInstance()
-        return BasicItemData.instance
+        return @@instance
     end
 
     def self.instance()

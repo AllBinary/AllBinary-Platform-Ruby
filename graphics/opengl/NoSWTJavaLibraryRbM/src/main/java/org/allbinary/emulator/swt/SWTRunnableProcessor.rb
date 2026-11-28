@@ -23,7 +23,7 @@ class SWTRunnableProcessor < SWTProcessor
     
 
     def self.getInstance()
-        return SWTRunnableProcessor.instanceR
+        return @@instanceR
     end
     
 

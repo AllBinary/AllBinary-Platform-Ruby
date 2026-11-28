@@ -30,7 +30,7 @@ class PATH_GLOBALS
     
 
     def self.getInstance()
-        return PATH_GLOBALS.instance
+        return @@instance
     end
     
 

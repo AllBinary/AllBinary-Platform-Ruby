@@ -28,7 +28,7 @@ class BoundsChangeEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::
     
 
     def self.getInstance()
-        return BoundsChangeEventHandler::SINGLETON
+        return SINGLETON
     end
     
 

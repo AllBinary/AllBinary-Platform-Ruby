@@ -44,23 +44,23 @@ class UnitGameResources < ::Org::Allbinary::Game::Layer::Resources::BasicGameRes
         string = ::Org::Allbinary::Game::Layer::Resources::GameGraphicsResourceUtil.getInstance().getName()
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.delete(0, ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.length())
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(_ROOT)
-        ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(UnitGameResources::DESTROY)
+        ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(DESTROY)
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(string)
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(sizeString)
         @RESOURCE_DESTROY = ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.to_s
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.delete(0, ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.length())
-        ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(UnitGameResources::ICON)
+        ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(ICON)
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(_ROOT)
         @RESOURCE_ICON_ANIMATION = ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.to_s
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.delete(0, ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.length())
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(_ROOT)
-        ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(UnitGameResources::ICON)
+        ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(ICON)
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(string)
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(@ICON_SIZE)
         @RESOURCE_ICON = ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.to_s
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.delete(0, ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.length())
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(_ROOT)
-        ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(UnitGameResources::ICON_BUILD)
+        ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(ICON_BUILD)
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(string)
         ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.append(@ICON_SIZE)
         @RESOURCE_ICON_BUILD = ::Org::Allbinary::Game::Layer::Resources::BasicGameResources.stringBuffer.to_s
@@ -85,7 +85,7 @@ class UnitGameResources < ::Org::Allbinary::Game::Layer::Resources::BasicGameRes
         const_set(:BUILD, "_build")
         const_set(:DESTROY, "_destroy")
         begin
-            const_set(:ICON_BUILD, "_icon" + (UnitGameResources::BUILD).to_s)
+            const_set(:ICON_BUILD, "_icon" + (BUILD).to_s)
         rescue StandardError
             @java_static_fields_started = false
             raise

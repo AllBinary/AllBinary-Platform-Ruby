@@ -24,13 +24,13 @@ class NullAIFactory
     
 
     def getInstance(hashtable, ownerLayerInterface, gameInput)
-        return NullAIFactory::NULL_AI
+        return NULL_AI
     end
     java_overload :getInstance, 3
     
 
     def self.getInstance()
-        return NullAIFactory::NULL_AI
+        return NULL_AI
     end
 
     def self.java_static_fields

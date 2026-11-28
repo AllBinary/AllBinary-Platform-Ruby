@@ -30,7 +30,7 @@ class AbPathUtil
     
 
     def self.getInstance()
-        return AbPathUtil.instance
+        return @@instance
     end
 
     def self.instance()

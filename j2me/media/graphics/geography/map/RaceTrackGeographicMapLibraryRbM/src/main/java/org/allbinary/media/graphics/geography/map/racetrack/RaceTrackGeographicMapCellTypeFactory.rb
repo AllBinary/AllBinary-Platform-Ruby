@@ -38,7 +38,7 @@ class RaceTrackGeographicMapCellTypeFactory < ::Org::Allbinary::Media::Graphics:
     
 
     def self.getInstance()
-        return RaceTrackGeographicMapCellTypeFactory.instanceC
+        return @@instanceC
     end
     
 

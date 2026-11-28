@@ -41,7 +41,7 @@ class HtmlTableData
     
 
     def self.getInstance()
-        return HtmlTableData.instance
+        return @@instance
     end
 
     def self.instance()

@@ -21,7 +21,7 @@ class ScreenInfo
     
 
     def self.getInstance()
-        return ScreenInfo.instance
+        return @@instance
     end
 
     def self.instance()

@@ -22,7 +22,7 @@ class AndroidResources
     
 
     def self.getInstance()
-        return AndroidResources.instance
+        return @@instance
     end
 
     def self.instance()

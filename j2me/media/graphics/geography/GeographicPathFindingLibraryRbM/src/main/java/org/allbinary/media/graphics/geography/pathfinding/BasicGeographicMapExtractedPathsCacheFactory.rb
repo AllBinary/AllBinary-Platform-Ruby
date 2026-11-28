@@ -17,7 +17,7 @@ class BasicGeographicMapExtractedPathsCacheFactory < ::Org::Allbinary::Logic::Ut
     
 
     def self.getInstance()
-        return BasicGeographicMapExtractedPathsCacheFactory.instance
+        return @@instance
     end
     
 

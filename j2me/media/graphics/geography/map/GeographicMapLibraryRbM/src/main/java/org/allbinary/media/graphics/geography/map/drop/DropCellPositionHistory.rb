@@ -32,7 +32,7 @@ class DropCellPositionHistory
     
 
     def self.getInstance()
-        return DropCellPositionHistory::SINGLETON
+        return SINGLETON
     end
     
 

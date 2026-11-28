@@ -30,7 +30,7 @@ class XslHelper
     
 
     def self.getInstance()
-        return XslHelper.instance
+        return @@instance
     end
     
 

@@ -21,7 +21,7 @@ class ScreenCaptureFactory
     
 
     def self.getInstance()
-        return ScreenCaptureFactory.instance
+        return @@instance
     end
 
     def self.instance()

@@ -27,7 +27,7 @@ class TransformTemplateFactory
     
 
     def self.getInstance()
-        return TransformTemplateFactory.instance
+        return @@instance
     end
     
 

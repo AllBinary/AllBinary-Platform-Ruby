@@ -21,7 +21,7 @@ class GeographicMapCellHistoryProgressBase
     
 
     def self.getInstance()
-        return GeographicMapCellHistoryProgressBase.instance
+        return @@instance
     end
     
 

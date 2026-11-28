@@ -21,7 +21,7 @@ class PartInterfaceUtil
     
 
     def self.getZeroArray()
-        return PartInterfaceUtil::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

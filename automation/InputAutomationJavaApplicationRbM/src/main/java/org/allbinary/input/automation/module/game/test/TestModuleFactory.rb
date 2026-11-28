@@ -36,7 +36,7 @@ class TestModuleFactory < ::Org::Allbinary::Input::Automation::ModulePackage::Ab
     
 
     def getName()
-        return TestModuleFactory::NAME
+        return NAME
     end
     java_overload :getName, 0
     

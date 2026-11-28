@@ -22,7 +22,7 @@ class OpenGLBitmapFactory < ::Org::Allbinary::Platform::Graphics::PlatformBitmap
     
 
     def self.getInstance()
-        return OpenGLBitmapFactory.instance
+        return @@instance
     end
     
 

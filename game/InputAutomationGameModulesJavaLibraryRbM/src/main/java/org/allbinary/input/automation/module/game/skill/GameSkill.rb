@@ -38,7 +38,7 @@ class GameSkill
         self.setExtra(extra)
         self.setTime(time)
         @vector = ::Org::Allbinary::Util::BasicArrayListD.new()
-        GameSkill.hashMap.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(self.getGameSkillType().getName()).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(extra).to_s, self)
+        @@hashMap.put(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(self.getGameSkillType().getName()).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(extra).to_s, self)
     end
     
 
@@ -83,7 +83,7 @@ class GameSkill
     
 
     def self.getInstance(gameSkillType, extra)
-        return GameSkill.hashMap.get(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(gameSkillType.getName()).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(extra).to_s)
+        return @@hashMap.get(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(gameSkillType.getName()).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE).append(extra).to_s)
     end
     
 

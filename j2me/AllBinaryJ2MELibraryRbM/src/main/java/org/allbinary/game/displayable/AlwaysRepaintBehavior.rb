@@ -33,7 +33,7 @@ class AlwaysRepaintBehavior < RepaintBehavior
     
 
     def self.getInstance()
-        return AlwaysRepaintBehavior.instanceC
+        return @@instanceC
     end
     
 

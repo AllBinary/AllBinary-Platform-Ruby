@@ -26,7 +26,7 @@ class BasicGroupItemsEntityFactory
     
 
     def self.getInstance()
-        return BasicGroupItemsEntityFactory.instance
+        return @@instance
     end
     
 

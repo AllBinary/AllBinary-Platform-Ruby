@@ -23,7 +23,7 @@ class TouchButtonGenericActionResource < TouchButtonResource
     
 
     def self.getInstance()
-        return TouchButtonGenericActionResource.instance
+        return @@instance
     end
     
 

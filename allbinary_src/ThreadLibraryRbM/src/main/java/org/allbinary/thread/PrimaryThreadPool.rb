@@ -23,7 +23,7 @@ class PrimaryThreadPool < ThreadPool
     
 
     def self.getInstance()
-        return PrimaryThreadPool::THREAD_POOL
+        return THREAD_POOL
     end
     
 

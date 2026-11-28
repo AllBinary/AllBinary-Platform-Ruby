@@ -30,7 +30,7 @@ class LayerCoveringCellPositionsUtil
     
 
     def self.getInstance()
-        return LayerCoveringCellPositionsUtil.instance
+        return @@instance
     end
     
 

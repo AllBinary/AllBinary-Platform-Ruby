@@ -21,7 +21,7 @@ class NullRTSFormInputFactory
     
 
     def self.getInstance()
-        return NullRTSFormInputFactory::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

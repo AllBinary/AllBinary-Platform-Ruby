@@ -29,7 +29,7 @@ class AbeFactory
     
 
     def self.getInstance()
-        return AbeFactory.instance
+        return @@instance
     end
     
 

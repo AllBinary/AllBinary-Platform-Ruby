@@ -42,7 +42,7 @@ class BasicPopupMenuPaintable < ::Org::Allbinary::Graphics::Paint::Paintable
         super()
         jfields_org_allbinary_game_displayable_canvas_BasicPopupMenuPaintable
         @foregroundBasicColor = foregroundBasicColor
-        @label = BasicPopupMenuPaintable::NAME
+        @label = NAME
         @rectangle = rectangle
         if ::Org::Allbinary::J2MEUtil.isJ2ME() || ::Org::Allbinary::J2MEUtil.isHTML()
             @animationInterface = ::Org::Allbinary::Animation::NullAnimationFactory.getFactoryInstance().getInstance(0)
@@ -67,7 +67,7 @@ class BasicPopupMenuPaintable < ::Org::Allbinary::Graphics::Paint::Paintable
             _BORDER = ::Org::Allbinary::Graphics::Font::MyFontProcessor.defaultCharWidth(font) * 2
         end
         @BORDER = _BORDER
-        @heightOffset = @rectangle.getHeight() - (font.getHeight() * BasicPopupMenuPaintable::NAME.length())
+        @heightOffset = @rectangle.getHeight() - (font.getHeight() * NAME.length())
         if ::Org::Allbinary::Graphics::Opengles::OpenGLFeatureUtil.getInstance().isAnyThreed()
             @heightOffset -= font.getHeight() + 2
             if ::Org::Allbinary::AndroidUtil.isAndroid()

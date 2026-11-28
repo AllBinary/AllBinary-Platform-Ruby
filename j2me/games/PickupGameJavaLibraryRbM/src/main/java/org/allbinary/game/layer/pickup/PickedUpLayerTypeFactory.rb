@@ -39,7 +39,7 @@ class PickedUpLayerTypeFactory
     
 
     def self.getInstance()
-        return PickedUpLayerTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

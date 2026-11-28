@@ -31,10 +31,10 @@ class AllBinaryGameLayerManager < ::Org::Allbinary::Layer::AllBinaryLayerManager
     
 
     def self.getNullInstance()
-        if AllBinaryGameLayerManager::NULL_ALLBINARY_LAYER_MANAGER == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_ALLBINARY_LAYER_MANAGER == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (AllBinaryGameLayerManager.instance_exec(AllBinaryGameLayerManager.new(::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE, ::Org::Allbinary::Game::GameInfo::NONE)) { |java_value| remove_const(:NULL_ALLBINARY_LAYER_MANAGER) if const_defined?(:NULL_ALLBINARY_LAYER_MANAGER, false); const_set(:NULL_ALLBINARY_LAYER_MANAGER, java_value) })
         end
-        return AllBinaryGameLayerManager::NULL_ALLBINARY_LAYER_MANAGER
+        return NULL_ALLBINARY_LAYER_MANAGER
     end
     
 

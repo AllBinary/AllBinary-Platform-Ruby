@@ -39,7 +39,7 @@ class XmlDocumentHelper
     
 
     def self.getInstance()
-        return XmlDocumentHelper.instance
+        return @@instance
     end
     
 

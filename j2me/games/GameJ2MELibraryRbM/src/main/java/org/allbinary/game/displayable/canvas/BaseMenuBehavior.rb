@@ -21,7 +21,7 @@ class BaseMenuBehavior
     
 
     def self.getInstance()
-        return BaseMenuBehavior.instance
+        return @@instance
     end
     
 

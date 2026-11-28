@@ -32,7 +32,7 @@ class MusicStrings
     
 
     def self.getInstance()
-        return MusicStrings.instance
+        return @@instance
     end
 
     def self.instance()

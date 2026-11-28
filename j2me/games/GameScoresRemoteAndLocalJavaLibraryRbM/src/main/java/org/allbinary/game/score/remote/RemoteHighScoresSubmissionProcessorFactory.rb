@@ -21,7 +21,7 @@ class RemoteHighScoresSubmissionProcessorFactory
     
 
     def self.getInstance()
-        return RemoteHighScoresSubmissionProcessorFactory::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

@@ -22,7 +22,7 @@ class ColorUtil
     
 
     def self.getInstance()
-        return ColorUtil.instance
+        return @@instance
     end
     
 

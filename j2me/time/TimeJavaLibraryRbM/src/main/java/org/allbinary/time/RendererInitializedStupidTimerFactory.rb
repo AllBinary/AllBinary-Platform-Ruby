@@ -21,7 +21,7 @@ class RendererInitializedStupidTimerFactory
     
 
     def self.getInstance()
-        return RendererInitializedStupidTimerFactory.instance
+        return @@instance
     end
 
     def self.instance()

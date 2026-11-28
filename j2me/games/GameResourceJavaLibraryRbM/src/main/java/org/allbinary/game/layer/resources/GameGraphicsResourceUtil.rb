@@ -29,10 +29,10 @@ class GameGraphicsResourceUtil
     
 
     def self.getInstance()
-        if GameGraphicsResourceUtil.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GameGraphicsResourceUtil.instance = GameGraphicsResourceUtil.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GameGraphicsResourceUtil.new()
         end
-        return GameGraphicsResourceUtil.instance
+        return @@instance
     end
     
 

@@ -11,7 +11,7 @@ class OpenGLImageUtil < ::Org::Allbinary::Image::Opengles::OpenGLImageUtilBase
     
 
     def self.getInstance()
-        return OpenGLImageUtil.instance
+        return @@instance
     end
 
     def self.instance()

@@ -20,7 +20,7 @@ class GameMidletStateFactory
     
 
     def self.getInstance()
-        return GameMidletStateFactory::INSTANCE
+        return INSTANCE
     end
     
 

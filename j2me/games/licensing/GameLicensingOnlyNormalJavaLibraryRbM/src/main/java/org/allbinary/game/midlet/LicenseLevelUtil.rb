@@ -21,7 +21,7 @@ class LicenseLevelUtil
     
 
     def self.getInstance()
-        return LicenseLevelUtil.instance
+        return @@instance
     end
     
 

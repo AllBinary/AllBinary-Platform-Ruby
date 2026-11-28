@@ -40,7 +40,7 @@ class TrackedStrings
     
 
     def self.getInstance()
-        return TrackedStrings.instance
+        return @@instance
     end
 
     def self.instance()

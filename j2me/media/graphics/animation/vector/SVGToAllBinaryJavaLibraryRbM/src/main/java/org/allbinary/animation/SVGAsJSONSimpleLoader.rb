@@ -50,7 +50,7 @@ class SVGAsJSONSimpleLoader
     
 
     def self.getInstance()
-        return SVGAsJSONSimpleLoader.instance
+        return @@instance
     end
     
 

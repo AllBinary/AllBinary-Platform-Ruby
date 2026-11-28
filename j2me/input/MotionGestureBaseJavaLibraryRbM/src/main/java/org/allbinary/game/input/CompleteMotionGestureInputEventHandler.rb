@@ -28,7 +28,7 @@ class CompleteMotionGestureInputEventHandler < ::Org::Allbinary::Logic::Util::Ev
     
 
     def self.getInstance()
-        return CompleteMotionGestureInputEventHandler::SINGLETON
+        return SINGLETON
     end
     
 

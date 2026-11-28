@@ -32,10 +32,10 @@ class RaceGameStateFactory
     
 
     def self.getInstance()
-        if RaceGameStateFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            RaceGameStateFactory.instance = RaceGameStateFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = RaceGameStateFactory.new()
         end
-        return RaceGameStateFactory.instance
+        return @@instance
     end
 
     def self.instance()

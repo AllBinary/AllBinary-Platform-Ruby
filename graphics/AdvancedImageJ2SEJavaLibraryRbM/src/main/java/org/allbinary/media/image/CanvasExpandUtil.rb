@@ -32,7 +32,7 @@ class CanvasExpandUtil
     
 
     def self.getInstance()
-        return CanvasExpandUtil.instance
+        return @@instance
     end
     
 

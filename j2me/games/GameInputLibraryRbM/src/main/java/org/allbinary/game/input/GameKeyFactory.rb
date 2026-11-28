@@ -53,10 +53,10 @@ class GameKeyFactory
     
 
     def self.getInstance()
-        if GameKeyFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GameKeyFactory.instance = GameKeyFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GameKeyFactory.new()
         end
-        return GameKeyFactory.instance
+        return @@instance
     end
 
     def self.instance()

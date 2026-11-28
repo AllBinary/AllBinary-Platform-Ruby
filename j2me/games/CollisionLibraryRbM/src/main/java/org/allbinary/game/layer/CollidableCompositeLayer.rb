@@ -30,10 +30,10 @@ class CollidableCompositeLayer < AllBinaryGameLayer
     
 
     def self.getNullInstance()
-        if CollidableCompositeLayer::NULL_COLLIDABLE_COMPOSITE_LAYER == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_COLLIDABLE_COMPOSITE_LAYER == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (CollidableCompositeLayer.instance_exec(CollidableCompositeLayer.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Graphics::RectangleFactory::SINGLETON, ::Org::Allbinary::View::ViewPositionBase::NULL_VIEW_POSITION, ::Org::Allbinary::Game::Collision::CollidableNeverCollideBehaviorFactory.getInstance())) { |java_value| remove_const(:NULL_COLLIDABLE_COMPOSITE_LAYER) if const_defined?(:NULL_COLLIDABLE_COMPOSITE_LAYER, false); const_set(:NULL_COLLIDABLE_COMPOSITE_LAYER, java_value) })
         end
-        return CollidableCompositeLayer::NULL_COLLIDABLE_COMPOSITE_LAYER
+        return NULL_COLLIDABLE_COMPOSITE_LAYER
     end
     
 

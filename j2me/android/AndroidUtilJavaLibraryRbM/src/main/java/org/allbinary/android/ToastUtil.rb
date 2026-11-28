@@ -51,7 +51,7 @@ class ToastUtil
     
 
     def self.getInstance()
-        return ToastUtil.instance
+        return @@instance
     end
     
 

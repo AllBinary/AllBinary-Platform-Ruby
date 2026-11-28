@@ -64,7 +64,7 @@ class AngleInfo
 
     def toString()
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
-        stringBuffer.append(AngleInfo::ANGLE)
+        stringBuffer.append(ANGLE)
         stringBuffer.appendshort(@angle)
         stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)
         stringBuffer.append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(self.getAngleIncrementInfo()))

@@ -28,14 +28,14 @@ class MyCanvasEventService
 
     def self.addListener(listener)
         java_monitor.synchronize do
-        MyCanvasEventService.listenerList.add((listener.class), listener)
+        @@listenerList.add((listener.class), listener)
         end
     end
     
 
     def self.removeListener(listener)
         java_monitor.synchronize do
-        MyCanvasEventService.listenerList.remove((listener.class), listener)
+        @@listenerList.remove((listener.class), listener)
         end
     end
     

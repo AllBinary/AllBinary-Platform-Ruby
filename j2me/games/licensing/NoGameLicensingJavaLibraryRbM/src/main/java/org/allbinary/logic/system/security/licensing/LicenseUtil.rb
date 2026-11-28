@@ -22,7 +22,7 @@ class LicenseUtil
     
 
     def self.getInstance()
-        return LicenseUtil.instance
+        return @@instance
     end
     
 

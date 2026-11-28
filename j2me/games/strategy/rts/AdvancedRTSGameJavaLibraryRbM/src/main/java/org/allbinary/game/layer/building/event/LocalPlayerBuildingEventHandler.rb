@@ -27,7 +27,7 @@ class LocalPlayerBuildingEventHandler < ::Org::Allbinary::Logic::Util::Event::Ha
     
 
     def self.getInstance()
-        return LocalPlayerBuildingEventHandler.eventHandler
+        return @@eventHandler
     end
     
 

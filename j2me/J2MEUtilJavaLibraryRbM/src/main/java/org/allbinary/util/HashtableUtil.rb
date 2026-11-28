@@ -31,7 +31,7 @@ class HashtableUtil
     
 
     def self.getInstance()
-        return HashtableUtil.instance
+        return @@instance
     end
     
 

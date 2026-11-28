@@ -32,7 +32,7 @@ class MyRandomFactory
     
 
     def self.getInstance()
-        return MyRandomFactory.instance
+        return @@instance
     end
     
 

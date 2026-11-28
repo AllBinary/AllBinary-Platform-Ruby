@@ -38,7 +38,7 @@ class ScreenCaptureImagesWorker < ::Org::Allbinary::Logic::Util::Event::Handler:
         super()
         jfields_org_allbinary_input_media_image_capture_ScreenCaptureImagesWorker
         @screenScavangerRobot = ScreenScavangerRobot.new()
-        ScreenCaptureImagesWorker.index = ProcessingFrameIndexFactory.next_()
+        @@index = ProcessingFrameIndexFactory.next_()
     end
     
 
@@ -73,7 +73,7 @@ class ScreenCaptureImagesWorker < ::Org::Allbinary::Logic::Util::Event::Handler:
                 timeHelper.setStartTimeTNT()
                 bufferedImage = @screenScavangerRobot.getScreenAsBufferedImages()[0]
                 frame = @@index
-                ScreenCaptureImagesWorker.index += 1
+                @@index += 1
                 CapturedBufferedImagesCacheSingleton.getInstance().add(::Org::Allbinary::Media::Image::Cache::BufferedImageFrameCacheable.new(bufferedImage, frame))
                 capturedImageEvent = CapturedImageWorkerResultsEvent.new(self, frame, bufferedImage)
                 fireEvent(capturedImageEvent)

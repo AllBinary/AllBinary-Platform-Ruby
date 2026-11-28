@@ -167,61 +167,61 @@ class Initializer
             isValid = false
         end
         stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
-        if !stringValidationUtil.isValidRequired(@userName, Initializer::MIN, Initializer::MAXDB)
+        if !stringValidationUtil.isValidRequired(@userName, MIN, MAXDB)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@userUserName, Initializer::MIN, Initializer::MAX)
+        if !stringValidationUtil.isValidRequired(@userUserName, MIN, MAX)
             isValid = false
         end
-        if !stringValidationUtil.isValidNotRequired(@userPassword, Initializer::MINPASSWORD, Initializer::MAX)
+        if !stringValidationUtil.isValidNotRequired(@userPassword, MINPASSWORD, MAX)
             isValid = false
         end
         if !self.isJdbcDriverValid(@historyJdbcDriver)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@historyName, Initializer::MIN, Initializer::MAXDB)
+        if !stringValidationUtil.isValidRequired(@historyName, MIN, MAXDB)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@historyUserName, Initializer::MIN, Initializer::MAX)
+        if !stringValidationUtil.isValidRequired(@historyUserName, MIN, MAX)
             isValid = false
         end
-        if !stringValidationUtil.isValidNotRequired(@historyPassword, Initializer::MINPASSWORD, Initializer::MAX)
+        if !stringValidationUtil.isValidNotRequired(@historyPassword, MINPASSWORD, MAX)
             isValid = false
         end
         if !self.isJdbcDriverValid(@logJdbcDriver)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@logName, Initializer::MIN, Initializer::MAXDB)
+        if !stringValidationUtil.isValidRequired(@logName, MIN, MAXDB)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@logUserName, Initializer::MIN, Initializer::MAX)
+        if !stringValidationUtil.isValidRequired(@logUserName, MIN, MAX)
             isValid = false
         end
-        if !stringValidationUtil.isValidNotRequired(@logPassword, Initializer::MINPASSWORD, Initializer::MAX)
+        if !stringValidationUtil.isValidNotRequired(@logPassword, MINPASSWORD, MAX)
             isValid = false
         end
         if !self.isJdbcDriverValid(@inventoryJdbcDriver)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@inventoryName, Initializer::MIN, Initializer::MAXDB)
+        if !stringValidationUtil.isValidRequired(@inventoryName, MIN, MAXDB)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@inventoryUserName, Initializer::MIN, Initializer::MAX)
+        if !stringValidationUtil.isValidRequired(@inventoryUserName, MIN, MAX)
             isValid = false
         end
-        if !stringValidationUtil.isValidNotRequired(@inventoryPassword, Initializer::MINPASSWORD, Initializer::MAX)
+        if !stringValidationUtil.isValidNotRequired(@inventoryPassword, MINPASSWORD, MAX)
             isValid = false
         end
         if !self.isJdbcDriverValid(@staticPagesJdbcDriver)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@staticPagesName, Initializer::MIN, Initializer::MAXDB)
+        if !stringValidationUtil.isValidRequired(@staticPagesName, MIN, MAXDB)
             isValid = false
         end
-        if !stringValidationUtil.isValidRequired(@staticPagesUserName, Initializer::MIN, Initializer::MAX)
+        if !stringValidationUtil.isValidRequired(@staticPagesUserName, MIN, MAX)
             isValid = false
         end
-        if !stringValidationUtil.isValidNotRequired(@staticPagesPassword, Initializer::MINPASSWORD, Initializer::MAX)
+        if !stringValidationUtil.isValidNotRequired(@staticPagesPassword, MINPASSWORD, MAX)
             isValid = false
         end
         return isValid
@@ -260,66 +260,66 @@ class Initializer
             stringBuffer.append(self.getJdbcDriverValidationInfo(@userJdbcDriver))
         end
         stringValidationUtil = ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance()
-        if !stringValidationUtil.isValidRequired(@userName, Initializer::MIN, Initializer::MAXDB)
-            stringBuffer.append("User db name should be < " + (Initializer::MAXDB).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@userName, MIN, MAXDB)
+            stringBuffer.append("User db name should be < " + (MAXDB).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidRequired(@userUserName, Initializer::MIN, Initializer::MAX)
-            stringBuffer.append("User db username should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@userUserName, MIN, MAX)
+            stringBuffer.append("User db username should be < " + (MAX).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidNotRequired(@userPassword, Initializer::MINPASSWORD, Initializer::MAX)
-            stringBuffer.append("User DB password should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MINPASSWORD).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidNotRequired(@userPassword, MINPASSWORD, MAX)
+            stringBuffer.append("User DB password should be < " + (MAX).to_s + " and > " + (MINPASSWORD).to_s + " characters in length.<br />")
         end
         if !self.isJdbcDriverValid(@historyJdbcDriver)
             isJdbcDriversValid = false
             stringBuffer.append(self.getJdbcDriverValidationInfo(@historyJdbcDriver))
         end
-        if !stringValidationUtil.isValidRequired(@historyName, Initializer::MIN, Initializer::MAXDB)
-            stringBuffer.append("History db should be < " + (Initializer::MAXDB).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@historyName, MIN, MAXDB)
+            stringBuffer.append("History db should be < " + (MAXDB).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidRequired(@historyUserName, Initializer::MIN, Initializer::MAX)
-            stringBuffer.append("History db username should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@historyUserName, MIN, MAX)
+            stringBuffer.append("History db username should be < " + (MAX).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidNotRequired(@historyPassword, Initializer::MINPASSWORD, Initializer::MAX)
-            stringBuffer.append("History db password should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MINPASSWORD).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidNotRequired(@historyPassword, MINPASSWORD, MAX)
+            stringBuffer.append("History db password should be < " + (MAX).to_s + " and > " + (MINPASSWORD).to_s + " characters in length.<br />")
         end
         if !self.isJdbcDriverValid(@logJdbcDriver)
             isJdbcDriversValid = false
             stringBuffer.append(self.getJdbcDriverValidationInfo(@logJdbcDriver))
         end
-        if !stringValidationUtil.isValidRequired(@logName, Initializer::MIN, Initializer::MAXDB)
-            stringBuffer.append("Log db should be < " + (Initializer::MAXDB).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@logName, MIN, MAXDB)
+            stringBuffer.append("Log db should be < " + (MAXDB).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidRequired(@logUserName, Initializer::MIN, Initializer::MAX)
-            stringBuffer.append("Log db username should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@logUserName, MIN, MAX)
+            stringBuffer.append("Log db username should be < " + (MAX).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidNotRequired(@logPassword, Initializer::MINPASSWORD, Initializer::MAX)
-            stringBuffer.append("Log db password should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MINPASSWORD).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidNotRequired(@logPassword, MINPASSWORD, MAX)
+            stringBuffer.append("Log db password should be < " + (MAX).to_s + " and > " + (MINPASSWORD).to_s + " characters in length.<br />")
         end
         if !self.isJdbcDriverValid(@inventoryJdbcDriver)
             isJdbcDriversValid = false
             stringBuffer.append(self.getJdbcDriverValidationInfo(@inventoryJdbcDriver))
         end
-        if !stringValidationUtil.isValidRequired(@inventoryName, Initializer::MIN, Initializer::MAXDB)
-            stringBuffer.append("Inventory db should be < " + (Initializer::MAXDB).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@inventoryName, MIN, MAXDB)
+            stringBuffer.append("Inventory db should be < " + (MAXDB).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidRequired(@inventoryUserName, Initializer::MIN, Initializer::MAX)
-            stringBuffer.append("Inventory db username should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@inventoryUserName, MIN, MAX)
+            stringBuffer.append("Inventory db username should be < " + (MAX).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidNotRequired(@inventoryPassword, Initializer::MINPASSWORD, Initializer::MAX)
-            stringBuffer.append("Inventory DB password should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MINPASSWORD).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidNotRequired(@inventoryPassword, MINPASSWORD, MAX)
+            stringBuffer.append("Inventory DB password should be < " + (MAX).to_s + " and > " + (MINPASSWORD).to_s + " characters in length.<br />")
         end
         if !self.isJdbcDriverValid(@staticPagesJdbcDriver)
             isJdbcDriversValid = false
             stringBuffer.append(self.getJdbcDriverValidationInfo(@staticPagesJdbcDriver))
         end
-        if !stringValidationUtil.isValidRequired(@staticPagesName, Initializer::MIN, Initializer::MAXDB)
-            stringBuffer.append("Static Pages db should be < " + (Initializer::MAXDB).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@staticPagesName, MIN, MAXDB)
+            stringBuffer.append("Static Pages db should be < " + (MAXDB).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidRequired(@staticPagesUserName, Initializer::MIN, Initializer::MAX)
-            stringBuffer.append("Static Pages db username should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MIN).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidRequired(@staticPagesUserName, MIN, MAX)
+            stringBuffer.append("Static Pages db username should be < " + (MAX).to_s + " and > " + (MIN).to_s + " characters in length.<br />")
         end
-        if !stringValidationUtil.isValidNotRequired(@staticPagesPassword, Initializer::MINPASSWORD, Initializer::MAX)
-            stringBuffer.append("Static Pages DB password should be < " + (Initializer::MAX).to_s + " and > " + (Initializer::MINPASSWORD).to_s + " characters in length.<br />")
+        if !stringValidationUtil.isValidNotRequired(@staticPagesPassword, MINPASSWORD, MAX)
+            stringBuffer.append("Static Pages DB password should be < " + (MAX).to_s + " and > " + (MINPASSWORD).to_s + " characters in length.<br />")
         end
         if !isJdbcDriversValid
             stringBuffer.append(getJdbcDriverSolutionInfo())

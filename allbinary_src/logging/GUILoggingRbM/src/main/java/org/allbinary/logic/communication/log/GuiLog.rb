@@ -34,7 +34,7 @@ class GuiLog
     
 
     def self.getInstance()
-        return GuiLog.instance
+        return @@instance
     end
     
 

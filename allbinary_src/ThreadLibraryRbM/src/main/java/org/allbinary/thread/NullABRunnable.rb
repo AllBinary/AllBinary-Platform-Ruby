@@ -24,7 +24,7 @@ class NullABRunnable < ABRunnable
     
 
     def self.getInstance()
-        return NullABRunnable.instance
+        return @@instance
     end
     
 

@@ -23,7 +23,7 @@ class MovedMotionGesturesHandler < ::Org::Allbinary::Logic::Util::Event::Handler
     
 
     def self.getInstance()
-        return MovedMotionGesturesHandler::SINGLETON
+        return SINGLETON
     end
     
 

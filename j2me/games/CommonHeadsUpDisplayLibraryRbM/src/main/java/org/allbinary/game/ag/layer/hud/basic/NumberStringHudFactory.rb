@@ -30,10 +30,10 @@ class NumberStringHudFactory
     
 
     def self.getInstance()
-        if NumberStringHudFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance()
-            NumberStringHudFactory.instance = NumberStringHudFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance()
+            @@instance = NumberStringHudFactory.new()
         end
-        return NumberStringHudFactory.instance
+        return @@instance
     end
     
 

@@ -21,7 +21,7 @@ class ByteUtil
     
 
     def self.getInstance()
-        return ByteUtil.instance
+        return @@instance
     end
     
 

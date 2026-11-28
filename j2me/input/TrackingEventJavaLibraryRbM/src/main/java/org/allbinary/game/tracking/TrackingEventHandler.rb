@@ -23,7 +23,7 @@ class TrackingEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::Basi
     
 
     def self.getInstance()
-        return TrackingEventHandler.instance
+        return @@instance
     end
     
 

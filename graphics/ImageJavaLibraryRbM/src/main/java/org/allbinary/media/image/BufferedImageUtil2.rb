@@ -20,7 +20,7 @@ class BufferedImageUtil2
     
 
     def self.getInstance()
-        return BufferedImageUtil2.instance
+        return @@instance
     end
     
 

@@ -25,7 +25,7 @@ class PlacedLayerFactory
     
 
     def self.getInstance()
-        return PlacedLayerFactory.instance
+        return @@instance
     end
     
 

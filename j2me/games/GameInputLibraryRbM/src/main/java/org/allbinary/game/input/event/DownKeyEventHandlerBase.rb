@@ -137,13 +137,13 @@ class DownKeyEventHandlerBase < ::Org::Allbinary::Logic::Util::Event::Handler::B
     def toString()
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         stringBuffer.append(super.to_s)
-        stringBuffer.append(DownKeyEventHandlerBase::TOTAL_LISTENERS)
+        stringBuffer.append(TOTAL_LISTENERS)
         stringBuffer.appendint(@list.size())
         eventListenerInterface = nil
         (0...@list.size()).each do |index|
             begin
                 eventListenerInterface = @list.get(index)
-                stringBuffer.append(DownKeyEventHandlerBase::LISTENER_LABEL)
+                stringBuffer.append(LISTENER_LABEL)
                 stringBuffer.append(eventListenerInterface.to_s)
             rescue StandardError => e
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.TOSTRING, e)

@@ -18,7 +18,7 @@ class MediaUtil
     
 
     def self.getInstance()
-        return MediaUtil.instance
+        return @@instance
     end
     
 

@@ -21,10 +21,10 @@ class ProgressCanvasFactory
     
 
     def self.getInstance()
-        if ProgressCanvasFactory::PROGRESS_FORM_SCREEN == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if PROGRESS_FORM_SCREEN == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (ProgressCanvasFactory.instance_exec(LazyProgressCanvas.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().BLACK, ::Org::Allbinary::Graphics::Color::BasicColorFactory.getInstance().WHITE)) { |java_value| remove_const(:PROGRESS_FORM_SCREEN) if const_defined?(:PROGRESS_FORM_SCREEN, false); const_set(:PROGRESS_FORM_SCREEN, java_value) })
         end
-        return ProgressCanvasFactory::PROGRESS_FORM_SCREEN
+        return PROGRESS_FORM_SCREEN
     end
     
 

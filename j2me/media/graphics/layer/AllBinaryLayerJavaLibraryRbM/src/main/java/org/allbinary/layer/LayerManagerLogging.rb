@@ -44,7 +44,7 @@ class LayerManagerLogging < LayerManagerLoggingBase
     
 
     def self.getInstance()
-        return LayerManagerLogging.instance
+        return @@instance
     end
     
 
@@ -80,14 +80,14 @@ class LayerManagerLogging < LayerManagerLoggingBase
             @stringBuilder.delete(0, @stringBuilder.length())
             @logUtil.putF(@stringBuilder.appendint(((::Org::Allbinary::TsUtil.getInstance().hashCode(self)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).append(@REMOVE_).append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(layerInterface)).to_s, self, @REMOVE)
         elsif result
-            if LayerManagerLogging.removeFailed
+            if @@removeFailed
                 @stringBuilder.delete(0, @stringBuilder.length())
                 @logUtil.putF(@stringBuilder.appendint(((::Org::Allbinary::TsUtil.getInstance().hashCode(self)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).append(@REMOVE_).append(layerInterface.getName()).to_s, self, @REMOVE)
             end
         else
             @stringBuilder.delete(0, @stringBuilder.length())
             @logUtil.putF(@stringBuilder.appendint(((::Org::Allbinary::TsUtil.getInstance().hashCode(self)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })).append(@DID_NOT_REMOVE).append(layerInterface.getName()).to_s, self, @REMOVE)
-            LayerManagerLogging.removeFailed = true
+            @@removeFailed = true
         end
     end
     java_overload :removeResult, 3

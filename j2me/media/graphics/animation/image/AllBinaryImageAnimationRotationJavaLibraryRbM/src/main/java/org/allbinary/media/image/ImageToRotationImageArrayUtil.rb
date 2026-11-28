@@ -21,7 +21,7 @@ class ImageToRotationImageArrayUtil
     
 
     def self.getInstance()
-        return ImageToRotationImageArrayUtil.instance
+        return @@instance
     end
     
 

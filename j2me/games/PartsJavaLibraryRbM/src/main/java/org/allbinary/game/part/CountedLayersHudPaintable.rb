@@ -53,7 +53,7 @@ class CountedLayersHudPaintable
         if @dropSize > font.getHeight()
             @height = @dropSize
         end
-        if CountedLayersHudPaintable::XXStringWidth == 0
+        if XXStringWidth == 0
             _XXString = "XX"
             (CountedLayersHudPaintable.instance_exec(font.stringWidth(_XXString)) { |java_value| remove_const(:XXStringWidth) if const_defined?(:XXStringWidth, false); const_set(:XXStringWidth, java_value) })
         end
@@ -90,7 +90,7 @@ class CountedLayersHudPaintable
         end
         if count > 0
             graphics.setColor(@countedPartsBorder)
-            graphics.drawRect(lastWidth - (CountedLayersHudPaintable::XXStringWidth + @dropSize), 40, CountedLayersHudPaintable::XXStringWidth + @dropSize, (count * @height) + 3)
+            graphics.drawRect(lastWidth - (XXStringWidth + @dropSize), 40, XXStringWidth + @dropSize, (count * @height) + 3)
         end
     end
     java_overload :paint, 1

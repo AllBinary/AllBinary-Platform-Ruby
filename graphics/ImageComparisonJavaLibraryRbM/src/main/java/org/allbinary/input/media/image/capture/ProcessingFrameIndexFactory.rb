@@ -27,7 +27,7 @@ class ProcessingFrameIndexFactory
 
     def self.next_()
         java_monitor.synchronize do
-        return ((ProcessingFrameIndexFactory.currentFrame += 1) - 1)
+        return ((@@currentFrame += 1) - 1)
         end
     end
 

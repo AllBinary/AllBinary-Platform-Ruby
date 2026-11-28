@@ -31,12 +31,12 @@ class GameFeatureChoiceGroups
     
 
     def self.getExclusiveInstance()
-        return GameFeatureChoiceGroups.gameFeatureChoiceGroupsExclusive
+        return @@gameFeatureChoiceGroupsExclusive
     end
     
 
     def self.getMultipleInstance()
-        return GameFeatureChoiceGroups.gameFeatureChoiceGroupsMultiple
+        return @@gameFeatureChoiceGroupsMultiple
     end
     
 

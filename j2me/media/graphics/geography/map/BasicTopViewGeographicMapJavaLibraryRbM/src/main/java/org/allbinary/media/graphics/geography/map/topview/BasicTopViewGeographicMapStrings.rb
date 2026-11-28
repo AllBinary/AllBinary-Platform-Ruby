@@ -37,7 +37,7 @@ class BasicTopViewGeographicMapStrings
     
 
     def self.getInstance()
-        return BasicTopViewGeographicMapStrings.instance
+        return @@instance
     end
 
     def self.instance()

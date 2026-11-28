@@ -21,7 +21,7 @@ class PrimaryPlayerQueueFactory
     
 
     def self.getInstance()
-        return PrimaryPlayerQueueFactory::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

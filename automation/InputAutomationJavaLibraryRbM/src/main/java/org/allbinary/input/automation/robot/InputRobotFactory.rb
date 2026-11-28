@@ -38,7 +38,7 @@ class InputRobotFactory
 
     # throws Exception
     def self.getInstance()
-        return InputRobotFactory.inputRobotFactory
+        return @@inputRobotFactory
     end
     
 

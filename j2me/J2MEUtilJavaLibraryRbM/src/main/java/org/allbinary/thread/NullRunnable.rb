@@ -26,7 +26,7 @@ class NullRunnable < ARunnable
     
 
     def self.getInstance()
-        return NullRunnable.instance
+        return @@instance
     end
     
 

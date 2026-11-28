@@ -31,7 +31,7 @@ class ShaderUpdater
     
 
     def self.getInstance()
-        return ShaderUpdater.instance
+        return @@instance
     end
     
 

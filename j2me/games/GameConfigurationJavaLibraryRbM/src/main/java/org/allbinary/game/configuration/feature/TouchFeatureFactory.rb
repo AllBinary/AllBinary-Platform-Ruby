@@ -29,7 +29,7 @@ class TouchFeatureFactory
     
 
     def self.getInstance()
-        return TouchFeatureFactory.instance
+        return @@instance
     end
     
 

@@ -26,10 +26,10 @@ class GameKeyMappingFactory
     
 
     def self.getInstance()
-        if GameKeyMappingFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GameKeyMappingFactory.instance = GameKeyMappingFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GameKeyMappingFactory.new()
         end
-        return GameKeyMappingFactory.instance
+        return @@instance
     end
     
 

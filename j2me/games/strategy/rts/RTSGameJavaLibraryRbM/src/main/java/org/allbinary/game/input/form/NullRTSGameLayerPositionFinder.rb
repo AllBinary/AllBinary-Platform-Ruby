@@ -24,7 +24,7 @@ class NullRTSGameLayerPositionFinder
     
 
     def self.getInstance()
-        return NullRTSGameLayerPositionFinder.instance
+        return @@instance
     end
     
 

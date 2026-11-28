@@ -24,7 +24,7 @@ class NullIntermissionEnableListener
     
 
     def self.getInstance()
-        return NullIntermissionEnableListener::SINGLETON
+        return SINGLETON
     end
     
 

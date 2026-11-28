@@ -35,7 +35,7 @@ class PointsDomUtil
     
 
     def self.getInstance()
-        return PointsDomUtil.instance
+        return @@instance
     end
     
 

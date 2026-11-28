@@ -33,7 +33,7 @@ class EventStrings
     
 
     def self.getInstance()
-        return EventStrings.instance
+        return @@instance
     end
 
     def self.instance()

@@ -23,7 +23,7 @@ class LinePathRelativeAnimation < LinePathAnimation
     
 
     def self.getInstance()
-        return LinePathRelativeAnimation.instanceC
+        return @@instanceC
     end
     
 

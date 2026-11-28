@@ -22,7 +22,7 @@ class InventoryItemViewParentTagHelper
     
 
     def self.getInstance()
-        return InventoryItemViewParentTagHelper.instance
+        return @@instance
     end
     
 

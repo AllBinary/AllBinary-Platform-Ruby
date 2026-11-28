@@ -36,7 +36,7 @@ class NullIndexedAnimationFactory
     
 
     def self.getFactoryInstance()
-        return NullIndexedAnimationFactory::NULL_INDEXED_ANIMATION_FACTORY
+        return NULL_INDEXED_ANIMATION_FACTORY
     end
     
 

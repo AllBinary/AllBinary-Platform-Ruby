@@ -35,7 +35,7 @@ class InputAutomationServiceFactory
     
 
     def self.getInstance()
-        return InputAutomationServiceFactory.inputAutomationServiceFactory
+        return @@inputAutomationServiceFactory
     end
     
 

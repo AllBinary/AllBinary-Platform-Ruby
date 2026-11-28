@@ -36,7 +36,7 @@ class WaypointSelectedLogHelper < WaypointLogHelper
     
 
     def self.getInstance()
-        return WaypointSelectedLogHelper.instanceC
+        return @@instanceC
     end
     
 

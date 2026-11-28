@@ -25,7 +25,7 @@ class SWTJOGLProcessor
     
 
     def self.getInstance()
-        return SWTJOGLProcessor.instance
+        return @@instance
     end
     
 

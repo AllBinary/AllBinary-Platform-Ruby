@@ -26,7 +26,7 @@ class BooleanUtil
     
 
     def self.getInstance()
-        return BooleanUtil.instance
+        return @@instance
     end
     
 

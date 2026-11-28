@@ -63,7 +63,7 @@ class GameInitializationUtil
     
 
     def self.getInstance()
-        return GameInitializationUtil.instance
+        return @@instance
     end
 
     def self.instance()

@@ -32,7 +32,7 @@ class FileUploadData
     
 
     def self.getInstance()
-        return FileUploadData.instance
+        return @@instance
     end
 
     def self.instance()

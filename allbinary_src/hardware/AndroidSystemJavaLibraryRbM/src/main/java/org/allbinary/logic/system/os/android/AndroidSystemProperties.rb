@@ -26,7 +26,7 @@ class AndroidSystemProperties
     
 
     def self.getInstance()
-        return AndroidSystemProperties::SINGLETON
+        return SINGLETON
     end
     
 

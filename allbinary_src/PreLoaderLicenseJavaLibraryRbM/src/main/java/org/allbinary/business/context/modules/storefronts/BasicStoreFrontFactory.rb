@@ -26,7 +26,7 @@ class BasicStoreFrontFactory
     
 
     def self.getInstance()
-        return BasicStoreFrontFactory.instance
+        return @@instance
     end
     
 

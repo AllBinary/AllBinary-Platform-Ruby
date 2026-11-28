@@ -61,13 +61,13 @@ class FrameLog
         filePathStringBuffer.append(".txt")
         filePath = filePathStringBuffer.to_s
         fileOutputStream = ::Java::Io::FileOutputStream.new(File.new(filePath))
-        fileOutputStream.write(FrameLog.frameBytes)
+        fileOutputStream.write(@@frameBytes)
         fileOutputStream.write(getFrame().to_s.bytes)
         fileOutputStream.write("\n")
-        fileOutputStream.write(FrameLog.info)
+        fileOutputStream.write(@@info)
         fileOutputStream.write(@infoStringBuffer.to_s.bytes)
         fileOutputStream.write("\n")
-        fileOutputStream.write(FrameLog.actions)
+        fileOutputStream.write(@@actions)
         fileOutputStream.write(@actionsStringBuffer.to_s.bytes)
         fileOutputStream.close()
     end

@@ -30,7 +30,7 @@ class MidletStrings
     
 
     def self.getInstance()
-        return MidletStrings.instance
+        return @@instance
     end
 
     def self.instance()

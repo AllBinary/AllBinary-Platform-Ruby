@@ -30,7 +30,7 @@ class GameLevelDisplayChangeEventListenersFactory
     
 
     def self.getInstance()
-        return GameLevelDisplayChangeEventListenersFactory.instance
+        return @@instance
     end
     
 

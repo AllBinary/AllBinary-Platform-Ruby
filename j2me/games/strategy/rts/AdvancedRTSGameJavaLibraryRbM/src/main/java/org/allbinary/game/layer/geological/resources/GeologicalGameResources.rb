@@ -23,10 +23,10 @@ class GeologicalGameResources < ::Org::Allbinary::Game::Layer::Resources::BasicG
     
 
     def self.getInstance()
-        if GeologicalGameResources.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GeologicalGameResources.instance = GeologicalGameResources.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GeologicalGameResources.new()
         end
-        return GeologicalGameResources.instance
+        return @@instance
     end
     
 

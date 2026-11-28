@@ -46,12 +46,12 @@ class AllBinarySensor
     
 
     def self.setMax(max)
-        AllBinarySensor.max = max
+        @@max = max
     end
     
 
     def self.getMax()
-        return AllBinarySensor.max
+        return @@max
     end
     
 

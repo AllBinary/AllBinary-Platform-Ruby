@@ -28,7 +28,7 @@ class AllBinaryVibration < AllBinaryVibrationME
     
 
     def self.getInstance()
-        return AllBinaryVibration::VIBRATION
+        return VIBRATION
     end
     
 

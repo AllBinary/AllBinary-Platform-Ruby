@@ -31,7 +31,7 @@ class RendererStateFactory
     
 
     def self.getInstance()
-        return RendererStateFactory.instance
+        return @@instance
     end
     
 

@@ -39,7 +39,7 @@ class LogFormatUtil
     
 
     def self.getInstance()
-        return LogFormatUtil.instance
+        return @@instance
     end
     
 

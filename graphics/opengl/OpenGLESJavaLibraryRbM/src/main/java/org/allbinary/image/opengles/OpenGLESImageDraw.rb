@@ -21,7 +21,7 @@ class OpenGLESImageDraw
     
 
     def self.getInstance()
-        return OpenGLESImageDraw.instance
+        return @@instance
     end
     
 

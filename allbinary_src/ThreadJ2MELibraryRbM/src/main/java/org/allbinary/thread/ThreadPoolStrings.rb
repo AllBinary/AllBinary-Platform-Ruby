@@ -32,7 +32,7 @@ class ThreadPoolStrings
     
 
     def self.getInstance()
-        return ThreadPoolStrings.instance
+        return @@instance
     end
 
     def self.instance()

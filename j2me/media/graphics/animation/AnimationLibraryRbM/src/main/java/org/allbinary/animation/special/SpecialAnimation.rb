@@ -25,7 +25,7 @@ class SpecialAnimation < ::Org::Allbinary::Animation::IndexedAnimation
     
 
     def self.getInstance()
-        return SpecialAnimation::NULL_SPECIAL_ANIMATION
+        return NULL_SPECIAL_ANIMATION
     end
     
 

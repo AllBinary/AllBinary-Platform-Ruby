@@ -11,10 +11,10 @@ class AndroidAPI12KeyFactory < AndroidAPI9KeyFactory
     
 
     def self.getAPI12Instance()
-        if AndroidAPI12KeyFactory.instance12 == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            AndroidAPI12KeyFactory.instance12 = AndroidAPI12KeyFactory.new()
+        if @@instance12 == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance12 = AndroidAPI12KeyFactory.new()
         end
-        return AndroidAPI12KeyFactory.instance12
+        return @@instance12
     end
     
 

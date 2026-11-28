@@ -34,7 +34,7 @@ class GameTickDisplayInfoSingleton
     
 
     def self.getInstance()
-        return GameTickDisplayInfoSingleton.instance
+        return @@instance
     end
     
 

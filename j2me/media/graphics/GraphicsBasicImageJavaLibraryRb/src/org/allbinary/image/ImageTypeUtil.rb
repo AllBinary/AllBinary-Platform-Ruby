@@ -49,7 +49,7 @@ class ImageTypeUtil
     
 
     def self.getInstance()
-        return ImageTypeUtil::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

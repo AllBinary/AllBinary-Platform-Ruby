@@ -22,12 +22,12 @@ class OpenGLImageCacheFactory
     
 
     def self.getInstance()
-        return OpenGLImageCacheFactory::IMAGE_CACHE
+        return IMAGE_CACHE
     end
     
 
     def self.init()
-        if OpenGLImageCacheFactory::IMAGE_CACHE == nil
+        if IMAGE_CACHE == nil
         end
     end
 

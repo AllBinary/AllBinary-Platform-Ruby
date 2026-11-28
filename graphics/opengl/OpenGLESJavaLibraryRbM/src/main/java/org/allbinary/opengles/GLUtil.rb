@@ -35,7 +35,7 @@ class GLUtil
     
 
     def self.getInstance()
-        return GLUtil.instance
+        return @@instance
     end
     
 

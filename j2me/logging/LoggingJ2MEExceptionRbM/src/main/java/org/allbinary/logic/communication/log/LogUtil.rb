@@ -29,7 +29,7 @@ class LogUtil
     
 
     def self.getInstance()
-        return LogUtil.instance
+        return @@instance
     end
     
 

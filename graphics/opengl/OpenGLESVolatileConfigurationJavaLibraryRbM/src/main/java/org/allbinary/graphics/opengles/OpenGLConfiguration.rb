@@ -32,10 +32,10 @@ class OpenGLConfiguration
     
 
     def self.getInstance()
-        if OpenGLConfiguration.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            OpenGLConfiguration.instance = OpenGLConfiguration.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = OpenGLConfiguration.new()
         end
-        return OpenGLConfiguration.instance
+        return @@instance
     end
     
 

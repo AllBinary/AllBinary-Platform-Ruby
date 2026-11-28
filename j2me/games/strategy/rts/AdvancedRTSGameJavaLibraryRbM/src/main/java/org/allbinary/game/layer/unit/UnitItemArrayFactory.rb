@@ -60,7 +60,7 @@ class UnitItemArrayFactory
 
     # throws Exception
     def getItems()
-        return UnitItemArrayFactory::ITEMS
+        return ITEMS
     end
     java_overload :getItems, 0
     

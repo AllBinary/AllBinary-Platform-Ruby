@@ -23,7 +23,7 @@ class SimulatedBuildingPropertiesFactory < BuildingPropertiesFactory
     
 
     def self.getInstance()
-        return SimulatedBuildingPropertiesFactory.instanceC
+        return @@instanceC
     end
     
 

@@ -21,7 +21,7 @@ class J2SEMath
     
 
     def self.getInstance()
-        return J2SEMath.instance
+        return @@instance
     end
     
 

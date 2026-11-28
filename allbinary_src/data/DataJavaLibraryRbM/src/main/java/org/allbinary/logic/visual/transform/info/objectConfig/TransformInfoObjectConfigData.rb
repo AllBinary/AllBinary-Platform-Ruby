@@ -29,7 +29,7 @@ class TransformInfoObjectConfigData
     
 
     def self.getInstance()
-        return TransformInfoObjectConfigData.instance
+        return @@instance
     end
     
 

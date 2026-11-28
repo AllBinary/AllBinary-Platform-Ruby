@@ -30,7 +30,7 @@ class FullScreenPaintableFactory
     
 
     def self.getInstance()
-        return FullScreenPaintableFactory.instance
+        return @@instance
     end
 
     def self.instance()

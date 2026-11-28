@@ -42,7 +42,7 @@ class SavedCaptureImagesWorker < ::Org::Allbinary::Logic::Util::Event::Handler::
         jfields_org_allbinary_input_automation_module_generic_SavedCaptureImagesWorker
         @savedCaptureGenericProfileDataWorkerType = savedCaptureGenericProfileDataWorkerType
         @screenScavangerRobot = ::Org::Allbinary::Input::Media::Image::Capture::ScreenScavangerRobot.new()
-        SavedCaptureImagesWorker.index = ::Org::Allbinary::Input::Media::Image::Capture::ProcessingFrameIndexFactory.next_()
+        @@index = ::Org::Allbinary::Input::Media::Image::Capture::ProcessingFrameIndexFactory.next_()
     end
     
 
@@ -85,7 +85,7 @@ class SavedCaptureImagesWorker < ::Org::Allbinary::Logic::Util::Event::Handler::
                 file = File.new(filePath)
                 if file.isFile()
                     bufferedImage = ImageIO.read(file)
-                    SavedCaptureImagesWorker.index += 1
+                    @@index += 1
                     ::Org::Allbinary::Input::Media::Image::Capture::CapturedBufferedImagesCacheSingleton.getInstance().add(::Org::Allbinary::Media::Image::Cache::BufferedImageFrameCacheable.new(bufferedImage, frame))
                     capturedImageEvent = ::Org::Allbinary::Input::Media::Image::Capture::CapturedImageWorkerResultsEvent.new(self, frame, bufferedImage)
                     self.fireEvent(capturedImageEvent)

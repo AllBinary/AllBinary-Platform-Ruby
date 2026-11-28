@@ -29,7 +29,7 @@ class BottomLimiter
     
 
     def self.getInstance()
-        return BottomLimiter.instance
+        return @@instance
     end
     
 

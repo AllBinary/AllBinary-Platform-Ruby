@@ -40,7 +40,7 @@ class AlwaysActionScriptCondition < BasicProfileActionScriptCondition
     
 
     def jnew_org_allbinary_input_automation_actions_script_condition_AlwaysActionScriptCondition_1(node)
-        AlwaysActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(AlwaysActionScriptCondition::NAME, node)
+        AlwaysActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(NAME, node)
         jfields_org_allbinary_input_automation_actions_script_condition_AlwaysActionScriptCondition
         actionNode = ::Org::Allbinary::DataPackage::Tree::Dom::DomSearchHelper.getNode(AlwaysActionScriptConditionData::NAME, node.getChildNodes())
         if actionNode != nil
@@ -62,7 +62,7 @@ class AlwaysActionScriptCondition < BasicProfileActionScriptCondition
     
 
     def jnew_org_allbinary_input_automation_actions_script_condition_AlwaysActionScriptCondition_0()
-        AlwaysActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(AlwaysActionScriptCondition::NAME)
+        AlwaysActionScriptCondition.superclass.instance_method(:initialize).bind(self).call(NAME)
         jfields_org_allbinary_input_automation_actions_script_condition_AlwaysActionScriptCondition
         self.init()
     end

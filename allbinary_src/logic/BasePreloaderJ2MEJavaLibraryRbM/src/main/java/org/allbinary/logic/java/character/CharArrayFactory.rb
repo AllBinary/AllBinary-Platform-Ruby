@@ -30,7 +30,7 @@ class CharArrayFactory
     
 
     def self.getInstance()
-        return CharArrayFactory.instance
+        return @@instance
     end
     
 

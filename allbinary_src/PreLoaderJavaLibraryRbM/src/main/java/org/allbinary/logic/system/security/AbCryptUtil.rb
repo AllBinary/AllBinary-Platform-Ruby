@@ -26,7 +26,7 @@ class AbCryptUtil
     
 
     def self.getInstance()
-        return AbCryptUtil.instance
+        return @@instance
     end
     
 

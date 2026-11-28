@@ -27,7 +27,7 @@ class SolarisOperatingSystemFactory
     
 
     def self.getInstance()
-        return SolarisOperatingSystemFactory.instance
+        return @@instance
     end
     
 

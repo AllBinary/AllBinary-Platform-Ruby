@@ -116,7 +116,7 @@ class StoreFrontsHelper < BasicTable
             success = ::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE
             storeNamesVector = ::Org::Allbinary::DataPackage::Tables::Context::ModulePackage::Storefronts::StoreFrontsEntityFactory.getInstance().getStoreFrontsEntityInstance().getStoreFrontNames()
             storeSelect = ::Org::Allbinary::Logic::Visual::Dhtml::Html::Select::HtmlSelect.new(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING, @commonPhoneStrings.ONE, ::Org::Allbinary::Business::Context::Modules::Storefront::StoreFrontData.getInstance().SELECTSTORENAME, ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING)
-            storeSelect.addAttribute(StoreFrontsHelper::CLASS, StoreFrontsHelper::TEXT)
+            storeSelect.addAttribute(CLASS, TEXT)
             size = storeNamesVector.size()
             (0...size).each do |index|
                 storeName = storeNamesVector.get(index)

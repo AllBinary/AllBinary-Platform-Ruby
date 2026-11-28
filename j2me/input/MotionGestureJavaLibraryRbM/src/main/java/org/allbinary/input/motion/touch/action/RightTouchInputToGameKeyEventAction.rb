@@ -23,10 +23,10 @@ class RightTouchInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Motio
     
 
     def self.getInstance()
-        if RightTouchInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            RightTouchInputToGameKeyEventAction.instance = RightTouchInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = RightTouchInputToGameKeyEventAction.new()
         end
-        return RightTouchInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

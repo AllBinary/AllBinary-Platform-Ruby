@@ -40,7 +40,7 @@ class UpgradableRTSLayerHudPaintable < SelectionHudPaintable
     
 
     def self.getInstance()
-        return UpgradableRTSLayerHudPaintable.instance
+        return @@instance
     end
     
 

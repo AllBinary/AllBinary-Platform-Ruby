@@ -21,7 +21,7 @@ class AnimationBehavior
     
 
     def self.getInstance()
-        return AnimationBehavior.instance
+        return @@instance
     end
     
 

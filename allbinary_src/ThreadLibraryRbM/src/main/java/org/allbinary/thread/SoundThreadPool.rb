@@ -21,7 +21,7 @@ class SoundThreadPool
     
 
     def self.getInstance()
-        return SoundThreadPool.instance
+        return @@instance
     end
 
     def self.instance()

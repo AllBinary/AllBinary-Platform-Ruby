@@ -28,7 +28,7 @@ class PickupLayerCircularStaticPool < ::Org::Allbinary::Layer::AllBinaryLayerCir
     
 
     def self.getInstance()
-        return PickupLayerCircularStaticPool::SINGLETON
+        return SINGLETON
     end
     
 

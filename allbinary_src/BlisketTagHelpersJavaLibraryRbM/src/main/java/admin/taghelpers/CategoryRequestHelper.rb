@@ -64,9 +64,9 @@ class CategoryRequestHelper < ModifyTable
             if size > 0
                 xmlRequest = keyArray[0]
                 index = 1
-                while index < size && !xmlRequest.start_with?(CategoryRequestHelper.categoryRequest)
+                while index < size && !xmlRequest.start_with?(@@categoryRequest)
                     xmlRequest = keyArray[index]
-                    if xmlRequest.start_with?(CategoryRequestHelper.categoryRequest)
+                    if xmlRequest.start_with?(@@categoryRequest)
                         break
                     end
                 end

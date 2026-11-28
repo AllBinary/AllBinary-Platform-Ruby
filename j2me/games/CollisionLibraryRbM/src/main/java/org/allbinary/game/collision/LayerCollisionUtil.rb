@@ -26,7 +26,7 @@ class LayerCollisionUtil
     
 
     def self.getInstance()
-        return LayerCollisionUtil.instance
+        return @@instance
     end
     
 

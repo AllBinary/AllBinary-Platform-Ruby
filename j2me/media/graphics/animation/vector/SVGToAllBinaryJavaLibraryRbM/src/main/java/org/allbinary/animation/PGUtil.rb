@@ -9,7 +9,7 @@ class PGUtil
     
 
     def self.getInstance()
-        return PGUtil.instance
+        return @@instance
     end
     
 

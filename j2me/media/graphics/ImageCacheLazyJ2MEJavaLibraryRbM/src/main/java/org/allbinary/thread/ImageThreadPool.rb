@@ -30,7 +30,7 @@ class ImageThreadPool < ThreadPool
     
 
     def self.getInstance()
-        return ImageThreadPool.instance
+        return @@instance
     end
     
 

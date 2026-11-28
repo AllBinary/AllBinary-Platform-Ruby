@@ -26,7 +26,7 @@ class TransactionEntityFactory
     
 
     def self.getInstance()
-        return TransactionEntityFactory.instance
+        return @@instance
     end
     
 

@@ -30,7 +30,7 @@ class InputFeatureFactory
     
 
     def self.getInstance()
-        return InputFeatureFactory.instance
+        return @@instance
     end
     
 

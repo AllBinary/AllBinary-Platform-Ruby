@@ -33,7 +33,7 @@ class LicenseLoadingTypeFactory
     
 
     def self.getIntance()
-        return LicenseLoadingTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

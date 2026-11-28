@@ -24,7 +24,7 @@ class NoMenuInputProcessor < BasicMenuInputProcessor
     
 
     def self.getInstance()
-        return NoMenuInputProcessor::SINGLETON
+        return SINGLETON
     end
     
 

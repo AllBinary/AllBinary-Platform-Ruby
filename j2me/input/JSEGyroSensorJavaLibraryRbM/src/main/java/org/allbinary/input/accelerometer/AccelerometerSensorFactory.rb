@@ -29,7 +29,7 @@ class AccelerometerSensorFactory
         elsif features.isFeature(sensorFeatureFactory.SIMULATED_ORIENTATION_SENSORS)
             raise StandardError.new("No Simulation Sensors")
         elsif features.isFeature(sensorFeatureFactory.NO_ORIENTATION)
-            AccelerometerSensorFactory.allBinaryAccelerometerSensor = NoAccelerometerSensor.new()
+            @@allBinaryAccelerometerSensor = NoAccelerometerSensor.new()
         else
             raise StandardError.new("Not Such SensorFeature")
         end
@@ -37,7 +37,7 @@ class AccelerometerSensorFactory
     
 
     def self.getInstance()
-        return AccelerometerSensorFactory.allBinaryAccelerometerSensor
+        return @@allBinaryAccelerometerSensor
     end
 
     def self.allBinaryAccelerometerSensor()

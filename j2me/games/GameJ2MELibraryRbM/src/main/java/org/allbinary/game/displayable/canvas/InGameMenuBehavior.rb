@@ -23,7 +23,7 @@ class InGameMenuBehavior < BaseMenuBehavior
     
 
     def self.getInstance()
-        return InGameMenuBehavior.instanceC
+        return @@instanceC
     end
     
 

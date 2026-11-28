@@ -30,12 +30,12 @@ class SaveGameForm < ::Org::Allbinary::Graphics::Displayable::Screen::CommandFor
     # throws Exception
     def self.createForm(commandListener, title, backgrounBasicColor, foregroundBasicColor)
         (SaveGameForm.instance_exec(SaveGameForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)) { |java_value| remove_const(:FORM) if const_defined?(:FORM, false); const_set(:FORM, java_value) })
-        return SaveGameForm::FORM
+        return FORM
     end
     
 
     def self.getInstance()
-        return SaveGameForm::FORM
+        return FORM
     end
     
 

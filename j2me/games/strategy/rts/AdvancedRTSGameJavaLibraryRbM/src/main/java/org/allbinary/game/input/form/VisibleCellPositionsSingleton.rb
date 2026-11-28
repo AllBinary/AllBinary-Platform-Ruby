@@ -37,7 +37,7 @@ class VisibleCellPositionsSingleton
     
 
     def self.getInstance()
-        return VisibleCellPositionsSingleton.instance
+        return @@instance
     end
     
 

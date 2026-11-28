@@ -31,7 +31,7 @@ class AudioContentTypeDataFactory
     
 
     def self.getInstance()
-        return AudioContentTypeDataFactory.instance
+        return @@instance
     end
     
 

@@ -58,7 +58,7 @@ class CommonSeps
     
 
     def self.getInstance()
-        return CommonSeps.instance
+        return @@instance
     end
 
     def self.instance()

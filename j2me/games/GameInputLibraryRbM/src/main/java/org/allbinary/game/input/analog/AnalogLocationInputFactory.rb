@@ -14,7 +14,7 @@ class AnalogLocationInputFactory
     
 
     def self.getInstance()
-        return AnalogLocationInputFactory.instance
+        return @@instance
     end
     
 

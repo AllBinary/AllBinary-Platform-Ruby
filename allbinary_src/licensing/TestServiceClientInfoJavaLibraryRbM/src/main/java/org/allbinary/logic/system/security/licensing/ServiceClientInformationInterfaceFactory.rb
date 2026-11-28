@@ -21,7 +21,7 @@ class ServiceClientInformationInterfaceFactory
     
 
     def self.getInstance()
-        return ServiceClientInformationInterfaceFactory.instance
+        return @@instance
     end
 
     def self.instance()

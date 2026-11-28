@@ -31,7 +31,7 @@ class InventoryColumnUtil
     
 
     def self.getInstance()
-        return InventoryColumnUtil.instance
+        return @@instance
     end
     
 

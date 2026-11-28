@@ -30,7 +30,7 @@ class LayerDistanceUtil
     
 
     def self.getInstance()
-        return LayerDistanceUtil.instance
+        return @@instance
     end
     
 

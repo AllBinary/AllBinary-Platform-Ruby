@@ -39,10 +39,10 @@ class TouchMotionGestureFactory
     
 
     def self.getInstance()
-        if TouchMotionGestureFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            TouchMotionGestureFactory.instance = TouchMotionGestureFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = TouchMotionGestureFactory.new()
         end
-        return TouchMotionGestureFactory.instance
+        return @@instance
     end
     
 

@@ -39,10 +39,10 @@ class BasicEmailQueue < ::Org::Allbinary::Logic::Util::QueuePackage::BasicQueue
 
     def self.getInstance()
         java_monitor.synchronize do
-        if BasicEmailQueue.basicEmailQueue == nil
-            BasicEmailQueue.basicEmailQueue = BasicEmailQueue.new()
+        if @@basicEmailQueue == nil
+            @@basicEmailQueue = BasicEmailQueue.new()
         end
-        return BasicEmailQueue.basicEmailQueue
+        return @@basicEmailQueue
         end
     end
     

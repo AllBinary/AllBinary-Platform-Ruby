@@ -39,7 +39,7 @@ class DirectionFactory
     
 
     def self.getInstance()
-        return DirectionFactory.instance
+        return @@instance
     end
     
 

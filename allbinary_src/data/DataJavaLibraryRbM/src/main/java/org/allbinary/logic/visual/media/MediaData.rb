@@ -33,7 +33,7 @@ class MediaData
         @name = a_Name
         @extension = "." + @name
         @type = MediaTypeData.getInstance().NOT_RESIZABLE_MEDIA
-        MediaData.hashMap.put(a_Name, self)
+        @@hashMap.put(a_Name, self)
     end
     
 
@@ -68,7 +68,7 @@ class MediaData
 
     # throws Exception
     def self.get(a_Name)
-        mediaData = MediaData.hashMap.get(a_Name)
+        mediaData = @@hashMap.get(a_Name)
         if mediaData != nil
             return mediaData
         else
@@ -83,7 +83,7 @@ class MediaData
     
 
     def self.toHashMap()
-        return MediaData.hashMap
+        return @@hashMap
     end
 
     def self.hashMap()

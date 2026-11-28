@@ -28,7 +28,7 @@ class GeographicMapEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler:
     
 
     def self.getInstance()
-        return GeographicMapEventHandler.instance
+        return @@instance
     end
     
 

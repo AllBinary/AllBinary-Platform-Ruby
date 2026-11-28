@@ -30,7 +30,7 @@ class TrackballGameInputMotionEventProcessor < MotionEventProcessor
     
 
     def self.getInstance()
-        return TrackballGameInputMotionEventProcessor::PROCESSOR
+        return PROCESSOR
     end
     
 

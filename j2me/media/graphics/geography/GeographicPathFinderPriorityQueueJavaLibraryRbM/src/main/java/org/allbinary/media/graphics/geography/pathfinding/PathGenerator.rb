@@ -24,7 +24,7 @@ class PathGenerator
     
 
     def self.getInstance()
-        return PathGenerator::SINGLETON
+        return SINGLETON
     end
     
 

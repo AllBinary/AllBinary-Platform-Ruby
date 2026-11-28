@@ -21,7 +21,7 @@ class GeologicalResourceInfoHudPaintableSingleton
     
 
     def self.getInstance()
-        return GeologicalResourceInfoHudPaintableSingleton.instance
+        return @@instance
     end
 
     def self.instance()

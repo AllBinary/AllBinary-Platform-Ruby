@@ -30,7 +30,7 @@ class BasicUserRoles
     
 
     def self.getInstance()
-        return BasicUserRoles.instance
+        return @@instance
     end
     
 

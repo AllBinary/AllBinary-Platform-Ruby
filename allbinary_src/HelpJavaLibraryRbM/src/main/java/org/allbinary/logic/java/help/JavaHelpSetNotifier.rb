@@ -27,22 +27,22 @@ class JavaHelpSetNotifier
     
 
     def self.get()
-        return JavaHelpSetNotifier.vector
+        return @@vector
     end
     
 
     def self.isNotified(helpSet)
         isNotified = false
         url = helpSet.getHelpSetURL()
-        size = JavaHelpSetNotifier.vector.size()
-        urlArray = JavaHelpSetNotifier.vector.toArray()
+        size = @@vector.size()
+        urlArray = @@vector.toArray()
         (0...size).each do |i|
             nextURL = urlArray[i]
             if (url.to_s <=> nextURL.to_s) == 0
                 isNotified = true
             end
         end
-        JavaHelpSetNotifier.vector.add(url)
+        @@vector.add(url)
         return isNotified
     end
 

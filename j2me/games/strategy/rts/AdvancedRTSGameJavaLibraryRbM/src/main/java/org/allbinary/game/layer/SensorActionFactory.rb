@@ -27,7 +27,7 @@ class SensorActionFactory
     
 
     def self.getInstance()
-        return SensorActionFactory.instance
+        return @@instance
     end
     
 

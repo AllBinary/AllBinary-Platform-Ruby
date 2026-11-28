@@ -44,7 +44,7 @@ class NullAnimationFactory
     
 
     def self.getFactoryInstance()
-        return NullAnimationFactory::NULL_ANIMATION_FACTORY
+        return NULL_ANIMATION_FACTORY
     end
     
 

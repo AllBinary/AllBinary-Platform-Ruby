@@ -52,7 +52,7 @@ class SqlStrings
     
 
     def self.getInstance()
-        return SqlStrings.instance
+        return @@instance
     end
 
     def self.instance()

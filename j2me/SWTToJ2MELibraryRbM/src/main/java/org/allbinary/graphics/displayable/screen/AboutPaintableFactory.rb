@@ -26,7 +26,7 @@ class AboutPaintableFactory
     
 
     def self.getInstance()
-        return AboutPaintableFactory.instance
+        return @@instance
     end
     
 

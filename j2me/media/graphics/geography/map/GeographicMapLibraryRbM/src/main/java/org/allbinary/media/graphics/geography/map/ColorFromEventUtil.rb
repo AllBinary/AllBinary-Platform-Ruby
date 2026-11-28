@@ -31,7 +31,7 @@ class ColorFromEventUtil
     
 
     def self.getInstance()
-        return ColorFromEventUtil.instance
+        return @@instance
     end
     
 

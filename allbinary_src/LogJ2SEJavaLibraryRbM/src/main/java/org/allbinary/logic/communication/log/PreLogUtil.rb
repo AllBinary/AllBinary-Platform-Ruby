@@ -37,7 +37,7 @@ class PreLogUtil
             className = String.new(anyType.class.java_name)
         end
         message = LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-        print(PreLogUtil::LOG_SUCCESS)
+        print(LOG_SUCCESS)
         puts(message)
     end
     
@@ -49,7 +49,7 @@ class PreLogUtil
 
     def self.putSE(specialMessage, className, functionName, exception)
         message = LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-        print(PreLogUtil::LOG_SUCCESS)
+        print(LOG_SUCCESS)
         puts(message)
     end
 

@@ -34,7 +34,7 @@ class GameTypeFactory
     
 
     def self.getInstance()
-        return GameTypeFactory.instance
+        return @@instance
     end
 
     def self.instance()

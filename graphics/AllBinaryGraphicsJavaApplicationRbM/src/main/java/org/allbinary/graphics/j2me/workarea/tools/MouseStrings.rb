@@ -39,7 +39,7 @@ class MouseStrings
     
 
     def self.getInstance()
-        return MouseStrings.instance
+        return @@instance
     end
 
     def self.instance()

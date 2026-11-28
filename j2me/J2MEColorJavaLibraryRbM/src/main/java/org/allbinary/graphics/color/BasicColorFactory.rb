@@ -61,7 +61,7 @@ class BasicColorFactory
     
 
     def self.getInstance()
-        return BasicColorFactory.instance
+        return @@instance
     end
     
 

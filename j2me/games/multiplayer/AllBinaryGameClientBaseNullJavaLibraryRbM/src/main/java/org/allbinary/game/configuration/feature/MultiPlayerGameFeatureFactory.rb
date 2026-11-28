@@ -9,7 +9,7 @@ class MultiPlayerGameFeatureFactory
     
 
     def self.getInstance()
-        return MultiPlayerGameFeatureFactory.instance
+        return @@instance
     end
     
 

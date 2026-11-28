@@ -29,7 +29,7 @@ class GroupLayerManagerListener < ::Org::Allbinary::Layer::Event::LayerManagerEv
     
 
     def self.getInstance()
-        return GroupLayerManagerListener::SINGLETON
+        return SINGLETON
     end
     
 

@@ -29,7 +29,7 @@ class GameYouLoseSound < CompositeSound
     
 
     def self.getInstance()
-        return GameYouLoseSound.soundInterface
+        return @@soundInterface
     end
 
     def self.soundInterface()

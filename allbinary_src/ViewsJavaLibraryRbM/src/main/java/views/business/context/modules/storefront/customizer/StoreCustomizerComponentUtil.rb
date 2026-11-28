@@ -27,7 +27,7 @@ class StoreCustomizerComponentUtil
     
 
     def self.getInstance()
-        return StoreCustomizerComponentUtil.instance
+        return @@instance
     end
     
 

@@ -33,7 +33,7 @@ class IntermissionFactory
     
 
     def self.getInstance()
-        return IntermissionFactory.instance
+        return @@instance
     end
 
     def self.instance()

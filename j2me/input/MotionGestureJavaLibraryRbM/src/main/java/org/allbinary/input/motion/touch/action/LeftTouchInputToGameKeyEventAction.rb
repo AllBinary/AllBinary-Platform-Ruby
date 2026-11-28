@@ -23,10 +23,10 @@ class LeftTouchInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Motion
     
 
     def self.getInstance()
-        if LeftTouchInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            LeftTouchInputToGameKeyEventAction.instance = LeftTouchInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = LeftTouchInputToGameKeyEventAction.new()
         end
-        return LeftTouchInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

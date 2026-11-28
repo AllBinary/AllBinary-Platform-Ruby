@@ -84,7 +84,7 @@ class CommonStrings
     
 
     def self.getInstance()
-        return CommonStrings.instance
+        return @@instance
     end
 
     def self.instance()

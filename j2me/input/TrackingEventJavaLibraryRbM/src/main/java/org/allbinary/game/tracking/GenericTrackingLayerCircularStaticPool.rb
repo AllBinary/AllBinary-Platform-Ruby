@@ -28,7 +28,7 @@ class GenericTrackingLayerCircularStaticPool < ::Org::Allbinary::Layer::AllBinar
     
 
     def self.getInstance()
-        return GenericTrackingLayerCircularStaticPool::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

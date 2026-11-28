@@ -36,7 +36,7 @@ class ImageUtil
     
 
     def self.getInstance()
-        return ImageUtil.instance
+        return @@instance
     end
     
 

@@ -31,7 +31,7 @@ class MakeCountedPartsSingletonArrayFactory
     
 
     def self.getInstance()
-        return MakeCountedPartsSingletonArrayFactory.instance
+        return @@instance
     end
     
 

@@ -29,7 +29,7 @@ class HttpData
     
 
     def self.getInstance()
-        return HttpData.instance
+        return @@instance
     end
     
 

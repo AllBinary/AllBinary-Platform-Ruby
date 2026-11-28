@@ -33,7 +33,7 @@ class UserConfigurationInterfaceFactory
 
     # throws Exception
     def self.getInstance_j1_2(userRole)
-        abPath = ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + ::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().USERCONFIGURATIONPATH, (UserConfigurationInterfaceFactory.configurationName).to_s + userRole.to_s + (::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP).to_s + (UserConfigurationData::UNCRYPTED_EXTENSION).to_s)
+        abPath = ::Org::Allbinary::Logic::Io::Path::AbPath.new(::Org::Allbinary::Globals::URLGLOBALS.getMainPath() + ::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().USERCONFIGURATIONPATH, (@@configurationName).to_s + userRole.to_s + (::Org::Allbinary::Logic::Io::Path::AbPathData.getInstance().EXTENSION_SEP).to_s + (UserConfigurationData::UNCRYPTED_EXTENSION).to_s)
         documentString = ::Org::Allbinary::Logic::ControlPackage::Crypt::FilePackage::CryptFileReader.new(UserConfigurationData::UNCRYPTED_EXTENSION, UserConfigurationData::ENCRYPTED_EXTENSION).get(abPath)
         document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create(documentString)
         return UserConfigurationInterfaceFactory.getInstance(document)

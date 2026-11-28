@@ -33,7 +33,7 @@ class BodyData
     
 
     def self.getInstance()
-        return BodyData.instance
+        return @@instance
     end
 
     def self.instance()

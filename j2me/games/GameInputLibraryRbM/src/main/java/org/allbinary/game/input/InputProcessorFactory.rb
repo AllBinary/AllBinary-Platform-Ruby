@@ -30,7 +30,7 @@ class InputProcessorFactory
     
 
     def self.getInstance()
-        return InputProcessorFactory.instance
+        return @@instance
     end
     
 

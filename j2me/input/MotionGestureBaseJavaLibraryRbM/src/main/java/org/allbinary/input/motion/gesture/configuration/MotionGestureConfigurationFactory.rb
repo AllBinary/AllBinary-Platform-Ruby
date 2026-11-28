@@ -25,7 +25,7 @@ class MotionGestureConfigurationFactory
     
 
     def self.getInstance()
-        return MotionGestureConfigurationFactory.config
+        return @@config
     end
 
     def self.config()

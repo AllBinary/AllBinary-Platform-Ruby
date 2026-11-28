@@ -24,7 +24,7 @@ class NoHardware
     
 
     def self.getInstance()
-        return NoHardware.instance
+        return @@instance
     end
     
 

@@ -31,7 +31,7 @@ class ProfilingRefreshHelper < AndroidGameStatistics
     
 
     def self.getInstance()
-        return ProfilingRefreshHelper.instance
+        return @@instance
     end
     
 

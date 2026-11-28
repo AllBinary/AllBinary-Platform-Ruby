@@ -31,7 +31,7 @@ class ImagePersistanceUtil
     
 
     def self.getInstance()
-        return ImagePersistanceUtil.instance
+        return @@instance
     end
     
 

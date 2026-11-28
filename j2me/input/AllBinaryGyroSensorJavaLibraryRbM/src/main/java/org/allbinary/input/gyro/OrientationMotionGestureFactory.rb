@@ -31,10 +31,10 @@ class OrientationMotionGestureFactory
     
 
     def self.getInstance()
-        if OrientationMotionGestureFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            OrientationMotionGestureFactory.instance = OrientationMotionGestureFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = OrientationMotionGestureFactory.new()
         end
-        return OrientationMotionGestureFactory.instance
+        return @@instance
     end
     
 

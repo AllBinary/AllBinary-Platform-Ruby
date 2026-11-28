@@ -21,7 +21,7 @@ class DisplayPointScalar
     
 
     def self.getInstance()
-        return DisplayPointScalar.instance
+        return @@instance
     end
     
 

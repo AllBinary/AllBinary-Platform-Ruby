@@ -25,7 +25,7 @@ class AllBinaryCollisionManager
     
 
     def self.getInstance()
-        return AllBinaryCollisionManager.allBinaryCollisionManager
+        return @@allBinaryCollisionManager
     end
     
 

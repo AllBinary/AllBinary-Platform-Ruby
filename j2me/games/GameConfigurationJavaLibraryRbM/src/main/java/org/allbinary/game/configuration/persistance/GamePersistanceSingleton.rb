@@ -23,7 +23,7 @@ class GamePersistanceSingleton < KeyValuePersistance
     
 
     def self.getInstance()
-        return GamePersistanceSingleton::GAME_PERSISTANCE
+        return GAME_PERSISTANCE
     end
     
 

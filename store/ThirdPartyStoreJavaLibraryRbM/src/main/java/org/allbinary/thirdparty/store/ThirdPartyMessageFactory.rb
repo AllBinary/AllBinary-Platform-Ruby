@@ -32,7 +32,7 @@ class ThirdPartyMessageFactory
     
 
     def self.getInstance()
-        return ThirdPartyMessageFactory.instance
+        return @@instance
     end
 
     def self.instance()

@@ -31,10 +31,10 @@ class InGameOptionsFormFactory
     
 
     def self.getInstance()
-        if InGameOptionsFormFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            InGameOptionsFormFactory.instance = InGameOptionsFormFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = InGameOptionsFormFactory.new()
         end
-        return InGameOptionsFormFactory.instance
+        return @@instance
     end
     
 

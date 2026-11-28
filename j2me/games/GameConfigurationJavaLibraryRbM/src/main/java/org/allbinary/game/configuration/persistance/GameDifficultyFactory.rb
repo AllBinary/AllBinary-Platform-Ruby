@@ -30,7 +30,7 @@ class GameDifficultyFactory
     
 
     def self.getInstance()
-        return GameDifficultyFactory.instance
+        return @@instance
     end
     
 

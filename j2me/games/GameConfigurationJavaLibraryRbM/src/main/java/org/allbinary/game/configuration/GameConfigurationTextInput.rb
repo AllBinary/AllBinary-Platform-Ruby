@@ -30,13 +30,13 @@ class GameConfigurationTextInput
         jfields_org_allbinary_game_configuration_GameConfigurationTextInput
         self.setText(text)
         self.setLabel(label)
-        GameConfigurationTextInput.hashtable.put(self.getLabel(), self)
+        @@hashtable.put(self.getLabel(), self)
     end
     
 
     def self.update(textField)
         anyType = textField.getLabel()
-        gameConfigurationTextInput = GameConfigurationTextInput.hashtable.get(anyType)
+        gameConfigurationTextInput = @@hashtable.get(anyType)
         gameConfigurationTextInput.setText(textField.getString())
     end
     
@@ -62,7 +62,7 @@ class GameConfigurationTextInput
     
 
     def self.getHashtable()
-        return GameConfigurationTextInput.hashtable
+        return @@hashtable
     end
 
     def self.hashtable()

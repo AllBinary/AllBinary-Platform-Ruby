@@ -23,7 +23,7 @@ class NullWaitGameRunnable < GameRunnable
     
 
     def self.getInstance()
-        return NullWaitGameRunnable.instance
+        return @@instance
     end
 
     def self.instance()

@@ -32,7 +32,7 @@ class ImageUnifierUtil
     
 
     def self.getInstance()
-        return ImageUnifierUtil.instance
+        return @@instance
     end
     
 

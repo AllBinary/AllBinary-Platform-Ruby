@@ -21,7 +21,7 @@ class TimeUtil
     
 
     def self.getInstance()
-        return TimeUtil.instance
+        return @@instance
     end
     
 
@@ -57,9 +57,9 @@ class TimeUtil
     
 
     def getTotalTime(yearString, monthString, dayString, hourString, minuteString, secondString)
-        time = TimeUtil.calendar.getTimeInMillis()
-        self.setExpirationCalendar(TimeUtil.calendar, yearString, monthString, dayString, hourString, minuteString, secondString)
-        timeDelta = TimeUtil.calendar.getTimeInMillis()
+        time = @@calendar.getTimeInMillis()
+        self.setExpirationCalendar(@@calendar, yearString, monthString, dayString, hourString, minuteString, secondString)
+        timeDelta = @@calendar.getTimeInMillis()
         return timeDelta - time
     end
 

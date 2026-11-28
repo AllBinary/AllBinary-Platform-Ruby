@@ -33,7 +33,7 @@ class CollidableNeverCollideBehaviorFactory < CollidableBaseBehaviorFactory
     
 
     def self.getInstance()
-        return CollidableNeverCollideBehaviorFactory.instanceC
+        return @@instanceC
     end
     
 

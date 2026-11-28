@@ -21,7 +21,7 @@ class VectorUtil
     
 
     def self.getInstance()
-        return VectorUtil.instance
+        return @@instance
     end
     
 

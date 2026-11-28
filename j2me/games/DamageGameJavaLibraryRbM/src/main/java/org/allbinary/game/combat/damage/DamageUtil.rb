@@ -27,7 +27,7 @@ class DamageUtil
     
 
     def self.getInstance()
-        return DamageUtil.instance
+        return @@instance
     end
     
 

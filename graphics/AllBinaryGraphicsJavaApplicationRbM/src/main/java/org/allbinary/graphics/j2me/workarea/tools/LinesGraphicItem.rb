@@ -92,8 +92,8 @@ class LinesGraphicItem
 
     # throws Exception
     def init()
-        @treeNode = DefaultMutableTreeNode.new(PointsDomUtil.getInstance().LINES + LinesGraphicItem.item)
-        LinesGraphicItem.item += 1
+        @treeNode = DefaultMutableTreeNode.new(PointsDomUtil.getInstance().LINES + @@item)
+        @@item += 1
         @points.init()
         @pointTreeNodeVector = ::Org::Allbinary::Util::BasicArrayListD.new()
         @fulcrumPoint = ::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(0, 0)
@@ -149,13 +149,13 @@ class LinesGraphicItem
     
 
     def getName()
-        return LinesGraphicItem::NAME
+        return NAME
     end
     java_overload :getName, 0
     
 
     def self.getStaticName()
-        return LinesGraphicItem::NAME
+        return NAME
     end
     
 

@@ -12,7 +12,7 @@ class NullDisplayable < ::Javax::Microedition::Lcdui::Canvas
     
 
     def self.getInstance()
-        return NullDisplayable::SINGLETON
+        return SINGLETON
     end
     
 

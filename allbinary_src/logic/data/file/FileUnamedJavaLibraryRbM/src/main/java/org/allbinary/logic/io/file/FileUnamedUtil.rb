@@ -30,7 +30,7 @@ class FileUnamedUtil
     
 
     def self.getInstance()
-        return FileUnamedUtil.instance
+        return @@instance
     end
     
 

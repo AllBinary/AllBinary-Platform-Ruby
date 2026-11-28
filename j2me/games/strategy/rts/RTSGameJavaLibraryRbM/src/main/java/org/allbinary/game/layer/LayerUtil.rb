@@ -24,7 +24,7 @@ class LayerUtil
         commonSeps = ::Org::Allbinary::StringPackage::CommonSeps.getInstance()
         positionStrings = ::Org::Allbinary::MathPackage::PositionStrings.getInstance()
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
-        stringBuffer.append(LayerUtil::HASHTABLE)
+        stringBuffer.append(HASHTABLE)
         stringBuffer.append(::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().toString(hashtable))
         stringBuffer.append(commonSeps.SPACE)
         stringBuffer.append(positionStrings.X_LABEL)

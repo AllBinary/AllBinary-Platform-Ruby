@@ -31,7 +31,7 @@ class NotificationUtil
     
 
     def self.getInstance()
-        return NotificationUtil::SINGLETON
+        return SINGLETON
     end
     
 

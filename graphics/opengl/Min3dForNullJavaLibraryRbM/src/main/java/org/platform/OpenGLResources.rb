@@ -9,7 +9,7 @@ class OpenGLResources
     
 
     def self.getInstance()
-        return OpenGLResources.instance
+        return @@instance
     end
     
 

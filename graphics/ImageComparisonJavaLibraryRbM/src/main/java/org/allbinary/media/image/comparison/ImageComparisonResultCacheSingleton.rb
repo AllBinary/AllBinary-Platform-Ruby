@@ -32,7 +32,7 @@ class ImageComparisonResultCacheSingleton
         instance = "ImageComparisonCacheSingleton"
         begin
             logUtil.putF(commonStrings.START, instance, _STATIC_BLOCK)
-            ImageComparisonResultCacheSingleton.cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance(::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().ONE_MINUTE_FIVE_MAX)
+            @@cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance(::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().ONE_MINUTE_FIVE_MAX)
             logUtil.putF(commonStrings.END_, instance, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, instance, _STATIC_BLOCK, e)
@@ -46,7 +46,7 @@ class ImageComparisonResultCacheSingleton
     
 
     def self.getInstance()
-        return ImageComparisonResultCacheSingleton.cacheInterface
+        return @@cacheInterface
     end
 
     def self.cacheInterface()

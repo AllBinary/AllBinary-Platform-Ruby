@@ -31,7 +31,7 @@ class OutputTypeData
     
 
     def self.getInstance()
-        return OutputTypeData.instance
+        return @@instance
     end
 
     def self.instance()

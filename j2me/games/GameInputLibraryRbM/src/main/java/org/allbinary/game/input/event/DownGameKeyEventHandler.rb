@@ -29,19 +29,19 @@ class DownGameKeyEventHandler < DownGameKeyEventHandlerBase
     
 
     def self.getInstance()
-        return DownGameKeyEventHandler.instance
+        return @@instance
     end
     
 
     def getInstanceForDevice(deviceId)
         playerInputId = @playerInputIdFactory.getPlayerForDevice(deviceId)
-        return DownGameKeyEventHandler.instanceArray[playerInputId]
+        return @@instanceArray[playerInputId]
     end
     java_overload :getInstanceForDevice, 1
     
 
     def getInstanceForPlayer(playerInputId)
-        return DownGameKeyEventHandler.instanceArray[playerInputId]
+        return @@instanceArray[playerInputId]
     end
     java_overload :getInstanceForPlayer, 1
     
@@ -54,8 +54,8 @@ class DownGameKeyEventHandler < DownGameKeyEventHandlerBase
 
     def removeAllListeners()
         DownGameKeyEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
-        (DownGameKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            DownGameKeyEventHandler.instanceArray[index].removeAllListeners()
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeAllListeners()
         end
     end
     java_overload :removeAllListeners, 0
@@ -63,8 +63,8 @@ class DownGameKeyEventHandler < DownGameKeyEventHandlerBase
 
     def removeListenerSingleThreaded(eventListenerInterface)
         DownGameKeyEventHandler.superclass.java_super_method(:removeListenerSingleThreaded, 1).bind(self).call(eventListenerInterface)
-        (DownGameKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            DownGameKeyEventHandler.instanceArray[index].removeListenerSingleThreaded(eventListenerInterface)
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeListenerSingleThreaded(eventListenerInterface)
         end
     end
     java_overload :removeListenerSingleThreaded, 1
@@ -73,8 +73,8 @@ class DownGameKeyEventHandler < DownGameKeyEventHandlerBase
     def removeListener(eventListenerInterface)
         java_monitor.synchronize do
         DownGameKeyEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
-        (DownGameKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            DownGameKeyEventHandler.instanceArray[index].removeListener(eventListenerInterface)
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeListener(eventListenerInterface)
         end
         end
     end

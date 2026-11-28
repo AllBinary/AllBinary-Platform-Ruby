@@ -26,7 +26,7 @@ class ImageRotationUtil
     
 
     def self.getInstance()
-        return ImageRotationUtil.instance
+        return @@instance
     end
     
 

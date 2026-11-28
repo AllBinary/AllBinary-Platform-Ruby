@@ -30,7 +30,7 @@ class DistanceUtil
     
 
     def self.getInstance()
-        return DistanceUtil.instance
+        return @@instance
     end
     
 

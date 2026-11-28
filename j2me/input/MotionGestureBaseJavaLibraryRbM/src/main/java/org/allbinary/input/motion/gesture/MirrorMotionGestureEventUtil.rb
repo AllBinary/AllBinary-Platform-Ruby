@@ -57,7 +57,7 @@ class MirrorMotionGestureEventUtil
     
 
     def self.getInstance()
-        return MirrorMotionGestureEventUtil.instance
+        return @@instance
     end
 
     def self.instance()

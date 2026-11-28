@@ -34,7 +34,7 @@ class ImageArrayRotationUtil
     
 
     def self.getInstance()
-        return ImageArrayRotationUtil.instance
+        return @@instance
     end
     
 

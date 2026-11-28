@@ -11,7 +11,7 @@ class BouncyCastleProvider < ::Java::Security::Provider
     
 
     def initialize()
-        super(BouncyCastleProvider::PROVIDER_NAME, 1.41, BouncyCastleProvider.info)
+        super(BouncyCastleProvider::PROVIDER_NAME, 1.41, @@info)
     end
     
 

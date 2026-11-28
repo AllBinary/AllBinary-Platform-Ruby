@@ -28,7 +28,7 @@ class FileLockUtil
     
 
     def self.getInstance()
-        return FileLockUtil.instance
+        return @@instance
     end
     
 

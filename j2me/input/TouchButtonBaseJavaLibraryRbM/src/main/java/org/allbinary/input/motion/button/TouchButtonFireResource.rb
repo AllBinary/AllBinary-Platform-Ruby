@@ -23,7 +23,7 @@ class TouchButtonFireResource < TouchButtonResource
     
 
     def self.getInstance()
-        return TouchButtonFireResource.instance
+        return @@instance
     end
     
 

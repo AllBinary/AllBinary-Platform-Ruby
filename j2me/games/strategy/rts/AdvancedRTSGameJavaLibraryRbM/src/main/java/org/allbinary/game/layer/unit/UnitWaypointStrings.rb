@@ -47,7 +47,7 @@ class UnitWaypointStrings
     
 
     def self.getInstance()
-        return UnitWaypointStrings.instance
+        return @@instance
     end
 
     def self.instance()

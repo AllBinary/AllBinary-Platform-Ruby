@@ -23,10 +23,10 @@ class UpTouchInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Motion::
     
 
     def self.getInstance()
-        if UpTouchInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            UpTouchInputToGameKeyEventAction.instance = UpTouchInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = UpTouchInputToGameKeyEventAction.new()
         end
-        return UpTouchInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

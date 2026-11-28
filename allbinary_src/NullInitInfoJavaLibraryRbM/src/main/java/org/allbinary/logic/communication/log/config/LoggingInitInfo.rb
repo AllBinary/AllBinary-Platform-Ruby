@@ -29,7 +29,7 @@ class LoggingInitInfo
     def self.write()
         java_monitor.synchronize do
         begin
-            LoggingInitInfo.hasRead = false
+            @@hasRead = false
         rescue StandardError => e
             raise e
         end
@@ -50,7 +50,7 @@ class LoggingInitInfo
 
     def self.setHasRead(value)
         java_monitor.synchronize do
-        LoggingInitInfo.hasRead = value
+        @@hasRead = value
         end
     end
     
@@ -58,10 +58,10 @@ class LoggingInitInfo
     # throws Exception
     def self.updateIfNeeded()
         java_monitor.synchronize do
-        if !LoggingInitInfo.hasRead
+        if !@@hasRead
             LoggingInitInfo.read()
-            LoggingInitInfo.hasRead = true
-            if LoggingInitInfo.logConfigInfoList == nil
+            @@hasRead = true
+            if @@logConfigInfoList == nil
                 raise StandardError.new("Read Failed")
             end
         end
@@ -80,7 +80,7 @@ class LoggingInitInfo
 
     def self.set(logConfigInfoList)
         java_monitor.synchronize do
-        LoggingInitInfo.logConfigInfoList = logConfigInfoList
+        @@logConfigInfoList = logConfigInfoList
         end
     end
     
@@ -88,7 +88,7 @@ class LoggingInitInfo
     # throws Exception
     def self.get()
         LoggingInitInfo.updateIfNeeded()
-        return LoggingInitInfo.logConfigInfoList
+        return @@logConfigInfoList
     end
     
 
@@ -96,9 +96,9 @@ class LoggingInitInfo
     def self.getTypeList()
         LoggingInitInfo.updateIfNeeded()
         allLogTypeVector = ::Org::Allbinary::Util::BasicArrayListD.new()
-        size = LoggingInitInfo.logConfigInfoList.size()
+        size = @@logConfigInfoList.size()
         (0...size).each do |index|
-            logConfigInfo = LoggingInitInfo.logConfigInfoList.objectArray[index]
+            logConfigInfo = @@logConfigInfoList.objectArray[index]
             logTypeVector = logConfigInfo.getTypeVector()
             if logConfigInfo.isEnabled()
                 allLogTypeVector.addAllList(logTypeVector)
@@ -110,7 +110,7 @@ class LoggingInitInfo
 
     # throws Exception
     def getNumberOfLogConfigs()
-        return LoggingInitInfo.logConfigInfoList.size()
+        return @@logConfigInfoList.size()
     end
     
 

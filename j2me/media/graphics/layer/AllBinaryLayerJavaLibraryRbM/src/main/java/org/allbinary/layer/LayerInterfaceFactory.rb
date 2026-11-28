@@ -32,7 +32,7 @@ class LayerInterfaceFactory
     
 
     def self.getInstance()
-        return LayerInterfaceFactory::SINGLETON
+        return SINGLETON
     end
     
 

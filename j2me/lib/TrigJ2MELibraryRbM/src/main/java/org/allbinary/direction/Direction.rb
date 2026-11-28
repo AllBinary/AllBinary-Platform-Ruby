@@ -35,12 +35,12 @@ class Direction
         @otherName = otherName
         @value = value
         @frameFactor = frameFactor
-        Direction.directionArray[value] = self
+        @@directionArray[value] = self
     end
     
 
     def self.getInstance(direction)
-        return Direction.directionArray[direction]
+        return @@directionArray[direction]
     end
     
 

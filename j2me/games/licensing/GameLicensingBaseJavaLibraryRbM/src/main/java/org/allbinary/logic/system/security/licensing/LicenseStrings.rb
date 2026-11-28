@@ -30,7 +30,7 @@ class LicenseStrings
     
 
     def self.getInstance()
-        return LicenseStrings.instance
+        return @@instance
     end
 
     def self.instance()

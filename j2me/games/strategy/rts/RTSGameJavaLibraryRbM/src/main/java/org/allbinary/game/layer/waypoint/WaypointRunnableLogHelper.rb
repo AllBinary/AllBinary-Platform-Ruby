@@ -21,7 +21,7 @@ class WaypointRunnableLogHelper
     
 
     def self.getInstance()
-        return WaypointRunnableLogHelper.instance
+        return @@instance
     end
     
 

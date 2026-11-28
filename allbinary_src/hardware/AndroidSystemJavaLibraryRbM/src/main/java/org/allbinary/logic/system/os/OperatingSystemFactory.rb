@@ -30,7 +30,7 @@ class OperatingSystemFactory
     
 
     def self.getInstance()
-        return OperatingSystemFactory.instance
+        return @@instance
     end
     
 

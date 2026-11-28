@@ -32,7 +32,7 @@ class SmallIntegerSingletonFactory
     
 
     def self.getInstance()
-        return SmallIntegerSingletonFactory.instance
+        return @@instance
     end
     
 

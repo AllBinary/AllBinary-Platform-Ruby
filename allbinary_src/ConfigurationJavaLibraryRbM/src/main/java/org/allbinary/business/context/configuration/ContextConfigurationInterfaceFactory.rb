@@ -21,7 +21,7 @@ class ContextConfigurationInterfaceFactory
     
 
     def self.getInstance()
-        return ContextConfigurationInterfaceFactory.instance
+        return @@instance
     end
     
 

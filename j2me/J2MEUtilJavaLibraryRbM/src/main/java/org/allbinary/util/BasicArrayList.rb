@@ -32,7 +32,7 @@ class BasicArrayList
             stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL)
             stringBuffer.appendint(index)
-            stringBuffer.append(BasicArrayList::SIZE)
+            stringBuffer.append(SIZE)
             stringBuffer.appendint(@currentIndex)
             raise IndexError.new(stringBuffer.to_s)
         end
@@ -55,7 +55,7 @@ class BasicArrayList
             stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL)
             stringBuffer.appendint(index)
-            stringBuffer.append(BasicArrayList::SIZE)
+            stringBuffer.append(SIZE)
             stringBuffer.appendint(@currentIndex)
             raise IndexError.new(stringBuffer.to_s)
         end
@@ -196,7 +196,7 @@ class BasicArrayList
             stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL)
             stringBuffer.appendint(index)
-            stringBuffer.append(BasicArrayList::SIZE)
+            stringBuffer.append(SIZE)
             stringBuffer.appendint(@currentIndex)
             raise IndexError.new(stringBuffer.to_s)
         end
@@ -209,7 +209,7 @@ class BasicArrayList
             stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             stringBuffer.append(::Org::Allbinary::StringPackage::CommonLabels.getInstance().INDEX_LABEL)
             stringBuffer.appendint(index)
-            stringBuffer.append(BasicArrayList::SIZE)
+            stringBuffer.append(SIZE)
             stringBuffer.appendint(@currentIndex)
             raise IndexError.new(stringBuffer.to_s)
         end

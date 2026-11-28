@@ -26,7 +26,7 @@ class TransformInfoPropertiesFactory
     
 
     def self.getInstance()
-        return TransformInfoPropertiesFactory.instance
+        return @@instance
     end
     
 

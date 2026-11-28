@@ -21,7 +21,7 @@ class ItemIndexPaintable
     
 
     def self.getInstance()
-        return ItemIndexPaintable.instance
+        return @@instance
     end
     
 

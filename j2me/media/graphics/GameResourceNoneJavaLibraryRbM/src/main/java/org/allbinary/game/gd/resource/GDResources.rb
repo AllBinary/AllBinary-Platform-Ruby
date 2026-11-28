@@ -31,7 +31,7 @@ class GDResources
     
 
     def self.getInstance()
-        return GDResources.instance
+        return @@instance
     end
 
     def self.instance()

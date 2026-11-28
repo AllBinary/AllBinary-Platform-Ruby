@@ -21,7 +21,7 @@ class DataOutputStreamFactory
     
 
     def self.getInstance()
-        return DataOutputStreamFactory.instance
+        return @@instance
     end
     
 

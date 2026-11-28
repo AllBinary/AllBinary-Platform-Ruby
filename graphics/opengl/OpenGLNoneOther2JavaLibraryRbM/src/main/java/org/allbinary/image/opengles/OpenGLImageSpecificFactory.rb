@@ -30,7 +30,7 @@ class OpenGLImageSpecificFactory
     
 
     def self.getInstance()
-        return OpenGLImageSpecificFactory.instance
+        return @@instance
     end
 
     def self.instance()

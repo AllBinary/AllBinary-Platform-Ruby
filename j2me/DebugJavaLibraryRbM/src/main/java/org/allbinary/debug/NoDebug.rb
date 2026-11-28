@@ -24,7 +24,7 @@ class NoDebug
     
 
     def self.getInstance()
-        return NoDebug::SINGLETON
+        return SINGLETON
     end
     
 

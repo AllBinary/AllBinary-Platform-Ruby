@@ -27,8 +27,8 @@ class PointHelper
     
 
     def self.getCenterPoint(rectangle)
-        x = rectangle.getX() + rectangle.getWidth() / PointHelper.two
-        y = rectangle.getY() + rectangle.getHeight() / PointHelper.two
+        x = rectangle.getX() + rectangle.getWidth() / @@two
+        y = rectangle.getY() + rectangle.getHeight() / @@two
         return PointFactory.getInstance((x).to_i, (y).to_i)
     end
 

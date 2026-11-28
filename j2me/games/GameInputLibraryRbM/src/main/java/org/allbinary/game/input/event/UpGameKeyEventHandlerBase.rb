@@ -93,12 +93,12 @@ class UpGameKeyEventHandlerBase < ::Org::Allbinary::Logic::Util::Event::Handler:
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         size = @list.size()
         stringBuffer.append(super.to_s)
-        stringBuffer.append(UpGameKeyEventHandlerBase::TOTAL_LISTENERS)
+        stringBuffer.append(TOTAL_LISTENERS)
         stringBuffer.appendint(size)
         (0...size).each do |index|
             begin
                 eventListenerInterface = @list.get(index)
-                stringBuffer.append(UpGameKeyEventHandlerBase::LISTENER_LABEL)
+                stringBuffer.append(LISTENER_LABEL)
                 stringBuffer.append(eventListenerInterface.to_s)
             rescue StandardError => e
                 @logUtil.put(@commonStrings.EXCEPTION, self, @commonStrings.TOSTRING, e)

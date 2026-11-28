@@ -32,7 +32,7 @@ class RegistrationConfiguration
     
 
     def self.getInstance()
-        return RegistrationConfiguration::SINGLETON
+        return SINGLETON
     end
     
 

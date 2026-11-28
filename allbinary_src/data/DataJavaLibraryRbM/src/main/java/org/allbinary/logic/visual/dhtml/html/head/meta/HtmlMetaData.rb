@@ -33,7 +33,7 @@ class HtmlMetaData
     
 
     def self.getInstance()
-        return HtmlMetaData.instance
+        return @@instance
     end
 
     def self.instance()

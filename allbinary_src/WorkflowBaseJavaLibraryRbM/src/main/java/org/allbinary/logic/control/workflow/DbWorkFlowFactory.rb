@@ -26,7 +26,7 @@ class DbWorkFlowFactory
     
 
     def self.getInstance()
-        return DbWorkFlowFactory.instance
+        return @@instance
     end
     
 

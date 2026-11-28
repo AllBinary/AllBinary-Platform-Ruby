@@ -30,7 +30,7 @@ class AxisMathVectorUtil
     
 
     def self.getInstance()
-        return AxisMathVectorUtil.instance
+        return @@instance
     end
     
 

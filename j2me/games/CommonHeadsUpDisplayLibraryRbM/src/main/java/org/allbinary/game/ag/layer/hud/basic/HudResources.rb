@@ -27,7 +27,7 @@ class HudResources
     
 
     def self.getInstance()
-        return HudResources.instance
+        return @@instance
     end
     
 

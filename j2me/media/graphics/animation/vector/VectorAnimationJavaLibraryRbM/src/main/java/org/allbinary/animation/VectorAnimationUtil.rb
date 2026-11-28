@@ -21,7 +21,7 @@ class VectorAnimationUtil
     
 
     def self.getInstance()
-        return VectorAnimationUtil.instance
+        return @@instance
     end
     
 

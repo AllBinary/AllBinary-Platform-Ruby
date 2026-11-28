@@ -220,7 +220,7 @@ class ABKeyEventWrapper
     
 
     def self.getInstance()
-        return ABKeyEventWrapper.instance
+        return @@instance
     end
 
     def self.instance()

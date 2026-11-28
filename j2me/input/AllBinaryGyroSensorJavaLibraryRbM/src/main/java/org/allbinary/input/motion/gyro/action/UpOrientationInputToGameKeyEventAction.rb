@@ -23,10 +23,10 @@ class UpOrientationInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Mo
     
 
     def self.getInstance()
-        if UpOrientationInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            UpOrientationInputToGameKeyEventAction.instance = UpOrientationInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = UpOrientationInputToGameKeyEventAction.new()
         end
-        return UpOrientationInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

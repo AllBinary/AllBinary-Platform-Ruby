@@ -28,10 +28,10 @@ class ReleaseTouchInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Mot
     
 
     def self.getInstance()
-        if ReleaseTouchInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            ReleaseTouchInputToGameKeyEventAction.instance = ReleaseTouchInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = ReleaseTouchInputToGameKeyEventAction.new()
         end
-        return ReleaseTouchInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

@@ -31,7 +31,7 @@ class LayerManagerEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::
     
 
     def self.getInstance()
-        return LayerManagerEventHandler.instance
+        return @@instance
     end
     
 

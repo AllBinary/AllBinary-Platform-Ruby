@@ -67,7 +67,7 @@ class LayerPartialCellPositionsUtil
     
 
     def self.getInstance()
-        return LayerPartialCellPositionsUtil.instance
+        return @@instance
     end
 
     def self.instance()

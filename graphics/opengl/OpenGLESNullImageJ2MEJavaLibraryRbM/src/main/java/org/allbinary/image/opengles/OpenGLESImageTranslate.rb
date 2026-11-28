@@ -21,7 +21,7 @@ class OpenGLESImageTranslate
     
 
     def self.getInstance()
-        return OpenGLESImageTranslate.instance
+        return @@instance
     end
     
 

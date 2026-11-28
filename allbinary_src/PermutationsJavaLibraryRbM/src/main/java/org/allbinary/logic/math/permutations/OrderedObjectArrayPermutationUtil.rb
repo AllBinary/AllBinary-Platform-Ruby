@@ -29,7 +29,7 @@ class OrderedObjectArrayPermutationUtil
     
 
     def self.getInstance()
-        return OrderedObjectArrayPermutationUtil.instance
+        return @@instance
     end
     
 

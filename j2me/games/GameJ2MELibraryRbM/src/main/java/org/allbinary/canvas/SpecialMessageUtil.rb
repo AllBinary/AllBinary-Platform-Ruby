@@ -22,7 +22,7 @@ class SpecialMessageUtil
     
 
     def self.getInstance()
-        return SpecialMessageUtil::SINGLETON
+        return SINGLETON
     end
     
 

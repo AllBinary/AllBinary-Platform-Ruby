@@ -20,7 +20,7 @@ class OpenGLLogUtil
     
 
     def self.getInstance()
-        return OpenGLLogUtil.instance
+        return @@instance
     end
     
 

@@ -27,7 +27,7 @@ class ImageRotationUtil
     
 
     def self.getInstance()
-        return ImageRotationUtil.instance
+        return @@instance
     end
     
 
@@ -106,6 +106,7 @@ module ::Org; module Eclipse; module Swt; module Graphics; autoload :JavaGC, "or
 module ::Org; module Microemu; module Device; module Swt; autoload :SwtImmutableImage, "org/microemu/device/swt/SwtImmutableImage" unless const_defined?(:SwtImmutableImage, false); end; end; end; end
 module ::Org; module Microemu; module Device; module Swt; autoload :SwtMutableImage, "org/microemu/device/swt/SwtMutableImage" unless const_defined?(:SwtMutableImage, false); end; end; end; end
 autoload :ImageSwtRotationUtil, "org/allbinary/media/image/ImageSwtRotationUtil" unless const_defined?(:ImageSwtRotationUtil, false)
+autoload :SwtOpenGLESImageBridge, "org/allbinary/media/image/SwtOpenGLESImageBridge" unless const_defined?(:SwtOpenGLESImageBridge, false)
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end
 module ::Org; module Eclipse; module Swt; module Graphics; autoload :Image, "org/eclipse/swt/graphics/Image" unless const_defined?(:Image, false); end; end; end; end

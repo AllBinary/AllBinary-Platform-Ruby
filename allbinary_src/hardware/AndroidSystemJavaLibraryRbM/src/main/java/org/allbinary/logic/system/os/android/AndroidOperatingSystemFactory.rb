@@ -28,7 +28,7 @@ class AndroidOperatingSystemFactory
     
 
     def self.getInstance()
-        return AndroidOperatingSystemFactory.instance
+        return @@instance
     end
     
 

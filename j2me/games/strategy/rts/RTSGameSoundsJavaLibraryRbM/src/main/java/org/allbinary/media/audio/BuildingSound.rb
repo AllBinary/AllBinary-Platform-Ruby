@@ -27,7 +27,7 @@ class BuildingSound < ::Org::Allbinary::Media::Audio::CompositeSound
     
 
     def self.getInstance()
-        return BuildingSound.soundInterface
+        return @@soundInterface
     end
 
     def self.soundInterface()

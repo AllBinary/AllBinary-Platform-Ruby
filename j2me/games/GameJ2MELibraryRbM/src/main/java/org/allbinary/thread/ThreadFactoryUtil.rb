@@ -30,7 +30,7 @@ class ThreadFactoryUtil
     
 
     def self.getInstance()
-        return ThreadFactoryUtil.instance
+        return @@instance
     end
     
 

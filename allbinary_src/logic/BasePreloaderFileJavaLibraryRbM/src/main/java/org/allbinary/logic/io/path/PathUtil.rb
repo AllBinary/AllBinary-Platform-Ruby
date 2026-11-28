@@ -28,7 +28,7 @@ class PathUtil
     
 
     def self.getInstance()
-        return PathUtil.instance
+        return @@instance
     end
     
 

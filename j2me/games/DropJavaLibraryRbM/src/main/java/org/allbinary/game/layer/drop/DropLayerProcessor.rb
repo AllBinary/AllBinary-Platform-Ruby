@@ -28,7 +28,7 @@ class DropLayerProcessor < ::Org::Allbinary::Layer::BasicLayerProcessor
     
 
     def self.getInstance()
-        return DropLayerProcessor::LAYER_PROCESSOR
+        return LAYER_PROCESSOR
     end
     
 

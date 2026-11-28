@@ -19,7 +19,7 @@ class OpenGLStrings
     
 
     def self.getInstance()
-        return OpenGLStrings.instance
+        return @@instance
     end
 
     def self.instance()

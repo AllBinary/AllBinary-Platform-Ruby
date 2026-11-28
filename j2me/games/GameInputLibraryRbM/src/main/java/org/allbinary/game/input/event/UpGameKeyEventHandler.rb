@@ -28,19 +28,19 @@ class UpGameKeyEventHandler < UpGameKeyEventHandlerBase
     
 
     def self.getInstance()
-        return UpGameKeyEventHandler.instance
+        return @@instance
     end
     
 
     def getInstanceForDevice(deviceId)
         playerInputId = @playerInputIdFactory.getPlayerForDevice(deviceId)
-        return UpGameKeyEventHandler.instanceArray[playerInputId]
+        return @@instanceArray[playerInputId]
     end
     java_overload :getInstanceForDevice, 1
     
 
     def getInstanceForPlayer(playerInputId)
-        return UpGameKeyEventHandler.instanceArray[playerInputId]
+        return @@instanceArray[playerInputId]
     end
     java_overload :getInstanceForPlayer, 1
     
@@ -53,8 +53,8 @@ class UpGameKeyEventHandler < UpGameKeyEventHandlerBase
 
     def removeAllListeners()
         UpGameKeyEventHandler.superclass.java_super_method(:removeAllListeners, 0).bind(self).call()
-        (UpGameKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            UpGameKeyEventHandler.instanceArray[index].removeAllListeners()
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeAllListeners()
         end
     end
     java_overload :removeAllListeners, 0
@@ -62,8 +62,8 @@ class UpGameKeyEventHandler < UpGameKeyEventHandlerBase
 
     def removeListenerSingleThreaded(eventListenerInterface)
         UpGameKeyEventHandler.superclass.java_super_method(:removeListenerSingleThreaded, 1).bind(self).call(eventListenerInterface)
-        (UpGameKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            UpGameKeyEventHandler.instanceArray[index].removeListenerSingleThreaded(eventListenerInterface)
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeListenerSingleThreaded(eventListenerInterface)
         end
     end
     java_overload :removeListenerSingleThreaded, 1
@@ -71,8 +71,8 @@ class UpGameKeyEventHandler < UpGameKeyEventHandlerBase
 
     def removeListener(eventListenerInterface)
         UpGameKeyEventHandler.superclass.java_super_method(:removeListener, 1).bind(self).call(eventListenerInterface)
-        (UpGameKeyEventHandler.instanceArray.length - 1).step(0, -(1)) do |index|
-            UpGameKeyEventHandler.instanceArray[index].removeListener(eventListenerInterface)
+        (@@instanceArray.length - 1).step(0, -(1)) do |index|
+            @@instanceArray[index].removeListener(eventListenerInterface)
         end
     end
     java_overload :removeListener, 1

@@ -22,7 +22,7 @@ class GameAdStateFactory
     
 
     def self.getInstance()
-        return GameAdStateFactory.instance
+        return @@instance
     end
     
 

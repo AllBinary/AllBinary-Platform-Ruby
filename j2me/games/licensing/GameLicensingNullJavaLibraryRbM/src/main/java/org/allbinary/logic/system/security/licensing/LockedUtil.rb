@@ -24,7 +24,7 @@ class LockedUtil
     
 
     def self.getInstance()
-        return LockedUtil.instance
+        return @@instance
     end
     
 

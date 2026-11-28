@@ -23,7 +23,7 @@ class OpenGLVUtil < OpenGLVUtilBase
     
 
     def self.getInstance()
-        return OpenGLVUtil.instance
+        return @@instance
     end
 
     def self.instance()

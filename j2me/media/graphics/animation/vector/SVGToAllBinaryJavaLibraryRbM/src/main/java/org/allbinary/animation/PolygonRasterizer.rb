@@ -9,7 +9,7 @@ class PolygonRasterizer
     
 
     def self.getInstance()
-        return PolygonRasterizer.instance
+        return @@instance
     end
     
 

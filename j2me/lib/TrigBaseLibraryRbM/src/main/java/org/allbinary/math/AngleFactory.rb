@@ -40,7 +40,7 @@ class AngleFactory
     
 
     def self.getInstance()
-        return AngleFactory.instance
+        return @@instance
     end
     
 

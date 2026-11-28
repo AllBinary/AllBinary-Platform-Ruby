@@ -21,7 +21,7 @@ class HttpFilePermissionsUtil
     
 
     def self.getInstance()
-        return HttpFilePermissionsUtil.instance
+        return @@instance
     end
     
 

@@ -29,7 +29,7 @@ class AbFileUploadFactory
     
 
     def self.getInstance()
-        return AbFileUploadFactory.instance
+        return @@instance
     end
     
 

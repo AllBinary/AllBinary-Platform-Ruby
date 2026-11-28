@@ -28,7 +28,7 @@ class AdvertisementCampaignData
     
 
     def self.getInstance()
-        return AdvertisementCampaignData.instance
+        return @@instance
     end
     
 

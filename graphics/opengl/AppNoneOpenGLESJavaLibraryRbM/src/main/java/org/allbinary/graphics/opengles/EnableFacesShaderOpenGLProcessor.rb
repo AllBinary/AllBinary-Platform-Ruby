@@ -11,7 +11,7 @@ class EnableFacesShaderOpenGLProcessor < ::Org::Allbinary::Graphics::Threed::Min
     
 
     def self.getInstance()
-        return EnableFacesShaderOpenGLProcessor.instance
+        return @@instance
     end
     
 

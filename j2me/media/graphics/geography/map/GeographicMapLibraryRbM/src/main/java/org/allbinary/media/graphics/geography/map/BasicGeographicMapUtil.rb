@@ -30,7 +30,7 @@ class BasicGeographicMapUtil
     
 
     def self.getInstance()
-        return BasicGeographicMapUtil.instance
+        return @@instance
     end
     
 

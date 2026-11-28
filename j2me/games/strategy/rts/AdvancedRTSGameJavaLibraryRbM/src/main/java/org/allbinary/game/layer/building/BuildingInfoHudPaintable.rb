@@ -73,7 +73,7 @@ class BuildingInfoHudPaintable < ::Org::Allbinary::Game::Layer::SelectionHudPain
     
 
     def self.getInstance()
-        return BuildingInfoHudPaintable.instance
+        return @@instance
     end
     
 

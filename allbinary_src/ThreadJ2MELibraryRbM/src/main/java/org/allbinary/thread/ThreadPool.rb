@@ -184,7 +184,7 @@ class ThreadPool
     
 
     def createName()
-        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@poolName).append(ThreadPool::ROOT_NAME).appendint(((@threadID += 1) - 1)).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(@poolName).append(ROOT_NAME).appendint(((@threadID += 1) - 1)).to_s
     end
 
     def self.java_static_fields

@@ -24,7 +24,7 @@ class ValidatorBase
     
 
     def self.getInstance()
-        return ValidatorBase.instance
+        return @@instance
     end
     
 

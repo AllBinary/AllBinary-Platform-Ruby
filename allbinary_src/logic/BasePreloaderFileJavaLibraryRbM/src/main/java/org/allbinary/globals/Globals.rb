@@ -27,7 +27,7 @@ class Globals
     
 
     def self.getInstance()
-        return Globals.instance
+        return @@instance
     end
     
 

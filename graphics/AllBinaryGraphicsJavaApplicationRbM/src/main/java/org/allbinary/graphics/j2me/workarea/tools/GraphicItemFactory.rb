@@ -27,7 +27,7 @@ class GraphicItemFactory
     
 
     def self.getInstance()
-        return GraphicItemFactory.instance
+        return @@instance
     end
     
 

@@ -26,7 +26,7 @@ class QuoteRequestEntityFactory
     
 
     def self.getInstance()
-        return QuoteRequestEntityFactory.instance
+        return @@instance
     end
     
 

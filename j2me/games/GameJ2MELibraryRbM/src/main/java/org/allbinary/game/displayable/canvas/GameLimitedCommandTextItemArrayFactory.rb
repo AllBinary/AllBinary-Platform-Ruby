@@ -30,7 +30,7 @@ class GameLimitedCommandTextItemArrayFactory
     
 
     def self.getInstance()
-        return GameLimitedCommandTextItemArrayFactory.instance
+        return @@instance
     end
     
 

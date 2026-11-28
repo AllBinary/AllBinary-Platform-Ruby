@@ -31,7 +31,7 @@ class LifeResources
     
 
     def self.getInstance()
-        return LifeResources::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

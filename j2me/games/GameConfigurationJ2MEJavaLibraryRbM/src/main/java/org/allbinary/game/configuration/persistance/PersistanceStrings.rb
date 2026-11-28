@@ -40,7 +40,7 @@ class PersistanceStrings
     
 
     def self.getInstance()
-        return PersistanceStrings.instance
+        return @@instance
     end
 
     def self.instance()

@@ -22,7 +22,7 @@ class BlisketServletUtil
     
 
     def self.getInstance()
-        return BlisketServletUtil.instance
+        return @@instance
     end
     
 

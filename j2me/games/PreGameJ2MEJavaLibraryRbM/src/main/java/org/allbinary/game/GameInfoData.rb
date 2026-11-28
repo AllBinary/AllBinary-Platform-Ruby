@@ -31,7 +31,7 @@ class GameInfoData
     
 
     def self.getInstance()
-        return GameInfoData.instance
+        return @@instance
     end
     
 

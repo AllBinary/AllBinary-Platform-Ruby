@@ -82,9 +82,9 @@ class MotionGestureEvent < ::Org::Allbinary::Logic::Util::Event::AllBinaryEventO
         stringBuffer.append(stringUtil.toString(@motionGesture))
         stringBuffer.append(@commonLabels.CURRENT)
         stringBuffer.append(stringUtil.toString(@currentPoint))
-        stringBuffer.append(MotionGestureEvent::PREVIOUS)
+        stringBuffer.append(PREVIOUS)
         stringBuffer.append(stringUtil.toString(@previousPoint))
-        stringBuffer.append(MotionGestureEvent::HASHCODE)
+        stringBuffer.append(HASHCODE)
         stringBuffer.appendint(((::Org::Allbinary::TsUtil.getInstance().hashCode(self)).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i }))
         return stringBuffer.to_s
     end

@@ -28,7 +28,7 @@ class ScrollMapEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::Bas
     
 
     def self.getInstance()
-        return ScrollMapEventHandler::SINGLETON
+        return SINGLETON
     end
     
 

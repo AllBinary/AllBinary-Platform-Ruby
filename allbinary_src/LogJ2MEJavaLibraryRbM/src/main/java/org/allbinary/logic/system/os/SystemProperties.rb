@@ -30,7 +30,7 @@ class SystemProperties
     
 
     def self.getInstance()
-        return SystemProperties.instance
+        return @@instance
     end
     
 

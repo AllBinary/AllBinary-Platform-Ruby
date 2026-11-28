@@ -24,7 +24,7 @@ class RectangleCollisionUtil
     
 
     def self.getInstance()
-        return RectangleCollisionUtil.instance
+        return @@instance
     end
     
 

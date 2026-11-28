@@ -23,7 +23,7 @@ class HighScoreCommandsFactory < HighScoreCommandsBaseFactory
     
 
     def self.getInstance()
-        return HighScoreCommandsFactory.instance
+        return @@instance
     end
     
 

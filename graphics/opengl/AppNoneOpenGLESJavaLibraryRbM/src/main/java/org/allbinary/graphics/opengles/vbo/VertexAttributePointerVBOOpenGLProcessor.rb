@@ -23,7 +23,7 @@ class VertexAttributePointerVBOOpenGLProcessor < ::Org::Allbinary::Graphics::Thr
     
 
     def self.getInstance()
-        return VertexAttributePointerVBOOpenGLProcessor.instance
+        return @@instance
     end
     
 

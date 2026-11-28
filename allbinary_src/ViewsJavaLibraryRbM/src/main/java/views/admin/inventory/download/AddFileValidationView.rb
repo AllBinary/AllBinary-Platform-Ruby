@@ -40,7 +40,7 @@ class AddFileValidationView < DownloadableInventoryItemView
     def isValid_j0()
         begin
             command = self.getRequestHashMap().get(::Org::Allbinary::Globals::GLOBALS2::ADMINCOMMAND)
-            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(command) || ((command <=> AddFileValidationView::ADDPRODUCT) != 0 && (command <=> ADDANOTHERDOWNLOADABLE) != 0)
+            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(command) || ((command <=> ADDPRODUCT) != 0 && (command <=> ADDANOTHERDOWNLOADABLE) != 0)
                 if ::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypes::LOGGING.contains(::Org::Allbinary::Logic::Communication::Log::Config::Type::LogConfigTypeFactory.getInstance().VIEW)
                     @logUtil.putF("Invalid AdminCommand=" + command, self, @commonStrings.IS_VALID)
                 end
@@ -165,7 +165,7 @@ class AddFileValidationView < DownloadableInventoryItemView
         begin
             stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
             command = self.getRequestHashMap().get(::Org::Allbinary::Globals::GLOBALS2::ADMINCOMMAND)
-            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(command) || ((command <=> AddFileValidationView::ADDPRODUCT) != 0 && (command <=> ADDANOTHERDOWNLOADABLE) != 0)
+            if ::Org::Allbinary::Logic::StringPackage::StringValidationUtil.getInstance().isEmpty(command) || ((command <=> ADDPRODUCT) != 0 && (command <=> ADDANOTHERDOWNLOADABLE) != 0)
                 return ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance().EMPTY_STRING
             end
             if @itemInterface == nil

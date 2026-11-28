@@ -31,7 +31,7 @@ class TrackingEventCircularStaticPool
     
 
     def self.getInstance()
-        return TrackingEventCircularStaticPool.instance
+        return @@instance
     end
     
 

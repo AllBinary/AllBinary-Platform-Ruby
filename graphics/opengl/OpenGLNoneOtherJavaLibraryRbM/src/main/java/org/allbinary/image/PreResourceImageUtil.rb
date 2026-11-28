@@ -21,7 +21,7 @@ class PreResourceImageUtil
     
 
     def self.getInstance()
-        return PreResourceImageUtil.instance
+        return @@instance
     end
     
 

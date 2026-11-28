@@ -26,7 +26,7 @@ class PrimaryWaypointHelper
     
 
     def self.getInstance()
-        return PrimaryWaypointHelper.instance
+        return @@instance
     end
     
 

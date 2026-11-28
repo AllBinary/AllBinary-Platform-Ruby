@@ -21,7 +21,7 @@ class WaypointInfoHudPaintableSingleton
     
 
     def self.getInstance()
-        return WaypointInfoHudPaintableSingleton.instance
+        return @@instance
     end
 
     def self.instance()

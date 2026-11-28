@@ -33,7 +33,7 @@ class ForwardData
     
 
     def self.getInstance()
-        return ForwardData.instance
+        return @@instance
     end
 
     def self.instance()

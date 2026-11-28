@@ -34,7 +34,7 @@ class DesktopBundle
             (0...bundleArray.length).each do |index|
                 bundle = bundleArray[index]
                 symbolicName = bundle.getSymbolicName()
-                if (symbolicName <=> DesktopBundle::DESKTOP_SYMBOLIC_NAME) == 0
+                if (symbolicName <=> DESKTOP_SYMBOLIC_NAME) == 0
                     @bundle = bundle
                 end
             end

@@ -21,7 +21,7 @@ class AlphaBaseProcessor
     
 
     def self.getInstance()
-        return AlphaBaseProcessor.instance
+        return @@instance
     end
     
 

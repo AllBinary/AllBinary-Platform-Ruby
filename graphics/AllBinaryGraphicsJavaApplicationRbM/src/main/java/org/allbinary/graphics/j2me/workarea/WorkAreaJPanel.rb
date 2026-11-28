@@ -332,18 +332,18 @@ class WorkAreaJPanel < JPanel
     
 
     def self.getDocument()
-        return WorkAreaJPanel.document
+        return @@document
     end
     
 
     # throws Exception
     def toDocument()
-        WorkAreaJPanel.document = ::Org::Allbinary::Dom::DomHelper.getInstance().createDocument()
-        workAreaNode = WorkAreaJPanel.document.createElement(WorkAreaDom::WORKAREA)
-        nameNode = WorkAreaJPanel.document.createElement(WorkAreaDom::NAME)
-        nameTextNode = WorkAreaJPanel.document.createTextNode(@name)
+        @@document = ::Org::Allbinary::Dom::DomHelper.getInstance().createDocument()
+        workAreaNode = @@document.createElement(WorkAreaDom::WORKAREA)
+        nameNode = @@document.createElement(WorkAreaDom::NAME)
+        nameTextNode = @@document.createTextNode(@name)
         nameNode.appendChild(nameTextNode)
-        framesNode = WorkAreaJPanel.document.createElement(WorkAreaDom::FRAMES)
+        framesNode = @@document.createElement(WorkAreaDom::FRAMES)
         size = @canvasJPanelList.size()
         (0...size).each do |index|
             canvasJPanel = @canvasJPanelList.get(index)
@@ -351,7 +351,7 @@ class WorkAreaJPanel < JPanel
         end
         workAreaNode.appendChild(nameNode)
         workAreaNode.appendChild(framesNode)
-        WorkAreaJPanel.document.appendChild(workAreaNode)
+        @@document.appendChild(workAreaNode)
         return @@document
     end
     java_overload :toDocument, 0

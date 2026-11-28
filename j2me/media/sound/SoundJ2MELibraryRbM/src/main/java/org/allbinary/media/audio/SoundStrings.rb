@@ -35,7 +35,7 @@ class SoundStrings
     
 
     def self.getInstance()
-        return SoundStrings.instance
+        return @@instance
     end
 
     def self.instance()

@@ -23,10 +23,10 @@ class UpTrackballInputToGameKeyEventAction < ::Org::Allbinary::Game::Input::Moti
     
 
     def self.getInstance()
-        if UpTrackballInputToGameKeyEventAction.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            UpTrackballInputToGameKeyEventAction.instance = UpTrackballInputToGameKeyEventAction.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = UpTrackballInputToGameKeyEventAction.new()
         end
-        return UpTrackballInputToGameKeyEventAction.instance
+        return @@instance
     end
     
 

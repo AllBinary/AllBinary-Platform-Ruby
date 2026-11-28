@@ -33,7 +33,7 @@ class KeySingletonFactory
         begin
             (0...@@keyArray.length).each do |index|
                 keyAsString = KeyEvent.getKeyText(@@keyArray[index])
-                KeySingletonFactory.keyStringHashtable.put(keyAsString, @@keyArray[index])
+                @@keyStringHashtable.put(keyAsString, @@keyArray[index])
             end
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, "KeySingleFactory", _STATIC_BLOCK, e)
@@ -47,7 +47,7 @@ class KeySingletonFactory
     
 
     def self.getHashtable()
-        return KeySingletonFactory.keyStringHashtable
+        return @@keyStringHashtable
     end
     
 
@@ -57,7 +57,7 @@ class KeySingletonFactory
     
 
     def self.getArray()
-        return KeySingletonFactory.keyArray
+        return @@keyArray
     end
 
     def self.keyStringHashtable()

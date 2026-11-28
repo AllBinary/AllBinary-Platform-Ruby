@@ -28,7 +28,7 @@ class NullPaintable < Paintable
     
 
     def self.getInstance()
-        return NullPaintable::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

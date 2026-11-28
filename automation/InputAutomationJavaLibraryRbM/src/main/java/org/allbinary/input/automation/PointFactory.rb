@@ -26,10 +26,10 @@ class PointFactory
     
 
     def self.getInstance(x, y)
-        point = PointFactory.pointArray[x][y]
+        point = @@pointArray[x][y]
         if point == nil
-            PointFactory.pointArray[x][y] = Point.new(x, y)
-            point = PointFactory.pointArray[x][y]
+            @@pointArray[x][y] = Point.new(x, y)
+            point = @@pointArray[x][y]
         end
         return point
     end

@@ -28,7 +28,7 @@ class ImageAnalysis
     
 
     def self.getInstance()
-        return ImageAnalysis.instance
+        return @@instance
     end
     
 

@@ -21,7 +21,7 @@ class AnalogInputBuilder
     
 
     def self.getInstance()
-        return AnalogInputBuilder.instance
+        return @@instance
     end
     
 

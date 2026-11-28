@@ -22,13 +22,13 @@ class WaypointEventHandlerFactory
 
     def self.getInstance(groupInterface)
         groupId = ((groupInterface.getGroupId()).then { |java_value| java_value.is_a?(::String) ? java_value.ord : java_value.to_i })
-        return WaypointEventHandlerFactory.eventHandlerArray[groupId]
+        return @@eventHandlerArray[groupId]
     end
     
 
     def self.removeAll()
-        (WaypointEventHandlerFactory.eventHandlerArray.length - 1).step(0, -(1)) do |index|
-            WaypointEventHandlerFactory.eventHandlerArray[index].removeAllListeners()
+        (@@eventHandlerArray.length - 1).step(0, -(1)) do |index|
+            @@eventHandlerArray[index].removeAllListeners()
         end
     end
 

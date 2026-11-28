@@ -28,7 +28,7 @@ class AdvertisementAreaData
     
 
     def self.getInstance()
-        return AdvertisementAreaData.instance
+        return @@instance
     end
     
 

@@ -45,8 +45,8 @@ class GameFeatureItemStateListener
     
 
     def self.add(gameFeature)
-        if !GameFeatureItemStateListener.toggleList.contains(gameFeature)
-            GameFeatureItemStateListener.toggleList.add(gameFeature)
+        if !@@toggleList.contains(gameFeature)
+            @@toggleList.add(gameFeature)
         end
     end
     

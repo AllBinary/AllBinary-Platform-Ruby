@@ -48,7 +48,7 @@ class ShippingMethodsFactory
         stringBuffer.append(::Org::Allbinary::Globals::FREEBLISKET_PATH_GLOBALS.getInstance().XSLPATH)
         stringBuffer.append(storeFrontInterface.getName())
         stringBuffer.append(sep)
-        stringBuffer.append(ShippingMethodsFactory::SHIPPINGMETHODSFILEPATHSTRING)
+        stringBuffer.append(SHIPPINGMETHODSFILEPATHSTRING)
         abPath = ::Org::Allbinary::Logic::Io::Path::AbPath.new(stringBuffer.to_s, SHIPPINGMETHODSFILENAME)
         data = ::Org::Allbinary::Logic::ControlPackage::Crypt::FilePackage::CryptFileReader.new(::Org::Allbinary::Logic::Visual::Transform::Info::ObjectConfig::TransformInfoObjectConfigData.getInstance().UNCRYPTED_EXTENSION, ::Org::Allbinary::Logic::Visual::Transform::Info::ObjectConfig::TransformInfoObjectConfigData.getInstance().ENCRYPTED_EXTENSION).get(abPath)
         @document = ::Org::Allbinary::DataPackage::Tree::Dom::Document::DomDocumentHelper.create(data)

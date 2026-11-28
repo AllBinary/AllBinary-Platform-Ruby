@@ -52,10 +52,10 @@ class GameCommandsFactory
     
 
     def self.getInstance()
-        if GameCommandsFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            GameCommandsFactory.instance = GameCommandsFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = GameCommandsFactory.new()
         end
-        return GameCommandsFactory.instance
+        return @@instance
     end
     
 

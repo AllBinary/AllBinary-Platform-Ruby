@@ -632,7 +632,7 @@ class MyFrame < JFrame
 
     def newGraphics()
         begin
-            newName = "graphic" + (MyFrame.numberOfWorkAreas).to_s
+            newName = "graphic" + (@@numberOfWorkAreas).to_s
             dim = self.getSize()
             newDialog = ::Org::Allbinary::Graphics::J2me::Dialog::NewWorkAreaJDialog.new(self, false, dim, newName)
         rescue StandardError => e
@@ -663,7 +663,7 @@ class MyFrame < JFrame
             file = File.new(SAVE_PATH + "/" + workAreaJPanel.getName() + @JAVAEXTENSION)
             document = workAreaJPanel.toDocument()
             @logUtil.putF("Export: " + ::Org::Allbinary::Dom::DomHelper.getInstance().toString(document), self, "exportJMenuItem1ActionPerformed")
-            @xslHelper.export(file, (MyFrame::TEMPLATE_EXPORT_PATH).to_s + "/" + @JAVA_TEMPLATE, document)
+            @xslHelper.export(file, (TEMPLATE_EXPORT_PATH).to_s + "/" + @JAVA_TEMPLATE, document)
         rescue StandardError => e
             if ::Org::Allbinary::Log::LOGGING.contains(::Org::Allbinary::Log::LOGGING::MENUEVENT)
                 @guiLog.put(@commonStrings.EXCEPTION, self, "export", e)
@@ -719,7 +719,7 @@ class MyFrame < JFrame
     def add(newCanvasInterface)
         begin
             @@numberOfWorkAreas += 1
-            if @@numberOfWorkAreas == MyFrame::MAXWORKAREAS
+            if @@numberOfWorkAreas == MAXWORKAREAS
                 raise StandardError.new()
             end
             @jTabbedPane.addTab(newCanvasInterface.getName(), newCanvasInterface)
@@ -790,8 +790,8 @@ class MyFrame < JFrame
         @@numberOfWorkAreas = 0
         const_set(:PATH, "G:/mnt/bc/mydev/work/graphics/AllBinaryGraphicsJavaApplication")
         begin
-            const_set(:SAVE_PATH, (MyFrame::PATH).to_s + "/save")
-            const_set(:TEMPLATE_EXPORT_PATH, (MyFrame::PATH).to_s + "/templates/export")
+            const_set(:SAVE_PATH, (PATH).to_s + "/save")
+            const_set(:TEMPLATE_EXPORT_PATH, (PATH).to_s + "/templates/export")
             @@statusJLabel = nil
         rescue StandardError
             @java_static_fields_started = false

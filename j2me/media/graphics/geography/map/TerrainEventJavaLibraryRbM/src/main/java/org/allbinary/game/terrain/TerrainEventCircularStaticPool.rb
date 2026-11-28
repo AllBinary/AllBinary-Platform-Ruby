@@ -31,7 +31,7 @@ class TerrainEventCircularStaticPool
     
 
     def self.getInstance()
-        return TerrainEventCircularStaticPool.instance
+        return @@instance
     end
     
 

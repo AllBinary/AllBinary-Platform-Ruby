@@ -32,7 +32,7 @@ class ColorDeltaFactory
         instance = "ColorDeltaFactory"
         begin
             logUtil.putF(commonStrings.START, instance, _STATIC_BLOCK)
-            ColorDeltaFactory.cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance(::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
+            @@cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance(::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
             logUtil.putF(commonStrings.END_, instance, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, instance, _STATIC_BLOCK, e)
@@ -47,7 +47,7 @@ class ColorDeltaFactory
 
     # throws Exception
     def self.getInstance(rgb1, rgb2)
-        colorDelta = ColorDeltaFactory.cacheInterface.get(ColorDelta.getKey(rgb1, rgb2))
+        colorDelta = @@cacheInterface.get(ColorDelta.getKey(rgb1, rgb2))
         if colorDelta == nil
             colorDelta = ColorDelta.new(rgb1, rgb2)
         end

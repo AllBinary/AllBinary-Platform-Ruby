@@ -18,7 +18,7 @@ class FixedPoint
     
 
     def self.getInstance()
-        return FixedPoint.instance
+        return @@instance
     end
     
 

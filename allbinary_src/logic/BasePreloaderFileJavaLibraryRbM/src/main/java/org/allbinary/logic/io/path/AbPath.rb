@@ -120,7 +120,7 @@ class AbPath
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         if self.hasSchema()
             stringBuffer.append(@schema)
-            stringBuffer.append(AbPath::NETWORK_SEP)
+            stringBuffer.append(NETWORK_SEP)
         end
         stringBuffer.append(self.getPath())
         stringBuffer.append(@nameP)

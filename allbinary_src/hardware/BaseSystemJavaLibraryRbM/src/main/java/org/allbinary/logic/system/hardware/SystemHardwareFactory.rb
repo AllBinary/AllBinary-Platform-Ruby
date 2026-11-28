@@ -28,7 +28,7 @@ class SystemHardwareFactory
     
 
     def self.getInstance()
-        return SystemHardwareFactory.instance
+        return @@instance
     end
     
 

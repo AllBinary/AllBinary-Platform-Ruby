@@ -28,7 +28,7 @@ class CommonButtons
     
 
     def self.getInstance()
-        return CommonButtons.instance
+        return @@instance
     end
     
 

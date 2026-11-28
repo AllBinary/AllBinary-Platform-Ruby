@@ -31,7 +31,7 @@ class ScaleFactorFactory
     
 
     def self.getInstance()
-        return ScaleFactorFactory.instance
+        return @@instance
     end
 
     def self.instance()

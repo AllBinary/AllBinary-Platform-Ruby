@@ -32,7 +32,7 @@ class ServletStrings
     
 
     def self.getInstance()
-        return ServletStrings.instance
+        return @@instance
     end
 
     def self.instance()

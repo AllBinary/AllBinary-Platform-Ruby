@@ -21,28 +21,28 @@ class URLGLOBALS
     
 
     def self.init(urlGlobalsInterface)
-        URLGLOBALS.urlGlobalsInterface = urlGlobalsInterface
+        @@urlGlobalsInterface = urlGlobalsInterface
     end
     
 
     def self.isTestingMode()
-        return URLGLOBALS.urlGlobalsInterface.isTestingMode()
+        return @@urlGlobalsInterface.isTestingMode()
     end
     
 
     def self.getWebappPath()
-        return URLGLOBALS.urlGlobalsInterface.getWebappPath()
+        return @@urlGlobalsInterface.getWebappPath()
     end
     
 
     def self.getTestHtmlPath()
-        return URLGLOBALS.urlGlobalsInterface.getTestHtmlPath()
+        return @@urlGlobalsInterface.getTestHtmlPath()
     end
     
 
     # throws Exception
     def self.getMainPath()
-        return URLGLOBALS.urlGlobalsInterface.getMainPath()
+        return @@urlGlobalsInterface.getMainPath()
     end
 
     def self.urlGlobalsInterface()

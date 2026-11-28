@@ -30,7 +30,7 @@ class AbIOSystem
     
 
     def self.getInstance()
-        return AbIOSystem.instance
+        return @@instance
     end
     
 

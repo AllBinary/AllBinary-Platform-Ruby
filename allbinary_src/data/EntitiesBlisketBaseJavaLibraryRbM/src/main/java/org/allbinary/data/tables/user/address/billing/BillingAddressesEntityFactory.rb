@@ -26,7 +26,7 @@ class BillingAddressesEntityFactory
     
 
     def self.getInstance()
-        return BillingAddressesEntityFactory.instance
+        return @@instance
     end
     
 

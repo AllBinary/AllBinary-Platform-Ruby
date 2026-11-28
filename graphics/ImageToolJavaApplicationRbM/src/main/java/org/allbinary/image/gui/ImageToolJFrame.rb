@@ -310,7 +310,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(imageUnifierJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = imageUnifierJPanel
+            @@imageProcessorInputCompositeInterface = imageUnifierJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "createStripImageJMenuItemActionPerformed", e)
         end
@@ -326,7 +326,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.add(ImageAnalysisResultsJPanel.new(imageAnalysisResultsArray))
             @jPanel1.updateUI()
             @analysisActionJDialog.setVisible(false)
-            ImageToolJFrame.imageProcessorInputCompositeInterface = nil
+            @@imageProcessorInputCompositeInterface = nil
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "okJButtonActionPerformed", e)
         end
@@ -388,8 +388,8 @@ class ImageToolJFrame < JFrame
             end
             @imageProcessorInput = ::Org::Allbinary::Media::Image::ImageProcessorInput.new(files, bufferedImageArray)
             @fileJDialog.setVisible(false)
-            if ImageToolJFrame.imageProcessorInputCompositeInterface != nil
-                ImageToolJFrame.imageProcessorInputCompositeInterface.setImageProcessorInput(@imageProcessorInput)
+            if @@imageProcessorInputCompositeInterface != nil
+                @@imageProcessorInputCompositeInterface.setImageProcessorInput(@imageProcessorInput)
             end
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "onFiles", e)
@@ -421,7 +421,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(spriteImageJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = spriteImageJPanel
+            @@imageProcessorInputCompositeInterface = spriteImageJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "generateRotationSpriteJMenuItemActionPerformed", e)
         end
@@ -436,7 +436,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(imageJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = imageJPanel
+            @@imageProcessorInputCompositeInterface = imageJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "generateRotationMenuItemActionPerformed", e)
         end
@@ -451,7 +451,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(rotationImageJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = rotationImageJPanel
+            @@imageProcessorInputCompositeInterface = rotationImageJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "generateRotationMenuItemActionPerformed", e)
         end
@@ -466,7 +466,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(resizeImageJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = resizeImageJPanel
+            @@imageProcessorInputCompositeInterface = resizeImageJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "scaleImagesJMenuItemActionPerformed", e)
         end
@@ -481,7 +481,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(createIconImagesJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = createIconImagesJPanel
+            @@imageProcessorInputCompositeInterface = createIconImagesJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "scaleImagesJMenuItemActionPerformed", e)
         end
@@ -496,7 +496,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(resizeImageJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = resizeImageJPanel
+            @@imageProcessorInputCompositeInterface = resizeImageJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "scaleImagesJMenuItemActionPerformed", e)
         end
@@ -511,7 +511,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(spriteImageJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = spriteImageJPanel
+            @@imageProcessorInputCompositeInterface = spriteImageJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "generateMirrorSpriteJMenuItemActionPerformed", e)
         end
@@ -526,7 +526,7 @@ class ImageToolJFrame < JFrame
             @jPanel1.removeAll()
             @jPanel1.add(mirrorImageJPanel)
             @jPanel1.updateUI()
-            ImageToolJFrame.imageProcessorInputCompositeInterface = mirrorImageJPanel
+            @@imageProcessorInputCompositeInterface = mirrorImageJPanel
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "generateMirrorJMenuItemActionPerformed", e)
         end

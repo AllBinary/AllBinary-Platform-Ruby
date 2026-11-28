@@ -26,7 +26,7 @@ class DownloadItemsEntityFactory
     
 
     def self.getInstance()
-        return DownloadItemsEntityFactory.instance
+        return @@instance
     end
     
 

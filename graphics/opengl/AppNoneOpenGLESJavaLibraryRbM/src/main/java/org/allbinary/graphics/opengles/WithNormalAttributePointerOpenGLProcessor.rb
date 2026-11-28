@@ -23,7 +23,7 @@ class WithNormalAttributePointerOpenGLProcessor < ::Org::Allbinary::Graphics::Th
     
 
     def self.getInstance()
-        return WithNormalAttributePointerOpenGLProcessor.instance
+        return @@instance
     end
     
 

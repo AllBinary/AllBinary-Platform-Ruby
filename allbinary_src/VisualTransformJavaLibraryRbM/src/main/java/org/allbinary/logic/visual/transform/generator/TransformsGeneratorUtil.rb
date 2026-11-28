@@ -27,7 +27,7 @@ class TransformsGeneratorUtil
     
 
     def self.getInstance()
-        return TransformsGeneratorUtil.instance
+        return @@instance
     end
     
 

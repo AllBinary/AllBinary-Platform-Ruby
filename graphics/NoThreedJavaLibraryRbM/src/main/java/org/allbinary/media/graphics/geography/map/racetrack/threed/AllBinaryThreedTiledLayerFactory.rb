@@ -21,7 +21,7 @@ class AllBinaryThreedTiledLayerFactory
     
 
     def self.getInstance()
-        return AllBinaryThreedTiledLayerFactory.instance
+        return @@instance
     end
     
 

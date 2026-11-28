@@ -30,7 +30,7 @@ class CellPositionFactory
     
 
     def self.getInstance()
-        return CellPositionFactory::SINGLETON
+        return SINGLETON
     end
     
 

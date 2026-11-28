@@ -31,7 +31,7 @@ class ImageJ2SEUtil
     
 
     def self.getInstance()
-        return ImageJ2SEUtil.instance
+        return @@instance
     end
 
     def self.instance()

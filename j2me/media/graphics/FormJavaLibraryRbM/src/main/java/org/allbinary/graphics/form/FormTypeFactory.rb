@@ -34,7 +34,7 @@ class FormTypeFactory
     
 
     def self.getInstance()
-        return FormTypeFactory.instance
+        return @@instance
     end
     
 

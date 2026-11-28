@@ -21,7 +21,7 @@ class ImageSwtUtil
     
 
     def self.getInstance()
-        return ImageSwtUtil.instance
+        return @@instance
     end
 
     def self.instance()

@@ -37,10 +37,10 @@ class AllBinaryMidlet < ::Javax::Microedition::Midlet::MIDlet
     
 
     def self.getNullInstance()
-        if AllBinaryMidlet::NULL_ALLBINARY_MIDLET == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+        if NULL_ALLBINARY_MIDLET == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
             (AllBinaryMidlet.instance_exec(AllBinaryMidlet.new()) { |java_value| remove_const(:NULL_ALLBINARY_MIDLET) if const_defined?(:NULL_ALLBINARY_MIDLET, false); const_set(:NULL_ALLBINARY_MIDLET, java_value) })
         end
-        return AllBinaryMidlet::NULL_ALLBINARY_MIDLET
+        return NULL_ALLBINARY_MIDLET
     end
     
 

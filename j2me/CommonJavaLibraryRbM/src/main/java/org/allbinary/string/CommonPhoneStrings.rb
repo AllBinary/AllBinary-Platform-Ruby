@@ -47,7 +47,7 @@ class CommonPhoneStrings
     
 
     def self.getInstance()
-        return CommonPhoneStrings.instance
+        return @@instance
     end
 
     def self.instance()

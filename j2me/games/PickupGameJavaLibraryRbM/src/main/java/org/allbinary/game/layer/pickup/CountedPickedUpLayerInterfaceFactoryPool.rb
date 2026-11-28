@@ -37,7 +37,7 @@ class CountedPickedUpLayerInterfaceFactoryPool
     
 
     def self.getInstance()
-        return CountedPickedUpLayerInterfaceFactoryPool::SINGLETON
+        return SINGLETON
     end
     
 

@@ -9,7 +9,7 @@ class OpenGLThreadUtil
     
 
     def self.getInstance()
-        return OpenGLThreadUtil.instance
+        return @@instance
     end
     
 

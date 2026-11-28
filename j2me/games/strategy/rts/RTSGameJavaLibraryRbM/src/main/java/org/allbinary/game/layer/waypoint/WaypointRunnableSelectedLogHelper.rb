@@ -35,7 +35,7 @@ class WaypointRunnableSelectedLogHelper < WaypointRunnableLogHelper
     
 
     def self.getInstance()
-        return WaypointRunnableSelectedLogHelper.instanceC
+        return @@instanceC
     end
     
 

@@ -39,10 +39,10 @@ class BasicGroupFactory
     
 
     def self.getInstance()
-        if BasicGroupFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            BasicGroupFactory.instance = BasicGroupFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = BasicGroupFactory.new()
         end
-        return BasicGroupFactory.instance
+        return @@instance
     end
 
     def self.instance()

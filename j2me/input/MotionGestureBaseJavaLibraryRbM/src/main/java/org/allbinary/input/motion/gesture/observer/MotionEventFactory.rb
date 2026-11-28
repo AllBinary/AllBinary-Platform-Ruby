@@ -33,13 +33,13 @@ class MotionEventFactory
         jfields_org_allbinary_input_motion_gesture_observer_MotionEventFactory
         @source = source
         @id = id
-        MotionEventFactory.index = ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().LAST_MOTION.getId()
+        @@index = ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().LAST_MOTION.getId()
     end
     
 
     def getInstance()
         inputFactory = ::Org::Allbinary::Game::Input::InputFactory.getInstance()
-        input = inputFactory.getInstanceById(((MotionEventFactory.index += 1) - 1))
+        input = inputFactory.getInstanceById(((@@index += 1) - 1))
         if input == inputFactory.NO_INPUT
             return MotionGestureEvent.new(@source, @id, ::Org::Allbinary::Input::Motion::Gesture::TouchMotionGestureFactory.getInstance().NO_MOTION)
         else

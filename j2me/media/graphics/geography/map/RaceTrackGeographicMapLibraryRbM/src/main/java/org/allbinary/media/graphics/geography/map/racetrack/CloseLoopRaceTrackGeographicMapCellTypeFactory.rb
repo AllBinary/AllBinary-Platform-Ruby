@@ -23,7 +23,7 @@ class CloseLoopRaceTrackGeographicMapCellTypeFactory < RaceTrackGeographicMapCel
     
 
     def self.getInstance()
-        return CloseLoopRaceTrackGeographicMapCellTypeFactory.instanceC
+        return @@instanceC
     end
     
 

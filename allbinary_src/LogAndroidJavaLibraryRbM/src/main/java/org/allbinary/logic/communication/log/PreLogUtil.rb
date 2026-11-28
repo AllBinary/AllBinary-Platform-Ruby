@@ -32,13 +32,13 @@ class PreLogUtil
     
 
     def self.putOE(specialMessage, anyType, functionName, exception)
-        className = PreLogUtil::LABEL
+        className = LABEL
         actualClassName = anyType.class.java_name
         if actualClassName != nil
             className = actualClassName
         end
         message = ::Org::Allbinary::Logic::Communication::Log::LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-        ::Android::Util::Log.i(PreLogUtil::LABEL, message)
+        ::Android::Util::Log.i(LABEL, message)
     end
     
 

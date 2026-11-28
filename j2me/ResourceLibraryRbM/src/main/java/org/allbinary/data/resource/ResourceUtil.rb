@@ -28,7 +28,7 @@ class ResourceUtil
     
 
     def self.getInstance()
-        return ResourceUtil.instance
+        return @@instance
     end
     
 
@@ -44,7 +44,7 @@ class ResourceUtil
 
     def setClassLoader(classLoader)
         @logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("Resource Loader: ").append(classLoader.class.java_name).to_s, self, "setClassLoader")
-        ResourceUtil.classLoader = classLoader
+        @@classLoader = classLoader
     end
     
 
@@ -70,7 +70,7 @@ class ResourceUtil
         if inputStream != nil
             return inputStream
         end
-        classLoader = ResourceUtil.classLoader
+        classLoader = @@classLoader
         inputStream = classLoader.getResourceAsStream(resourcePath)
         if inputStream != nil
             return inputStream

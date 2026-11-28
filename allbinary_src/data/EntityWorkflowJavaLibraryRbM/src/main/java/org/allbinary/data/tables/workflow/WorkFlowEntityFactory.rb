@@ -26,7 +26,7 @@ class WorkFlowEntityFactory
     
 
     def self.getInstance()
-        return WorkFlowEntityFactory.instance
+        return @@instance
     end
     
 

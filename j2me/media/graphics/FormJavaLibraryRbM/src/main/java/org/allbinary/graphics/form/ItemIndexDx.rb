@@ -21,7 +21,7 @@ class ItemIndexDx
     
 
     def self.getInstance()
-        return ItemIndexDx.instance
+        return @@instance
     end
     
 

@@ -37,7 +37,7 @@ class CustomLoaderHelperFactory
 
     # throws LicensingException
     def getInstance_j1(abeClientInformation)
-        return HelperFactory.getInstance(abeClientInformation, FACTORYNAME, CustomLoaderHelperFactory::CLASSNAME)
+        return HelperFactory.getInstance(abeClientInformation, FACTORYNAME, CLASSNAME)
     end
 
     def getInstance(*java_overload_args)

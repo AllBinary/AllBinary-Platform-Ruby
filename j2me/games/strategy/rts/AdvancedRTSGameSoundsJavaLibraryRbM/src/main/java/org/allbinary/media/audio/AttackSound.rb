@@ -27,7 +27,7 @@ class AttackSound < CompositeSound
     
 
     def self.getInstance()
-        return AttackSound.soundInterface
+        return @@soundInterface
     end
 
     def self.soundInterface()

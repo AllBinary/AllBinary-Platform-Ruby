@@ -23,7 +23,7 @@ class NullLocationPaintable < LocationPaintable
     
 
     def self.getInstance()
-        return NullLocationPaintable.instanceC
+        return @@instanceC
     end
 
     def self.instanceC()

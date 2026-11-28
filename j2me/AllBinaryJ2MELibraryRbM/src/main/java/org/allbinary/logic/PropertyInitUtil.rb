@@ -24,7 +24,7 @@ class PropertyInitUtil
         commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
         logUtil = ::Org::Allbinary::Logic::Communication::Log::LogUtil.getInstance()
         logUtil.putF(::Org::Allbinary::Logic::StringPackage::StringMaker.new().append("PropertyInitUtil: ").appendint(value).to_s, logUtil, commonStrings.CONSTRUCTOR)
-        return PropertyInitUtil.instance
+        return @@instance
     end
 
     def self.instance()

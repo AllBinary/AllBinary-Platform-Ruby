@@ -22,7 +22,7 @@ class JTreeInterfaceFactory
     
 
     def self.getInstance()
-        return JTreeInterfaceFactory.instance
+        return @@instance
     end
     
 

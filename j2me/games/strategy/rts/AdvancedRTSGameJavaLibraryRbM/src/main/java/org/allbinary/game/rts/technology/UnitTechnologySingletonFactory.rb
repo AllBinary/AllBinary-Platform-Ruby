@@ -30,7 +30,7 @@ class UnitTechnologySingletonFactory
     
 
     def self.getInstance()
-        return UnitTechnologySingletonFactory.instance
+        return @@instance
     end
     
 

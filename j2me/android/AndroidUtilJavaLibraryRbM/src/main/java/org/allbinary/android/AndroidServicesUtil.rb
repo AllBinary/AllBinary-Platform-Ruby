@@ -35,7 +35,7 @@ class AndroidServicesUtil
     
 
     def self.getInstance()
-        return AndroidServicesUtil.instance
+        return @@instance
     end
     
 

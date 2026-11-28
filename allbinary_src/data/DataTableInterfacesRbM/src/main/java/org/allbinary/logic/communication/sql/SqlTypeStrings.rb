@@ -48,7 +48,7 @@ class SqlTypeStrings
     
 
     def self.getInstance()
-        return SqlTypeStrings.instance
+        return @@instance
     end
 
     def self.instance()

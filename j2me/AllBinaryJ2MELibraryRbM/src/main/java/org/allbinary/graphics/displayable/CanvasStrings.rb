@@ -47,7 +47,7 @@ class CanvasStrings
     
 
     def self.getInstance()
-        return CanvasStrings.instance
+        return @@instance
     end
 
     def self.instance()

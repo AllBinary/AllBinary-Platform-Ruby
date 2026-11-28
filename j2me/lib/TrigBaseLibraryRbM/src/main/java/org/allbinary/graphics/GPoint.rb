@@ -82,7 +82,7 @@ class GPoint
     def self.toStringStatic(x, y, z)
         stringBuffer = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
         positionStrings = ::Org::Allbinary::MathPackage::PositionStrings.getInstance()
-        stringBuffer.append(GPoint::POINT_LABEL)
+        stringBuffer.append(POINT_LABEL)
         stringBuffer.append(positionStrings.X_LABEL)
         stringBuffer.appendint(x)
         stringBuffer.append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().SPACE)

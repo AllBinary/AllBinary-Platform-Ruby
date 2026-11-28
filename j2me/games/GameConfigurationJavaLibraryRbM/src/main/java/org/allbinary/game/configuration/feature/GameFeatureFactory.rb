@@ -41,7 +41,7 @@ class GameFeatureFactory
     
 
     def self.getInstance()
-        return GameFeatureFactory.instance
+        return @@instance
     end
     
 

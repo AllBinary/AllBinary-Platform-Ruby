@@ -31,7 +31,7 @@ class ABToGBUtil
     
 
     def self.getInstance()
-        return ABToGBUtil.instance
+        return @@instance
     end
 
     def self.instance()

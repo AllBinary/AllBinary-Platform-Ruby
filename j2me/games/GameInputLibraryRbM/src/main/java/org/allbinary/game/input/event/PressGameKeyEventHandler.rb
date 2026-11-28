@@ -28,7 +28,7 @@ class PressGameKeyEventHandler < ::Org::Allbinary::Logic::Util::Event::Handler::
     
 
     def self.getInstance()
-        return PressGameKeyEventHandler.instance
+        return @@instance
     end
     
 

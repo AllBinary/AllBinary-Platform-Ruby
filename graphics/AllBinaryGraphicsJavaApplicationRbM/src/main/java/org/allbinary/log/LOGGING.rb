@@ -28,12 +28,12 @@ class LOGGING
     def initialize(value)
         jfields_org_allbinary_log_LOGGING
         @name = value
-        LOGGING.logging.add(value)
+        @@logging.add(value)
     end
     
 
     def self.contains(logType)
-        return LOGGING.logging.contains(logType.to_s)
+        return @@logging.contains(logType.to_s)
     end
     
 

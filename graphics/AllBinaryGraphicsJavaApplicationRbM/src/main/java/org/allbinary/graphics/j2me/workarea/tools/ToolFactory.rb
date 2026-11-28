@@ -34,7 +34,7 @@ class ToolFactory
     
 
     def self.getInstance()
-        return ToolFactory.instance
+        return @@instance
     end
     
 

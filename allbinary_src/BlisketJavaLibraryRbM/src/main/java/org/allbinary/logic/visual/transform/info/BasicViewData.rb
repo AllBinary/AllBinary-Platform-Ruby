@@ -67,7 +67,7 @@ class BasicViewData
     
 
     def self.getInstance()
-        return BasicViewData.instance
+        return @@instance
     end
     
 

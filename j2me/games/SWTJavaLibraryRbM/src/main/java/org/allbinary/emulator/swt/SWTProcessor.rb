@@ -26,7 +26,7 @@ class SWTProcessor
     
 
     def self.getInstance()
-        return SWTProcessor.instance
+        return @@instance
     end
     
 

@@ -35,16 +35,16 @@ class FileLog
     def self.createLogFile()
         java_monitor.synchronize do
         begin
-            FileLog.logFile = File.new(@@logPath, @@fileName)
-            if !FileLog.firstTime
-                FileLog.fileOut = BufferedWriter.new(FileWriter.new(@@logFile))
+            @@logFile = File.new(@@logPath, @@fileName)
+            if !@@firstTime
+                @@fileOut = BufferedWriter.new(FileWriter.new(@@logFile))
             else
-                FileLog.firstTime = false
+                @@firstTime = false
                 raFile = RandomAccessFile.new(@@logFile, "rw")
                 raFile.seek(raFile.length())
-                FileLog.fileOut = BufferedWriter.new(FileWriter.new(raFile.getFD()))
+                @@fileOut = BufferedWriter.new(FileWriter.new(raFile.getFD()))
             end
-            canWrite = FileLog.logFile.canWrite()
+            canWrite = @@logFile.canWrite()
             return canWrite
         rescue StandardError => e
             puts("Error Creating Log: " + (e).to_s)
@@ -58,11 +58,11 @@ class FileLog
         java_monitor.synchronize do
         begin
             stringMaker = ::Org::Allbinary::Logic::StringPackage::StringMaker.new()
-            FileLog.logFileBak = File.new(@@logPath, stringMaker.append(@@backupFileName).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().PERIOD).appendint(@@backupIndex).to_s)
-            while FileLog.logFileBak.isFile()
-                FileLog.backupIndex += 1
+            @@logFileBak = File.new(@@logPath, stringMaker.append(@@backupFileName).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().PERIOD).appendint(@@backupIndex).to_s)
+            while @@logFileBak.isFile()
+                @@backupIndex += 1
                 stringMaker.delete(0, stringMaker.length())
-                FileLog.logFileBak = File.new(@@logPath, stringMaker.append(@@backupFileName).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().PERIOD).appendint(@@backupIndex).to_s)
+                @@logFileBak = File.new(@@logPath, stringMaker.append(@@backupFileName).append(::Org::Allbinary::StringPackage::CommonSeps.getInstance().PERIOD).appendint(@@backupIndex).to_s)
             end
             line = ""
             tmpOut = BufferedWriter.new(FileWriter.new(@@logFileBak))
@@ -75,7 +75,7 @@ class FileLog
             tmpOut.flush()
             tmpOut.close()
             tmpIn.close()
-            FileLog.logFile.delete()
+            @@logFile.delete()
             return true
         rescue StandardError => e
             puts("Error Creating Backup: " + (e).to_s)
@@ -95,33 +95,33 @@ class FileLog
     def self.put_j4_1(specialMessage, anyType, functionName, exception)
         java_monitor.synchronize do
         begin
-            if FileLog.firstTime == true
+            if @@firstTime == true
                 FileLog.createLogFileBackup()
                 if FileLog.createLogFile() == false
                     return String.new("Log File Creation Error")
                 end
             end
-            length = FileLog.logFile.length()
-            if length > FileLog.logLength
+            length = @@logFile.length()
+            if length > @@logLength
                 if !FileLog.createLogFileBackup() || FileLog.createLogFile() == false
                     return String.new("Couldn't Create a Backup file")
                 end
             end
             className = String.new(@@stringUtil.NULL_STRING)
             if functionName == nil
-                functionName = String.new(FileLog.stringUtil.NULL_STRING)
+                functionName = String.new(@@stringUtil.NULL_STRING)
             end
             if specialMessage == nil
-                specialMessage = String.new(FileLog.stringUtil.NULL_STRING)
+                specialMessage = String.new(@@stringUtil.NULL_STRING)
             end
             if anyType.class.java_name != nil
                 className = String.new(anyType.class.java_name)
             end
             message = ::Org::Allbinary::Logic::Communication::Log::LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-            FileLog.fileOut.write(message, 0, message.length)
-            FileLog.fileOut.newLine()
-            FileLog.fileOut.flush()
-            return String.new((FileLog::ORG_ALLBINARY).to_s + message)
+            @@fileOut.write(message, 0, message.length)
+            @@fileOut.newLine()
+            @@fileOut.flush()
+            return String.new((ORG_ALLBINARY).to_s + message)
         rescue StandardError => e
             return String.new("Error: " + (e).to_s)
         end
@@ -139,29 +139,29 @@ class FileLog
     def self.put_j4_2(specialMessage, className, functionName, exception)
         java_monitor.synchronize do
         begin
-            if FileLog.firstTime == true
+            if @@firstTime == true
                 FileLog.createLogFileBackup()
                 if FileLog.createLogFile() == false
                     return String.new("Log File Creation Error")
                 end
             end
-            length = FileLog.logFile.length()
-            if length > FileLog.logLength
+            length = @@logFile.length()
+            if length > @@logLength
                 if !FileLog.createLogFileBackup() || FileLog.createLogFile() == false
                     return String.new("Couldn't Create a Backup file")
                 end
             end
             if functionName == nil
-                functionName = String.new(FileLog.stringUtil.NULL_STRING)
+                functionName = String.new(@@stringUtil.NULL_STRING)
             end
             if specialMessage == nil
-                specialMessage = String.new(FileLog.stringUtil.NULL_STRING)
+                specialMessage = String.new(@@stringUtil.NULL_STRING)
             end
             message = ::Org::Allbinary::Logic::Communication::Log::LogFormatUtil.getInstance().get(className, functionName, specialMessage, exception)
-            FileLog.fileOut.write(message, 0, message.length)
-            FileLog.fileOut.newLine()
-            FileLog.fileOut.flush()
-            return String.new((FileLog::ORG_ALLBINARY).to_s + message)
+            @@fileOut.write(message, 0, message.length)
+            @@fileOut.newLine()
+            @@fileOut.flush()
+            return String.new((ORG_ALLBINARY).to_s + message)
         rescue StandardError => e
             return String.new("Error: " + (e).to_s)
         end
@@ -186,7 +186,7 @@ class FileLog
     
 
     def self.getFilePath()
-        return FileLog.logPath + FileLog.fileName
+        return @@logPath + @@fileName
     end
 
     def self.stringUtil()
@@ -309,9 +309,9 @@ class FileLog
         begin
             @@stringUtil = ::Org::Allbinary::Logic::StringPackage::StringUtil.getInstance()
             @@extension = String.new("dat")
-            @@fileName = String.new("log." + (FileLog.extension).to_s)
-            @@backupFileName = FileLog.fileName.concat(".bak")
-            @@logFile = File.new(FileLog.logPath, FileLog.fileName)
+            @@fileName = String.new("log." + (@@extension).to_s)
+            @@backupFileName = @@fileName.concat(".bak")
+            @@logFile = File.new(@@logPath, @@fileName)
             @@logFileBak = nil
             @@fileOut = nil
             @@backupIndex = 0

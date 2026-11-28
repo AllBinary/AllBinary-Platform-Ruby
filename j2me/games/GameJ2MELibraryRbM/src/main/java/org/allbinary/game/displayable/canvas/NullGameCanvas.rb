@@ -39,10 +39,10 @@ class NullGameCanvas < AllBinaryGameCanvas
     
 
     def self.getInstance()
-        if NullGameCanvas.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            NullGameCanvas.instance = NullGameCanvas.createNull()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = NullGameCanvas.createNull()
         end
-        return NullGameCanvas.instance
+        return @@instance
     end
     
 

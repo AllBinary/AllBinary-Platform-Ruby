@@ -36,7 +36,7 @@ class CachePolicyFactory
     
 
     def self.getInstance()
-        return CachePolicyFactory.instance
+        return @@instance
     end
 
     def self.instance()

@@ -24,7 +24,7 @@ class NoHardwareComponent
     
 
     def self.getInstance()
-        return NoHardwareComponent.instance
+        return @@instance
     end
     
 

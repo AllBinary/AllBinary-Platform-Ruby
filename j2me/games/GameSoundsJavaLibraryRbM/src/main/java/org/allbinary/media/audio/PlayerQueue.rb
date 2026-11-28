@@ -76,7 +76,7 @@ class PlayerQueue
     
 
     def toString()
-        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(PlayerQueue::TOTAL).appendint(@list.size()).to_s
+        return ::Org::Allbinary::Logic::StringPackage::StringMaker.new().append(TOTAL).appendint(@list.size()).to_s
     end
     alias_method :to_s, :toString
 

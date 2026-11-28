@@ -28,14 +28,14 @@ class MyGraphicItemEventService
 
     def self.addListener(listener)
         java_monitor.synchronize do
-        MyGraphicItemEventService.listenerList.add((listener.class), listener)
+        @@listenerList.add((listener.class), listener)
         end
     end
     
 
     def self.removeListener(listener)
         java_monitor.synchronize do
-        MyGraphicItemEventService.listenerList.remove((listener.class), listener)
+        @@listenerList.remove((listener.class), listener)
         end
     end
     

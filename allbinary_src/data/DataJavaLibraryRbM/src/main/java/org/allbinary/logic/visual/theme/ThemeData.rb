@@ -29,7 +29,7 @@ class ThemeData
     
 
     def self.getInstance()
-        return ThemeData.instance
+        return @@instance
     end
     
 

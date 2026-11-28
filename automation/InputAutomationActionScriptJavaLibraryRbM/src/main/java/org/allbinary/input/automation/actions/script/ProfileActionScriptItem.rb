@@ -92,7 +92,7 @@ class ProfileActionScriptItem < DefaultMutableTreeNode
     
 
     def actionPerformed(actionEvent)
-        if actionEvent.getActionCommand().compareTo(ProfileActionScriptItem::EDIT) == 0
+        if actionEvent.getActionCommand().compareTo(EDIT) == 0
             self.showDialog()
         end
     end

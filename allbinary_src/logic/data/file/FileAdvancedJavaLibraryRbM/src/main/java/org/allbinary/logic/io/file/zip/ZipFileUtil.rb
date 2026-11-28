@@ -35,7 +35,7 @@ class ZipFileUtil
     
 
     def self.getInstance()
-        return ZipFileUtil.instance
+        return @@instance
     end
     
 

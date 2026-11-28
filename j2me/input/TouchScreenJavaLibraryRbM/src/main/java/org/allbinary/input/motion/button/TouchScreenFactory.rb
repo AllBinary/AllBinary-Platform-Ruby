@@ -36,13 +36,13 @@ class TouchScreenFactory
             self.setMultiTouch(false)
         rescue StandardError => e
             commonStrings = ::Org::Allbinary::StringPackage::CommonStrings.getInstance()
-            @logUtil.put(commonStrings.EXCEPTION, TouchScreenFactory::SINGLETON, commonStrings.GET_INSTANCE, e)
+            @logUtil.put(commonStrings.EXCEPTION, SINGLETON, commonStrings.GET_INSTANCE, e)
         end
     end
     
 
     def self.getInstance()
-        return TouchScreenFactory::SINGLETON
+        return SINGLETON
     end
     
 

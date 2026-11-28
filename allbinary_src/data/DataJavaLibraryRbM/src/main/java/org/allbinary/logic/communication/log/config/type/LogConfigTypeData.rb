@@ -27,7 +27,7 @@ class LogConfigTypeData
     
 
     def self.getInstance()
-        return LogConfigTypeData.instance
+        return @@instance
     end
     
 

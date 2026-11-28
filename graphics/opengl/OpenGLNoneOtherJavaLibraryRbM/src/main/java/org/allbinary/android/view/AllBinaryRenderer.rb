@@ -21,7 +21,7 @@ class AllBinaryRenderer
     
 
     def self.getInstance()
-        return AllBinaryRenderer.instance
+        return @@instance
     end
     
 

@@ -31,7 +31,7 @@ class MyFontProcessor
     
 
     def self.getInstance()
-        return MyFontProcessor.instance
+        return @@instance
     end
     
 

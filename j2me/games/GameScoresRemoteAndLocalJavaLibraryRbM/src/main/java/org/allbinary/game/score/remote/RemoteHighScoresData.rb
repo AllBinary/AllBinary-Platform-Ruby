@@ -35,7 +35,7 @@ class RemoteHighScoresData
     
 
     def self.getInstance()
-        return RemoteHighScoresData::SINGLETON
+        return SINGLETON
     end
 
     def self.java_static_fields

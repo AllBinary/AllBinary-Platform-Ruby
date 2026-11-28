@@ -35,7 +35,7 @@ class BasicArrayListUtil
     
 
     def self.getInstance()
-        return BasicArrayListUtil.instance
+        return @@instance
     end
     
 

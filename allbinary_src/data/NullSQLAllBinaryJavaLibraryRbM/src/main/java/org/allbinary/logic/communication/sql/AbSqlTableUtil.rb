@@ -35,7 +35,7 @@ class AbSqlTableUtil
     
 
     def self.getInstance()
-        return AbSqlTableUtil.instance
+        return @@instance
     end
     
 

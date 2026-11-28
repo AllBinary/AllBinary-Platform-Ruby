@@ -9,7 +9,7 @@ class OpenGLGLU
     
 
     def self.getInstance()
-        return OpenGLGLU.instance
+        return @@instance
     end
     
 

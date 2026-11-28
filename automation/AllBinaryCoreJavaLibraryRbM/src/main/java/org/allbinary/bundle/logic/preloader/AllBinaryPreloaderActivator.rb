@@ -35,7 +35,7 @@ class AllBinaryPreloaderActivator
     
 
     def self.getBundleContext()
-        return AllBinaryPreloaderActivator.context
+        return @@context
     end
     
 
@@ -43,7 +43,7 @@ class AllBinaryPreloaderActivator
     def start(context)
         begin
             @logUtil.putF(@commonStrings.START, self, "start")
-            AllBinaryPreloaderActivator.context = context
+            @@context = context
             self.registerAsService()
         rescue StandardError => e
             @logUtil.put(@commonStrings.EXCEPTION, self, "start", e)
@@ -56,9 +56,9 @@ class AllBinaryPreloaderActivator
     # throws Exception
     def registerAsService()
         properties = ::Org::Allbinary::Logic::StdUtil.getInstance().createHashtable()
-        serviceRegistration = AllBinaryPreloaderActivator.context.registerService(CRYPT_REGISTRY_NAME, ::Org::Allbinary::Bundle::Logic::System::Loader::CryptServiceFactory.new(), properties)
+        serviceRegistration = @@context.registerService(CRYPT_REGISTRY_NAME, ::Org::Allbinary::Bundle::Logic::System::Loader::CryptServiceFactory.new(), properties)
         serviceReference = serviceRegistration.getReference()
-        serviceReference = AllBinaryPreloaderActivator.context.getServiceReference(CRYPT_REGISTRY_NAME)
+        serviceReference = @@context.getServiceReference(CRYPT_REGISTRY_NAME)
         if serviceReference == nil
             raise StandardError.new("No Such Service Reference")
         end

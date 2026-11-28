@@ -30,7 +30,7 @@ class GameKeyUtil
     
 
     def self.getInstance()
-        return GameKeyUtil.instance
+        return @@instance
     end
 
     def self.instance()

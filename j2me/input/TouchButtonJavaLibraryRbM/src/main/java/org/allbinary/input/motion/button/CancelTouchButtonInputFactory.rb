@@ -26,10 +26,10 @@ class CancelTouchButtonInputFactory
     
 
     def self.getInstance()
-        if CancelTouchButtonInputFactory.instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
-            CancelTouchButtonInputFactory.instance = CancelTouchButtonInputFactory.new()
+        if @@instance == ::Org::Allbinary::Logic::NullUtil.getInstance().NULL_OBJECT
+            @@instance = CancelTouchButtonInputFactory.new()
         end
-        return CancelTouchButtonInputFactory.instance
+        return @@instance
     end
     
 

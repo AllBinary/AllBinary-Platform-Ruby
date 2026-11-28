@@ -24,7 +24,7 @@ class AdvancedRTSGameLayerPositionFinder
     
 
     def self.getInstance()
-        return AdvancedRTSGameLayerPositionFinder.instance
+        return @@instance
     end
     
 

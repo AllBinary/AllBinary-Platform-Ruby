@@ -110,7 +110,7 @@ class PaymentTransactionKeysFactory
     
 
     def self.getInstance()
-        return PaymentTransactionKeysFactory.instance
+        return @@instance
     end
 
     def self.instance()

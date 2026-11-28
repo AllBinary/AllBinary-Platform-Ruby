@@ -31,7 +31,7 @@ class OrthogonalLightingOpenGLProcessorFactory
     
 
     def self.getInstance()
-        return OrthogonalLightingOpenGLProcessorFactory.instance
+        return @@instance
     end
 
     def self.instance()

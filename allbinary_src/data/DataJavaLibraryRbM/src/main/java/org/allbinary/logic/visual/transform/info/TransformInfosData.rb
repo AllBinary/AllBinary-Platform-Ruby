@@ -35,7 +35,7 @@ class TransformInfosData
     
 
     def self.getInstance()
-        return TransformInfosData.instance
+        return @@instance
     end
 
     def self.instance()

@@ -23,7 +23,7 @@ class AbXslHelper
     
 
     def self.getInstance()
-        return AbXslHelper.instance
+        return @@instance
     end
     
 

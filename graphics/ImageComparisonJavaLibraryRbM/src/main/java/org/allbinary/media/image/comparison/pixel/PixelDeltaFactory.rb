@@ -32,7 +32,7 @@ class PixelDeltaFactory
         instance = "PixelDeltaFactory"
         begin
             logUtil.putF(commonStrings.START, instance, _STATIC_BLOCK)
-            PixelDeltaFactory.cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance(::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
+            @@cacheInterface = ::Org::Allbinary::Logic::Util::Cache::CacheInterfaceFactory.getInstance(::Org::Allbinary::Logic::Util::Cache::CacheTypeFactory.getInstance().CACHE, ::Org::Allbinary::Logic::Util::Cache::CachePolicyFactory.getInstance().THIRTY_MINUTES_TEN_THOUSAND_MAX)
             logUtil.putF(commonStrings.END_, instance, _STATIC_BLOCK)
         rescue StandardError => e
             logUtil.put(commonStrings.EXCEPTION, instance, _STATIC_BLOCK, e)
@@ -49,7 +49,7 @@ class PixelDeltaFactory
     def self.getInstance(x, y, rgb1, rgb2)
         point = ::Org::Allbinary::Graphics::PointFactory.getInstance().createXY(x, y)
         colorDelta = ::Org::Allbinary::Media::Image::Comparison::Color::ColorDeltaFactory.getInstance(rgb1, rgb2)
-        pixelDelta = PixelDeltaFactory.cacheInterface.get(PixelDelta.getKey(point, colorDelta))
+        pixelDelta = @@cacheInterface.get(PixelDelta.getKey(point, colorDelta))
         if pixelDelta == nil
             pixelDelta = PixelDelta.new(point, colorDelta)
         end

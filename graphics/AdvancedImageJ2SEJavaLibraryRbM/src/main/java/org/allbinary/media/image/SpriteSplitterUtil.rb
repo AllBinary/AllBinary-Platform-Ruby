@@ -39,7 +39,7 @@ class SpriteSplitterUtil
     
 
     def self.getInstance()
-        return SpriteSplitterUtil.instance
+        return @@instance
     end
     
 

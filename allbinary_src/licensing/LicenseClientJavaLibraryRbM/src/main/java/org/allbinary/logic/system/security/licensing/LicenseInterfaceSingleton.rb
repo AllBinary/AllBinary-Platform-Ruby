@@ -21,13 +21,13 @@ class LicenseInterfaceSingleton
     
 
     def self.getInstance()
-        return LicenseInterfaceSingleton.licenseInterface
+        return @@licenseInterface
     end
     
 
     def self.init(licenseInterface)
         if licenseInterface != nil
-            LicenseInterfaceSingleton.licenseInterface = licenseInterface
+            @@licenseInterface = licenseInterface
         end
     end
 

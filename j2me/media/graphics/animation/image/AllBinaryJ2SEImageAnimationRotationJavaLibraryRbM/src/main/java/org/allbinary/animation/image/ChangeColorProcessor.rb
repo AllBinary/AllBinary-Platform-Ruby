@@ -23,7 +23,7 @@ class ChangeColorProcessor < ModifierBaseProcessor
     
 
     def self.getInstance()
-        return ChangeColorProcessor.instanceC
+        return @@instanceC
     end
     
 
